@@ -126,6 +126,41 @@
         "$ref": "./common.schema.json#/$defs/evidenceReviewRef"
       },
       "uniqueItems": true
+    },
+    "promotion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "target_status",
+        "promoted_at",
+        "promoted_by_agent",
+        "reviewed_review_ids",
+        "summary"
+      ],
+      "properties": {
+        "target_status": {
+          "enum": [
+            "accepted",
+            "applied"
+          ]
+        },
+        "promoted_at": {
+          "$ref": "./common.schema.json#/$defs/dateTime"
+        },
+        "promoted_by_agent": {
+          "type": "string"
+        },
+        "reviewed_review_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/evidenceReviewRef"
+          },
+          "uniqueItems": true
+        },
+        "summary": {
+          "type": "string"
+        }
+      }
     }
   }
 }

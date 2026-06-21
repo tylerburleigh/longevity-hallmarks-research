@@ -53,5 +53,5 @@ Extraction-grade result exports must carry snapshot-linked provenance. For each 
 ## Current Limitations
 
 - The evidence-map export is a generated graph view, not a formal synthesis.
-- There is no accepted-record export yet because promotion gates are not implemented.
+- There is no accepted-record export yet, although candidate promotion gates now exist.
 - Full-text extraction, raw-payload archival, certainty assessments, and endpoint-specific synthesis-group generation remain future work.

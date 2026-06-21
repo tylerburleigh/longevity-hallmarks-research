@@ -24,10 +24,12 @@ Check for:
 - JSON files without schema coverage.
 - Records whose `record_type` does not match their collection.
 - Duplicate IDs across canonical records.
-- Broken references between sources, studies, findings, candidate changes, evidence reviews, sessions, coverage assessments, and synthesis groups.
+- Broken references between sources, studies, findings, candidate changes, evidence reviews, sessions, agent runs, coverage assessments, and synthesis groups.
 - Track IDs or hallmark IDs not present in taxonomies.
 - Candidate changes missing required review lanes.
 - `in_review` candidates that lack active evidence-review records for each required lane.
+- Accepted or applied candidates that lack promotion metadata.
+- Agent runs with canonical writes that lack a linked candidate change.
 - Evidence reviews that refer to missing candidate changes.
 - Coverage assessments that cite missing sources or findings.
 - Synthesis groups that claim pooling is allowed without required effect fields.

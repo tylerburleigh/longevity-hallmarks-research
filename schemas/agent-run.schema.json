@@ -1,0 +1,277 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./agent-run.schema.json",
+  "title": "Agent run output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "id",
+    "agent_role",
+    "agent_id",
+    "started_at",
+    "completed_at",
+    "status",
+    "scope",
+    "canonical_write_policy",
+    "outputs",
+    "quality_checks"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "canonical_write_policy": {
+            "const": "candidate_change_required"
+          }
+        },
+        "required": [
+          "canonical_write_policy"
+        ]
+      },
+      "then": {
+        "required": [
+          "outputs"
+        ],
+        "properties": {
+          "outputs": {
+            "type": "object",
+            "required": [
+              "candidate_change_id",
+              "proposed_records"
+            ],
+            "properties": {
+              "candidate_change_id": true,
+              "proposed_records": true
+            }
+          }
+        }
+      }
+    }
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "record_type": {
+      "const": "agent_run"
+    },
+    "id": {
+      "$ref": "./common.schema.json#/$defs/agentRunRef"
+    },
+    "agent_role": {
+      "enum": [
+        "triage_agent",
+        "search_agent",
+        "screening_agent",
+        "dedupe_linker_agent",
+        "extraction_agent",
+        "trial_registry_agent",
+        "classification_agent",
+        "risk_of_bias_agent",
+        "synthesis_agent",
+        "review_agent",
+        "supervisor_agent",
+        "self_healing_agent",
+        "release_agent"
+      ]
+    },
+    "agent_id": {
+      "type": "string"
+    },
+    "mode": {
+      "$ref": "./common.schema.json#/$defs/researchMode"
+    },
+    "started_at": {
+      "$ref": "./common.schema.json#/$defs/dateTime"
+    },
+    "completed_at": {
+      "$ref": "./common.schema.json#/$defs/dateTime"
+    },
+    "status": {
+      "enum": [
+        "succeeded",
+        "partial",
+        "failed",
+        "blocked"
+      ]
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "question"
+      ],
+      "properties": {
+        "question": {
+          "type": "string"
+        },
+        "hallmark_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/hallmarkRef"
+          },
+          "uniqueItems": true
+        },
+        "track_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/trackRef"
+          },
+          "uniqueItems": true
+        },
+        "intervention_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/identifier"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "canonical_write_policy": {
+      "enum": [
+        "no_canonical_writes",
+        "candidate_change_required"
+      ]
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "input_type",
+          "reference"
+        ],
+        "properties": {
+          "input_type": {
+            "enum": [
+              "user_request",
+              "plan_item",
+              "coverage_gap",
+              "candidate_change",
+              "source_snapshot",
+              "record",
+              "export",
+              "other"
+            ]
+          },
+          "reference": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "outputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "summary"
+      ],
+      "properties": {
+        "summary": {
+          "type": "string"
+        },
+        "research_session_id": {
+          "$ref": "./common.schema.json#/$defs/identifier"
+        },
+        "candidate_change_id": {
+          "$ref": "./common.schema.json#/$defs/candidateChangeRef"
+        },
+        "proposed_records": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "record_type",
+              "record_id",
+              "path",
+              "change_type",
+              "rationale"
+            ],
+            "properties": {
+              "record_type": {
+                "type": "string"
+              },
+              "record_id": {
+                "$ref": "./common.schema.json#/$defs/identifier"
+              },
+              "path": {
+                "type": "string"
+              },
+              "change_type": {
+                "enum": [
+                  "create",
+                  "update",
+                  "delete"
+                ]
+              },
+              "rationale": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "generated_files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "export_paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "quality_checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "check_name",
+          "status",
+          "summary"
+        ],
+        "properties": {
+          "check_name": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "passed",
+              "failed",
+              "not_run"
+            ]
+          },
+          "summary": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "blocking_issues": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "next_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

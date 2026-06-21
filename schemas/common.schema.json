@@ -52,6 +52,9 @@
     "evidenceReviewRef": {
       "$ref": "#/$defs/identifier"
     },
+    "agentRunRef": {
+      "$ref": "#/$defs/identifier"
+    },
     "sourceType": {
       "enum": [
         "journal_article",

@@ -22,6 +22,7 @@ const collectionRules = [
   { prefix: "data/evidence-maps/", recordType: "evidence_map" },
   { prefix: "data/syntheses/", recordType: "synthesis" },
   { prefix: "data/synthesis-groups/", recordType: "synthesis_group" },
+  { prefix: "research/agent-runs/", recordType: "agent_run" },
   { prefix: "research/sessions/", recordType: "research_session" }
 ];
 
@@ -357,6 +358,22 @@ function checkCandidateReviewGate({ index, issues, record, ownerPath }) {
   }
 
   if (["accepted", "applied"].includes(record.lifecycle_status)) {
+    if (!record.promotion) {
+      issues.push(`${ownerPath}: accepted/applied candidate must include promotion metadata.`);
+    } else {
+      if (record.promotion.target_status !== record.lifecycle_status) {
+        issues.push(
+          `${ownerPath}: promotion.target_status "${record.promotion.target_status}" does not match lifecycle_status "${record.lifecycle_status}".`
+        );
+      }
+
+      for (const reviewId of record.promotion.reviewed_review_ids ?? []) {
+        if (!(record.evidence_review_ids ?? []).includes(reviewId)) {
+          issues.push(`${ownerPath}: promotion.reviewed_review_ids[] includes review "${reviewId}" not linked in evidence_review_ids.`);
+        }
+      }
+    }
+
     for (const lane of record.required_review_lanes ?? []) {
       const review = reviewByLane.get(lane);
       if (!review) {
@@ -788,6 +805,51 @@ async function audit() {
       });
     }
 
+    if (record.record_type === "agent_run") {
+      checkTaxonomyRefs({
+        index,
+        issues,
+        ownerPath: relativePath,
+        field: "scope.hallmark_ids[]",
+        taxonomySet: index.hallmarkIds,
+        taxonomyKind: "hallmark",
+        values: record.scope?.hallmark_ids
+      });
+      checkTaxonomyRefs({
+        index,
+        issues,
+        ownerPath: relativePath,
+        field: "scope.track_ids[]",
+        taxonomySet: index.trackIds,
+        taxonomyKind: "track",
+        values: record.scope?.track_ids
+      });
+      checkRef({
+        index,
+        issues,
+        ownerPath: relativePath,
+        field: "outputs.research_session_id",
+        recordType: "research_session",
+        recordId: record.outputs?.research_session_id
+      });
+      checkRef({
+        index,
+        issues,
+        ownerPath: relativePath,
+        field: "outputs.candidate_change_id",
+        recordType: "candidate_change",
+        recordId: record.outputs?.candidate_change_id
+      });
+
+      if (record.canonical_write_policy === "candidate_change_required" && !record.outputs?.candidate_change_id) {
+        issues.push(`${relativePath}: candidate_change_required agent runs must reference outputs.candidate_change_id.`);
+      }
+
+      for (const proposedRecord of record.outputs?.proposed_records ?? []) {
+        await checkCandidatePath({ index, issues, ownerPath: relativePath, proposedRecord });
+      }
+    }
+
     if (record.record_type === "candidate_change") {
       checkCandidateReviewGate({ index, issues, record, ownerPath: relativePath });
       checkTaxonomyRefs({
@@ -815,6 +877,14 @@ async function audit() {
         field: "evidence_review_ids[]",
         recordType: "evidence_review",
         recordIds: record.evidence_review_ids
+      });
+      checkRefs({
+        index,
+        issues,
+        ownerPath: relativePath,
+        field: "promotion.reviewed_review_ids[]",
+        recordType: "evidence_review",
+        recordIds: record.promotion?.reviewed_review_ids
       });
 
       for (const proposedRecord of record.proposed_records ?? []) {

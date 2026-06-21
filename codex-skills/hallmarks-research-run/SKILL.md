@@ -10,6 +10,7 @@ description: Run bounded research passes for the longevity hallmarks evidence kn
 1. Work from the repository root.
 2. Read `plan.md`, then read the relevant docs for the requested mode:
    - `docs/research-runbook.md`
+   - `docs/agent-run-outputs.md`
    - `docs/screening-rules.md` when source discovery or screening is involved
    - `docs/extraction-rules.md` when creating evidence records
    - `docs/synthesis-rules.md` when summarizing or considering meta-analysis
@@ -46,10 +47,12 @@ Choose one outcome and record the rationale:
 ## Record Rules
 
 - Do not let agent output directly imply publication or release.
+- Write an `agent_run` record for the pass. Use `canonical_write_policy: "candidate_change_required"` when canonical records are created or updated.
 - Keep `research_session.search_log[]` specific enough that another reviewer can reproduce the search.
 - Put close-but-excluded sources in `research_session.excluded_sources[]`.
 - Keep candidate changes small and scoped to material records.
 - If a candidate is `in_review`, create or link an active `evidence_review` record for every `required_review_lanes[]` entry. Use `status: "draft"` and `verdict: "needs_revision"` for lanes that still need agent-supervisor review.
+- Use `npm run promote:candidate -- <candidate_change_id> --status accepted` or `--status applied` for lifecycle promotion after review gates pass.
 - Use `synthesis_group` records for poolability decisions; do not leave meta-analysis readiness only in prose.
 - Regenerate exports after canonical data changes with `npm run export:latest`.
 - Run `npm run verify:knowledge-base` after edits.

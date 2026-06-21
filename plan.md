@@ -93,6 +93,7 @@ As of 2026-06-21, the repository has an initial JSON-file-backed scaffold:
 - Added reusable PubMed and ClinicalTrials.gov source-snapshot importer, refresh, and diff scripts.
 - Added `synthesis_group` schema/data/export support for poolability decisions, missing effect fields, and agent-supervision metadata.
 - Added an agentic process audit that blocks deprecated non-agentic process vocabulary.
+- Added `agent_run` output schema support and a gated `promote:candidate` command for accepted/applied candidate lifecycle transitions.
 
 ## Target Architecture
 
@@ -114,6 +115,7 @@ Core record families:
 - `synthesis`: narrative synthesis, evidence table, or formal meta-analysis output
 - `coverage_assessment`: source-landscape completeness and known gaps
 - `research_session`: one bounded agent pass
+- `agent_run`: transactional agent output, proposed records, quality checks, and next actions
 - `synthesis_group`: compatibility decision over outcomes/results, including poolability, missing effect fields, and agent-supervision metadata
 - `candidate_change`: proposed durable data changes
 - `evidence_review`: review of source fidelity, extraction, taxonomy mapping, and interpretation boundaries
@@ -125,6 +127,7 @@ Core record families:
 docs/
   system-design.md
   research-runbook.md
+  agent-run-outputs.md
   screening-rules.md
   extraction-rules.md
   synthesis-rules.md
@@ -150,6 +153,7 @@ schemas/
   synthesis.schema.json
   coverage_assessment.schema.json
   research_session.schema.json
+  agent_run.schema.json
   candidate_change.schema.json
   evidence_review.schema.json
   release_manifest.schema.json
@@ -170,6 +174,7 @@ data/
   coverage-assessments/
 
 research/
+  agent-runs/
   sessions/
   search-logs/
   screening-runs/
@@ -329,7 +334,7 @@ Tasks:
 - [x] Add first `exports/latest/` consumer contract with maturity-filtered result exports, coverage status, evidence-map view, and audit manifest.
 - [x] Add snapshot-linked provenance checks for extraction-grade records and exports.
 - [x] Require active review-lane records for every required lane once a candidate enters `in_review`.
-- [ ] Add a promotion command that moves records from generated/candidate state to accepted state only after review gates pass.
+- [x] Add a promotion command that moves candidate changes to accepted/applied state only after review gates pass.
 
 Exit criteria:
 
@@ -365,11 +370,11 @@ Tasks:
 
 - Add triage state generation.
 - Add templates for research sessions.
-- Add search-agent run output format.
-- Add screening-agent output format.
-- Add extraction-agent output format.
-- Add review-agent output format.
-- Define how agent proposals become candidate changes.
+- [x] Add agent-run output schema for search, screening, extraction, review, synthesis, supervisor, release, and self-healing runs.
+- [x] Define how agent proposals become candidate changes.
+- [ ] Add concrete agent-run templates for common modes.
+- [ ] Add triage state generation.
+- [ ] Add templates for research sessions.
 
 Exit criteria:
 
@@ -408,7 +413,7 @@ Exit criteria:
 
 ## Immediate Next Actions
 
-1. Add a promotion command that moves candidate records to accepted/applied only when required review lanes are accepting and no open major findings remain.
+1. Add concrete agent-run templates for common modes: search, screening, extraction, synthesis, review, and release.
 2. Generate endpoint-specific synthesis groups for D+Q bone endpoints so each group has one compatible endpoint family and an explicit pooling decision.
 3. Finish full publication/table extraction for the D+Q bone RCT, including subgroup and event-specific safety details.
 4. Run extraction-refresh passes on the remaining human D+Q papers: DKD, IPF, and AD-risk cognition/mobility.
@@ -421,6 +426,7 @@ Exit criteria:
 - 2026-06-21: Added maturity/provenance fields, semantic audit gates, candidate-completeness checking, and normalized the senolytics repair slice under the stricter process.
 - 2026-06-21: Added a senolytics coverage-repair slice with sources, studies, findings, outcomes, results, eligibility decisions, risk-of-bias triage, coverage assessment, and candidate-review ledger.
 - 2026-06-21: Added source-snapshot IDs to extraction-grade bone RCT provenance, reconciled coverage gaps, and added export audits for stale JSONL and snapshot-linked result provenance.
+- 2026-06-21: Added agent-run output schema, agent-run reference audits, and a promotion command that blocks accepted/applied candidate transitions until review gates pass.
 - 2026-06-21: Replaced deprecated non-agentic vocabulary with agent-supervision states, added an agentic process audit, and introduced synthesis-group compatibility records and exports.
 - 2026-06-21: Added in-review candidate review-lane enforcement and draft coverage-repair review records so missing review work is explicit.
 - 2026-06-21: Added source snapshots and registry-extracted outcome/result records for the D+Q postmenopausal bone RCT, including CTX, P1NP, BMD, SASP, and aggregate adverse events.

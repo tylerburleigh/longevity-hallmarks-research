@@ -30,6 +30,7 @@ rg -n "<PMID>|<DOI>|<NCT>|<title words>|<intervention>" data taxonomies research
 - `finding` records hold one atomic claim or observation from one source, usually linked to one study.
 - `outcome` and `result` records should be used for structured endpoints/effects.
 - `coverage_assessment`, `synthesis`, and `synthesis_group` records should not duplicate every source; they should summarize coverage, interpretation, and compatibility decisions.
+- `agent_run` records describe the transactional output of the extraction pass and the checks run before handoff.
 
 ## Source ID Conventions
 
@@ -48,6 +49,7 @@ Use stable IDs:
 - Include caveats when sample size, endpoint, duration, conflict, or translation boundary matters.
 - Use source-snapshot importers before extraction-grade PubMed or ClinicalTrials.gov extraction, and include `source_snapshot_id` on extraction-grade provenance locators.
 - Add `candidate_change` and `evidence_review` records when the extraction is intended to become durable canonical state.
+- Add an `agent_run` record with `canonical_write_policy: "candidate_change_required"` when extraction creates or updates canonical records.
 - If a candidate is `in_review`, add active review records for every required lane, using draft `needs_revision` records for lanes that remain incomplete.
 - Add or update `synthesis_group` records when extracted results change poolability, missing effect fields, or endpoint compatibility.
 

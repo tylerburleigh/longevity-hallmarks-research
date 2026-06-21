@@ -4,7 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "validate:records": "node scripts/validate-records.mjs"
+    "validate:records": "node scripts/validate-records.mjs",
+    "audit:references": "node scripts/audit-references.mjs",
+    "verify:knowledge-base": "npm run validate:records && npm run audit:references"
   },
   "devDependencies": {
     "ajv": "^8.20.0",

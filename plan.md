@@ -77,6 +77,7 @@ As of 2026-06-21, the repository has an initial JSON-file-backed scaffold:
 
 - Node package setup with AJV validation.
 - `npm run validate:records`.
+- `npm run audit:references` and `npm run verify:knowledge-base`.
 - Core schema set for sources, studies, findings, research sessions, coverage assessments, candidate changes, and evidence reviews.
 - Placeholder schemas for later source snapshots, outcomes, results, eligibility decisions, risk-of-bias records, certainty assessments, evidence maps, syntheses, and release manifests.
 - Ported 12-hallmark taxonomy.
@@ -256,7 +257,7 @@ Tasks:
 - [x] Add validation script.
 - [x] Add examples for each core record through the initial senolytics vertical slice.
 - [x] Port a minimal hallmark and track taxonomy.
-- [ ] Define source ID conventions for PMID, DOI, NCT, and manual sources.
+- [x] Define source ID conventions for PMID, DOI, NCT, and manual sources.
 - [x] Define the first track work scope.
 
 Exit criteria:
@@ -355,15 +356,15 @@ Exit criteria:
 
 ## Immediate Next Actions
 
-1. Write source ID conventions and ingestion rules.
-2. Tighten placeholder schemas for `outcome`, `result`, `eligibility_decision`, and `risk_of_bias`.
-3. Add reference-integrity audit checks so IDs in records must resolve to existing local records.
-4. Expand the senolytics vertical slice into a real coverage-repair pass.
-5. Add `exports/latest/` generation for sources, studies, findings, coverage status, and audit manifest.
-6. Decide whether to install repo-local skills into the active Codex skills directory.
+1. Tighten placeholder schemas for `outcome`, `result`, `eligibility_decision`, and `risk_of_bias`.
+2. Expand the senolytics vertical slice into a real coverage-repair pass.
+3. Add `exports/latest/` generation for sources, studies, findings, coverage status, and audit manifest.
+4. Add automated checks for placeholder schemas being used for production-like records.
+5. Decide whether to install repo-local skills into the active Codex skills directory.
 
 ## Change Log
 
+- 2026-06-21: Added source ingestion rules and reference-integrity audit commands.
 - 2026-06-21: Added repo-local Codex skill sources for `hallmarks-research-run`, `evidence-extraction`, and `knowledge-base-audit`.
 - 2026-06-21: Added initial repository scaffold, AJV validation, core schemas, hallmark taxonomy, stricter senolytics track taxonomy, and a minimal validated senolytics vertical slice.
 - 2026-06-21: Created initial living development plan.

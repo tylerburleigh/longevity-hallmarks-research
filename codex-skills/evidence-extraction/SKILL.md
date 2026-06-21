@@ -52,7 +52,7 @@ Use stable IDs:
 Run:
 
 ```bash
-npm run validate:records
+npm run verify:knowledge-base
 ```
 
-Report whether validation passed and list any remaining source-fidelity or extraction-fidelity concerns.
+Report whether verification passed and list any remaining source-fidelity or extraction-fidelity concerns.

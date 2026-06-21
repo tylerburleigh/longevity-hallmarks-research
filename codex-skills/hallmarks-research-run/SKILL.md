@@ -49,7 +49,7 @@ Choose one outcome and record the rationale:
 - Keep `research_session.search_log[]` specific enough that another reviewer can reproduce the search.
 - Put close-but-excluded sources in `research_session.excluded_sources[]`.
 - Keep candidate changes small and scoped to material records.
-- Run `npm run validate:records` after edits.
+- Run `npm run verify:knowledge-base` after edits.
 
 ## Handoff
 

@@ -9,10 +9,10 @@ description: Validate, maintain, and audit the longevity hallmarks evidence know
 
 1. Work from the repository root.
 2. Read `plan.md`, `docs/audit-and-release.md`, and relevant schemas.
-3. Run the baseline validator:
+3. Run the baseline verification command:
 
 ```bash
-npm run validate:records
+npm run verify:knowledge-base
 ```
 
 4. Use `rg` and structured JSON tools to inspect references, record counts, and scope-specific consistency.
@@ -37,7 +37,7 @@ Check for:
 Use these first:
 
 ```bash
-npm run validate:records
+npm run verify:knowledge-base
 find data research taxonomies schemas -name '*.json' | sort
 rg -n '"record_type"|"source_id"|"source_ids"|"study_id"|"finding_ids"|"track_ids"|"hallmark_ids"' data research taxonomies
 ```

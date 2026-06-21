@@ -14,6 +14,12 @@ Validate after generation:
 npm run verify:knowledge-base
 ```
 
+To audit exports without regenerating them:
+
+```bash
+npm run audit:exports
+```
+
 ## Files
 
 - `sources.jsonl`: canonical source records.
@@ -39,9 +45,10 @@ Use `coverage-status.json` to decide whether a track/hallmark scope is current a
 
 Use `audit-manifest.json` to verify generated artifacts. The manifest intentionally hashes the data files and excludes itself from the hash list.
 
+Extraction-grade result exports must carry snapshot-linked provenance. For each provenance locator with `abstract_extracted`, `registry_extracted`, `full_text_extracted`, `agent_reviewed`, `human_reviewed`, or `accepted` status, include `source_snapshot_id` when the parent result is extraction-grade.
+
 ## Current Limitations
 
 - The evidence-map export is a generated graph view, not a formal synthesis.
-- The export does not yet block every result without deep provenance; canonical validation and reference audits still carry that responsibility.
 - There is no accepted-record export yet because promotion gates are not implemented.
-- Full-text extraction, certainty assessments, and formal synthesis compatibility rules remain future work.
+- Full-text extraction, raw-payload archival, certainty assessments, and formal synthesis compatibility rules remain future work.

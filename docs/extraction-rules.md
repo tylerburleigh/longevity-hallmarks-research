@@ -27,6 +27,8 @@ Use `outcome` records to define what was measured before using `result` records 
 
 Do not create a `result` without a linked `outcome`. If a paper reports an effect imprecisely, use `result_type: "descriptive"` and preserve the source wording in `effect.raw_text` or `statement`.
 
+Extraction-grade records (`registry_extracted`, `full_text_extracted`, `agent_reviewed`, `human_reviewed`, or `accepted`) need source-located provenance. For PubMed or ClinicalTrials.gov-derived extraction, include `source_snapshot_id` on each extraction-grade provenance locator.
+
 Use `result_type: "no_posted_result"` for registry or trial-watch records only when the absence of posted results is itself decision-relevant.
 
 ## Screening And Bias Rules

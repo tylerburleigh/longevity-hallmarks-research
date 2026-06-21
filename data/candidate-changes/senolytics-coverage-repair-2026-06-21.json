@@ -88,6 +88,34 @@
       "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
     },
     {
+      "record_type": "evidence_review",
+      "record_id": "senolytics-coverage-repair-extraction-fidelity-2026-06-21",
+      "path": "data/evidence-reviews/senolytics-coverage-repair-extraction-fidelity-2026-06-21.json",
+      "change_type": "create",
+      "rationale": "Adds an explicit extraction-fidelity review lane placeholder so the in-review candidate cannot hide missing review work."
+    },
+    {
+      "record_type": "evidence_review",
+      "record_id": "senolytics-coverage-repair-taxonomy-mapping-2026-06-21",
+      "path": "data/evidence-reviews/senolytics-coverage-repair-taxonomy-mapping-2026-06-21.json",
+      "change_type": "create",
+      "rationale": "Adds an explicit taxonomy-mapping review lane placeholder so the in-review candidate cannot hide missing review work."
+    },
+    {
+      "record_type": "evidence_review",
+      "record_id": "senolytics-coverage-repair-synthesis-boundary-2026-06-21",
+      "path": "data/evidence-reviews/senolytics-coverage-repair-synthesis-boundary-2026-06-21.json",
+      "change_type": "create",
+      "rationale": "Adds an explicit synthesis-boundary review lane placeholder so the in-review candidate cannot hide missing review work."
+    },
+    {
+      "record_type": "evidence_review",
+      "record_id": "senolytics-coverage-repair-safety-limitations-2026-06-21",
+      "path": "data/evidence-reviews/senolytics-coverage-repair-safety-limitations-2026-06-21.json",
+      "change_type": "create",
+      "rationale": "Adds an explicit safety-limitations review lane placeholder so the in-review candidate cannot hide missing review work."
+    },
+    {
       "record_type": "finding",
       "record_id": "dq-ad-risk-pilot-cognition-mobility-signal",
       "path": "data/findings/dq-ad-risk-pilot-cognition-mobility-signal.json",
@@ -425,6 +453,10 @@
     "safety_limitations"
   ],
   "evidence_review_ids": [
-    "senolytics-coverage-repair-source-fidelity-2026-06-21"
+    "senolytics-coverage-repair-source-fidelity-2026-06-21",
+    "senolytics-coverage-repair-extraction-fidelity-2026-06-21",
+    "senolytics-coverage-repair-taxonomy-mapping-2026-06-21",
+    "senolytics-coverage-repair-synthesis-boundary-2026-06-21",
+    "senolytics-coverage-repair-safety-limitations-2026-06-21"
   ]
 }

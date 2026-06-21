@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-coverage-repair-safety-limitations-2026-06-21",
+  "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
+  "review_lane": "safety_limitations",
+  "reviewer_kind": "agent",
+  "reviewer_id": "codex",
+  "status": "draft",
+  "verdict": "needs_human_judgment",
+  "blocking": false,
+  "summary": "Placeholder review lane added during generation-system hardening. Safety coverage exists but remains incomplete for event-level adverse-event extraction and durability assessment.",
+  "findings": [
+    {
+      "finding_id": "safety-lane-not-complete",
+      "severity": "major",
+      "category": "safety_limitation",
+      "claim_or_issue": "Safety records are mostly triage-level, with aggregate D+Q bone RCT adverse-event counts but no event-specific safety schema or complete safety extraction across human studies.",
+      "why_it_matters": "Safety synthesis requires event-specific counts, severity, discontinuation, dosing cadence, and follow-up context.",
+      "recommended_action": "Add event-specific safety records or an adverse-event schema, then run safety extraction across DKD, IPF, bone, and AD-risk human studies.",
+      "resolution_status": "open"
+    }
+  ]
+}

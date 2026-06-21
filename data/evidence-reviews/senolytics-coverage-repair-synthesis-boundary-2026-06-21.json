@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-coverage-repair-synthesis-boundary-2026-06-21",
+  "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
+  "review_lane": "synthesis_boundary",
+  "reviewer_kind": "agent",
+  "reviewer_id": "codex",
+  "status": "draft",
+  "verdict": "needs_human_judgment",
+  "blocking": false,
+  "summary": "Placeholder review lane added during generation-system hardening. The coverage-repair slice is useful as an evidence map and work queue, but synthesis boundaries have not been independently cleared.",
+  "findings": [
+    {
+      "finding_id": "synthesis-lane-not-complete",
+      "severity": "major",
+      "category": "endpoint_boundary",
+      "claim_or_issue": "The candidate combines preclinical, registry, biomarker, safety, and pilot human evidence without a formal synthesis-compatibility grouping.",
+      "why_it_matters": "Without explicit compatibility checks, downstream consumers could mistake a track-level evidence map for a meta-analyzable evidence body.",
+      "recommended_action": "Keep the coverage assessment at vertical-slice scope and define synthesis groups before any formal synthesis or certainty assessment.",
+      "resolution_status": "open"
+    }
+  ]
+}

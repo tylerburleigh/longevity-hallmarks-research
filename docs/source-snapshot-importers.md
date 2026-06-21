@@ -77,6 +77,7 @@ npm run diff:source-snapshot -- data/source-snapshots/snapshot-nct-04313634-clin
 ## Agent Rules
 
 - Do not hand-enter PubMed or ClinicalTrials.gov metadata when an importer can fetch it.
-- Every extraction-grade result should cite a source snapshot or a source-located provenance entry.
+- Every extraction-grade PubMed or ClinicalTrials.gov result must cite a `source_snapshot_id` in provenance.
 - Snapshot hashes are audit signals. A changed hash does not automatically mean a claim changed, but it should trigger review.
 - Candidate changes that add or update records derived from refreshed snapshots must include both the snapshot and dependent evidence records.
+- If raw payload retention is required for a source, set `raw_storage.stored: true` and record the local path; otherwise the snapshot is a hash-and-summary audit record rather than a complete archival copy.

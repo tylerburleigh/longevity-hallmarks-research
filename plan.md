@@ -320,6 +320,8 @@ Tasks:
 - [x] Add importer scripts for PubMed and ClinicalTrials.gov metadata rather than relying on ad hoc agent entry.
 - [x] Add snapshot diffing so refreshed source payloads can trigger review.
 - [x] Add first `exports/latest/` consumer contract with maturity-filtered result exports, coverage status, evidence-map view, and audit manifest.
+- [x] Add snapshot-linked provenance checks for extraction-grade records and exports.
+- [x] Require active review-lane records for every required lane once a candidate enters `in_review`.
 - [ ] Add a promotion command that moves records from generated/candidate state to accepted state only after review gates pass.
 
 Exit criteria:
@@ -338,14 +340,14 @@ Tasks:
 - [x] Add a generated evidence-map export.
 - [x] Add coverage-status export.
 - [x] Add audit manifest export.
-- [ ] Add provenance-depth checks for every exported claim.
+- [x] Add provenance-depth checks for extraction-grade exported result claims.
 - [ ] Add an accepted-record export once promotion gates exist.
 
 Exit criteria:
 
 - [x] `exports/latest/` can be regenerated from canonical records.
 - [x] Export files include enough IDs and provenance links to support downstream use.
-- [ ] Export audit fails when consumer-facing records lack required provenance depth.
+- [x] Export audit fails when extraction-grade result exports lack required provenance depth.
 
 ### Phase 4: Agent-Orchestrated Runs
 
@@ -395,17 +397,19 @@ Exit criteria:
 
 ## Immediate Next Actions
 
-1. Add provenance-depth checks for exported claims so consumer files cannot silently expose weakly located evidence.
-2. Add a promotion command that moves candidate records to accepted/applied only when required review lanes are accepting and no open major findings remain.
-3. Finish full publication/table extraction for the D+Q bone RCT, including subgroup and event-specific safety details.
-4. Run extraction-refresh passes on the remaining human D+Q papers: DKD, IPF, and AD-risk cognition/mobility.
-5. Run the missing review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
+1. Add a promotion command that moves candidate records to accepted/applied only when required review lanes are accepting and no open major findings remain.
+2. Finish full publication/table extraction for the D+Q bone RCT, including subgroup and event-specific safety details.
+3. Run extraction-refresh passes on the remaining human D+Q papers: DKD, IPF, and AD-risk cognition/mobility.
+4. Run the missing review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
+5. Decide whether raw source payloads should be archived locally for extraction-grade snapshots or only hash-referenced.
 6. Decide whether to install repo-local skills into the active Codex skills directory.
 
 ## Change Log
 
 - 2026-06-21: Added maturity/provenance fields, semantic audit gates, candidate-completeness checking, and normalized the senolytics repair slice under the stricter process.
 - 2026-06-21: Added a senolytics coverage-repair slice with sources, studies, findings, outcomes, results, eligibility decisions, risk-of-bias triage, coverage assessment, and candidate-review ledger.
+- 2026-06-21: Added source-snapshot IDs to extraction-grade bone RCT provenance, reconciled coverage gaps, and added export audits for stale JSONL and snapshot-linked result provenance.
+- 2026-06-21: Added in-review candidate review-lane enforcement and draft coverage-repair review records so missing review work is explicit.
 - 2026-06-21: Added source snapshots and registry-extracted outcome/result records for the D+Q postmenopausal bone RCT, including CTX, P1NP, BMD, SASP, and aggregate adverse events.
 - 2026-06-21: Added consumer-facing `exports/latest/` generation with JSONL records, maturity-filtered result splits, coverage status, evidence-map view, and hash manifest.
 - 2026-06-21: Added PubMed and ClinicalTrials.gov source-snapshot importer, refresh, and diff scripts plus importer workflow documentation.

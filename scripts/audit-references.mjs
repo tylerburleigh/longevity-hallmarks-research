@@ -42,6 +42,14 @@ const synthesisReadyStatuses = new Set([
   "human_reviewed",
   "accepted"
 ]);
+const snapshotRequiredLocatorStatuses = new Set([
+  "abstract_extracted",
+  "registry_extracted",
+  "full_text_extracted",
+  "agent_reviewed",
+  "human_reviewed",
+  "accepted"
+]);
 
 async function exists(filePath) {
   try {
@@ -114,6 +122,10 @@ function hasRecord(index, recordType, recordId) {
   return Boolean(recordId && index.recordsByType.get(recordType)?.has(recordId));
 }
 
+function getRecord(index, recordType, recordId) {
+  return index.recordsByType.get(recordType)?.get(recordId)?.record;
+}
+
 function checkRef({ index, issues, ownerPath, field, recordType, recordId }) {
   if (!recordId) {
     return;
@@ -153,6 +165,34 @@ function checkProvenance({ index, issues, ownerPath, record }) {
       recordType: "source",
       recordId: locator.source_id
     });
+
+    if (locator.source_snapshot_id) {
+      checkRef({
+        index,
+        issues,
+        ownerPath,
+        field: `provenance[${locatorIndex}].source_snapshot_id`,
+        recordType: "source_snapshot",
+        recordId: locator.source_snapshot_id
+      });
+
+      const snapshot = getRecord(index, "source_snapshot", locator.source_snapshot_id);
+      if (snapshot && snapshot.source_id !== locator.source_id) {
+        issues.push(
+          `${ownerPath}: provenance[${locatorIndex}].source_snapshot_id "${locator.source_snapshot_id}" belongs to source "${snapshot.source_id}", not "${locator.source_id}".`
+        );
+      }
+    }
+
+    if (
+      synthesisReadyStatuses.has(record.maturity_status) &&
+      snapshotRequiredLocatorStatuses.has(locator.status) &&
+      !locator.source_snapshot_id
+    ) {
+      issues.push(
+        `${ownerPath}: extraction-grade provenance[${locatorIndex}] with status "${locator.status}" must include source_snapshot_id.`
+      );
+    }
   }
 }
 
@@ -287,7 +327,32 @@ function checkCandidateReviewGate({ index, issues, record, ownerPath }) {
   const linkedReviews = (record.evidence_review_ids ?? [])
     .map((reviewId) => index.recordsByType.get("evidence_review")?.get(reviewId)?.record)
     .filter(Boolean);
-  const reviewByLane = new Map(linkedReviews.map((review) => [review.review_lane, review]));
+  const reviewByLane = new Map();
+
+  for (const review of linkedReviews) {
+    if (!(record.required_review_lanes ?? []).includes(review.review_lane)) {
+      issues.push(`${ownerPath}: evidence_review_ids[] includes review lane "${review.review_lane}" not listed in required_review_lanes.`);
+    }
+
+    if (review.status === "superseded") {
+      continue;
+    }
+
+    if (reviewByLane.has(review.review_lane)) {
+      issues.push(`${ownerPath}: evidence_review_ids[] includes multiple active reviews for lane "${review.review_lane}".`);
+      continue;
+    }
+
+    reviewByLane.set(review.review_lane, review);
+  }
+
+  if (["in_review", "accepted", "applied"].includes(record.lifecycle_status)) {
+    for (const lane of record.required_review_lanes ?? []) {
+      if (!reviewByLane.has(lane)) {
+        issues.push(`${ownerPath}: ${record.lifecycle_status} candidate lacks active required ${lane} evidence review.`);
+      }
+    }
+  }
 
   if (["accepted", "applied"].includes(record.lifecycle_status)) {
     for (const lane of record.required_review_lanes ?? []) {
@@ -309,12 +374,6 @@ function checkCandidateReviewGate({ index, issues, record, ownerPath }) {
           issues.push(`${ownerPath}: accepted/applied candidate has open ${finding.severity} review finding "${finding.finding_id}".`);
         }
       }
-    }
-  }
-
-  for (const review of linkedReviews) {
-    if (!(record.required_review_lanes ?? []).includes(review.review_lane)) {
-      issues.push(`${ownerPath}: evidence_review_ids[] includes review lane "${review.review_lane}" not listed in required_review_lanes.`);
     }
   }
 }

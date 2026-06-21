@@ -28,6 +28,9 @@
     "sourceRef": {
       "$ref": "#/$defs/identifier"
     },
+    "sourceSnapshotRef": {
+      "$ref": "#/$defs/identifier"
+    },
     "studyRef": {
       "$ref": "#/$defs/identifier"
     },
@@ -168,6 +171,9 @@
       "properties": {
         "source_id": {
           "$ref": "#/$defs/sourceRef"
+        },
+        "source_snapshot_id": {
+          "$ref": "#/$defs/sourceSnapshotRef"
         },
         "locator_type": {
           "enum": [

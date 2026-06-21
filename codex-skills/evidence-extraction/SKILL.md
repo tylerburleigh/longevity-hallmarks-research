@@ -14,6 +14,7 @@ description: Extract source-backed evidence into the longevity hallmarks knowled
    - `schemas/study.schema.json`
    - `schemas/finding.schema.json`
    - `schemas/outcome.schema.json` or `schemas/result.schema.json` when extracting structured endpoints/results
+   - `schemas/source-snapshot.schema.json` when using PubMed, ClinicalTrials.gov, or another refreshable primary-source endpoint
    - `schemas/candidate-change.schema.json` when proposing durable changes
 4. Inspect the scoped track in `taxonomies/tracks.v1.json`.
 5. Search existing records before creating new IDs:
@@ -27,7 +28,7 @@ rg -n "<PMID>|<DOI>|<NCT>|<title words>|<intervention>" data taxonomies research
 - `source` records describe what the source is. Do not put interpretation or synthesis in `source.summary`.
 - `study` records describe design, population/model, intervention, status, phase, endpoints, and source links.
 - `finding` records hold one atomic claim or observation from one source, usually linked to one study.
-- `outcome` and `result` records should be used for structured endpoints/effects once their schemas are hardened.
+- `outcome` and `result` records should be used for structured endpoints/effects.
 - `coverage_assessment` and `synthesis` records should not duplicate every source; they should summarize coverage and interpretation.
 
 ## Source ID Conventions
@@ -45,7 +46,9 @@ Use stable IDs:
 - Preserve negative, null, mixed, safety, and no-results evidence.
 - Do not infer human aging efficacy from animal, biomarker, disease-specific, or registry-only evidence.
 - Include caveats when sample size, endpoint, duration, conflict, or translation boundary matters.
+- Use source-snapshot importers before extraction-grade PubMed or ClinicalTrials.gov extraction, and include `source_snapshot_id` on extraction-grade provenance locators.
 - Add `candidate_change` and `evidence_review` records when the extraction is intended to become durable canonical state.
+- If a candidate is `in_review`, add active review records for every required lane, using draft `needs_human_judgment` records for lanes that remain incomplete.
 
 ## Validation
 

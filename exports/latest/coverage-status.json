@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "coverage_status_export",
   "id": "latest-coverage-status",
-  "generated_at": "2026-06-21T16:51:51.796Z",
+  "generated_at": "2026-06-21T17:20:52.756Z",
   "record_counts": {
     "coverage_assessments": 2,
     "current_coverage_assessments": 1,
@@ -167,17 +167,17 @@
           "gap_id": "senolytics-exact-effect-extraction",
           "gap_type": "operational_gap",
           "category": "human_interventional",
-          "description": "Human result records are conservative descriptive placeholders and still need endpoint-level quantitative extraction from full text or structured results tables.",
+          "description": "The D+Q bone RCT now has registry-extracted endpoint-level outcome/result records, but DKD, IPF, and AD-risk human studies remain triage-level; the bone RCT also still needs full publication table and supplement reconciliation.",
           "priority": "high",
-          "suggested_action": "Run an extraction-refresh pass focused on outcomes/results for the DKD, IPF, bone, and AD-risk papers."
+          "suggested_action": "Run extraction-refresh passes for DKD, IPF, and AD-risk, then reconcile the bone RCT registry extraction against full article tables and supplements."
         },
         {
           "gap_id": "senolytics-safety-tables",
           "gap_type": "coverage_gap",
           "category": "safety_durability",
-          "description": "Adverse-event, discontinuation, dosing, and durability details are not yet structured.",
+          "description": "Aggregate adverse-event counts were extracted for the D+Q bone RCT, but event-specific adverse-event terms, discontinuation details, dosing cadence, and durability details remain incomplete across the human evidence slice.",
           "priority": "high",
-          "suggested_action": "Add safety-specific outcomes/results and evidence-review lane coverage."
+          "suggested_action": "Add event-specific safety outcomes/results or a dedicated adverse-event schema, then extend safety extraction across DKD, IPF, and AD-risk studies."
         },
         {
           "gap_id": "senolytics-registry-surveillance-breadth",

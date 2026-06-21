@@ -17,7 +17,7 @@
       "category": "other",
       "claim_or_issue": "Core PubMed and ClinicalTrials.gov metadata match the source records added in this repair pass.",
       "why_it_matters": "Stable source metadata is required before downstream extraction, review, and synthesis records can be audited.",
-      "recommended_action": "Keep source IDs and registry URLs stable; add source snapshot records later if the source-snapshot schema is implemented.",
+      "recommended_action": "Keep source IDs and registry URLs stable; attach source_snapshot_id values to extraction-grade provenance as snapshots become available.",
       "resolution_status": "closed"
     },
     {

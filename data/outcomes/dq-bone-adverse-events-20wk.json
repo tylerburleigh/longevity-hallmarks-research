@@ -34,6 +34,7 @@
   "provenance": [
     {
       "source_id": "nct-04313634",
+      "source_snapshot_id": "snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
       "locator_type": "clinicaltrials_module",
       "locator": "resultsSection.adverseEventsModule",
       "status": "registry_extracted",

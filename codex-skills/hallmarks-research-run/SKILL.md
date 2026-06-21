@@ -49,6 +49,8 @@ Choose one outcome and record the rationale:
 - Keep `research_session.search_log[]` specific enough that another reviewer can reproduce the search.
 - Put close-but-excluded sources in `research_session.excluded_sources[]`.
 - Keep candidate changes small and scoped to material records.
+- If a candidate is `in_review`, create or link an active `evidence_review` record for every `required_review_lanes[]` entry. Use `status: "draft"` and `verdict: "needs_human_judgment"` for lanes that still need review.
+- Regenerate exports after canonical data changes with `npm run export:latest`.
 - Run `npm run verify:knowledge-base` after edits.
 
 ## Handoff

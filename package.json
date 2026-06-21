@@ -11,7 +11,8 @@
     "refresh:source-snapshot": "node scripts/refresh-source-snapshot.mjs",
     "diff:source-snapshot": "node scripts/diff-source-snapshot.mjs",
     "export:latest": "node scripts/export-latest.mjs",
-    "verify:knowledge-base": "npm run validate:records && npm run audit:references"
+    "audit:exports": "node scripts/audit-exports.mjs",
+    "verify:knowledge-base": "npm run validate:records && npm run audit:references && npm run audit:exports"
   },
   "devDependencies": {
     "ajv": "^8.20.0",

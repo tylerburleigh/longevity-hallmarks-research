@@ -27,10 +27,12 @@ Check for:
 - Broken references between sources, studies, findings, candidate changes, evidence reviews, sessions, and coverage assessments.
 - Track IDs or hallmark IDs not present in taxonomies.
 - Candidate changes missing required review lanes.
+- `in_review` candidates that lack active evidence-review records for each required lane.
 - Evidence reviews that refer to missing candidate changes.
 - Coverage assessments that cite missing sources or findings.
 - Placeholder schemas that are being used for production-like records.
 - Generated/export files that are stale or not reproducible.
+- Extraction-grade records or exports whose provenance lacks source snapshot links.
 
 ## Minimal Commands
 

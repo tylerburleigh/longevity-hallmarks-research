@@ -43,6 +43,7 @@
   "provenance": [
     {
       "source_id": "pmid-38956196",
+      "source_snapshot_id": "snapshot-pmid-38956196-pubmed-efetch-2026-06-21",
       "locator_type": "abstract",
       "locator": "PubMed abstract for PMID 38956196",
       "status": "abstract_extracted",
@@ -50,6 +51,7 @@
     },
     {
       "source_id": "nct-04313634",
+      "source_snapshot_id": "snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
       "locator_type": "clinicaltrials_module",
       "locator": "protocolSection.designModule and resultsSection.outcomeMeasuresModule",
       "status": "registry_extracted",

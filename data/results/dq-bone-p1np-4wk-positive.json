@@ -59,6 +59,7 @@
   "provenance": [
     {
       "source_id": "nct-04313634",
+      "source_snapshot_id": "snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
       "locator_type": "clinicaltrials_module",
       "locator": "resultsSection.outcomeMeasuresModule.outcomeMeasures[2]",
       "status": "registry_extracted",
@@ -66,6 +67,7 @@
     },
     {
       "source_id": "pmid-38956196",
+      "source_snapshot_id": "snapshot-pmid-38956196-pubmed-efetch-2026-06-21",
       "locator_type": "abstract",
       "locator": "PubMed abstract P1NP secondary endpoint sentence",
       "status": "abstract_extracted",

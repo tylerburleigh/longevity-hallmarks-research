@@ -18,6 +18,9 @@ Options:
   --workdir <path>                 Working directory for Codex. Default: repository root.
   --log <path>                     JSONL event log path. Default: research/agent-runs/logs/<id>.jsonl.
   --output-schema <path>           Default: schemas/agent-run.codex-output.schema.json.
+  --job-file <path>                Optional codex_job JSON file. CLI flags override matching job fields.
+  --timeout-ms <integer>           Optional wall-clock timeout for codex exec.
+  --no-output-timeout-ms <integer> Optional stdout-idle timeout for codex exec.
   --execute                        Run codex exec. Without this, print a dry-run plan.
   --no-ephemeral                   Persist Codex session files instead of using --ephemeral.
   --post-export                    Run npm run export:latest after codex exec writes the final output.
@@ -36,7 +39,8 @@ function parseArgs(argv) {
     execute: false,
     ephemeral: true,
     postExport: false,
-    postVerify: false
+    postVerify: false,
+    provided: new Set()
   };
 
   for (let index = 0; index < argv.length; index += 1) {
@@ -44,49 +48,77 @@ function parseArgs(argv) {
     switch (arg) {
       case "--id":
         options.id = argv[++index];
+        options.provided.add("id");
         break;
       case "--role":
         options.role = argv[++index];
+        options.provided.add("role");
         break;
       case "--prompt-file":
         options.promptFile = argv[++index];
+        options.provided.add("promptFile");
         break;
       case "--output":
         options.output = argv[++index];
+        options.provided.add("output");
         break;
       case "--sandbox":
         options.sandbox = argv[++index];
+        options.provided.add("sandbox");
         break;
       case "--approval-policy":
         options.approvalPolicy = argv[++index];
+        options.provided.add("approvalPolicy");
         break;
       case "--isolation":
         options.isolation = argv[++index];
+        options.provided.add("isolation");
         break;
       case "--workdir":
         options.workdir = argv[++index];
+        options.provided.add("workdir");
         break;
       case "--log":
         options.log = argv[++index];
+        options.provided.add("log");
         break;
       case "--output-schema":
         options.outputSchema = argv[++index];
+        options.provided.add("outputSchema");
+        break;
+      case "--job-file":
+        options.jobFile = argv[++index];
+        options.provided.add("jobFile");
+        break;
+      case "--timeout-ms":
+        options.timeoutMs = parsePositiveInteger(argv[++index], "--timeout-ms");
+        options.provided.add("timeoutMs");
+        break;
+      case "--no-output-timeout-ms":
+        options.noOutputTimeoutMs = parsePositiveInteger(argv[++index], "--no-output-timeout-ms");
+        options.provided.add("noOutputTimeoutMs");
         break;
       case "--execute":
         options.execute = true;
+        options.provided.add("execute");
         break;
       case "--no-ephemeral":
         options.ephemeral = false;
+        options.provided.add("ephemeral");
         break;
       case "--post-export":
         options.postExport = true;
+        options.provided.add("postExport");
         break;
       case "--post-verify":
         options.postVerify = true;
+        options.provided.add("postVerify");
         break;
       case "--post-export-verify":
         options.postExport = true;
         options.postVerify = true;
+        options.provided.add("postExport");
+        options.provided.add("postVerify");
         break;
       case "--help":
       case "-h":
@@ -98,6 +130,58 @@ function parseArgs(argv) {
     }
   }
 
+  return options;
+}
+
+function parsePositiveInteger(value, flagName) {
+  const number = Number(value);
+  if (!Number.isInteger(number) || number <= 0) {
+    throw new Error(`${flagName} must be a positive integer.`);
+  }
+  return number;
+}
+
+async function applyJobFile(options) {
+  if (!options.jobFile) {
+    return options;
+  }
+
+  const job = JSON.parse(await fs.readFile(resolveRepoPath(options.jobFile), "utf8"));
+  if (job.record_type !== "codex_job") {
+    throw new Error(`${options.jobFile}: expected record_type "codex_job".`);
+  }
+
+  const mappings = [
+    ["id", job.id],
+    ["role", job.agent_role],
+    ["promptFile", job.prompt_file],
+    ["output", job.output_path],
+    ["outputSchema", job.execution?.output_schema_path],
+    ["workdir", job.execution?.workdir],
+    ["isolation", job.execution?.isolation],
+    ["sandbox", job.execution?.sandbox],
+    ["approvalPolicy", job.execution?.approval_policy],
+    ["timeoutMs", job.execution?.timeout_ms],
+    ["noOutputTimeoutMs", job.execution?.no_output_timeout_ms],
+    ["postExport", job.post_run?.export_latest],
+    ["postVerify", job.post_run?.verify_knowledge_base]
+  ];
+
+  for (const [optionName, value] of mappings) {
+    if (value !== undefined && !options.provided.has(optionName)) {
+      options[optionName] = value;
+    }
+  }
+
+  if (options.log === undefined && !options.provided.has("log")) {
+    options.log = job.jsonl_log_path;
+  }
+
+  options.job = job;
+  return options;
+}
+
+function validateOptions(options) {
   if (!options.id || !options.promptFile || !options.output) {
     usage();
     process.exit(2);
@@ -118,6 +202,7 @@ function parseArgs(argv) {
   }
 
   options.log ??= `research/agent-runs/logs/${options.id}.jsonl`;
+  delete options.provided;
   return options;
 }
 
@@ -142,10 +227,14 @@ Coordinator metadata:
 - isolation: ${options.isolation}
 - sandbox: ${options.sandbox}
 - approval_policy: ${options.approvalPolicy}
+${options.jobFile ? `- job_file: ${options.jobFile}` : ""}
 
 In the final JSON object, set execution.surface to "codex_exec", execution.isolation to the isolation mode above, execution.prompt_file to the prompt file above, execution.output_schema_path to the output schema path above, execution.output_path to the output path above, execution.jsonl_log_path to the JSONL log path above, execution.sandbox to the sandbox above, and execution.approval_policy to the approval policy above.`;
+  const jobInstruction = options.job
+    ? `\n\nCodex job specification:\n${JSON.stringify(options.job, null, 2)}`
+    : "";
   const outputInstruction = `Do not write the agent_run output path directly. Return the final JSON object as your final message; the wrapper writes output_path from that final message. Coordinator post-run export or verification steps run after codex exec exits when requested.`;
-  const fullPrompt = `${prompt}
+  const fullPrompt = `${prompt}${jobInstruction}
 
 ${outputInstruction}`;
   const command = [
@@ -191,10 +280,13 @@ async function writeCommandPlan(options, command) {
     output: options.output,
     log: options.log,
     output_schema: options.outputSchema,
+    job_file: options.jobFile,
     sandbox: options.sandbox,
     approval_policy: options.approvalPolicy,
     isolation: options.isolation,
     workdir: options.workdir,
+    timeout_ms: options.timeoutMs,
+    no_output_timeout_ms: options.noOutputTimeoutMs,
     execute: options.execute,
     post_export: options.postExport,
     post_verify: options.postVerify,
@@ -210,34 +302,84 @@ async function executeCommand(options, command) {
   const logHandle = await fs.open(resolveRepoPath(options.log), "w");
 
   return new Promise((resolve, reject) => {
+    let settled = false;
+    let wallClockTimer;
+    let idleTimer;
     const child = spawn(command[0], command.slice(1), {
       cwd: options.workdir,
       stdio: ["ignore", "pipe", "inherit"]
     });
 
+    function clearTimers() {
+      if (wallClockTimer) {
+        clearTimeout(wallClockTimer);
+      }
+      if (idleTimer) {
+        clearTimeout(idleTimer);
+      }
+    }
+
+    function settleWith(error) {
+      if (settled) {
+        return;
+      }
+      settled = true;
+      clearTimers();
+      logHandle.close().finally(() => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve();
+        }
+      });
+    }
+
+    function killForTimeout(message) {
+      const error = new Error(message);
+      child.kill("SIGTERM");
+      settleWith(error);
+    }
+
+    function resetIdleTimer() {
+      if (!options.noOutputTimeoutMs) {
+        return;
+      }
+      if (idleTimer) {
+        clearTimeout(idleTimer);
+      }
+      idleTimer = setTimeout(() => {
+        killForTimeout(`codex exec produced no stdout for ${options.noOutputTimeoutMs}ms`);
+      }, options.noOutputTimeoutMs);
+    }
+
+    if (options.timeoutMs) {
+      wallClockTimer = setTimeout(() => {
+        killForTimeout(`codex exec exceeded timeout of ${options.timeoutMs}ms`);
+      }, options.timeoutMs);
+    }
+    resetIdleTimer();
+
     child.stdout.on("data", (chunk) => {
+      if (settled) {
+        return;
+      }
+      resetIdleTimer();
       process.stdout.write(chunk);
       logHandle.write(chunk).catch((error) => {
         child.kill();
-        reject(error);
+        settleWith(error);
       });
     });
 
     child.on("error", (error) => {
-      logHandle.close().finally(() => reject(error));
+      settleWith(error);
     });
 
     child.on("close", (code) => {
-      logHandle
-        .close()
-        .then(() => {
-          if (code === 0) {
-            resolve();
-          } else {
-            reject(new Error(`codex exec exited with code ${code}`));
-          }
-        })
-        .catch(reject);
+      if (settled) {
+        return;
+      }
+      settleWith(code === 0 ? undefined : new Error(`codex exec exited with code ${code}`));
     });
   });
 }
@@ -300,7 +442,7 @@ function runCoordinatorCommand(options, name, command, args) {
         .then(() => {
           process.stdout.write(`${JSON.stringify(event)}\n`);
           if (code === 0) {
-            resolve();
+            resolve(event);
           } else {
             reject(new Error(`${name} exited with code ${code}`));
           }
@@ -310,8 +452,40 @@ function runCoordinatorCommand(options, name, command, args) {
   });
 }
 
+function summarizeCoordinatorCommand(event) {
+  const lines = (event.stdout ?? "")
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
+  const tail = lines.slice(-6).join(" ");
+  return tail
+    ? `${event.name} exited ${event.exit_code}: ${tail}`
+    : `${event.name} exited ${event.exit_code}.`;
+}
+
+async function appendOutputQualityCheck(options, event) {
+  const outputPath = resolveRepoPath(options.output);
+  const record = JSON.parse(await fs.readFile(outputPath, "utf8"));
+  const check = {
+    check_name: event.name,
+    status: event.exit_code === 0 ? "passed" : "failed",
+    summary: summarizeCoordinatorCommand(event)
+  };
+  const qualityChecks = record.quality_checks ?? [];
+  const existingIndex = qualityChecks.findIndex((item) => item.check_name === check.check_name);
+
+  if (existingIndex === -1) {
+    qualityChecks.push(check);
+  } else {
+    qualityChecks[existingIndex] = check;
+  }
+
+  record.quality_checks = qualityChecks;
+  await fs.writeFile(outputPath, `${JSON.stringify(record, null, 2)}\n`);
+}
+
 async function main() {
-  const options = parseArgs(process.argv.slice(2));
+  const options = validateOptions(await applyJobFile(parseArgs(process.argv.slice(2))));
   await ensureParentDirectories(options);
   const command = await buildCommand(options);
   const planPath = await writeCommandPlan(options, command);
@@ -324,10 +498,15 @@ async function main() {
 
   await executeCommand(options, command);
   if (options.postExport) {
-    await runCoordinatorCommand(options, "post_export", "npm", ["run", "export:latest"]);
+    const event = await runCoordinatorCommand(options, "post_export", "npm", ["run", "export:latest"]);
+    await appendOutputQualityCheck(options, event);
   }
   if (options.postVerify) {
-    await runCoordinatorCommand(options, "post_verify", "npm", ["run", "verify:knowledge-base"]);
+    const event = await runCoordinatorCommand(options, "post_verify", "npm", ["run", "verify:knowledge-base"]);
+    await appendOutputQualityCheck(options, event);
+  }
+  if (options.postExport || options.postVerify) {
+    await runCoordinatorCommand(options, "post_output_validate", "npm", ["run", "validate:records"]);
   }
   console.log(`Codex worker output written to ${options.output}.`);
 }

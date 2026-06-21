@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
+  "name": "Create endpoint-specific D+Q bone synthesis compatibility groups",
+  "summary": "Adds endpoint-specific synthesis_group records for the D+Q postmenopausal bone RCT so consumers can distinguish non-poolable endpoint, time-horizon, extraction, and safety blockers from the existing broad mixed compatibility group.",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-21T21:45:00Z",
+  "scope": {
+    "question": "Create endpoint-specific synthesis compatibility groups for the D+Q postmenopausal bone RCT outcome/result records.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
+      "path": "data/candidate-changes/senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21.json",
+      "change_type": "create",
+      "rationale": "Tracks the endpoint-specific synthesis compatibility change set and required review lanes."
+    },
+    {
+      "record_type": "synthesis_group",
+      "record_id": "senolytics-dq-bone-ctx-20wk-synthesis-compatibility-2026-06-21",
+      "path": "data/synthesis-groups/senolytics-dq-bone-ctx-20wk-synthesis-compatibility-2026-06-21.json",
+      "change_type": "create",
+      "rationale": "Separates the primary 20-week CTx result from mixed endpoint synthesis and records count, p-value-only, and missing-uncertainty blockers."
+    },
+    {
+      "record_type": "synthesis_group",
+      "record_id": "senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21",
+      "path": "data/synthesis-groups/senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21.json",
+      "change_type": "create",
+      "rationale": "Groups the 2-week and 4-week P1NP short-term signals while preserving time-horizon and missing-uncertainty blockers."
+    },
+    {
+      "record_type": "synthesis_group",
+      "record_id": "senolytics-dq-bone-p1np-20wk-synthesis-compatibility-2026-06-21",
+      "path": "data/synthesis-groups/senolytics-dq-bone-p1np-20wk-synthesis-compatibility-2026-06-21.json",
+      "change_type": "create",
+      "rationale": "Separates the 20-week P1NP null result from short-term P1NP signals and records count plus missing effect blockers."
+    },
+    {
+      "record_type": "synthesis_group",
+      "record_id": "senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21",
+      "path": "data/synthesis-groups/senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21.json",
+      "change_type": "create",
+      "rationale": "Separates the 20-week BMD descriptive result and records site-specific extraction and descriptive-only effect blockers."
+    },
+    {
+      "record_type": "synthesis_group",
+      "record_id": "senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21",
+      "path": "data/synthesis-groups/senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21.json",
+      "change_type": "create",
+      "rationale": "Separates the 2-week SASP result and records count, marker-identity, p-value-only, and missing-uncertainty blockers."
+    },
+    {
+      "record_type": "synthesis_group",
+      "record_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "path": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+      "change_type": "create",
+      "rationale": "Separates the aggregate 20-week safety result and records safety event-specific extraction blockers."
+    }
+  ],
+  "required_review_lanes": [
+    "taxonomy_mapping",
+    "synthesis_boundary",
+    "safety_limitations"
+  ]
+}

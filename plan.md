@@ -98,6 +98,10 @@ As of 2026-06-21, the repository has an initial JSON-file-backed scaffold:
 - Added Codex CLI worker scaffolding with `npm run agent:codex`, prompt templates, execution metadata, and `codex_exec` path audits.
 - Smoke-tested a release/export `codex exec` worker in a disposable Git worktree.
 - Added a Codex structured-output schema for CLI generation and wrapper-owned post-output export/verification gates.
+- Smoke-tested a candidate-producing synthesis `codex exec` worker in a disposable Git worktree and verified candidate/agent-run proposed-record ledger matching.
+- Added Codex job-spec schema support, worker timeout guards, agent-schema drift auditing, inferred candidate review-lane checks, and controlled synthesis blocker vocabulary.
+- Reran the D+Q bone endpoint synthesis worker from a durable `codex_job` spec in a fresh isolated worktree and imported the verified submitted candidate, endpoint-specific synthesis groups, final agent-run record, and refreshed exports.
+- Added Codex job conformance auditing so persisted job specs must match final agent-run metadata, expected outputs, review lanes, quality gates, logs, and post-run checks.
 
 ## Target Architecture
 
@@ -389,6 +393,13 @@ Tasks:
 - [x] Add a CLI-compatible structured-output schema for `codex exec --output-schema`.
 - [x] Add wrapper-owned post-output export and verification gates.
 - [x] Smoke-test a release/export worker in an isolated worktree.
+- [x] Smoke-test a candidate-producing synthesis worker in an isolated worktree.
+- [x] Add reusable Codex job specs for worker runs.
+- [x] Add Codex worker timeout and no-output guards.
+- [x] Add a schema-drift audit for the CLI-output and canonical agent-run schemas.
+- [x] Infer required candidate review lanes from proposed record types.
+- [x] Rerun and import a candidate-producing synthesis worker through a durable job spec.
+- [x] Add Codex job conformance auditing for expected outputs, review lanes, quality gates, and post-run checks.
 - [ ] Add triage state generation.
 - [ ] Add templates for research sessions.
 
@@ -411,6 +422,8 @@ Tasks:
 - [x] Add structured reasons for "not meta-analyzable."
 - [x] Require poolable synthesis groups to reference effect value, uncertainty, comparison, and sample-size fields.
 - [x] Add an agentic process audit that rejects deprecated non-agentic process vocabulary.
+- [x] Add controlled synthesis blocker vocabulary for missing pooling fields.
+- [x] Add synthesis-group audits for result/outcome consistency and duplicate overlapping strata.
 - [ ] Add endpoint-specific synthesis-group generation for the remaining human senolytics papers.
 
 Exit criteria:
@@ -429,8 +442,8 @@ Exit criteria:
 
 ## Immediate Next Actions
 
-1. Run one candidate-producing `codex exec` extraction worker in a disposable worktree using `--post-export-verify`.
-2. Generate endpoint-specific synthesis groups for D+Q bone endpoints so each group has one compatible endpoint family and an explicit pooling decision.
+1. Run taxonomy-mapping, synthesis-boundary, and safety-limitations supervisor-agent review lanes for `senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21`.
+2. Decide whether to promote or revise the D+Q bone endpoint synthesis candidate after supervisor-agent reviews complete.
 3. Finish full publication/table extraction for the D+Q bone RCT, including subgroup and event-specific safety details.
 4. Run extraction-refresh passes on the remaining human D+Q papers: DKD, IPF, and AD-risk cognition/mobility.
 5. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
@@ -447,6 +460,10 @@ Exit criteria:
 - 2026-06-21: Added agent-run templates and the first D+Q bone extraction-refresh agent-run record.
 - 2026-06-21: Added Codex CLI worker scaffolding with `agent:codex`, worker prompt templates, execution metadata, and path audits for `codex_exec` runs.
 - 2026-06-21: Smoke-tested an isolated release/export `codex exec` worker and added CLI-compatible structured output plus post-output export/verify wrapper gates.
+- 2026-06-21: Smoke-tested an isolated candidate-producing synthesis `codex exec` worker and added wrapper annotations for coordinator post-run checks in final agent-run records.
+- 2026-06-21: Added Codex job-spec validation, worker timeout guards, agent-schema drift audit, inferred review-lane checks, and controlled synthesis blocker vocabulary.
+- 2026-06-21: Reran the D+Q bone endpoint synthesis worker through a durable `codex_job`; imported the verified submitted candidate, six endpoint synthesis groups, final agent-run record, and refreshed exports.
+- 2026-06-21: Added `audit:codex-jobs` to verify persisted Codex job specs against final agent-run outputs, candidate ledgers, review lanes, logs, quality gates, and post-run checks.
 - 2026-06-21: Replaced deprecated non-agentic vocabulary with agent-supervision states, added an agentic process audit, and introduced synthesis-group compatibility records and exports.
 - 2026-06-21: Added in-review candidate review-lane enforcement and draft coverage-repair review records so missing review work is explicit.
 - 2026-06-21: Added source snapshots and registry-extracted outcome/result records for the D+Q postmenopausal bone RCT, including CTX, P1NP, BMD, SASP, and aggregate adverse events.

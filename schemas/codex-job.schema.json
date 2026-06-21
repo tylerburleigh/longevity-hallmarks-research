@@ -1,0 +1,280 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./codex-job.schema.json",
+  "title": "Codex CLI worker job",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "id",
+    "name",
+    "agent_role",
+    "mode",
+    "prompt_file",
+    "output_path",
+    "scope",
+    "execution",
+    "expected_outputs",
+    "quality_gates"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "record_type": {
+      "const": "codex_job"
+    },
+    "id": {
+      "$ref": "./common.schema.json#/$defs/agentRunRef"
+    },
+    "name": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "agent_role": {
+      "$ref": "#/$defs/agentRole"
+    },
+    "mode": {
+      "$ref": "./common.schema.json#/$defs/researchMode"
+    },
+    "prompt_file": {
+      "type": "string"
+    },
+    "output_path": {
+      "type": "string"
+    },
+    "jsonl_log_path": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "question"
+      ],
+      "properties": {
+        "question": {
+          "type": "string"
+        },
+        "hallmark_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/hallmarkRef"
+          },
+          "uniqueItems": true
+        },
+        "track_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/trackRef"
+          },
+          "uniqueItems": true
+        },
+        "intervention_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/identifier"
+          },
+          "uniqueItems": true
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/sourceRef"
+          },
+          "uniqueItems": true
+        },
+        "study_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/studyRef"
+          },
+          "uniqueItems": true
+        },
+        "outcome_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/outcomeRef"
+          },
+          "uniqueItems": true
+        },
+        "result_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/resultRef"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "isolation",
+        "sandbox",
+        "approval_policy"
+      ],
+      "properties": {
+        "workdir": {
+          "type": "string"
+        },
+        "isolation": {
+          "$ref": "#/$defs/isolationMode"
+        },
+        "sandbox": {
+          "$ref": "#/$defs/sandboxPolicy"
+        },
+        "approval_policy": {
+          "$ref": "#/$defs/approvalPolicy"
+        },
+        "output_schema_path": {
+          "type": "string"
+        },
+        "timeout_ms": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "no_output_timeout_ms": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "expected_outputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canonical_write_policy"
+      ],
+      "properties": {
+        "canonical_write_policy": {
+          "enum": [
+            "no_canonical_writes",
+            "candidate_change_required"
+          ]
+        },
+        "candidate_change_id": {
+          "$ref": "./common.schema.json#/$defs/candidateChangeRef"
+        },
+        "required_review_lanes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reviewLane"
+          },
+          "uniqueItems": true
+        },
+        "proposed_record_paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "generated_file_paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "export_paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "post_run": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "export_latest": {
+          "type": "boolean"
+        },
+        "verify_knowledge_base": {
+          "type": "boolean"
+        }
+      }
+    },
+    "quality_gates": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "enum": [
+          "validate_records",
+          "audit_references",
+          "audit_exports",
+          "audit_agentic_process",
+          "audit_agent_schemas",
+          "candidate_agent_run_ledger_match",
+          "supervisor_review_lanes"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "agentRole": {
+      "enum": [
+        "triage_agent",
+        "search_agent",
+        "screening_agent",
+        "dedupe_linker_agent",
+        "extraction_agent",
+        "trial_registry_agent",
+        "classification_agent",
+        "risk_of_bias_agent",
+        "synthesis_agent",
+        "review_agent",
+        "supervisor_agent",
+        "self_healing_agent",
+        "release_agent"
+      ]
+    },
+    "isolationMode": {
+      "enum": [
+        "foreground_checkout",
+        "git_worktree",
+        "codex_managed_worktree",
+        "ci_runner",
+        "container",
+        "other"
+      ]
+    },
+    "sandboxPolicy": {
+      "enum": [
+        "read-only",
+        "workspace-write",
+        "danger-full-access"
+      ]
+    },
+    "approvalPolicy": {
+      "enum": [
+        "never",
+        "on-request",
+        "untrusted"
+      ]
+    },
+    "reviewLane": {
+      "enum": [
+        "source_fidelity",
+        "extraction_fidelity",
+        "taxonomy_mapping",
+        "synthesis_boundary",
+        "safety_limitations"
+      ]
+    }
+  }
+}

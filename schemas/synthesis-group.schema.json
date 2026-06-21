@@ -166,7 +166,7 @@
           "type": "array",
           "minItems": 1,
           "items": {
-            "type": "string"
+            "$ref": "#/$defs/poolingRequirementField"
           },
           "uniqueItems": true
         },
@@ -188,7 +188,7 @@
                 "type": "array",
                 "minItems": 1,
                 "items": {
-                  "type": "string"
+                  "$ref": "#/$defs/poolingRequirementField"
                 },
                 "uniqueItems": true
               },
@@ -250,6 +250,25 @@
         "type": "string"
       },
       "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "poolingRequirementField": {
+      "enum": [
+        "effect.value",
+        "effect.uncertainty",
+        "analysis.comparison",
+        "sample_size",
+        "group_values[].sample_size",
+        "group_values[].statistic",
+        "group_values[].dispersion",
+        "compatible_time_horizon",
+        "site_specific_effect.value",
+        "site_specific_effect.uncertainty",
+        "marker_level_identity",
+        "adverse_event.preferred_term",
+        "adverse_event.event_specific_counts"
+      ]
     }
   }
 }

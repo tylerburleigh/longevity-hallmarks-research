@@ -1,0 +1,97 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "synthesis_group",
+  "id": "senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21",
+  "name": "D+Q bone RCT 2-week SASP synthesis compatibility",
+  "assessed_at": "2026-06-21T21:45:00Z",
+  "question": "Can the 2-week SASP result from the D+Q postmenopausal bone RCT be pooled for a meta-analysis estimate?",
+  "track_ids": [
+    "senolytics"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence",
+    "stem_cell_exhaustion"
+  ],
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "compatibility_basis": {
+    "population": "Postmenopausal women in the D+Q and untreated-control arms of one phase 2 randomized trial.",
+    "intervention": "Intermittent dasatinib plus quercetin.",
+    "comparator": "Untreated control.",
+    "endpoint_family": "Plasma SASP marker burden percent change.",
+    "time_horizon": "Baseline to 2 weeks.",
+    "effect_metric": "Marker-defined SASP percent-change effect with uncertainty.",
+    "variance_model": "No pooling model selected because only one broad SASP result is available and marker-level identities plus uncertainty are absent."
+  },
+  "outcome_ids": [
+    "dq-bone-sasp-2wk"
+  ],
+  "result_ids": [
+    "dq-bone-sasp-2wk-null"
+  ],
+  "compatibility_status": "needs_extraction",
+  "pooling_decision": "pooling_blocked",
+  "pooling_rationale": "Pooling is blocked by result count, broad marker definition, and p-value-only extraction. This group has one SASP result from one trial. The registry record provides group medians, full ranges, and a p-value for a broad SASP burden measure, but not marker-level identities, an effect value, or a variance-compatible uncertainty estimate.",
+  "non_pooling_reason": "Do not pool SASP effects until marker identity is harmonized and at least two compatible marker-level or composite SASP results provide effect value, uncertainty, comparison, sample size, and group-value fields.",
+  "pooling_requirements": {
+    "minimum_result_count": 2,
+    "required_result_maturity_statuses": [
+      "registry_extracted",
+      "full_text_extracted",
+      "agent_reviewed",
+      "supervisor_agent_reviewed",
+      "accepted"
+    ],
+    "required_effect_fields": [
+      "effect.value",
+      "effect.uncertainty",
+      "analysis.comparison",
+      "sample_size",
+      "group_values[].sample_size",
+      "group_values[].statistic",
+      "group_values[].dispersion",
+      "marker_level_identity"
+    ],
+    "missing_effect_fields_by_result": [
+      {
+        "result_id": "dq-bone-sasp-2wk-null",
+        "missing_fields": [
+          "effect.value",
+          "effect.uncertainty",
+          "marker_level_identity"
+        ],
+        "impact": "blocks_pooling",
+        "note": "The SASP result is a broad p-value-only measure without marker-level identity, effect value, or CI, standard error, or variance."
+      }
+    ]
+  },
+  "agent_supervision": {
+    "assessing_agent": "codex-synthesis-agent",
+    "supervisor_agent": "pending-supervisor-review",
+    "audit_status": "passed",
+    "self_healing_actions": [
+      "Keep SASP pooling blocked until marker-level identity and uncertainty fields are extracted.",
+      "Route SASP extraction to extraction_refresh if publication tables or supplements identify the marker panel and effect uncertainty."
+    ]
+  },
+  "maturity_status": "agent_reviewed",
+  "provenance": [
+    {
+      "source_id": "nct-04313634",
+      "source_snapshot_id": "snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+      "locator_type": "clinicaltrials_module",
+      "locator": "resultsSection.outcomeMeasuresModule.outcomeMeasures[5]",
+      "status": "registry_extracted",
+      "note": "Posted broad SASP outcome group values and D+Q versus untreated-control p-value."
+    }
+  ],
+  "tags": [
+    "senolytics",
+    "dasatinib-quercetin",
+    "bone",
+    "sasp",
+    "marker-identity-needed",
+    "pooling-blocked"
+  ]
+}

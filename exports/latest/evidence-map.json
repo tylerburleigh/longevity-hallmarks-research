@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "evidence_map",
   "id": "latest-consumer-evidence-map",
-  "generated_at": "2026-06-21T18:14:55.966Z",
+  "generated_at": "2026-06-21T21:48:57.844Z",
   "scope": {
     "description": "Generated consumer evidence graph over canonical source, study, finding, outcome, result, coverage-assessment, and synthesis-group records.",
     "record_types": [
@@ -22,9 +22,10 @@
     "result": 14,
     "source": 10,
     "study": 9,
-    "synthesis_group": 1
+    "synthesis_group": 7
   },
   "maturity_counts": {
+    "agent_reviewed": 6,
     "metadata_imported": 18,
     "registry_extracted": 16,
     "screened": 6,
@@ -650,10 +651,100 @@
     },
     {
       "record_type": "synthesis_group",
+      "id": "senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21",
+      "name": "D+Q bone RCT 20-week BMD synthesis compatibility",
+      "maturity_status": "agent_reviewed",
+      "compatibility_status": "needs_extraction",
+      "pooling_decision": "pooling_blocked",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "stem_cell_exhaustion"
+      ]
+    },
+    {
+      "record_type": "synthesis_group",
+      "id": "senolytics-dq-bone-ctx-20wk-synthesis-compatibility-2026-06-21",
+      "name": "D+Q bone RCT 20-week CTx synthesis compatibility",
+      "maturity_status": "agent_reviewed",
+      "compatibility_status": "needs_extraction",
+      "pooling_decision": "pooling_blocked",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "stem_cell_exhaustion"
+      ]
+    },
+    {
+      "record_type": "synthesis_group",
+      "id": "senolytics-dq-bone-p1np-20wk-synthesis-compatibility-2026-06-21",
+      "name": "D+Q bone RCT 20-week P1NP synthesis compatibility",
+      "maturity_status": "agent_reviewed",
+      "compatibility_status": "needs_extraction",
+      "pooling_decision": "pooling_blocked",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "stem_cell_exhaustion"
+      ]
+    },
+    {
+      "record_type": "synthesis_group",
+      "id": "senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21",
+      "name": "D+Q bone RCT short-term P1NP synthesis compatibility",
+      "maturity_status": "agent_reviewed",
+      "compatibility_status": "not_poolable",
+      "pooling_decision": "pooling_blocked",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "stem_cell_exhaustion"
+      ]
+    },
+    {
+      "record_type": "synthesis_group",
       "id": "senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21",
       "name": "D+Q bone RCT registry-extracted synthesis compatibility",
       "maturity_status": "supervisor_agent_reviewed",
       "compatibility_status": "not_poolable",
+      "pooling_decision": "pooling_blocked",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "stem_cell_exhaustion"
+      ]
+    },
+    {
+      "record_type": "synthesis_group",
+      "id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "name": "D+Q bone RCT 20-week safety synthesis compatibility",
+      "maturity_status": "agent_reviewed",
+      "compatibility_status": "needs_extraction",
+      "pooling_decision": "pooling_blocked",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "stem_cell_exhaustion"
+      ]
+    },
+    {
+      "record_type": "synthesis_group",
+      "id": "senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21",
+      "name": "D+Q bone RCT 2-week SASP synthesis compatibility",
+      "maturity_status": "agent_reviewed",
+      "compatibility_status": "needs_extraction",
       "pooling_decision": "pooling_blocked",
       "track_ids": [
         "senolytics"
@@ -1689,6 +1780,76 @@
     },
     {
       "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21",
+      "to_type": "result",
+      "to_id": "dq-bone-bmd-20wk-inconclusive",
+      "relationship": "assesses_pooling_compatibility"
+    },
+    {
+      "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21",
+      "to_type": "outcome",
+      "to_id": "dq-bone-bmd-20wk",
+      "relationship": "groups_outcome"
+    },
+    {
+      "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-ctx-20wk-synthesis-compatibility-2026-06-21",
+      "to_type": "result",
+      "to_id": "dq-bone-ctx-20wk-null",
+      "relationship": "assesses_pooling_compatibility"
+    },
+    {
+      "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-ctx-20wk-synthesis-compatibility-2026-06-21",
+      "to_type": "outcome",
+      "to_id": "dq-bone-ctx-20wk",
+      "relationship": "groups_outcome"
+    },
+    {
+      "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-p1np-20wk-synthesis-compatibility-2026-06-21",
+      "to_type": "result",
+      "to_id": "dq-bone-p1np-20wk-null",
+      "relationship": "assesses_pooling_compatibility"
+    },
+    {
+      "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-p1np-20wk-synthesis-compatibility-2026-06-21",
+      "to_type": "outcome",
+      "to_id": "dq-bone-p1np-20wk",
+      "relationship": "groups_outcome"
+    },
+    {
+      "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21",
+      "to_type": "result",
+      "to_id": "dq-bone-p1np-2wk-positive",
+      "relationship": "assesses_pooling_compatibility"
+    },
+    {
+      "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21",
+      "to_type": "result",
+      "to_id": "dq-bone-p1np-4wk-positive",
+      "relationship": "assesses_pooling_compatibility"
+    },
+    {
+      "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21",
+      "to_type": "outcome",
+      "to_id": "dq-bone-p1np-2wk",
+      "relationship": "groups_outcome"
+    },
+    {
+      "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21",
+      "to_type": "outcome",
+      "to_id": "dq-bone-p1np-4wk",
+      "relationship": "groups_outcome"
+    },
+    {
+      "from_type": "synthesis_group",
       "from_id": "senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21",
       "to_type": "result",
       "to_id": "dq-bone-adverse-events-20wk-mixed",
@@ -1781,6 +1942,34 @@
     {
       "from_type": "synthesis_group",
       "from_id": "senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21",
+      "to_type": "outcome",
+      "to_id": "dq-bone-sasp-2wk",
+      "relationship": "groups_outcome"
+    },
+    {
+      "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "to_type": "result",
+      "to_id": "dq-bone-adverse-events-20wk-mixed",
+      "relationship": "assesses_pooling_compatibility"
+    },
+    {
+      "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "to_type": "outcome",
+      "to_id": "dq-bone-adverse-events-20wk",
+      "relationship": "groups_outcome"
+    },
+    {
+      "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21",
+      "to_type": "result",
+      "to_id": "dq-bone-sasp-2wk-null",
+      "relationship": "assesses_pooling_compatibility"
+    },
+    {
+      "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21",
       "to_type": "outcome",
       "to_id": "dq-bone-sasp-2wk",
       "relationship": "groups_outcome"

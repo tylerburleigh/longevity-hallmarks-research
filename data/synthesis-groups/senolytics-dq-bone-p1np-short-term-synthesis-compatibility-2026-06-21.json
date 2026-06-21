@@ -1,0 +1,115 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "synthesis_group",
+  "id": "senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21",
+  "name": "D+Q bone RCT short-term P1NP synthesis compatibility",
+  "assessed_at": "2026-06-21T21:45:00Z",
+  "question": "Can the short-term 2-week and 4-week P1NP results from the D+Q postmenopausal bone RCT be pooled for a meta-analysis estimate?",
+  "track_ids": [
+    "senolytics"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence",
+    "stem_cell_exhaustion"
+  ],
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "compatibility_basis": {
+    "population": "Postmenopausal women in the D+Q and untreated-control arms of one phase 2 randomized trial.",
+    "intervention": "Intermittent dasatinib plus quercetin.",
+    "comparator": "Untreated control.",
+    "endpoint_family": "Serum P1NP percent change.",
+    "time_horizon": "Baseline to 2 weeks and baseline to 4 weeks; not a single compatible time horizon.",
+    "effect_metric": "Percentage-point difference relative to control with uncertainty.",
+    "variance_model": "No pooling model selected because the two short-term timepoints are repeated measures from one trial and lack uncertainty estimates."
+  },
+  "outcome_ids": [
+    "dq-bone-p1np-2wk",
+    "dq-bone-p1np-4wk"
+  ],
+  "result_ids": [
+    "dq-bone-p1np-2wk-positive",
+    "dq-bone-p1np-4wk-positive"
+  ],
+  "compatibility_status": "not_poolable",
+  "pooling_decision": "pooling_blocked",
+  "pooling_rationale": "Pooling is blocked despite two result records because the records are different time horizons from the same trial, not independent compatible studies. Both encode a +16 percentage-point short-term P1NP signal, but neither result has a CI, standard error, or variance. A formal synthesis would need either a pre-specified single time horizon or a longitudinal/repeated-measures model plus uncertainty.",
+  "non_pooling_reason": "Do not compute a pooled short-term P1NP estimate across the 2-week and 4-week records unless the time horizon is made compatible and each result has an uncertainty estimate; treat these as related short-term signals in narrative synthesis.",
+  "pooling_requirements": {
+    "minimum_result_count": 2,
+    "required_result_maturity_statuses": [
+      "registry_extracted",
+      "full_text_extracted",
+      "agent_reviewed",
+      "supervisor_agent_reviewed",
+      "accepted"
+    ],
+    "required_effect_fields": [
+      "effect.value",
+      "effect.uncertainty",
+      "analysis.comparison",
+      "sample_size",
+      "group_values[].sample_size",
+      "group_values[].statistic",
+      "group_values[].dispersion",
+      "compatible_time_horizon"
+    ],
+    "missing_effect_fields_by_result": [
+      {
+        "result_id": "dq-bone-p1np-2wk-positive",
+        "missing_fields": [
+          "effect.uncertainty",
+          "compatible_time_horizon"
+        ],
+        "impact": "blocks_pooling",
+        "note": "The 2-week result has an effect value but no CI, standard error, or variance, and it should not be pooled directly with the 4-week timepoint as the same horizon."
+      },
+      {
+        "result_id": "dq-bone-p1np-4wk-positive",
+        "missing_fields": [
+          "effect.uncertainty",
+          "compatible_time_horizon"
+        ],
+        "impact": "blocks_pooling",
+        "note": "The 4-week result has an effect value but no CI, standard error, or variance, and it should not be pooled directly with the 2-week timepoint as the same horizon."
+      }
+    ]
+  },
+  "agent_supervision": {
+    "assessing_agent": "codex-synthesis-agent",
+    "supervisor_agent": "pending-supervisor-review",
+    "audit_status": "passed",
+    "self_healing_actions": [
+      "Keep 2-week and 4-week P1NP as non-pooled related signals unless a longitudinal synthesis plan is added.",
+      "Route P1NP extraction to extraction_refresh if full text or supplements provide uncertainty estimates for either short-term timepoint."
+    ]
+  },
+  "maturity_status": "agent_reviewed",
+  "provenance": [
+    {
+      "source_id": "nct-04313634",
+      "source_snapshot_id": "snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+      "locator_type": "clinicaltrials_module",
+      "locator": "resultsSection.outcomeMeasuresModule.outcomeMeasures[1] and outcomeMeasures[2]",
+      "status": "registry_extracted",
+      "note": "Posted 2-week and 4-week P1NP group values and D+Q versus untreated-control p-values."
+    },
+    {
+      "source_id": "pmid-38956196",
+      "source_snapshot_id": "snapshot-pmid-38956196-pubmed-efetch-2026-06-21",
+      "locator_type": "abstract",
+      "locator": "PubMed abstract P1NP secondary endpoint sentence",
+      "status": "abstract_extracted",
+      "note": "Abstract reports +16 percent relative to control at 2 and 4 weeks with nominal p-values."
+    }
+  ],
+  "tags": [
+    "senolytics",
+    "dasatinib-quercetin",
+    "bone",
+    "p1np",
+    "short-term",
+    "pooling-blocked"
+  ]
+}

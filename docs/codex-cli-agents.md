@@ -32,6 +32,15 @@ npm run agent:codex -- \
   --output research/agent-runs/<agent-run-id>.json
 ```
 
+For repeatable runs, prefer a structured job file:
+
+```bash
+npm run agent:codex -- \
+  --job-file ops/codex-jobs/<agent-run-id>.json
+```
+
+Job files use `record_type: "codex_job"` and are validated by `schemas/codex-job.schema.json` when stored under validated repository roots such as `ops/`. Command-line flags override matching job fields, so a coordinator can reuse the same job spec with a different `--workdir`, `--execute`, or timeout setting.
+
 By default, the wrapper writes a dry-run command plan under `research/agent-runs/logs/`. Add `--execute` only when the worktree is ready for the worker to run.
 
 The wrapper builds a `codex exec` command with:
@@ -43,6 +52,11 @@ The wrapper builds a `codex exec` command with:
 - top-level `--ask-for-approval never` by default
 - `--ephemeral` by default
 
+Optional execution guards:
+
+- `--timeout-ms <integer>` stops a worker that exceeds the wall-clock limit.
+- `--no-output-timeout-ms <integer>` stops a worker that produces no JSONL stdout for the configured interval.
+
 The worker returns the final JSON object as its final message. The wrapper writes that object to `--output`; the worker should not write the `agent_run` output path directly.
 
 Use `--sandbox read-only` for search, screening, review, and audit-only runs that should not edit files. Use `workspace-write` for extraction or synthesis workers that write candidate records. Use `danger-full-access` only in an externally isolated runner.
@@ -53,7 +67,7 @@ For release/export runs or any run whose persisted `agent_run` should be include
 --post-export-verify
 ```
 
-This runs `npm run export:latest` and `npm run verify:knowledge-base` after `codex exec` has written the final `agent_run` JSON. The post-step results are appended to the worker JSONL log as coordinator events.
+This runs `npm run export:latest` and `npm run verify:knowledge-base` after `codex exec` has written the final `agent_run` JSON. The post-step results are appended to the worker JSONL log as coordinator events and summarized back into the `agent_run.quality_checks[]` array. The wrapper then runs `npm run validate:records` so the persisted output record is schema-checked after coordinator annotations.
 
 ## Isolation
 
@@ -71,6 +85,8 @@ Every worker final output must pass two schema gates:
 
 - `schemas/agent-run.codex-output.schema.json` constrains `codex exec --output-schema`.
 - `schemas/agent-run.schema.json` is the canonical repository validator used by `npm run validate:records`.
+- `npm run audit:agent-schemas` checks the shared enum contract between the two schemas.
+- `npm run audit:codex-jobs` checks that persisted `codex_job` specs match their final `agent_run` records, candidate records, expected paths, required review lanes, quality gates, logs, and post-run checks.
 
 When `canonical_write_policy` is `candidate_change_required`, the output must include:
 
@@ -85,6 +101,10 @@ The reference audit requires changed canonical records to appear in both:
 - `agent_run.outputs.proposed_records[]`
 
 Agent-run records themselves are transaction logs and do not need to be proposed inside a candidate change.
+
+The reference audit also infers required review lanes from proposed record types. Result, outcome, snapshot, synthesis, and safety/adverse-event records must declare the matching source-fidelity, extraction-fidelity, taxonomy-mapping, synthesis-boundary, or safety-limitation lanes before promotion can proceed.
+
+When a job file declares `quality_gates[]`, each gate must be satisfied by a passed `agent_run.quality_checks[]` entry or by a passed aggregate verification check recognized by the job audit. Jobs with `post_run.export_latest` or `post_run.verify_knowledge_base` must also have passed wrapper-owned `post_export` or `post_verify` quality checks.
 
 ## Logs And Replay
 

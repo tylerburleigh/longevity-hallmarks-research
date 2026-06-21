@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "synthesis_group",
+  "id": "senolytics-dq-bone-p1np-20wk-synthesis-compatibility-2026-06-21",
+  "name": "D+Q bone RCT 20-week P1NP synthesis compatibility",
+  "assessed_at": "2026-06-21T21:45:00Z",
+  "question": "Can the 20-week P1NP result from the D+Q postmenopausal bone RCT be pooled for a meta-analysis estimate?",
+  "track_ids": [
+    "senolytics"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence",
+    "stem_cell_exhaustion"
+  ],
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "compatibility_basis": {
+    "population": "Postmenopausal women in the D+Q and untreated-control arms of one phase 2 randomized trial.",
+    "intervention": "Intermittent dasatinib plus quercetin.",
+    "comparator": "Untreated control.",
+    "endpoint_family": "Serum P1NP percent change.",
+    "time_horizon": "Baseline to 20 weeks.",
+    "effect_metric": "Between-group P1NP percent-change effect with uncertainty.",
+    "variance_model": "No pooling model selected because only one 20-week P1NP result is available and the effect record is p-value-only."
+  },
+  "outcome_ids": [
+    "dq-bone-p1np-20wk"
+  ],
+  "result_ids": [
+    "dq-bone-p1np-20wk-null"
+  ],
+  "compatibility_status": "needs_extraction",
+  "pooling_decision": "pooling_blocked",
+  "pooling_rationale": "Pooling is blocked by result count and missing effect extraction. This endpoint-specific group has one 20-week P1NP result from one trial, and the posted record provides arm medians, full ranges, and a p-value rather than a between-group effect value with uncertainty.",
+  "non_pooling_reason": "Do not pool the 20-week P1NP endpoint until at least two compatible 20-week P1NP results are available and all included results carry effect value, uncertainty, comparison, sample-size, and group-value fields.",
+  "pooling_requirements": {
+    "minimum_result_count": 2,
+    "required_result_maturity_statuses": [
+      "registry_extracted",
+      "full_text_extracted",
+      "agent_reviewed",
+      "supervisor_agent_reviewed",
+      "accepted"
+    ],
+    "required_effect_fields": [
+      "effect.value",
+      "effect.uncertainty",
+      "analysis.comparison",
+      "sample_size",
+      "group_values[].sample_size",
+      "group_values[].statistic",
+      "group_values[].dispersion"
+    ],
+    "missing_effect_fields_by_result": [
+      {
+        "result_id": "dq-bone-p1np-20wk-null",
+        "missing_fields": [
+          "effect.value",
+          "effect.uncertainty"
+        ],
+        "impact": "blocks_pooling",
+        "note": "The 20-week P1NP result is p-value-only with group medians and full ranges; it lacks a between-group effect value and variance-compatible uncertainty."
+      }
+    ]
+  },
+  "agent_supervision": {
+    "assessing_agent": "codex-synthesis-agent",
+    "supervisor_agent": "pending-supervisor-review",
+    "audit_status": "passed",
+    "self_healing_actions": [
+      "Keep this endpoint group separate from short-term P1NP signals because the 20-week time horizon and direction differ.",
+      "Route p-value-only 20-week P1NP extraction to extraction_refresh if source tables provide an effect estimate with uncertainty."
+    ]
+  },
+  "maturity_status": "agent_reviewed",
+  "provenance": [
+    {
+      "source_id": "nct-04313634",
+      "source_snapshot_id": "snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+      "locator_type": "clinicaltrials_module",
+      "locator": "resultsSection.outcomeMeasuresModule.outcomeMeasures[3]",
+      "status": "registry_extracted",
+      "note": "Posted 20-week P1NP group values and D+Q versus untreated-control p-value."
+    },
+    {
+      "source_id": "pmid-38956196",
+      "source_snapshot_id": "snapshot-pmid-38956196-pubmed-efetch-2026-06-21",
+      "locator_type": "abstract",
+      "locator": "PubMed abstract P1NP secondary endpoint sentence",
+      "status": "abstract_extracted",
+      "note": "Abstract reports P1NP was not different from untreated control at 20 weeks."
+    }
+  ],
+  "tags": [
+    "senolytics",
+    "dasatinib-quercetin",
+    "bone",
+    "p1np",
+    "20-week",
+    "pooling-blocked"
+  ]
+}

@@ -9,7 +9,7 @@ npm run export:latest
 npm run verify:knowledge-base
 ```
 
-`verify:knowledge-base` runs schema validation, reference-integrity checks, export checks, and the agentic process vocabulary audit.
+`verify:knowledge-base` runs schema validation, reference-integrity checks, export checks, agent schema checks, Codex job conformance checks, and the agentic process vocabulary audit.
 
 `promote:candidate` advances a candidate to `accepted` or `applied` only after required supervisor-agent review gates pass.
 
@@ -25,6 +25,7 @@ Current audit coverage:
 - local source, study, outcome, result, finding, candidate-change, evidence-review, eligibility, risk-of-bias, hallmark, and track references
 - agent-run references to candidate changes, research sessions, and proposed record paths
 - `codex_exec` agent-run execution metadata points to existing prompt, schema, and output paths
+- `codex_job` specs match final agent-run metadata, expected output paths, required review lanes, quality gates, logs, and post-run checks
 - synthesis-group references to outcomes, results, and missing-field result IDs
 - candidate-change proposed record paths
 - active required review-lane records for `in_review`, `accepted`, and `applied` candidate changes

@@ -1,0 +1,107 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "synthesis_group",
+  "id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+  "name": "D+Q bone RCT 20-week safety synthesis compatibility",
+  "assessed_at": "2026-06-21T21:45:00Z",
+  "question": "Can the 20-week aggregate adverse-event result from the D+Q postmenopausal bone RCT be pooled for a safety meta-analysis estimate?",
+  "track_ids": [
+    "senolytics"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence",
+    "stem_cell_exhaustion"
+  ],
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "compatibility_basis": {
+    "population": "Postmenopausal women in the D+Q and untreated-control arms of one phase 2 randomized trial.",
+    "intervention": "Intermittent dasatinib plus quercetin.",
+    "comparator": "Untreated control.",
+    "endpoint_family": "Adverse events, serious adverse events, and deaths through approximately 20 weeks.",
+    "time_horizon": "Baseline to approximately 20 weeks.",
+    "effect_metric": "Event-specific risk ratio or risk difference with preferred-term counts.",
+    "variance_model": "No safety pooling model selected because the record is aggregate/descriptive and lacks preferred-term event-specific counts and comparative effect estimates."
+  },
+  "outcome_ids": [
+    "dq-bone-adverse-events-20wk"
+  ],
+  "result_ids": [
+    "dq-bone-adverse-events-20wk-mixed"
+  ],
+  "compatibility_status": "needs_extraction",
+  "pooling_decision": "pooling_blocked",
+  "pooling_rationale": "Pooling is blocked by result count and safety event-specific extraction. This group has one aggregate safety result from one trial. It reports counts for other adverse events, serious adverse events, and deaths, but it does not enumerate preferred terms, event-specific denominators by preferred term, or a D+Q versus control risk ratio, risk difference, CI, standard error, or variance.",
+  "non_pooling_reason": "Do not pool safety until adverse events are extracted as event-specific preferred terms with arm-level counts, denominators, a comparison, and effect uncertainty from at least two compatible safety results.",
+  "pooling_requirements": {
+    "minimum_result_count": 2,
+    "required_result_maturity_statuses": [
+      "registry_extracted",
+      "full_text_extracted",
+      "agent_reviewed",
+      "supervisor_agent_reviewed",
+      "accepted"
+    ],
+    "required_effect_fields": [
+      "effect.value",
+      "effect.uncertainty",
+      "analysis.comparison",
+      "sample_size",
+      "group_values[].sample_size",
+      "group_values[].statistic",
+      "adverse_event.preferred_term",
+      "adverse_event.event_specific_counts"
+    ],
+    "missing_effect_fields_by_result": [
+      {
+        "result_id": "dq-bone-adverse-events-20wk-mixed",
+        "missing_fields": [
+          "effect.value",
+          "effect.uncertainty",
+          "analysis.comparison",
+          "adverse_event.preferred_term",
+          "adverse_event.event_specific_counts"
+        ],
+        "impact": "blocks_pooling",
+        "note": "The result is an aggregate safety_event record, not preferred-term event-specific extraction; it lacks comparative effect value, uncertainty, and explicit event-specific preferred-term counts."
+      }
+    ]
+  },
+  "agent_supervision": {
+    "assessing_agent": "codex-synthesis-agent",
+    "supervisor_agent": "pending-supervisor-review",
+    "audit_status": "passed",
+    "self_healing_actions": [
+      "Keep safety pooling blocked until adverse events are split into event-specific preferred-term result records.",
+      "Route safety extraction to extraction_refresh if registry or publication tables can support event-specific arm counts and comparative safety effects."
+    ]
+  },
+  "maturity_status": "agent_reviewed",
+  "provenance": [
+    {
+      "source_id": "nct-04313634",
+      "source_snapshot_id": "snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+      "locator_type": "clinicaltrials_module",
+      "locator": "resultsSection.adverseEventsModule.eventGroups",
+      "status": "registry_extracted",
+      "note": "Posted aggregate adverse-event counts for D+Q and untreated-control event groups."
+    },
+    {
+      "source_id": "pmid-38956196",
+      "source_snapshot_id": "snapshot-pmid-38956196-pubmed-efetch-2026-06-21",
+      "locator_type": "abstract",
+      "locator": "PubMed abstract serious adverse event sentence",
+      "status": "abstract_extracted",
+      "note": "Abstract reports no serious adverse events were observed."
+    }
+  ],
+  "tags": [
+    "senolytics",
+    "dasatinib-quercetin",
+    "bone",
+    "safety",
+    "adverse-events",
+    "pooling-blocked"
+  ]
+}

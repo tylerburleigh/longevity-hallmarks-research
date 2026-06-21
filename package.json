@@ -14,8 +14,10 @@
     "agent:codex": "node scripts/run-codex-agent.mjs",
     "export:latest": "node scripts/export-latest.mjs",
     "audit:exports": "node scripts/audit-exports.mjs",
+    "audit:agent-schemas": "node scripts/audit-agent-schemas.mjs",
+    "audit:codex-jobs": "node scripts/audit-codex-jobs.mjs",
     "audit:agentic-process": "node scripts/audit-agentic-process.mjs",
-    "verify:knowledge-base": "npm run validate:records && npm run audit:references && npm run audit:exports && npm run audit:agentic-process"
+    "verify:knowledge-base": "npm run validate:records && npm run audit:references && npm run audit:exports && npm run audit:agent-schemas && npm run audit:codex-jobs && npm run audit:agentic-process"
   },
   "devDependencies": {
     "ajv": "^8.20.0",

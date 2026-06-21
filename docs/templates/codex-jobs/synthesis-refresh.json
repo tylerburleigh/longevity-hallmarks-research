@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "codex_job",
+  "id": "replace-with-synthesis-run-id",
+  "name": "Replace with bounded synthesis-refresh job name",
+  "agent_role": "synthesis_agent",
+  "mode": "synthesis_refresh",
+  "prompt_file": "docs/prompts/codex-agents/synthesis-refresh.md",
+  "output_path": "research/agent-runs/replace-with-synthesis-run-id.json",
+  "jsonl_log_path": "research/agent-runs/logs/replace-with-synthesis-run-id.jsonl",
+  "scope": {
+    "question": "Replace with compatibility or synthesis question.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": [
+      "dasatinib-quercetin"
+    ],
+    "result_ids": [
+      "replace-with-result-id"
+    ]
+  },
+  "execution": {
+    "isolation": "git_worktree",
+    "sandbox": "workspace-write",
+    "approval_policy": "never",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "timeout_ms": 1800000,
+    "no_output_timeout_ms": 300000
+  },
+  "expected_outputs": {
+    "canonical_write_policy": "candidate_change_required",
+    "candidate_change_id": "replace-with-candidate-change-id",
+    "required_review_lanes": [
+      "taxonomy_mapping",
+      "synthesis_boundary"
+    ],
+    "proposed_record_paths": [
+      "data/candidate-changes/replace-with-candidate-change-id.json"
+    ],
+    "export_paths": [
+      "exports/latest/synthesis-groups.jsonl",
+      "exports/latest/evidence-map.json",
+      "exports/latest/audit-manifest.json"
+    ]
+  },
+  "post_run": {
+    "export_latest": true,
+    "verify_knowledge_base": true
+  },
+  "quality_gates": [
+    "validate_records",
+    "audit_references",
+    "audit_exports",
+    "audit_agent_schemas",
+    "audit_agentic_process",
+    "candidate_agent_run_ledger_match",
+    "supervisor_review_lanes"
+  ]
+}

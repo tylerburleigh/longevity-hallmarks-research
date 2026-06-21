@@ -53,6 +53,35 @@ const snapshotRequiredLocatorStatuses = new Set([
   "supervisor_agent_reviewed",
   "accepted"
 ]);
+const candidateReviewLaneRules = [
+  {
+    lane: "source_fidelity",
+    recordTypes: new Set(["source", "source_snapshot"])
+  },
+  {
+    lane: "extraction_fidelity",
+    recordTypes: new Set(["source_snapshot", "outcome", "result", "risk_of_bias", "certainty_assessment"])
+  },
+  {
+    lane: "taxonomy_mapping",
+    recordTypes: new Set([
+      "study",
+      "finding",
+      "outcome",
+      "result",
+      "coverage_assessment",
+      "synthesis_group",
+      "eligibility_decision",
+      "risk_of_bias",
+      "certainty_assessment"
+    ])
+  },
+  {
+    lane: "synthesis_boundary",
+    recordTypes: new Set(["coverage_assessment", "synthesis_group", "synthesis", "evidence_map", "certainty_assessment"])
+  }
+];
+const safetyScopePattern = /\b(safety|adverse[-_ ]?event|adverse|harm|tolerability|toxicity)\b/i;
 
 async function exists(filePath) {
   try {
@@ -469,6 +498,35 @@ function checkCandidateReviewGate({ index, issues, record, ownerPath }) {
   }
 }
 
+function checkCandidateRequiredReviewLanes({ issues, record, ownerPath }) {
+  const requiredReviewLanes = new Set(record.required_review_lanes ?? []);
+  const inferredReviewLanes = new Set();
+
+  for (const proposedRecord of record.proposed_records ?? []) {
+    for (const rule of candidateReviewLaneRules) {
+      if (rule.recordTypes.has(proposedRecord.record_type)) {
+        inferredReviewLanes.add(rule.lane);
+      }
+    }
+
+    const searchableText = [
+      proposedRecord.record_type,
+      proposedRecord.record_id,
+      proposedRecord.path,
+      proposedRecord.rationale
+    ].join(" ");
+    if (safetyScopePattern.test(searchableText)) {
+      inferredReviewLanes.add("safety_limitations");
+    }
+  }
+
+  for (const lane of inferredReviewLanes) {
+    if (!requiredReviewLanes.has(lane)) {
+      issues.push(`${ownerPath}: proposed record set requires ${lane} in required_review_lanes[].`);
+    }
+  }
+}
+
 function checkSemanticEvidenceRules({ issues, record, ownerPath }) {
   if (record.record_type === "finding" && record.evidence_tier === "registry") {
     if (record.endpoint_category !== "registry_status") {
@@ -605,6 +663,29 @@ function checkSynthesisGroupRules({ index, issues, record, ownerPath }) {
     issues.push(`${ownerPath}: pooling_allowed synthesis groups cannot list missing effect fields.`);
   }
 
+  if (
+    record.pooling_decision !== "pooling_allowed" &&
+    !record.non_pooling_reason &&
+    (record.pooling_requirements?.missing_effect_fields_by_result ?? []).length === 0
+  ) {
+    issues.push(`${ownerPath}: non-poolable synthesis groups need non_pooling_reason or result-level blocker fields.`);
+  }
+
+  for (const [missingIndex, missing] of (record.pooling_requirements?.missing_effect_fields_by_result ?? []).entries()) {
+    if (!(record.result_ids ?? []).includes(missing.result_id)) {
+      issues.push(
+        `${ownerPath}: pooling_requirements.missing_effect_fields_by_result[${missingIndex}].result_id must also appear in result_ids[].`
+      );
+    }
+  }
+
+  for (const resultId of record.result_ids ?? []) {
+    const result = getRecord(index, "result", resultId);
+    if (result && !(record.outcome_ids ?? []).includes(result.outcome_id)) {
+      issues.push(`${ownerPath}: result "${resultId}" has outcome_id "${result.outcome_id}" outside outcome_ids[].`);
+    }
+  }
+
   if (record.pooling_decision !== "pooling_allowed") {
     return;
   }
@@ -630,8 +711,66 @@ function checkSynthesisGroupRules({ index, issues, record, ownerPath }) {
   }
 }
 
+function normalizeStratumText(value) {
+  return String(value ?? "")
+    .trim()
+    .replace(/\s+/g, " ")
+    .toLowerCase();
+}
+
+function synthesisGroupStratumKey(record) {
+  const basis = record.compatibility_basis ?? {};
+  return [
+    [...(record.track_ids ?? [])].sort().join(","),
+    [...(record.hallmark_ids ?? [])].sort().join(","),
+    [...(record.intervention_ids ?? [])].sort().join(","),
+    basis.population,
+    basis.intervention,
+    basis.comparator,
+    basis.endpoint_family,
+    basis.time_horizon,
+    basis.effect_metric,
+    basis.variance_model
+  ]
+    .map(normalizeStratumText)
+    .join("|");
+}
+
+function checkSynthesisGroupCollection({ index, issues }) {
+  const groups = [...(index.recordsByType.get("synthesis_group")?.values() ?? [])];
+  const groupsByStratum = new Map();
+
+  for (const group of groups) {
+    const key = synthesisGroupStratumKey(group.record);
+    const bucket = groupsByStratum.get(key) ?? [];
+    bucket.push(group);
+    groupsByStratum.set(key, bucket);
+  }
+
+  for (const bucket of groupsByStratum.values()) {
+    if (bucket.length < 2) {
+      continue;
+    }
+
+    for (let leftIndex = 0; leftIndex < bucket.length; leftIndex += 1) {
+      for (let rightIndex = leftIndex + 1; rightIndex < bucket.length; rightIndex += 1) {
+        const left = bucket[leftIndex];
+        const right = bucket[rightIndex];
+        const rightResultIds = new Set(right.record.result_ids ?? []);
+        const overlappingResultIds = (left.record.result_ids ?? []).filter((resultId) => rightResultIds.has(resultId));
+        if (overlappingResultIds.length > 0) {
+          issues.push(
+            `${left.relativePath}: duplicate synthesis stratum overlaps ${right.relativePath} on result_ids[] ${overlappingResultIds.join(", ")}.`
+          );
+        }
+      }
+    }
+  }
+}
+
 async function audit() {
   const { index, issues } = await buildIndex();
+  checkSynthesisGroupCollection({ index, issues });
 
   const tracksTaxonomy = await readJsonIfExists("taxonomies/tracks.v1.json", { tracks: [] });
   for (const track of tracksTaxonomy.tracks ?? []) {
@@ -926,6 +1065,7 @@ async function audit() {
 
     if (record.record_type === "candidate_change") {
       checkCandidateReviewGate({ index, issues, record, ownerPath: relativePath });
+      checkCandidateRequiredReviewLanes({ issues, record, ownerPath: relativePath });
       checkTaxonomyRefs({
         index,
         issues,

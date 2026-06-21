@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "codex_job",
+  "id": "dq-bone-synthesis-groups-codex-worker-rerun-2026-06-21",
+  "name": "D+Q bone endpoint synthesis groups rerun",
+  "summary": "Rerun the endpoint-specific D+Q bone synthesis-group worker under job-spec, controlled blocker, review-lane, and post-run verification gates.",
+  "agent_role": "synthesis_agent",
+  "mode": "synthesis_refresh",
+  "prompt_file": "docs/prompts/codex-agents/dq-bone-synthesis-groups-rerun-2026-06-21.md",
+  "output_path": "research/agent-runs/dq-bone-synthesis-groups-codex-worker-rerun-2026-06-21.json",
+  "jsonl_log_path": "research/agent-runs/logs/dq-bone-synthesis-groups-codex-worker-rerun-2026-06-21.jsonl",
+  "scope": {
+    "question": "Create endpoint-specific synthesis compatibility groups for the D+Q postmenopausal bone RCT outcome/result records.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": [
+      "dasatinib-quercetin"
+    ],
+    "source_ids": [
+      "nct-04313634",
+      "pmid-38956196"
+    ],
+    "study_ids": [
+      "dq-postmenopausal-bone-rct"
+    ],
+    "outcome_ids": [
+      "dq-bone-ctx-20wk",
+      "dq-bone-p1np-2wk",
+      "dq-bone-p1np-4wk",
+      "dq-bone-p1np-20wk",
+      "dq-bone-bmd-20wk",
+      "dq-bone-sasp-2wk",
+      "dq-bone-adverse-events-20wk"
+    ],
+    "result_ids": [
+      "dq-bone-ctx-20wk-null",
+      "dq-bone-p1np-2wk-positive",
+      "dq-bone-p1np-4wk-positive",
+      "dq-bone-p1np-20wk-null",
+      "dq-bone-bmd-20wk-inconclusive",
+      "dq-bone-sasp-2wk-null",
+      "dq-bone-adverse-events-20wk-mixed"
+    ]
+  },
+  "execution": {
+    "isolation": "git_worktree",
+    "sandbox": "workspace-write",
+    "approval_policy": "never",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "timeout_ms": 1800000,
+    "no_output_timeout_ms": 300000
+  },
+  "expected_outputs": {
+    "canonical_write_policy": "candidate_change_required",
+    "candidate_change_id": "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
+    "required_review_lanes": [
+      "taxonomy_mapping",
+      "synthesis_boundary",
+      "safety_limitations"
+    ],
+    "proposed_record_paths": [
+      "data/candidate-changes/senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21.json",
+      "data/synthesis-groups/senolytics-dq-bone-ctx-20wk-synthesis-compatibility-2026-06-21.json",
+      "data/synthesis-groups/senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21.json",
+      "data/synthesis-groups/senolytics-dq-bone-p1np-20wk-synthesis-compatibility-2026-06-21.json",
+      "data/synthesis-groups/senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21.json",
+      "data/synthesis-groups/senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21.json",
+      "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json"
+    ],
+    "export_paths": [
+      "exports/latest/synthesis-groups.jsonl",
+      "exports/latest/evidence-map.json",
+      "exports/latest/coverage-status.json",
+      "exports/latest/audit-manifest.json"
+    ]
+  },
+  "post_run": {
+    "export_latest": true,
+    "verify_knowledge_base": true
+  },
+  "quality_gates": [
+    "validate_records",
+    "audit_references",
+    "audit_exports",
+    "audit_agent_schemas",
+    "audit_agentic_process",
+    "candidate_agent_run_ledger_match",
+    "supervisor_review_lanes"
+  ]
+}

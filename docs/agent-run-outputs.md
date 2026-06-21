@@ -17,6 +17,10 @@ Reusable JSON templates live in `docs/templates/agent-runs/`:
 
 Worker prompt templates live in `docs/prompts/codex-agents/`.
 
+Codex job templates live in `docs/templates/codex-jobs/`. Use them when a run needs a durable execution spec that includes scope, expected outputs, post-run gates, timeout settings, and review-lane expectations.
+
+Persisted job specs under `ops/codex-jobs/` are enforced by `npm run audit:codex-jobs`. The audit checks that the final `agent_run`, candidate ledger, expected paths, review lanes, quality gates, logs, and post-run checks match the job contract.
+
 ## Write Policy
 
 Use `canonical_write_policy` to declare whether the run touched durable state:

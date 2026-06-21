@@ -1,0 +1,107 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "synthesis_group",
+  "id": "senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21",
+  "name": "D+Q bone RCT 20-week BMD synthesis compatibility",
+  "assessed_at": "2026-06-21T21:45:00Z",
+  "question": "Can the 20-week BMD result from the D+Q postmenopausal bone RCT be pooled for a meta-analysis estimate?",
+  "track_ids": [
+    "senolytics"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence",
+    "stem_cell_exhaustion"
+  ],
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "compatibility_basis": {
+    "population": "Postmenopausal women in the D+Q and untreated-control arms of one phase 2 randomized trial.",
+    "intervention": "Intermittent dasatinib plus quercetin.",
+    "comparator": "Untreated control.",
+    "endpoint_family": "DXA bone mineral density percent change by lumbar spine, femoral neck, and radius site.",
+    "time_horizon": "Baseline to 20 weeks.",
+    "effect_metric": "Site-specific between-group BMD percent-change effect with uncertainty.",
+    "variance_model": "No pooling model selected because the registry record is descriptive, site-combined, and lacks pairwise site-specific effects with uncertainty."
+  },
+  "outcome_ids": [
+    "dq-bone-bmd-20wk"
+  ],
+  "result_ids": [
+    "dq-bone-bmd-20wk-inconclusive"
+  ],
+  "compatibility_status": "needs_extraction",
+  "pooling_decision": "pooling_blocked",
+  "pooling_rationale": "Pooling is blocked by result count and descriptive-only extraction. The BMD record contains site-stratified group medians and full ranges, but no posted pairwise D+Q versus control analysis for an overall BMD endpoint and no site-specific effect values or uncertainty estimates. Lumbar spine, femoral neck, and radius values should not be collapsed into one pooled effect without site-specific outcome definitions.",
+  "non_pooling_reason": "Do not pool BMD until site-specific outcomes or a pre-specified composite BMD metric are extracted with effect values, uncertainty, comparison, sample size, and group-value fields from at least two compatible results.",
+  "pooling_requirements": {
+    "minimum_result_count": 2,
+    "required_result_maturity_statuses": [
+      "registry_extracted",
+      "full_text_extracted",
+      "agent_reviewed",
+      "supervisor_agent_reviewed",
+      "accepted"
+    ],
+    "required_effect_fields": [
+      "effect.value",
+      "effect.uncertainty",
+      "analysis.comparison",
+      "sample_size",
+      "group_values[].sample_size",
+      "group_values[].statistic",
+      "group_values[].dispersion",
+      "site_specific_effect.value",
+      "site_specific_effect.uncertainty"
+    ],
+    "missing_effect_fields_by_result": [
+      {
+        "result_id": "dq-bone-bmd-20wk-inconclusive",
+        "missing_fields": [
+          "effect.value",
+          "effect.uncertainty",
+          "site_specific_effect.value",
+          "site_specific_effect.uncertainty"
+        ],
+        "impact": "blocks_pooling",
+        "note": "The result is descriptive-only: it has site-stratified group summaries but no pairwise overall or site-specific D+Q effect value with variance-compatible uncertainty."
+      }
+    ]
+  },
+  "agent_supervision": {
+    "assessing_agent": "codex-synthesis-agent",
+    "supervisor_agent": "pending-supervisor-review",
+    "audit_status": "passed",
+    "self_healing_actions": [
+      "Keep BMD pooling blocked until site-specific effect records are extracted or a defensible composite BMD outcome is defined.",
+      "Route BMD extraction to extraction_refresh if full text or supplements provide site-level pairwise estimates with uncertainty."
+    ]
+  },
+  "maturity_status": "agent_reviewed",
+  "provenance": [
+    {
+      "source_id": "nct-04313634",
+      "source_snapshot_id": "snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+      "locator_type": "clinicaltrials_module",
+      "locator": "resultsSection.outcomeMeasuresModule.outcomeMeasures[4]",
+      "status": "registry_extracted",
+      "note": "Posted BMD group values by lumbar spine, femoral neck, and radius classes."
+    },
+    {
+      "source_id": "pmid-38956196",
+      "source_snapshot_id": "snapshot-pmid-38956196-pubmed-efetch-2026-06-21",
+      "locator_type": "abstract",
+      "locator": "PubMed abstract exploratory BMD subgroup sentence",
+      "status": "abstract_extracted",
+      "note": "Abstract mentions an exploratory radius BMD subgroup signal, which is not the same as the overall registry-posted BMD summary."
+    }
+  ],
+  "tags": [
+    "senolytics",
+    "dasatinib-quercetin",
+    "bone",
+    "bmd",
+    "site-specific-extraction-needed",
+    "pooling-blocked"
+  ]
+}

@@ -83,6 +83,7 @@ As of 2026-06-21, the repository has an initial JSON-file-backed scaffold:
 - Added a stricter track taxonomy schema with `primary_axis`, `definition`, `inclusion_criteria`, `exclusion_criteria`, `boundary_notes`, `rationale_source_ids`, and `lifecycle_status`.
 - Added a provisional `senolytics` track as the first work scope.
 - Added a minimal senolytics vertical slice with one source, one study, one finding, one research session, one coverage assessment, one candidate change, and one evidence review.
+- Added repo-local Codex skill sources under `codex-skills/` for bounded research runs, evidence extraction, and knowledge-base auditing.
 
 ## Target Architecture
 
@@ -208,6 +209,20 @@ Initial agent roles should be narrow and explicit:
 - `synthesis_agent`: builds evidence maps and synthesis records.
 - `review_agent`: checks source fidelity, extraction correctness, taxonomy mapping, and interpretation boundaries.
 - `release_agent`: validates, builds exports, and writes release manifests.
+
+## Codex Skill Layer
+
+Repo-local skill sources live under `codex-skills/`.
+
+Initial skills:
+
+- `hallmarks-research-run`: choose and execute one bounded track-level research pass.
+- `evidence-extraction`: turn sources into structured source, study, finding, and candidate-change records.
+- `knowledge-base-audit`: validate and audit schema/data health.
+
+These skills should stay procedural and concise. They should point agents to `plan.md`, `docs/`, `schemas/`, `taxonomies/`, and validation scripts instead of duplicating the repository model.
+
+The repo-local skill folders are source artifacts. To make them auto-discoverable by Codex outside this repo, copy or install them into the active Codex skills directory after review.
 
 ## Development Phases
 
@@ -345,9 +360,10 @@ Exit criteria:
 3. Add reference-integrity audit checks so IDs in records must resolve to existing local records.
 4. Expand the senolytics vertical slice into a real coverage-repair pass.
 5. Add `exports/latest/` generation for sources, studies, findings, coverage status, and audit manifest.
-6. Decide whether to initialize git in this workspace.
+6. Decide whether to install repo-local skills into the active Codex skills directory.
 
 ## Change Log
 
+- 2026-06-21: Added repo-local Codex skill sources for `hallmarks-research-run`, `evidence-extraction`, and `knowledge-base-audit`.
 - 2026-06-21: Added initial repository scaffold, AJV validation, core schemas, hallmark taxonomy, stricter senolytics track taxonomy, and a minimal validated senolytics vertical slice.
 - 2026-06-21: Created initial living development plan.

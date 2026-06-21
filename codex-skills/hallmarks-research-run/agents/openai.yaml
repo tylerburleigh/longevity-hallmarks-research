@@ -1,0 +1,4 @@
+interface:
+  display_name: "Hallmarks Research Run"
+  short_description: "Run bounded hallmark evidence passes"
+  default_prompt: "Use $hallmarks-research-run to run the next bounded track-level research pass."

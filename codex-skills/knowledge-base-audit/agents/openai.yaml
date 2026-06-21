@@ -1,0 +1,4 @@
+interface:
+  display_name: "Knowledge Base Audit"
+  short_description: "Validate and audit evidence records"
+  default_prompt: "Use $knowledge-base-audit to validate and audit the evidence knowledge base."

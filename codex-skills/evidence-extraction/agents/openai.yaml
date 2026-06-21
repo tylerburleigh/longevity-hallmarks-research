@@ -1,0 +1,4 @@
+interface:
+  display_name: "Evidence Extraction"
+  short_description: "Extract structured source-backed evidence"
+  default_prompt: "Use $evidence-extraction to turn this source into structured evidence records."

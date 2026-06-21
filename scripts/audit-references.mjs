@@ -260,6 +260,68 @@ async function audit() {
       checkRef({ index, issues, ownerPath: relativePath, field: "study_id", recordType: "study", recordId: record.study_id });
     }
 
+    if (record.record_type === "outcome") {
+      checkRef({ index, issues, ownerPath: relativePath, field: "source_id", recordType: "source", recordId: record.source_id });
+      checkRef({ index, issues, ownerPath: relativePath, field: "study_id", recordType: "study", recordId: record.study_id });
+      checkRefs({
+        index,
+        issues,
+        ownerPath: relativePath,
+        field: "finding_ids[]",
+        recordType: "finding",
+        recordIds: record.finding_ids
+      });
+    }
+
+    if (record.record_type === "result") {
+      checkRef({ index, issues, ownerPath: relativePath, field: "source_id", recordType: "source", recordId: record.source_id });
+      checkRef({ index, issues, ownerPath: relativePath, field: "study_id", recordType: "study", recordId: record.study_id });
+      checkRef({ index, issues, ownerPath: relativePath, field: "outcome_id", recordType: "outcome", recordId: record.outcome_id });
+      checkRefs({
+        index,
+        issues,
+        ownerPath: relativePath,
+        field: "finding_ids[]",
+        recordType: "finding",
+        recordIds: record.finding_ids
+      });
+    }
+
+    if (record.record_type === "eligibility_decision") {
+      checkRef({ index, issues, ownerPath: relativePath, field: "source_id", recordType: "source", recordId: record.source_id });
+      checkRef({
+        index,
+        issues,
+        ownerPath: relativePath,
+        field: "duplicate_of_source_id",
+        recordType: "source",
+        recordId: record.duplicate_of_source_id
+      });
+      checkTaxonomyRefs({
+        index,
+        issues,
+        ownerPath: relativePath,
+        field: "scope.hallmark_ids[]",
+        taxonomySet: index.hallmarkIds,
+        taxonomyKind: "hallmark",
+        values: record.scope?.hallmark_ids
+      });
+      checkTaxonomyRefs({
+        index,
+        issues,
+        ownerPath: relativePath,
+        field: "scope.track_ids[]",
+        taxonomySet: index.trackIds,
+        taxonomyKind: "track",
+        values: record.scope?.track_ids
+      });
+    }
+
+    if (record.record_type === "risk_of_bias") {
+      checkRef({ index, issues, ownerPath: relativePath, field: "source_id", recordType: "source", recordId: record.source_id });
+      checkRef({ index, issues, ownerPath: relativePath, field: "study_id", recordType: "study", recordId: record.study_id });
+    }
+
     if (record.record_type === "coverage_assessment") {
       checkTaxonomyRef({
         index,

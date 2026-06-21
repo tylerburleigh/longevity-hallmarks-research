@@ -15,7 +15,7 @@ Current audit coverage:
 - schema coverage for JSON records
 - collection `record_type` consistency
 - duplicate record IDs within each record type
-- local source, study, finding, candidate-change, evidence-review, hallmark, and track references
+- local source, study, outcome, result, finding, candidate-change, evidence-review, eligibility, risk-of-bias, hallmark, and track references
 - candidate-change proposed record paths
 
 Future release checks should verify export manifests, provenance depth, review-gate completeness, and stale generated artifacts.

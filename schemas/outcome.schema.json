@@ -1,13 +1,20 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "./outcome.schema.json",
-  "title": "Outcome placeholder",
+  "title": "Outcome record",
   "type": "object",
-  "additionalProperties": true,
+  "additionalProperties": false,
   "required": [
     "schema_version",
     "record_type",
-    "id"
+    "id",
+    "name",
+    "source_id",
+    "study_id",
+    "endpoint_category",
+    "measurement_type",
+    "measurement_method",
+    "analysis_role"
   ],
   "properties": {
     "schema_version": {
@@ -17,7 +24,96 @@
       "const": "outcome"
     },
     "id": {
-      "$ref": "./common.schema.json#/$defs/identifier"
+      "$ref": "./common.schema.json#/$defs/outcomeRef"
+    },
+    "name": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "source_id": {
+      "$ref": "./common.schema.json#/$defs/sourceRef"
+    },
+    "study_id": {
+      "$ref": "./common.schema.json#/$defs/studyRef"
+    },
+    "finding_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "./common.schema.json#/$defs/findingRef"
+      },
+      "uniqueItems": true
+    },
+    "hallmark_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "./common.schema.json#/$defs/hallmarkRef"
+      },
+      "uniqueItems": true
+    },
+    "track_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "./common.schema.json#/$defs/trackRef"
+      },
+      "uniqueItems": true
+    },
+    "endpoint_category": {
+      "$ref": "./common.schema.json#/$defs/endpointCategory"
+    },
+    "measurement_type": {
+      "enum": [
+        "molecular_biomarker",
+        "cellular_biomarker",
+        "physiological_function",
+        "clinical_event",
+        "composite",
+        "safety",
+        "adverse_event",
+        "registry_status",
+        "survival_or_lifespan",
+        "other"
+      ]
+    },
+    "measurement_method": {
+      "type": "string"
+    },
+    "unit": {
+      "type": "string"
+    },
+    "timepoint": {
+      "type": "string"
+    },
+    "analysis_role": {
+      "enum": [
+        "primary",
+        "secondary",
+        "exploratory",
+        "safety",
+        "registry",
+        "context",
+        "unknown"
+      ]
+    },
+    "population_or_model": {
+      "type": "string"
+    },
+    "directionality_preferred": {
+      "enum": [
+        "higher_better",
+        "lower_better",
+        "context_dependent",
+        "not_applicable",
+        "unknown"
+      ]
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
     }
   }
 }

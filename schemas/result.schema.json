@@ -1,13 +1,21 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "./result.schema.json",
-  "title": "Result placeholder",
+  "title": "Result record",
   "type": "object",
-  "additionalProperties": true,
+  "additionalProperties": false,
   "required": [
     "schema_version",
     "record_type",
-    "id"
+    "id",
+    "source_id",
+    "study_id",
+    "outcome_id",
+    "result_type",
+    "direction",
+    "evidence_tier",
+    "confidence",
+    "statement"
   ],
   "properties": {
     "schema_version": {
@@ -17,7 +25,124 @@
       "const": "result"
     },
     "id": {
-      "$ref": "./common.schema.json#/$defs/identifier"
+      "$ref": "./common.schema.json#/$defs/resultRef"
+    },
+    "name": {
+      "type": "string"
+    },
+    "source_id": {
+      "$ref": "./common.schema.json#/$defs/sourceRef"
+    },
+    "study_id": {
+      "$ref": "./common.schema.json#/$defs/studyRef"
+    },
+    "outcome_id": {
+      "$ref": "./common.schema.json#/$defs/outcomeRef"
+    },
+    "finding_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "./common.schema.json#/$defs/findingRef"
+      },
+      "uniqueItems": true
+    },
+    "intervention_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "./common.schema.json#/$defs/identifier"
+      },
+      "uniqueItems": true
+    },
+    "comparator": {
+      "type": "string"
+    },
+    "arm_details": {
+      "type": "string"
+    },
+    "sample_size": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "result_type": {
+      "enum": [
+        "quantitative_effect",
+        "descriptive",
+        "posted_no_result",
+        "no_posted_result",
+        "safety_event",
+        "registry_status",
+        "other"
+      ]
+    },
+    "effect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "measure"
+      ],
+      "properties": {
+        "measure": {
+          "enum": [
+            "mean_difference",
+            "standardized_mean_difference",
+            "risk_ratio",
+            "odds_ratio",
+            "hazard_ratio",
+            "correlation",
+            "percent_change",
+            "p_value_only",
+            "descriptive",
+            "not_reported",
+            "other"
+          ]
+        },
+        "value": {
+          "type": "number"
+        },
+        "ci_lower": {
+          "type": "number"
+        },
+        "ci_upper": {
+          "type": "number"
+        },
+        "p_value": {
+          "type": "string"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "raw_text": {
+          "type": "string"
+        }
+      }
+    },
+    "direction": {
+      "$ref": "./common.schema.json#/$defs/evidenceDirection"
+    },
+    "evidence_tier": {
+      "$ref": "./common.schema.json#/$defs/evidenceTier"
+    },
+    "confidence": {
+      "$ref": "./common.schema.json#/$defs/confidence"
+    },
+    "statement": {
+      "type": "string"
+    },
+    "time_horizon": {
+      "type": "string"
+    },
+    "caveats": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
     }
   }
 }

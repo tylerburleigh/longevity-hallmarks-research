@@ -1,13 +1,19 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "./eligibility-decision.schema.json",
-  "title": "Eligibility decision placeholder",
+  "title": "Eligibility decision record",
   "type": "object",
-  "additionalProperties": true,
+  "additionalProperties": false,
   "required": [
     "schema_version",
     "record_type",
-    "id"
+    "id",
+    "source_id",
+    "scope",
+    "decision",
+    "reason_category",
+    "decided_at",
+    "rationale"
   ],
   "properties": {
     "schema_version": {
@@ -18,6 +24,99 @@
     },
     "id": {
       "$ref": "./common.schema.json#/$defs/identifier"
+    },
+    "source_id": {
+      "$ref": "./common.schema.json#/$defs/sourceRef"
+    },
+    "source_title": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "question"
+      ],
+      "properties": {
+        "question": {
+          "type": "string"
+        },
+        "hallmark_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/hallmarkRef"
+          },
+          "uniqueItems": true
+        },
+        "track_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/trackRef"
+          },
+          "uniqueItems": true
+        },
+        "intervention_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/identifier"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "decision": {
+      "enum": [
+        "included",
+        "excluded",
+        "duplicate",
+        "wrong_scope",
+        "awaiting_full_text",
+        "context_only",
+        "deferred"
+      ]
+    },
+    "reason_category": {
+      "enum": [
+        "direct_evidence",
+        "background",
+        "wrong_population",
+        "wrong_intervention",
+        "wrong_endpoint",
+        "duplicate",
+        "no_results",
+        "registry_only",
+        "insufficient_source_quality",
+        "inaccessible",
+        "other"
+      ]
+    },
+    "duplicate_of_source_id": {
+      "$ref": "./common.schema.json#/$defs/sourceRef"
+    },
+    "decided_at": {
+      "$ref": "./common.schema.json#/$defs/dateTime"
+    },
+    "reviewer_kind": {
+      "enum": [
+        "agent",
+        "human"
+      ]
+    },
+    "reviewer_id": {
+      "type": "string"
+    },
+    "rationale": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
     }
   }
 }

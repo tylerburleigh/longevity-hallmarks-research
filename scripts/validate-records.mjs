@@ -90,10 +90,18 @@ async function main() {
   const ajv = new Ajv2020({ allErrors: true, strict: true });
   addFormats(ajv);
 
-  for (const { schema } of await loadSchemas()) {
+  const schemas = await loadSchemas();
+  for (const { schema } of schemas) {
     ajv.addSchema(schema, schema.$id);
     if (typeof schema.$id === "string" && schema.$id.startsWith("./")) {
       ajv.addSchema(schema, schema.$id.slice(2));
+    }
+  }
+
+  for (const { schema, filePath } of schemas) {
+    const validate = ajv.getSchema(schema.$id);
+    if (!validate) {
+      throw new Error(`Schema failed to compile: ${toPosixRelative(filePath)}`);
     }
   }
 

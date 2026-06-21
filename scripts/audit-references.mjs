@@ -35,7 +35,13 @@ const evidenceRecordTypesRequiringMaturity = new Set([
   "risk_of_bias",
   "coverage_assessment"
 ]);
-const synthesisReadyStatuses = new Set(["full_text_extracted", "agent_reviewed", "human_reviewed", "accepted"]);
+const synthesisReadyStatuses = new Set([
+  "registry_extracted",
+  "full_text_extracted",
+  "agent_reviewed",
+  "human_reviewed",
+  "accepted"
+]);
 
 async function exists(filePath) {
   try {
@@ -353,6 +359,21 @@ function checkSemanticEvidenceRules({ issues, record, ownerPath }) {
     ) {
       issues.push(`${ownerPath}: accepted descriptive results need extracted effect data or a more specific non-quantitative rationale.`);
     }
+
+    if (record.maturity_status === "registry_extracted") {
+      const hasRegistryLocator = (record.provenance ?? []).some((locator) =>
+        ["clinicaltrials_module", "registry_record"].includes(locator.locator_type)
+      );
+      if (!hasRegistryLocator) {
+        issues.push(`${ownerPath}: registry_extracted results need a registry provenance locator.`);
+      }
+      if (!Array.isArray(record.group_values) || record.group_values.length === 0) {
+        issues.push(`${ownerPath}: registry_extracted results must include group_values[].`);
+      }
+      if (!record.analysis && record.result_type !== "safety_event") {
+        issues.push(`${ownerPath}: registry_extracted non-safety results should include analysis metadata.`);
+      }
+    }
   }
 
   if (record.record_type === "risk_of_bias") {
@@ -498,6 +519,10 @@ async function audit() {
     if (record.record_type === "risk_of_bias") {
       checkRef({ index, issues, ownerPath: relativePath, field: "source_id", recordType: "source", recordId: record.source_id });
       checkRef({ index, issues, ownerPath: relativePath, field: "study_id", recordType: "study", recordId: record.study_id });
+    }
+
+    if (record.record_type === "source_snapshot") {
+      checkRef({ index, issues, ownerPath: relativePath, field: "source_id", recordType: "source", recordId: record.source_id });
     }
 
     if (record.record_type === "coverage_assessment") {

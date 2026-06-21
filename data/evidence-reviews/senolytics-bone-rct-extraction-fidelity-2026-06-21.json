@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-bone-rct-extraction-fidelity-2026-06-21",
+  "candidate_change_id": "senolytics-bone-rct-extraction-refresh-2026-06-21",
+  "review_lane": "extraction_fidelity",
+  "reviewer_kind": "agent",
+  "reviewer_id": "codex",
+  "status": "complete",
+  "verdict": "needs_human_judgment",
+  "blocking": false,
+  "summary": "Structured ClinicalTrials.gov outcomes were extracted for the primary CTx endpoint, P1NP timepoints, BMD, SASP, and aggregate adverse events. Human review is still needed before promotion because publication full-text tables and subgroup details were not fully extracted.",
+  "findings": [
+    {
+      "finding_id": "registry-outcomes-extracted",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "Posted registry group values, sample sizes, p-values, and safety aggregate counts were extracted into result records.",
+      "why_it_matters": "This is the first result-bearing slice that is more than a triage placeholder.",
+      "recommended_action": "Use these records as the template for future registry result extraction.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "full-publication-tables-pending",
+      "severity": "major",
+      "category": "missing_caveat",
+      "claim_or_issue": "The extraction does not yet include full publication tables, supplementary data, or all exploratory subgroup values.",
+      "why_it_matters": "ClinicalTrials.gov posted results and PubMed abstract are not a full substitute for publication-level endpoint extraction.",
+      "recommended_action": "Before promotion, extract full article tables/supplements where accessible and reconcile registry dispersion with publication-reported IQRs.",
+      "resolution_status": "open"
+    }
+  ]
+}

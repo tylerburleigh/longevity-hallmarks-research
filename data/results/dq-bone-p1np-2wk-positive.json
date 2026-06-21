@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "result",
+  "id": "dq-bone-p1np-2wk-positive",
+  "name": "D+Q 2-week P1NP positive secondary result",
+  "source_id": "nct-04313634",
+  "study_id": "dq-postmenopausal-bone-rct",
+  "outcome_id": "dq-bone-p1np-2wk",
+  "finding_ids": [
+    "dq-bone-rct-primary-null-subgroup-biomarker-signal"
+  ],
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "comparator": "Untreated control",
+  "sample_size": 60,
+  "group_values": [
+    {
+      "group_id": "OG000",
+      "group_label": "Dasatinib plus quercetin",
+      "sample_size": 30,
+      "statistic": "median",
+      "value": 0.8,
+      "lower_limit": -39.6,
+      "upper_limit": 113.5,
+      "dispersion": "Full Range",
+      "unit": "percentage change of P1NP"
+    },
+    {
+      "group_id": "OG002",
+      "group_label": "Untreated control",
+      "sample_size": 30,
+      "statistic": "median",
+      "value": -15.2,
+      "lower_limit": -55,
+      "upper_limit": 59.8,
+      "dispersion": "Full Range",
+      "unit": "percentage change of P1NP"
+    }
+  ],
+  "result_type": "quantitative_effect",
+  "effect": {
+    "measure": "percent_change",
+    "value": 16,
+    "p_value": "0.020",
+    "unit": "percentage-point difference relative to control",
+    "raw_text": "Registry medians were D+Q 0.8 and control -15.2; PubMed abstract describes a +16% increase relative to control at 2 weeks."
+  },
+  "analysis": {
+    "comparison": "D+Q versus untreated control",
+    "method": "Wilcoxon (Mann-Whitney)",
+    "p_value": "0.020",
+    "effect_note": "Nominally significant secondary P1NP increase at 2 weeks."
+  },
+  "direction": "positive",
+  "evidence_tier": "human_biomarker",
+  "confidence": "moderate",
+  "maturity_status": "registry_extracted",
+  "provenance": [
+    {
+      "source_id": "nct-04313634",
+      "locator_type": "clinicaltrials_module",
+      "locator": "resultsSection.outcomeMeasuresModule.outcomeMeasures[1]",
+      "status": "registry_extracted",
+      "note": "Posted secondary outcome group values and D+Q versus control p-value."
+    },
+    {
+      "source_id": "pmid-38956196",
+      "locator_type": "abstract",
+      "locator": "PubMed abstract P1NP secondary endpoint sentence",
+      "status": "abstract_extracted",
+      "note": "Abstract reports +16% relative to control and P=0.020 at 2 weeks."
+    }
+  ],
+  "statement": "D+Q increased the secondary P1NP bone formation marker versus untreated control at 2 weeks.",
+  "time_horizon": "Baseline to 2 weeks",
+  "caveats": [
+    "Secondary endpoint; do not treat as overturning the null primary CTx result.",
+    "Registry provides full-range dispersion; abstract reports relative difference."
+  ],
+  "tags": [
+    "senolytics",
+    "human",
+    "randomized-trial",
+    "bone",
+    "p1np",
+    "secondary-outcome",
+    "positive"
+  ]
+}

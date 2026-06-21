@@ -22,7 +22,7 @@
   "direction": "mixed",
   "evidence_tier": "human_biomarker",
   "confidence": "moderate",
-  "statement": "The bone trial is a relatively rigorous human senolytic study, but synthesis must preserve primary-null and exploratory-signal distinctions.",
+  "statement": "This aggregate triage result is retained only as a summary pointer; source-located extracted results now separate CTx, P1NP timepoints, SASP, BMD, and adverse-event outcomes.",
   "caveats": [
     "Needs exact endpoint-level quantitative extraction.",
     "Subgroup findings should remain labeled exploratory unless prespecified status is verified."
@@ -41,7 +41,7 @@
       "locator_type": "derived_record",
       "locator": "result dq-bone-turnover-mixed derived from pmid-38956196",
       "status": "triage_summary",
-      "note": "Triage-level generated record pending source-located extraction."
+      "note": "Triage-level aggregate pointer; do not use for synthesis when exact registry_extracted result records are available."
     }
   ]
 }

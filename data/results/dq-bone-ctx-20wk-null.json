@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "result",
+  "id": "dq-bone-ctx-20wk-null",
+  "name": "D+Q 20-week CTx primary outcome null result",
+  "source_id": "nct-04313634",
+  "study_id": "dq-postmenopausal-bone-rct",
+  "outcome_id": "dq-bone-ctx-20wk",
+  "finding_ids": [
+    "dq-bone-rct-primary-null-subgroup-biomarker-signal"
+  ],
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "comparator": "Untreated control",
+  "sample_size": 56,
+  "group_values": [
+    {
+      "group_id": "OG000",
+      "group_label": "Dasatinib plus quercetin",
+      "sample_size": 28,
+      "statistic": "median",
+      "value": -4.1,
+      "lower_limit": -28.1,
+      "upper_limit": 114.6,
+      "dispersion": "Full Range",
+      "unit": "percent change"
+    },
+    {
+      "group_id": "OG002",
+      "group_label": "Untreated control",
+      "sample_size": 28,
+      "statistic": "median",
+      "value": -7.7,
+      "lower_limit": -42.4,
+      "upper_limit": 22.5,
+      "dispersion": "Full Range",
+      "unit": "percent change"
+    }
+  ],
+  "result_type": "quantitative_effect",
+  "effect": {
+    "measure": "p_value_only",
+    "p_value": "0.611",
+    "unit": "percent change",
+    "raw_text": "ClinicalTrials.gov posted median percent change values for CTx at 20 weeks; D+Q versus untreated control superiority analysis p=0.611 by Wilcoxon (Mann-Whitney)."
+  },
+  "analysis": {
+    "comparison": "D+Q versus untreated control",
+    "method": "Wilcoxon (Mann-Whitney)",
+    "p_value": "0.611",
+    "effect_note": "No statistically significant D+Q effect on primary 20-week CTx outcome in the overall group."
+  },
+  "direction": "null",
+  "evidence_tier": "human_biomarker",
+  "confidence": "moderate",
+  "maturity_status": "registry_extracted",
+  "provenance": [
+    {
+      "source_id": "nct-04313634",
+      "locator_type": "clinicaltrials_module",
+      "locator": "resultsSection.outcomeMeasuresModule.outcomeMeasures[0]",
+      "status": "registry_extracted",
+      "note": "Posted primary outcome group values and D+Q versus control p-value."
+    },
+    {
+      "source_id": "pmid-38956196",
+      "locator_type": "abstract",
+      "locator": "PubMed abstract primary endpoint sentence",
+      "status": "abstract_extracted",
+      "note": "Abstract confirms primary CTx endpoint did not differ between groups."
+    }
+  ],
+  "statement": "D+Q did not significantly change the primary 20-week CTx bone resorption marker versus untreated control.",
+  "time_horizon": "Baseline to 20 weeks",
+  "caveats": [
+    "Registry dispersion is full range; PubMed abstract reports interquartile ranges, so effect extraction should keep source-specific dispersion labels separate.",
+    "This result applies to the overall D+Q versus untreated-control comparison, not exploratory high-senescent-cell-burden subgroup analyses."
+  ],
+  "tags": [
+    "senolytics",
+    "human",
+    "randomized-trial",
+    "bone",
+    "ctx",
+    "primary-outcome",
+    "null"
+  ]
+}

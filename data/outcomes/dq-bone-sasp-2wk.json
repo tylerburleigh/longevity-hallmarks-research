@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "outcome",
+  "id": "dq-bone-sasp-2wk",
+  "name": "2-week plasma SASP percent change",
+  "summary": "Secondary outcome: percent change from baseline to 2 weeks in plasma senescence-associated secretory phenotype marker burden.",
+  "source_id": "nct-04313634",
+  "study_id": "dq-postmenopausal-bone-rct",
+  "finding_ids": [
+    "dq-bone-rct-primary-null-subgroup-biomarker-signal"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ],
+  "track_ids": [
+    "senolytics"
+  ],
+  "endpoint_category": "biomarker",
+  "measurement_type": "molecular_biomarker",
+  "measurement_method": "Plasma senescence-associated secretory phenotype marker assessment",
+  "unit": "percent change",
+  "timepoint": "Baseline to 2 weeks",
+  "analysis_role": "secondary",
+  "population_or_model": "Postmenopausal women in the D+Q and untreated-control arms",
+  "directionality_preferred": "lower_better",
+  "tags": [
+    "senolytics",
+    "human",
+    "randomized-trial",
+    "bone",
+    "sasp"
+  ],
+  "maturity_status": "registry_extracted",
+  "provenance": [
+    {
+      "source_id": "nct-04313634",
+      "locator_type": "clinicaltrials_module",
+      "locator": "resultsSection.outcomeMeasuresModule.outcomeMeasures[5]",
+      "status": "registry_extracted",
+      "note": "ClinicalTrials.gov posted SASP outcome definition and group values."
+    }
+  ],
+  "target_hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ],
+  "measured_hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ]
+}

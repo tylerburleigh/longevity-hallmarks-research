@@ -149,6 +149,7 @@
         "screened",
         "triage_summary",
         "abstract_extracted",
+        "registry_extracted",
         "full_text_extracted",
         "agent_reviewed",
         "human_reviewed",

@@ -3,7 +3,7 @@
   "record_type": "finding",
   "id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
   "name": "D+Q bone RCT needs primary-null and subgroup-signal separation",
-  "summary": "The postmenopausal women bone trial is a higher-rigor human randomized study, but interpretation requires separating primary endpoint behavior from exploratory subgroup or biomarker signals.",
+  "summary": "The postmenopausal women bone trial has a null primary 20-week CTx result for D+Q versus control, short-term P1NP secondary signals at 2 and 4 weeks, no 20-week P1NP difference, and exploratory subgroup signals tied to baseline senescent-cell burden.",
   "source_id": "pmid-38956196",
   "study_id": "dq-postmenopausal-bone-rct",
   "intervention_ids": [
@@ -21,7 +21,7 @@
   "direction": "mixed",
   "evidence_tier": "human_biomarker",
   "confidence": "moderate",
-  "statement": "The phase 2 randomized bone trial should be represented as mixed human evidence: stronger design than early pilots, but not a simple positive clinical-efficacy result.",
+  "statement": "The phase 2 randomized bone trial should be represented as mixed human evidence: D+Q did not reduce the primary 20-week bone resorption marker CTx in the overall group, but secondary P1NP measures favored D+Q at 2 and 4 weeks and exploratory subgroup findings require separate labeling.",
   "population_or_model": "Postmenopausal women",
   "time_horizon": "Phase 2 trial follow-up period for bone metabolism outcomes",
   "caveats": [
@@ -36,19 +36,29 @@
     "bone",
     "mixed"
   ],
-  "maturity_status": "triage_summary",
+  "maturity_status": "registry_extracted",
   "provenance": [
     {
       "source_id": "pmid-38956196",
-      "locator_type": "derived_record",
-      "locator": "finding dq-bone-rct-primary-null-subgroup-biomarker-signal derived from pmid-38956196",
-      "status": "triage_summary",
-      "note": "Triage-level generated record pending source-located extraction."
+      "locator_type": "abstract",
+      "locator": "PubMed abstract key results for PMID 38956196",
+      "status": "abstract_extracted",
+      "note": "Abstract reports primary CTx, secondary P1NP, serious adverse event, and exploratory high-senescent-cell-burden findings."
+    },
+    {
+      "source_id": "nct-04313634",
+      "locator_type": "clinicaltrials_module",
+      "locator": "resultsSection.outcomeMeasuresModule outcomeMeasures[0..5]",
+      "status": "registry_extracted",
+      "note": "ClinicalTrials.gov posted results provide group medians, ranges, p-values, and adverse-event aggregate counts."
     }
   ],
   "target_hallmark_ids": [
     "cellular_senescence",
     "chronic_inflammation",
     "stem_cell_exhaustion"
+  ],
+  "measured_hallmark_ids": [
+    "cellular_senescence"
   ]
 }

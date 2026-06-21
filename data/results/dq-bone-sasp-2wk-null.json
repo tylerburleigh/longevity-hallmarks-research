@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "result",
+  "id": "dq-bone-sasp-2wk-null",
+  "name": "D+Q 2-week SASP null result",
+  "source_id": "nct-04313634",
+  "study_id": "dq-postmenopausal-bone-rct",
+  "outcome_id": "dq-bone-sasp-2wk",
+  "finding_ids": [
+    "dq-bone-rct-primary-null-subgroup-biomarker-signal"
+  ],
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "comparator": "Untreated control",
+  "sample_size": 60,
+  "group_values": [
+    {
+      "group_id": "OG000",
+      "group_label": "Dasatinib plus quercetin",
+      "sample_size": 30,
+      "statistic": "median",
+      "value": -2.6,
+      "lower_limit": -187.7,
+      "upper_limit": 16.4,
+      "dispersion": "Full Range",
+      "unit": "percent change"
+    },
+    {
+      "group_id": "OG002",
+      "group_label": "Untreated control",
+      "sample_size": 30,
+      "statistic": "median",
+      "value": -2.5,
+      "lower_limit": -110.4,
+      "upper_limit": 91.5,
+      "dispersion": "Full Range",
+      "unit": "percent change"
+    }
+  ],
+  "result_type": "quantitative_effect",
+  "effect": {
+    "measure": "p_value_only",
+    "p_value": "0.953",
+    "unit": "percent change",
+    "raw_text": "ClinicalTrials.gov posted median SASP percent change values for D+Q and untreated control; D+Q versus untreated control p=0.953."
+  },
+  "analysis": {
+    "comparison": "D+Q versus untreated control",
+    "method": "Wilcoxon (Mann-Whitney)",
+    "p_value": "0.953",
+    "effect_note": "No statistically significant D+Q effect on posted 2-week SASP measure."
+  },
+  "direction": "null",
+  "evidence_tier": "human_biomarker",
+  "confidence": "moderate",
+  "maturity_status": "registry_extracted",
+  "provenance": [
+    {
+      "source_id": "nct-04313634",
+      "locator_type": "clinicaltrials_module",
+      "locator": "resultsSection.outcomeMeasuresModule.outcomeMeasures[5]",
+      "status": "registry_extracted",
+      "note": "Posted SASP outcome group values and D+Q versus control p-value."
+    }
+  ],
+  "statement": "D+Q did not significantly change the posted 2-week plasma SASP measure versus untreated control.",
+  "time_horizon": "Baseline to 2 weeks",
+  "caveats": [
+    "The registry outcome description is broad; marker-level details should be checked against the publication before mechanistic synthesis."
+  ],
+  "tags": [
+    "senolytics",
+    "human",
+    "randomized-trial",
+    "bone",
+    "sasp",
+    "null"
+  ]
+}

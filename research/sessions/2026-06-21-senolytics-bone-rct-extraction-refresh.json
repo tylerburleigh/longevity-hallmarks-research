@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "research_session",
+  "id": "2026-06-21-senolytics-bone-rct-extraction-refresh",
+  "name": "Senolytics bone RCT extraction refresh",
+  "mode": "extraction_refresh",
+  "started_at": "2026-06-21T15:10:00Z",
+  "completed_at": "2026-06-21T16:05:00Z",
+  "scope": {
+    "question": "Can the D+Q postmenopausal bone RCT be upgraded from triage summary to source-located registry-extracted outcome/result records?",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "chronic_inflammation",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": [
+      "dasatinib-quercetin"
+    ]
+  },
+  "selected_via": "manual_override",
+  "outcome": "candidate_change_submitted",
+  "summary": "Added a ClinicalTrials.gov registry source, PubMed and ClinicalTrials source snapshots, exact outcome records, registry-extracted results for CTx, P1NP, BMD, SASP, and adverse events, and five review-lane records for the D+Q bone RCT extraction refresh.",
+  "candidate_change_id": "senolytics-bone-rct-extraction-refresh-2026-06-21",
+  "next_recommended_mode": "extraction_refresh",
+  "search_log": [
+    {
+      "source_name": "PubMed EFetch",
+      "query": "PMID 38956196 XML abstract and citation metadata",
+      "checked_at": "2026-06-21T15:38:24Z",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=38956196&retmode=xml",
+      "summary": "Fetched PubMed XML for abstract-level endpoint results, DOI, article metadata, and ClinicalTrials.gov identifier."
+    },
+    {
+      "source_name": "ClinicalTrials.gov API v2",
+      "query": "NCT04313634 posted results modules",
+      "checked_at": "2026-06-21T15:38:24Z",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT04313634",
+      "summary": "Fetched posted outcome and adverse-event modules for structured registry extraction."
+    }
+  ],
+  "excluded_sources": [
+    {
+      "reference": "PMC11705617",
+      "title": "Effects of intermittent senolytic therapy on bone metabolism in postmenopausal women",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11705617/",
+      "decision": "deferred",
+      "reason": "PMC browser access was blocked by a web check and NCBI OA utility reported the PMCID was not open-access via the OA endpoint; full-text extraction is deferred."
+    }
+  ]
+}

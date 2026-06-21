@@ -89,6 +89,8 @@ As of 2026-06-21, the repository has an initial JSON-file-backed scaffold:
 - Added a senolytics coverage-repair slice across preclinical, human, review, and trial-watch evidence.
 - Added maturity-status and provenance-locator fields for evidence-facing records.
 - Hardened reference audits with semantic checks for candidate completeness, registry-only evidence, provisional risk-of-bias records, and coverage-scope overclaiming.
+- Upgraded the D+Q postmenopausal bone RCT with source snapshots and registry-extracted outcome/result records from ClinicalTrials.gov posted results.
+- Added reusable PubMed and ClinicalTrials.gov source-snapshot importer, refresh, and diff scripts.
 
 ## Target Architecture
 
@@ -292,6 +294,7 @@ Tasks:
 - [x] Add candidate-completeness and semantic audit gates.
 - [ ] Run all required review lanes.
 - [ ] Promote or reject the candidate change after review.
+- [x] Upgrade one result-bearing human RCT from triage placeholder to source-located extracted outcome/result records.
 
 Exit criteria:
 
@@ -313,8 +316,9 @@ Tasks:
 - [x] Block accepted/applied candidate changes without complete accepting review lanes.
 - [x] Block formal risk-of-bias labels unless records have extraction-grade maturity.
 - [x] Distinguish vertical-slice coverage from synthesis-ready coverage.
-- [ ] Add source-snapshot records so metadata imports have durable raw-source state.
-- [ ] Add importer scripts for PubMed and ClinicalTrials.gov metadata rather than relying on ad hoc agent entry.
+- [x] Add source-snapshot records so metadata imports have durable raw-source state for the first extraction-refresh pass.
+- [x] Add importer scripts for PubMed and ClinicalTrials.gov metadata rather than relying on ad hoc agent entry.
+- [x] Add snapshot diffing so refreshed source payloads can trigger review.
 - [ ] Add a promotion command that moves records from generated/candidate state to accepted state only after review gates pass.
 
 Exit criteria:
@@ -388,16 +392,19 @@ Exit criteria:
 
 ## Immediate Next Actions
 
-1. Run the missing review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
-2. Add source-snapshot records and importer scripts for PubMed and ClinicalTrials.gov.
-3. Run an `extraction_refresh` pass on human D+Q papers to replace triage result placeholders with source-located endpoint/effect records.
-4. Add `exports/latest/` generation for sources, studies, findings, results, coverage status, and audit manifest.
-5. Decide whether to install repo-local skills into the active Codex skills directory.
+1. Add a promotion command that moves candidate records to accepted/applied only when required review lanes are accepting and no open major findings remain.
+2. Finish full publication/table extraction for the D+Q bone RCT, including subgroup and event-specific safety details.
+3. Run extraction-refresh passes on the remaining human D+Q papers: DKD, IPF, and AD-risk cognition/mobility.
+4. Run the missing review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
+5. Add `exports/latest/` generation for maturity-filtered sources, studies, findings, results, coverage status, and audit manifest.
+6. Decide whether to install repo-local skills into the active Codex skills directory.
 
 ## Change Log
 
 - 2026-06-21: Added maturity/provenance fields, semantic audit gates, candidate-completeness checking, and normalized the senolytics repair slice under the stricter process.
 - 2026-06-21: Added a senolytics coverage-repair slice with sources, studies, findings, outcomes, results, eligibility decisions, risk-of-bias triage, coverage assessment, and candidate-review ledger.
+- 2026-06-21: Added source snapshots and registry-extracted outcome/result records for the D+Q postmenopausal bone RCT, including CTX, P1NP, BMD, SASP, and aggregate adverse events.
+- 2026-06-21: Added PubMed and ClinicalTrials.gov source-snapshot importer, refresh, and diff scripts plus importer workflow documentation.
 - 2026-06-21: Tightened `outcome`, `result`, `eligibility_decision`, and `risk_of_bias` schemas and added reference-audit coverage for their links.
 - 2026-06-21: Added source ingestion rules and reference-integrity audit commands.
 - 2026-06-21: Added repo-local Codex skill sources for `hallmarks-research-run`, `evidence-extraction`, and `knowledge-base-audit`.

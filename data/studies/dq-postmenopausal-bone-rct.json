@@ -3,7 +3,7 @@
   "record_type": "study",
   "id": "dq-postmenopausal-bone-rct",
   "name": "D+Q postmenopausal women bone metabolism phase 2 randomized trial",
-  "summary": "Phase 2 randomized controlled trial testing intermittent dasatinib plus quercetin effects on bone metabolism in postmenopausal women.",
+  "summary": "Phase 2 randomized controlled trial of intermittent senolytic therapy in postmenopausal women. The D+Q versus untreated-control comparison reported in PubMed includes 60 participants, while the ClinicalTrials.gov posted-results record includes 74 participants across D+Q, fisetin, and untreated-control arms.",
   "study_type": "randomized_trial",
   "status": "completed",
   "phase": "phase_2",
@@ -26,7 +26,8 @@
     "safety"
   ],
   "source_ids": [
-    "pmid-38956196"
+    "pmid-38956196",
+    "nct-04313634"
   ],
   "registry_ids": [
     "NCT04313634"
@@ -38,14 +39,21 @@
     "randomized-trial",
     "bone"
   ],
-  "maturity_status": "triage_summary",
+  "maturity_status": "registry_extracted",
   "provenance": [
     {
       "source_id": "pmid-38956196",
-      "locator_type": "derived_record",
-      "locator": "study dq-postmenopausal-bone-rct derived from pmid-38956196",
-      "status": "triage_summary",
-      "note": "Triage-level generated record pending source-located extraction."
+      "locator_type": "abstract",
+      "locator": "PubMed abstract for PMID 38956196",
+      "status": "abstract_extracted",
+      "note": "Abstract reports the D+Q versus control RCT comparison in postmenopausal women."
+    },
+    {
+      "source_id": "nct-04313634",
+      "locator_type": "clinicaltrials_module",
+      "locator": "protocolSection.designModule and resultsSection.outcomeMeasuresModule",
+      "status": "registry_extracted",
+      "note": "Registry provides posted outcome and adverse-event modules for the completed phase 2 trial."
     }
   ]
 }

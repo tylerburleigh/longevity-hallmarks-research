@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-bone-rct-safety-limitations-2026-06-21",
+  "candidate_change_id": "senolytics-bone-rct-extraction-refresh-2026-06-21",
+  "review_lane": "safety_limitations",
+  "reviewer_kind": "agent",
+  "reviewer_id": "codex",
+  "status": "complete",
+  "verdict": "needs_human_judgment",
+  "blocking": false,
+  "summary": "Aggregate adverse-event counts were extracted, but event-specific adverse-event records remain pending. The safety slice is useful for screening and prioritization, not a complete safety synthesis.",
+  "findings": [
+    {
+      "finding_id": "aggregate-safety-extracted",
+      "severity": "note",
+      "category": "safety_limitation",
+      "claim_or_issue": "The extraction records other adverse events, serious adverse events, and deaths by D+Q and untreated-control arms.",
+      "why_it_matters": "The earlier coverage gap for safety tables is partially reduced for this trial.",
+      "recommended_action": "Keep aggregate safety counts available for evidence maps.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "event-specific-safety-pending",
+      "severity": "major",
+      "category": "safety_limitation",
+      "claim_or_issue": "Individual adverse-event terms, counts, and organ-system categories are not yet extracted into separate records.",
+      "why_it_matters": "Safety synthesis needs event-specific structure, not just aggregate counts.",
+      "recommended_action": "Add event-specific safety result records or a dedicated adverse-event schema before safety synthesis.",
+      "resolution_status": "open"
+    }
+  ]
+}

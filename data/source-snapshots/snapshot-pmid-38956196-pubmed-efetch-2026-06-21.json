@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "source_snapshot",
+  "id": "snapshot-pmid-38956196-pubmed-efetch-2026-06-21",
+  "source_id": "pmid-38956196",
+  "snapshot_type": "pubmed_efetch",
+  "retrieved_at": "2026-06-21T15:38:24Z",
+  "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=38956196&retmode=xml",
+  "content_type": "text/xml; charset=UTF-8",
+  "content_sha256": "e7879f51fafd7277ed3ef08e86d574b207bd3af00bb1e1155b68a7122d898375",
+  "payload_summary": {
+    "pmid": "38956196",
+    "article_title": "Effects of intermittent senolytic therapy on bone metabolism in postmenopausal women: a phase 2 randomized controlled trial.",
+    "journal": "Nature Medicine",
+    "doi": "10.1038/s41591-024-03096-2",
+    "abstract_key_results": {
+      "primary_ctx_20_weeks": "D+Q -4.1% versus control -7.7%; P=0.611.",
+      "p1np_2_weeks": "D+Q increased relative to control by +16%; P=0.020.",
+      "p1np_4_weeks": "D+Q increased relative to control by +16%; P=0.024.",
+      "p1np_20_weeks": "Not different from control; -9%; P=0.149.",
+      "serious_adverse_events": "No serious adverse events were observed.",
+      "exploratory_high_senescent_cell_burden": "Exploratory subgroup with highest tertile T cell p16 mRNA showed P1NP +34%, CTx -11%, and radius BMD +2.7%."
+    }
+  },
+  "raw_storage": {
+    "stored": false,
+    "reason_not_stored": "Snapshot stores retrieval URL, content hash, and extracted metadata summary; raw XML can be refetched from NCBI EFetch."
+  },
+  "tags": [
+    "pubmed",
+    "source-snapshot",
+    "senolytics",
+    "bone"
+  ]
+}

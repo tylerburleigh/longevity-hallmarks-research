@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "source_snapshot",
+  "id": "snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+  "source_id": "nct-04313634",
+  "snapshot_type": "clinicaltrials_v2_study",
+  "retrieved_at": "2026-06-21T15:38:24Z",
+  "url": "https://clinicaltrials.gov/api/v2/studies/NCT04313634",
+  "content_type": "application/json",
+  "content_sha256": "3b2a5e094062fb8b16156c58dfaae082a473537da6961ebacf48b06bb19d0cb3",
+  "payload_summary": {
+    "nct_id": "NCT04313634",
+    "brief_title": "Targeting Cellular Senescence With Senolytics to Improve Skeletal Health in Older Humans",
+    "official_title": "Targeting Cellular Senescence With Senolytics to Improve Skeletal Health in Older Humans: A Phase 2, Single-Center, 20-week, Open-Label, Randomized Controlled Trial.",
+    "overall_status": "COMPLETED",
+    "phase": "PHASE2",
+    "enrollment_actual": 74,
+    "results_first_posted": "2024-07-22",
+    "arms": [
+      "Dasatinib Plus Quercetin Treatment Group",
+      "Fisetin Treatment Group",
+      "Untreated Control Group"
+    ],
+    "posted_outcome_count": 6,
+    "adverse_event_time_frame": "Baseline to end of study, approximately 20 weeks"
+  },
+  "raw_storage": {
+    "stored": false,
+    "reason_not_stored": "Snapshot stores retrieval URL, content hash, and structured summary; raw JSON can be refetched from ClinicalTrials.gov API v2."
+  },
+  "tags": [
+    "clinicaltrials",
+    "source-snapshot",
+    "senolytics",
+    "bone",
+    "posted-results"
+  ]
+}

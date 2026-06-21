@@ -63,6 +63,54 @@
       "type": "integer",
       "minimum": 0
     },
+    "group_values": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "group_id",
+          "group_label",
+          "value"
+        ],
+        "properties": {
+          "group_id": {
+            "type": "string"
+          },
+          "group_label": {
+            "type": "string"
+          },
+          "sample_size": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "statistic": {
+            "enum": [
+              "mean",
+              "median",
+              "count",
+              "percent",
+              "other"
+            ]
+          },
+          "value": {
+            "type": "number"
+          },
+          "lower_limit": {
+            "type": "number"
+          },
+          "upper_limit": {
+            "type": "number"
+          },
+          "dispersion": {
+            "type": "string"
+          },
+          "unit": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "result_type": {
       "enum": [
         "quantitative_effect",
@@ -112,6 +160,24 @@
           "type": "string"
         },
         "raw_text": {
+          "type": "string"
+        }
+      }
+    },
+    "analysis": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "comparison": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string"
+        },
+        "p_value": {
+          "type": "string"
+        },
+        "effect_note": {
           "type": "string"
         }
       }

@@ -1,0 +1,106 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "result",
+  "id": "dq-bone-adverse-events-20wk-mixed",
+  "name": "D+Q 20-week adverse-event aggregate result",
+  "source_id": "nct-04313634",
+  "study_id": "dq-postmenopausal-bone-rct",
+  "outcome_id": "dq-bone-adverse-events-20wk",
+  "finding_ids": [
+    "dq-bone-rct-primary-null-subgroup-biomarker-signal"
+  ],
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "comparator": "Untreated control",
+  "sample_size": 60,
+  "group_values": [
+    {
+      "group_id": "EG000-other-ae",
+      "group_label": "D+Q participants with other adverse events",
+      "sample_size": 30,
+      "statistic": "count",
+      "value": 23,
+      "unit": "participants affected"
+    },
+    {
+      "group_id": "EG002-other-ae",
+      "group_label": "Untreated-control participants with other adverse events",
+      "sample_size": 30,
+      "statistic": "count",
+      "value": 5,
+      "unit": "participants affected"
+    },
+    {
+      "group_id": "EG000-serious-ae",
+      "group_label": "D+Q participants with serious adverse events",
+      "sample_size": 30,
+      "statistic": "count",
+      "value": 0,
+      "unit": "participants affected"
+    },
+    {
+      "group_id": "EG002-serious-ae",
+      "group_label": "Untreated-control participants with serious adverse events",
+      "sample_size": 30,
+      "statistic": "count",
+      "value": 0,
+      "unit": "participants affected"
+    },
+    {
+      "group_id": "EG000-deaths",
+      "group_label": "D+Q deaths",
+      "sample_size": 30,
+      "statistic": "count",
+      "value": 0,
+      "unit": "participants affected"
+    },
+    {
+      "group_id": "EG002-deaths",
+      "group_label": "Untreated-control deaths",
+      "sample_size": 30,
+      "statistic": "count",
+      "value": 0,
+      "unit": "participants affected"
+    }
+  ],
+  "result_type": "safety_event",
+  "effect": {
+    "measure": "descriptive",
+    "raw_text": "ClinicalTrials.gov adverseEventsModule reports 23/30 D+Q participants and 5/30 untreated-control participants with other adverse events; serious adverse events and deaths were 0/30 in both groups."
+  },
+  "direction": "mixed",
+  "evidence_tier": "clinical_or_mortality",
+  "confidence": "moderate",
+  "maturity_status": "registry_extracted",
+  "provenance": [
+    {
+      "source_id": "nct-04313634",
+      "locator_type": "clinicaltrials_module",
+      "locator": "resultsSection.adverseEventsModule.eventGroups",
+      "status": "registry_extracted",
+      "note": "Posted aggregate adverse-event group counts."
+    },
+    {
+      "source_id": "pmid-38956196",
+      "locator_type": "abstract",
+      "locator": "PubMed abstract serious adverse event sentence",
+      "status": "abstract_extracted",
+      "note": "Abstract reports no serious adverse events were observed."
+    }
+  ],
+  "statement": "D+Q had no posted serious adverse events or deaths in the registry aggregate counts, but other adverse events were more common in the D+Q arm than untreated control.",
+  "time_horizon": "Baseline to approximately 20 weeks",
+  "caveats": [
+    "This aggregate record does not enumerate every adverse-event preferred term.",
+    "Safety interpretation should include event-specific extraction before a formal safety synthesis."
+  ],
+  "tags": [
+    "senolytics",
+    "human",
+    "randomized-trial",
+    "bone",
+    "safety",
+    "adverse-events"
+  ]
+}

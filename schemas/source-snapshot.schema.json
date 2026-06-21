@@ -1,13 +1,20 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "./source-snapshot.schema.json",
-  "title": "Source snapshot placeholder",
+  "title": "Source snapshot",
   "type": "object",
-  "additionalProperties": true,
+  "additionalProperties": false,
   "required": [
     "schema_version",
     "record_type",
-    "id"
+    "id",
+    "source_id",
+    "snapshot_type",
+    "retrieved_at",
+    "url",
+    "content_type",
+    "content_sha256",
+    "payload_summary"
   ],
   "properties": {
     "schema_version": {
@@ -18,6 +25,57 @@
     },
     "id": {
       "$ref": "./common.schema.json#/$defs/identifier"
+    },
+    "source_id": {
+      "$ref": "./common.schema.json#/$defs/sourceRef"
+    },
+    "snapshot_type": {
+      "enum": [
+        "pubmed_esummary",
+        "pubmed_efetch",
+        "clinicaltrials_v2_study",
+        "manual_primary_source",
+        "other"
+      ]
+    },
+    "retrieved_at": {
+      "$ref": "./common.schema.json#/$defs/dateTime"
+    },
+    "url": {
+      "$ref": "./common.schema.json#/$defs/url"
+    },
+    "content_type": {
+      "type": "string"
+    },
+    "content_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "payload_summary": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "raw_storage": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "stored": {
+          "type": "boolean"
+        },
+        "path": {
+          "type": "string"
+        },
+        "reason_not_stored": {
+          "type": "string"
+        }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
     }
   }
 }

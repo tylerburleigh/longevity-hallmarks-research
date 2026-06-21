@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "result",
+  "id": "dq-bone-p1np-20wk-null",
+  "name": "D+Q 20-week P1NP null secondary result",
+  "source_id": "nct-04313634",
+  "study_id": "dq-postmenopausal-bone-rct",
+  "outcome_id": "dq-bone-p1np-20wk",
+  "finding_ids": [
+    "dq-bone-rct-primary-null-subgroup-biomarker-signal"
+  ],
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "comparator": "Untreated control",
+  "sample_size": 56,
+  "group_values": [
+    {
+      "group_id": "OG000",
+      "group_label": "Dasatinib plus quercetin",
+      "sample_size": 28,
+      "statistic": "median",
+      "value": -8.6,
+      "lower_limit": -48.1,
+      "upper_limit": 130.9,
+      "dispersion": "Full Range",
+      "unit": "percentage change of P1NP"
+    },
+    {
+      "group_id": "OG002",
+      "group_label": "Untreated control",
+      "sample_size": 28,
+      "statistic": "median",
+      "value": 0.1,
+      "lower_limit": -49.2,
+      "upper_limit": 95.2,
+      "dispersion": "Full Range",
+      "unit": "percentage change of P1NP"
+    }
+  ],
+  "result_type": "quantitative_effect",
+  "effect": {
+    "measure": "p_value_only",
+    "p_value": "0.149",
+    "unit": "percentage change of P1NP",
+    "raw_text": "ClinicalTrials.gov posted median percent change values for P1NP at 20 weeks; D+Q versus untreated control superiority analysis p=0.149."
+  },
+  "analysis": {
+    "comparison": "D+Q versus untreated control",
+    "method": "Wilcoxon (Mann-Whitney)",
+    "p_value": "0.149",
+    "effect_note": "No statistically significant D+Q effect on P1NP at 20 weeks."
+  },
+  "direction": "null",
+  "evidence_tier": "human_biomarker",
+  "confidence": "moderate",
+  "maturity_status": "registry_extracted",
+  "provenance": [
+    {
+      "source_id": "nct-04313634",
+      "locator_type": "clinicaltrials_module",
+      "locator": "resultsSection.outcomeMeasuresModule.outcomeMeasures[3]",
+      "status": "registry_extracted",
+      "note": "Posted secondary outcome group values and D+Q versus control p-value."
+    },
+    {
+      "source_id": "pmid-38956196",
+      "locator_type": "abstract",
+      "locator": "PubMed abstract P1NP secondary endpoint sentence",
+      "status": "abstract_extracted",
+      "note": "Abstract reports P1NP was not different from control at 20 weeks."
+    }
+  ],
+  "statement": "D+Q did not significantly change P1NP versus untreated control at 20 weeks.",
+  "time_horizon": "Baseline to 20 weeks",
+  "caveats": [
+    "This later secondary endpoint contrasts with nominal short-term P1NP signals at 2 and 4 weeks."
+  ],
+  "tags": [
+    "senolytics",
+    "human",
+    "randomized-trial",
+    "bone",
+    "p1np",
+    "secondary-outcome",
+    "null"
+  ]
+}

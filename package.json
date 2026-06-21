@@ -6,6 +6,10 @@
   "scripts": {
     "validate:records": "node scripts/validate-records.mjs",
     "audit:references": "node scripts/audit-references.mjs",
+    "ingest:pubmed": "node scripts/ingest-pubmed.mjs",
+    "ingest:clinicaltrials": "node scripts/ingest-clinicaltrials.mjs",
+    "refresh:source-snapshot": "node scripts/refresh-source-snapshot.mjs",
+    "diff:source-snapshot": "node scripts/diff-source-snapshot.mjs",
     "verify:knowledge-base": "npm run validate:records && npm run audit:references"
   },
   "devDependencies": {

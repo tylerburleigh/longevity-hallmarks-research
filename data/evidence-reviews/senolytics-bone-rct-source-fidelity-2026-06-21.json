@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-bone-rct-source-fidelity-2026-06-21",
+  "candidate_change_id": "senolytics-bone-rct-extraction-refresh-2026-06-21",
+  "review_lane": "source_fidelity",
+  "reviewer_kind": "agent",
+  "reviewer_id": "codex",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Source fidelity is acceptable for this extraction refresh. PubMed EFetch and ClinicalTrials.gov API v2 snapshots identify the article, trial registration, posted results modules, content types, retrieval URLs, and content hashes.",
+  "findings": [
+    {
+      "finding_id": "source-snapshots-present",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "The extraction uses source snapshots for PMID 38956196 and NCT04313634.",
+      "why_it_matters": "Source snapshots make metadata and posted-result extraction reproducible enough for audit.",
+      "recommended_action": "Keep snapshots stable; later importer scripts can regenerate and compare hashes.",
+      "resolution_status": "closed"
+    }
+  ]
+}

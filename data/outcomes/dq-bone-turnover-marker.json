@@ -3,7 +3,7 @@
   "record_type": "outcome",
   "id": "dq-bone-turnover-marker",
   "name": "Bone turnover marker outcome",
-  "summary": "Bone metabolism biomarker outcome from the phase 2 postmenopausal women randomized trial.",
+  "summary": "Legacy aggregate bone-turnover outcome retained as a triage pointer; exact source-located outcomes now separate CTx, P1NP timepoints, SASP, BMD, and adverse events.",
   "source_id": "pmid-38956196",
   "study_id": "dq-postmenopausal-bone-rct",
   "finding_ids": [
@@ -19,7 +19,7 @@
   "endpoint_category": "biomarker",
   "measurement_type": "molecular_biomarker",
   "measurement_method": "Bone turnover biomarker measurement in a phase 2 randomized trial",
-  "analysis_role": "primary",
+  "analysis_role": "context",
   "population_or_model": "Postmenopausal women",
   "directionality_preferred": "context_dependent",
   "tags": [
@@ -35,7 +35,7 @@
       "locator_type": "derived_record",
       "locator": "outcome dq-bone-turnover-marker derived from pmid-38956196",
       "status": "triage_summary",
-      "note": "Triage-level generated record pending source-located extraction."
+      "note": "Triage-level aggregate pointer; use exact registry_extracted outcomes for synthesis or review."
     }
   ],
   "target_hallmark_ids": [

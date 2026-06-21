@@ -1,0 +1,232 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "senolytics-bone-rct-extraction-refresh-2026-06-21",
+  "name": "Extract source-located D+Q bone RCT outcomes and results",
+  "summary": "Upgrades the D+Q postmenopausal bone RCT from triage summary toward source-located registry-extracted records using PubMed EFetch and ClinicalTrials.gov API v2 snapshots.",
+  "lifecycle_status": "in_review",
+  "submitted_at": "2026-06-21T16:10:00Z",
+  "scope": {
+    "question": "Upgrade the D+Q postmenopausal bone RCT into source-located outcome/result records suitable for evidence-map and later synthesis filtering.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "chronic_inflammation",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "senolytics-bone-rct-extraction-refresh-2026-06-21",
+      "path": "data/candidate-changes/senolytics-bone-rct-extraction-refresh-2026-06-21.json",
+      "change_type": "create",
+      "rationale": "Tracks the extraction-refresh change set and review lanes."
+    },
+    {
+      "record_type": "source",
+      "record_id": "nct-04313634",
+      "path": "data/sources/nct-04313634.json",
+      "change_type": "create",
+      "rationale": "Adds the registry source used for posted outcome and adverse-event extraction."
+    },
+    {
+      "record_type": "source_snapshot",
+      "record_id": "snapshot-pmid-38956196-pubmed-efetch-2026-06-21",
+      "path": "data/source-snapshots/snapshot-pmid-38956196-pubmed-efetch-2026-06-21.json",
+      "change_type": "create",
+      "rationale": "Captures reproducible PubMed EFetch metadata and abstract-result snapshot."
+    },
+    {
+      "record_type": "source_snapshot",
+      "record_id": "snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+      "path": "data/source-snapshots/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+      "change_type": "create",
+      "rationale": "Captures reproducible ClinicalTrials.gov API v2 metadata and posted-results snapshot."
+    },
+    {
+      "record_type": "study",
+      "record_id": "dq-postmenopausal-bone-rct",
+      "path": "data/studies/dq-postmenopausal-bone-rct.json",
+      "change_type": "update",
+      "rationale": "Adds registry source linkage and extraction-grade provenance."
+    },
+    {
+      "record_type": "finding",
+      "record_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "path": "data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json",
+      "change_type": "update",
+      "rationale": "Refines the finding with extracted primary, secondary, safety, and subgroup boundaries."
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-turnover-marker",
+      "path": "data/outcomes/dq-bone-turnover-marker.json",
+      "change_type": "update",
+      "rationale": "Marks the old aggregate outcome as a triage pointer now superseded by exact outcomes."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-turnover-mixed",
+      "path": "data/results/dq-bone-turnover-mixed.json",
+      "change_type": "update",
+      "rationale": "Marks the old aggregate result as a triage pointer now superseded by exact results."
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-ctx-20wk",
+      "path": "data/outcomes/dq-bone-ctx-20wk.json",
+      "change_type": "create",
+      "rationale": "Adds exact primary CTx outcome."
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-p1np-2wk",
+      "path": "data/outcomes/dq-bone-p1np-2wk.json",
+      "change_type": "create",
+      "rationale": "Adds exact 2-week P1NP secondary outcome."
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-p1np-4wk",
+      "path": "data/outcomes/dq-bone-p1np-4wk.json",
+      "change_type": "create",
+      "rationale": "Adds exact 4-week P1NP secondary outcome."
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-p1np-20wk",
+      "path": "data/outcomes/dq-bone-p1np-20wk.json",
+      "change_type": "create",
+      "rationale": "Adds exact 20-week P1NP secondary outcome."
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-bmd-20wk",
+      "path": "data/outcomes/dq-bone-bmd-20wk.json",
+      "change_type": "create",
+      "rationale": "Adds exact 20-week BMD secondary outcome."
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-sasp-2wk",
+      "path": "data/outcomes/dq-bone-sasp-2wk.json",
+      "change_type": "create",
+      "rationale": "Adds exact 2-week SASP biomarker outcome."
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-adverse-events-20wk",
+      "path": "data/outcomes/dq-bone-adverse-events-20wk.json",
+      "change_type": "create",
+      "rationale": "Adds aggregate adverse-event safety outcome."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-ctx-20wk-null",
+      "path": "data/results/dq-bone-ctx-20wk-null.json",
+      "change_type": "create",
+      "rationale": "Adds extracted primary CTx null result."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-p1np-2wk-positive",
+      "path": "data/results/dq-bone-p1np-2wk-positive.json",
+      "change_type": "create",
+      "rationale": "Adds extracted 2-week P1NP positive secondary result."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-p1np-4wk-positive",
+      "path": "data/results/dq-bone-p1np-4wk-positive.json",
+      "change_type": "create",
+      "rationale": "Adds extracted 4-week P1NP positive secondary result."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-p1np-20wk-null",
+      "path": "data/results/dq-bone-p1np-20wk-null.json",
+      "change_type": "create",
+      "rationale": "Adds extracted 20-week P1NP null secondary result."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-bmd-20wk-inconclusive",
+      "path": "data/results/dq-bone-bmd-20wk-inconclusive.json",
+      "change_type": "create",
+      "rationale": "Adds extracted 20-week BMD descriptive result."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-sasp-2wk-null",
+      "path": "data/results/dq-bone-sasp-2wk-null.json",
+      "change_type": "create",
+      "rationale": "Adds extracted 2-week SASP null result."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-adverse-events-20wk-mixed",
+      "path": "data/results/dq-bone-adverse-events-20wk-mixed.json",
+      "change_type": "create",
+      "rationale": "Adds extracted aggregate adverse-event result."
+    },
+    {
+      "record_type": "evidence_review",
+      "record_id": "senolytics-bone-rct-source-fidelity-2026-06-21",
+      "path": "data/evidence-reviews/senolytics-bone-rct-source-fidelity-2026-06-21.json",
+      "change_type": "create",
+      "rationale": "Adds source-fidelity review lane."
+    },
+    {
+      "record_type": "evidence_review",
+      "record_id": "senolytics-bone-rct-extraction-fidelity-2026-06-21",
+      "path": "data/evidence-reviews/senolytics-bone-rct-extraction-fidelity-2026-06-21.json",
+      "change_type": "create",
+      "rationale": "Adds extraction-fidelity review lane."
+    },
+    {
+      "record_type": "evidence_review",
+      "record_id": "senolytics-bone-rct-taxonomy-mapping-2026-06-21",
+      "path": "data/evidence-reviews/senolytics-bone-rct-taxonomy-mapping-2026-06-21.json",
+      "change_type": "create",
+      "rationale": "Adds taxonomy-mapping review lane."
+    },
+    {
+      "record_type": "evidence_review",
+      "record_id": "senolytics-bone-rct-synthesis-boundary-2026-06-21",
+      "path": "data/evidence-reviews/senolytics-bone-rct-synthesis-boundary-2026-06-21.json",
+      "change_type": "create",
+      "rationale": "Adds synthesis-boundary review lane."
+    },
+    {
+      "record_type": "evidence_review",
+      "record_id": "senolytics-bone-rct-safety-limitations-2026-06-21",
+      "path": "data/evidence-reviews/senolytics-bone-rct-safety-limitations-2026-06-21.json",
+      "change_type": "create",
+      "rationale": "Adds safety-limitations review lane."
+    },
+    {
+      "record_type": "research_session",
+      "record_id": "2026-06-21-senolytics-bone-rct-extraction-refresh",
+      "path": "research/sessions/2026-06-21-senolytics-bone-rct-extraction-refresh.json",
+      "change_type": "create",
+      "rationale": "Documents the extraction-refresh research session."
+    }
+  ],
+  "required_review_lanes": [
+    "source_fidelity",
+    "extraction_fidelity",
+    "taxonomy_mapping",
+    "synthesis_boundary",
+    "safety_limitations"
+  ],
+  "evidence_review_ids": [
+    "senolytics-bone-rct-source-fidelity-2026-06-21",
+    "senolytics-bone-rct-extraction-fidelity-2026-06-21",
+    "senolytics-bone-rct-taxonomy-mapping-2026-06-21",
+    "senolytics-bone-rct-synthesis-boundary-2026-06-21",
+    "senolytics-bone-rct-safety-limitations-2026-06-21"
+  ]
+}

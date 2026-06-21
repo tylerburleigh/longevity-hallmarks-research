@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "outcome",
+  "id": "dq-bone-p1np-4wk",
+  "name": "4-week P1NP percent change",
+  "summary": "Secondary outcome: percent change from baseline to 4 weeks in serum amino-terminal propeptide of type I collagen.",
+  "source_id": "nct-04313634",
+  "study_id": "dq-postmenopausal-bone-rct",
+  "finding_ids": [
+    "dq-bone-rct-primary-null-subgroup-biomarker-signal"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence",
+    "stem_cell_exhaustion"
+  ],
+  "track_ids": [
+    "senolytics"
+  ],
+  "endpoint_category": "biomarker",
+  "measurement_type": "molecular_biomarker",
+  "measurement_method": "Serum amino-terminal propeptide of type I collagen (P1NP) percent change",
+  "unit": "percentage change of P1NP",
+  "timepoint": "Baseline to 4 weeks",
+  "analysis_role": "secondary",
+  "population_or_model": "Postmenopausal women in the D+Q and untreated-control arms",
+  "directionality_preferred": "higher_better",
+  "tags": [
+    "senolytics",
+    "human",
+    "randomized-trial",
+    "bone",
+    "p1np"
+  ],
+  "maturity_status": "registry_extracted",
+  "provenance": [
+    {
+      "source_id": "nct-04313634",
+      "locator_type": "clinicaltrials_module",
+      "locator": "resultsSection.outcomeMeasuresModule.outcomeMeasures[2]",
+      "status": "registry_extracted",
+      "note": "ClinicalTrials.gov posted secondary outcome definition and group values."
+    }
+  ],
+  "target_hallmark_ids": [
+    "cellular_senescence"
+  ]
+}

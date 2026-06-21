@@ -1,0 +1,206 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "coverage_assessment",
+  "id": "senolytics-coverage-repair-2026-06-21",
+  "name": "Senolytics coverage repair assessment",
+  "track_id": "senolytics",
+  "hallmark_id": "cellular_senescence",
+  "assessment_type": "coverage_repair",
+  "assessed_at": "2026-06-21T18:45:00Z",
+  "coverage_verdict": "adequate",
+  "coverage_confidence": "moderate",
+  "summary": "The senolytics track now has an auditable vertical slice across preclinical D+Q discovery/healthspan evidence, early human biomarker and feasibility studies, a phase 2 randomized bone trial, a 2025 cognition/mobility pilot, translation-review context, risk-of-bias records, and registry-only active trial-watch records. It is adequate as a maintainable knowledge-base slice, but not yet ready for quantitative synthesis.",
+  "evidence_categories": [
+    {
+      "category": "human_interventional",
+      "coverage_level": "adequate",
+      "rationale": "Includes early D+Q human biomarker, randomized IPF feasibility, phase 2 bone, and AD-risk cognition/mobility pilot records.",
+      "source_ids": [
+        "pmid-31542391",
+        "pmid-36857968",
+        "pmid-38956196",
+        "pmid-40010154"
+      ],
+      "finding_ids": [
+        "dq-dkd-human-senescent-cell-biomarker-signal",
+        "dq-ipf-randomized-feasibility-tolerability-mixed",
+        "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+        "dq-ad-risk-pilot-cognition-mobility-signal"
+      ]
+    },
+    {
+      "category": "animal_lifespan_or_healthspan",
+      "coverage_level": "adequate",
+      "rationale": "Includes foundational discovery work plus the old-mouse healthspan and post-treatment survival paper.",
+      "source_ids": [
+        "pmid-25754370",
+        "pmid-29988130"
+      ],
+      "finding_ids": [
+        "dq-senolytic-drug-discovery-preclinical",
+        "dq-old-mice-healthspan-lifespan-positive"
+      ]
+    },
+    {
+      "category": "mechanistic",
+      "coverage_level": "adequate",
+      "rationale": "Cellular senescence targeting is anchored by the discovery source and translation review, but pathway-level extraction is not yet complete.",
+      "source_ids": [
+        "pmid-25754370",
+        "pmid-32686219"
+      ],
+      "finding_ids": [
+        "dq-senolytic-drug-discovery-preclinical",
+        "senolytic-translation-review-boundary"
+      ],
+      "gap_note": "Future extraction should separate senescent-cell survival pathways, SASP markers, and tissue-specific clearance evidence."
+    },
+    {
+      "category": "null_negative_or_limiting",
+      "coverage_level": "adequate",
+      "rationale": "The IPF, bone, and AD-risk records explicitly encode mixed, pilot, primary/subgroup, and feasibility limitations instead of flattening them into positive claims.",
+      "source_ids": [
+        "pmid-36857968",
+        "pmid-38956196",
+        "pmid-40010154"
+      ],
+      "finding_ids": [
+        "dq-ipf-randomized-feasibility-tolerability-mixed",
+        "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+        "dq-ad-risk-pilot-cognition-mobility-signal"
+      ]
+    },
+    {
+      "category": "safety_durability",
+      "coverage_level": "thin",
+      "rationale": "Safety-oriented records exist, but adverse events, dosing cadence, durability, and discontinuation details still need explicit extraction.",
+      "source_ids": [
+        "pmid-36857968",
+        "pmid-40010154",
+        "pmid-32686219"
+      ],
+      "finding_ids": [
+        "dq-ipf-randomized-feasibility-tolerability-mixed",
+        "dq-ad-risk-pilot-cognition-mobility-signal",
+        "senolytic-translation-review-boundary"
+      ],
+      "gap_note": "Add adverse-event tables and dosing-duration fields before safety synthesis."
+    },
+    {
+      "category": "active_trials_registries",
+      "coverage_level": "thin",
+      "rationale": "Two active no-results trial-watch records were added, but the full senolytics registry surface still needs a broader surveillance pass.",
+      "source_ids": [
+        "nct-06133634",
+        "nct-04685590"
+      ],
+      "finding_ids": [
+        "fisetin-vascular-active-no-posted-results",
+        "dq-stomp-ad-active-no-posted-results"
+      ],
+      "gap_note": "Add deferred fisetin frailty registries and associated no-results status records in the next surveillance pass."
+    },
+    {
+      "category": "recent_reviews_meta_analyses",
+      "coverage_level": "thin",
+      "rationale": "The current slice includes a narrative translation review but no systematic-review or meta-analysis record.",
+      "source_ids": [
+        "pmid-32686219"
+      ],
+      "finding_ids": [
+        "senolytic-translation-review-boundary"
+      ],
+      "gap_note": "Search specifically for recent systematic reviews, trial reviews, and evidence maps."
+    },
+    {
+      "category": "taxonomy_boundary",
+      "coverage_level": "adequate",
+      "rationale": "Records separate senolytic mechanism/intervention class from evidence tier, clinical indication, and registry status, reducing the risk that the track becomes an unsupported efficacy bucket.",
+      "source_ids": [
+        "pmid-32686219",
+        "nct-06133634",
+        "nct-04685590"
+      ],
+      "finding_ids": [
+        "senolytic-translation-review-boundary",
+        "fisetin-vascular-active-no-posted-results",
+        "dq-stomp-ad-active-no-posted-results"
+      ]
+    }
+  ],
+  "covered_source_ids": [
+    "pmid-25754370",
+    "pmid-29988130",
+    "pmid-31542391",
+    "pmid-36857968",
+    "pmid-38956196",
+    "pmid-40010154",
+    "pmid-32686219",
+    "nct-06133634",
+    "nct-04685590"
+  ],
+  "covered_finding_ids": [
+    "dq-senolytic-drug-discovery-preclinical",
+    "dq-old-mice-healthspan-lifespan-positive",
+    "dq-dkd-human-senescent-cell-biomarker-signal",
+    "dq-ipf-randomized-feasibility-tolerability-mixed",
+    "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+    "dq-ad-risk-pilot-cognition-mobility-signal",
+    "senolytic-translation-review-boundary",
+    "fisetin-vascular-active-no-posted-results",
+    "dq-stomp-ad-active-no-posted-results"
+  ],
+  "known_gaps": [
+    {
+      "gap_id": "senolytics-exact-effect-extraction",
+      "gap_type": "operational_gap",
+      "category": "human_interventional",
+      "description": "Human result records are conservative descriptive placeholders and still need endpoint-level quantitative extraction from full text or structured results tables.",
+      "priority": "high",
+      "suggested_action": "Run an extraction-refresh pass focused on outcomes/results for the DKD, IPF, bone, and AD-risk papers."
+    },
+    {
+      "gap_id": "senolytics-safety-tables",
+      "gap_type": "coverage_gap",
+      "category": "safety_durability",
+      "description": "Adverse-event, discontinuation, dosing, and durability details are not yet structured.",
+      "priority": "high",
+      "suggested_action": "Add safety-specific outcomes/results and evidence-review lane coverage."
+    },
+    {
+      "gap_id": "senolytics-registry-surveillance-breadth",
+      "gap_type": "coverage_gap",
+      "category": "active_trials_registries",
+      "description": "Only two active no-results registry records were added in this repair pass; broader fisetin and D+Q trial surveillance remains incomplete.",
+      "priority": "medium",
+      "suggested_action": "Run a surveillance pass over ClinicalTrials.gov for senolytics, D+Q, fisetin, and senescence-targeting terms."
+    },
+    {
+      "gap_id": "senolytics-review-landscape",
+      "gap_type": "coverage_gap",
+      "category": "recent_reviews_meta_analyses",
+      "description": "No recent systematic-review or meta-analysis source has been screened into the knowledge base.",
+      "priority": "medium",
+      "suggested_action": "Search for recent systematic reviews, meta-analyses, and trial-landscape reviews."
+    }
+  ],
+  "next_coverage_action": "Run extraction_refresh on the human D+Q result-bearing studies, prioritizing exact outcome definitions, quantitative effects, adverse events, and prespecified versus exploratory analysis labels.",
+  "next_recommended_mode": "extraction_refresh",
+  "tags": [
+    "senolytics",
+    "coverage-repair",
+    "audit",
+    "vertical-slice"
+  ],
+  "maturity_status": "triage_summary",
+  "provenance": [
+    {
+      "source_id": "pmid-25754370",
+      "locator_type": "derived_record",
+      "locator": "coverage_assessment senolytics-coverage-repair-2026-06-21 derived from pmid-25754370",
+      "status": "triage_summary",
+      "note": "Triage-level generated record pending source-located extraction."
+    }
+  ],
+  "coverage_scope": "vertical_slice"
+}

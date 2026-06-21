@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "finding",
+  "id": "dq-ipf-randomized-feasibility-tolerability-mixed",
+  "name": "D+Q IPF randomized pilot primarily supports feasibility and tolerability boundaries",
+  "summary": "The idiopathic pulmonary fibrosis randomized pilot provides human safety and feasibility evidence, but it is not a definitive efficacy trial.",
+  "source_id": "pmid-36857968",
+  "study_id": "dq-ipf-randomized-pilot",
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "track_ids": [
+    "senolytics"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ],
+  "endpoint_category": "safety",
+  "direction": "mixed",
+  "evidence_tier": "human_functional",
+  "confidence": "low",
+  "statement": "The randomized IPF pilot is useful for feasibility, tolerability, and endpoint-boundary evidence, but small sample size and pilot design prevent strong efficacy inference.",
+  "population_or_model": "Adults with idiopathic pulmonary fibrosis",
+  "time_horizon": "Pilot intervention and follow-up period reported in the phase 1 study",
+  "caveats": [
+    "Treat as safety and feasibility evidence unless a later synthesis verifies a powered efficacy endpoint.",
+    "Functional outcomes should remain separate from aging-healthspan claims."
+  ],
+  "tags": [
+    "senolytics",
+    "dasatinib-quercetin",
+    "human",
+    "safety",
+    "idiopathic-pulmonary-fibrosis",
+    "pilot"
+  ],
+  "maturity_status": "triage_summary",
+  "provenance": [
+    {
+      "source_id": "pmid-36857968",
+      "locator_type": "derived_record",
+      "locator": "finding dq-ipf-randomized-feasibility-tolerability-mixed derived from pmid-36857968",
+      "status": "triage_summary",
+      "note": "Triage-level generated record pending source-located extraction."
+    }
+  ],
+  "target_hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "result",
+  "id": "dq-stomp-ad-no-posted-results",
+  "name": "SToMP-AD no posted results",
+  "source_id": "nct-04685590",
+  "study_id": "dq-stomp-ad-phase2-registry",
+  "outcome_id": "dq-stomp-ad-registry-status",
+  "finding_ids": [
+    "dq-stomp-ad-active-no-posted-results"
+  ],
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "sample_size": 48,
+  "result_type": "no_posted_result",
+  "direction": "inconclusive",
+  "evidence_tier": "registry",
+  "confidence": "moderate",
+  "statement": "NCT04685590 is a trial-watch record with no posted result at the checked registry update, so it contributes no effect evidence.",
+  "time_horizon": "Registry update checked: 2026-03-31",
+  "caveats": [
+    "Requires surveillance for posted results or linked publication."
+  ],
+  "tags": [
+    "senolytics",
+    "dasatinib-quercetin",
+    "trial-watch",
+    "no-posted-results",
+    "alzheimers"
+  ],
+  "maturity_status": "metadata_imported",
+  "provenance": [
+    {
+      "source_id": "nct-04685590",
+      "locator_type": "clinicaltrials_module",
+      "locator": "Registry status/results availability for NCT04685590",
+      "status": "metadata_imported",
+      "note": "No posted results at checked registry update; not an extracted treatment effect."
+    }
+  ]
+}

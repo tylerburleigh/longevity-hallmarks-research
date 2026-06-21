@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { promises as fs } from "node:fs";
+import { execFileSync } from "node:child_process";
 import path from "node:path";
 
 const workspaceRoot = process.cwd();
@@ -24,6 +25,17 @@ const collectionRules = [
 ];
 
 const dataRoots = ["data", "research"];
+const evidenceRecordTypesRequiringMaturity = new Set([
+  "source",
+  "study",
+  "finding",
+  "outcome",
+  "result",
+  "eligibility_decision",
+  "risk_of_bias",
+  "coverage_assessment"
+]);
+const synthesisReadyStatuses = new Set(["full_text_extracted", "agent_reviewed", "human_reviewed", "accepted"]);
 
 async function exists(filePath) {
   try {
@@ -112,6 +124,32 @@ function checkRefs({ index, issues, ownerPath, field, recordType, recordIds }) {
   }
 }
 
+function checkProvenance({ index, issues, ownerPath, record }) {
+  if (!evidenceRecordTypesRequiringMaturity.has(record.record_type)) {
+    return;
+  }
+
+  if (!record.maturity_status) {
+    issues.push(`${ownerPath}: evidence-facing records must declare maturity_status.`);
+  }
+
+  if (!Array.isArray(record.provenance) || record.provenance.length === 0) {
+    issues.push(`${ownerPath}: evidence-facing records must include at least one provenance locator.`);
+    return;
+  }
+
+  for (const [locatorIndex, locator] of record.provenance.entries()) {
+    checkRef({
+      index,
+      issues,
+      ownerPath,
+      field: `provenance[${locatorIndex}].source_id`,
+      recordType: "source",
+      recordId: locator.source_id
+    });
+  }
+}
+
 function checkTaxonomyRef({ index, issues, ownerPath, field, taxonomySet, taxonomyKind, value }) {
   if (value && !taxonomySet.has(value)) {
     issues.push(`${ownerPath}: ${field} references missing ${taxonomyKind} "${value}".`);
@@ -197,6 +235,143 @@ async function checkCandidatePath({ index, issues, ownerPath, proposedRecord }) 
   }
 }
 
+function getChangedRecordPaths() {
+  try {
+    const output = execFileSync("git", ["status", "--porcelain", "--untracked-files=all"], {
+      cwd: workspaceRoot,
+      encoding: "utf8"
+    });
+
+    return output
+      .split("\n")
+      .map((line) => line.trimEnd())
+      .filter(Boolean)
+      .map((line) => line.slice(3).replace(/^"|"$/g, ""))
+      .filter((relativePath) => relativePath.endsWith(".json"))
+      .filter((relativePath) => collectionRules.some((rule) => relativePath.startsWith(rule.prefix)));
+  } catch {
+    return [];
+  }
+}
+
+function checkCandidateCompleteness({ index, issues }) {
+  const changedRecordPaths = getChangedRecordPaths();
+  if (changedRecordPaths.length === 0) {
+    return;
+  }
+
+  const proposedPaths = new Set();
+  for (const { record } of index.records) {
+    if (record.record_type !== "candidate_change") {
+      continue;
+    }
+    for (const proposedRecord of record.proposed_records ?? []) {
+      proposedPaths.add(proposedRecord.path);
+    }
+  }
+
+  for (const relativePath of changedRecordPaths) {
+    if (!proposedPaths.has(relativePath)) {
+      issues.push(`${relativePath}: changed record is not listed in any candidate_change.proposed_records[].`);
+    }
+  }
+}
+
+function checkCandidateReviewGate({ index, issues, record, ownerPath }) {
+  const linkedReviews = (record.evidence_review_ids ?? [])
+    .map((reviewId) => index.recordsByType.get("evidence_review")?.get(reviewId)?.record)
+    .filter(Boolean);
+  const reviewByLane = new Map(linkedReviews.map((review) => [review.review_lane, review]));
+
+  if (["accepted", "applied"].includes(record.lifecycle_status)) {
+    for (const lane of record.required_review_lanes ?? []) {
+      const review = reviewByLane.get(lane);
+      if (!review) {
+        issues.push(`${ownerPath}: accepted/applied candidate lacks required ${lane} evidence review.`);
+        continue;
+      }
+      if (review.status !== "complete" || review.verdict !== "accept" || review.blocking) {
+        issues.push(
+          `${ownerPath}: accepted/applied candidate has non-accepting or blocking ${lane} evidence review "${review.id}".`
+        );
+      }
+    }
+
+    for (const review of linkedReviews) {
+      for (const finding of review.findings ?? []) {
+        if (["critical", "major"].includes(finding.severity) && finding.resolution_status === "open") {
+          issues.push(`${ownerPath}: accepted/applied candidate has open ${finding.severity} review finding "${finding.finding_id}".`);
+        }
+      }
+    }
+  }
+
+  for (const review of linkedReviews) {
+    if (!(record.required_review_lanes ?? []).includes(review.review_lane)) {
+      issues.push(`${ownerPath}: evidence_review_ids[] includes review lane "${review.review_lane}" not listed in required_review_lanes.`);
+    }
+  }
+}
+
+function checkSemanticEvidenceRules({ issues, record, ownerPath }) {
+  if (record.record_type === "finding" && record.evidence_tier === "registry") {
+    if (record.endpoint_category !== "registry_status") {
+      issues.push(`${ownerPath}: registry findings must use endpoint_category "registry_status".`);
+    }
+    if (!["inconclusive", "not_applicable"].includes(record.direction)) {
+      issues.push(`${ownerPath}: registry findings must not encode positive, negative, mixed, or null treatment direction.`);
+    }
+    if ((record.measured_hallmark_ids ?? []).length > 0) {
+      issues.push(`${ownerPath}: registry findings should not use measured_hallmark_ids before results are posted or published.`);
+    }
+  }
+
+  if (record.record_type === "result") {
+    if (record.result_type === "no_posted_result") {
+      if (record.evidence_tier !== "registry") {
+        issues.push(`${ownerPath}: no_posted_result records must use evidence_tier "registry".`);
+      }
+      if (!["inconclusive", "not_applicable"].includes(record.direction)) {
+        issues.push(`${ownerPath}: no_posted_result records must use inconclusive or not_applicable direction.`);
+      }
+      if (record.maturity_status !== "metadata_imported") {
+        issues.push(`${ownerPath}: no_posted_result records should remain maturity_status "metadata_imported".`);
+      }
+      const hasRegistryLocator = (record.provenance ?? []).some((locator) =>
+        ["clinicaltrials_module", "registry_record"].includes(locator.locator_type)
+      );
+      if (!hasRegistryLocator) {
+        issues.push(`${ownerPath}: no_posted_result records need a registry provenance locator.`);
+      }
+    }
+
+    if (
+      record.result_type === "descriptive" &&
+      record.effect?.measure === "descriptive" &&
+      !("value" in (record.effect ?? {})) &&
+      record.maturity_status === "accepted"
+    ) {
+      issues.push(`${ownerPath}: accepted descriptive results need extracted effect data or a more specific non-quantitative rationale.`);
+    }
+  }
+
+  if (record.record_type === "risk_of_bias") {
+    if (["rob2", "robins_i"].includes(record.tool) && !synthesisReadyStatuses.has(record.maturity_status)) {
+      issues.push(`${ownerPath}: formal ${record.tool} risk-of-bias records require extraction-grade maturity_status.`);
+    }
+  }
+
+  if (record.record_type === "coverage_assessment") {
+    const hasHighPriorityGap = (record.known_gaps ?? []).some((gap) => gap.priority === "high");
+    if (hasHighPriorityGap && record.coverage_verdict !== "thin" && record.coverage_scope !== "vertical_slice") {
+      issues.push(`${ownerPath}: non-thin coverage with high-priority gaps must declare coverage_scope "vertical_slice".`);
+    }
+    if (record.coverage_scope === "synthesis_ready" && hasHighPriorityGap) {
+      issues.push(`${ownerPath}: synthesis_ready coverage cannot have unresolved high-priority gaps.`);
+    }
+  }
+}
+
 async function audit() {
   const { index, issues } = await buildIndex();
 
@@ -232,6 +407,9 @@ async function audit() {
   }
 
   for (const { record, relativePath } of index.records) {
+    checkProvenance({ index, issues, ownerPath: relativePath, record });
+    checkSemanticEvidenceRules({ issues, record, ownerPath: relativePath });
+
     checkTaxonomyRefs({
       index,
       issues,
@@ -408,6 +586,7 @@ async function audit() {
     }
 
     if (record.record_type === "candidate_change") {
+      checkCandidateReviewGate({ index, issues, record, ownerPath: relativePath });
       checkTaxonomyRefs({
         index,
         issues,
@@ -451,6 +630,8 @@ async function audit() {
       });
     }
   }
+
+  checkCandidateCompleteness({ index, issues });
 
   if (issues.length > 0) {
     console.error(`Reference audit failed with ${issues.length} issue(s):`);

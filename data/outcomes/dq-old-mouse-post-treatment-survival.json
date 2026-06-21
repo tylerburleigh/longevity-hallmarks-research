@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "outcome",
+  "id": "dq-old-mouse-post-treatment-survival",
+  "name": "Post-treatment survival in old mice",
+  "summary": "Survival or lifespan-related outcome from the aged-mouse dasatinib plus quercetin study.",
+  "source_id": "pmid-29988130",
+  "study_id": "dq-old-mouse-healthspan-lifespan",
+  "finding_ids": [
+    "dq-old-mice-healthspan-lifespan-positive"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence"
+  ],
+  "track_ids": [
+    "senolytics"
+  ],
+  "endpoint_category": "lifespan",
+  "measurement_type": "survival_or_lifespan",
+  "measurement_method": "Post-treatment survival follow-up in aged mouse cohorts",
+  "analysis_role": "secondary",
+  "population_or_model": "Old mice treated intermittently with dasatinib plus quercetin",
+  "directionality_preferred": "higher_better",
+  "tags": [
+    "senolytics",
+    "animal",
+    "lifespan"
+  ],
+  "maturity_status": "triage_summary",
+  "provenance": [
+    {
+      "source_id": "pmid-29988130",
+      "locator_type": "derived_record",
+      "locator": "outcome dq-old-mouse-post-treatment-survival derived from pmid-29988130",
+      "status": "triage_summary",
+      "note": "Triage-level generated record pending source-located extraction."
+    }
+  ],
+  "target_hallmark_ids": [
+    "cellular_senescence"
+  ]
+}

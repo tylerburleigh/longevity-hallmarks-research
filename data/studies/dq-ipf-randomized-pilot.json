@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "study",
+  "id": "dq-ipf-randomized-pilot",
+  "name": "D+Q idiopathic pulmonary fibrosis randomized feasibility and tolerability pilot",
+  "summary": "Phase 1 randomized, single-blind, single-center pilot trial testing feasibility and tolerability of intermittent dasatinib plus quercetin in idiopathic pulmonary fibrosis.",
+  "study_type": "randomized_trial",
+  "status": "completed",
+  "phase": "phase_1",
+  "population": "Adults with idiopathic pulmonary fibrosis.",
+  "sample_size": 26,
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ],
+  "track_ids": [
+    "senolytics"
+  ],
+  "endpoint_categories": [
+    "safety",
+    "functional",
+    "biomarker"
+  ],
+  "source_ids": [
+    "pmid-36857968"
+  ],
+  "registry_ids": [
+    "NCT02874989"
+  ],
+  "tags": [
+    "senolytics",
+    "dasatinib-quercetin",
+    "human",
+    "randomized-trial",
+    "safety",
+    "idiopathic-pulmonary-fibrosis"
+  ],
+  "maturity_status": "triage_summary",
+  "provenance": [
+    {
+      "source_id": "pmid-36857968",
+      "locator_type": "derived_record",
+      "locator": "study dq-ipf-randomized-pilot derived from pmid-36857968",
+      "status": "triage_summary",
+      "note": "Triage-level generated record pending source-located extraction."
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "result",
+  "id": "dq-old-mouse-survival-positive",
+  "name": "D+Q old mouse post-treatment survival positive result",
+  "source_id": "pmid-29988130",
+  "study_id": "dq-old-mouse-healthspan-lifespan",
+  "outcome_id": "dq-old-mouse-post-treatment-survival",
+  "finding_ids": [
+    "dq-old-mice-healthspan-lifespan-positive"
+  ],
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "comparator": "Aged control mouse cohorts",
+  "result_type": "descriptive",
+  "effect": {
+    "measure": "descriptive",
+    "raw_text": "Reported increased post-treatment survival in old mice after intermittent dasatinib plus quercetin."
+  },
+  "direction": "positive",
+  "evidence_tier": "animal",
+  "confidence": "moderate",
+  "statement": "Preclinical survival evidence supports D+Q as an animal healthspan/lifespan signal, not as human aging efficacy.",
+  "caveats": [
+    "Requires separate quantitative extraction before effect-size synthesis.",
+    "Do not pool with human clinical endpoints."
+  ],
+  "tags": [
+    "senolytics",
+    "animal",
+    "lifespan"
+  ],
+  "maturity_status": "triage_summary",
+  "provenance": [
+    {
+      "source_id": "pmid-29988130",
+      "locator_type": "derived_record",
+      "locator": "result dq-old-mouse-survival-positive derived from pmid-29988130",
+      "status": "triage_summary",
+      "note": "Triage-level generated record pending source-located extraction."
+    }
+  ]
+}

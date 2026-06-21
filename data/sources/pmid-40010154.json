@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "source",
+  "id": "pmid-40010154",
+  "name": "A pilot study of senolytics to improve cognition and mobility in older adults at risk for Alzheimer's disease",
+  "short_name": "D+Q cognition and mobility AD-risk pilot",
+  "summary": "2025 EBioMedicine pilot study of intermittent dasatinib plus quercetin in older adults at risk for Alzheimer's disease, focused on feasibility, safety, cognition, mobility, and biomarkers.",
+  "source_type": "journal_article",
+  "authors": [
+    "Millar CL",
+    "Iloputaife I",
+    "Baldyga K",
+    "Norling AM",
+    "Boulougoura A",
+    "Vichos T",
+    "Tchkonia T",
+    "Deisinger A",
+    "Pirtskhalava T",
+    "Kirkland JL",
+    "Travison TG",
+    "Lipsitz LA"
+  ],
+  "venue": "EBioMedicine",
+  "year": 2025,
+  "published_on": "2025-02-25",
+  "doi": "10.1016/j.ebiom.2025.105612",
+  "pmid": "40010154",
+  "registry_ids": [
+    "NCT05422885"
+  ],
+  "urls": [
+    "https://pubmed.ncbi.nlm.nih.gov/40010154/",
+    "https://doi.org/10.1016/j.ebiom.2025.105612",
+    "https://clinicaltrials.gov/study/NCT05422885"
+  ],
+  "tags": [
+    "senolytics",
+    "dasatinib-quercetin",
+    "human",
+    "pilot",
+    "cognition",
+    "mobility"
+  ],
+  "maturity_status": "metadata_imported",
+  "provenance": [
+    {
+      "source_id": "pmid-40010154",
+      "locator_type": "pubmed_metadata",
+      "locator": "PubMed ESummary PMID 40010154",
+      "status": "metadata_imported",
+      "note": "Canonical citation metadata import."
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "source",
+  "id": "pmid-36857968",
+  "name": "Senolytics dasatinib and quercetin in idiopathic pulmonary fibrosis: Results of a phase I, single-blind, single-center, randomized, placebo-controlled pilot trial on feasibility and tolerability",
+  "short_name": "D+Q IPF randomized pilot",
+  "summary": "2023 EBioMedicine randomized pilot trial testing feasibility and tolerability of intermittent dasatinib plus quercetin in idiopathic pulmonary fibrosis.",
+  "source_type": "journal_article",
+  "authors": [
+    "Nambiar A",
+    "Kellogg D 3rd",
+    "Justice J",
+    "Goros M",
+    "Gelfond J",
+    "Pascual R",
+    "Hashmi S",
+    "Masternak M",
+    "Prata L",
+    "LeBrasseur N",
+    "Limper A",
+    "Kritchevsky S",
+    "Musi N",
+    "Tchkonia T",
+    "Kirkland J"
+  ],
+  "venue": "EBioMedicine",
+  "year": 2023,
+  "published_on": "2023-02-28",
+  "doi": "10.1016/j.ebiom.2023.104481",
+  "pmid": "36857968",
+  "registry_ids": [
+    "NCT02874989"
+  ],
+  "urls": [
+    "https://pubmed.ncbi.nlm.nih.gov/36857968/",
+    "https://doi.org/10.1016/j.ebiom.2023.104481",
+    "https://clinicaltrials.gov/study/NCT02874989"
+  ],
+  "tags": [
+    "senolytics",
+    "dasatinib-quercetin",
+    "human",
+    "safety",
+    "idiopathic-pulmonary-fibrosis"
+  ],
+  "maturity_status": "metadata_imported",
+  "provenance": [
+    {
+      "source_id": "pmid-36857968",
+      "locator_type": "pubmed_metadata",
+      "locator": "PubMed ESummary PMID 36857968",
+      "status": "metadata_imported",
+      "note": "Canonical citation metadata import."
+    }
+  ]
+}

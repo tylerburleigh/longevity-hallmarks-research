@@ -35,5 +35,19 @@
     "animal",
     "mechanistic",
     "healthspan"
+  ],
+  "maturity_status": "triage_summary",
+  "provenance": [
+    {
+      "source_id": "pmid-25754370",
+      "locator_type": "derived_record",
+      "locator": "finding dq-senolytic-drug-discovery-preclinical derived from pmid-25754370",
+      "status": "triage_summary",
+      "note": "Triage-level generated record pending source-located extraction."
+    }
+  ],
+  "target_hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
   ]
 }

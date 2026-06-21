@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "result",
+  "id": "dq-bone-turnover-mixed",
+  "name": "D+Q postmenopausal bone trial mixed biomarker result",
+  "source_id": "pmid-38956196",
+  "study_id": "dq-postmenopausal-bone-rct",
+  "outcome_id": "dq-bone-turnover-marker",
+  "finding_ids": [
+    "dq-bone-rct-primary-null-subgroup-biomarker-signal"
+  ],
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "comparator": "Randomized control group",
+  "sample_size": 74,
+  "result_type": "descriptive",
+  "effect": {
+    "measure": "descriptive",
+    "raw_text": "The study should be represented as mixed pending outcome-level extraction of primary endpoint, subgroup, and biomarker results."
+  },
+  "direction": "mixed",
+  "evidence_tier": "human_biomarker",
+  "confidence": "moderate",
+  "statement": "The bone trial is a relatively rigorous human senolytic study, but synthesis must preserve primary-null and exploratory-signal distinctions.",
+  "caveats": [
+    "Needs exact endpoint-level quantitative extraction.",
+    "Subgroup findings should remain labeled exploratory unless prespecified status is verified."
+  ],
+  "tags": [
+    "senolytics",
+    "human",
+    "randomized-trial",
+    "bone",
+    "mixed"
+  ],
+  "maturity_status": "triage_summary",
+  "provenance": [
+    {
+      "source_id": "pmid-38956196",
+      "locator_type": "derived_record",
+      "locator": "result dq-bone-turnover-mixed derived from pmid-38956196",
+      "status": "triage_summary",
+      "note": "Triage-level generated record pending source-located extraction."
+    }
+  ]
+}

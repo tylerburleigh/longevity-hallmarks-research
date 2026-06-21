@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "study",
+  "id": "dq-diabetic-kidney-disease-pilot",
+  "name": "D+Q diabetic kidney disease human senescent-cell biomarker pilot",
+  "summary": "Preliminary human trial testing whether intermittent dasatinib plus quercetin decreased senescent-cell and SASP-related biomarkers in adipose and skin samples from individuals with diabetic kidney disease.",
+  "study_type": "nonrandomized_trial",
+  "status": "completed",
+  "phase": "phase_2",
+  "population": "Adults with diabetic kidney disease.",
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ],
+  "track_ids": [
+    "senolytics"
+  ],
+  "endpoint_categories": [
+    "biomarker",
+    "safety"
+  ],
+  "source_ids": [
+    "pmid-31542391"
+  ],
+  "registry_ids": [
+    "NCT02848131"
+  ],
+  "tags": [
+    "senolytics",
+    "dasatinib-quercetin",
+    "human",
+    "biomarker",
+    "diabetic-kidney-disease"
+  ],
+  "maturity_status": "triage_summary",
+  "provenance": [
+    {
+      "source_id": "pmid-31542391",
+      "locator_type": "derived_record",
+      "locator": "study dq-diabetic-kidney-disease-pilot derived from pmid-31542391",
+      "status": "triage_summary",
+      "note": "Triage-level generated record pending source-located extraction."
+    }
+  ]
+}

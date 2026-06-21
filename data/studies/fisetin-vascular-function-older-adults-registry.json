@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "study",
+  "id": "fisetin-vascular-function-older-adults-registry",
+  "name": "Fisetin vascular function trial in older adults registry record",
+  "summary": "Active-not-recruiting phase 1/2 ClinicalTrials.gov record for fisetin to improve vascular function in older adults; no posted results were available when checked.",
+  "study_type": "trial_registry",
+  "status": "active",
+  "phase": "phase_1_2",
+  "population": "Older adults enrolled in a fisetin vascular function trial.",
+  "sample_size": 70,
+  "intervention_ids": [
+    "fisetin"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ],
+  "track_ids": [
+    "senolytics"
+  ],
+  "endpoint_categories": [
+    "registry_status",
+    "functional",
+    "biomarker"
+  ],
+  "source_ids": [
+    "nct-06133634"
+  ],
+  "registry_ids": [
+    "NCT06133634"
+  ],
+  "tags": [
+    "senolytics",
+    "fisetin",
+    "human",
+    "trial-watch",
+    "no-posted-results"
+  ],
+  "maturity_status": "metadata_imported",
+  "provenance": [
+    {
+      "source_id": "nct-06133634",
+      "locator_type": "derived_record",
+      "locator": "study fisetin-vascular-function-older-adults-registry derived from nct-06133634",
+      "status": "metadata_imported",
+      "note": "Triage-level generated record pending source-located extraction."
+    }
+  ]
+}

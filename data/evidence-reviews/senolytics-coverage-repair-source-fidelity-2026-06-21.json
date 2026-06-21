@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-coverage-repair-source-fidelity-2026-06-21",
+  "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
+  "review_lane": "source_fidelity",
+  "reviewer_kind": "agent",
+  "reviewer_id": "codex",
+  "status": "complete",
+  "verdict": "needs_human_judgment",
+  "blocking": false,
+  "summary": "Source identifiers, dates, titles, journal venues, registry IDs, and current registry status were checked against PubMed ESummary and ClinicalTrials.gov API metadata. The review does not certify full-text quantitative extraction.",
+  "findings": [
+    {
+      "finding_id": "source-metadata-verified",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "Core PubMed and ClinicalTrials.gov metadata match the source records added in this repair pass.",
+      "why_it_matters": "Stable source metadata is required before downstream extraction, review, and synthesis records can be audited.",
+      "recommended_action": "Keep source IDs and registry URLs stable; add source snapshot records later if the source-snapshot schema is implemented.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "full-text-extraction-pending",
+      "severity": "major",
+      "category": "missing_caveat",
+      "claim_or_issue": "Outcome/result records are conservative placeholders pending full endpoint-level extraction.",
+      "why_it_matters": "A living meta-analysis needs exact endpoints, effects, uncertainty, comparator definitions, and adverse events before quantitative synthesis.",
+      "recommended_action": "Run extraction_refresh before creating synthesis or certainty-assessment records.",
+      "resolution_status": "open"
+    }
+  ]
+}

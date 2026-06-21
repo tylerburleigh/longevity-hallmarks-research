@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "source",
+  "id": "pmid-32686219",
+  "name": "Senolytic drugs: from discovery to translation",
+  "short_name": "Senolytic translation review",
+  "summary": "2020 review summarizing senolytic discovery, candidate compounds, translational rationale, and human-trial boundary conditions.",
+  "source_type": "review",
+  "authors": [
+    "Kirkland JL",
+    "Tchkonia T"
+  ],
+  "venue": "Journal of Internal Medicine",
+  "year": 2020,
+  "published_on": "2020-08-04",
+  "doi": "10.1111/joim.13141",
+  "pmid": "32686219",
+  "urls": [
+    "https://pubmed.ncbi.nlm.nih.gov/32686219/",
+    "https://doi.org/10.1111/joim.13141"
+  ],
+  "tags": [
+    "senolytics",
+    "review",
+    "translation",
+    "safety",
+    "taxonomy-boundary"
+  ],
+  "maturity_status": "metadata_imported",
+  "provenance": [
+    {
+      "source_id": "pmid-32686219",
+      "locator_type": "pubmed_metadata",
+      "locator": "PubMed ESummary PMID 32686219",
+      "status": "metadata_imported",
+      "note": "Canonical citation metadata import."
+    }
+  ]
+}

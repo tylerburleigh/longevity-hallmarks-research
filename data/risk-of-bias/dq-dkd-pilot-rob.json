@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "risk_of_bias",
+  "id": "dq-dkd-pilot-rob",
+  "source_id": "pmid-31542391",
+  "study_id": "dq-diabetic-kidney-disease-pilot",
+  "assessed_at": "2026-06-21T18:22:00Z",
+  "reviewer_kind": "agent",
+  "reviewer_id": "codex",
+  "tool": "other",
+  "overall_judgment": "high",
+  "domains": [
+    {
+      "domain": "confounding and comparator structure",
+      "judgment": "high",
+      "rationale": "The preliminary pilot design limits causal inference for clinical or biomarker changes."
+    },
+    {
+      "domain": "precision",
+      "judgment": "high",
+      "rationale": "Small early human study with limited precision for effect estimates."
+    }
+  ],
+  "limitations": [
+    "Treat as human biomarker signal only.",
+    "Requires human review before any certainty upgrade."
+  ],
+  "tags": [
+    "senolytics",
+    "human",
+    "biomarker",
+    "risk-of-bias"
+  ],
+  "maturity_status": "triage_summary",
+  "provenance": [
+    {
+      "source_id": "pmid-31542391",
+      "locator_type": "derived_record",
+      "locator": "risk_of_bias dq-dkd-pilot-rob derived from pmid-31542391",
+      "status": "triage_summary",
+      "note": "Triage-level generated record pending source-located extraction."
+    }
+  ],
+  "notes": "Provisional agent triage; not a formal ROB2 or ROBINS-I domain-by-domain assessment."
+}

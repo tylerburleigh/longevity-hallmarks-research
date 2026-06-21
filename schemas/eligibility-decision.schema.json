@@ -96,6 +96,12 @@
     "decided_at": {
       "$ref": "./common.schema.json#/$defs/dateTime"
     },
+    "maturity_status": {
+      "$ref": "./common.schema.json#/$defs/maturityStatus"
+    },
+    "provenance": {
+      "$ref": "./common.schema.json#/$defs/provenanceLocators"
+    },
     "reviewer_kind": {
       "enum": [
         "agent",

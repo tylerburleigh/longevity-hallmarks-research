@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "study",
+  "id": "senolytic-drugs-translation-review",
+  "name": "Senolytic drugs discovery-to-translation review",
+  "summary": "Narrative review used as context for intervention boundaries, translational rationale, candidate senolytic classes, safety constraints, and unresolved clinical-efficacy questions.",
+  "study_type": "review",
+  "status": "not_applicable",
+  "phase": "not_applicable",
+  "intervention_ids": [
+    "senolytics",
+    "dasatinib-quercetin",
+    "fisetin"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ],
+  "track_ids": [
+    "senolytics"
+  ],
+  "endpoint_categories": [
+    "mechanistic",
+    "safety",
+    "clinical"
+  ],
+  "source_ids": [
+    "pmid-32686219"
+  ],
+  "tags": [
+    "senolytics",
+    "review",
+    "translation",
+    "taxonomy-boundary"
+  ],
+  "maturity_status": "triage_summary",
+  "provenance": [
+    {
+      "source_id": "pmid-32686219",
+      "locator_type": "derived_record",
+      "locator": "study senolytic-drugs-translation-review derived from pmid-32686219",
+      "status": "triage_summary",
+      "note": "Triage-level generated record pending source-located extraction."
+    }
+  ]
+}

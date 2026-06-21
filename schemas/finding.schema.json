@@ -73,6 +73,33 @@
     "confidence": {
       "$ref": "./common.schema.json#/$defs/confidence"
     },
+    "maturity_status": {
+      "$ref": "./common.schema.json#/$defs/maturityStatus"
+    },
+    "provenance": {
+      "$ref": "./common.schema.json#/$defs/provenanceLocators"
+    },
+    "target_hallmark_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "./common.schema.json#/$defs/hallmarkRef"
+      },
+      "uniqueItems": true
+    },
+    "measured_hallmark_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "./common.schema.json#/$defs/hallmarkRef"
+      },
+      "uniqueItems": true
+    },
+    "inferred_hallmark_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "./common.schema.json#/$defs/hallmarkRef"
+      },
+      "uniqueItems": true
+    },
     "statement": {
       "type": "string"
     },

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "finding",
+  "id": "senolytic-translation-review-boundary",
+  "name": "Senolytic translation review supports mechanism and boundary framing, not pooled efficacy",
+  "summary": "The 2020 translation review is useful for intervention definitions, candidate classes, and safety boundary conditions, but it should not be counted as independent efficacy evidence.",
+  "source_id": "pmid-32686219",
+  "study_id": "senolytic-drugs-translation-review",
+  "intervention_ids": [
+    "senolytics",
+    "dasatinib-quercetin",
+    "fisetin"
+  ],
+  "track_ids": [
+    "senolytics"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ],
+  "endpoint_category": "mechanistic",
+  "direction": "not_applicable",
+  "evidence_tier": "review",
+  "confidence": "moderate",
+  "statement": "The review supports taxonomy and translation framing for senolytics but should be excluded from quantitative efficacy synthesis as non-independent narrative evidence.",
+  "population_or_model": "Review of senolytic discovery and translation literature",
+  "caveats": [
+    "Do not use as a primary result record for effect estimation.",
+    "Useful for defining senolytic mechanism, safety considerations, and unresolved trial needs."
+  ],
+  "tags": [
+    "senolytics",
+    "review",
+    "translation",
+    "taxonomy-boundary"
+  ],
+  "maturity_status": "triage_summary",
+  "provenance": [
+    {
+      "source_id": "pmid-32686219",
+      "locator_type": "derived_record",
+      "locator": "finding senolytic-translation-review-boundary derived from pmid-32686219",
+      "status": "triage_summary",
+      "note": "Triage-level generated record pending source-located extraction."
+    }
+  ],
+  "target_hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ]
+}

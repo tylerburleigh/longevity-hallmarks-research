@@ -125,6 +125,12 @@
     "confidence": {
       "$ref": "./common.schema.json#/$defs/confidence"
     },
+    "maturity_status": {
+      "$ref": "./common.schema.json#/$defs/maturityStatus"
+    },
+    "provenance": {
+      "$ref": "./common.schema.json#/$defs/provenanceLocators"
+    },
     "statement": {
       "type": "string"
     },

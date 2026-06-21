@@ -33,6 +33,12 @@
     "source_type": {
       "$ref": "./common.schema.json#/$defs/sourceType"
     },
+    "maturity_status": {
+      "$ref": "./common.schema.json#/$defs/maturityStatus"
+    },
+    "provenance": {
+      "$ref": "./common.schema.json#/$defs/provenanceLocators"
+    },
     "authors": {
       "type": "array",
       "items": {

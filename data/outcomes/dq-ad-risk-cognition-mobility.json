@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "outcome",
+  "id": "dq-ad-risk-cognition-mobility",
+  "name": "Cognition and mobility in older adults at Alzheimer's disease risk",
+  "summary": "Functional cognition and mobility outcome from the 2025 dasatinib plus quercetin pilot study.",
+  "source_id": "pmid-40010154",
+  "study_id": "dq-ad-risk-cognition-mobility-pilot",
+  "finding_ids": [
+    "dq-ad-risk-pilot-cognition-mobility-signal"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ],
+  "track_ids": [
+    "senolytics"
+  ],
+  "endpoint_category": "functional",
+  "measurement_type": "physiological_function",
+  "measurement_method": "Pilot cognitive and mobility assessments",
+  "analysis_role": "exploratory",
+  "population_or_model": "Older adults at risk for Alzheimer's disease",
+  "directionality_preferred": "higher_better",
+  "tags": [
+    "senolytics",
+    "human",
+    "pilot",
+    "cognition",
+    "mobility"
+  ],
+  "maturity_status": "triage_summary",
+  "provenance": [
+    {
+      "source_id": "pmid-40010154",
+      "locator_type": "derived_record",
+      "locator": "outcome dq-ad-risk-cognition-mobility derived from pmid-40010154",
+      "status": "triage_summary",
+      "note": "Triage-level generated record pending source-located extraction."
+    }
+  ],
+  "target_hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ]
+}

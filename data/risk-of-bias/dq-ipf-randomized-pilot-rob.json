@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "risk_of_bias",
+  "id": "dq-ipf-randomized-pilot-rob",
+  "source_id": "pmid-36857968",
+  "study_id": "dq-ipf-randomized-pilot",
+  "assessed_at": "2026-06-21T18:24:00Z",
+  "reviewer_kind": "agent",
+  "reviewer_id": "codex",
+  "tool": "other",
+  "overall_judgment": "some_concerns",
+  "domains": [
+    {
+      "domain": "pilot design and power",
+      "judgment": "some_concerns",
+      "rationale": "The study is randomized but designed as a small feasibility and tolerability pilot."
+    },
+    {
+      "domain": "endpoint interpretation",
+      "judgment": "some_concerns",
+      "rationale": "Functional outcomes should not be interpreted as definitive efficacy endpoints without prespecified powered analysis."
+    }
+  ],
+  "limitations": [
+    "Use primarily for safety, feasibility, and endpoint-boundary evidence.",
+    "Human review should verify exact adverse-event and functional endpoint extraction."
+  ],
+  "tags": [
+    "senolytics",
+    "human",
+    "randomized-trial",
+    "risk-of-bias"
+  ],
+  "maturity_status": "triage_summary",
+  "provenance": [
+    {
+      "source_id": "pmid-36857968",
+      "locator_type": "derived_record",
+      "locator": "risk_of_bias dq-ipf-randomized-pilot-rob derived from pmid-36857968",
+      "status": "triage_summary",
+      "note": "Triage-level generated record pending source-located extraction."
+    }
+  ],
+  "notes": "Provisional agent triage; not a formal ROB2 or ROBINS-I domain-by-domain assessment."
+}

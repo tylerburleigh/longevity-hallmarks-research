@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "source",
+  "id": "pmid-29988130",
+  "name": "Senolytics improve physical function and increase lifespan in old age",
+  "short_name": "D+Q old mouse healthspan and lifespan",
+  "summary": "2018 Nature Medicine paper reporting that intermittent dasatinib plus quercetin reduced senescent-cell burden, improved physical function, and increased post-treatment survival in aged mice.",
+  "source_type": "journal_article",
+  "authors": [
+    "Xu M",
+    "Pirtskhalava T",
+    "Farr JN",
+    "Weigand BM",
+    "Palmer AK",
+    "Weivoda MM",
+    "Inman CL",
+    "Ogrodnik MB",
+    "Hachfeld CM",
+    "Fraser DG",
+    "Onken JL",
+    "Johnson KO",
+    "Verzosa GC",
+    "Langhi LGP",
+    "Weigl M",
+    "Giorgadze N",
+    "LeBrasseur NK",
+    "Miller JD",
+    "Jurk D",
+    "Singh RJ",
+    "Allison DB",
+    "Ejima K",
+    "Hubbard GB",
+    "Ikeno Y",
+    "Cubro H",
+    "Garovic VD",
+    "Hou X",
+    "Weroha SJ",
+    "Robbins PD",
+    "Niedernhofer LJ",
+    "Khosla S",
+    "Tchkonia T",
+    "Kirkland JL"
+  ],
+  "venue": "Nature Medicine",
+  "year": 2018,
+  "published_on": "2018-07-09",
+  "doi": "10.1038/s41591-018-0092-9",
+  "pmid": "29988130",
+  "urls": [
+    "https://pubmed.ncbi.nlm.nih.gov/29988130/",
+    "https://doi.org/10.1038/s41591-018-0092-9"
+  ],
+  "tags": [
+    "senolytics",
+    "dasatinib-quercetin",
+    "animal",
+    "healthspan",
+    "lifespan"
+  ],
+  "maturity_status": "metadata_imported",
+  "provenance": [
+    {
+      "source_id": "pmid-29988130",
+      "locator_type": "pubmed_metadata",
+      "locator": "PubMed ESummary PMID 29988130",
+      "status": "metadata_imported",
+      "note": "Canonical citation metadata import."
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "eligibility_decision",
+  "id": "eligibility-nct-04685590-senolytics-2026-06-21",
+  "source_id": "nct-04685590",
+  "source_title": "Senolytic Therapy to Modulate the Progression of Alzheimer's Disease (SToMP-AD) Study",
+  "scope": {
+    "question": "Which active senolytics trials should be monitored for future evidence updates?",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": [
+      "dasatinib-quercetin"
+    ]
+  },
+  "decision": "included",
+  "reason_category": "registry_only",
+  "decided_at": "2026-06-21T18:35:00Z",
+  "reviewer_kind": "agent",
+  "reviewer_id": "codex",
+  "rationale": "Included as trial-watch evidence only; no result-bearing effect evidence is available from the registry record.",
+  "tags": [
+    "senolytics",
+    "screening",
+    "trial-watch",
+    "registry-only"
+  ],
+  "maturity_status": "screened",
+  "provenance": [
+    {
+      "source_id": "nct-04685590",
+      "locator_type": "clinicaltrials_module",
+      "locator": "NCT04685590",
+      "status": "screened",
+      "note": "Eligibility decision based on metadata and scoped triage, not full extraction."
+    }
+  ]
+}

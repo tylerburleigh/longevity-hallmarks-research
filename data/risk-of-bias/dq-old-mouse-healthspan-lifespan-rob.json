@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "risk_of_bias",
+  "id": "dq-old-mouse-healthspan-lifespan-rob",
+  "source_id": "pmid-29988130",
+  "study_id": "dq-old-mouse-healthspan-lifespan",
+  "assessed_at": "2026-06-21T18:20:00Z",
+  "reviewer_kind": "agent",
+  "reviewer_id": "codex",
+  "tool": "custom_preclinical",
+  "overall_judgment": "some_concerns",
+  "domains": [
+    {
+      "domain": "translational indirectness",
+      "judgment": "some_concerns",
+      "rationale": "Mouse healthspan and survival outcomes are relevant for mechanism and prioritization but indirect for human aging claims."
+    },
+    {
+      "domain": "outcome heterogeneity",
+      "judgment": "some_concerns",
+      "rationale": "The study includes multiple functional and survival endpoints that require endpoint-level extraction before synthesis."
+    }
+  ],
+  "limitations": [
+    "Do not pool preclinical lifespan outcomes with human clinical outcomes.",
+    "Full quantitative extraction remains pending."
+  ],
+  "tags": [
+    "senolytics",
+    "animal",
+    "risk-of-bias"
+  ],
+  "maturity_status": "triage_summary",
+  "provenance": [
+    {
+      "source_id": "pmid-29988130",
+      "locator_type": "derived_record",
+      "locator": "risk_of_bias dq-old-mouse-healthspan-lifespan-rob derived from pmid-29988130",
+      "status": "triage_summary",
+      "note": "Triage-level generated record pending source-located extraction."
+    }
+  ]
+}

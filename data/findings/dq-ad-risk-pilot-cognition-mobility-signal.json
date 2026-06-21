@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "finding",
+  "id": "dq-ad-risk-pilot-cognition-mobility-signal",
+  "name": "D+Q AD-risk pilot provides feasibility-oriented cognition and mobility signals",
+  "summary": "The 2025 pilot in older adults at risk for Alzheimer's disease contributes feasibility, safety, cognition, mobility, and biomarker evidence, but remains an early small study.",
+  "source_id": "pmid-40010154",
+  "study_id": "dq-ad-risk-cognition-mobility-pilot",
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "track_ids": [
+    "senolytics"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ],
+  "endpoint_category": "functional",
+  "direction": "mixed",
+  "evidence_tier": "human_functional",
+  "confidence": "low",
+  "statement": "The AD-risk pilot adds early human functional and biomarker evidence for dasatinib plus quercetin, but the record should be treated as exploratory until larger controlled evidence is available.",
+  "population_or_model": "Older adults at risk for Alzheimer's disease",
+  "time_horizon": "Pilot treatment and follow-up period reported in the 2025 publication",
+  "caveats": [
+    "Small pilot design limits causal inference and precision.",
+    "Cognition and mobility endpoints should be extracted independently rather than collapsed into a single efficacy claim."
+  ],
+  "tags": [
+    "senolytics",
+    "dasatinib-quercetin",
+    "human",
+    "pilot",
+    "cognition",
+    "mobility"
+  ],
+  "maturity_status": "triage_summary",
+  "provenance": [
+    {
+      "source_id": "pmid-40010154",
+      "locator_type": "derived_record",
+      "locator": "finding dq-ad-risk-pilot-cognition-mobility-signal derived from pmid-40010154",
+      "status": "triage_summary",
+      "note": "Triage-level generated record pending source-located extraction."
+    }
+  ],
+  "target_hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ]
+}

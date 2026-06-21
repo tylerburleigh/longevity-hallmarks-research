@@ -52,6 +52,19 @@
     "coverage_confidence": {
       "$ref": "./common.schema.json#/$defs/confidence"
     },
+    "coverage_scope": {
+      "enum": [
+        "vertical_slice",
+        "track_landscape",
+        "synthesis_ready"
+      ]
+    },
+    "maturity_status": {
+      "$ref": "./common.schema.json#/$defs/maturityStatus"
+    },
+    "provenance": {
+      "$ref": "./common.schema.json#/$defs/provenanceLocators"
+    },
     "summary": {
       "type": "string"
     },

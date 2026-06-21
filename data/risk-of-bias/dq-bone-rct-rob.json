@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "risk_of_bias",
+  "id": "dq-bone-rct-rob",
+  "source_id": "pmid-38956196",
+  "study_id": "dq-postmenopausal-bone-rct",
+  "assessed_at": "2026-06-21T18:26:00Z",
+  "reviewer_kind": "agent",
+  "reviewer_id": "codex",
+  "tool": "other",
+  "overall_judgment": "some_concerns",
+  "domains": [
+    {
+      "domain": "randomization and control",
+      "judgment": "low",
+      "rationale": "The study is a phase 2 randomized controlled trial, giving it stronger design support than open pilot studies."
+    },
+    {
+      "domain": "selective interpretation risk",
+      "judgment": "some_concerns",
+      "rationale": "Primary endpoint, biomarker, and subgroup signals must remain separated to avoid over-interpreting exploratory findings."
+    }
+  ],
+  "limitations": [
+    "Needs exact outcome-level extraction before certainty assessment.",
+    "Subgroup interpretation requires prespecification check."
+  ],
+  "tags": [
+    "senolytics",
+    "human",
+    "randomized-trial",
+    "bone",
+    "risk-of-bias"
+  ],
+  "maturity_status": "triage_summary",
+  "provenance": [
+    {
+      "source_id": "pmid-38956196",
+      "locator_type": "derived_record",
+      "locator": "risk_of_bias dq-bone-rct-rob derived from pmid-38956196",
+      "status": "triage_summary",
+      "note": "Triage-level generated record pending source-located extraction."
+    }
+  ],
+  "notes": "Provisional agent triage; not a formal ROB2 or ROBINS-I domain-by-domain assessment."
+}

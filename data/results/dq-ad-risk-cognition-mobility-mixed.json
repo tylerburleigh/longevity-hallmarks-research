@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "result",
+  "id": "dq-ad-risk-cognition-mobility-mixed",
+  "name": "D+Q AD-risk cognition and mobility exploratory result",
+  "source_id": "pmid-40010154",
+  "study_id": "dq-ad-risk-cognition-mobility-pilot",
+  "outcome_id": "dq-ad-risk-cognition-mobility",
+  "finding_ids": [
+    "dq-ad-risk-pilot-cognition-mobility-signal"
+  ],
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "sample_size": 15,
+  "result_type": "descriptive",
+  "effect": {
+    "measure": "descriptive",
+    "raw_text": "The pilot reported cognition and mobility measures, but current knowledge-base status treats the evidence as exploratory."
+  },
+  "direction": "mixed",
+  "evidence_tier": "human_functional",
+  "confidence": "low",
+  "statement": "The AD-risk pilot contributes early human functional evidence but should not be upgraded without controlled, larger, outcome-level evidence.",
+  "caveats": [
+    "Small pilot sample.",
+    "Functional endpoints require separate extraction and adjudication."
+  ],
+  "tags": [
+    "senolytics",
+    "human",
+    "pilot",
+    "cognition",
+    "mobility"
+  ],
+  "maturity_status": "triage_summary",
+  "provenance": [
+    {
+      "source_id": "pmid-40010154",
+      "locator_type": "derived_record",
+      "locator": "result dq-ad-risk-cognition-mobility-mixed derived from pmid-40010154",
+      "status": "triage_summary",
+      "note": "Triage-level generated record pending source-located extraction."
+    }
+  ]
+}

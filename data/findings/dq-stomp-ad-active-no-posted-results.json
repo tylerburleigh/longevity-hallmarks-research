@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "finding",
+  "id": "dq-stomp-ad-active-no-posted-results",
+  "name": "SToMP-AD D+Q phase 2 trial is active without posted results",
+  "summary": "The SToMP-AD phase 2 dasatinib plus quercetin registry record is active-not-recruiting and had no posted ClinicalTrials.gov results at the checked registry update.",
+  "source_id": "nct-04685590",
+  "study_id": "dq-stomp-ad-phase2-registry",
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "track_ids": [
+    "senolytics"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ],
+  "endpoint_category": "registry_status",
+  "direction": "inconclusive",
+  "evidence_tier": "registry",
+  "confidence": "moderate",
+  "statement": "The registry record establishes an active phase 2 D+Q Alzheimer's disease trial-watch item but contributes no result-bearing efficacy evidence until results are posted or published.",
+  "population_or_model": "Adults with Alzheimer's disease enrolled in SToMP-AD",
+  "time_horizon": "Registry checked against 2026-03-31 update metadata",
+  "caveats": [
+    "Registry-only evidence must not be counted as a treatment effect.",
+    "Needs surveillance for posted results or linked publication."
+  ],
+  "tags": [
+    "senolytics",
+    "dasatinib-quercetin",
+    "trial-watch",
+    "no-posted-results",
+    "alzheimers"
+  ],
+  "maturity_status": "metadata_imported",
+  "provenance": [
+    {
+      "source_id": "nct-04685590",
+      "locator_type": "clinicaltrials_module",
+      "locator": "Registry status/results availability for NCT04685590",
+      "status": "metadata_imported",
+      "note": "Trial-watch provenance only."
+    }
+  ],
+  "target_hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ],
+  "inferred_hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ]
+}

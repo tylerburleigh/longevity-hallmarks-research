@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "study",
+  "id": "dq-stomp-ad-phase2-registry",
+  "name": "SToMP-AD D+Q phase 2 registry record",
+  "summary": "Active-not-recruiting phase 2 ClinicalTrials.gov record for dasatinib plus quercetin to modulate progression of Alzheimer's disease; no posted results were available when checked.",
+  "study_type": "trial_registry",
+  "status": "active",
+  "phase": "phase_2",
+  "population": "Adults with Alzheimer's disease enrolled in the SToMP-AD trial.",
+  "sample_size": 48,
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ],
+  "track_ids": [
+    "senolytics"
+  ],
+  "endpoint_categories": [
+    "registry_status",
+    "functional",
+    "biomarker",
+    "safety"
+  ],
+  "source_ids": [
+    "nct-04685590"
+  ],
+  "registry_ids": [
+    "NCT04685590"
+  ],
+  "tags": [
+    "senolytics",
+    "dasatinib-quercetin",
+    "human",
+    "trial-watch",
+    "no-posted-results",
+    "alzheimers"
+  ],
+  "maturity_status": "metadata_imported",
+  "provenance": [
+    {
+      "source_id": "nct-04685590",
+      "locator_type": "derived_record",
+      "locator": "study dq-stomp-ad-phase2-registry derived from nct-04685590",
+      "status": "metadata_imported",
+      "note": "Triage-level generated record pending source-located extraction."
+    }
+  ]
+}

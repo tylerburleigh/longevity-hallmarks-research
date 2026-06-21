@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "outcome",
+  "id": "dq-stomp-ad-registry-status",
+  "name": "SToMP-AD registry result status",
+  "summary": "Registry-status outcome tracking whether NCT04685590 has posted results or linked publications.",
+  "source_id": "nct-04685590",
+  "study_id": "dq-stomp-ad-phase2-registry",
+  "finding_ids": [
+    "dq-stomp-ad-active-no-posted-results"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence"
+  ],
+  "track_ids": [
+    "senolytics"
+  ],
+  "endpoint_category": "registry_status",
+  "measurement_type": "registry_status",
+  "measurement_method": "ClinicalTrials.gov results availability check",
+  "analysis_role": "registry",
+  "population_or_model": "Adults with Alzheimer's disease in NCT04685590",
+  "directionality_preferred": "not_applicable",
+  "tags": [
+    "senolytics",
+    "dasatinib-quercetin",
+    "trial-watch",
+    "no-posted-results",
+    "alzheimers"
+  ],
+  "maturity_status": "metadata_imported",
+  "provenance": [
+    {
+      "source_id": "nct-04685590",
+      "locator_type": "derived_record",
+      "locator": "outcome dq-stomp-ad-registry-status derived from nct-04685590",
+      "status": "metadata_imported",
+      "note": "Triage-level generated record pending source-located extraction."
+    }
+  ],
+  "target_hallmark_ids": [
+    "cellular_senescence"
+  ],
+  "inferred_hallmark_ids": [
+    "cellular_senescence"
+  ]
+}

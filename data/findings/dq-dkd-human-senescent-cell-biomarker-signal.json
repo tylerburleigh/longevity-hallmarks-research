@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "finding",
+  "id": "dq-dkd-human-senescent-cell-biomarker-signal",
+  "name": "D+Q diabetic kidney disease pilot reported decreased senescent-cell biomarkers",
+  "summary": "The preliminary diabetic kidney disease trial reported decreases in senescent-cell and SASP-related biomarkers after intermittent dasatinib plus quercetin.",
+  "source_id": "pmid-31542391",
+  "study_id": "dq-diabetic-kidney-disease-pilot",
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "track_ids": [
+    "senolytics"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ],
+  "endpoint_category": "biomarker",
+  "direction": "positive",
+  "evidence_tier": "human_biomarker",
+  "confidence": "low",
+  "statement": "A small preliminary human trial reported reduced senescent-cell and SASP-related biomarkers after intermittent dasatinib plus quercetin in diabetic kidney disease.",
+  "population_or_model": "Adults with diabetic kidney disease",
+  "time_horizon": "Short-course intermittent treatment with post-treatment tissue and circulating biomarker assessment",
+  "caveats": [
+    "This is preliminary biomarker evidence from a small trial and should not be treated as clinical efficacy.",
+    "Registry metadata checked in 2026 indicates the associated ClinicalTrials.gov record has no posted results and remains operationally relevant for follow-up."
+  ],
+  "tags": [
+    "senolytics",
+    "dasatinib-quercetin",
+    "human",
+    "biomarker",
+    "diabetic-kidney-disease"
+  ],
+  "maturity_status": "triage_summary",
+  "provenance": [
+    {
+      "source_id": "pmid-31542391",
+      "locator_type": "derived_record",
+      "locator": "finding dq-dkd-human-senescent-cell-biomarker-signal derived from pmid-31542391",
+      "status": "triage_summary",
+      "note": "Triage-level generated record pending source-located extraction."
+    }
+  ],
+  "target_hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ]
+}

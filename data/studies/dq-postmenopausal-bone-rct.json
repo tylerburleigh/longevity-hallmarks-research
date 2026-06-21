@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "study",
+  "id": "dq-postmenopausal-bone-rct",
+  "name": "D+Q postmenopausal women bone metabolism phase 2 randomized trial",
+  "summary": "Phase 2 randomized controlled trial testing intermittent dasatinib plus quercetin effects on bone metabolism in postmenopausal women.",
+  "study_type": "randomized_trial",
+  "status": "completed",
+  "phase": "phase_2",
+  "population": "Postmenopausal women.",
+  "sample_size": 74,
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation",
+    "stem_cell_exhaustion"
+  ],
+  "track_ids": [
+    "senolytics"
+  ],
+  "endpoint_categories": [
+    "biomarker",
+    "clinical",
+    "safety"
+  ],
+  "source_ids": [
+    "pmid-38956196"
+  ],
+  "registry_ids": [
+    "NCT04313634"
+  ],
+  "tags": [
+    "senolytics",
+    "dasatinib-quercetin",
+    "human",
+    "randomized-trial",
+    "bone"
+  ],
+  "maturity_status": "triage_summary",
+  "provenance": [
+    {
+      "source_id": "pmid-38956196",
+      "locator_type": "derived_record",
+      "locator": "study dq-postmenopausal-bone-rct derived from pmid-38956196",
+      "status": "triage_summary",
+      "note": "Triage-level generated record pending source-located extraction."
+    }
+  ]
+}

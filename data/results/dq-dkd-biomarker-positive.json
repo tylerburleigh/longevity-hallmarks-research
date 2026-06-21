@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "result",
+  "id": "dq-dkd-biomarker-positive",
+  "name": "D+Q diabetic kidney disease senescence biomarker result",
+  "source_id": "pmid-31542391",
+  "study_id": "dq-diabetic-kidney-disease-pilot",
+  "outcome_id": "dq-dkd-senescent-cell-biomarkers",
+  "finding_ids": [
+    "dq-dkd-human-senescent-cell-biomarker-signal"
+  ],
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "comparator": "Within-participant baseline or pilot-study comparator structure",
+  "result_type": "descriptive",
+  "effect": {
+    "measure": "descriptive",
+    "raw_text": "Reported decreases in senescent-cell and SASP-related biomarkers after intermittent dasatinib plus quercetin."
+  },
+  "direction": "positive",
+  "evidence_tier": "human_biomarker",
+  "confidence": "low",
+  "statement": "The result is an early human biomarker signal and should not be interpreted as a clinical benefit claim.",
+  "time_horizon": "Short-course intermittent treatment and post-treatment biomarker assessment",
+  "caveats": [
+    "Small preliminary study.",
+    "Needs full quantitative extraction and risk-of-bias review before synthesis."
+  ],
+  "tags": [
+    "senolytics",
+    "human",
+    "biomarker"
+  ],
+  "maturity_status": "triage_summary",
+  "provenance": [
+    {
+      "source_id": "pmid-31542391",
+      "locator_type": "derived_record",
+      "locator": "result dq-dkd-biomarker-positive derived from pmid-31542391",
+      "status": "triage_summary",
+      "note": "Triage-level generated record pending source-located extraction."
+    }
+  ]
+}

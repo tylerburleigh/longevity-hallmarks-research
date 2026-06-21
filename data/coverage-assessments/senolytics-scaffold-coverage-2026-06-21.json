@@ -66,5 +66,16 @@
     "scaffold",
     "senolytics",
     "cellular_senescence"
-  ]
+  ],
+  "maturity_status": "triage_summary",
+  "provenance": [
+    {
+      "source_id": "pmid-25754370",
+      "locator_type": "derived_record",
+      "locator": "coverage_assessment senolytics-scaffold-coverage-2026-06-21 derived from pmid-25754370",
+      "status": "triage_summary",
+      "note": "Triage-level generated record pending source-located extraction."
+    }
+  ],
+  "coverage_scope": "vertical_slice"
 }

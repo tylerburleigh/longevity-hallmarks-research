@@ -13,6 +13,32 @@
     "Gower AC",
     "Ding H",
     "Giorgadze N",
+    "Palmer AK",
+    "Ikeno Y",
+    "Hubbard GB",
+    "Lenburg M",
+    "O'Hara SP",
+    "LaRusso NF",
+    "Miller JD",
+    "Roos CM",
+    "Verzosa GC",
+    "LeBrasseur NK",
+    "Wren JD",
+    "Farr JN",
+    "Khosla S",
+    "Stout MB",
+    "McGowan SJ",
+    "Fuhrmann-Stroissnigg H",
+    "Gurkar AU",
+    "Zhao J",
+    "Colangelo D",
+    "Dorronsoro A",
+    "Ling YY",
+    "Barghouthy AS",
+    "Navarro DC",
+    "Sano T",
+    "Robbins PD",
+    "Niedernhofer LJ",
     "Kirkland JL"
   ],
   "venue": "Aging Cell",
@@ -30,5 +56,15 @@
     "discovery",
     "mechanistic",
     "animal"
+  ],
+  "maturity_status": "metadata_imported",
+  "provenance": [
+    {
+      "source_id": "pmid-25754370",
+      "locator_type": "pubmed_metadata",
+      "locator": "PubMed ESummary PMID 25754370",
+      "status": "metadata_imported",
+      "note": "Canonical citation metadata import."
+    }
   ]
 }

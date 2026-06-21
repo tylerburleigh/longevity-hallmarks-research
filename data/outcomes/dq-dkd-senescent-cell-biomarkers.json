@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "outcome",
+  "id": "dq-dkd-senescent-cell-biomarkers",
+  "name": "Senescent-cell and SASP-related biomarkers in diabetic kidney disease",
+  "summary": "Human biomarker outcome assessing senescent-cell burden and SASP-related markers after dasatinib plus quercetin.",
+  "source_id": "pmid-31542391",
+  "study_id": "dq-diabetic-kidney-disease-pilot",
+  "finding_ids": [
+    "dq-dkd-human-senescent-cell-biomarker-signal"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ],
+  "track_ids": [
+    "senolytics"
+  ],
+  "endpoint_category": "biomarker",
+  "measurement_type": "cellular_biomarker",
+  "measurement_method": "Tissue and circulating senescence/SASP biomarker assessment",
+  "analysis_role": "exploratory",
+  "population_or_model": "Adults with diabetic kidney disease",
+  "directionality_preferred": "lower_better",
+  "tags": [
+    "senolytics",
+    "human",
+    "biomarker"
+  ],
+  "maturity_status": "triage_summary",
+  "provenance": [
+    {
+      "source_id": "pmid-31542391",
+      "locator_type": "derived_record",
+      "locator": "outcome dq-dkd-senescent-cell-biomarkers derived from pmid-31542391",
+      "status": "triage_summary",
+      "note": "Triage-level generated record pending source-located extraction."
+    }
+  ],
+  "target_hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ]
+}

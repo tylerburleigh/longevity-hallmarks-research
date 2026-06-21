@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "result",
+  "id": "dq-ipf-tolerability-mixed",
+  "name": "D+Q IPF feasibility and tolerability mixed result",
+  "source_id": "pmid-36857968",
+  "study_id": "dq-ipf-randomized-pilot",
+  "outcome_id": "dq-ipf-feasibility-tolerability",
+  "finding_ids": [
+    "dq-ipf-randomized-feasibility-tolerability-mixed"
+  ],
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "comparator": "Placebo control in a small randomized pilot",
+  "sample_size": 26,
+  "result_type": "safety_event",
+  "effect": {
+    "measure": "descriptive",
+    "raw_text": "The pilot primarily informs feasibility, tolerability, and safety-boundary interpretation rather than definitive efficacy."
+  },
+  "direction": "mixed",
+  "evidence_tier": "human_functional",
+  "confidence": "low",
+  "statement": "The IPF randomized pilot should be used as safety and feasibility evidence unless later extraction verifies a powered efficacy outcome.",
+  "caveats": [
+    "Small pilot sample.",
+    "Disease-specific IPF outcomes do not establish general longevity benefit."
+  ],
+  "tags": [
+    "senolytics",
+    "human",
+    "safety",
+    "pilot"
+  ],
+  "maturity_status": "triage_summary",
+  "provenance": [
+    {
+      "source_id": "pmid-36857968",
+      "locator_type": "derived_record",
+      "locator": "result dq-ipf-tolerability-mixed derived from pmid-36857968",
+      "status": "triage_summary",
+      "note": "Triage-level generated record pending source-located extraction."
+    }
+  ]
+}

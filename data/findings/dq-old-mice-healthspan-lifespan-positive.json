@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "finding",
+  "id": "dq-old-mice-healthspan-lifespan-positive",
+  "name": "Intermittent D+Q improved physical function and post-treatment survival in old mice",
+  "summary": "The 2018 aged-mouse paper reported functional improvements and increased post-treatment survival after intermittent dasatinib plus quercetin.",
+  "source_id": "pmid-29988130",
+  "study_id": "dq-old-mouse-healthspan-lifespan",
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "track_ids": [
+    "senolytics"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ],
+  "endpoint_category": "lifespan",
+  "direction": "positive",
+  "evidence_tier": "animal",
+  "confidence": "moderate",
+  "statement": "Intermittent dasatinib plus quercetin was associated with reduced senescent-cell burden, improved physical function, and increased post-treatment survival in old mice.",
+  "population_or_model": "Old mice treated intermittently with dasatinib plus quercetin",
+  "time_horizon": "Post-treatment survival and physical-function follow-up in aged mouse cohorts",
+  "caveats": [
+    "Animal lifespan and healthspan signals do not establish human aging efficacy.",
+    "The finding should not be pooled with human functional outcomes without a separate translational synthesis boundary."
+  ],
+  "tags": [
+    "senolytics",
+    "dasatinib-quercetin",
+    "animal",
+    "healthspan",
+    "lifespan"
+  ],
+  "maturity_status": "triage_summary",
+  "provenance": [
+    {
+      "source_id": "pmid-29988130",
+      "locator_type": "derived_record",
+      "locator": "finding dq-old-mice-healthspan-lifespan-positive derived from pmid-29988130",
+      "status": "triage_summary",
+      "note": "Triage-level generated record pending source-located extraction."
+    }
+  ],
+  "target_hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ]
+}

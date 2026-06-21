@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "source",
+  "id": "pmid-31542391",
+  "name": "Senolytics decrease senescent cells in humans: Preliminary report from a clinical trial of dasatinib plus quercetin in individuals with diabetic kidney disease",
+  "short_name": "D+Q diabetic kidney disease pilot",
+  "summary": "2019 EBioMedicine preliminary human trial report that tested intermittent dasatinib plus quercetin in diabetic kidney disease and measured senescent-cell and SASP-related biomarkers.",
+  "source_type": "journal_article",
+  "authors": [
+    "Hickson LJ",
+    "Langhi Prata LGP",
+    "Bobart SA",
+    "Evans TK",
+    "Giorgadze N",
+    "Hashmi SK",
+    "Herrmann SM",
+    "Jensen MD",
+    "Jia Q",
+    "Jordan KL",
+    "Kellogg TA",
+    "Khosla S",
+    "Koerber DM",
+    "Lagnado AB",
+    "Lawson DK",
+    "LeBrasseur NK",
+    "Lerman LO",
+    "McDonald KM",
+    "McKenzie TJ",
+    "Passos JF",
+    "Pignolo RJ",
+    "Pirtskhalava T",
+    "Saadiq IM",
+    "Schaefer KK",
+    "Textor SC",
+    "Victorelli SG",
+    "Volkman TL",
+    "Xue A",
+    "Wentworth MA",
+    "Wissler Gerdes EO",
+    "Zhu Y",
+    "Tchkonia T",
+    "Kirkland JL"
+  ],
+  "venue": "EBioMedicine",
+  "year": 2019,
+  "published_on": "2019-09-18",
+  "doi": "10.1016/j.ebiom.2019.08.069",
+  "pmid": "31542391",
+  "registry_ids": [
+    "NCT02848131"
+  ],
+  "urls": [
+    "https://pubmed.ncbi.nlm.nih.gov/31542391/",
+    "https://doi.org/10.1016/j.ebiom.2019.08.069",
+    "https://clinicaltrials.gov/study/NCT02848131"
+  ],
+  "tags": [
+    "senolytics",
+    "dasatinib-quercetin",
+    "human",
+    "biomarker",
+    "diabetic-kidney-disease"
+  ],
+  "maturity_status": "metadata_imported",
+  "provenance": [
+    {
+      "source_id": "pmid-31542391",
+      "locator_type": "pubmed_metadata",
+      "locator": "PubMed ESummary PMID 31542391",
+      "status": "metadata_imported",
+      "note": "Canonical citation metadata import."
+    }
+  ]
+}

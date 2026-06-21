@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "finding",
+  "id": "fisetin-vascular-active-no-posted-results",
+  "name": "Fisetin vascular function trial is active without posted results",
+  "summary": "The fisetin vascular function trial in older adults is active-not-recruiting and had no posted ClinicalTrials.gov results at the checked registry update.",
+  "source_id": "nct-06133634",
+  "study_id": "fisetin-vascular-function-older-adults-registry",
+  "intervention_ids": [
+    "fisetin"
+  ],
+  "track_ids": [
+    "senolytics"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ],
+  "endpoint_category": "registry_status",
+  "direction": "inconclusive",
+  "evidence_tier": "registry",
+  "confidence": "moderate",
+  "statement": "The registry record establishes an active fisetin trial-watch item but contributes no result-bearing efficacy evidence until posted or published results are available.",
+  "population_or_model": "Older adults in a phase 1/2 fisetin vascular function trial",
+  "time_horizon": "Registry checked against 2025-11-07 update metadata",
+  "caveats": [
+    "Registry-only evidence must not be counted as a positive or negative treatment effect.",
+    "Needs surveillance for posted results or linked publication."
+  ],
+  "tags": [
+    "senolytics",
+    "fisetin",
+    "trial-watch",
+    "no-posted-results"
+  ],
+  "maturity_status": "metadata_imported",
+  "provenance": [
+    {
+      "source_id": "nct-06133634",
+      "locator_type": "clinicaltrials_module",
+      "locator": "Registry status/results availability for NCT06133634",
+      "status": "metadata_imported",
+      "note": "Trial-watch provenance only."
+    }
+  ],
+  "target_hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ],
+  "inferred_hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ]
+}

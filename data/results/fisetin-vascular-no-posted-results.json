@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "result",
+  "id": "fisetin-vascular-no-posted-results",
+  "name": "Fisetin vascular trial no posted results",
+  "source_id": "nct-06133634",
+  "study_id": "fisetin-vascular-function-older-adults-registry",
+  "outcome_id": "fisetin-vascular-registry-status",
+  "finding_ids": [
+    "fisetin-vascular-active-no-posted-results"
+  ],
+  "intervention_ids": [
+    "fisetin"
+  ],
+  "sample_size": 70,
+  "result_type": "no_posted_result",
+  "direction": "inconclusive",
+  "evidence_tier": "registry",
+  "confidence": "moderate",
+  "statement": "NCT06133634 is a trial-watch record with no posted result at the checked registry update, so it contributes no effect evidence.",
+  "time_horizon": "Registry update checked: 2025-11-07",
+  "caveats": [
+    "Requires surveillance for posted results or linked publication."
+  ],
+  "tags": [
+    "senolytics",
+    "fisetin",
+    "trial-watch",
+    "no-posted-results"
+  ],
+  "maturity_status": "metadata_imported",
+  "provenance": [
+    {
+      "source_id": "nct-06133634",
+      "locator_type": "clinicaltrials_module",
+      "locator": "Registry status/results availability for NCT06133634",
+      "status": "metadata_imported",
+      "note": "No posted results at checked registry update; not an extracted treatment effect."
+    }
+  ]
+}

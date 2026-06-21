@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "outcome",
+  "id": "fisetin-vascular-registry-status",
+  "name": "Fisetin vascular function registry result status",
+  "summary": "Registry-status outcome tracking whether NCT06133634 has posted results or linked publications.",
+  "source_id": "nct-06133634",
+  "study_id": "fisetin-vascular-function-older-adults-registry",
+  "finding_ids": [
+    "fisetin-vascular-active-no-posted-results"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence"
+  ],
+  "track_ids": [
+    "senolytics"
+  ],
+  "endpoint_category": "registry_status",
+  "measurement_type": "registry_status",
+  "measurement_method": "ClinicalTrials.gov results availability check",
+  "analysis_role": "registry",
+  "population_or_model": "Older adults in NCT06133634",
+  "directionality_preferred": "not_applicable",
+  "tags": [
+    "senolytics",
+    "fisetin",
+    "trial-watch",
+    "no-posted-results"
+  ],
+  "maturity_status": "metadata_imported",
+  "provenance": [
+    {
+      "source_id": "nct-06133634",
+      "locator_type": "derived_record",
+      "locator": "outcome fisetin-vascular-registry-status derived from nct-06133634",
+      "status": "metadata_imported",
+      "note": "Triage-level generated record pending source-located extraction."
+    }
+  ],
+  "target_hallmark_ids": [
+    "cellular_senescence"
+  ],
+  "inferred_hallmark_ids": [
+    "cellular_senescence"
+  ]
+}

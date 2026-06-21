@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "risk_of_bias",
+  "id": "dq-ad-risk-pilot-rob",
+  "source_id": "pmid-40010154",
+  "study_id": "dq-ad-risk-cognition-mobility-pilot",
+  "assessed_at": "2026-06-21T18:28:00Z",
+  "reviewer_kind": "agent",
+  "reviewer_id": "codex",
+  "tool": "other",
+  "overall_judgment": "high",
+  "domains": [
+    {
+      "domain": "pilot design and precision",
+      "judgment": "high",
+      "rationale": "Small pilot sample limits precision and generalizability."
+    },
+    {
+      "domain": "functional endpoint interpretation",
+      "judgment": "some_concerns",
+      "rationale": "Cognition and mobility endpoints are clinically relevant but exploratory in this evidence slice."
+    }
+  ],
+  "limitations": [
+    "Treat as feasibility and exploratory functional evidence.",
+    "Do not use as definitive Alzheimer's disease efficacy evidence."
+  ],
+  "tags": [
+    "senolytics",
+    "human",
+    "pilot",
+    "risk-of-bias"
+  ],
+  "maturity_status": "triage_summary",
+  "provenance": [
+    {
+      "source_id": "pmid-40010154",
+      "locator_type": "derived_record",
+      "locator": "risk_of_bias dq-ad-risk-pilot-rob derived from pmid-40010154",
+      "status": "triage_summary",
+      "note": "Triage-level generated record pending source-located extraction."
+    }
+  ],
+  "notes": "Provisional agent triage; not a formal ROB2 or ROBINS-I domain-by-domain assessment."
+}

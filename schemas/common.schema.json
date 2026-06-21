@@ -143,6 +143,64 @@
         "high"
       ]
     },
+    "maturityStatus": {
+      "enum": [
+        "metadata_imported",
+        "screened",
+        "triage_summary",
+        "abstract_extracted",
+        "full_text_extracted",
+        "agent_reviewed",
+        "human_reviewed",
+        "accepted"
+      ]
+    },
+    "provenanceLocator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "locator_type",
+        "locator",
+        "status"
+      ],
+      "properties": {
+        "source_id": {
+          "$ref": "#/$defs/sourceRef"
+        },
+        "locator_type": {
+          "enum": [
+            "pubmed_metadata",
+            "clinicaltrials_module",
+            "abstract",
+            "full_text_section",
+            "table",
+            "figure",
+            "supplement",
+            "registry_record",
+            "derived_record",
+            "manual_note",
+            "other"
+          ]
+        },
+        "locator": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/$defs/maturityStatus"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "provenanceLocators": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/provenanceLocator"
+      },
+      "uniqueItems": true
+    },
     "coverageCategory": {
       "enum": [
         "human_interventional",

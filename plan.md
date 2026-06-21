@@ -86,6 +86,9 @@ As of 2026-06-21, the repository has an initial JSON-file-backed scaffold:
 - Added a provisional `senolytics` track as the first work scope.
 - Added a minimal senolytics vertical slice with one source, one study, one finding, one research session, one coverage assessment, one candidate change, and one evidence review.
 - Added repo-local Codex skill sources under `codex-skills/` for bounded research runs, evidence extraction, and knowledge-base auditing.
+- Added a senolytics coverage-repair slice across preclinical, human, review, and trial-watch evidence.
+- Added maturity-status and provenance-locator fields for evidence-facing records.
+- Hardened reference audits with semantic checks for candidate completeness, registry-only evidence, provisional risk-of-bias records, and coverage-scope overclaiming.
 
 ## Target Architecture
 
@@ -278,19 +281,47 @@ Recommended candidate tracks:
 
 Tasks:
 
-- Create the first search strategy.
-- Record search logs.
-- Screen sources.
-- Add included and excluded source decisions.
-- Extract study and finding records.
-- Create a first coverage assessment.
-- Produce a candidate change set.
-- Run review lanes.
+- [x] Create the first search strategy.
+- [x] Record search logs.
+- [x] Screen sources.
+- [x] Add included and excluded source decisions.
+- [x] Extract initial source, study, finding, outcome, result, eligibility, and risk-of-bias records.
+- [x] Create a first coverage-repair assessment.
+- [x] Produce a candidate change set.
+- [x] Add maturity and provenance status to generated evidence-facing records.
+- [x] Add candidate-completeness and semantic audit gates.
+- [ ] Run all required review lanes.
+- [ ] Promote or reject the candidate change after review.
 
 Exit criteria:
 
-- One track has a complete audited bootstrap pass.
-- We can explain what was included, excluded, and still missing.
+- [x] One track has a complete generated bootstrap/repair slice.
+- [x] We can explain what was included, excluded, and still missing.
+- [ ] One candidate change has complete required review lanes.
+- [ ] Records promoted to accepted state are source-located and review-cleared.
+
+### Phase 2.5: Generation Quality Gates
+
+Goal: prevent agent-generated data from looking more mature than it is.
+
+Tasks:
+
+- [x] Add `maturity_status` to evidence-facing records.
+- [x] Add provenance locators to evidence-facing records.
+- [x] Require changed records to appear in candidate-change ledgers.
+- [x] Block registry-only evidence from encoding treatment-effect direction.
+- [x] Block accepted/applied candidate changes without complete accepting review lanes.
+- [x] Block formal risk-of-bias labels unless records have extraction-grade maturity.
+- [x] Distinguish vertical-slice coverage from synthesis-ready coverage.
+- [ ] Add source-snapshot records so metadata imports have durable raw-source state.
+- [ ] Add importer scripts for PubMed and ClinicalTrials.gov metadata rather than relying on ad hoc agent entry.
+- [ ] Add a promotion command that moves records from generated/candidate state to accepted state only after review gates pass.
+
+Exit criteria:
+
+- `npm run verify:knowledge-base` fails on missing provenance, incomplete candidate ledgers, registry efficacy leakage, and unsupported accepted candidates.
+- Generated result records cannot be mistaken for synthesis-ready extracted effects.
+- Metadata imports can be reproduced from source snapshots or importer logs.
 
 ### Phase 3: Machine-Readable Exports
 
@@ -357,13 +388,16 @@ Exit criteria:
 
 ## Immediate Next Actions
 
-1. Expand the senolytics vertical slice into a real coverage-repair pass.
-2. Add `exports/latest/` generation for sources, studies, findings, coverage status, and audit manifest.
-3. Add automated checks for placeholder schemas being used for production-like records.
-4. Decide whether to install repo-local skills into the active Codex skills directory.
+1. Run the missing review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
+2. Add source-snapshot records and importer scripts for PubMed and ClinicalTrials.gov.
+3. Run an `extraction_refresh` pass on human D+Q papers to replace triage result placeholders with source-located endpoint/effect records.
+4. Add `exports/latest/` generation for sources, studies, findings, results, coverage status, and audit manifest.
+5. Decide whether to install repo-local skills into the active Codex skills directory.
 
 ## Change Log
 
+- 2026-06-21: Added maturity/provenance fields, semantic audit gates, candidate-completeness checking, and normalized the senolytics repair slice under the stricter process.
+- 2026-06-21: Added a senolytics coverage-repair slice with sources, studies, findings, outcomes, results, eligibility decisions, risk-of-bias triage, coverage assessment, and candidate-review ledger.
 - 2026-06-21: Tightened `outcome`, `result`, `eligibility_decision`, and `risk_of_bias` schemas and added reference-audit coverage for their links.
 - 2026-06-21: Added source ingestion rules and reference-integrity audit commands.
 - 2026-06-21: Added repo-local Codex skill sources for `hallmarks-research-run`, `evidence-extraction`, and `knowledge-base-audit`.

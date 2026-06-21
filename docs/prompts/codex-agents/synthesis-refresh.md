@@ -5,6 +5,7 @@ Read:
 - plan.md
 - docs/synthesis-rules.md
 - docs/agent-run-outputs.md
+- schemas/agent-run.codex-output.schema.json
 - schemas/agent-run.schema.json
 - schemas/synthesis-group.schema.json
 
@@ -19,4 +20,4 @@ Task:
 
 Final response:
 
-Return exactly one JSON object that validates against schemas/agent-run.schema.json. Use execution.surface = "codex_exec". Include pooling blockers in blocking_issues or next_actions.
+Return exactly one JSON object that validates against schemas/agent-run.codex-output.schema.json and schemas/agent-run.schema.json. Use execution.surface = "codex_exec". Include pooling blockers in blocking_issues or next_actions.

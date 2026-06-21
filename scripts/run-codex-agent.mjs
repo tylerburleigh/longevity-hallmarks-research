@@ -17,9 +17,12 @@ Options:
   --isolation <mode>               git_worktree | ci_runner | container | foreground_checkout | other. Default: git_worktree.
   --workdir <path>                 Working directory for Codex. Default: repository root.
   --log <path>                     JSONL event log path. Default: research/agent-runs/logs/<id>.jsonl.
-  --output-schema <path>           Default: schemas/agent-run.schema.json.
+  --output-schema <path>           Default: schemas/agent-run.codex-output.schema.json.
   --execute                        Run codex exec. Without this, print a dry-run plan.
   --no-ephemeral                   Persist Codex session files instead of using --ephemeral.
+  --post-export                    Run npm run export:latest after codex exec writes the final output.
+  --post-verify                    Run npm run verify:knowledge-base after codex exec and any post-export step.
+  --post-export-verify             Convenience option for --post-export --post-verify.
 `);
 }
 
@@ -29,9 +32,11 @@ function parseArgs(argv) {
     approvalPolicy: "never",
     isolation: "git_worktree",
     workdir: workspaceRoot,
-    outputSchema: "schemas/agent-run.schema.json",
+    outputSchema: "schemas/agent-run.codex-output.schema.json",
     execute: false,
-    ephemeral: true
+    ephemeral: true,
+    postExport: false,
+    postVerify: false
   };
 
   for (let index = 0; index < argv.length; index += 1) {
@@ -72,6 +77,16 @@ function parseArgs(argv) {
         break;
       case "--no-ephemeral":
         options.ephemeral = false;
+        break;
+      case "--post-export":
+        options.postExport = true;
+        break;
+      case "--post-verify":
+        options.postVerify = true;
+        break;
+      case "--post-export-verify":
+        options.postExport = true;
+        options.postVerify = true;
         break;
       case "--help":
       case "-h":
@@ -129,15 +144,19 @@ Coordinator metadata:
 - approval_policy: ${options.approvalPolicy}
 
 In the final JSON object, set execution.surface to "codex_exec", execution.isolation to the isolation mode above, execution.prompt_file to the prompt file above, execution.output_schema_path to the output schema path above, execution.output_path to the output path above, execution.jsonl_log_path to the JSONL log path above, execution.sandbox to the sandbox above, and execution.approval_policy to the approval policy above.`;
+  const outputInstruction = `Do not write the agent_run output path directly. Return the final JSON object as your final message; the wrapper writes output_path from that final message. Coordinator post-run export or verification steps run after codex exec exits when requested.`;
+  const fullPrompt = `${prompt}
+
+${outputInstruction}`;
   const command = [
     "codex",
+    "--ask-for-approval",
+    options.approvalPolicy,
     "exec",
     "--cd",
     options.workdir,
     "--sandbox",
     options.sandbox,
-    "--ask-for-approval",
-    options.approvalPolicy,
     "--json",
     "--output-schema",
     resolveRepoPath(options.outputSchema),
@@ -149,7 +168,7 @@ In the final JSON object, set execution.surface to "codex_exec", execution.isola
     command.push("--ephemeral");
   }
 
-  command.push(prompt);
+  command.push(fullPrompt);
   return command;
 }
 
@@ -177,6 +196,8 @@ async function writeCommandPlan(options, command) {
     isolation: options.isolation,
     workdir: options.workdir,
     execute: options.execute,
+    post_export: options.postExport,
+    post_verify: options.postVerify,
     command: redactPrompt(command)
   };
 
@@ -221,6 +242,74 @@ async function executeCommand(options, command) {
   });
 }
 
+async function appendLogEvent(options, event) {
+  await fs.mkdir(path.dirname(resolveRepoPath(options.log)), { recursive: true });
+  await fs.appendFile(resolveRepoPath(options.log), `${JSON.stringify(event)}\n`);
+}
+
+function runCoordinatorCommand(options, name, command, args) {
+  const startedAt = new Date().toISOString();
+
+  return new Promise((resolve, reject) => {
+    const child = spawn(command, args, {
+      cwd: options.workdir,
+      stdio: ["ignore", "pipe", "pipe"]
+    });
+    const stdoutChunks = [];
+    const stderrChunks = [];
+
+    child.stdout.on("data", (chunk) => {
+      stdoutChunks.push(chunk);
+    });
+    child.stderr.on("data", (chunk) => {
+      stderrChunks.push(chunk);
+    });
+
+    child.on("error", (error) => {
+      const event = {
+        type: "coordinator.command.failed",
+        name,
+        command: [command, ...args],
+        cwd: options.workdir,
+        started_at: startedAt,
+        completed_at: new Date().toISOString(),
+        error: error.message
+      };
+      appendLogEvent(options, event)
+        .then(() => {
+          process.stdout.write(`${JSON.stringify(event)}\n`);
+          reject(error);
+        })
+        .catch(reject);
+    });
+
+    child.on("close", (code) => {
+      const event = {
+        type: code === 0 ? "coordinator.command.completed" : "coordinator.command.failed",
+        name,
+        command: [command, ...args],
+        cwd: options.workdir,
+        started_at: startedAt,
+        completed_at: new Date().toISOString(),
+        exit_code: code,
+        stdout: Buffer.concat(stdoutChunks).toString("utf8"),
+        stderr: Buffer.concat(stderrChunks).toString("utf8")
+      };
+
+      appendLogEvent(options, event)
+        .then(() => {
+          process.stdout.write(`${JSON.stringify(event)}\n`);
+          if (code === 0) {
+            resolve();
+          } else {
+            reject(new Error(`${name} exited with code ${code}`));
+          }
+        })
+        .catch(reject);
+    });
+  });
+}
+
 async function main() {
   const options = parseArgs(process.argv.slice(2));
   await ensureParentDirectories(options);
@@ -234,6 +323,12 @@ async function main() {
   }
 
   await executeCommand(options, command);
+  if (options.postExport) {
+    await runCoordinatorCommand(options, "post_export", "npm", ["run", "export:latest"]);
+  }
+  if (options.postVerify) {
+    await runCoordinatorCommand(options, "post_verify", "npm", ["run", "verify:knowledge-base"]);
+  }
   console.log(`Codex worker output written to ${options.output}.`);
 }
 

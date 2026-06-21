@@ -37,13 +37,23 @@ By default, the wrapper writes a dry-run command plan under `research/agent-runs
 The wrapper builds a `codex exec` command with:
 
 - `--json` for event streams
-- `--output-schema schemas/agent-run.schema.json`
+- `--output-schema schemas/agent-run.codex-output.schema.json`
 - `-o <agent-run-output.json>` for the final structured output
 - `--sandbox workspace-write` by default
-- `--ask-for-approval never` by default
+- top-level `--ask-for-approval never` by default
 - `--ephemeral` by default
 
+The worker returns the final JSON object as its final message. The wrapper writes that object to `--output`; the worker should not write the `agent_run` output path directly.
+
 Use `--sandbox read-only` for search, screening, review, and audit-only runs that should not edit files. Use `workspace-write` for extraction or synthesis workers that write candidate records. Use `danger-full-access` only in an externally isolated runner.
+
+For release/export runs or any run whose persisted `agent_run` should be included in current export manifests, add:
+
+```bash
+--post-export-verify
+```
+
+This runs `npm run export:latest` and `npm run verify:knowledge-base` after `codex exec` has written the final `agent_run` JSON. The post-step results are appended to the worker JSONL log as coordinator events.
 
 ## Isolation
 
@@ -57,7 +67,10 @@ Worker runs that can modify canonical files should not share a dirty foreground 
 
 ## Output Contract
 
-Every worker final output must validate against `schemas/agent-run.schema.json`.
+Every worker final output must pass two schema gates:
+
+- `schemas/agent-run.codex-output.schema.json` constrains `codex exec --output-schema`.
+- `schemas/agent-run.schema.json` is the canonical repository validator used by `npm run validate:records`.
 
 When `canonical_write_policy` is `candidate_change_required`, the output must include:
 
@@ -88,9 +101,7 @@ npm run audit:references
 For execution:
 
 ```bash
-npm run agent:codex -- ... --execute
-npm run export:latest
-npm run verify:knowledge-base
+npm run agent:codex -- ... --execute --post-export-verify
 ```
 
 ## Promotion Boundary

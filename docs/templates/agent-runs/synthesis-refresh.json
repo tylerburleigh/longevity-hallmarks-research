@@ -19,7 +19,7 @@
     "surface": "codex_exec",
     "isolation": "git_worktree",
     "prompt_file": "docs/prompts/codex-agents/synthesis-refresh.md",
-    "output_schema_path": "schemas/agent-run.schema.json",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
     "output_path": "research/agent-runs/replace-with-synthesis-run-id.json",
     "jsonl_log_path": "research/agent-runs/logs/replace-with-synthesis-run-id.jsonl",
     "sandbox": "workspace-write",

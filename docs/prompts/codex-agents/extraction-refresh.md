@@ -7,6 +7,7 @@ Read:
 - docs/agent-run-outputs.md
 - docs/extraction-rules.md
 - docs/source-snapshot-importers.md
+- schemas/agent-run.codex-output.schema.json
 - schemas/agent-run.schema.json
 
 Task:
@@ -20,4 +21,4 @@ Task:
 
 Final response:
 
-Return exactly one JSON object that validates against schemas/agent-run.schema.json. Use execution.surface = "codex_exec". Include blocking_issues when extraction remains incomplete.
+Return exactly one JSON object that validates against schemas/agent-run.codex-output.schema.json and schemas/agent-run.schema.json. Use execution.surface = "codex_exec". Include blocking_issues when extraction remains incomplete.

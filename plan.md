@@ -96,6 +96,8 @@ As of 2026-06-21, the repository has an initial JSON-file-backed scaffold:
 - Added `agent_run` output schema support and a gated `promote:candidate` command for accepted/applied candidate lifecycle transitions.
 - Added concrete agent-run templates and the first D+Q bone extraction-refresh agent-run record.
 - Added Codex CLI worker scaffolding with `npm run agent:codex`, prompt templates, execution metadata, and `codex_exec` path audits.
+- Smoke-tested a release/export `codex exec` worker in a disposable Git worktree.
+- Added a Codex structured-output schema for CLI generation and wrapper-owned post-output export/verification gates.
 
 ## Target Architecture
 
@@ -384,6 +386,9 @@ Tasks:
 - [x] Add concrete agent-run templates for common modes.
 - [x] Add Codex CLI worker prompt templates and a wrapper for `codex exec` runs.
 - [x] Audit `codex_exec` records for valid prompt, schema, and output paths.
+- [x] Add a CLI-compatible structured-output schema for `codex exec --output-schema`.
+- [x] Add wrapper-owned post-output export and verification gates.
+- [x] Smoke-test a release/export worker in an isolated worktree.
 - [ ] Add triage state generation.
 - [ ] Add templates for research sessions.
 
@@ -424,7 +429,7 @@ Exit criteria:
 
 ## Immediate Next Actions
 
-1. Exercise one bounded `codex exec` worker run in a disposable worktree using `npm run agent:codex -- ... --execute`.
+1. Run one candidate-producing `codex exec` extraction worker in a disposable worktree using `--post-export-verify`.
 2. Generate endpoint-specific synthesis groups for D+Q bone endpoints so each group has one compatible endpoint family and an explicit pooling decision.
 3. Finish full publication/table extraction for the D+Q bone RCT, including subgroup and event-specific safety details.
 4. Run extraction-refresh passes on the remaining human D+Q papers: DKD, IPF, and AD-risk cognition/mobility.
@@ -441,6 +446,7 @@ Exit criteria:
 - 2026-06-21: Added agent-run output schema, agent-run reference audits, and a promotion command that blocks accepted/applied candidate transitions until review gates pass.
 - 2026-06-21: Added agent-run templates and the first D+Q bone extraction-refresh agent-run record.
 - 2026-06-21: Added Codex CLI worker scaffolding with `agent:codex`, worker prompt templates, execution metadata, and path audits for `codex_exec` runs.
+- 2026-06-21: Smoke-tested an isolated release/export `codex exec` worker and added CLI-compatible structured output plus post-output export/verify wrapper gates.
 - 2026-06-21: Replaced deprecated non-agentic vocabulary with agent-supervision states, added an agentic process audit, and introduced synthesis-group compatibility records and exports.
 - 2026-06-21: Added in-review candidate review-lane enforcement and draft coverage-repair review records so missing review work is explicit.
 - 2026-06-21: Added source snapshots and registry-extracted outcome/result records for the D+Q postmenopausal bone RCT, including CTX, P1NP, BMD, SASP, and aggregate adverse events.

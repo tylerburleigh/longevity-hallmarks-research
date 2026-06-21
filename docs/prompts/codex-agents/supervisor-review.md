@@ -6,6 +6,7 @@ Read:
 - docs/research-runbook.md
 - docs/agent-run-outputs.md
 - docs/audit-and-release.md
+- schemas/agent-run.codex-output.schema.json
 - schemas/agent-run.schema.json
 - schemas/evidence-review.schema.json
 
@@ -20,4 +21,4 @@ Task:
 
 Final response:
 
-Return exactly one JSON object that validates against schemas/agent-run.schema.json. Use execution.surface = "codex_exec". Include unresolved review blockers in blocking_issues.
+Return exactly one JSON object that validates against schemas/agent-run.codex-output.schema.json and schemas/agent-run.schema.json. Use execution.surface = "codex_exec". Include unresolved review blockers in blocking_issues.

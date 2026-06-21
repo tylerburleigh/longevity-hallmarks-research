@@ -5,6 +5,7 @@ Read:
 - docs/exports.md
 - docs/audit-and-release.md
 - docs/agent-run-outputs.md
+- schemas/agent-run.codex-output.schema.json
 - schemas/agent-run.schema.json
 
 Task:
@@ -17,4 +18,4 @@ Task:
 
 Final response:
 
-Return exactly one JSON object that validates against schemas/agent-run.schema.json. Use canonical_write_policy = "no_canonical_writes" and execution.surface = "codex_exec".
+Return exactly one JSON object that validates against schemas/agent-run.codex-output.schema.json and schemas/agent-run.schema.json. Use canonical_write_policy = "no_canonical_writes" and execution.surface = "codex_exec".

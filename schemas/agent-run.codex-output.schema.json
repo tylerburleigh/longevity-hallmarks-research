@@ -1,0 +1,373 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./agent-run.codex-output.schema.json",
+  "title": "Codex CLI agent run structured output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "id",
+    "agent_role",
+    "agent_id",
+    "mode",
+    "started_at",
+    "completed_at",
+    "status",
+    "scope",
+    "canonical_write_policy",
+    "execution",
+    "inputs",
+    "outputs",
+    "quality_checks",
+    "blocking_issues",
+    "next_actions"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "record_type": {
+      "type": "string",
+      "const": "agent_run"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+[a-z0-9._-]*$"
+    },
+    "agent_role": {
+      "type": "string",
+      "enum": [
+        "triage_agent",
+        "search_agent",
+        "screening_agent",
+        "dedupe_linker_agent",
+        "extraction_agent",
+        "trial_registry_agent",
+        "classification_agent",
+        "risk_of_bias_agent",
+        "synthesis_agent",
+        "review_agent",
+        "supervisor_agent",
+        "self_healing_agent",
+        "release_agent"
+      ]
+    },
+    "agent_id": {
+      "type": "string"
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "bootstrap",
+        "surveillance",
+        "coverage_repair",
+        "extraction_refresh",
+        "synthesis_refresh",
+        "agent_directed"
+      ]
+    },
+    "started_at": {
+      "type": "string"
+    },
+    "completed_at": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "succeeded",
+        "partial",
+        "failed",
+        "blocked"
+      ]
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "question",
+        "hallmark_ids",
+        "track_ids",
+        "intervention_ids"
+      ],
+      "properties": {
+        "question": {
+          "type": "string"
+        },
+        "hallmark_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+[a-z0-9._-]*$"
+          }
+        },
+        "track_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+[a-z0-9._-]*$"
+          }
+        },
+        "intervention_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+[a-z0-9._-]*$"
+          }
+        }
+      }
+    },
+    "canonical_write_policy": {
+      "type": "string",
+      "enum": [
+        "no_canonical_writes",
+        "candidate_change_required"
+      ]
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "surface",
+        "isolation",
+        "workspace_path",
+        "prompt_file",
+        "output_schema_path",
+        "output_path",
+        "jsonl_log_path",
+        "sandbox",
+        "approval_policy"
+      ],
+      "properties": {
+        "surface": {
+          "type": "string",
+          "enum": [
+            "interactive_session",
+            "codex_exec",
+            "codex_cloud",
+            "github_action",
+            "other"
+          ]
+        },
+        "isolation": {
+          "type": "string",
+          "enum": [
+            "foreground_checkout",
+            "git_worktree",
+            "codex_managed_worktree",
+            "ci_runner",
+            "container",
+            "other"
+          ]
+        },
+        "workspace_path": {
+          "type": "string"
+        },
+        "prompt_file": {
+          "type": "string"
+        },
+        "output_schema_path": {
+          "type": "string"
+        },
+        "output_path": {
+          "type": "string"
+        },
+        "jsonl_log_path": {
+          "type": "string"
+        },
+        "sandbox": {
+          "type": "string",
+          "enum": [
+            "read-only",
+            "workspace-write",
+            "danger-full-access",
+            "not_applicable"
+          ]
+        },
+        "approval_policy": {
+          "type": "string",
+          "enum": [
+            "never",
+            "on-request",
+            "untrusted",
+            "not_applicable"
+          ]
+        }
+      }
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "input_type",
+          "reference",
+          "summary"
+        ],
+        "properties": {
+          "input_type": {
+            "type": "string",
+            "enum": [
+              "user_request",
+              "plan_item",
+              "coverage_gap",
+              "candidate_change",
+              "source_snapshot",
+              "record",
+              "export",
+              "other"
+            ]
+          },
+          "reference": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "outputs": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "summary",
+            "generated_files",
+            "export_paths"
+          ],
+          "properties": {
+            "summary": {
+              "type": "string"
+            },
+            "generated_files": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "export_paths": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "summary",
+            "candidate_change_id",
+            "proposed_records",
+            "generated_files",
+            "export_paths"
+          ],
+          "properties": {
+            "summary": {
+              "type": "string"
+            },
+            "candidate_change_id": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+[a-z0-9._-]*$"
+            },
+            "proposed_records": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "record_type",
+                  "record_id",
+                  "path",
+                  "change_type",
+                  "rationale"
+                ],
+                "properties": {
+                  "record_type": {
+                    "type": "string"
+                  },
+                  "record_id": {
+                    "type": "string",
+                    "pattern": "^[a-z0-9]+[a-z0-9._-]*$"
+                  },
+                  "path": {
+                    "type": "string"
+                  },
+                  "change_type": {
+                    "type": "string",
+                    "enum": [
+                      "create",
+                      "update",
+                      "delete"
+                    ]
+                  },
+                  "rationale": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "generated_files": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "export_paths": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "quality_checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "check_name",
+          "status",
+          "summary"
+        ],
+        "properties": {
+          "check_name": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "passed",
+              "failed",
+              "not_run"
+            ]
+          },
+          "summary": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "blocking_issues": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "next_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -5,10 +5,13 @@ Every release artifact should be reproducible from canonical records.
 Before release:
 
 ```bash
+npm run export:latest
 npm run verify:knowledge-base
 ```
 
 `verify:knowledge-base` runs schema validation and reference-integrity checks.
+
+`export:latest` regenerates the consumer-facing files in `exports/latest/`, including JSONL record exports, coverage status, evidence-map view, and audit manifest.
 
 Current audit coverage:
 

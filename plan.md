@@ -319,6 +319,7 @@ Tasks:
 - [x] Add source-snapshot records so metadata imports have durable raw-source state for the first extraction-refresh pass.
 - [x] Add importer scripts for PubMed and ClinicalTrials.gov metadata rather than relying on ad hoc agent entry.
 - [x] Add snapshot diffing so refreshed source payloads can trigger review.
+- [x] Add first `exports/latest/` consumer contract with maturity-filtered result exports, coverage status, evidence-map view, and audit manifest.
 - [ ] Add a promotion command that moves records from generated/candidate state to accepted state only after review gates pass.
 
 Exit criteria:
@@ -333,16 +334,18 @@ Goal: produce useful artifacts for downstream consumers.
 
 Tasks:
 
-- Add JSONL exports for sources, studies, findings, and results.
-- Add an evidence-map export.
-- Add coverage-status export.
-- Add audit manifest export.
-- Add provenance checks for every exported claim.
+- [x] Add JSONL exports for sources, studies, findings, and results.
+- [x] Add a generated evidence-map export.
+- [x] Add coverage-status export.
+- [x] Add audit manifest export.
+- [ ] Add provenance-depth checks for every exported claim.
+- [ ] Add an accepted-record export once promotion gates exist.
 
 Exit criteria:
 
-- `exports/latest/` can be regenerated from canonical records.
-- Export files include enough IDs and provenance links to support downstream use.
+- [x] `exports/latest/` can be regenerated from canonical records.
+- [x] Export files include enough IDs and provenance links to support downstream use.
+- [ ] Export audit fails when consumer-facing records lack required provenance depth.
 
 ### Phase 4: Agent-Orchestrated Runs
 
@@ -392,11 +395,11 @@ Exit criteria:
 
 ## Immediate Next Actions
 
-1. Add a promotion command that moves candidate records to accepted/applied only when required review lanes are accepting and no open major findings remain.
-2. Finish full publication/table extraction for the D+Q bone RCT, including subgroup and event-specific safety details.
-3. Run extraction-refresh passes on the remaining human D+Q papers: DKD, IPF, and AD-risk cognition/mobility.
-4. Run the missing review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
-5. Add `exports/latest/` generation for maturity-filtered sources, studies, findings, results, coverage status, and audit manifest.
+1. Add provenance-depth checks for exported claims so consumer files cannot silently expose weakly located evidence.
+2. Add a promotion command that moves candidate records to accepted/applied only when required review lanes are accepting and no open major findings remain.
+3. Finish full publication/table extraction for the D+Q bone RCT, including subgroup and event-specific safety details.
+4. Run extraction-refresh passes on the remaining human D+Q papers: DKD, IPF, and AD-risk cognition/mobility.
+5. Run the missing review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
 6. Decide whether to install repo-local skills into the active Codex skills directory.
 
 ## Change Log
@@ -404,6 +407,7 @@ Exit criteria:
 - 2026-06-21: Added maturity/provenance fields, semantic audit gates, candidate-completeness checking, and normalized the senolytics repair slice under the stricter process.
 - 2026-06-21: Added a senolytics coverage-repair slice with sources, studies, findings, outcomes, results, eligibility decisions, risk-of-bias triage, coverage assessment, and candidate-review ledger.
 - 2026-06-21: Added source snapshots and registry-extracted outcome/result records for the D+Q postmenopausal bone RCT, including CTX, P1NP, BMD, SASP, and aggregate adverse events.
+- 2026-06-21: Added consumer-facing `exports/latest/` generation with JSONL records, maturity-filtered result splits, coverage status, evidence-map view, and hash manifest.
 - 2026-06-21: Added PubMed and ClinicalTrials.gov source-snapshot importer, refresh, and diff scripts plus importer workflow documentation.
 - 2026-06-21: Tightened `outcome`, `result`, `eligibility_decision`, and `risk_of_bias` schemas and added reference-audit coverage for their links.
 - 2026-06-21: Added source ingestion rules and reference-integrity audit commands.

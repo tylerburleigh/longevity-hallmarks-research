@@ -1,0 +1,1673 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_map",
+  "id": "latest-consumer-evidence-map",
+  "generated_at": "2026-06-21T16:51:51.796Z",
+  "scope": {
+    "description": "Generated consumer evidence graph over canonical source, study, finding, outcome, result, and coverage-assessment records.",
+    "record_types": [
+      "source",
+      "study",
+      "finding",
+      "outcome",
+      "result",
+      "coverage_assessment"
+    ]
+  },
+  "node_counts": {
+    "coverage_assessment": 2,
+    "finding": 9,
+    "outcome": 14,
+    "result": 14,
+    "source": 10,
+    "study": 9
+  },
+  "maturity_counts": {
+    "metadata_imported": 18,
+    "registry_extracted": 16,
+    "screened": 6,
+    "triage_summary": 29
+  },
+  "nodes": [
+    {
+      "record_type": "coverage_assessment",
+      "id": "senolytics-coverage-repair-2026-06-21",
+      "name": "Senolytics coverage repair assessment",
+      "maturity_status": "triage_summary"
+    },
+    {
+      "record_type": "coverage_assessment",
+      "id": "senolytics-scaffold-coverage-2026-06-21",
+      "name": "Senolytics Scaffold Coverage Assessment",
+      "maturity_status": "triage_summary"
+    },
+    {
+      "record_type": "finding",
+      "id": "dq-ad-risk-pilot-cognition-mobility-signal",
+      "name": "D+Q AD-risk pilot provides feasibility-oriented cognition and mobility signals",
+      "maturity_status": "triage_summary",
+      "evidence_tier": "human_functional",
+      "direction": "mixed",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "chronic_inflammation"
+      ]
+    },
+    {
+      "record_type": "finding",
+      "id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "name": "D+Q bone RCT needs primary-null and subgroup-signal separation",
+      "maturity_status": "registry_extracted",
+      "evidence_tier": "human_biomarker",
+      "direction": "mixed",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "chronic_inflammation",
+        "stem_cell_exhaustion"
+      ]
+    },
+    {
+      "record_type": "finding",
+      "id": "dq-dkd-human-senescent-cell-biomarker-signal",
+      "name": "D+Q diabetic kidney disease pilot reported decreased senescent-cell biomarkers",
+      "maturity_status": "triage_summary",
+      "evidence_tier": "human_biomarker",
+      "direction": "positive",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "chronic_inflammation"
+      ]
+    },
+    {
+      "record_type": "finding",
+      "id": "dq-ipf-randomized-feasibility-tolerability-mixed",
+      "name": "D+Q IPF randomized pilot primarily supports feasibility and tolerability boundaries",
+      "maturity_status": "triage_summary",
+      "evidence_tier": "human_functional",
+      "direction": "mixed",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "chronic_inflammation"
+      ]
+    },
+    {
+      "record_type": "finding",
+      "id": "dq-old-mice-healthspan-lifespan-positive",
+      "name": "Intermittent D+Q improved physical function and post-treatment survival in old mice",
+      "maturity_status": "triage_summary",
+      "evidence_tier": "animal",
+      "direction": "positive",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "chronic_inflammation"
+      ]
+    },
+    {
+      "record_type": "finding",
+      "id": "dq-senolytic-drug-discovery-preclinical",
+      "name": "D+Q discovery work showed senescent-cell clearance and preclinical functional signals",
+      "maturity_status": "triage_summary",
+      "evidence_tier": "animal",
+      "direction": "positive",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "chronic_inflammation"
+      ]
+    },
+    {
+      "record_type": "finding",
+      "id": "dq-stomp-ad-active-no-posted-results",
+      "name": "SToMP-AD D+Q phase 2 trial is active without posted results",
+      "maturity_status": "metadata_imported",
+      "evidence_tier": "registry",
+      "direction": "inconclusive",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "chronic_inflammation"
+      ]
+    },
+    {
+      "record_type": "finding",
+      "id": "fisetin-vascular-active-no-posted-results",
+      "name": "Fisetin vascular function trial is active without posted results",
+      "maturity_status": "metadata_imported",
+      "evidence_tier": "registry",
+      "direction": "inconclusive",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "chronic_inflammation"
+      ]
+    },
+    {
+      "record_type": "finding",
+      "id": "senolytic-translation-review-boundary",
+      "name": "Senolytic translation review supports mechanism and boundary framing, not pooled efficacy",
+      "maturity_status": "triage_summary",
+      "evidence_tier": "review",
+      "direction": "not_applicable",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "chronic_inflammation"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "id": "dq-ad-risk-cognition-mobility",
+      "name": "Cognition and mobility in older adults at Alzheimer's disease risk",
+      "maturity_status": "triage_summary",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "chronic_inflammation"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "id": "dq-bone-adverse-events-20wk",
+      "name": "20-week adverse events",
+      "maturity_status": "registry_extracted",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "id": "dq-bone-bmd-20wk",
+      "name": "20-week bone mineral density percent change",
+      "maturity_status": "registry_extracted",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "stem_cell_exhaustion"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "id": "dq-bone-ctx-20wk",
+      "name": "20-week CTx percent change",
+      "maturity_status": "registry_extracted",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "stem_cell_exhaustion"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "id": "dq-bone-p1np-20wk",
+      "name": "20-week P1NP percent change",
+      "maturity_status": "registry_extracted",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "stem_cell_exhaustion"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "id": "dq-bone-p1np-2wk",
+      "name": "2-week P1NP percent change",
+      "maturity_status": "registry_extracted",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "stem_cell_exhaustion"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "id": "dq-bone-p1np-4wk",
+      "name": "4-week P1NP percent change",
+      "maturity_status": "registry_extracted",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "stem_cell_exhaustion"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "id": "dq-bone-sasp-2wk",
+      "name": "2-week plasma SASP percent change",
+      "maturity_status": "registry_extracted",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "chronic_inflammation"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "id": "dq-bone-turnover-marker",
+      "name": "Bone turnover marker outcome",
+      "maturity_status": "triage_summary",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "stem_cell_exhaustion"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "id": "dq-dkd-senescent-cell-biomarkers",
+      "name": "Senescent-cell and SASP-related biomarkers in diabetic kidney disease",
+      "maturity_status": "triage_summary",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "chronic_inflammation"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "id": "dq-ipf-feasibility-tolerability",
+      "name": "Feasibility and tolerability in idiopathic pulmonary fibrosis",
+      "maturity_status": "triage_summary",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "chronic_inflammation"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "id": "dq-old-mouse-post-treatment-survival",
+      "name": "Post-treatment survival in old mice",
+      "maturity_status": "triage_summary",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "id": "dq-stomp-ad-registry-status",
+      "name": "SToMP-AD registry result status",
+      "maturity_status": "metadata_imported",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "id": "fisetin-vascular-registry-status",
+      "name": "Fisetin vascular function registry result status",
+      "maturity_status": "metadata_imported",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence"
+      ]
+    },
+    {
+      "record_type": "result",
+      "id": "dq-ad-risk-cognition-mobility-mixed",
+      "name": "D+Q AD-risk cognition and mobility exploratory result",
+      "maturity_status": "triage_summary",
+      "evidence_tier": "human_functional",
+      "direction": "mixed"
+    },
+    {
+      "record_type": "result",
+      "id": "dq-bone-adverse-events-20wk-mixed",
+      "name": "D+Q 20-week adverse-event aggregate result",
+      "maturity_status": "registry_extracted",
+      "evidence_tier": "clinical_or_mortality",
+      "direction": "mixed"
+    },
+    {
+      "record_type": "result",
+      "id": "dq-bone-bmd-20wk-inconclusive",
+      "name": "D+Q 20-week BMD descriptive result",
+      "maturity_status": "registry_extracted",
+      "evidence_tier": "human_biomarker",
+      "direction": "inconclusive"
+    },
+    {
+      "record_type": "result",
+      "id": "dq-bone-ctx-20wk-null",
+      "name": "D+Q 20-week CTx primary outcome null result",
+      "maturity_status": "registry_extracted",
+      "evidence_tier": "human_biomarker",
+      "direction": "null"
+    },
+    {
+      "record_type": "result",
+      "id": "dq-bone-p1np-20wk-null",
+      "name": "D+Q 20-week P1NP null secondary result",
+      "maturity_status": "registry_extracted",
+      "evidence_tier": "human_biomarker",
+      "direction": "null"
+    },
+    {
+      "record_type": "result",
+      "id": "dq-bone-p1np-2wk-positive",
+      "name": "D+Q 2-week P1NP positive secondary result",
+      "maturity_status": "registry_extracted",
+      "evidence_tier": "human_biomarker",
+      "direction": "positive"
+    },
+    {
+      "record_type": "result",
+      "id": "dq-bone-p1np-4wk-positive",
+      "name": "D+Q 4-week P1NP positive secondary result",
+      "maturity_status": "registry_extracted",
+      "evidence_tier": "human_biomarker",
+      "direction": "positive"
+    },
+    {
+      "record_type": "result",
+      "id": "dq-bone-sasp-2wk-null",
+      "name": "D+Q 2-week SASP null result",
+      "maturity_status": "registry_extracted",
+      "evidence_tier": "human_biomarker",
+      "direction": "null"
+    },
+    {
+      "record_type": "result",
+      "id": "dq-bone-turnover-mixed",
+      "name": "D+Q postmenopausal bone trial mixed biomarker result",
+      "maturity_status": "triage_summary",
+      "evidence_tier": "human_biomarker",
+      "direction": "mixed"
+    },
+    {
+      "record_type": "result",
+      "id": "dq-dkd-biomarker-positive",
+      "name": "D+Q diabetic kidney disease senescence biomarker result",
+      "maturity_status": "triage_summary",
+      "evidence_tier": "human_biomarker",
+      "direction": "positive"
+    },
+    {
+      "record_type": "result",
+      "id": "dq-ipf-tolerability-mixed",
+      "name": "D+Q IPF feasibility and tolerability mixed result",
+      "maturity_status": "triage_summary",
+      "evidence_tier": "human_functional",
+      "direction": "mixed"
+    },
+    {
+      "record_type": "result",
+      "id": "dq-old-mouse-survival-positive",
+      "name": "D+Q old mouse post-treatment survival positive result",
+      "maturity_status": "triage_summary",
+      "evidence_tier": "animal",
+      "direction": "positive"
+    },
+    {
+      "record_type": "result",
+      "id": "dq-stomp-ad-no-posted-results",
+      "name": "SToMP-AD no posted results",
+      "maturity_status": "metadata_imported",
+      "evidence_tier": "registry",
+      "direction": "inconclusive"
+    },
+    {
+      "record_type": "result",
+      "id": "fisetin-vascular-no-posted-results",
+      "name": "Fisetin vascular trial no posted results",
+      "maturity_status": "metadata_imported",
+      "evidence_tier": "registry",
+      "direction": "inconclusive"
+    },
+    {
+      "record_type": "source",
+      "id": "nct-04313634",
+      "name": "Targeting Cellular Senescence With Senolytics to Improve Skeletal Health in Older Humans",
+      "maturity_status": "metadata_imported"
+    },
+    {
+      "record_type": "source",
+      "id": "nct-04685590",
+      "name": "Senolytic Therapy to Modulate the Progression of Alzheimer's Disease (SToMP-AD) Study",
+      "maturity_status": "metadata_imported"
+    },
+    {
+      "record_type": "source",
+      "id": "nct-06133634",
+      "name": "Fisetin to Improve Vascular Function in Older Adults",
+      "maturity_status": "metadata_imported"
+    },
+    {
+      "record_type": "source",
+      "id": "pmid-25754370",
+      "name": "The Achilles' heel of senescent cells: from transcriptome to senolytic drugs",
+      "maturity_status": "metadata_imported"
+    },
+    {
+      "record_type": "source",
+      "id": "pmid-29988130",
+      "name": "Senolytics improve physical function and increase lifespan in old age",
+      "maturity_status": "metadata_imported"
+    },
+    {
+      "record_type": "source",
+      "id": "pmid-31542391",
+      "name": "Senolytics decrease senescent cells in humans: Preliminary report from a clinical trial of dasatinib plus quercetin in individuals with diabetic kidney disease",
+      "maturity_status": "metadata_imported"
+    },
+    {
+      "record_type": "source",
+      "id": "pmid-32686219",
+      "name": "Senolytic drugs: from discovery to translation",
+      "maturity_status": "metadata_imported"
+    },
+    {
+      "record_type": "source",
+      "id": "pmid-36857968",
+      "name": "Senolytics dasatinib and quercetin in idiopathic pulmonary fibrosis: Results of a phase I, single-blind, single-center, randomized, placebo-controlled pilot trial on feasibility and tolerability",
+      "maturity_status": "metadata_imported"
+    },
+    {
+      "record_type": "source",
+      "id": "pmid-38956196",
+      "name": "Effects of intermittent senolytic therapy on bone metabolism in postmenopausal women: a phase 2 randomized controlled trial",
+      "maturity_status": "metadata_imported"
+    },
+    {
+      "record_type": "source",
+      "id": "pmid-40010154",
+      "name": "A pilot study of senolytics to improve cognition and mobility in older adults at risk for Alzheimer's disease",
+      "maturity_status": "metadata_imported"
+    },
+    {
+      "record_type": "study",
+      "id": "dq-ad-risk-cognition-mobility-pilot",
+      "name": "D+Q cognition and mobility pilot in older adults at risk for Alzheimer's disease",
+      "maturity_status": "triage_summary",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "chronic_inflammation"
+      ]
+    },
+    {
+      "record_type": "study",
+      "id": "dq-diabetic-kidney-disease-pilot",
+      "name": "D+Q diabetic kidney disease human senescent-cell biomarker pilot",
+      "maturity_status": "triage_summary",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "chronic_inflammation"
+      ]
+    },
+    {
+      "record_type": "study",
+      "id": "dq-ipf-randomized-pilot",
+      "name": "D+Q idiopathic pulmonary fibrosis randomized feasibility and tolerability pilot",
+      "maturity_status": "triage_summary",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "chronic_inflammation"
+      ]
+    },
+    {
+      "record_type": "study",
+      "id": "dq-old-mouse-healthspan-lifespan",
+      "name": "Intermittent D+Q healthspan and lifespan testing in old mice",
+      "maturity_status": "triage_summary",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "chronic_inflammation"
+      ]
+    },
+    {
+      "record_type": "study",
+      "id": "dq-postmenopausal-bone-rct",
+      "name": "D+Q postmenopausal women bone metabolism phase 2 randomized trial",
+      "maturity_status": "registry_extracted",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "chronic_inflammation",
+        "stem_cell_exhaustion"
+      ]
+    },
+    {
+      "record_type": "study",
+      "id": "dq-stomp-ad-phase2-registry",
+      "name": "SToMP-AD D+Q phase 2 registry record",
+      "maturity_status": "metadata_imported",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "chronic_inflammation"
+      ]
+    },
+    {
+      "record_type": "study",
+      "id": "fisetin-vascular-function-older-adults-registry",
+      "name": "Fisetin vascular function trial in older adults registry record",
+      "maturity_status": "metadata_imported",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "chronic_inflammation"
+      ]
+    },
+    {
+      "record_type": "study",
+      "id": "senolytic-drugs-translation-review",
+      "name": "Senolytic drugs discovery-to-translation review",
+      "maturity_status": "triage_summary",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "chronic_inflammation"
+      ]
+    },
+    {
+      "record_type": "study",
+      "id": "zhu-senolytic-drug-discovery",
+      "name": "Senolytic drug discovery from senescent-cell pro-survival networks",
+      "maturity_status": "triage_summary",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "chronic_inflammation"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from_type": "coverage_assessment",
+      "from_id": "senolytics-coverage-repair-2026-06-21",
+      "to_type": "finding",
+      "to_id": "dq-ad-risk-pilot-cognition-mobility-signal",
+      "relationship": "covers_finding"
+    },
+    {
+      "from_type": "coverage_assessment",
+      "from_id": "senolytics-coverage-repair-2026-06-21",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "covers_finding"
+    },
+    {
+      "from_type": "coverage_assessment",
+      "from_id": "senolytics-coverage-repair-2026-06-21",
+      "to_type": "finding",
+      "to_id": "dq-dkd-human-senescent-cell-biomarker-signal",
+      "relationship": "covers_finding"
+    },
+    {
+      "from_type": "coverage_assessment",
+      "from_id": "senolytics-coverage-repair-2026-06-21",
+      "to_type": "finding",
+      "to_id": "dq-ipf-randomized-feasibility-tolerability-mixed",
+      "relationship": "covers_finding"
+    },
+    {
+      "from_type": "coverage_assessment",
+      "from_id": "senolytics-coverage-repair-2026-06-21",
+      "to_type": "finding",
+      "to_id": "dq-old-mice-healthspan-lifespan-positive",
+      "relationship": "covers_finding"
+    },
+    {
+      "from_type": "coverage_assessment",
+      "from_id": "senolytics-coverage-repair-2026-06-21",
+      "to_type": "finding",
+      "to_id": "dq-senolytic-drug-discovery-preclinical",
+      "relationship": "covers_finding"
+    },
+    {
+      "from_type": "coverage_assessment",
+      "from_id": "senolytics-coverage-repair-2026-06-21",
+      "to_type": "finding",
+      "to_id": "dq-stomp-ad-active-no-posted-results",
+      "relationship": "covers_finding"
+    },
+    {
+      "from_type": "coverage_assessment",
+      "from_id": "senolytics-coverage-repair-2026-06-21",
+      "to_type": "finding",
+      "to_id": "fisetin-vascular-active-no-posted-results",
+      "relationship": "covers_finding"
+    },
+    {
+      "from_type": "coverage_assessment",
+      "from_id": "senolytics-coverage-repair-2026-06-21",
+      "to_type": "finding",
+      "to_id": "senolytic-translation-review-boundary",
+      "relationship": "covers_finding"
+    },
+    {
+      "from_type": "coverage_assessment",
+      "from_id": "senolytics-coverage-repair-2026-06-21",
+      "to_type": "source",
+      "to_id": "nct-04685590",
+      "relationship": "covers_source"
+    },
+    {
+      "from_type": "coverage_assessment",
+      "from_id": "senolytics-coverage-repair-2026-06-21",
+      "to_type": "source",
+      "to_id": "nct-06133634",
+      "relationship": "covers_source"
+    },
+    {
+      "from_type": "coverage_assessment",
+      "from_id": "senolytics-coverage-repair-2026-06-21",
+      "to_type": "source",
+      "to_id": "pmid-25754370",
+      "relationship": "covers_source"
+    },
+    {
+      "from_type": "coverage_assessment",
+      "from_id": "senolytics-coverage-repair-2026-06-21",
+      "to_type": "source",
+      "to_id": "pmid-29988130",
+      "relationship": "covers_source"
+    },
+    {
+      "from_type": "coverage_assessment",
+      "from_id": "senolytics-coverage-repair-2026-06-21",
+      "to_type": "source",
+      "to_id": "pmid-31542391",
+      "relationship": "covers_source"
+    },
+    {
+      "from_type": "coverage_assessment",
+      "from_id": "senolytics-coverage-repair-2026-06-21",
+      "to_type": "source",
+      "to_id": "pmid-32686219",
+      "relationship": "covers_source"
+    },
+    {
+      "from_type": "coverage_assessment",
+      "from_id": "senolytics-coverage-repair-2026-06-21",
+      "to_type": "source",
+      "to_id": "pmid-36857968",
+      "relationship": "covers_source"
+    },
+    {
+      "from_type": "coverage_assessment",
+      "from_id": "senolytics-coverage-repair-2026-06-21",
+      "to_type": "source",
+      "to_id": "pmid-38956196",
+      "relationship": "covers_source"
+    },
+    {
+      "from_type": "coverage_assessment",
+      "from_id": "senolytics-coverage-repair-2026-06-21",
+      "to_type": "source",
+      "to_id": "pmid-40010154",
+      "relationship": "covers_source"
+    },
+    {
+      "from_type": "coverage_assessment",
+      "from_id": "senolytics-scaffold-coverage-2026-06-21",
+      "to_type": "finding",
+      "to_id": "dq-senolytic-drug-discovery-preclinical",
+      "relationship": "covers_finding"
+    },
+    {
+      "from_type": "coverage_assessment",
+      "from_id": "senolytics-scaffold-coverage-2026-06-21",
+      "to_type": "source",
+      "to_id": "pmid-25754370",
+      "relationship": "covers_source"
+    },
+    {
+      "from_type": "finding",
+      "from_id": "dq-ad-risk-pilot-cognition-mobility-signal",
+      "to_type": "study",
+      "to_id": "dq-ad-risk-cognition-mobility-pilot",
+      "relationship": "describes_study"
+    },
+    {
+      "from_type": "finding",
+      "from_id": "dq-ad-risk-pilot-cognition-mobility-signal",
+      "to_type": "source",
+      "to_id": "pmid-40010154",
+      "relationship": "supported_by"
+    },
+    {
+      "from_type": "finding",
+      "from_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "describes_study"
+    },
+    {
+      "from_type": "finding",
+      "from_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "to_type": "source",
+      "to_id": "pmid-38956196",
+      "relationship": "supported_by"
+    },
+    {
+      "from_type": "finding",
+      "from_id": "dq-dkd-human-senescent-cell-biomarker-signal",
+      "to_type": "study",
+      "to_id": "dq-diabetic-kidney-disease-pilot",
+      "relationship": "describes_study"
+    },
+    {
+      "from_type": "finding",
+      "from_id": "dq-dkd-human-senescent-cell-biomarker-signal",
+      "to_type": "source",
+      "to_id": "pmid-31542391",
+      "relationship": "supported_by"
+    },
+    {
+      "from_type": "finding",
+      "from_id": "dq-ipf-randomized-feasibility-tolerability-mixed",
+      "to_type": "study",
+      "to_id": "dq-ipf-randomized-pilot",
+      "relationship": "describes_study"
+    },
+    {
+      "from_type": "finding",
+      "from_id": "dq-ipf-randomized-feasibility-tolerability-mixed",
+      "to_type": "source",
+      "to_id": "pmid-36857968",
+      "relationship": "supported_by"
+    },
+    {
+      "from_type": "finding",
+      "from_id": "dq-old-mice-healthspan-lifespan-positive",
+      "to_type": "study",
+      "to_id": "dq-old-mouse-healthspan-lifespan",
+      "relationship": "describes_study"
+    },
+    {
+      "from_type": "finding",
+      "from_id": "dq-old-mice-healthspan-lifespan-positive",
+      "to_type": "source",
+      "to_id": "pmid-29988130",
+      "relationship": "supported_by"
+    },
+    {
+      "from_type": "finding",
+      "from_id": "dq-senolytic-drug-discovery-preclinical",
+      "to_type": "study",
+      "to_id": "zhu-senolytic-drug-discovery",
+      "relationship": "describes_study"
+    },
+    {
+      "from_type": "finding",
+      "from_id": "dq-senolytic-drug-discovery-preclinical",
+      "to_type": "source",
+      "to_id": "pmid-25754370",
+      "relationship": "supported_by"
+    },
+    {
+      "from_type": "finding",
+      "from_id": "dq-stomp-ad-active-no-posted-results",
+      "to_type": "study",
+      "to_id": "dq-stomp-ad-phase2-registry",
+      "relationship": "describes_study"
+    },
+    {
+      "from_type": "finding",
+      "from_id": "dq-stomp-ad-active-no-posted-results",
+      "to_type": "source",
+      "to_id": "nct-04685590",
+      "relationship": "supported_by"
+    },
+    {
+      "from_type": "finding",
+      "from_id": "fisetin-vascular-active-no-posted-results",
+      "to_type": "study",
+      "to_id": "fisetin-vascular-function-older-adults-registry",
+      "relationship": "describes_study"
+    },
+    {
+      "from_type": "finding",
+      "from_id": "fisetin-vascular-active-no-posted-results",
+      "to_type": "source",
+      "to_id": "nct-06133634",
+      "relationship": "supported_by"
+    },
+    {
+      "from_type": "finding",
+      "from_id": "senolytic-translation-review-boundary",
+      "to_type": "study",
+      "to_id": "senolytic-drugs-translation-review",
+      "relationship": "describes_study"
+    },
+    {
+      "from_type": "finding",
+      "from_id": "senolytic-translation-review-boundary",
+      "to_type": "source",
+      "to_id": "pmid-32686219",
+      "relationship": "supported_by"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-ad-risk-cognition-mobility",
+      "to_type": "source",
+      "to_id": "pmid-40010154",
+      "relationship": "defined_from"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-ad-risk-cognition-mobility",
+      "to_type": "study",
+      "to_id": "dq-ad-risk-cognition-mobility-pilot",
+      "relationship": "measured_in"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-ad-risk-cognition-mobility",
+      "to_type": "finding",
+      "to_id": "dq-ad-risk-pilot-cognition-mobility-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-adverse-events-20wk",
+      "to_type": "source",
+      "to_id": "nct-04313634",
+      "relationship": "defined_from"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-adverse-events-20wk",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "measured_in"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-adverse-events-20wk",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-bmd-20wk",
+      "to_type": "source",
+      "to_id": "nct-04313634",
+      "relationship": "defined_from"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-bmd-20wk",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "measured_in"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-bmd-20wk",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-ctx-20wk",
+      "to_type": "source",
+      "to_id": "nct-04313634",
+      "relationship": "defined_from"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-ctx-20wk",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "measured_in"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-ctx-20wk",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-p1np-20wk",
+      "to_type": "source",
+      "to_id": "nct-04313634",
+      "relationship": "defined_from"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-p1np-20wk",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "measured_in"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-p1np-20wk",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-p1np-2wk",
+      "to_type": "source",
+      "to_id": "nct-04313634",
+      "relationship": "defined_from"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-p1np-2wk",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "measured_in"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-p1np-2wk",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-p1np-4wk",
+      "to_type": "source",
+      "to_id": "nct-04313634",
+      "relationship": "defined_from"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-p1np-4wk",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "measured_in"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-p1np-4wk",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-sasp-2wk",
+      "to_type": "source",
+      "to_id": "nct-04313634",
+      "relationship": "defined_from"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-sasp-2wk",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "measured_in"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-sasp-2wk",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-turnover-marker",
+      "to_type": "source",
+      "to_id": "pmid-38956196",
+      "relationship": "defined_from"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-turnover-marker",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "measured_in"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-turnover-marker",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-dkd-senescent-cell-biomarkers",
+      "to_type": "source",
+      "to_id": "pmid-31542391",
+      "relationship": "defined_from"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-dkd-senescent-cell-biomarkers",
+      "to_type": "study",
+      "to_id": "dq-diabetic-kidney-disease-pilot",
+      "relationship": "measured_in"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-dkd-senescent-cell-biomarkers",
+      "to_type": "finding",
+      "to_id": "dq-dkd-human-senescent-cell-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-ipf-feasibility-tolerability",
+      "to_type": "source",
+      "to_id": "pmid-36857968",
+      "relationship": "defined_from"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-ipf-feasibility-tolerability",
+      "to_type": "study",
+      "to_id": "dq-ipf-randomized-pilot",
+      "relationship": "measured_in"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-ipf-feasibility-tolerability",
+      "to_type": "finding",
+      "to_id": "dq-ipf-randomized-feasibility-tolerability-mixed",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-old-mouse-post-treatment-survival",
+      "to_type": "source",
+      "to_id": "pmid-29988130",
+      "relationship": "defined_from"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-old-mouse-post-treatment-survival",
+      "to_type": "study",
+      "to_id": "dq-old-mouse-healthspan-lifespan",
+      "relationship": "measured_in"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-old-mouse-post-treatment-survival",
+      "to_type": "finding",
+      "to_id": "dq-old-mice-healthspan-lifespan-positive",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-stomp-ad-registry-status",
+      "to_type": "source",
+      "to_id": "nct-04685590",
+      "relationship": "defined_from"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-stomp-ad-registry-status",
+      "to_type": "study",
+      "to_id": "dq-stomp-ad-phase2-registry",
+      "relationship": "measured_in"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-stomp-ad-registry-status",
+      "to_type": "finding",
+      "to_id": "dq-stomp-ad-active-no-posted-results",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "fisetin-vascular-registry-status",
+      "to_type": "source",
+      "to_id": "nct-06133634",
+      "relationship": "defined_from"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "fisetin-vascular-registry-status",
+      "to_type": "study",
+      "to_id": "fisetin-vascular-function-older-adults-registry",
+      "relationship": "measured_in"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "fisetin-vascular-registry-status",
+      "to_type": "finding",
+      "to_id": "fisetin-vascular-active-no-posted-results",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-ad-risk-cognition-mobility-mixed",
+      "to_type": "study",
+      "to_id": "dq-ad-risk-cognition-mobility-pilot",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-ad-risk-cognition-mobility-mixed",
+      "to_type": "source",
+      "to_id": "pmid-40010154",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-ad-risk-cognition-mobility-mixed",
+      "to_type": "outcome",
+      "to_id": "dq-ad-risk-cognition-mobility",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-ad-risk-cognition-mobility-mixed",
+      "to_type": "finding",
+      "to_id": "dq-ad-risk-pilot-cognition-mobility-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-adverse-events-20wk-mixed",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-adverse-events-20wk-mixed",
+      "to_type": "source",
+      "to_id": "nct-04313634",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-adverse-events-20wk-mixed",
+      "to_type": "outcome",
+      "to_id": "dq-bone-adverse-events-20wk",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-adverse-events-20wk-mixed",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-bmd-20wk-inconclusive",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-bmd-20wk-inconclusive",
+      "to_type": "source",
+      "to_id": "nct-04313634",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-bmd-20wk-inconclusive",
+      "to_type": "outcome",
+      "to_id": "dq-bone-bmd-20wk",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-bmd-20wk-inconclusive",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-ctx-20wk-null",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-ctx-20wk-null",
+      "to_type": "source",
+      "to_id": "nct-04313634",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-ctx-20wk-null",
+      "to_type": "outcome",
+      "to_id": "dq-bone-ctx-20wk",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-ctx-20wk-null",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-p1np-20wk-null",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-p1np-20wk-null",
+      "to_type": "source",
+      "to_id": "nct-04313634",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-p1np-20wk-null",
+      "to_type": "outcome",
+      "to_id": "dq-bone-p1np-20wk",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-p1np-20wk-null",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-p1np-2wk-positive",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-p1np-2wk-positive",
+      "to_type": "source",
+      "to_id": "nct-04313634",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-p1np-2wk-positive",
+      "to_type": "outcome",
+      "to_id": "dq-bone-p1np-2wk",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-p1np-2wk-positive",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-p1np-4wk-positive",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-p1np-4wk-positive",
+      "to_type": "source",
+      "to_id": "nct-04313634",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-p1np-4wk-positive",
+      "to_type": "outcome",
+      "to_id": "dq-bone-p1np-4wk",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-p1np-4wk-positive",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-sasp-2wk-null",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-sasp-2wk-null",
+      "to_type": "source",
+      "to_id": "nct-04313634",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-sasp-2wk-null",
+      "to_type": "outcome",
+      "to_id": "dq-bone-sasp-2wk",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-sasp-2wk-null",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-turnover-mixed",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-turnover-mixed",
+      "to_type": "source",
+      "to_id": "pmid-38956196",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-turnover-mixed",
+      "to_type": "outcome",
+      "to_id": "dq-bone-turnover-marker",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-turnover-mixed",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-dkd-biomarker-positive",
+      "to_type": "study",
+      "to_id": "dq-diabetic-kidney-disease-pilot",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-dkd-biomarker-positive",
+      "to_type": "source",
+      "to_id": "pmid-31542391",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-dkd-biomarker-positive",
+      "to_type": "outcome",
+      "to_id": "dq-dkd-senescent-cell-biomarkers",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-dkd-biomarker-positive",
+      "to_type": "finding",
+      "to_id": "dq-dkd-human-senescent-cell-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-ipf-tolerability-mixed",
+      "to_type": "study",
+      "to_id": "dq-ipf-randomized-pilot",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-ipf-tolerability-mixed",
+      "to_type": "source",
+      "to_id": "pmid-36857968",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-ipf-tolerability-mixed",
+      "to_type": "outcome",
+      "to_id": "dq-ipf-feasibility-tolerability",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-ipf-tolerability-mixed",
+      "to_type": "finding",
+      "to_id": "dq-ipf-randomized-feasibility-tolerability-mixed",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-old-mouse-survival-positive",
+      "to_type": "study",
+      "to_id": "dq-old-mouse-healthspan-lifespan",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-old-mouse-survival-positive",
+      "to_type": "source",
+      "to_id": "pmid-29988130",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-old-mouse-survival-positive",
+      "to_type": "outcome",
+      "to_id": "dq-old-mouse-post-treatment-survival",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-old-mouse-survival-positive",
+      "to_type": "finding",
+      "to_id": "dq-old-mice-healthspan-lifespan-positive",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-stomp-ad-no-posted-results",
+      "to_type": "study",
+      "to_id": "dq-stomp-ad-phase2-registry",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-stomp-ad-no-posted-results",
+      "to_type": "source",
+      "to_id": "nct-04685590",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-stomp-ad-no-posted-results",
+      "to_type": "outcome",
+      "to_id": "dq-stomp-ad-registry-status",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-stomp-ad-no-posted-results",
+      "to_type": "finding",
+      "to_id": "dq-stomp-ad-active-no-posted-results",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
+      "from_id": "fisetin-vascular-no-posted-results",
+      "to_type": "study",
+      "to_id": "fisetin-vascular-function-older-adults-registry",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "fisetin-vascular-no-posted-results",
+      "to_type": "source",
+      "to_id": "nct-06133634",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "fisetin-vascular-no-posted-results",
+      "to_type": "outcome",
+      "to_id": "fisetin-vascular-registry-status",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "fisetin-vascular-no-posted-results",
+      "to_type": "finding",
+      "to_id": "fisetin-vascular-active-no-posted-results",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "study",
+      "from_id": "dq-ad-risk-cognition-mobility-pilot",
+      "to_type": "source",
+      "to_id": "pmid-40010154",
+      "relationship": "uses_source"
+    },
+    {
+      "from_type": "study",
+      "from_id": "dq-diabetic-kidney-disease-pilot",
+      "to_type": "source",
+      "to_id": "pmid-31542391",
+      "relationship": "uses_source"
+    },
+    {
+      "from_type": "study",
+      "from_id": "dq-ipf-randomized-pilot",
+      "to_type": "source",
+      "to_id": "pmid-36857968",
+      "relationship": "uses_source"
+    },
+    {
+      "from_type": "study",
+      "from_id": "dq-old-mouse-healthspan-lifespan",
+      "to_type": "source",
+      "to_id": "pmid-29988130",
+      "relationship": "uses_source"
+    },
+    {
+      "from_type": "study",
+      "from_id": "dq-postmenopausal-bone-rct",
+      "to_type": "source",
+      "to_id": "nct-04313634",
+      "relationship": "uses_source"
+    },
+    {
+      "from_type": "study",
+      "from_id": "dq-postmenopausal-bone-rct",
+      "to_type": "source",
+      "to_id": "pmid-38956196",
+      "relationship": "uses_source"
+    },
+    {
+      "from_type": "study",
+      "from_id": "dq-stomp-ad-phase2-registry",
+      "to_type": "source",
+      "to_id": "nct-04685590",
+      "relationship": "uses_source"
+    },
+    {
+      "from_type": "study",
+      "from_id": "fisetin-vascular-function-older-adults-registry",
+      "to_type": "source",
+      "to_id": "nct-06133634",
+      "relationship": "uses_source"
+    },
+    {
+      "from_type": "study",
+      "from_id": "senolytic-drugs-translation-review",
+      "to_type": "source",
+      "to_id": "pmid-32686219",
+      "relationship": "uses_source"
+    },
+    {
+      "from_type": "study",
+      "from_id": "zhu-senolytic-drug-discovery",
+      "to_type": "source",
+      "to_id": "pmid-25754370",
+      "relationship": "uses_source"
+    }
+  ]
+}

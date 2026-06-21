@@ -94,6 +94,8 @@ As of 2026-06-21, the repository has an initial JSON-file-backed scaffold:
 - Added `synthesis_group` schema/data/export support for poolability decisions, missing effect fields, and agent-supervision metadata.
 - Added an agentic process audit that blocks deprecated non-agentic process vocabulary.
 - Added `agent_run` output schema support and a gated `promote:candidate` command for accepted/applied candidate lifecycle transitions.
+- Added concrete agent-run templates and the first D+Q bone extraction-refresh agent-run record.
+- Added Codex CLI worker scaffolding with `npm run agent:codex`, prompt templates, execution metadata, and `codex_exec` path audits.
 
 ## Target Architecture
 
@@ -128,10 +130,15 @@ docs/
   system-design.md
   research-runbook.md
   agent-run-outputs.md
+  codex-cli-agents.md
   screening-rules.md
   extraction-rules.md
   synthesis-rules.md
   audit-and-release.md
+  prompts/
+    codex-agents/
+  templates/
+    agent-runs/
 
 taxonomies/
   hallmarks.v1.json
@@ -208,12 +215,16 @@ scripts/
   build-evidence-map
   run-synthesis
   audit-provenance
+  run-codex-agent
+  promote-candidate
   export-release
 ```
 
 ## Agent Roles
 
 Initial agent roles should be narrow and explicit:
+
+The interactive session should coordinate and supervise. Bounded worker agents should run through isolated `codex exec` processes when feasible, producing schema-valid `agent_run` records for review.
 
 - `triage_agent`: selects the next bounded work item from coverage gaps, stale reviews, and explicit user scope.
 - `search_agent`: searches PubMed, registries, preprint servers, citation trails, and approved primary-source locations.
@@ -368,11 +379,11 @@ Goal: make bounded research runs repeatable.
 
 Tasks:
 
-- Add triage state generation.
-- Add templates for research sessions.
 - [x] Add agent-run output schema for search, screening, extraction, review, synthesis, supervisor, release, and self-healing runs.
 - [x] Define how agent proposals become candidate changes.
-- [ ] Add concrete agent-run templates for common modes.
+- [x] Add concrete agent-run templates for common modes.
+- [x] Add Codex CLI worker prompt templates and a wrapper for `codex exec` runs.
+- [x] Audit `codex_exec` records for valid prompt, schema, and output paths.
 - [ ] Add triage state generation.
 - [ ] Add templates for research sessions.
 
@@ -413,13 +424,14 @@ Exit criteria:
 
 ## Immediate Next Actions
 
-1. Add concrete agent-run templates for common modes: search, screening, extraction, synthesis, review, and release.
+1. Exercise one bounded `codex exec` worker run in a disposable worktree using `npm run agent:codex -- ... --execute`.
 2. Generate endpoint-specific synthesis groups for D+Q bone endpoints so each group has one compatible endpoint family and an explicit pooling decision.
 3. Finish full publication/table extraction for the D+Q bone RCT, including subgroup and event-specific safety details.
 4. Run extraction-refresh passes on the remaining human D+Q papers: DKD, IPF, and AD-risk cognition/mobility.
 5. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
-6. Decide whether raw source payloads should be archived locally for extraction-grade snapshots or only hash-referenced.
-7. Decide whether to install repo-local skills into the active Codex skills directory.
+6. Add triage state generation and research-session templates.
+7. Decide whether raw source payloads should be archived locally for extraction-grade snapshots or only hash-referenced.
+8. Decide whether to install repo-local skills into the active Codex skills directory.
 
 ## Change Log
 
@@ -427,6 +439,8 @@ Exit criteria:
 - 2026-06-21: Added a senolytics coverage-repair slice with sources, studies, findings, outcomes, results, eligibility decisions, risk-of-bias triage, coverage assessment, and candidate-review ledger.
 - 2026-06-21: Added source-snapshot IDs to extraction-grade bone RCT provenance, reconciled coverage gaps, and added export audits for stale JSONL and snapshot-linked result provenance.
 - 2026-06-21: Added agent-run output schema, agent-run reference audits, and a promotion command that blocks accepted/applied candidate transitions until review gates pass.
+- 2026-06-21: Added agent-run templates and the first D+Q bone extraction-refresh agent-run record.
+- 2026-06-21: Added Codex CLI worker scaffolding with `agent:codex`, worker prompt templates, execution metadata, and path audits for `codex_exec` runs.
 - 2026-06-21: Replaced deprecated non-agentic vocabulary with agent-supervision states, added an agentic process audit, and introduced synthesis-group compatibility records and exports.
 - 2026-06-21: Added in-review candidate review-lane enforcement and draft coverage-repair review records so missing review work is explicit.
 - 2026-06-21: Added source snapshots and registry-extracted outcome/result records for the D+Q postmenopausal bone RCT, including CTX, P1NP, BMD, SASP, and aggregate adverse events.

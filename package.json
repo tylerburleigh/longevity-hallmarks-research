@@ -11,6 +11,7 @@
     "refresh:source-snapshot": "node scripts/refresh-source-snapshot.mjs",
     "diff:source-snapshot": "node scripts/diff-source-snapshot.mjs",
     "promote:candidate": "node scripts/promote-candidate.mjs",
+    "agent:codex": "node scripts/run-codex-agent.mjs",
     "export:latest": "node scripts/export-latest.mjs",
     "audit:exports": "node scripts/audit-exports.mjs",
     "audit:agentic-process": "node scripts/audit-agentic-process.mjs",

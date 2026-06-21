@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "release_manifest",
   "id": "latest-consumer-export",
-  "generated_at": "2026-06-21T17:47:32.805Z",
+  "generated_at": "2026-06-21T18:14:55.966Z",
   "export_version": "0.1.0",
   "export_scope": {
     "description": "Consumer-facing latest export generated from canonical research and data records.",
@@ -89,18 +89,18 @@
       "format": "json",
       "description": "Generated graph view of source, study, finding, outcome, result, coverage, and synthesis-compatibility links.",
       "record_count": 1,
-      "sha256": "f75ae1aeb71dd5213472d74e7f19a7105b17e13cb9b9a4644909d17b8430f6f9"
+      "sha256": "286607d69b415fc5bb7fe21ad45d4a70a72fd178fc5d287d23a1d6425de61c5a"
     },
     {
       "path": "exports/latest/coverage-status.json",
       "format": "json",
       "description": "Consumer coverage status with current/superseded flags and known-gap warnings.",
       "record_count": 1,
-      "sha256": "b0e26e99c0a74aaa10fbd52d16bc19ded9026bbefe23bd3c18a692507ca6e395"
+      "sha256": "0ba50ccffb97e13635ca9c1acfc8841a568d5a65cc490389401c2dad2ab9494b"
     }
   ],
   "record_counts": {
-    "canonical_records": 89,
+    "canonical_records": 90,
     "sources": 10,
     "studies": 9,
     "findings": 9,

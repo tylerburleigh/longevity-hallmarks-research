@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "replace-with-release-run-id",
+  "agent_role": "release_agent",
+  "agent_id": "codex-release-agent",
+  "mode": "synthesis_refresh",
+  "started_at": "2026-06-21T00:00:00Z",
+  "completed_at": "2026-06-21T00:00:00Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "Regenerate and verify consumer exports.",
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "canonical_write_policy": "no_canonical_writes",
+  "execution": {
+    "surface": "codex_exec",
+    "isolation": "git_worktree",
+    "prompt_file": "docs/prompts/codex-agents/release-export.md",
+    "output_schema_path": "schemas/agent-run.schema.json",
+    "output_path": "research/agent-runs/replace-with-release-run-id.json",
+    "jsonl_log_path": "research/agent-runs/logs/replace-with-release-run-id.jsonl",
+    "sandbox": "workspace-write",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "export",
+      "reference": "exports/latest/audit-manifest.json",
+      "summary": "Replace with prior export or release context."
+    }
+  ],
+  "outputs": {
+    "summary": "Replace with export generation result.",
+    "export_paths": [
+      "exports/latest/audit-manifest.json"
+    ]
+  },
+  "quality_checks": [
+    {
+      "check_name": "export_latest",
+      "status": "passed",
+      "summary": "Replace with export command result."
+    },
+    {
+      "check_name": "verify_knowledge_base",
+      "status": "passed",
+      "summary": "Replace with verification command result."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": []
+}

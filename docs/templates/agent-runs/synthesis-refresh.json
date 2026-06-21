@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "replace-with-synthesis-run-id",
+  "agent_role": "synthesis_agent",
+  "agent_id": "codex-synthesis-agent",
+  "mode": "synthesis_refresh",
+  "started_at": "2026-06-21T00:00:00Z",
+  "completed_at": "2026-06-21T00:00:00Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "Replace with compatibility or synthesis question.",
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "codex_exec",
+    "isolation": "git_worktree",
+    "prompt_file": "docs/prompts/codex-agents/synthesis-refresh.md",
+    "output_schema_path": "schemas/agent-run.schema.json",
+    "output_path": "research/agent-runs/replace-with-synthesis-run-id.json",
+    "jsonl_log_path": "research/agent-runs/logs/replace-with-synthesis-run-id.jsonl",
+    "sandbox": "workspace-write",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "record",
+      "reference": "data/results/replace-with-result.json",
+      "summary": "Replace with result set assessed for compatibility."
+    }
+  ],
+  "outputs": {
+    "summary": "Replace with synthesis-group or evidence-map update summary.",
+    "candidate_change_id": "replace-with-candidate-change-id",
+    "proposed_records": []
+  },
+  "quality_checks": [
+    {
+      "check_name": "pooling_requirements_checked",
+      "status": "passed",
+      "summary": "Replace with effect-field and compatibility assessment."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": [
+    "Run synthesis-boundary supervisor review."
+  ]
+}

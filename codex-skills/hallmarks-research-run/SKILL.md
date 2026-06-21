@@ -11,6 +11,7 @@ description: Run bounded research passes for the longevity hallmarks evidence kn
 2. Read `plan.md`, then read the relevant docs for the requested mode:
    - `docs/research-runbook.md`
    - `docs/agent-run-outputs.md`
+   - `docs/codex-cli-agents.md`
    - `docs/screening-rules.md` when source discovery or screening is involved
    - `docs/extraction-rules.md` when creating evidence records
    - `docs/synthesis-rules.md` when summarizing or considering meta-analysis
@@ -48,6 +49,7 @@ Choose one outcome and record the rationale:
 
 - Do not let agent output directly imply publication or release.
 - Write an `agent_run` record for the pass. Use `canonical_write_policy: "candidate_change_required"` when canonical records are created or updated.
+- Prefer `npm run agent:codex -- ...` for delegated bounded worker runs; keep the interactive session as coordinator/supervisor.
 - Keep `research_session.search_log[]` specific enough that another reviewer can reproduce the search.
 - Put close-but-excluded sources in `research_session.excluded_sources[]`.
 - Keep candidate changes small and scoped to material records.

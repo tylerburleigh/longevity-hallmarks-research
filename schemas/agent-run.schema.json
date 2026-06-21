@@ -136,6 +136,74 @@
         "candidate_change_required"
       ]
     },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "surface",
+        "isolation",
+        "sandbox",
+        "approval_policy"
+      ],
+      "properties": {
+        "surface": {
+          "enum": [
+            "interactive_session",
+            "codex_exec",
+            "codex_cloud",
+            "github_action",
+            "other"
+          ]
+        },
+        "isolation": {
+          "enum": [
+            "foreground_checkout",
+            "git_worktree",
+            "codex_managed_worktree",
+            "ci_runner",
+            "container",
+            "other"
+          ]
+        },
+        "workspace_path": {
+          "type": "string"
+        },
+        "prompt_file": {
+          "type": "string"
+        },
+        "output_schema_path": {
+          "type": "string"
+        },
+        "output_path": {
+          "type": "string"
+        },
+        "jsonl_log_path": {
+          "type": "string"
+        },
+        "sandbox": {
+          "enum": [
+            "read-only",
+            "workspace-write",
+            "danger-full-access",
+            "not_applicable"
+          ]
+        },
+        "approval_policy": {
+          "enum": [
+            "never",
+            "on-request",
+            "untrusted",
+            "not_applicable"
+          ]
+        },
+        "command": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "inputs": {
       "type": "array",
       "items": {

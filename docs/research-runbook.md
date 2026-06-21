@@ -16,6 +16,8 @@ No-op searches are valid when the search was properly scoped and logged.
 
 Every generation pass should write an `agent_run` record in `research/agent-runs/`.
 
+Prefer isolated `codex exec` worker runs for bounded search, screening, extraction, synthesis, supervisor-review, and release tasks. Use the interactive session as coordinator and supervisor.
+
 Use `canonical_write_policy: "no_canonical_writes"` when the pass only analyzes, searches, screens, audits, or plans.
 
 Use `canonical_write_policy: "candidate_change_required"` when the pass creates or updates canonical records. In that case, the agent-run output must reference `outputs.candidate_change_id` and list every proposed record path in `outputs.proposed_records[]`.

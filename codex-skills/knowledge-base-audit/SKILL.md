@@ -30,6 +30,7 @@ Check for:
 - `in_review` candidates that lack active evidence-review records for each required lane.
 - Accepted or applied candidates that lack promotion metadata.
 - Agent runs with canonical writes that lack a linked candidate change.
+- Codex CLI worker agent runs whose execution metadata points to missing prompt, schema, or output paths.
 - Evidence reviews that refer to missing candidate changes.
 - Coverage assessments that cite missing sources or findings.
 - Synthesis groups that claim pooling is allowed without required effect fields.

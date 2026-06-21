@@ -24,6 +24,7 @@ Current audit coverage:
 - duplicate record IDs within each record type
 - local source, study, outcome, result, finding, candidate-change, evidence-review, eligibility, risk-of-bias, hallmark, and track references
 - agent-run references to candidate changes, research sessions, and proposed record paths
+- `codex_exec` agent-run execution metadata points to existing prompt, schema, and output paths
 - synthesis-group references to outcomes, results, and missing-field result IDs
 - candidate-change proposed record paths
 - active required review-lane records for `in_review`, `accepted`, and `applied` candidate changes

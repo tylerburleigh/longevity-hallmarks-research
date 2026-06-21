@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "replace-with-screening-run-id",
+  "agent_role": "screening_agent",
+  "agent_id": "codex-screening-agent",
+  "mode": "coverage_repair",
+  "started_at": "2026-06-21T00:00:00Z",
+  "completed_at": "2026-06-21T00:00:00Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "Replace with bounded screening question.",
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "codex_exec",
+    "isolation": "git_worktree",
+    "prompt_file": "docs/prompts/codex-agents/screening-pass.md",
+    "output_schema_path": "schemas/agent-run.schema.json",
+    "output_path": "research/agent-runs/replace-with-screening-run-id.json",
+    "jsonl_log_path": "research/agent-runs/logs/replace-with-screening-run-id.jsonl",
+    "sandbox": "workspace-write",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "record",
+      "reference": "research/sessions/replace-with-session.json",
+      "summary": "Replace with search log or source list screened."
+    }
+  ],
+  "outputs": {
+    "summary": "Replace with screening decisions and candidate update summary.",
+    "research_session_id": "replace-with-research-session-id",
+    "candidate_change_id": "replace-with-candidate-change-id",
+    "proposed_records": []
+  },
+  "quality_checks": [
+    {
+      "check_name": "screening_rules_applied",
+      "status": "passed",
+      "summary": "Replace with inclusion/exclusion rule confirmation."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": [
+    "Run extraction refresh for included sources."
+  ]
+}

@@ -4,6 +4,19 @@ Agent runs are transactional work logs. They describe what an agent did, what ca
 
 Store agent-run records in `research/agent-runs/` with `record_type: "agent_run"`.
 
+For isolated worker execution, use `docs/codex-cli-agents.md`.
+
+Reusable JSON templates live in `docs/templates/agent-runs/`:
+
+- `search-pass.json`
+- `screening-pass.json`
+- `extraction-refresh.json`
+- `synthesis-refresh.json`
+- `supervisor-review.json`
+- `release-export.json`
+
+Worker prompt templates live in `docs/prompts/codex-agents/`.
+
 ## Write Policy
 
 Use `canonical_write_policy` to declare whether the run touched durable state:

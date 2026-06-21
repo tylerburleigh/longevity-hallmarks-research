@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "replace-with-search-run-id",
+  "agent_role": "search_agent",
+  "agent_id": "codex-search-agent",
+  "mode": "surveillance",
+  "started_at": "2026-06-21T00:00:00Z",
+  "completed_at": "2026-06-21T00:00:00Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "Replace with bounded search question.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "canonical_write_policy": "no_canonical_writes",
+  "execution": {
+    "surface": "codex_exec",
+    "isolation": "git_worktree",
+    "prompt_file": "docs/prompts/codex-agents/search-pass.md",
+    "output_schema_path": "schemas/agent-run.schema.json",
+    "output_path": "research/agent-runs/replace-with-search-run-id.json",
+    "jsonl_log_path": "research/agent-runs/logs/replace-with-search-run-id.jsonl",
+    "sandbox": "read-only",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "plan_item",
+      "reference": "plan.md#Immediate Next Actions",
+      "summary": "Replace with triggering plan or coverage-gap context."
+    }
+  ],
+  "outputs": {
+    "summary": "Replace with search result summary.",
+    "generated_files": []
+  },
+  "quality_checks": [
+    {
+      "check_name": "search_scope_bounded",
+      "status": "passed",
+      "summary": "Replace with scope-boundary confirmation."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": [
+    "Create screening pass for search hits that meet scope."
+  ]
+}

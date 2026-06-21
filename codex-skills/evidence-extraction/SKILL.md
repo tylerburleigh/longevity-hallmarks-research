@@ -50,6 +50,7 @@ Use stable IDs:
 - Use source-snapshot importers before extraction-grade PubMed or ClinicalTrials.gov extraction, and include `source_snapshot_id` on extraction-grade provenance locators.
 - Add `candidate_change` and `evidence_review` records when the extraction is intended to become durable canonical state.
 - Add an `agent_run` record with `canonical_write_policy: "candidate_change_required"` when extraction creates or updates canonical records.
+- Prefer isolated Codex CLI worker execution through `npm run agent:codex -- ...` when the extraction scope is bounded enough to delegate.
 - If a candidate is `in_review`, add active review records for every required lane, using draft `needs_revision` records for lanes that remain incomplete.
 - Add or update `synthesis_group` records when extracted results change poolability, missing effect fields, or endpoint compatibility.
 

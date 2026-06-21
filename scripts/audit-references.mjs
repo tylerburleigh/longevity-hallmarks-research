@@ -284,7 +284,54 @@ async function checkCandidatePath({ index, issues, ownerPath, proposedRecord }) 
   }
 }
 
-function getChangedRecordPaths() {
+async function checkRepoPathExists({ issues, ownerPath, field, relativePath }) {
+  if (!relativePath) {
+    issues.push(`${ownerPath}: ${field} is required.`);
+    return;
+  }
+
+  const resolvedPath = path.resolve(workspaceRoot, relativePath);
+  const normalizedPath = toPosixRelative(resolvedPath);
+  if (!normalizedPath || normalizedPath.startsWith("..")) {
+    issues.push(`${ownerPath}: ${field} must stay inside the repository: ${relativePath}.`);
+    return;
+  }
+
+  if (!(await exists(resolvedPath))) {
+    issues.push(`${ownerPath}: ${field} path does not exist: ${relativePath}.`);
+  }
+}
+
+async function checkAgentRunExecution({ issues, record, ownerPath }) {
+  if (record.execution?.surface !== "codex_exec") {
+    return;
+  }
+
+  await checkRepoPathExists({
+    issues,
+    ownerPath,
+    field: "execution.prompt_file",
+    relativePath: record.execution.prompt_file
+  });
+  await checkRepoPathExists({
+    issues,
+    ownerPath,
+    field: "execution.output_schema_path",
+    relativePath: record.execution.output_schema_path
+  });
+  await checkRepoPathExists({
+    issues,
+    ownerPath,
+    field: "execution.output_path",
+    relativePath: record.execution.output_path
+  });
+
+  if (record.execution.output_path && record.execution.output_path !== ownerPath) {
+    issues.push(`${ownerPath}: execution.output_path must match the agent_run record path.`);
+  }
+}
+
+function getChangedRecordPaths({ excludedPrefixes = [] } = {}) {
   try {
     const output = execFileSync("git", ["status", "--porcelain", "--untracked-files=all"], {
       cwd: workspaceRoot,
@@ -297,14 +344,15 @@ function getChangedRecordPaths() {
       .filter(Boolean)
       .map((line) => line.slice(3).replace(/^"|"$/g, ""))
       .filter((relativePath) => relativePath.endsWith(".json"))
-      .filter((relativePath) => collectionRules.some((rule) => relativePath.startsWith(rule.prefix)));
+      .filter((relativePath) => collectionRules.some((rule) => relativePath.startsWith(rule.prefix)))
+      .filter((relativePath) => !excludedPrefixes.some((prefix) => relativePath.startsWith(prefix)));
   } catch {
     return [];
   }
 }
 
 function checkCandidateCompleteness({ index, issues }) {
-  const changedRecordPaths = getChangedRecordPaths();
+  const changedRecordPaths = getChangedRecordPaths({ excludedPrefixes: ["research/agent-runs/"] });
   if (changedRecordPaths.length === 0) {
     return;
   }
@@ -322,6 +370,30 @@ function checkCandidateCompleteness({ index, issues }) {
   for (const relativePath of changedRecordPaths) {
     if (!proposedPaths.has(relativePath)) {
       issues.push(`${relativePath}: changed record is not listed in any candidate_change.proposed_records[].`);
+    }
+  }
+}
+
+function checkAgentRunCompleteness({ index, issues }) {
+  const changedRecordPaths = getChangedRecordPaths({ excludedPrefixes: ["research/agent-runs/"] });
+  if (changedRecordPaths.length === 0) {
+    return;
+  }
+
+  const proposedPaths = new Set();
+  for (const { record } of index.records) {
+    if (record.record_type !== "agent_run" || record.canonical_write_policy !== "candidate_change_required") {
+      continue;
+    }
+
+    for (const proposedRecord of record.outputs?.proposed_records ?? []) {
+      proposedPaths.add(proposedRecord.path);
+    }
+  }
+
+  for (const relativePath of changedRecordPaths) {
+    if (!proposedPaths.has(relativePath)) {
+      issues.push(`${relativePath}: changed record is not listed in any agent_run.outputs.proposed_records[].`);
     }
   }
 }
@@ -806,6 +878,8 @@ async function audit() {
     }
 
     if (record.record_type === "agent_run") {
+      await checkAgentRunExecution({ issues, record, ownerPath: relativePath });
+
       checkTaxonomyRefs({
         index,
         issues,
@@ -905,6 +979,7 @@ async function audit() {
   }
 
   checkCandidateCompleteness({ index, issues });
+  checkAgentRunCompleteness({ index, issues });
 
   if (issues.length > 0) {
     console.error(`Reference audit failed with ${issues.length} issue(s):`);

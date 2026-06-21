@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./evidence-review.schema.json",
+  "title": "Evidence review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "id",
+    "candidate_change_id",
+    "review_lane",
+    "reviewer_kind",
+    "status",
+    "verdict",
+    "blocking",
+    "summary",
+    "findings"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "record_type": {
+      "const": "evidence_review"
+    },
+    "id": {
+      "$ref": "./common.schema.json#/$defs/evidenceReviewRef"
+    },
+    "candidate_change_id": {
+      "$ref": "./common.schema.json#/$defs/candidateChangeRef"
+    },
+    "review_lane": {
+      "enum": [
+        "source_fidelity",
+        "extraction_fidelity",
+        "taxonomy_mapping",
+        "synthesis_boundary",
+        "safety_limitations"
+      ]
+    },
+    "reviewer_kind": {
+      "enum": [
+        "agent",
+        "human"
+      ]
+    },
+    "reviewer_id": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "complete",
+        "superseded"
+      ]
+    },
+    "verdict": {
+      "enum": [
+        "accept",
+        "needs_revision",
+        "reject",
+        "needs_human_judgment"
+      ]
+    },
+    "blocking": {
+      "type": "boolean"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "finding_id",
+          "severity",
+          "category",
+          "claim_or_issue",
+          "why_it_matters",
+          "recommended_action",
+          "resolution_status"
+        ],
+        "properties": {
+          "finding_id": {
+            "$ref": "./common.schema.json#/$defs/identifier"
+          },
+          "severity": {
+            "enum": [
+              "critical",
+              "major",
+              "minor",
+              "note"
+            ]
+          },
+          "category": {
+            "enum": [
+              "source_mismatch",
+              "extraction_error",
+              "endpoint_boundary",
+              "interpretation_overreach",
+              "missing_caveat",
+              "taxonomy_mapping",
+              "safety_limitation",
+              "other"
+            ]
+          },
+          "claim_or_issue": {
+            "type": "string"
+          },
+          "why_it_matters": {
+            "type": "string"
+          },
+          "recommended_action": {
+            "type": "string"
+          },
+          "resolution_status": {
+            "enum": [
+              "open",
+              "addressed",
+              "closed"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

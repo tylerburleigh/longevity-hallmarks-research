@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0.0",
+  "taxonomy": "hallmarks_of_aging",
+  "taxonomy_version": "1.0.0",
+  "source_basis": [
+    {
+      "title": "Hallmarks of aging: An expanding universe",
+      "citation": "Lopez-Otin C, Blasco MA, Partridge L, Serrano M, Kroemer G. Cell. 2023;186(2):243-278.",
+      "year": 2023,
+      "doi": "10.1016/j.cell.2022.11.001",
+      "url": "https://doi.org/10.1016/j.cell.2022.11.001"
+    }
+  ],
+  "hallmarks": [
+    {
+      "id": "genomic_instability",
+      "name": "Genomic Instability",
+      "canonical_order": 1,
+      "description": "Accumulation of genetic damage and impaired genome maintenance."
+    },
+    {
+      "id": "telomere_attrition",
+      "name": "Telomere Attrition",
+      "canonical_order": 2,
+      "description": "Progressive telomere shortening or dysfunction that limits cell renewal."
+    },
+    {
+      "id": "epigenetic_alterations",
+      "name": "Epigenetic Alterations",
+      "canonical_order": 3,
+      "description": "Age-related drift in DNA methylation, chromatin state, and transcriptional regulation."
+    },
+    {
+      "id": "loss_of_proteostasis",
+      "name": "Loss of Proteostasis",
+      "canonical_order": 4,
+      "description": "Decline in protein quality control, folding, trafficking, and clearance."
+    },
+    {
+      "id": "disabled_macroautophagy",
+      "name": "Disabled Macroautophagy",
+      "canonical_order": 5,
+      "description": "Reduced autophagic recycling that impairs cellular housekeeping and stress response."
+    },
+    {
+      "id": "deregulated_nutrient_sensing",
+      "name": "Deregulated Nutrient Sensing",
+      "canonical_order": 6,
+      "description": "Age-related disruption of insulin, IGF-1, mTOR, AMPK, and related nutrient signaling pathways."
+    },
+    {
+      "id": "mitochondrial_dysfunction",
+      "name": "Mitochondrial Dysfunction",
+      "canonical_order": 7,
+      "description": "Decline in mitochondrial quality, energetics, and signaling."
+    },
+    {
+      "id": "cellular_senescence",
+      "name": "Cellular Senescence",
+      "canonical_order": 8,
+      "description": "Accumulation of damaged cells with stable cell-cycle arrest and pro-inflammatory signaling."
+    },
+    {
+      "id": "stem_cell_exhaustion",
+      "name": "Stem Cell Exhaustion",
+      "canonical_order": 9,
+      "description": "Loss of regenerative capacity from impaired stem and progenitor cell function."
+    },
+    {
+      "id": "altered_intercellular_communication",
+      "name": "Altered Intercellular Communication",
+      "canonical_order": 10,
+      "description": "Age-related distortion of signaling between cells, tissues, and organs."
+    },
+    {
+      "id": "chronic_inflammation",
+      "name": "Chronic Inflammation",
+      "canonical_order": 11,
+      "description": "Persistent, maladaptive inflammatory tone that contributes to systemic aging."
+    },
+    {
+      "id": "dysbiosis",
+      "name": "Dysbiosis",
+      "canonical_order": 12,
+      "description": "Age-related disruption of host-microbiome balance with downstream metabolic and immune effects."
+    }
+  ]
+}

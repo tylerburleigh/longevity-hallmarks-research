@@ -1,0 +1,184 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./common.schema.json",
+  "title": "Common schema definitions",
+  "$defs": {
+    "identifier": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+[a-z0-9._-]*$"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "isoDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "dateTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "hallmarkRef": {
+      "$ref": "#/$defs/identifier"
+    },
+    "trackRef": {
+      "$ref": "#/$defs/identifier"
+    },
+    "sourceRef": {
+      "$ref": "#/$defs/identifier"
+    },
+    "studyRef": {
+      "$ref": "#/$defs/identifier"
+    },
+    "findingRef": {
+      "$ref": "#/$defs/identifier"
+    },
+    "resultRef": {
+      "$ref": "#/$defs/identifier"
+    },
+    "candidateChangeRef": {
+      "$ref": "#/$defs/identifier"
+    },
+    "evidenceReviewRef": {
+      "$ref": "#/$defs/identifier"
+    },
+    "sourceType": {
+      "enum": [
+        "journal_article",
+        "review",
+        "systematic_review",
+        "meta_analysis",
+        "preprint",
+        "trial_registry",
+        "regulatory_document",
+        "database",
+        "conference_abstract",
+        "manual_primary_source",
+        "other"
+      ]
+    },
+    "studyType": {
+      "enum": [
+        "randomized_trial",
+        "nonrandomized_trial",
+        "observational",
+        "animal",
+        "mechanistic",
+        "in_vitro",
+        "review",
+        "systematic_review",
+        "meta_analysis",
+        "trial_registry",
+        "other"
+      ]
+    },
+    "studyStatus": {
+      "enum": [
+        "planned",
+        "recruiting",
+        "active",
+        "completed",
+        "terminated",
+        "withdrawn",
+        "unknown",
+        "not_applicable"
+      ]
+    },
+    "phase": {
+      "enum": [
+        "phase_1",
+        "phase_1_2",
+        "phase_2",
+        "phase_2_3",
+        "phase_3",
+        "phase_4",
+        "early_phase_1",
+        "not_applicable",
+        "unknown"
+      ]
+    },
+    "endpointCategory": {
+      "enum": [
+        "mechanistic",
+        "biomarker",
+        "functional",
+        "clinical",
+        "healthspan",
+        "lifespan",
+        "safety",
+        "registry_status",
+        "other"
+      ]
+    },
+    "evidenceDirection": {
+      "enum": [
+        "positive",
+        "negative",
+        "mixed",
+        "null",
+        "inconclusive",
+        "not_applicable"
+      ]
+    },
+    "evidenceTier": {
+      "enum": [
+        "mechanistic",
+        "animal",
+        "human_biomarker",
+        "human_functional",
+        "clinical_or_mortality",
+        "review",
+        "registry",
+        "other"
+      ]
+    },
+    "confidence": {
+      "enum": [
+        "low",
+        "moderate",
+        "high"
+      ]
+    },
+    "coverageCategory": {
+      "enum": [
+        "human_interventional",
+        "human_observational_or_natural_experiment",
+        "animal_lifespan_or_healthspan",
+        "mechanistic",
+        "null_negative_or_limiting",
+        "safety_durability",
+        "active_trials_registries",
+        "recent_reviews_meta_analyses",
+        "seminal_anchors",
+        "taxonomy_boundary"
+      ]
+    },
+    "coverageLevel": {
+      "enum": [
+        "not_checked",
+        "thin",
+        "adequate",
+        "strong",
+        "not_applicable"
+      ]
+    },
+    "coverageVerdict": {
+      "enum": [
+        "thin",
+        "adequate",
+        "strong"
+      ]
+    },
+    "researchMode": {
+      "enum": [
+        "bootstrap",
+        "surveillance",
+        "coverage_repair",
+        "extraction_refresh",
+        "synthesis_refresh",
+        "manual"
+      ]
+    }
+  }
+}

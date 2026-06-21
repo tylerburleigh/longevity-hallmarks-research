@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./finding.schema.json",
+  "title": "Finding record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "id",
+    "name",
+    "source_id",
+    "hallmark_ids",
+    "endpoint_category",
+    "direction",
+    "evidence_tier",
+    "confidence",
+    "statement"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "record_type": {
+      "const": "finding"
+    },
+    "id": {
+      "$ref": "./common.schema.json#/$defs/findingRef"
+    },
+    "name": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "source_id": {
+      "$ref": "./common.schema.json#/$defs/sourceRef"
+    },
+    "study_id": {
+      "$ref": "./common.schema.json#/$defs/studyRef"
+    },
+    "intervention_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "./common.schema.json#/$defs/identifier"
+      },
+      "uniqueItems": true
+    },
+    "track_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "./common.schema.json#/$defs/trackRef"
+      },
+      "uniqueItems": true
+    },
+    "hallmark_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "./common.schema.json#/$defs/hallmarkRef"
+      },
+      "uniqueItems": true
+    },
+    "endpoint_category": {
+      "$ref": "./common.schema.json#/$defs/endpointCategory"
+    },
+    "direction": {
+      "$ref": "./common.schema.json#/$defs/evidenceDirection"
+    },
+    "evidence_tier": {
+      "$ref": "./common.schema.json#/$defs/evidenceTier"
+    },
+    "confidence": {
+      "$ref": "./common.schema.json#/$defs/confidence"
+    },
+    "statement": {
+      "type": "string"
+    },
+    "population_or_model": {
+      "type": "string"
+    },
+    "time_horizon": {
+      "type": "string"
+    },
+    "quantitative_note": {
+      "type": "string"
+    },
+    "caveats": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    }
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./source.schema.json",
+  "title": "Source record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "id",
+    "name",
+    "source_type"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "record_type": {
+      "const": "source"
+    },
+    "id": {
+      "$ref": "./common.schema.json#/$defs/sourceRef"
+    },
+    "name": {
+      "type": "string"
+    },
+    "short_name": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "source_type": {
+      "$ref": "./common.schema.json#/$defs/sourceType"
+    },
+    "authors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "venue": {
+      "type": "string"
+    },
+    "year": {
+      "type": "integer",
+      "minimum": 1900
+    },
+    "published_on": {
+      "$ref": "./common.schema.json#/$defs/isoDate"
+    },
+    "doi": {
+      "type": "string"
+    },
+    "pmid": {
+      "type": "string",
+      "pattern": "^[0-9]+$"
+    },
+    "registry_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "urls": {
+      "type": "array",
+      "items": {
+        "$ref": "./common.schema.json#/$defs/url"
+      },
+      "uniqueItems": true
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    }
+  }
+}

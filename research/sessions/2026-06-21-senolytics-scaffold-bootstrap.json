@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "research_session",
+  "id": "2026-06-21-senolytics-scaffold-bootstrap",
+  "name": "Senolytics Scaffold Bootstrap",
+  "mode": "bootstrap",
+  "started_at": "2026-06-21T00:00:00Z",
+  "completed_at": "2026-06-21T00:00:00Z",
+  "scope": {
+    "question": "Can the new evidence-synthesis scaffold validate one source, study, finding, session, coverage assessment, candidate change, and evidence review for the senolytics work scope?",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": [
+      "dasatinib-quercetin"
+    ]
+  },
+  "selected_via": "manual_override",
+  "outcome": "candidate_change_submitted",
+  "summary": "Created a minimal scaffold vertical slice using one foundational senolytics source, study, and finding ported from lev-tracker records. This is a schema and workflow proof, not a complete senolytics coverage review.",
+  "candidate_change_id": "senolytics-scaffold-bootstrap-2026-06-21",
+  "next_recommended_mode": "coverage_repair",
+  "search_log": [
+    {
+      "source_name": "lev-tracker local records",
+      "query": "pmid-25754370, zhu-senolytic-drug-discovery, dq-senolytic-drug-discovery-preclinical",
+      "checked_at": "2026-06-21T00:00:00Z",
+      "summary": "Ported one representative source, study, and finding to exercise the new schema and validation path."
+    }
+  ],
+  "excluded_sources": []
+}

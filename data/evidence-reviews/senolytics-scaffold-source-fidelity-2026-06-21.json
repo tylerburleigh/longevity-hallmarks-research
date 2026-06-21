@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-scaffold-source-fidelity-2026-06-21",
+  "candidate_change_id": "senolytics-scaffold-bootstrap-2026-06-21",
+  "review_lane": "source_fidelity",
+  "reviewer_kind": "agent",
+  "reviewer_id": "codex",
+  "status": "complete",
+  "verdict": "needs_human_judgment",
+  "blocking": false,
+  "summary": "The scaffold records were ported from existing lev-tracker records and preserve PMID, DOI, source title, study linkage, and the preclinical boundary. This review is nonblocking because it validates scaffold structure, not a fresh source-level re-extraction.",
+  "findings": [
+    {
+      "finding_id": "scaffold-not-full-review",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "The scaffold source-fidelity review is not a full re-review of the original paper.",
+      "why_it_matters": "The first real senolytics coverage-repair pass should verify the source directly before using the record as production evidence.",
+      "recommended_action": "Run source-fidelity and extraction-fidelity review during the first real coverage-repair pass.",
+      "resolution_status": "open"
+    }
+  ]
+}

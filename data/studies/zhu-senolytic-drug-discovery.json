@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "study",
+  "id": "zhu-senolytic-drug-discovery",
+  "name": "Senolytic drug discovery from senescent-cell pro-survival networks",
+  "summary": "Foundational discovery and validation study using senescent-cell transcriptomics, target knockdown, candidate drugs, and in vivo mouse models to test whether senescent cells can be selectively eliminated by small molecules.",
+  "study_type": "animal",
+  "status": "completed",
+  "phase": "not_applicable",
+  "model_system": "Senescent human and mouse cell systems plus aged, irradiated, and progeroid mouse models treated with dasatinib plus quercetin.",
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ],
+  "track_ids": [
+    "senolytics"
+  ],
+  "endpoint_categories": [
+    "mechanistic",
+    "biomarker",
+    "functional",
+    "healthspan"
+  ],
+  "source_ids": [
+    "pmid-25754370"
+  ],
+  "tags": [
+    "senolytics",
+    "dasatinib-quercetin",
+    "discovery",
+    "animal",
+    "mechanistic"
+  ]
+}

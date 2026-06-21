@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./candidate-change.schema.json",
+  "title": "Candidate change",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "id",
+    "name",
+    "lifecycle_status",
+    "submitted_at",
+    "scope",
+    "proposed_records",
+    "required_review_lanes"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "record_type": {
+      "const": "candidate_change"
+    },
+    "id": {
+      "$ref": "./common.schema.json#/$defs/candidateChangeRef"
+    },
+    "name": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "lifecycle_status": {
+      "enum": [
+        "draft",
+        "submitted",
+        "in_review",
+        "needs_revision",
+        "accepted",
+        "rejected",
+        "applied"
+      ]
+    },
+    "submitted_at": {
+      "$ref": "./common.schema.json#/$defs/dateTime"
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "question"
+      ],
+      "properties": {
+        "question": {
+          "type": "string"
+        },
+        "hallmark_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/hallmarkRef"
+          },
+          "uniqueItems": true
+        },
+        "track_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/trackRef"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "proposed_records": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "record_type",
+          "record_id",
+          "path",
+          "change_type",
+          "rationale"
+        ],
+        "properties": {
+          "record_type": {
+            "type": "string"
+          },
+          "record_id": {
+            "$ref": "./common.schema.json#/$defs/identifier"
+          },
+          "path": {
+            "type": "string"
+          },
+          "change_type": {
+            "enum": [
+              "create",
+              "update",
+              "delete"
+            ]
+          },
+          "rationale": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "required_review_lanes": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "source_fidelity",
+          "extraction_fidelity",
+          "taxonomy_mapping",
+          "synthesis_boundary",
+          "safety_limitations"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "evidence_review_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "./common.schema.json#/$defs/evidenceReviewRef"
+      },
+      "uniqueItems": true
+    }
+  }
+}

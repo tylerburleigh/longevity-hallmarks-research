@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0.0",
+  "taxonomy": "hallmark_research_tracks",
+  "taxonomy_version": "1.0.0",
+  "description": "Seed research work scopes for hallmarks-of-aging evidence synthesis. Tracks bound agent work; they are not automatically meta-analysis strata.",
+  "design_notes": [
+    "A track is a research work scope used to plan bounded search, screening, extraction, and coverage-repair passes.",
+    "Formal synthesis groups must be derived from intervention, population, comparator, endpoint, duration, design, and bias fields rather than from track ID alone.",
+    "Each track must include explicit inclusion, exclusion, and boundary notes so overlap with neighboring tracks is auditable."
+  ],
+  "source_basis": [
+    {
+      "title": "Hallmarks of aging: An expanding universe",
+      "citation": "Lopez-Otin C, Blasco MA, Partridge L, Serrano M, Kroemer G. Cell. 2023;186(2):243-278.",
+      "year": 2023,
+      "doi": "10.1016/j.cell.2022.11.001",
+      "url": "https://doi.org/10.1016/j.cell.2022.11.001"
+    }
+  ],
+  "tracks": [
+    {
+      "id": "senolytics",
+      "name": "Senolytics",
+      "primary_hallmark_id": "cellular_senescence",
+      "secondary_hallmark_ids": [
+        "chronic_inflammation",
+        "altered_intercellular_communication"
+      ],
+      "primary_axis": "intervention_family",
+      "definition": "Interventions intended to selectively eliminate senescent cells or senescent-cell subpopulations through direct cytotoxic or apoptosis-sensitizing mechanisms.",
+      "inclusion_criteria": [
+        "Studies of compounds, biologics, or cell-directed approaches presented as directly clearing senescent cells.",
+        "Sources measuring senescent-cell burden, senescence markers, tissue function, healthspan, lifespan, clinical, or safety outcomes after a direct senolytic intervention.",
+        "Registry records for human trials testing direct senolytic interventions in aging-relevant or age-related disease contexts."
+      ],
+      "exclusion_criteria": [
+        "SASP suppression or inflammatory modulation without intended senescent-cell clearance belongs in senomorphics or inflammatory tracks.",
+        "Immune-engineered clearance strategies belong in immune clearance of senescent cells unless the source explicitly evaluates a direct senolytic agent.",
+        "Oncology-only cytotoxic use is excluded unless the source makes an aging-relevant senescent-cell clearance claim."
+      ],
+      "boundary_notes": [
+        "This is a work scope, not a pooling unit; D+Q, fisetin, BCL-family inhibitors, FOXO4-related approaches, and other branches require separate synthesis grouping before meta-analysis.",
+        "Findings may map to chronic inflammation or intercellular communication when senescent-cell clearance changes SASP or inflammatory signaling."
+      ],
+      "rationale_source_ids": [
+        "pmid-25754370"
+      ],
+      "search_aliases": [
+        "senolytic aging",
+        "senescent cell clearance",
+        "dasatinib quercetin aging",
+        "fisetin senolytic",
+        "BCL senolytic aging"
+      ],
+      "lifecycle_status": "provisional"
+    }
+  ]
+}

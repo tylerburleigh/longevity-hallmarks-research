@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "finding",
+  "id": "dq-senolytic-drug-discovery-preclinical",
+  "name": "D+Q discovery work showed senescent-cell clearance and preclinical functional signals",
+  "summary": "The Achilles heel discovery paper anchors the senolytics mechanism by showing that senescent-cell pro-survival pathways can be targeted and that dasatinib plus quercetin reduced senescent-cell burden and improved selected functional outcomes in mouse models.",
+  "source_id": "pmid-25754370",
+  "study_id": "zhu-senolytic-drug-discovery",
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "track_ids": [
+    "senolytics"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ],
+  "endpoint_category": "healthspan",
+  "direction": "positive",
+  "evidence_tier": "animal",
+  "confidence": "moderate",
+  "statement": "The study identified senescent-cell anti-apoptotic vulnerabilities and reported that dasatinib plus quercetin reduced senescent-cell burden in aged, irradiated, and progeroid mice, with short-term cardiac and vascular improvements and longer exercise-capacity benefit after limb irradiation.",
+  "population_or_model": "Senescent human and mouse cell assays plus aged, irradiated, and progeroid mouse models",
+  "time_horizon": "Single-dose short-term functional measures and periodic dosing in progeroid mice",
+  "quantitative_note": "The abstract reports improved cardiac function and carotid vascular reactivity 5 days after a single dose in old mice and improved exercise capacity for at least 7 months after irradiation in one limb.",
+  "caveats": [
+    "This is preclinical and mechanistic evidence, not human aging efficacy.",
+    "The study covers several models and endpoints, so translation depends on which senescent-cell populations are targeted in each tissue.",
+    "Financial conflicts and senolytic patents were disclosed."
+  ],
+  "tags": [
+    "senolytics",
+    "dasatinib-quercetin",
+    "animal",
+    "mechanistic",
+    "healthspan"
+  ]
+}

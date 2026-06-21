@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./hallmarks-taxonomy.schema.json",
+  "title": "Hallmarks taxonomy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "taxonomy",
+    "taxonomy_version",
+    "source_basis",
+    "hallmarks"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "taxonomy": {
+      "const": "hallmarks_of_aging"
+    },
+    "taxonomy_version": {
+      "type": "string"
+    },
+    "source_basis": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "year",
+          "url"
+        ],
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "citation": {
+            "type": "string"
+          },
+          "year": {
+            "type": "integer",
+            "minimum": 1900
+          },
+          "doi": {
+            "type": "string"
+          },
+          "url": {
+            "$ref": "./common.schema.json#/$defs/url"
+          }
+        }
+      }
+    },
+    "hallmarks": {
+      "type": "array",
+      "minItems": 12,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "canonical_order",
+          "description"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "./common.schema.json#/$defs/hallmarkRef"
+          },
+          "name": {
+            "type": "string"
+          },
+          "canonical_order": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

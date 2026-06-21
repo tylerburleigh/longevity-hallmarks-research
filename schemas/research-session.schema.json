@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./research-session.schema.json",
+  "title": "Research session",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "id",
+    "mode",
+    "started_at",
+    "completed_at",
+    "scope",
+    "selected_via",
+    "outcome",
+    "summary",
+    "next_recommended_mode"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "record_type": {
+      "const": "research_session"
+    },
+    "id": {
+      "$ref": "./common.schema.json#/$defs/identifier"
+    },
+    "name": {
+      "type": "string"
+    },
+    "mode": {
+      "$ref": "./common.schema.json#/$defs/researchMode"
+    },
+    "started_at": {
+      "$ref": "./common.schema.json#/$defs/dateTime"
+    },
+    "completed_at": {
+      "$ref": "./common.schema.json#/$defs/dateTime"
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "question"
+      ],
+      "properties": {
+        "question": {
+          "type": "string"
+        },
+        "hallmark_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/hallmarkRef"
+          },
+          "uniqueItems": true
+        },
+        "track_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/trackRef"
+          },
+          "uniqueItems": true
+        },
+        "intervention_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/identifier"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "selected_via": {
+      "enum": [
+        "explicit_track",
+        "explicit_hallmark",
+        "queue_default",
+        "manual_override"
+      ]
+    },
+    "outcome": {
+      "enum": [
+        "no_op",
+        "coverage_assessment_updated",
+        "candidate_change_submitted",
+        "blocked"
+      ]
+    },
+    "summary": {
+      "type": "string"
+    },
+    "candidate_change_id": {
+      "$ref": "./common.schema.json#/$defs/candidateChangeRef"
+    },
+    "next_recommended_mode": {
+      "$ref": "./common.schema.json#/$defs/researchMode"
+    },
+    "search_log": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source_name",
+          "checked_at",
+          "summary"
+        ],
+        "properties": {
+          "source_name": {
+            "type": "string"
+          },
+          "query": {
+            "type": "string"
+          },
+          "checked_at": {
+            "$ref": "./common.schema.json#/$defs/dateTime"
+          },
+          "url": {
+            "$ref": "./common.schema.json#/$defs/url"
+          },
+          "summary": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "excluded_sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "reference",
+          "decision",
+          "reason"
+        ],
+        "properties": {
+          "reference": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "url": {
+            "$ref": "./common.schema.json#/$defs/url"
+          },
+          "decision": {
+            "enum": [
+              "not_material",
+              "duplicate",
+              "context_only",
+              "wrong_scope",
+              "awaiting_full_text",
+              "deferred"
+            ]
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

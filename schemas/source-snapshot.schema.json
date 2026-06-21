@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./source-snapshot.schema.json",
+  "title": "Source snapshot placeholder",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version",
+    "record_type",
+    "id"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "record_type": {
+      "const": "source_snapshot"
+    },
+    "id": {
+      "$ref": "./common.schema.json#/$defs/identifier"
+    }
+  }
+}

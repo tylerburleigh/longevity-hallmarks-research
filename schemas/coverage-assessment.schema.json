@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./coverage-assessment.schema.json",
+  "title": "Coverage assessment",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "id",
+    "name",
+    "track_id",
+    "hallmark_id",
+    "assessment_type",
+    "assessed_at",
+    "coverage_verdict",
+    "summary",
+    "evidence_categories",
+    "covered_source_ids",
+    "known_gaps",
+    "next_coverage_action",
+    "next_recommended_mode"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "record_type": {
+      "const": "coverage_assessment"
+    },
+    "id": {
+      "$ref": "./common.schema.json#/$defs/identifier"
+    },
+    "name": {
+      "type": "string"
+    },
+    "track_id": {
+      "$ref": "./common.schema.json#/$defs/trackRef"
+    },
+    "hallmark_id": {
+      "$ref": "./common.schema.json#/$defs/hallmarkRef"
+    },
+    "assessment_type": {
+      "$ref": "./common.schema.json#/$defs/researchMode"
+    },
+    "assessed_at": {
+      "$ref": "./common.schema.json#/$defs/dateTime"
+    },
+    "coverage_verdict": {
+      "$ref": "./common.schema.json#/$defs/coverageVerdict"
+    },
+    "coverage_confidence": {
+      "$ref": "./common.schema.json#/$defs/confidence"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "evidence_categories": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "category",
+          "coverage_level",
+          "rationale"
+        ],
+        "properties": {
+          "category": {
+            "$ref": "./common.schema.json#/$defs/coverageCategory"
+          },
+          "coverage_level": {
+            "$ref": "./common.schema.json#/$defs/coverageLevel"
+          },
+          "rationale": {
+            "type": "string"
+          },
+          "source_ids": {
+            "type": "array",
+            "items": {
+              "$ref": "./common.schema.json#/$defs/sourceRef"
+            },
+            "uniqueItems": true
+          },
+          "finding_ids": {
+            "type": "array",
+            "items": {
+              "$ref": "./common.schema.json#/$defs/findingRef"
+            },
+            "uniqueItems": true
+          },
+          "gap_note": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "covered_source_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "./common.schema.json#/$defs/sourceRef"
+      },
+      "uniqueItems": true
+    },
+    "covered_finding_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "./common.schema.json#/$defs/findingRef"
+      },
+      "uniqueItems": true
+    },
+    "known_gaps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "gap_id",
+          "gap_type",
+          "category",
+          "description",
+          "priority",
+          "suggested_action"
+        ],
+        "properties": {
+          "gap_id": {
+            "$ref": "./common.schema.json#/$defs/identifier"
+          },
+          "gap_type": {
+            "enum": [
+              "coverage_gap",
+              "evidence_gap",
+              "operational_gap"
+            ]
+          },
+          "category": {
+            "$ref": "./common.schema.json#/$defs/coverageCategory"
+          },
+          "description": {
+            "type": "string"
+          },
+          "priority": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "suggested_action": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "next_coverage_action": {
+      "type": "string"
+    },
+    "next_recommended_mode": {
+      "$ref": "./common.schema.json#/$defs/researchMode"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    }
+  }
+}

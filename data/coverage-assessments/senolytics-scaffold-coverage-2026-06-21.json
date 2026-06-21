@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "coverage_assessment",
+  "id": "senolytics-scaffold-coverage-2026-06-21",
+  "name": "Senolytics Scaffold Coverage Assessment",
+  "track_id": "senolytics",
+  "hallmark_id": "cellular_senescence",
+  "assessment_type": "bootstrap",
+  "assessed_at": "2026-06-21T00:00:00Z",
+  "coverage_verdict": "thin",
+  "coverage_confidence": "low",
+  "summary": "This assessment only proves the new repository scaffold can represent a source-backed senolytics evidence slice. It is not a full coverage assessment for the track.",
+  "evidence_categories": [
+    {
+      "category": "seminal_anchors",
+      "coverage_level": "thin",
+      "rationale": "One foundational senolytic discovery source has been represented, but the broader seminal anchor set is not yet audited.",
+      "source_ids": [
+        "pmid-25754370"
+      ],
+      "finding_ids": [
+        "dq-senolytic-drug-discovery-preclinical"
+      ],
+      "gap_note": "Run a real coverage-repair pass before treating the senolytics work scope as source-complete."
+    },
+    {
+      "category": "human_interventional",
+      "coverage_level": "not_checked",
+      "rationale": "No human senolytic trials have been ported into this scaffold yet.",
+      "gap_note": "Human D+Q, fisetin, and adjacent direct-senolytic trial records should be screened in the first real bootstrap or repair pass."
+    },
+    {
+      "category": "taxonomy_boundary",
+      "coverage_level": "thin",
+      "rationale": "The stricter track taxonomy now records inclusion, exclusion, and boundary notes for senolytics, but neighboring tracks are not yet represented.",
+      "gap_note": "Add neighboring senomorphic and immune-clearance boundaries before broader classification work."
+    }
+  ],
+  "covered_source_ids": [
+    "pmid-25754370"
+  ],
+  "covered_finding_ids": [
+    "dq-senolytic-drug-discovery-preclinical"
+  ],
+  "known_gaps": [
+    {
+      "gap_id": "senolytics-human-evidence-not-ported",
+      "gap_type": "coverage_gap",
+      "category": "human_interventional",
+      "description": "The scaffold contains one preclinical discovery source but no direct human senolytics evidence.",
+      "priority": "high",
+      "suggested_action": "Run a bounded senolytics coverage-repair pass to add human trial, registry, safety, and limiting-evidence records."
+    },
+    {
+      "gap_id": "senolytics-synthesis-not-supported-yet",
+      "gap_type": "operational_gap",
+      "category": "taxonomy_boundary",
+      "description": "The scaffold has not yet implemented result extraction or synthesis compatibility rules.",
+      "priority": "medium",
+      "suggested_action": "Add result and synthesis schemas before attempting evidence pooling."
+    }
+  ],
+  "next_coverage_action": "Use this scaffold to drive the first real senolytics coverage-repair pass.",
+  "next_recommended_mode": "coverage_repair",
+  "tags": [
+    "scaffold",
+    "senolytics",
+    "cellular_senescence"
+  ]
+}

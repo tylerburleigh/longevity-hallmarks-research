@@ -1,0 +1,174 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./track-taxonomy.schema.json",
+  "title": "Track taxonomy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "taxonomy",
+    "taxonomy_version",
+    "description",
+    "design_notes",
+    "source_basis",
+    "tracks"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "taxonomy": {
+      "const": "hallmark_research_tracks"
+    },
+    "taxonomy_version": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "design_notes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "source_basis": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "year",
+          "url"
+        ],
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "citation": {
+            "type": "string"
+          },
+          "year": {
+            "type": "integer",
+            "minimum": 1900
+          },
+          "doi": {
+            "type": "string"
+          },
+          "url": {
+            "$ref": "./common.schema.json#/$defs/url"
+          }
+        }
+      }
+    },
+    "tracks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "primary_hallmark_id",
+          "primary_axis",
+          "definition",
+          "inclusion_criteria",
+          "exclusion_criteria",
+          "boundary_notes",
+          "rationale_source_ids",
+          "search_aliases",
+          "lifecycle_status"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "./common.schema.json#/$defs/trackRef"
+          },
+          "name": {
+            "type": "string"
+          },
+          "primary_hallmark_id": {
+            "$ref": "./common.schema.json#/$defs/hallmarkRef"
+          },
+          "secondary_hallmark_ids": {
+            "type": "array",
+            "items": {
+              "$ref": "./common.schema.json#/$defs/hallmarkRef"
+            },
+            "uniqueItems": true
+          },
+          "primary_axis": {
+            "enum": [
+              "mechanism",
+              "intervention_family",
+              "modality",
+              "procedure",
+              "translational_program"
+            ]
+          },
+          "definition": {
+            "type": "string"
+          },
+          "inclusion_criteria": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          },
+          "exclusion_criteria": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          },
+          "boundary_notes": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          },
+          "rationale_source_ids": {
+            "type": "array",
+            "items": {
+              "$ref": "./common.schema.json#/$defs/sourceRef"
+            },
+            "uniqueItems": true
+          },
+          "search_aliases": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "lifecycle_status": {
+            "enum": [
+              "active",
+              "provisional",
+              "deprecated",
+              "split",
+              "merged"
+            ]
+          },
+          "successor_track_ids": {
+            "type": "array",
+            "items": {
+              "$ref": "./common.schema.json#/$defs/trackRef"
+            },
+            "uniqueItems": true
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "senolytics-scaffold-bootstrap-2026-06-21",
+  "name": "Senolytics Scaffold Bootstrap",
+  "summary": "Initial candidate change representing one source-backed senolytics evidence slice in the new repository.",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-21T00:00:00Z",
+  "scope": {
+    "question": "Can the new evidence-synthesis scaffold validate a minimal senolytics vertical slice?",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "proposed_records": [
+    {
+      "record_type": "source",
+      "record_id": "pmid-25754370",
+      "path": "data/sources/pmid-25754370.json",
+      "change_type": "create",
+      "rationale": "Canonical source anchor for the senolytics scaffold."
+    },
+    {
+      "record_type": "study",
+      "record_id": "zhu-senolytic-drug-discovery",
+      "path": "data/studies/zhu-senolytic-drug-discovery.json",
+      "change_type": "create",
+      "rationale": "Study-level representation of the foundational senolytic discovery work."
+    },
+    {
+      "record_type": "finding",
+      "record_id": "dq-senolytic-drug-discovery-preclinical",
+      "path": "data/findings/dq-senolytic-drug-discovery-preclinical.json",
+      "change_type": "create",
+      "rationale": "Atomic source-backed finding used to exercise the evidence graph."
+    }
+  ],
+  "required_review_lanes": [
+    "source_fidelity",
+    "taxonomy_mapping",
+    "synthesis_boundary"
+  ],
+  "evidence_review_ids": [
+    "senolytics-scaffold-source-fidelity-2026-06-21"
+  ]
+}

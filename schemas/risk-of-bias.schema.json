@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./risk-of-bias.schema.json",
+  "title": "Risk of bias placeholder",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version",
+    "record_type",
+    "id"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "record_type": {
+      "const": "risk_of_bias"
+    },
+    "id": {
+      "$ref": "./common.schema.json#/$defs/identifier"
+    }
+  }
+}

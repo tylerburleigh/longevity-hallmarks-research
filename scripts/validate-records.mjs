@@ -21,6 +21,7 @@ const schemaByRecordType = {
   certainty_assessment: "./certainty-assessment.schema.json",
   evidence_map: "./evidence-map.schema.json",
   synthesis: "./synthesis.schema.json",
+  synthesis_group: "./synthesis-group.schema.json",
   coverage_assessment: "./coverage-assessment.schema.json",
   coverage_status_export: "./coverage-status-export.schema.json",
   research_session: "./research-session.schema.json",

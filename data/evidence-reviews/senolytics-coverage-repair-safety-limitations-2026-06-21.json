@@ -7,7 +7,7 @@
   "reviewer_kind": "agent",
   "reviewer_id": "codex",
   "status": "draft",
-  "verdict": "needs_human_judgment",
+  "verdict": "needs_revision",
   "blocking": false,
   "summary": "Placeholder review lane added during generation-system hardening. Safety coverage exists but remains incomplete for event-level adverse-event extraction and durability assessment.",
   "findings": [

@@ -24,15 +24,17 @@ Check for:
 - JSON files without schema coverage.
 - Records whose `record_type` does not match their collection.
 - Duplicate IDs across canonical records.
-- Broken references between sources, studies, findings, candidate changes, evidence reviews, sessions, and coverage assessments.
+- Broken references between sources, studies, findings, candidate changes, evidence reviews, sessions, coverage assessments, and synthesis groups.
 - Track IDs or hallmark IDs not present in taxonomies.
 - Candidate changes missing required review lanes.
 - `in_review` candidates that lack active evidence-review records for each required lane.
 - Evidence reviews that refer to missing candidate changes.
 - Coverage assessments that cite missing sources or findings.
+- Synthesis groups that claim pooling is allowed without required effect fields.
 - Placeholder schemas that are being used for production-like records.
 - Generated/export files that are stale or not reproducible.
 - Extraction-grade records or exports whose provenance lacks source snapshot links.
+- Deprecated non-agentic process vocabulary.
 
 ## Minimal Commands
 
@@ -44,7 +46,7 @@ find data research taxonomies schemas -name '*.json' | sort
 rg -n '"record_type"|"source_id"|"source_ids"|"study_id"|"finding_ids"|"track_ids"|"hallmark_ids"' data research taxonomies
 ```
 
-Prefer adding or tightening scripts when the same audit would otherwise be repeated manually.
+Prefer adding or tightening scripts when the same audit would otherwise be repeated through ad hoc agent checks.
 
 ## Maintenance Rules
 

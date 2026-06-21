@@ -29,7 +29,7 @@ rg -n "<PMID>|<DOI>|<NCT>|<title words>|<intervention>" data taxonomies research
 - `study` records describe design, population/model, intervention, status, phase, endpoints, and source links.
 - `finding` records hold one atomic claim or observation from one source, usually linked to one study.
 - `outcome` and `result` records should be used for structured endpoints/effects.
-- `coverage_assessment` and `synthesis` records should not duplicate every source; they should summarize coverage and interpretation.
+- `coverage_assessment`, `synthesis`, and `synthesis_group` records should not duplicate every source; they should summarize coverage, interpretation, and compatibility decisions.
 
 ## Source ID Conventions
 
@@ -38,7 +38,7 @@ Use stable IDs:
 - PubMed: `pmid-<digits>`
 - ClinicalTrials.gov: `nct-<digits>` in lowercase
 - DOI-only source: `doi-<normalized-doi>` with punctuation normalized to hyphens
-- Manual primary source: `<issuer>-<short-topic>-<yyyy-mm-dd>`
+- Agent-curated primary source: `<issuer>-<short-topic>-<yyyy-mm-dd>`
 
 ## Quality Bar
 
@@ -48,7 +48,8 @@ Use stable IDs:
 - Include caveats when sample size, endpoint, duration, conflict, or translation boundary matters.
 - Use source-snapshot importers before extraction-grade PubMed or ClinicalTrials.gov extraction, and include `source_snapshot_id` on extraction-grade provenance locators.
 - Add `candidate_change` and `evidence_review` records when the extraction is intended to become durable canonical state.
-- If a candidate is `in_review`, add active review records for every required lane, using draft `needs_human_judgment` records for lanes that remain incomplete.
+- If a candidate is `in_review`, add active review records for every required lane, using draft `needs_revision` records for lanes that remain incomplete.
+- Add or update `synthesis_group` records when extracted results change poolability, missing effect fields, or endpoint compatibility.
 
 ## Validation
 

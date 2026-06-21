@@ -438,6 +438,13 @@
       "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
     },
     {
+      "record_type": "synthesis_group",
+      "record_id": "senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21",
+      "path": "data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
+      "change_type": "create",
+      "rationale": "Adds an agent-supervised compatibility decision that marks the D+Q bone registry-extracted endpoints as evidence-map useful but not poolable."
+    },
+    {
       "record_type": "research_session",
       "record_id": "2026-06-21-senolytics-coverage-repair",
       "path": "research/sessions/2026-06-21-senolytics-coverage-repair.json",

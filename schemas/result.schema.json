@@ -153,6 +153,14 @@
         "ci_upper": {
           "type": "number"
         },
+        "standard_error": {
+          "type": "number",
+          "minimum": 0
+        },
+        "variance": {
+          "type": "number",
+          "minimum": 0
+        },
         "p_value": {
           "type": "string"
         },

@@ -42,7 +42,8 @@
     "reviewer_kind": {
       "enum": [
         "agent",
-        "human"
+        "supervisor_agent",
+        "system"
       ]
     },
     "reviewer_id": {
@@ -59,8 +60,7 @@
       "enum": [
         "accept",
         "needs_revision",
-        "reject",
-        "needs_human_judgment"
+        "reject"
       ]
     },
     "blocking": {

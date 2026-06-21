@@ -34,7 +34,7 @@
         "pubmed_esummary",
         "pubmed_efetch",
         "clinicaltrials_v2_study",
-        "manual_primary_source",
+        "agent_curated_primary_source",
         "other"
       ]
     },

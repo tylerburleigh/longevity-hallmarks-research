@@ -7,9 +7,9 @@
   "reviewer_kind": "agent",
   "reviewer_id": "codex",
   "status": "complete",
-  "verdict": "needs_human_judgment",
+  "verdict": "needs_revision",
   "blocking": false,
-  "summary": "Structured ClinicalTrials.gov outcomes were extracted for the primary CTx endpoint, P1NP timepoints, BMD, SASP, and aggregate adverse events. Human review is still needed before promotion because publication full-text tables and subgroup details were not fully extracted.",
+  "summary": "Structured ClinicalTrials.gov outcomes were extracted for the primary CTx endpoint, P1NP timepoints, BMD, SASP, and aggregate adverse events. Supervisor-agent review is still needed before promotion because publication full-text tables and subgroup details were not fully extracted.",
   "findings": [
     {
       "finding_id": "registry-outcomes-extracted",

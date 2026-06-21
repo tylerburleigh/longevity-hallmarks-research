@@ -7,7 +7,7 @@
   "reviewer_kind": "agent",
   "reviewer_id": "codex",
   "status": "complete",
-  "verdict": "needs_human_judgment",
+  "verdict": "needs_revision",
   "blocking": false,
   "summary": "The scaffold records were ported from existing lev-tracker records and preserve PMID, DOI, source title, study linkage, and the preclinical boundary. This review is nonblocking because it validates scaffold structure, not a fresh source-level re-extraction.",
   "findings": [

@@ -7,7 +7,7 @@
   "reviewer_kind": "agent",
   "reviewer_id": "codex",
   "status": "complete",
-  "verdict": "needs_human_judgment",
+  "verdict": "needs_revision",
   "blocking": false,
   "summary": "Source identifiers, dates, titles, journal venues, registry IDs, and current registry status were checked against PubMed ESummary and ClinicalTrials.gov API metadata. The review does not certify full-text quantitative extraction.",
   "findings": [

@@ -4,7 +4,7 @@
 
 Build a maintainable, expandable, auditable research system for the hallmarks of aging.
 
-The system should support agent-assisted discovery, screening, extraction, classification, synthesis, and review of research articles, trials, and related primary sources. Its main output should be machine-readable evidence artifacts that can be consumed by downstream apps, dashboards, reports, notebooks, or APIs.
+The system should support agent-orchestrated discovery, screening, extraction, classification, synthesis, review, supervision, self-healing, and audit of research articles, trials, and related primary sources. Its main output should be machine-readable evidence artifacts that can be consumed by downstream apps, dashboards, reports, notebooks, or APIs.
 
 This is not primarily a public website. It is the evidence and research-operations substrate behind a living evidence synthesis.
 
@@ -18,16 +18,16 @@ It may produce meta-analyses where the underlying evidence is compatible enough 
 
 - Keep evidence, interpretation, workflow state, and presentation separate.
 - Make every durable claim traceable to a source, study, extraction, and review path.
-- Treat agent output as proposed state until validated and reviewed.
+- Treat agent output as proposed state until validated by automated checks and agent-supervisor review.
 - Prefer small bounded research passes over broad open-ended research.
 - Record no-op searches and excluded near-misses because they are part of the audit trail.
-- Keep generated state reproducible and separate from curated records.
+- Keep generated state reproducible and separate from accepted canonical records.
 - Version schemas and release artifacts from the start.
 - Avoid treating taxonomy categories as automatically valid meta-analysis strata.
 
 ## Key Decision: Tracks Are Work Scopes
 
-A track is a bounded research work scope: a manageable area for an agent or curator to search, screen, extract, and update in one pass.
+A track is a bounded research work scope: a manageable area for an agent run to search, screen, extract, and update in one pass.
 
 Examples:
 
@@ -91,6 +91,8 @@ As of 2026-06-21, the repository has an initial JSON-file-backed scaffold:
 - Hardened reference audits with semantic checks for candidate completeness, registry-only evidence, provisional risk-of-bias records, and coverage-scope overclaiming.
 - Upgraded the D+Q postmenopausal bone RCT with source snapshots and registry-extracted outcome/result records from ClinicalTrials.gov posted results.
 - Added reusable PubMed and ClinicalTrials.gov source-snapshot importer, refresh, and diff scripts.
+- Added `synthesis_group` schema/data/export support for poolability decisions, missing effect fields, and agent-supervision metadata.
+- Added an agentic process audit that blocks deprecated non-agentic process vocabulary.
 
 ## Target Architecture
 
@@ -111,7 +113,8 @@ Core record families:
 - `evidence_map`: scoped graph of sources, studies, findings, gaps, and conflicts
 - `synthesis`: narrative synthesis, evidence table, or formal meta-analysis output
 - `coverage_assessment`: source-landscape completeness and known gaps
-- `research_session`: one bounded agent or curator pass
+- `research_session`: one bounded agent pass
+- `synthesis_group`: compatibility decision over outcomes/results, including poolability, missing effect fields, and agent-supervision metadata
 - `candidate_change`: proposed durable data changes
 - `evidence_review`: review of source fidelity, extraction, taxonomy mapping, and interpretation boundaries
 - `release_manifest`: versioned export and audit manifest
@@ -163,6 +166,7 @@ data/
   certainty-assessments/
   evidence-maps/
   syntheses/
+  synthesis-groups/
   coverage-assessments/
 
 research/
@@ -184,6 +188,7 @@ exports/
     studies.jsonl
     findings.jsonl
     results.jsonl
+    synthesis-groups.jsonl
     coverage-status.json
     synthesis-summary.json
     audit-manifest.json
@@ -215,6 +220,8 @@ Initial agent roles should be narrow and explicit:
 - `risk_of_bias_agent`: applies structured design-quality checks.
 - `synthesis_agent`: builds evidence maps and synthesis records.
 - `review_agent`: checks source fidelity, extraction correctness, taxonomy mapping, and interpretation boundaries.
+- `supervisor_agent`: reviews other agents' outputs, blocks unsafe promotion, and records required revisions.
+- `self_healing_agent`: detects stale snapshots, missing effect fields, broken links, and incomplete ledgers, then creates scoped repair candidates.
 - `release_agent`: validates, builds exports, and writes release manifests.
 
 ## Codex Skill Layer
@@ -255,7 +262,7 @@ Exit criteria:
 
 ### Phase 1: Minimal Evidence Store
 
-Goal: support one manually curated track end to end.
+Goal: support one agent-curated track end to end.
 
 Tasks:
 
@@ -263,7 +270,7 @@ Tasks:
 - [x] Add validation script.
 - [x] Add examples for each core record through the initial senolytics vertical slice.
 - [x] Port a minimal hallmark and track taxonomy.
-- [x] Define source ID conventions for PMID, DOI, NCT, and manual sources.
+- [x] Define source ID conventions for PMID, DOI, NCT, and agent-curated sources.
 - [x] Define the first track work scope.
 
 Exit criteria:
@@ -341,6 +348,7 @@ Tasks:
 - [x] Add coverage-status export.
 - [x] Add audit manifest export.
 - [x] Add provenance-depth checks for extraction-grade exported result claims.
+- [x] Add synthesis-group export for poolability decisions and missing effect fields.
 - [ ] Add an accepted-record export once promotion gates exist.
 
 Exit criteria:
@@ -374,12 +382,15 @@ Goal: distinguish evidence maps from formal synthesis and meta-analysis.
 
 Tasks:
 
-- Add endpoint taxonomy.
-- Add result/effect schemas.
-- Add synthesis compatibility rules.
-- Add a `synthesis_group` concept if needed.
-- Define when pooling is allowed, discouraged, or blocked.
-- Add structured reasons for "not meta-analyzable."
+- [ ] Add endpoint taxonomy.
+- [x] Add result/effect schemas.
+- [x] Add synthesis compatibility rules.
+- [x] Add a `synthesis_group` concept.
+- [x] Define when pooling is allowed, pending, or blocked.
+- [x] Add structured reasons for "not meta-analyzable."
+- [x] Require poolable synthesis groups to reference effect value, uncertainty, comparison, and sample-size fields.
+- [x] Add an agentic process audit that rejects deprecated non-agentic process vocabulary.
+- [ ] Add endpoint-specific synthesis-group generation for the remaining human senolytics papers.
 
 Exit criteria:
 
@@ -398,17 +409,19 @@ Exit criteria:
 ## Immediate Next Actions
 
 1. Add a promotion command that moves candidate records to accepted/applied only when required review lanes are accepting and no open major findings remain.
-2. Finish full publication/table extraction for the D+Q bone RCT, including subgroup and event-specific safety details.
-3. Run extraction-refresh passes on the remaining human D+Q papers: DKD, IPF, and AD-risk cognition/mobility.
-4. Run the missing review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
-5. Decide whether raw source payloads should be archived locally for extraction-grade snapshots or only hash-referenced.
-6. Decide whether to install repo-local skills into the active Codex skills directory.
+2. Generate endpoint-specific synthesis groups for D+Q bone endpoints so each group has one compatible endpoint family and an explicit pooling decision.
+3. Finish full publication/table extraction for the D+Q bone RCT, including subgroup and event-specific safety details.
+4. Run extraction-refresh passes on the remaining human D+Q papers: DKD, IPF, and AD-risk cognition/mobility.
+5. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
+6. Decide whether raw source payloads should be archived locally for extraction-grade snapshots or only hash-referenced.
+7. Decide whether to install repo-local skills into the active Codex skills directory.
 
 ## Change Log
 
 - 2026-06-21: Added maturity/provenance fields, semantic audit gates, candidate-completeness checking, and normalized the senolytics repair slice under the stricter process.
 - 2026-06-21: Added a senolytics coverage-repair slice with sources, studies, findings, outcomes, results, eligibility decisions, risk-of-bias triage, coverage assessment, and candidate-review ledger.
 - 2026-06-21: Added source-snapshot IDs to extraction-grade bone RCT provenance, reconciled coverage gaps, and added export audits for stale JSONL and snapshot-linked result provenance.
+- 2026-06-21: Replaced deprecated non-agentic vocabulary with agent-supervision states, added an agentic process audit, and introduced synthesis-group compatibility records and exports.
 - 2026-06-21: Added in-review candidate review-lane enforcement and draft coverage-repair review records so missing review work is explicit.
 - 2026-06-21: Added source snapshots and registry-extracted outcome/result records for the D+Q postmenopausal bone RCT, including CTX, P1NP, BMD, SASP, and aggregate adverse events.
 - 2026-06-21: Added consumer-facing `exports/latest/` generation with JSONL records, maturity-filtered result splits, coverage status, evidence-map view, and hash manifest.

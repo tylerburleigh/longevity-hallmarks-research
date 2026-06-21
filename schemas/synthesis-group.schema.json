@@ -1,0 +1,255 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./synthesis-group.schema.json",
+  "title": "Synthesis compatibility group",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "id",
+    "name",
+    "assessed_at",
+    "question",
+    "track_ids",
+    "hallmark_ids",
+    "intervention_ids",
+    "compatibility_basis",
+    "outcome_ids",
+    "result_ids",
+    "compatibility_status",
+    "pooling_decision",
+    "pooling_rationale",
+    "pooling_requirements",
+    "agent_supervision",
+    "maturity_status",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "record_type": {
+      "const": "synthesis_group"
+    },
+    "id": {
+      "$ref": "./common.schema.json#/$defs/synthesisGroupRef"
+    },
+    "name": {
+      "type": "string"
+    },
+    "assessed_at": {
+      "$ref": "./common.schema.json#/$defs/dateTime"
+    },
+    "question": {
+      "type": "string"
+    },
+    "track_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "./common.schema.json#/$defs/trackRef"
+      },
+      "uniqueItems": true
+    },
+    "hallmark_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "./common.schema.json#/$defs/hallmarkRef"
+      },
+      "uniqueItems": true
+    },
+    "intervention_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "./common.schema.json#/$defs/identifier"
+      },
+      "uniqueItems": true
+    },
+    "compatibility_basis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "population",
+        "intervention",
+        "comparator",
+        "endpoint_family",
+        "time_horizon",
+        "effect_metric",
+        "variance_model"
+      ],
+      "properties": {
+        "population": {
+          "type": "string"
+        },
+        "intervention": {
+          "type": "string"
+        },
+        "comparator": {
+          "type": "string"
+        },
+        "endpoint_family": {
+          "type": "string"
+        },
+        "time_horizon": {
+          "type": "string"
+        },
+        "effect_metric": {
+          "type": "string"
+        },
+        "variance_model": {
+          "type": "string"
+        }
+      }
+    },
+    "outcome_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "./common.schema.json#/$defs/outcomeRef"
+      },
+      "uniqueItems": true
+    },
+    "result_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "./common.schema.json#/$defs/resultRef"
+      },
+      "uniqueItems": true
+    },
+    "compatibility_status": {
+      "enum": [
+        "poolable",
+        "not_poolable",
+        "needs_extraction",
+        "mixed"
+      ]
+    },
+    "pooling_decision": {
+      "enum": [
+        "pooling_allowed",
+        "pooling_blocked",
+        "pooling_pending"
+      ]
+    },
+    "pooling_rationale": {
+      "type": "string"
+    },
+    "non_pooling_reason": {
+      "type": "string"
+    },
+    "pooling_requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "minimum_result_count",
+        "required_result_maturity_statuses",
+        "required_effect_fields",
+        "missing_effect_fields_by_result"
+      ],
+      "properties": {
+        "minimum_result_count": {
+          "type": "integer",
+          "minimum": 2
+        },
+        "required_result_maturity_statuses": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/maturityStatus"
+          },
+          "uniqueItems": true
+        },
+        "required_effect_fields": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "missing_effect_fields_by_result": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "result_id",
+              "missing_fields",
+              "impact"
+            ],
+            "properties": {
+              "result_id": {
+                "$ref": "./common.schema.json#/$defs/resultRef"
+              },
+              "missing_fields": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string"
+                },
+                "uniqueItems": true
+              },
+              "impact": {
+                "enum": [
+                  "blocks_pooling",
+                  "limits_precision",
+                  "none"
+                ]
+              },
+              "note": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "agent_supervision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "assessing_agent",
+        "supervisor_agent",
+        "audit_status",
+        "self_healing_actions"
+      ],
+      "properties": {
+        "assessing_agent": {
+          "type": "string"
+        },
+        "supervisor_agent": {
+          "type": "string"
+        },
+        "audit_status": {
+          "enum": [
+            "passed",
+            "needs_revision",
+            "blocked"
+          ]
+        },
+        "self_healing_actions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "maturity_status": {
+      "$ref": "./common.schema.json#/$defs/maturityStatus"
+    },
+    "provenance": {
+      "$ref": "./common.schema.json#/$defs/provenanceLocators"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    }
+  }
+}

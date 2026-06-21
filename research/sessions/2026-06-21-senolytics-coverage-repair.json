@@ -22,7 +22,7 @@
   },
   "selected_via": "explicit_track",
   "outcome": "candidate_change_submitted",
-  "summary": "Added verified PubMed and ClinicalTrials.gov source records, study records, finding records, outcome/result records, risk-of-bias records, eligibility decisions, and a new coverage assessment for the senolytics track. Claims were kept conservative pending endpoint-level extraction and human review.",
+  "summary": "Added verified PubMed and ClinicalTrials.gov source records, study records, finding records, outcome/result records, risk-of-bias records, eligibility decisions, and a new coverage assessment for the senolytics track. Claims were kept conservative pending endpoint-level extraction and supervisor-agent review.",
   "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
   "next_recommended_mode": "extraction_refresh",
   "search_log": [

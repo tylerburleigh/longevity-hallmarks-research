@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "release_manifest",
   "id": "latest-consumer-export",
-  "generated_at": "2026-06-21T17:20:52.756Z",
+  "generated_at": "2026-06-21T17:47:32.805Z",
   "export_version": "0.1.0",
   "export_scope": {
     "description": "Consumer-facing latest export generated from canonical research and data records.",
@@ -14,7 +14,7 @@
       "registry_extracted",
       "full_text_extracted",
       "agent_reviewed",
-      "human_reviewed",
+      "supervisor_agent_reviewed",
       "accepted"
     ],
     "included_record_types": [
@@ -23,6 +23,7 @@
       "finding",
       "result",
       "coverage_assessment",
+      "synthesis_group",
       "evidence_map"
     ]
   },
@@ -58,7 +59,7 @@
     {
       "path": "exports/latest/results.extraction_grade.jsonl",
       "format": "jsonl",
-      "description": "Result records with registry, full-text, agent-reviewed, human-reviewed, or accepted extraction-grade maturity.",
+      "description": "Result records with registry, full-text, agent-reviewed, supervisor-agent-reviewed, or accepted extraction-grade maturity.",
       "record_count": 7,
       "sha256": "cf8b7901e57217f7de0d2a1f78a1e592b152c5a8a615bb6c482ad5fcd07be048"
     },
@@ -77,22 +78,29 @@
       "sha256": "c1a3a5b1a8e2b66f76beeeec58dbef65a83d5e98aa16c0085c4304b0887fdb91"
     },
     {
+      "path": "exports/latest/synthesis-groups.jsonl",
+      "format": "jsonl",
+      "description": "Synthesis compatibility groups with poolability decisions, missing effect fields, and agent supervision metadata.",
+      "record_count": 1,
+      "sha256": "addcf57a629a152d548546b6fb65d481f41e4e79a32a4fc422955de604808669"
+    },
+    {
       "path": "exports/latest/evidence-map.json",
       "format": "json",
-      "description": "Generated graph view of source, study, finding, outcome, result, and coverage links.",
+      "description": "Generated graph view of source, study, finding, outcome, result, coverage, and synthesis-compatibility links.",
       "record_count": 1,
-      "sha256": "791299ad37b05da27d746f5ece2c76c0a9eb6d6fd423b284719b4d39e2f159de"
+      "sha256": "f75ae1aeb71dd5213472d74e7f19a7105b17e13cb9b9a4644909d17b8430f6f9"
     },
     {
       "path": "exports/latest/coverage-status.json",
       "format": "json",
       "description": "Consumer coverage status with current/superseded flags and known-gap warnings.",
       "record_count": 1,
-      "sha256": "188bad97d37678e44ae59a373460c703d9c9d0c8769a8ca4f40420247881d595"
+      "sha256": "b0e26e99c0a74aaa10fbd52d16bc19ded9026bbefe23bd3c18a692507ca6e395"
     }
   ],
   "record_counts": {
-    "canonical_records": 88,
+    "canonical_records": 89,
     "sources": 10,
     "studies": 9,
     "findings": 9,
@@ -100,6 +108,7 @@
     "results_extraction_grade": 7,
     "results_registry_extracted": 7,
     "results_triage": 7,
+    "synthesis_groups": 1,
     "coverage_assessments": 2
   },
   "notes": [

@@ -21,6 +21,7 @@ const collectionRules = [
   { prefix: "data/certainty-assessments/", recordType: "certainty_assessment" },
   { prefix: "data/evidence-maps/", recordType: "evidence_map" },
   { prefix: "data/syntheses/", recordType: "synthesis" },
+  { prefix: "data/synthesis-groups/", recordType: "synthesis_group" },
   { prefix: "research/sessions/", recordType: "research_session" }
 ];
 
@@ -31,6 +32,7 @@ const evidenceRecordTypesRequiringMaturity = new Set([
   "finding",
   "outcome",
   "result",
+  "synthesis_group",
   "eligibility_decision",
   "risk_of_bias",
   "coverage_assessment"
@@ -39,7 +41,7 @@ const synthesisReadyStatuses = new Set([
   "registry_extracted",
   "full_text_extracted",
   "agent_reviewed",
-  "human_reviewed",
+  "supervisor_agent_reviewed",
   "accepted"
 ]);
 const snapshotRequiredLocatorStatuses = new Set([
@@ -47,7 +49,7 @@ const snapshotRequiredLocatorStatuses = new Set([
   "registry_extracted",
   "full_text_extracted",
   "agent_reviewed",
-  "human_reviewed",
+  "supervisor_agent_reviewed",
   "accepted"
 ]);
 
@@ -452,6 +454,93 @@ function checkSemanticEvidenceRules({ issues, record, ownerPath }) {
   }
 }
 
+function resultHasPoolingField(result, field) {
+  switch (field) {
+    case "effect.value":
+      return typeof result.effect?.value === "number";
+    case "effect.uncertainty":
+      return (
+        (typeof result.effect?.ci_lower === "number" && typeof result.effect?.ci_upper === "number") ||
+        typeof result.effect?.standard_error === "number" ||
+        typeof result.effect?.variance === "number"
+      );
+    case "analysis.comparison":
+      return typeof result.analysis?.comparison === "string" && result.analysis.comparison.length > 0;
+    case "sample_size":
+      return typeof result.sample_size === "number" && result.sample_size > 0;
+    case "group_values[].sample_size":
+      return (
+        Array.isArray(result.group_values) &&
+        result.group_values.length > 0 &&
+        result.group_values.every((group) => typeof group.sample_size === "number" && group.sample_size > 0)
+      );
+    case "group_values[].statistic":
+      return (
+        Array.isArray(result.group_values) &&
+        result.group_values.length > 0 &&
+        result.group_values.every((group) => typeof group.statistic === "string" && group.statistic.length > 0)
+      );
+    case "group_values[].dispersion":
+      return (
+        Array.isArray(result.group_values) &&
+        result.group_values.length > 0 &&
+        result.group_values.every((group) => typeof group.dispersion === "string" && group.dispersion.length > 0)
+      );
+    default:
+      return false;
+  }
+}
+
+function checkSynthesisGroupRules({ index, issues, record, ownerPath }) {
+  if (record.record_type !== "synthesis_group") {
+    return;
+  }
+
+  if (record.pooling_decision === "pooling_allowed" && record.compatibility_status !== "poolable") {
+    issues.push(`${ownerPath}: pooling_allowed synthesis groups must use compatibility_status "poolable".`);
+  }
+
+  if (record.pooling_decision === "pooling_blocked" && record.compatibility_status === "poolable") {
+    issues.push(`${ownerPath}: pooling_blocked synthesis groups cannot use compatibility_status "poolable".`);
+  }
+
+  const minimumResultCount = record.pooling_requirements?.minimum_result_count ?? 2;
+  if (record.pooling_decision === "pooling_allowed" && (record.result_ids ?? []).length < minimumResultCount) {
+    issues.push(`${ownerPath}: pooling_allowed synthesis groups require at least ${minimumResultCount} result records.`);
+  }
+
+  if (
+    record.pooling_decision === "pooling_allowed" &&
+    (record.pooling_requirements?.missing_effect_fields_by_result ?? []).length > 0
+  ) {
+    issues.push(`${ownerPath}: pooling_allowed synthesis groups cannot list missing effect fields.`);
+  }
+
+  if (record.pooling_decision !== "pooling_allowed") {
+    return;
+  }
+
+  const allowedMaturityStatuses = new Set(record.pooling_requirements?.required_result_maturity_statuses ?? []);
+  for (const resultId of record.result_ids ?? []) {
+    const result = getRecord(index, "result", resultId);
+    if (!result) {
+      continue;
+    }
+
+    if (allowedMaturityStatuses.size > 0 && !allowedMaturityStatuses.has(result.maturity_status)) {
+      issues.push(
+        `${ownerPath}: pooling_allowed synthesis group references result "${resultId}" with maturity_status "${result.maturity_status}".`
+      );
+    }
+
+    for (const field of record.pooling_requirements?.required_effect_fields ?? []) {
+      if (!resultHasPoolingField(result, field)) {
+        issues.push(`${ownerPath}: pooling_allowed result "${resultId}" lacks required pooling field "${field}".`);
+      }
+    }
+  }
+}
+
 async function audit() {
   const { index, issues } = await buildIndex();
 
@@ -489,6 +578,7 @@ async function audit() {
   for (const { record, relativePath } of index.records) {
     checkProvenance({ index, issues, ownerPath: relativePath, record });
     checkSemanticEvidenceRules({ issues, record, ownerPath: relativePath });
+    checkSynthesisGroupRules({ index, issues, record, ownerPath: relativePath });
 
     checkTaxonomyRefs({
       index,
@@ -636,6 +726,35 @@ async function audit() {
           field: `evidence_categories[${categoryIndex}].finding_ids[]`,
           recordType: "finding",
           recordIds: category.finding_ids
+        });
+      }
+    }
+
+    if (record.record_type === "synthesis_group") {
+      checkRefs({
+        index,
+        issues,
+        ownerPath: relativePath,
+        field: "outcome_ids[]",
+        recordType: "outcome",
+        recordIds: record.outcome_ids
+      });
+      checkRefs({
+        index,
+        issues,
+        ownerPath: relativePath,
+        field: "result_ids[]",
+        recordType: "result",
+        recordIds: record.result_ids
+      });
+      for (const [missingIndex, missing] of (record.pooling_requirements?.missing_effect_fields_by_result ?? []).entries()) {
+        checkRef({
+          index,
+          issues,
+          ownerPath: relativePath,
+          field: `pooling_requirements.missing_effect_fields_by_result[${missingIndex}].result_id`,
+          recordType: "result",
+          recordId: missing.result_id
         });
       }
     }

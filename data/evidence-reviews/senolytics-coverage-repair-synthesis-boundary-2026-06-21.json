@@ -7,7 +7,7 @@
   "reviewer_kind": "agent",
   "reviewer_id": "codex",
   "status": "draft",
-  "verdict": "needs_human_judgment",
+  "verdict": "needs_revision",
   "blocking": false,
   "summary": "Placeholder review lane added during generation-system hardening. The coverage-repair slice is useful as an evidence map and work queue, but synthesis boundaries have not been independently cleared.",
   "findings": [

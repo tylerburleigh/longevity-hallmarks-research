@@ -20,7 +20,7 @@
       "dasatinib-quercetin"
     ]
   },
-  "selected_via": "manual_override",
+  "selected_via": "agent_override",
   "outcome": "candidate_change_submitted",
   "summary": "Added a ClinicalTrials.gov registry source, PubMed and ClinicalTrials source snapshots, exact outcome records, registry-extracted results for CTx, P1NP, BMD, SASP, and adverse events, and five review-lane records for the D+Q bone RCT extraction refresh.",
   "candidate_change_id": "senolytics-bone-rct-extraction-refresh-2026-06-21",

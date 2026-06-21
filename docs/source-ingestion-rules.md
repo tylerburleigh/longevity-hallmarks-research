@@ -9,7 +9,7 @@ Use stable, lowercase IDs:
 - PubMed article: `pmid-<digits>`
 - ClinicalTrials.gov registry: `nct-<digits>`
 - DOI-only source: `doi-<normalized-doi>`
-- Manual primary source: `<issuer>-<short-topic>-<yyyy-mm-dd>`
+- Agent-curated primary source: `<issuer>-<short-topic>-<yyyy-mm-dd>`
 
 Normalize DOI-only IDs by lowercasing and replacing punctuation or separators with hyphens. Keep the original DOI in the `doi` field.
 
@@ -49,12 +49,12 @@ For ClinicalTrials.gov:
 - Use the canonical URL `https://clinicaltrials.gov/study/<NCTID>`.
 - Represent recruitment status, completion dates, posted results, and no-results state in study, finding, trial-watch, or session records rather than source prose alone.
 
-## Manual Primary Sources
+## Agent-Curated Primary Sources
 
-Manual primary sources include regulatory documents, official databases, funder pages, official reports, conference abstracts, and other durable primary documents.
+Agent-curated primary sources include regulatory documents, official databases, funder pages, official reports, conference abstracts, and other durable primary documents.
 
 - Prefer primary dated sources.
-- Use secondary sources only as leads unless explicitly approved.
+- Use secondary sources only as leads unless an agent-supervisor review accepts them as durable context.
 - Include issuer or venue in the ID.
 - Record source-quality concerns in a research session or evidence review.
 

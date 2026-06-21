@@ -18,7 +18,7 @@
       "dasatinib-quercetin"
     ]
   },
-  "selected_via": "manual_override",
+  "selected_via": "agent_override",
   "outcome": "candidate_change_submitted",
   "summary": "Created a minimal scaffold vertical slice using one foundational senolytics source, study, and finding ported from lev-tracker records. This is a schema and workflow proof, not a complete senolytics coverage review.",
   "candidate_change_id": "senolytics-scaffold-bootstrap-2026-06-21",

@@ -14,7 +14,7 @@ const extractionGradeMaturityStatuses = new Set([
   "registry_extracted",
   "full_text_extracted",
   "agent_reviewed",
-  "human_reviewed",
+  "supervisor_agent_reviewed",
   "accepted"
 ]);
 
@@ -26,6 +26,7 @@ const managedExportFiles = [
   "results.extraction_grade.jsonl",
   "results.registry_extracted.jsonl",
   "results.triage.jsonl",
+  "synthesis-groups.jsonl",
   "evidence-map.json",
   "coverage-status.json",
   "audit-manifest.json"
@@ -218,9 +219,12 @@ function buildEvidenceMap(records) {
   const outcomes = recordsOf(records, "outcome");
   const results = recordsOf(records, "result");
   const coverageAssessments = recordsOf(records, "coverage_assessment");
+  const synthesisGroups = recordsOf(records, "synthesis_group");
 
   const nodes = records
-    .filter((record) => ["source", "study", "finding", "outcome", "result", "coverage_assessment"].includes(record.record_type))
+    .filter((record) =>
+      ["source", "study", "finding", "outcome", "result", "coverage_assessment", "synthesis_group"].includes(record.record_type)
+    )
     .map((record) => ({
       record_type: record.record_type,
       id: record.id,
@@ -228,6 +232,8 @@ function buildEvidenceMap(records) {
       maturity_status: record.maturity_status,
       evidence_tier: record.evidence_tier,
       direction: record.direction,
+      compatibility_status: record.compatibility_status,
+      pooling_decision: record.pooling_decision,
       track_ids: record.track_ids,
       hallmark_ids: record.hallmark_ids
     }))
@@ -280,6 +286,26 @@ function buildEvidenceMap(records) {
       });
     }
   }
+  for (const synthesisGroup of synthesisGroups) {
+    for (const outcomeId of synthesisGroup.outcome_ids ?? []) {
+      edges.push({
+        from_type: "synthesis_group",
+        from_id: synthesisGroup.id,
+        to_type: "outcome",
+        to_id: outcomeId,
+        relationship: "groups_outcome"
+      });
+    }
+    for (const resultId of synthesisGroup.result_ids ?? []) {
+      edges.push({
+        from_type: "synthesis_group",
+        from_id: synthesisGroup.id,
+        to_type: "result",
+        to_id: resultId,
+        relationship: "assesses_pooling_compatibility"
+      });
+    }
+  }
 
   return {
     schema_version: "1.0.0",
@@ -287,8 +313,8 @@ function buildEvidenceMap(records) {
     id: "latest-consumer-evidence-map",
     generated_at: generatedAt,
     scope: {
-      description: "Generated consumer evidence graph over canonical source, study, finding, outcome, result, and coverage-assessment records.",
-      record_types: ["source", "study", "finding", "outcome", "result", "coverage_assessment"]
+      description: "Generated consumer evidence graph over canonical source, study, finding, outcome, result, coverage-assessment, and synthesis-group records.",
+      record_types: ["source", "study", "finding", "outcome", "result", "coverage_assessment", "synthesis_group"]
     },
     node_counts: countByRecordType(nodes),
     maturity_counts: countByMaturity(records),
@@ -323,6 +349,7 @@ async function main() {
   );
   const triageResults = sortRecords(results.filter((record) => isTriageRecord(record) && !isExtractionGradeRecord(record)));
   const coverageAssessments = recordsOf(records, "coverage_assessment");
+  const synthesisGroups = recordsOf(records, "synthesis_group");
 
   await removeManagedExports();
 
@@ -354,7 +381,7 @@ async function main() {
     {
       relativePath: "exports/latest/results.extraction_grade.jsonl",
       format: "jsonl",
-      description: "Result records with registry, full-text, agent-reviewed, human-reviewed, or accepted extraction-grade maturity.",
+      description: "Result records with registry, full-text, agent-reviewed, supervisor-agent-reviewed, or accepted extraction-grade maturity.",
       records: extractionGradeResults
     },
     {
@@ -368,6 +395,12 @@ async function main() {
       format: "jsonl",
       description: "Result records that remain metadata, screening, abstract, or triage summaries.",
       records: triageResults
+    },
+    {
+      relativePath: "exports/latest/synthesis-groups.jsonl",
+      format: "jsonl",
+      description: "Synthesis compatibility groups with poolability decisions, missing effect fields, and agent supervision metadata.",
+      records: synthesisGroups
     }
   ];
 
@@ -380,7 +413,7 @@ async function main() {
   exportEntries.push({
     relativePath: "exports/latest/evidence-map.json",
     format: "json",
-    description: "Generated graph view of source, study, finding, outcome, result, and coverage links.",
+    description: "Generated graph view of source, study, finding, outcome, result, coverage, and synthesis-compatibility links.",
     records: [evidenceMap]
   });
 
@@ -420,10 +453,10 @@ async function main() {
         "registry_extracted",
         "full_text_extracted",
         "agent_reviewed",
-        "human_reviewed",
+        "supervisor_agent_reviewed",
         "accepted"
       ],
-      included_record_types: ["source", "study", "finding", "result", "coverage_assessment", "evidence_map"]
+      included_record_types: ["source", "study", "finding", "result", "coverage_assessment", "synthesis_group", "evidence_map"]
     },
     files,
     record_counts: {
@@ -435,6 +468,7 @@ async function main() {
       results_extraction_grade: extractionGradeResults.length,
       results_registry_extracted: registryExtractedResults.length,
       results_triage: triageResults.length,
+      synthesis_groups: synthesisGroups.length,
       coverage_assessments: coverageAssessments.length
     },
     notes: [

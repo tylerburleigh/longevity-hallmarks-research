@@ -15,7 +15,7 @@ No-op searches are valid when the search was properly scoped and logged.
 
 If a `candidate_change` is moved to `in_review`, every lane in `required_review_lanes` must have an active `evidence_review` record linked in `evidence_review_ids`.
 
-Review records may remain `draft` with `verdict: "needs_human_judgment"` when the lane has not been completed. This is preferable to leaving the lane invisible.
+Review records may remain `draft` with `verdict: "needs_revision"` when the lane has not been completed. This is preferable to leaving the lane invisible, and keeps incomplete work inside the agent-supervised review loop.
 
 Do not mark a candidate `accepted` or `applied` unless every required active review lane is complete, accepting, non-blocking, and has no open major or critical findings.
 

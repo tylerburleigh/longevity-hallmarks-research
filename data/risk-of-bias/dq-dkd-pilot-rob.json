@@ -23,7 +23,7 @@
   ],
   "limitations": [
     "Treat as human biomarker signal only.",
-    "Requires human review before any certainty upgrade."
+    "Requires supervisor-agent review before any certainty upgrade."
   ],
   "tags": [
     "senolytics",

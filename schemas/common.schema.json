@@ -43,6 +43,9 @@
     "resultRef": {
       "$ref": "#/$defs/identifier"
     },
+    "synthesisGroupRef": {
+      "$ref": "#/$defs/identifier"
+    },
     "candidateChangeRef": {
       "$ref": "#/$defs/identifier"
     },
@@ -60,7 +63,7 @@
         "regulatory_document",
         "database",
         "conference_abstract",
-        "manual_primary_source",
+        "agent_curated_primary_source",
         "other"
       ]
     },
@@ -155,7 +158,7 @@
         "registry_extracted",
         "full_text_extracted",
         "agent_reviewed",
-        "human_reviewed",
+        "supervisor_agent_reviewed",
         "accepted"
       ]
     },
@@ -186,7 +189,7 @@
             "supplement",
             "registry_record",
             "derived_record",
-            "manual_note",
+            "agent_note",
             "other"
           ]
         },
@@ -245,7 +248,7 @@
         "coverage_repair",
         "extraction_refresh",
         "synthesis_refresh",
-        "manual"
+        "agent_directed"
       ]
     }
   }

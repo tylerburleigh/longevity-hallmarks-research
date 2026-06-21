@@ -7,7 +7,7 @@
   "reviewer_kind": "agent",
   "reviewer_id": "codex",
   "status": "complete",
-  "verdict": "needs_human_judgment",
+  "verdict": "needs_revision",
   "blocking": false,
   "summary": "Aggregate adverse-event counts were extracted, but event-specific adverse-event records remain pending. The safety slice is useful for screening and prioritization, not a complete safety synthesis.",
   "findings": [

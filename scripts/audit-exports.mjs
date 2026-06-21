@@ -13,7 +13,7 @@ const extractionGradeMaturityStatuses = new Set([
   "registry_extracted",
   "full_text_extracted",
   "agent_reviewed",
-  "human_reviewed",
+  "supervisor_agent_reviewed",
   "accepted"
 ]);
 const snapshotRequiredLocatorStatuses = new Set([
@@ -21,7 +21,7 @@ const snapshotRequiredLocatorStatuses = new Set([
   "registry_extracted",
   "full_text_extracted",
   "agent_reviewed",
-  "human_reviewed",
+  "supervisor_agent_reviewed",
   "accepted"
 ]);
 
@@ -219,7 +219,7 @@ function checkCoverageStatusExport({ issues, coverageStatus, coverageAssessments
 function checkEvidenceMapExport({ issues, evidenceMap, canonicalRecords }) {
   const expectedNodeCounts = countByRecordType(
     canonicalRecords.filter((record) =>
-      ["source", "study", "finding", "outcome", "result", "coverage_assessment"].includes(record.record_type)
+      ["source", "study", "finding", "outcome", "result", "coverage_assessment", "synthesis_group"].includes(record.record_type)
     )
   );
 
@@ -251,6 +251,7 @@ async function main() {
     results.filter((record) => triageMaturityStatuses.has(record.maturity_status) && !extractionGradeMaturityStatuses.has(record.maturity_status))
   );
   const coverageAssessments = recordsOf(canonicalRecords, "coverage_assessment");
+  const synthesisGroups = recordsOf(canonicalRecords, "synthesis_group");
   const sourceSnapshotsById = new Map(recordsOf(canonicalRecords, "source_snapshot").map((snapshot) => [snapshot.id, snapshot]));
 
   const expectedJsonlExports = [
@@ -260,7 +261,8 @@ async function main() {
     ["exports/latest/results.all.jsonl", results],
     ["exports/latest/results.extraction_grade.jsonl", extractionGradeResults],
     ["exports/latest/results.registry_extracted.jsonl", registryExtractedResults],
-    ["exports/latest/results.triage.jsonl", triageResults]
+    ["exports/latest/results.triage.jsonl", triageResults],
+    ["exports/latest/synthesis-groups.jsonl", synthesisGroups]
   ];
 
   const actualExports = new Map();
@@ -303,6 +305,7 @@ async function main() {
       results_extraction_grade: extractionGradeResults.length,
       results_registry_extracted: registryExtractedResults.length,
       results_triage: triageResults.length,
+      synthesis_groups: synthesisGroups.length,
       coverage_assessments: coverageAssessments.length
     };
     if (stableStringify(manifest.record_counts ?? {}) !== stableStringify(expectedCounts)) {

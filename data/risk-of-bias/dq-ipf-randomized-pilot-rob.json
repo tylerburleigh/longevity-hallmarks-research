@@ -23,7 +23,7 @@
   ],
   "limitations": [
     "Use primarily for safety, feasibility, and endpoint-boundary evidence.",
-    "Human review should verify exact adverse-event and functional endpoint extraction."
+    "Supervisor-agent review should verify exact adverse-event and functional endpoint extraction."
   ],
   "tags": [
     "senolytics",

@@ -105,7 +105,8 @@
     "reviewer_kind": {
       "enum": [
         "agent",
-        "human"
+        "supervisor_agent",
+        "system"
       ]
     },
     "reviewer_id": {

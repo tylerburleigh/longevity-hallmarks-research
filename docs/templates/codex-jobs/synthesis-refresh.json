@@ -3,6 +3,7 @@
   "record_type": "codex_job",
   "id": "replace-with-synthesis-run-id",
   "name": "Replace with bounded synthesis-refresh job name",
+  "lifecycle_status": "planned",
   "agent_role": "synthesis_agent",
   "mode": "synthesis_refresh",
   "prompt_file": "docs/prompts/codex-agents/synthesis-refresh.md",

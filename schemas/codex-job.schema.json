@@ -9,6 +9,7 @@
     "record_type",
     "id",
     "name",
+    "lifecycle_status",
     "agent_role",
     "mode",
     "prompt_file",
@@ -24,6 +25,9 @@
     },
     "record_type": {
       "const": "codex_job"
+    },
+    "lifecycle_status": {
+      "$ref": "#/$defs/jobLifecycleStatus"
     },
     "id": {
       "$ref": "./common.schema.json#/$defs/agentRunRef"
@@ -48,6 +52,15 @@
     },
     "jsonl_log_path": {
       "type": "string"
+    },
+    "final_agent_run_id": {
+      "$ref": "./common.schema.json#/$defs/agentRunRef"
+    },
+    "archived_at": {
+      "$ref": "./common.schema.json#/$defs/dateTime"
+    },
+    "superseded_by_job_id": {
+      "$ref": "./common.schema.json#/$defs/agentRunRef"
     },
     "scope": {
       "type": "object",
@@ -210,6 +223,7 @@
           "validate_records",
           "audit_references",
           "audit_exports",
+          "audit_triage_state",
           "audit_agentic_process",
           "audit_agent_schemas",
           "worker_output_contract",
@@ -226,7 +240,47 @@
       }
     }
   },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "lifecycle_status": {
+            "enum": [
+              "succeeded",
+              "failed",
+              "superseded",
+              "archived"
+            ]
+          }
+        },
+        "required": [
+          "lifecycle_status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "final_agent_run_id": true,
+          "archived_at": true
+        },
+        "required": [
+          "final_agent_run_id",
+          "archived_at"
+        ]
+      }
+    }
+  ],
   "$defs": {
+    "jobLifecycleStatus": {
+      "enum": [
+        "planned",
+        "ready",
+        "running",
+        "succeeded",
+        "failed",
+        "superseded",
+        "archived"
+      ]
+    },
     "agentRole": {
       "enum": [
         "triage_agent",

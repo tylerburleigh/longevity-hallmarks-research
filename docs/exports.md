@@ -6,6 +6,7 @@ Regenerate it from canonical records:
 
 ```bash
 npm run export:latest
+npm run export:triage-state
 ```
 
 Validate after generation:
@@ -18,6 +19,7 @@ To audit exports without regenerating them:
 
 ```bash
 npm run audit:exports
+npm run audit:triage-state
 ```
 
 ## Files
@@ -37,6 +39,10 @@ npm run audit:exports
 - `audit-manifest.json`: export manifest with file counts and SHA-256 hashes.
 
 JSONL lines preserve canonical record fields. Consumers should use each record's `record_type`, `id`, `maturity_status`, `provenance`, `evidence_tier`, and `direction` rather than relying only on the export filename.
+
+## Operational State
+
+`ops/triage-state.v1.json` is a generated control-plane view, not a canonical evidence record. It classifies candidate readiness, promotion-ready candidates, review-lane queues, current coverage gaps, extraction debt, snapshot staleness, partial agent runs, and recommended jobs. `audit:triage-state` verifies that this file still matches canonical JSON inputs.
 
 ## Consumer Guidance
 

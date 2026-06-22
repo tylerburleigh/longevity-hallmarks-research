@@ -36,10 +36,10 @@ For repeatable runs, prefer a structured job file:
 
 ```bash
 npm run agent:codex -- \
-  --job-file ops/codex-jobs/<agent-run-id>.json
+  --job-file ops/codex-jobs/live/<agent-run-id>.json
 ```
 
-Job files use `record_type: "codex_job"` and are validated by `schemas/codex-job.schema.json` when stored under validated repository roots such as `ops/`. Command-line flags override matching job fields, so a coordinator can reuse the same job spec with a different `--workdir`, `--execute`, or timeout setting.
+Job files use `record_type: "codex_job"` and are validated by `schemas/codex-job.schema.json` when stored under validated repository roots such as `ops/`. Runnable jobs live under `ops/codex-jobs/live/` with `lifecycle_status` set to `planned`, `ready`, or `running`. Executed or retired snapshots live under `ops/codex-jobs/archive/` with final lifecycle metadata. Command-line flags override matching live-job fields, so a coordinator can reuse the same job spec with a different `--workdir`, `--execute`, or timeout setting.
 
 By default, the wrapper writes a dry-run command plan under `research/agent-runs/logs/`. Add `--execute` only when the worktree is ready for the worker to run.
 
@@ -84,7 +84,7 @@ For release/export runs or any run whose persisted `agent_run` should be include
 --post-export-verify
 ```
 
-This runs `npm run export:latest` and `npm run verify:knowledge-base` after `codex exec` has written the final `agent_run` JSON. The post-step results are appended to the worker JSONL log as coordinator events and summarized back into the `agent_run.quality_checks[]` array. The wrapper then runs `npm run validate:records` so the persisted output record is schema-checked after coordinator annotations.
+This runs `npm run export:latest`, `npm run export:triage-state`, and `npm run verify:knowledge-base` after `codex exec` has written the final `agent_run` JSON. The post-step results are appended to the worker JSONL log as coordinator events and summarized back into the `agent_run.quality_checks[]` array. The wrapper then runs `npm run validate:records` so the persisted output record is schema-checked after coordinator annotations.
 
 The wrapper runs post-run verification in two parts to avoid a self-referential `post_verify` audit loop: core repository verification first, then `audit:codex-jobs` after the wrapper appends the `post_verify` quality check.
 
@@ -92,7 +92,7 @@ If a worker succeeds but a wrapper post-step fails, recover without rerunning th
 
 ```bash
 npm run agent:codex -- \
-  --job-file ops/codex-jobs/<agent-run-id>.json \
+  --job-file ops/codex-jobs/live/<agent-run-id>.json \
   --post-process-existing
 ```
 
@@ -141,7 +141,7 @@ Agent-run records themselves are transaction logs and do not need to be proposed
 
 The reference audit also infers required review lanes from proposed record types. Result, outcome, snapshot, synthesis, and safety/adverse-event records must declare the matching source-fidelity, extraction-fidelity, taxonomy-mapping, synthesis-boundary, or safety-limitation lanes before promotion can proceed.
 
-When a job file declares `quality_gates[]`, each gate must be satisfied by a passed `agent_run.quality_checks[]` entry or by a passed aggregate verification check recognized by the job audit. Jobs with `post_run.export_latest` or `post_run.verify_knowledge_base` must also have passed wrapper-owned `post_export` or `post_verify` quality checks. Workers must not predeclare wrapper-owned checks such as `worker_output_contract`, `post_export`, or `post_verify` in their final response.
+When a job file declares `quality_gates[]`, each gate must be satisfied by a passed `agent_run.quality_checks[]` entry or by a passed aggregate verification check recognized by the job audit. Jobs with `post_run.export_latest` or `post_run.verify_knowledge_base` must also have passed wrapper-owned `post_export` or `post_verify` quality checks. Workers must not predeclare wrapper-owned checks such as `worker_output_contract`, `post_export`, `post_triage_state_export`, or `post_verify` in their final response.
 
 ## Logs And Replay
 
@@ -168,7 +168,7 @@ Use these templates when a worker needs to retain ClinicalTrials.gov registry te
 - `docs/templates/codex-jobs/clinicaltrials-text-snapshot-ingestion.json`
 - `docs/templates/codex-jobs/text-snapshot-supervisor-review.json`
 
-Copy a filled job into `ops/codex-jobs/` only when the run is ready to execute or when its pending output should become part of the audited job ledger.
+Copy a filled job into `ops/codex-jobs/live/` only when the run is ready to execute or when its pending output should become part of the audited job ledger. After the final `agent_run` is verified, move the job snapshot to `ops/codex-jobs/archive/`, set `lifecycle_status` to the final outcome, and record `final_agent_run_id` plus `archived_at`.
 
 ## Promotion Boundary
 

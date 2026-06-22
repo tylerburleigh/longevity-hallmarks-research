@@ -1,0 +1,229 @@
+{
+  "schema_version": "1.0.0",
+  "description": "Negative audit regression fixtures. Each case mutates an isolated temp copy and expects the targeted audit to fail.",
+  "cases": [
+    {
+      "id": "missing-extraction-grade-source-snapshot",
+      "description": "Extraction-grade result provenance must retain source_snapshot_id.",
+      "command": [
+        "npm",
+        "run",
+        "audit:references"
+      ],
+      "operations": [
+        {
+          "type": "delete_json",
+          "path": "data/results/dq-bone-ctx-20wk-null.json",
+          "pointer": "/provenance/0/source_snapshot_id"
+        }
+      ],
+      "expected_failure_substrings": [
+        "extraction-grade provenance",
+        "must include source_snapshot_id"
+      ]
+    },
+    {
+      "id": "unsupported-accepted-candidate",
+      "description": "Candidates cannot be accepted without passing promotion gates.",
+      "command": [
+        "npm",
+        "run",
+        "audit:references"
+      ],
+      "operations": [
+        {
+          "type": "set_json",
+          "path": "data/candidate-changes/senolytics-bone-rct-extraction-refresh-2026-06-21.json",
+          "pointer": "/lifecycle_status",
+          "value": "accepted"
+        }
+      ],
+      "expected_failure_substrings": [
+        "accepted/applied candidate must include promotion metadata",
+        "non-accepting or blocking"
+      ]
+    },
+    {
+      "id": "duplicate-active-review-lane",
+      "description": "A candidate may not link multiple active reviews for the same lane.",
+      "command": [
+        "npm",
+        "run",
+        "audit:references"
+      ],
+      "operations": [
+        {
+          "type": "copy_json",
+          "from": "data/evidence-reviews/senolytics-dq-bone-endpoint-taxonomy-mapping-2026-06-21.json",
+          "to": "data/evidence-reviews/senolytics-dq-bone-endpoint-taxonomy-mapping-duplicate-fixture.json",
+          "mutations": [
+            {
+              "type": "set_json",
+              "pointer": "/id",
+              "value": "senolytics-dq-bone-endpoint-taxonomy-mapping-duplicate-fixture"
+            }
+          ]
+        },
+        {
+          "type": "append_json_array",
+          "path": "data/candidate-changes/senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21.json",
+          "pointer": "/evidence_review_ids",
+          "value": "senolytics-dq-bone-endpoint-taxonomy-mapping-duplicate-fixture"
+        }
+      ],
+      "expected_failure_substrings": [
+        "multiple active reviews",
+        "taxonomy_mapping"
+      ]
+    },
+    {
+      "id": "stale-export-content",
+      "description": "Consumer exports must match current canonical records.",
+      "command": [
+        "npm",
+        "run",
+        "audit:exports"
+      ],
+      "operations": [
+        {
+          "type": "set_json",
+          "path": "data/results/dq-bone-ctx-20wk-null.json",
+          "pointer": "/statement",
+          "value": "Regression fixture mutation that should make exports stale."
+        }
+      ],
+      "expected_failure_substrings": [
+        "contents do not match current canonical records",
+        "run npm run export:latest"
+      ]
+    },
+    {
+      "id": "stale-triage-state",
+      "description": "Generated triage state must match canonical records.",
+      "command": [
+        "npm",
+        "run",
+        "audit:triage-state"
+      ],
+      "operations": [
+        {
+          "type": "set_json",
+          "path": "ops/triage-state.v1.json",
+          "pointer": "/summary/recommended_job_count",
+          "value": 999
+        }
+      ],
+      "expected_failure_substrings": [
+        "Triage-state audit failed",
+        "summary"
+      ]
+    },
+    {
+      "id": "archived-job-in-live-queue",
+      "description": "Final job snapshots must not remain in the live runnable queue.",
+      "command": [
+        "npm",
+        "run",
+        "audit:codex-jobs"
+      ],
+      "operations": [
+        {
+          "type": "copy_file",
+          "from": "ops/codex-jobs/archive/dq-bone-synthesis-groups-codex-worker-rerun-2026-06-21.json",
+          "to": "ops/codex-jobs/live/dq-bone-synthesis-groups-codex-worker-rerun-2026-06-21.json"
+        }
+      ],
+      "expected_failure_substrings": [
+        "lifecycle_status \"succeeded\"",
+        "must live under ops/codex-jobs/archive/"
+      ]
+    },
+    {
+      "id": "bad-worker-output-ledger",
+      "description": "A completed Codex job must match the final agent_run proposed-record ledger.",
+      "command": [
+        "npm",
+        "run",
+        "audit:codex-jobs"
+      ],
+      "operations": [
+        {
+          "type": "delete_json",
+          "path": "research/agent-runs/dq-bone-synthesis-groups-codex-worker-rerun-2026-06-21.json",
+          "pointer": "/outputs/proposed_records/6"
+        }
+      ],
+      "expected_failure_substrings": [
+        "outputs.proposed_records[].path",
+        "7 item(s), found 6"
+      ]
+    },
+    {
+      "id": "unsafe-text-retention-export",
+      "description": "Retained text snapshot exports must respect source-rights public export policy.",
+      "command": [
+        "npm",
+        "run",
+        "audit:exports"
+      ],
+      "operations": [
+        {
+          "type": "set_json",
+          "path": "data/source-rights/source-rights-nct-04313634-2026-06-22.json",
+          "pointer": "/public_export_policy/allowed_content",
+          "value": "no_public_export"
+        }
+      ],
+      "expected_failure_substrings": [
+        "text_snapshot",
+        "no_public_export"
+      ]
+    },
+    {
+      "id": "invalid-pooling-allowed-with-missing-fields",
+      "description": "Poolable synthesis groups cannot claim pooling is allowed while retaining missing effect fields.",
+      "command": [
+        "npm",
+        "run",
+        "audit:references"
+      ],
+      "operations": [
+        {
+          "type": "set_json",
+          "path": "data/synthesis-groups/senolytics-dq-bone-ctx-20wk-synthesis-compatibility-2026-06-21.json",
+          "pointer": "/pooling_decision",
+          "value": "pooling_allowed"
+        },
+        {
+          "type": "set_json",
+          "path": "data/synthesis-groups/senolytics-dq-bone-ctx-20wk-synthesis-compatibility-2026-06-21.json",
+          "pointer": "/compatibility_status",
+          "value": "poolable"
+        }
+      ],
+      "expected_failure_substrings": [
+        "pooling_allowed synthesis groups cannot list missing effect fields"
+      ]
+    },
+    {
+      "id": "deprecated-non-agentic-process-vocabulary",
+      "description": "Agentic process audit must reject deprecated process vocabulary.",
+      "command": [
+        "npm",
+        "run",
+        "audit:agentic-process"
+      ],
+      "operations": [
+        {
+          "type": "write_text",
+          "path": "docs/regression-bad-agentic-process.md",
+          "content": "This fixture intentionally says manual review so the audit must fail.\n"
+        }
+      ],
+      "expected_failure_substrings": [
+        "deprecated non-agentic process term",
+        "manual"
+      ]
+    }
+  ]
+}

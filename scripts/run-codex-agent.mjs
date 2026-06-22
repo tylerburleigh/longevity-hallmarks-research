@@ -5,6 +5,7 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 
 const workspaceRoot = process.cwd();
+const runnableJobStatuses = new Set(["planned", "ready", "running"]);
 
 function usage() {
   console.error(`Usage:
@@ -155,6 +156,9 @@ async function applyJobFile(options) {
   const job = JSON.parse(await fs.readFile(resolveRepoPath(options.jobFile), "utf8"));
   if (job.record_type !== "codex_job") {
     throw new Error(`${options.jobFile}: expected record_type "codex_job".`);
+  }
+  if (!runnableJobStatuses.has(job.lifecycle_status)) {
+    throw new Error(`${options.jobFile}: lifecycle_status "${job.lifecycle_status}" is not runnable.`);
   }
 
   const mappings = [
@@ -463,6 +467,7 @@ function shortCommand(command) {
 const wrapperOwnedQualityChecks = new Set([
   "worker_output_contract",
   "post_export",
+  "post_triage_state_export",
   "post_verify",
   "post_job_audit",
   "post_output_validate"
@@ -678,6 +683,8 @@ async function runPostSteps(options) {
   if (options.postExport) {
     const event = await runCoordinatorCommand(options, "post_export", "npm", ["run", "export:latest"]);
     await appendOutputQualityCheck(options, event);
+    const triageStateEvent = await runCoordinatorCommand(options, "post_triage_state_export", "npm", ["run", "export:triage-state"]);
+    await appendOutputQualityCheck(options, triageStateEvent);
   }
   if (options.postVerify) {
     const event = await runCoordinatorCommand(options, "post_verify", "npm", ["run", "verify:knowledge-base:post-run"]);

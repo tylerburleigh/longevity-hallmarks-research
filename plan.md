@@ -395,6 +395,7 @@ Tasks:
 - [x] Add synthesis-group export for poolability decisions and missing effect fields.
 - [x] Add text-snapshot export contract for retained source-text artifacts.
 - [x] Add source-rights export contract for downstream attribution and retention policy checks.
+- [x] Add candidate-readiness export for promotion-ready, blocked, needs-review, and needs-repair candidate states.
 - [ ] Add an accepted-record export once promotion gates exist.
 
 Exit criteria:
@@ -430,8 +431,10 @@ Tasks:
 - [x] Add Codex CLI prompt and job templates for ClinicalTrials.gov text-snapshot ingestion and supervisor review.
 - [x] Add wrapper-enforced `worker_output_contract` checks for single-final-JSON output and repository-script validation discipline.
 - [x] Separate reusable Codex prompt templates from immutable run prompt snapshots.
-- [ ] Add triage state generation.
+- [x] Add triage state generation.
 - [ ] Add templates for research sessions.
+- [x] Split live runnable `ops/codex-jobs/` specs from archived executed job snapshots.
+- [ ] Add default isolated-worktree execution helpers so mutable Codex jobs do not need foreground checkout.
 
 Exit criteria:
 
@@ -461,6 +464,34 @@ Exit criteria:
 - The system can produce both evidence maps and formal synthesis records.
 - Meta-analysis is only attempted when compatibility rules are satisfied.
 
+### Phase 6: Agentic Control Plane And Self-Healing
+
+Goal: turn audits, coverage gaps, stale snapshots, candidate state, and extraction debt into a machine-readable work queue that agents can execute and supervise.
+
+Tasks:
+
+- [x] Add `ops/triage-state.v1.json` generated from coverage gaps, stale snapshots, failed or partial agent runs, missing review lanes, blocked candidates, and explicit user priorities.
+- [x] Add a candidate-readiness generator/export that classifies each candidate as `submitted`, `needs_review`, `needs_revision`, `promotion_ready`, `accepted`, `applied`, or `blocked`.
+- [x] Add a stale-source and stale-text-snapshot queue using snapshot dates, source status changes, registry posted-results changes, and source-rights remediation state.
+- [ ] Add a self-healing job generator that creates bounded repair candidates for broken links, missing provenance, missing effect fields, stale exports, and incomplete ledgers.
+- [x] Add an extraction-debt queue for records that are useful but not yet synthesis-ready: missing effect value, uncertainty, comparator, denominator, group values, event-specific safety counts, or full-text locators.
+- [x] Add a triage-state freshness audit so generated control-plane state cannot drift from canonical JSON inputs.
+- [x] Add an active job lifecycle model for Codex jobs: `planned`, `ready`, `running`, `succeeded`, `failed`, `superseded`, and `archived`.
+- [x] Move executed job specs or immutable job snapshots out of the live runnable job directory once their final `agent_run` is verified.
+- [x] Add regression fixtures for negative audit cases, including missing provenance, unsupported promotion, stale exports, duplicate active reviews, bad worker output, unsafe text retention, and invalid synthesis pooling.
+- [ ] Add a lightweight SQLite or DuckDB generated read model for agents and downstream consumers that need joins over sources, studies, outcomes, results, reviews, candidates, and synthesis groups; canonical JSON records remain the source of truth.
+- [ ] Add search/session generation templates so search and screening agents produce durable no-op searches, excluded-source decisions, and coverage updates without coordinator hand-entry.
+- [ ] Add a release-readiness queue that distinguishes accepted canonical state from submitted/in-review generated state.
+
+Exit criteria:
+
+- An agent can ask the repository for the next highest-priority bounded job and receive a runnable spec.
+- Audits produce actionable repair queues, not just failure messages.
+- Promotion-ready and blocked candidates are discoverable without manually reading candidate and review files.
+- Executed jobs, prompt snapshots, logs, and final agent runs remain auditable without cluttering the live runnable job queue.
+- Consumers can query current evidence, gaps, and synthesis readiness without reconstructing joins manually.
+- The query layer is rebuildable from canonical JSON, includes `record_type`, `id`, and source `path` on every row, and cannot be used to bypass JSON schemas, provenance, or review gates.
+
 ## Initial Open Questions
 
 - Should this be JSON-file-backed first, or should we introduce SQLite/DuckDB early for queries?
@@ -476,13 +507,17 @@ Exit criteria:
 2. Finish full publication/table extraction for the D+Q bone RCT, including subgroup and event-specific safety details.
 3. Run extraction-refresh passes on the remaining human D+Q papers: DKD, IPF, and AD-risk cognition/mobility.
 4. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
-5. Add triage state generation and research-session templates.
-6. Require `worker_output_contract` in new live `ops/codex-jobs/` specs; do not retrofit historical logs that document prior worker-output failures.
-7. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
-8. Decide whether to install repo-local skills into the active Codex skills directory.
+5. Add durable research-session, search-log, and screening-run generation templates.
+6. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
+7. Decide whether to install repo-local skills into the active Codex skills directory.
 
 ## Change Log
 
+- 2026-06-22: Added the next system priorities for an agentic control plane: triage state, candidate readiness, self-healing repair queues, live-versus-archived job specs, regression fixtures, query indexes, and durable search/session generation.
+- 2026-06-22: Added generated triage-state control-plane output covering candidate readiness, promotion-ready candidates, review-lane queues, current coverage gaps, extraction debt, snapshot staleness, partial agent runs, and recommended jobs.
+- 2026-06-22: Added a non-mutating triage-state freshness audit and wired Codex post-export steps to regenerate the control-plane state before post-run verification.
+- 2026-06-22: Split runnable Codex job specs from archived executed snapshots with job lifecycle metadata, live/archive path audits, and archived final-run provenance links.
+- 2026-06-22: Added executable negative audit regression fixtures covering missing provenance, unsupported promotion, duplicate active review lanes, stale exports, stale triage state, archived-job placement, bad worker-output ledgers, unsafe text-retention exports, invalid pooling, and deprecated process vocabulary.
 - 2026-06-22: Moved run-specific Codex prompts out of reusable docs and into `research/agent-runs/prompts/`; added wrapper support for future prompt snapshots plus `prompt_template_file` and `job_file` execution provenance.
 - 2026-06-22: Added a wrapper-enforced `worker_output_contract` quality gate for future Codex runs, rejecting multiple JSON `agent_run` messages and inline Node/AJV schema-validation snippets; updated Codex job templates and operating docs.
 - 2026-06-22: Ran the D+Q registry-markdown provenance-repair supervisor-review Codex job; source-fidelity, extraction-fidelity, taxonomy-mapping, and safety-limitations reviews are complete, accepting, non-blocking, and linked to the candidate, which is now `in_review`.

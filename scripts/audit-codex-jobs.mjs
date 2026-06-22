@@ -5,8 +5,13 @@ import path from "node:path";
 
 const workspaceRoot = process.cwd();
 const jobRoot = path.join(workspaceRoot, "ops", "codex-jobs");
+const liveJobPathPrefix = "ops/codex-jobs/live/";
+const archiveJobPathPrefix = "ops/codex-jobs/archive/";
+const activeJobStatuses = new Set(["planned", "ready", "running"]);
+const finalJobStatuses = new Set(["succeeded", "failed", "superseded", "archived"]);
 const aggregateQualityGateChecks = {
   audit_exports: new Set(["verify_knowledge_base", "post_verify"]),
+  audit_triage_state: new Set(["verify_knowledge_base", "post_verify"]),
   audit_agent_schemas: new Set(["verify_knowledge_base", "post_verify"]),
   audit_agentic_process: new Set(["verify_knowledge_base", "post_verify"])
 };
@@ -153,9 +158,49 @@ function checkCandidateAgentRunLedgerMatch({ issues, ownerPath, candidate, agent
   }
 }
 
+function checkJobLifecycle({ issues, job, ownerPath, outputExists }) {
+  const isActiveJob = activeJobStatuses.has(job.lifecycle_status);
+  const isFinalJob = finalJobStatuses.has(job.lifecycle_status);
+  const isLivePath = ownerPath.startsWith(liveJobPathPrefix);
+  const isArchivePath = ownerPath.startsWith(archiveJobPathPrefix);
+
+  if (!isLivePath && !isArchivePath) {
+    issues.push(`${ownerPath}: codex_job files must live under ${liveJobPathPrefix} or ${archiveJobPathPrefix}.`);
+  }
+
+  if (isActiveJob && !isLivePath) {
+    issues.push(`${ownerPath}: lifecycle_status "${job.lifecycle_status}" must live under ${liveJobPathPrefix}.`);
+  }
+
+  if (isFinalJob && !isArchivePath) {
+    issues.push(`${ownerPath}: lifecycle_status "${job.lifecycle_status}" must live under ${archiveJobPathPrefix}.`);
+  }
+
+  if (isActiveJob && outputExists) {
+    issues.push(`${ownerPath}: live job already has output_path; archive it or update lifecycle_status.`);
+  }
+
+  if (isFinalJob && !outputExists) {
+    issues.push(`${ownerPath}: archived/final job must keep an existing output_path.`);
+  }
+
+  if (isFinalJob) {
+    checkEqual({
+      issues,
+      ownerPath,
+      field: "final_agent_run_id",
+      expected: job.id,
+      actual: job.final_agent_run_id
+    });
+  }
+}
+
 async function checkCodexJob({ issues, job, ownerPath }) {
   await checkPathExists({ issues, ownerPath, field: "prompt_file", relativePath: job.prompt_file });
   await checkPathExists({ issues, ownerPath, field: "execution.output_schema_path", relativePath: job.execution?.output_schema_path });
+  const outputExists = await exists(path.join(workspaceRoot, job.output_path));
+
+  checkJobLifecycle({ issues, job, ownerPath, outputExists });
 
   if (job.post_run?.verify_knowledge_base && !job.post_run?.export_latest) {
     issues.push(
@@ -163,7 +208,7 @@ async function checkCodexJob({ issues, job, ownerPath }) {
     );
   }
 
-  if (!(await exists(path.join(workspaceRoot, job.output_path)))) {
+  if (!outputExists) {
     return;
   }
 
@@ -175,6 +220,7 @@ async function checkCodexJob({ issues, job, ownerPath }) {
   const checks = qualityChecksByName(agentRun);
 
   checkEqual({ issues, ownerPath, field: "agent_run.id", expected: job.id, actual: agentRun.id });
+  checkEqual({ issues, ownerPath, field: "agent_run.id", expected: job.final_agent_run_id, actual: agentRun.id });
   checkEqual({ issues, ownerPath, field: "agent_run.agent_role", expected: job.agent_role, actual: agentRun.agent_role });
   checkEqual({ issues, ownerPath, field: "agent_run.mode", expected: job.mode, actual: agentRun.mode });
   checkEqual({
@@ -286,6 +332,8 @@ async function checkCodexJob({ issues, job, ownerPath }) {
 async function main() {
   const issues = [];
   const jobFiles = await walkJsonFiles(jobRoot);
+  let liveJobCount = 0;
+  let archivedJobCount = 0;
 
   for (const filePath of jobFiles) {
     const ownerPath = toPosixRelative(filePath);
@@ -293,6 +341,12 @@ async function main() {
     if (job.record_type !== "codex_job") {
       issues.push(`${ownerPath}: expected record_type "codex_job".`);
       continue;
+    }
+    if (ownerPath.startsWith(liveJobPathPrefix)) {
+      liveJobCount += 1;
+    }
+    if (ownerPath.startsWith(archiveJobPathPrefix)) {
+      archivedJobCount += 1;
     }
     await checkCodexJob({ issues, job, ownerPath });
   }
@@ -305,7 +359,7 @@ async function main() {
     process.exit(1);
   }
 
-  console.log(`Codex job audit passed for ${jobFiles.length} job file(s).`);
+  console.log(`Codex job audit passed for ${jobFiles.length} job file(s): ${liveJobCount} live, ${archivedJobCount} archived.`);
 }
 
 main().catch((error) => {

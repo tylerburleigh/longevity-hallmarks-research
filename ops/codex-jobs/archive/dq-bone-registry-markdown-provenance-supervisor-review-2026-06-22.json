@@ -3,12 +3,15 @@
   "record_type": "codex_job",
   "id": "dq-bone-registry-markdown-provenance-supervisor-review-2026-06-22",
   "name": "D+Q bone registry markdown provenance supervisor review",
+  "lifecycle_status": "succeeded",
   "summary": "Run source-fidelity, extraction-fidelity, taxonomy-mapping, and safety-limitations supervisor-agent review lanes for the D+Q bone registry markdown provenance repair candidate.",
   "agent_role": "supervisor_agent",
   "mode": "extraction_refresh",
   "prompt_file": "research/agent-runs/prompts/dq-bone-registry-markdown-provenance-supervisor-review-2026-06-22.md",
   "output_path": "research/agent-runs/dq-bone-registry-markdown-provenance-supervisor-review-2026-06-22.json",
   "jsonl_log_path": "research/agent-runs/logs/dq-bone-registry-markdown-provenance-supervisor-review-2026-06-22.jsonl",
+  "final_agent_run_id": "dq-bone-registry-markdown-provenance-supervisor-review-2026-06-22",
+  "archived_at": "2026-06-22T16:05:57Z",
   "scope": {
     "question": "Review source fidelity, extraction fidelity, taxonomy mapping, and safety limitations for the D+Q bone registry markdown provenance repair candidate.",
     "hallmark_ids": [

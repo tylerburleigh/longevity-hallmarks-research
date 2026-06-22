@@ -3,6 +3,7 @@
   "record_type": "codex_job",
   "id": "replace-with-text-snapshot-supervisor-run-id",
   "name": "Replace with text-snapshot supervisor-review job name",
+  "lifecycle_status": "planned",
   "summary": "Run source-fidelity and extraction-fidelity supervisor review lanes for a retained text-snapshot candidate.",
   "agent_role": "supervisor_agent",
   "mode": "extraction_refresh",

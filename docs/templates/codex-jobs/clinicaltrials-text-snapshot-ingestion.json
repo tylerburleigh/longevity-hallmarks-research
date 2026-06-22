@@ -3,6 +3,7 @@
   "record_type": "codex_job",
   "id": "replace-with-clinicaltrials-text-snapshot-run-id",
   "name": "Replace with ClinicalTrials.gov text-snapshot ingestion job name",
+  "lifecycle_status": "planned",
   "summary": "Ingest a retained ClinicalTrials.gov public-registry text snapshot through the importer and propose the resulting canonical record updates.",
   "agent_role": "extraction_agent",
   "mode": "extraction_refresh",

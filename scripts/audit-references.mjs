@@ -538,6 +538,7 @@ function checkCandidateCompleteness({ index, issues }) {
 async function getPendingCodexJobProposedPaths() {
   const proposedPaths = new Set();
   const jobRoot = path.join(workspaceRoot, "ops", "codex-jobs");
+  const activeJobStatuses = new Set(["planned", "ready", "running"]);
 
   for (const filePath of await walkJsonFiles(jobRoot)) {
     const relativePath = toPosixRelative(filePath);
@@ -549,6 +550,10 @@ async function getPendingCodexJobProposedPaths() {
     }
 
     if (job.record_type !== "codex_job") {
+      continue;
+    }
+
+    if (!activeJobStatuses.has(job.lifecycle_status)) {
       continue;
     }
 

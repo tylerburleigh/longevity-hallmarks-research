@@ -1,0 +1,665 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./triage-state.schema.json",
+  "title": "Triage control-plane state",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "id",
+    "generated_at",
+    "source_roots",
+    "staleness_policies",
+    "summary",
+    "candidate_readiness",
+    "promotion_ready_candidate_ids",
+    "missing_review_lane_queue",
+    "coverage_gaps",
+    "extraction_debt",
+    "stale_snapshots",
+    "partial_or_failed_agent_runs",
+    "recommended_jobs"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "record_type": {
+      "const": "triage_state"
+    },
+    "id": {
+      "$ref": "./common.schema.json#/$defs/identifier"
+    },
+    "generated_at": {
+      "$ref": "./common.schema.json#/$defs/dateTime"
+    },
+    "source_roots": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "staleness_policies": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/stalenessPolicy"
+      }
+    },
+    "summary": {
+      "$ref": "#/$defs/summary"
+    },
+    "candidate_readiness": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/candidateReadiness"
+      }
+    },
+    "promotion_ready_candidate_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "./common.schema.json#/$defs/candidateChangeRef"
+      },
+      "uniqueItems": true
+    },
+    "missing_review_lane_queue": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/missingReviewLane"
+      }
+    },
+    "coverage_gaps": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/coverageGap"
+      }
+    },
+    "extraction_debt": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/extractionDebt"
+      }
+    },
+    "stale_snapshots": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/staleSnapshot"
+      }
+    },
+    "partial_or_failed_agent_runs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/agentRunQueueItem"
+      }
+    },
+    "recommended_jobs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/recommendedJob"
+      }
+    }
+  },
+  "$defs": {
+    "reviewLane": {
+      "enum": [
+        "source_fidelity",
+        "extraction_fidelity",
+        "taxonomy_mapping",
+        "synthesis_boundary",
+        "safety_limitations"
+      ]
+    },
+    "priority": {
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ]
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_count",
+        "promotion_ready_count",
+        "needs_review_count",
+        "needs_revision_count",
+        "blocked_count",
+        "accepted_count",
+        "applied_count",
+        "rejected_count",
+        "coverage_gap_count",
+        "high_priority_coverage_gap_count",
+        "extraction_debt_count",
+        "stale_snapshot_count",
+        "watch_snapshot_count",
+        "partial_or_failed_agent_run_count",
+        "recommended_job_count"
+      ],
+      "properties": {
+        "candidate_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "promotion_ready_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "needs_review_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "needs_revision_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "blocked_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "accepted_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "applied_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rejected_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "coverage_gap_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "high_priority_coverage_gap_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "extraction_debt_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "stale_snapshot_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "watch_snapshot_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "partial_or_failed_agent_run_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "recommended_job_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "stalenessPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "record_type",
+        "watch_after_days",
+        "stale_after_days",
+        "rationale"
+      ],
+      "properties": {
+        "record_type": {
+          "enum": [
+            "source_snapshot",
+            "text_snapshot"
+          ]
+        },
+        "snapshot_type": {
+          "type": "string"
+        },
+        "text_scope": {
+          "type": "string"
+        },
+        "watch_after_days": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "stale_after_days": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "rationale": {
+          "type": "string"
+        }
+      }
+    },
+    "candidateReadiness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_change_id",
+        "path",
+        "lifecycle_status",
+        "readiness_status",
+        "required_review_lanes",
+        "active_review_ids",
+        "complete_accepting_review_lanes",
+        "missing_review_lanes",
+        "revision_review_lanes",
+        "blocking_review_ids",
+        "open_major_or_critical_review_ids",
+        "proposed_record_count",
+        "next_actions"
+      ],
+      "properties": {
+        "candidate_change_id": {
+          "$ref": "./common.schema.json#/$defs/candidateChangeRef"
+        },
+        "path": {
+          "type": "string"
+        },
+        "lifecycle_status": {
+          "enum": [
+            "draft",
+            "submitted",
+            "in_review",
+            "needs_revision",
+            "accepted",
+            "rejected",
+            "applied"
+          ]
+        },
+        "readiness_status": {
+          "enum": [
+            "submitted",
+            "needs_review",
+            "needs_revision",
+            "promotion_ready",
+            "accepted",
+            "applied",
+            "blocked",
+            "rejected"
+          ]
+        },
+        "required_review_lanes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reviewLane"
+          },
+          "uniqueItems": true
+        },
+        "active_review_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/evidenceReviewRef"
+          },
+          "uniqueItems": true
+        },
+        "complete_accepting_review_lanes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reviewLane"
+          },
+          "uniqueItems": true
+        },
+        "missing_review_lanes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reviewLane"
+          },
+          "uniqueItems": true
+        },
+        "revision_review_lanes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reviewLane"
+          },
+          "uniqueItems": true
+        },
+        "blocking_review_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/evidenceReviewRef"
+          },
+          "uniqueItems": true
+        },
+        "open_major_or_critical_review_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/evidenceReviewRef"
+          },
+          "uniqueItems": true
+        },
+        "proposed_record_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "next_actions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "missingReviewLane": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_change_id",
+        "path",
+        "review_lane",
+        "next_action"
+      ],
+      "properties": {
+        "candidate_change_id": {
+          "$ref": "./common.schema.json#/$defs/candidateChangeRef"
+        },
+        "path": {
+          "type": "string"
+        },
+        "review_lane": {
+          "$ref": "#/$defs/reviewLane"
+        },
+        "next_action": {
+          "type": "string"
+        }
+      }
+    },
+    "coverageGap": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "coverage_assessment_id",
+        "path",
+        "gap_id",
+        "gap_type",
+        "category",
+        "priority",
+        "description",
+        "suggested_action",
+        "next_recommended_mode"
+      ],
+      "properties": {
+        "coverage_assessment_id": {
+          "$ref": "./common.schema.json#/$defs/identifier"
+        },
+        "path": {
+          "type": "string"
+        },
+        "gap_id": {
+          "$ref": "./common.schema.json#/$defs/identifier"
+        },
+        "gap_type": {
+          "enum": [
+            "coverage_gap",
+            "evidence_gap",
+            "operational_gap"
+          ]
+        },
+        "category": {
+          "type": "string"
+        },
+        "priority": {
+          "$ref": "#/$defs/priority"
+        },
+        "description": {
+          "type": "string"
+        },
+        "suggested_action": {
+          "type": "string"
+        },
+        "next_recommended_mode": {
+          "type": "string"
+        }
+      }
+    },
+    "extractionDebt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "debt_id",
+        "result_id",
+        "path",
+        "debt_type",
+        "severity",
+        "source",
+        "next_action"
+      ],
+      "properties": {
+        "debt_id": {
+          "$ref": "./common.schema.json#/$defs/identifier"
+        },
+        "result_id": {
+          "$ref": "./common.schema.json#/$defs/resultRef"
+        },
+        "path": {
+          "type": "string"
+        },
+        "synthesis_group_id": {
+          "$ref": "./common.schema.json#/$defs/synthesisGroupRef"
+        },
+        "missing_field": {
+          "type": "string"
+        },
+        "debt_type": {
+          "enum": [
+            "missing_effect_value",
+            "missing_effect_uncertainty",
+            "missing_analysis_comparison",
+            "missing_sample_size",
+            "missing_group_sample_size",
+            "missing_group_statistic",
+            "missing_group_dispersion",
+            "incompatible_time_horizon",
+            "missing_site_specific_effect_value",
+            "missing_site_specific_effect_uncertainty",
+            "missing_marker_identity",
+            "missing_adverse_event_preferred_term",
+            "missing_adverse_event_event_specific_counts",
+            "needs_extraction_refresh",
+            "other"
+          ]
+        },
+        "severity": {
+          "$ref": "#/$defs/priority"
+        },
+        "source": {
+          "enum": [
+            "synthesis_group_missing_effect_fields",
+            "result_maturity_status"
+          ]
+        },
+        "impact": {
+          "enum": [
+            "blocks_pooling",
+            "limits_precision",
+            "none"
+          ]
+        },
+        "note": {
+          "type": "string"
+        },
+        "next_action": {
+          "type": "string"
+        }
+      }
+    },
+    "staleSnapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "snapshot_record_type",
+        "snapshot_id",
+        "path",
+        "source_id",
+        "snapshot_at",
+        "age_days",
+        "staleness_status",
+        "watch_after_days",
+        "stale_after_days",
+        "reason",
+        "next_action"
+      ],
+      "properties": {
+        "snapshot_record_type": {
+          "enum": [
+            "source_snapshot",
+            "text_snapshot"
+          ]
+        },
+        "snapshot_id": {
+          "$ref": "./common.schema.json#/$defs/identifier"
+        },
+        "path": {
+          "type": "string"
+        },
+        "source_id": {
+          "$ref": "./common.schema.json#/$defs/sourceRef"
+        },
+        "snapshot_type": {
+          "type": "string"
+        },
+        "text_scope": {
+          "type": "string"
+        },
+        "snapshot_at": {
+          "$ref": "./common.schema.json#/$defs/dateTime"
+        },
+        "age_days": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "staleness_status": {
+          "enum": [
+            "watch",
+            "stale"
+          ]
+        },
+        "watch_after_days": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "stale_after_days": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "reason": {
+          "type": "string"
+        },
+        "next_action": {
+          "type": "string"
+        }
+      }
+    },
+    "agentRunQueueItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "agent_run_id",
+        "path",
+        "status",
+        "agent_role",
+        "blocking_issues",
+        "next_actions"
+      ],
+      "properties": {
+        "agent_run_id": {
+          "$ref": "./common.schema.json#/$defs/agentRunRef"
+        },
+        "path": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "partial",
+            "failed",
+            "blocked"
+          ]
+        },
+        "agent_role": {
+          "type": "string"
+        },
+        "mode": {
+          "type": "string"
+        },
+        "blocking_issues": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "next_actions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "recommendedJob": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "job_id",
+        "job_type",
+        "priority",
+        "source",
+        "target_record_type",
+        "target_record_id",
+        "rationale",
+        "inputs"
+      ],
+      "properties": {
+        "job_id": {
+          "$ref": "./common.schema.json#/$defs/identifier"
+        },
+        "job_type": {
+          "enum": [
+            "candidate_promotion",
+            "candidate_review",
+            "candidate_revision",
+            "coverage_repair",
+            "extraction_refresh",
+            "snapshot_refresh",
+            "agent_run_recovery",
+            "self_healing_repair"
+          ]
+        },
+        "priority": {
+          "$ref": "#/$defs/priority"
+        },
+        "source": {
+          "enum": [
+            "candidate_readiness",
+            "coverage_gap",
+            "extraction_debt",
+            "stale_snapshot",
+            "agent_run_status"
+          ]
+        },
+        "target_record_type": {
+          "type": "string"
+        },
+        "target_record_id": {
+          "$ref": "./common.schema.json#/$defs/identifier"
+        },
+        "rationale": {
+          "type": "string"
+        },
+        "suggested_command": {
+          "type": "string"
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}

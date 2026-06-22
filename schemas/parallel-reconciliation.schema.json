@@ -1,0 +1,655 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./parallel-reconciliation.schema.json",
+  "title": "Parallel output reconciliation report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "id",
+    "generated_at",
+    "source_roots",
+    "reconciliation_policy",
+    "summary",
+    "parallel_batches",
+    "duplicate_sources",
+    "duplicate_studies",
+    "overlapping_candidate_proposals",
+    "source_rights_conflicts",
+    "incomplete_ledgers",
+    "open_findings"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "record_type": {
+      "const": "parallel_reconciliation"
+    },
+    "id": {
+      "$ref": "./common.schema.json#/$defs/identifier"
+    },
+    "generated_at": {
+      "$ref": "./common.schema.json#/$defs/dateTime"
+    },
+    "source_roots": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "reconciliation_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "batch_plan_path",
+        "live_job_root",
+        "archive_job_root",
+        "batch_run_root",
+        "active_candidate_statuses",
+        "duplicate_source_keys",
+        "duplicate_study_keys",
+        "promotion_blocking_categories"
+      ],
+      "properties": {
+        "batch_plan_path": {
+          "type": "string"
+        },
+        "live_job_root": {
+          "type": "string"
+        },
+        "archive_job_root": {
+          "type": "string"
+        },
+        "batch_run_root": {
+          "type": "string"
+        },
+        "active_candidate_statuses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/candidateLifecycleStatus"
+          },
+          "uniqueItems": true
+        },
+        "duplicate_source_keys": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "doi",
+              "pmid",
+              "trial_registry_id",
+              "url",
+              "source_type_name"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "duplicate_study_keys": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "registry_id",
+              "source_set",
+              "study_type_name"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "promotion_blocking_categories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/findingCategory"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_count",
+        "duplicate_source_group_count",
+        "study_count",
+        "duplicate_study_group_count",
+        "candidate_count",
+        "active_candidate_count",
+        "overlapping_candidate_group_count",
+        "source_rights_count",
+        "source_rights_conflict_count",
+        "agent_run_count",
+        "parallel_batch_count",
+        "reconciliation_batch_count",
+        "parallel_batch_run_count",
+        "pending_parallel_worker_count",
+        "incomplete_ledger_count",
+        "open_finding_count",
+        "blocking_finding_count",
+        "warning_finding_count"
+      ],
+      "properties": {
+        "source_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "duplicate_source_group_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "study_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "duplicate_study_group_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "candidate_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "active_candidate_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "overlapping_candidate_group_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "source_rights_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "source_rights_conflict_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "agent_run_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "parallel_batch_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reconciliation_batch_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "parallel_batch_run_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pending_parallel_worker_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "incomplete_ledger_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "open_finding_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "blocking_finding_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "warning_finding_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "parallel_batches": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/parallelBatchReconciliation"
+      }
+    },
+    "duplicate_sources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/duplicateSourceFinding"
+      }
+    },
+    "duplicate_studies": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/duplicateStudyFinding"
+      }
+    },
+    "overlapping_candidate_proposals": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/overlappingCandidateFinding"
+      }
+    },
+    "source_rights_conflicts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/sourceRightsConflictFinding"
+      }
+    },
+    "incomplete_ledgers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/incompleteLedgerFinding"
+      }
+    },
+    "open_findings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/openFinding"
+      }
+    }
+  },
+  "$defs": {
+    "candidateLifecycleStatus": {
+      "enum": [
+        "draft",
+        "submitted",
+        "in_review",
+        "needs_revision",
+        "accepted",
+        "rejected",
+        "applied"
+      ]
+    },
+    "findingSeverity": {
+      "enum": [
+        "info",
+        "warning",
+        "blocker"
+      ]
+    },
+    "findingStatus": {
+      "enum": [
+        "open",
+        "resolved"
+      ]
+    },
+    "findingCategory": {
+      "enum": [
+        "duplicate_source",
+        "duplicate_study",
+        "overlapping_candidate_proposal",
+        "source_rights_conflict",
+        "incomplete_ledger",
+        "parallel_worker_pending_reconciliation"
+      ]
+    },
+    "issueId": {
+      "$ref": "./common.schema.json#/$defs/identifier"
+    },
+    "pathList": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "idList": {
+      "type": "array",
+      "items": {
+        "$ref": "./common.schema.json#/$defs/identifier"
+      },
+      "uniqueItems": true
+    },
+    "parallelBatchReconciliation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "batch_id",
+        "parallel_group",
+        "execution_class",
+        "reconciliation_required",
+        "job_ids",
+        "overlapping_execution_keys",
+        "status",
+        "finding_ids"
+      ],
+      "properties": {
+        "batch_id": {
+          "$ref": "./common.schema.json#/$defs/identifier"
+        },
+        "parallel_group": {
+          "type": "string"
+        },
+        "execution_class": {
+          "enum": [
+            "independent",
+            "reconciliation_required"
+          ]
+        },
+        "reconciliation_required": {
+          "type": "boolean"
+        },
+        "job_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/agentRunRef"
+          },
+          "uniqueItems": true
+        },
+        "overlapping_execution_keys": {
+          "$ref": "#/$defs/pathList"
+        },
+        "status": {
+          "enum": [
+            "no_reconciliation_needed",
+            "reconciliation_open",
+            "reconciled"
+          ]
+        },
+        "finding_ids": {
+          "$ref": "#/$defs/idList"
+        }
+      }
+    },
+    "duplicateSourceFinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "issue_id",
+        "category",
+        "severity",
+        "status",
+        "match_key",
+        "match_value",
+        "source_ids",
+        "paths",
+        "summary"
+      ],
+      "properties": {
+        "issue_id": {
+          "$ref": "#/$defs/issueId"
+        },
+        "category": {
+          "const": "duplicate_source"
+        },
+        "severity": {
+          "$ref": "#/$defs/findingSeverity"
+        },
+        "status": {
+          "$ref": "#/$defs/findingStatus"
+        },
+        "match_key": {
+          "type": "string"
+        },
+        "match_value": {
+          "type": "string"
+        },
+        "source_ids": {
+          "$ref": "#/$defs/idList"
+        },
+        "paths": {
+          "$ref": "#/$defs/pathList"
+        },
+        "summary": {
+          "type": "string"
+        }
+      }
+    },
+    "duplicateStudyFinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "issue_id",
+        "category",
+        "severity",
+        "status",
+        "match_key",
+        "match_value",
+        "study_ids",
+        "paths",
+        "summary"
+      ],
+      "properties": {
+        "issue_id": {
+          "$ref": "#/$defs/issueId"
+        },
+        "category": {
+          "const": "duplicate_study"
+        },
+        "severity": {
+          "$ref": "#/$defs/findingSeverity"
+        },
+        "status": {
+          "$ref": "#/$defs/findingStatus"
+        },
+        "match_key": {
+          "type": "string"
+        },
+        "match_value": {
+          "type": "string"
+        },
+        "study_ids": {
+          "$ref": "#/$defs/idList"
+        },
+        "paths": {
+          "$ref": "#/$defs/pathList"
+        },
+        "summary": {
+          "type": "string"
+        }
+      }
+    },
+    "proposalRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_change_id",
+        "lifecycle_status",
+        "record_type",
+        "record_id",
+        "path",
+        "change_type"
+      ],
+      "properties": {
+        "candidate_change_id": {
+          "$ref": "./common.schema.json#/$defs/candidateChangeRef"
+        },
+        "lifecycle_status": {
+          "$ref": "#/$defs/candidateLifecycleStatus"
+        },
+        "record_type": {
+          "type": "string"
+        },
+        "record_id": {
+          "$ref": "./common.schema.json#/$defs/identifier"
+        },
+        "path": {
+          "type": "string"
+        },
+        "change_type": {
+          "enum": [
+            "create",
+            "release_accept",
+            "update",
+            "delete"
+          ]
+        }
+      }
+    },
+    "overlappingCandidateFinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "issue_id",
+        "category",
+        "severity",
+        "status",
+        "proposal_key",
+        "candidate_change_ids",
+        "proposed_records",
+        "summary"
+      ],
+      "properties": {
+        "issue_id": {
+          "$ref": "#/$defs/issueId"
+        },
+        "category": {
+          "const": "overlapping_candidate_proposal"
+        },
+        "severity": {
+          "$ref": "#/$defs/findingSeverity"
+        },
+        "status": {
+          "$ref": "#/$defs/findingStatus"
+        },
+        "proposal_key": {
+          "type": "string"
+        },
+        "candidate_change_ids": {
+          "$ref": "#/$defs/idList"
+        },
+        "proposed_records": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/proposalRecord"
+          }
+        },
+        "summary": {
+          "type": "string"
+        }
+      }
+    },
+    "sourceRightsConflictFinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "issue_id",
+        "category",
+        "severity",
+        "status",
+        "source_id",
+        "source_rights_ids",
+        "paths",
+        "conflicting_fields",
+        "summary"
+      ],
+      "properties": {
+        "issue_id": {
+          "$ref": "#/$defs/issueId"
+        },
+        "category": {
+          "const": "source_rights_conflict"
+        },
+        "severity": {
+          "$ref": "#/$defs/findingSeverity"
+        },
+        "status": {
+          "$ref": "#/$defs/findingStatus"
+        },
+        "source_id": {
+          "$ref": "./common.schema.json#/$defs/sourceRef"
+        },
+        "source_rights_ids": {
+          "$ref": "#/$defs/idList"
+        },
+        "paths": {
+          "$ref": "#/$defs/pathList"
+        },
+        "conflicting_fields": {
+          "$ref": "#/$defs/pathList"
+        },
+        "summary": {
+          "type": "string"
+        }
+      }
+    },
+    "incompleteLedgerFinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "issue_id",
+        "category",
+        "severity",
+        "status",
+        "ledger_type",
+        "record_type",
+        "record_id",
+        "path",
+        "expected_paths",
+        "observed_paths",
+        "agent_run_ids",
+        "summary"
+      ],
+      "properties": {
+        "issue_id": {
+          "$ref": "#/$defs/issueId"
+        },
+        "category": {
+          "$ref": "#/$defs/findingCategory"
+        },
+        "severity": {
+          "$ref": "#/$defs/findingSeverity"
+        },
+        "status": {
+          "$ref": "#/$defs/findingStatus"
+        },
+        "ledger_type": {
+          "enum": [
+            "missing_candidate_agent_run",
+            "candidate_agent_run_mismatch",
+            "agent_run_missing_candidate",
+            "parallel_worker_pending_reconciliation"
+          ]
+        },
+        "record_type": {
+          "type": "string"
+        },
+        "record_id": {
+          "$ref": "./common.schema.json#/$defs/identifier"
+        },
+        "path": {
+          "type": "string"
+        },
+        "expected_paths": {
+          "$ref": "#/$defs/pathList"
+        },
+        "observed_paths": {
+          "$ref": "#/$defs/pathList"
+        },
+        "agent_run_ids": {
+          "$ref": "#/$defs/idList"
+        },
+        "summary": {
+          "type": "string"
+        }
+      }
+    },
+    "openFinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "issue_id",
+        "category",
+        "severity",
+        "status",
+        "summary"
+      ],
+      "properties": {
+        "issue_id": {
+          "$ref": "#/$defs/issueId"
+        },
+        "category": {
+          "$ref": "#/$defs/findingCategory"
+        },
+        "severity": {
+          "$ref": "#/$defs/findingSeverity"
+        },
+        "status": {
+          "$ref": "#/$defs/findingStatus"
+        },
+        "summary": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

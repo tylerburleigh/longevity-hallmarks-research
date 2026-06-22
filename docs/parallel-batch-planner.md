@@ -57,3 +57,12 @@ Run the batch-run audit:
 ```bash
 npm run audit:parallel-batch-runs
 ```
+
+Refresh reconciliation state after planning or running parallel jobs:
+
+```bash
+npm run reconcile:parallel
+npm run audit:reconciliation
+```
+
+The generated reconciliation report compares duplicate source/study identities, overlapping candidate proposals, source-rights conflicts, candidate/agent-run ledgers, and pending isolated-worktree worker outputs.

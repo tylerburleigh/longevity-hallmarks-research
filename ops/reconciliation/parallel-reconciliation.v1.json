@@ -1,0 +1,568 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "parallel_reconciliation",
+  "id": "parallel-reconciliation-v1",
+  "generated_at": "2026-06-22T21:39:42.236Z",
+  "source_roots": [
+    "data",
+    "research",
+    "ops/codex-jobs/live",
+    "ops/codex-jobs/archive",
+    "ops/codex-batches/runs"
+  ],
+  "reconciliation_policy": {
+    "batch_plan_path": "ops/codex-batches/parallel-batch-plan.v1.json",
+    "live_job_root": "ops/codex-jobs/live",
+    "archive_job_root": "ops/codex-jobs/archive",
+    "batch_run_root": "ops/codex-batches/runs",
+    "active_candidate_statuses": [
+      "draft",
+      "submitted",
+      "in_review",
+      "needs_revision"
+    ],
+    "duplicate_source_keys": [
+      "doi",
+      "pmid",
+      "trial_registry_id",
+      "url",
+      "source_type_name"
+    ],
+    "duplicate_study_keys": [
+      "registry_id",
+      "source_set",
+      "study_type_name"
+    ],
+    "promotion_blocking_categories": [
+      "duplicate_source",
+      "duplicate_study",
+      "overlapping_candidate_proposal",
+      "source_rights_conflict",
+      "incomplete_ledger",
+      "parallel_worker_pending_reconciliation"
+    ]
+  },
+  "summary": {
+    "source_count": 10,
+    "duplicate_source_group_count": 0,
+    "study_count": 9,
+    "duplicate_study_group_count": 0,
+    "candidate_count": 9,
+    "active_candidate_count": 4,
+    "overlapping_candidate_group_count": 8,
+    "source_rights_count": 2,
+    "source_rights_conflict_count": 0,
+    "agent_run_count": 11,
+    "parallel_batch_count": 3,
+    "reconciliation_batch_count": 3,
+    "parallel_batch_run_count": 0,
+    "pending_parallel_worker_count": 0,
+    "incomplete_ledger_count": 2,
+    "open_finding_count": 10,
+    "blocking_finding_count": 10,
+    "warning_finding_count": 0
+  },
+  "parallel_batches": [
+    {
+      "batch_id": "parallel-batch-001-candidate-review",
+      "parallel_group": "candidate-review",
+      "execution_class": "independent",
+      "reconciliation_required": true,
+      "job_ids": [
+        "self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
+      ],
+      "overlapping_execution_keys": [],
+      "status": "reconciliation_open",
+      "finding_ids": [
+        "missing-candidate-agent-run-bc8e426686e2",
+        "missing-candidate-agent-run-de30675addbc",
+        "overlapping-candidate-14fca4c24b17",
+        "overlapping-candidate-3a06e6340cfa",
+        "overlapping-candidate-8be7ee3308f9",
+        "overlapping-candidate-a47143957992",
+        "overlapping-candidate-b3857906563f",
+        "overlapping-candidate-b443e4e5da78",
+        "overlapping-candidate-b633096216bd",
+        "overlapping-candidate-f1249c68d429"
+      ]
+    },
+    {
+      "batch_id": "parallel-batch-002-candidate-revision",
+      "parallel_group": "candidate-revision",
+      "execution_class": "independent",
+      "reconciliation_required": true,
+      "job_ids": [
+        "self-healing-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21",
+        "self-healing-candidate-revision-senolytics-coverage-repair-2026-06-21",
+        "self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21"
+      ],
+      "overlapping_execution_keys": [],
+      "status": "reconciliation_open",
+      "finding_ids": [
+        "missing-candidate-agent-run-bc8e426686e2",
+        "missing-candidate-agent-run-de30675addbc",
+        "overlapping-candidate-14fca4c24b17",
+        "overlapping-candidate-3a06e6340cfa",
+        "overlapping-candidate-8be7ee3308f9",
+        "overlapping-candidate-a47143957992",
+        "overlapping-candidate-b3857906563f",
+        "overlapping-candidate-b443e4e5da78",
+        "overlapping-candidate-b633096216bd",
+        "overlapping-candidate-f1249c68d429"
+      ]
+    },
+    {
+      "batch_id": "parallel-batch-003-extraction-refresh",
+      "parallel_group": "extraction-refresh",
+      "execution_class": "reconciliation_required",
+      "reconciliation_required": true,
+      "job_ids": [
+        "self-healing-coverage-gap-senolytics-exact-effect-extraction",
+        "self-healing-coverage-gap-senolytics-safety-tables"
+      ],
+      "overlapping_execution_keys": [
+        "path:data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+        "target_record:coverage_assessment/senolytics-coverage-repair-2026-06-21"
+      ],
+      "status": "reconciliation_open",
+      "finding_ids": [
+        "missing-candidate-agent-run-bc8e426686e2",
+        "missing-candidate-agent-run-de30675addbc",
+        "overlapping-candidate-14fca4c24b17",
+        "overlapping-candidate-3a06e6340cfa",
+        "overlapping-candidate-8be7ee3308f9",
+        "overlapping-candidate-a47143957992",
+        "overlapping-candidate-b3857906563f",
+        "overlapping-candidate-b443e4e5da78",
+        "overlapping-candidate-b633096216bd",
+        "overlapping-candidate-f1249c68d429"
+      ]
+    }
+  ],
+  "duplicate_sources": [],
+  "duplicate_studies": [],
+  "overlapping_candidate_proposals": [
+    {
+      "issue_id": "overlapping-candidate-a47143957992",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "proposal_key": "data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json",
+      "candidate_change_ids": [
+        "senolytics-bone-rct-extraction-refresh-2026-06-21",
+        "senolytics-coverage-repair-2026-06-21",
+        "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
+      ],
+      "proposed_records": [
+        {
+          "candidate_change_id": "senolytics-bone-rct-extraction-refresh-2026-06-21",
+          "lifecycle_status": "in_review",
+          "record_type": "finding",
+          "record_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+          "path": "data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json",
+          "change_type": "update"
+        },
+        {
+          "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
+          "lifecycle_status": "in_review",
+          "record_type": "finding",
+          "record_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+          "path": "data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json",
+          "change_type": "create"
+        },
+        {
+          "candidate_change_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
+          "lifecycle_status": "submitted",
+          "record_type": "finding",
+          "record_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+          "path": "data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json",
+          "change_type": "update"
+        }
+      ],
+      "summary": "Active candidates propose changes to the same record path: data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-b443e4e5da78",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "proposal_key": "data/findings/dq-senolytic-drug-discovery-preclinical.json",
+      "candidate_change_ids": [
+        "senolytics-coverage-repair-2026-06-21",
+        "senolytics-scaffold-bootstrap-2026-06-21"
+      ],
+      "proposed_records": [
+        {
+          "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
+          "lifecycle_status": "in_review",
+          "record_type": "finding",
+          "record_id": "dq-senolytic-drug-discovery-preclinical",
+          "path": "data/findings/dq-senolytic-drug-discovery-preclinical.json",
+          "change_type": "update"
+        },
+        {
+          "candidate_change_id": "senolytics-scaffold-bootstrap-2026-06-21",
+          "lifecycle_status": "submitted",
+          "record_type": "finding",
+          "record_id": "dq-senolytic-drug-discovery-preclinical",
+          "path": "data/findings/dq-senolytic-drug-discovery-preclinical.json",
+          "change_type": "create"
+        }
+      ],
+      "summary": "Active candidates propose changes to the same record path: data/findings/dq-senolytic-drug-discovery-preclinical.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-b633096216bd",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "proposal_key": "data/outcomes/dq-bone-turnover-marker.json",
+      "candidate_change_ids": [
+        "senolytics-bone-rct-extraction-refresh-2026-06-21",
+        "senolytics-coverage-repair-2026-06-21"
+      ],
+      "proposed_records": [
+        {
+          "candidate_change_id": "senolytics-bone-rct-extraction-refresh-2026-06-21",
+          "lifecycle_status": "in_review",
+          "record_type": "outcome",
+          "record_id": "dq-bone-turnover-marker",
+          "path": "data/outcomes/dq-bone-turnover-marker.json",
+          "change_type": "update"
+        },
+        {
+          "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
+          "lifecycle_status": "in_review",
+          "record_type": "outcome",
+          "record_id": "dq-bone-turnover-marker",
+          "path": "data/outcomes/dq-bone-turnover-marker.json",
+          "change_type": "create"
+        }
+      ],
+      "summary": "Active candidates propose changes to the same record path: data/outcomes/dq-bone-turnover-marker.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-14fca4c24b17",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "proposal_key": "data/results/dq-bone-turnover-mixed.json",
+      "candidate_change_ids": [
+        "senolytics-bone-rct-extraction-refresh-2026-06-21",
+        "senolytics-coverage-repair-2026-06-21"
+      ],
+      "proposed_records": [
+        {
+          "candidate_change_id": "senolytics-bone-rct-extraction-refresh-2026-06-21",
+          "lifecycle_status": "in_review",
+          "record_type": "result",
+          "record_id": "dq-bone-turnover-mixed",
+          "path": "data/results/dq-bone-turnover-mixed.json",
+          "change_type": "update"
+        },
+        {
+          "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
+          "lifecycle_status": "in_review",
+          "record_type": "result",
+          "record_id": "dq-bone-turnover-mixed",
+          "path": "data/results/dq-bone-turnover-mixed.json",
+          "change_type": "create"
+        }
+      ],
+      "summary": "Active candidates propose changes to the same record path: data/results/dq-bone-turnover-mixed.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-8be7ee3308f9",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "proposal_key": "data/sources/pmid-25754370.json",
+      "candidate_change_ids": [
+        "senolytics-coverage-repair-2026-06-21",
+        "senolytics-scaffold-bootstrap-2026-06-21"
+      ],
+      "proposed_records": [
+        {
+          "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
+          "lifecycle_status": "in_review",
+          "record_type": "source",
+          "record_id": "pmid-25754370",
+          "path": "data/sources/pmid-25754370.json",
+          "change_type": "update"
+        },
+        {
+          "candidate_change_id": "senolytics-scaffold-bootstrap-2026-06-21",
+          "lifecycle_status": "submitted",
+          "record_type": "source",
+          "record_id": "pmid-25754370",
+          "path": "data/sources/pmid-25754370.json",
+          "change_type": "create"
+        }
+      ],
+      "summary": "Active candidates propose changes to the same record path: data/sources/pmid-25754370.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-f1249c68d429",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "proposal_key": "data/sources/pmid-38956196.json",
+      "candidate_change_ids": [
+        "senolytics-coverage-repair-2026-06-21",
+        "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
+      ],
+      "proposed_records": [
+        {
+          "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
+          "lifecycle_status": "in_review",
+          "record_type": "source",
+          "record_id": "pmid-38956196",
+          "path": "data/sources/pmid-38956196.json",
+          "change_type": "create"
+        },
+        {
+          "candidate_change_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
+          "lifecycle_status": "submitted",
+          "record_type": "source",
+          "record_id": "pmid-38956196",
+          "path": "data/sources/pmid-38956196.json",
+          "change_type": "update"
+        }
+      ],
+      "summary": "Active candidates propose changes to the same record path: data/sources/pmid-38956196.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-b3857906563f",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "proposal_key": "data/studies/dq-postmenopausal-bone-rct.json",
+      "candidate_change_ids": [
+        "senolytics-bone-rct-extraction-refresh-2026-06-21",
+        "senolytics-coverage-repair-2026-06-21"
+      ],
+      "proposed_records": [
+        {
+          "candidate_change_id": "senolytics-bone-rct-extraction-refresh-2026-06-21",
+          "lifecycle_status": "in_review",
+          "record_type": "study",
+          "record_id": "dq-postmenopausal-bone-rct",
+          "path": "data/studies/dq-postmenopausal-bone-rct.json",
+          "change_type": "update"
+        },
+        {
+          "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
+          "lifecycle_status": "in_review",
+          "record_type": "study",
+          "record_id": "dq-postmenopausal-bone-rct",
+          "path": "data/studies/dq-postmenopausal-bone-rct.json",
+          "change_type": "create"
+        }
+      ],
+      "summary": "Active candidates propose changes to the same record path: data/studies/dq-postmenopausal-bone-rct.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-3a06e6340cfa",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "proposal_key": "data/studies/zhu-senolytic-drug-discovery.json",
+      "candidate_change_ids": [
+        "senolytics-coverage-repair-2026-06-21",
+        "senolytics-scaffold-bootstrap-2026-06-21"
+      ],
+      "proposed_records": [
+        {
+          "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
+          "lifecycle_status": "in_review",
+          "record_type": "study",
+          "record_id": "zhu-senolytic-drug-discovery",
+          "path": "data/studies/zhu-senolytic-drug-discovery.json",
+          "change_type": "update"
+        },
+        {
+          "candidate_change_id": "senolytics-scaffold-bootstrap-2026-06-21",
+          "lifecycle_status": "submitted",
+          "record_type": "study",
+          "record_id": "zhu-senolytic-drug-discovery",
+          "path": "data/studies/zhu-senolytic-drug-discovery.json",
+          "change_type": "create"
+        }
+      ],
+      "summary": "Active candidates propose changes to the same record path: data/studies/zhu-senolytic-drug-discovery.json."
+    }
+  ],
+  "source_rights_conflicts": [],
+  "incomplete_ledgers": [
+    {
+      "issue_id": "missing-candidate-agent-run-bc8e426686e2",
+      "category": "incomplete_ledger",
+      "severity": "blocker",
+      "status": "open",
+      "ledger_type": "missing_candidate_agent_run",
+      "record_type": "candidate_change",
+      "record_id": "senolytics-scaffold-bootstrap-2026-06-21",
+      "path": "data/candidate-changes/senolytics-scaffold-bootstrap-2026-06-21.json",
+      "expected_paths": [
+        "data/candidate-changes/senolytics-scaffold-bootstrap-2026-06-21.json",
+        "data/evidence-reviews/senolytics-scaffold-source-fidelity-2026-06-21.json",
+        "data/findings/dq-senolytic-drug-discovery-preclinical.json",
+        "data/sources/pmid-25754370.json",
+        "data/studies/zhu-senolytic-drug-discovery.json",
+        "research/sessions/2026-06-21-senolytics-scaffold-bootstrap.json"
+      ],
+      "observed_paths": [],
+      "agent_run_ids": [],
+      "summary": "Active candidate senolytics-scaffold-bootstrap-2026-06-21 has no linked candidate_change_required agent_run ledger."
+    },
+    {
+      "issue_id": "missing-candidate-agent-run-de30675addbc",
+      "category": "incomplete_ledger",
+      "severity": "blocker",
+      "status": "open",
+      "ledger_type": "missing_candidate_agent_run",
+      "record_type": "candidate_change",
+      "record_id": "senolytics-coverage-repair-2026-06-21",
+      "path": "data/candidate-changes/senolytics-coverage-repair-2026-06-21.json",
+      "expected_paths": [
+        "data/candidate-changes/senolytics-coverage-repair-2026-06-21.json",
+        "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+        "data/coverage-assessments/senolytics-scaffold-coverage-2026-06-21.json",
+        "data/eligibility-decisions/eligibility-nct-04685590-senolytics-2026-06-21.json",
+        "data/eligibility-decisions/eligibility-nct-06133634-senolytics-2026-06-21.json",
+        "data/eligibility-decisions/eligibility-pmid-29988130-senolytics-2026-06-21.json",
+        "data/eligibility-decisions/eligibility-pmid-31542391-senolytics-2026-06-21.json",
+        "data/eligibility-decisions/eligibility-pmid-36857968-senolytics-2026-06-21.json",
+        "data/eligibility-decisions/eligibility-pmid-38956196-senolytics-2026-06-21.json",
+        "data/evidence-reviews/senolytics-coverage-repair-extraction-fidelity-2026-06-21.json",
+        "data/evidence-reviews/senolytics-coverage-repair-safety-limitations-2026-06-21.json",
+        "data/evidence-reviews/senolytics-coverage-repair-source-fidelity-2026-06-21.json",
+        "data/evidence-reviews/senolytics-coverage-repair-synthesis-boundary-2026-06-21.json",
+        "data/evidence-reviews/senolytics-coverage-repair-taxonomy-mapping-2026-06-21.json",
+        "data/findings/dq-ad-risk-pilot-cognition-mobility-signal.json",
+        "data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json",
+        "data/findings/dq-dkd-human-senescent-cell-biomarker-signal.json",
+        "data/findings/dq-ipf-randomized-feasibility-tolerability-mixed.json",
+        "data/findings/dq-old-mice-healthspan-lifespan-positive.json",
+        "data/findings/dq-senolytic-drug-discovery-preclinical.json",
+        "data/findings/dq-stomp-ad-active-no-posted-results.json",
+        "data/findings/fisetin-vascular-active-no-posted-results.json",
+        "data/findings/senolytic-translation-review-boundary.json",
+        "data/outcomes/dq-ad-risk-cognition-mobility.json",
+        "data/outcomes/dq-bone-turnover-marker.json",
+        "data/outcomes/dq-dkd-senescent-cell-biomarkers.json",
+        "data/outcomes/dq-ipf-feasibility-tolerability.json",
+        "data/outcomes/dq-old-mouse-post-treatment-survival.json",
+        "data/outcomes/dq-stomp-ad-registry-status.json",
+        "data/outcomes/fisetin-vascular-registry-status.json",
+        "data/results/dq-ad-risk-cognition-mobility-mixed.json",
+        "data/results/dq-bone-turnover-mixed.json",
+        "data/results/dq-dkd-biomarker-positive.json",
+        "data/results/dq-ipf-tolerability-mixed.json",
+        "data/results/dq-old-mouse-survival-positive.json",
+        "data/results/dq-stomp-ad-no-posted-results.json",
+        "data/results/fisetin-vascular-no-posted-results.json",
+        "data/risk-of-bias/dq-ad-risk-pilot-rob.json",
+        "data/risk-of-bias/dq-bone-rct-rob.json",
+        "data/risk-of-bias/dq-dkd-pilot-rob.json",
+        "data/risk-of-bias/dq-ipf-randomized-pilot-rob.json",
+        "data/risk-of-bias/dq-old-mouse-healthspan-lifespan-rob.json",
+        "data/sources/nct-04685590.json",
+        "data/sources/nct-06133634.json",
+        "data/sources/pmid-25754370.json",
+        "data/sources/pmid-29988130.json",
+        "data/sources/pmid-31542391.json",
+        "data/sources/pmid-32686219.json",
+        "data/sources/pmid-36857968.json",
+        "data/sources/pmid-38956196.json",
+        "data/sources/pmid-40010154.json",
+        "data/studies/dq-ad-risk-cognition-mobility-pilot.json",
+        "data/studies/dq-diabetic-kidney-disease-pilot.json",
+        "data/studies/dq-ipf-randomized-pilot.json",
+        "data/studies/dq-old-mouse-healthspan-lifespan.json",
+        "data/studies/dq-postmenopausal-bone-rct.json",
+        "data/studies/dq-stomp-ad-phase2-registry.json",
+        "data/studies/fisetin-vascular-function-older-adults-registry.json",
+        "data/studies/senolytic-drugs-translation-review.json",
+        "data/studies/zhu-senolytic-drug-discovery.json",
+        "data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
+        "research/sessions/2026-06-21-senolytics-coverage-repair.json"
+      ],
+      "observed_paths": [],
+      "agent_run_ids": [],
+      "summary": "Active candidate senolytics-coverage-repair-2026-06-21 has no linked candidate_change_required agent_run ledger."
+    }
+  ],
+  "open_findings": [
+    {
+      "issue_id": "missing-candidate-agent-run-bc8e426686e2",
+      "category": "incomplete_ledger",
+      "severity": "blocker",
+      "status": "open",
+      "summary": "Active candidate senolytics-scaffold-bootstrap-2026-06-21 has no linked candidate_change_required agent_run ledger."
+    },
+    {
+      "issue_id": "missing-candidate-agent-run-de30675addbc",
+      "category": "incomplete_ledger",
+      "severity": "blocker",
+      "status": "open",
+      "summary": "Active candidate senolytics-coverage-repair-2026-06-21 has no linked candidate_change_required agent_run ledger."
+    },
+    {
+      "issue_id": "overlapping-candidate-14fca4c24b17",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "summary": "Active candidates propose changes to the same record path: data/results/dq-bone-turnover-mixed.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-3a06e6340cfa",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "summary": "Active candidates propose changes to the same record path: data/studies/zhu-senolytic-drug-discovery.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-8be7ee3308f9",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "summary": "Active candidates propose changes to the same record path: data/sources/pmid-25754370.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-a47143957992",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "summary": "Active candidates propose changes to the same record path: data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-b3857906563f",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "summary": "Active candidates propose changes to the same record path: data/studies/dq-postmenopausal-bone-rct.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-b443e4e5da78",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "summary": "Active candidates propose changes to the same record path: data/findings/dq-senolytic-drug-discovery-preclinical.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-b633096216bd",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "summary": "Active candidates propose changes to the same record path: data/outcomes/dq-bone-turnover-marker.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-f1249c68d429",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "summary": "Active candidates propose changes to the same record path: data/sources/pmid-38956196.json."
+    }
+  ]
+}

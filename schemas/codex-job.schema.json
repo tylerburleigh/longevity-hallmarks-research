@@ -300,6 +300,7 @@
           "audit_references",
           "audit_exports",
           "audit_triage_state",
+          "audit_reconciliation",
           "audit_agentic_process",
           "audit_agent_schemas",
           "worker_output_contract",

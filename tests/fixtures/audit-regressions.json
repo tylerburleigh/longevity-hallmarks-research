@@ -140,6 +140,27 @@
       ]
     },
     {
+      "id": "stale-parallel-reconciliation",
+      "description": "Generated parallel reconciliation state must match canonical records and orchestration state.",
+      "command": [
+        "npm",
+        "run",
+        "audit:reconciliation"
+      ],
+      "operations": [
+        {
+          "type": "set_json",
+          "path": "ops/reconciliation/parallel-reconciliation.v1.json",
+          "pointer": "/summary/open_finding_count",
+          "value": 999
+        }
+      ],
+      "expected_failure_substrings": [
+        "Parallel-reconciliation audit failed",
+        "summary"
+      ]
+    },
+    {
       "id": "archived-job-in-live-queue",
       "description": "Final job snapshots must not remain in the live runnable queue.",
       "command": [

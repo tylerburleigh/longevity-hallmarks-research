@@ -469,6 +469,7 @@ const wrapperOwnedQualityChecks = new Set([
   "post_export",
   "post_triage_state_export",
   "post_release_readiness_export",
+  "post_reconciliation_export",
   "post_verify",
   "post_job_audit",
   "post_output_validate"
@@ -691,6 +692,8 @@ async function runPostSteps(options) {
       "export:release-readiness"
     ]);
     await appendOutputQualityCheck(options, releaseReadinessEvent);
+    const reconciliationEvent = await runCoordinatorCommand(options, "post_reconciliation_export", "npm", ["run", "reconcile:parallel"]);
+    await appendOutputQualityCheck(options, reconciliationEvent);
   }
   if (options.postVerify) {
     const event = await runCoordinatorCommand(options, "post_verify", "npm", ["run", "verify:knowledge-base:post-run"]);

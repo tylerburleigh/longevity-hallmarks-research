@@ -12,6 +12,7 @@ const finalJobStatuses = new Set(["succeeded", "failed", "superseded", "archived
 const aggregateQualityGateChecks = {
   audit_exports: new Set(["verify_knowledge_base", "post_verify"]),
   audit_triage_state: new Set(["verify_knowledge_base", "post_verify"]),
+  audit_reconciliation: new Set(["verify_knowledge_base", "post_verify"]),
   audit_agent_schemas: new Set(["verify_knowledge_base", "post_verify"]),
   audit_agentic_process: new Set(["verify_knowledge_base", "post_verify"])
 };

@@ -16,6 +16,7 @@
     "jobs:self-healing": "node scripts/generate-self-healing-jobs.mjs",
     "jobs:plan-parallel": "node scripts/plan-parallel-codex-batches.mjs",
     "jobs:run-batch": "node scripts/run-parallel-codex-batch.mjs",
+    "reconcile:parallel": "node scripts/reconcile-parallel-outputs.mjs",
     "agent:codex": "node scripts/run-codex-agent.mjs",
     "agent:codex:worktree": "node scripts/run-codex-worktree.mjs",
     "export:latest": "node scripts/export-latest.mjs",
@@ -28,14 +29,15 @@
     "audit:worktree-helper": "node scripts/audit-worktree-helper.mjs",
     "audit:parallel-batches": "node scripts/audit-parallel-batches.mjs",
     "audit:parallel-batch-runs": "node scripts/audit-parallel-batch-runs.mjs",
+    "audit:reconciliation": "node scripts/audit-reconciliation.mjs",
     "audit:exports": "node scripts/audit-exports.mjs",
     "audit:read-model": "node scripts/audit-read-model.mjs",
     "audit:agent-schemas": "node scripts/audit-agent-schemas.mjs",
     "audit:codex-jobs": "node scripts/audit-codex-jobs.mjs",
     "audit:agentic-process": "node scripts/audit-agentic-process.mjs",
     "test:audit-regressions": "node scripts/test-audit-regressions.mjs",
-    "verify:knowledge-base:post-run": "npm run validate:records && npm run audit:references && npm run audit:exports && npm run audit:read-model && npm run audit:triage-state && npm run audit:release-readiness && npm run audit:agent-schemas && npm run audit:agentic-process",
-    "verify:knowledge-base": "npm run validate:records && npm run audit:references && npm run audit:exports && npm run audit:read-model && npm run audit:triage-state && npm run audit:release-readiness && npm run audit:self-healing-jobs && npm run audit:worktree-helper && npm run audit:parallel-batches && npm run audit:parallel-batch-runs && npm run audit:agent-schemas && npm run audit:codex-jobs && npm run audit:agentic-process && npm run test:audit-regressions"
+    "verify:knowledge-base:post-run": "npm run validate:records && npm run audit:references && npm run audit:exports && npm run audit:read-model && npm run audit:triage-state && npm run audit:release-readiness && npm run audit:reconciliation && npm run audit:agent-schemas && npm run audit:agentic-process",
+    "verify:knowledge-base": "npm run validate:records && npm run audit:references && npm run audit:exports && npm run audit:read-model && npm run audit:triage-state && npm run audit:release-readiness && npm run audit:self-healing-jobs && npm run audit:worktree-helper && npm run audit:parallel-batches && npm run audit:parallel-batch-runs && npm run audit:reconciliation && npm run audit:agent-schemas && npm run audit:codex-jobs && npm run audit:agentic-process && npm run test:audit-regressions"
   },
   "devDependencies": {
     "ajv": "^8.20.0",

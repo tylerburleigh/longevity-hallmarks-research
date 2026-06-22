@@ -6,11 +6,13 @@ Expected outputs for a bounded pass:
 
 - one `agent_run`
 - one `research_session`
+- zero or more `search_log` records for search-stage work
+- zero or more `screening_run` records for screened search hits or source sets
 - zero or one `candidate_change`
 - zero or one `coverage_assessment`
 - source, study, and finding records only when they materially improve the evidence graph
 
-No-op searches are valid when the search was properly scoped and logged.
+No-op searches are valid when the search was properly scoped and recorded as a `search_log` with exact queries, result counts, retrieved counts, coverage effect, and no-op rationale.
 
 ## Transactional Agent Output
 
@@ -18,9 +20,11 @@ Every generation pass should write an `agent_run` record in `research/agent-runs
 
 Prefer isolated `codex exec` worker runs for bounded search, screening, extraction, synthesis, supervisor-review, and release tasks. Use the interactive session as coordinator and supervisor.
 
-Use `canonical_write_policy: "no_canonical_writes"` when the pass only analyzes, searches, screens, audits, or plans.
+Use `canonical_write_policy: "no_canonical_writes"` when the pass only analyzes, audits, or plans without writing repository records.
 
 Use `canonical_write_policy: "candidate_change_required"` when the pass creates, updates, deletes, or release-accepts canonical records. In that case, the agent-run output must reference `outputs.candidate_change_id` and list every proposed record path in `outputs.proposed_records[]`.
+
+Search and screening passes that write `research_session`, `search_log`, `screening_run`, `eligibility_decision`, or `coverage_assessment` records are candidate-producing runs. The final `agent_run.outputs` should include the created durable IDs such as `research_session_id`, `search_log_id`, or `screening_run_id` in addition to the candidate ledger.
 
 Use `change_type: "release_accept"` for a narrow, reviewed release-anchor candidate that accepts already-existing canonical records into the release boundary. Do not use it to bypass unfinished extraction work; keep remaining gaps visible as extraction debt, synthesis limitations, coverage gaps, or future Codex jobs.
 

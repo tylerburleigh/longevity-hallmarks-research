@@ -1,0 +1,213 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./screening-run.schema.json",
+  "title": "Screening run",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "id",
+    "research_session_id",
+    "screened_at",
+    "agent_id",
+    "scope",
+    "screening_rule_set",
+    "search_log_ids",
+    "decisions",
+    "summary"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "record_type": {
+      "const": "screening_run"
+    },
+    "id": {
+      "$ref": "./common.schema.json#/$defs/identifier"
+    },
+    "name": {
+      "type": "string"
+    },
+    "research_session_id": {
+      "$ref": "./common.schema.json#/$defs/identifier"
+    },
+    "agent_run_id": {
+      "$ref": "./common.schema.json#/$defs/agentRunRef"
+    },
+    "screened_at": {
+      "$ref": "./common.schema.json#/$defs/dateTime"
+    },
+    "agent_id": {
+      "type": "string"
+    },
+    "scope": {
+      "$ref": "#/$defs/screeningScope"
+    },
+    "screening_rule_set": {
+      "type": "string"
+    },
+    "search_log_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "./common.schema.json#/$defs/identifier"
+      },
+      "uniqueItems": true
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "decision_id",
+          "reference",
+          "decision",
+          "reason_category",
+          "rationale"
+        ],
+        "properties": {
+          "decision_id": {
+            "$ref": "./common.schema.json#/$defs/identifier"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "source_id": {
+            "$ref": "./common.schema.json#/$defs/sourceRef"
+          },
+          "source_title": {
+            "type": "string"
+          },
+          "url": {
+            "$ref": "./common.schema.json#/$defs/url"
+          },
+          "search_hit_id": {
+            "$ref": "./common.schema.json#/$defs/identifier"
+          },
+          "decision": {
+            "$ref": "#/$defs/screeningDecision"
+          },
+          "reason_category": {
+            "$ref": "#/$defs/reasonCategory"
+          },
+          "duplicate_of_source_id": {
+            "$ref": "./common.schema.json#/$defs/sourceRef"
+          },
+          "eligibility_decision_id": {
+            "$ref": "./common.schema.json#/$defs/identifier"
+          },
+          "next_action": {
+            "enum": [
+              "create_source_record",
+              "refresh_existing_source",
+              "create_eligibility_decision",
+              "defer",
+              "none"
+            ]
+          },
+          "rationale": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "included_source_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "./common.schema.json#/$defs/sourceRef"
+      },
+      "uniqueItems": true
+    },
+    "eligibility_decision_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "./common.schema.json#/$defs/identifier"
+      },
+      "uniqueItems": true
+    },
+    "candidate_change_id": {
+      "$ref": "./common.schema.json#/$defs/candidateChangeRef"
+    },
+    "coverage_assessment_id": {
+      "$ref": "./common.schema.json#/$defs/identifier"
+    },
+    "blocking_issues": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "summary": {
+      "type": "string"
+    },
+    "next_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "screeningScope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "question"
+      ],
+      "properties": {
+        "question": {
+          "type": "string"
+        },
+        "hallmark_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/hallmarkRef"
+          },
+          "uniqueItems": true
+        },
+        "track_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/trackRef"
+          },
+          "uniqueItems": true
+        },
+        "intervention_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/identifier"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "screeningDecision": {
+      "enum": [
+        "included",
+        "excluded",
+        "duplicate",
+        "wrong_scope",
+        "awaiting_full_text",
+        "context_only",
+        "deferred"
+      ]
+    },
+    "reasonCategory": {
+      "enum": [
+        "direct_evidence",
+        "background",
+        "wrong_population",
+        "wrong_intervention",
+        "wrong_endpoint",
+        "duplicate",
+        "no_results",
+        "registry_only",
+        "insufficient_source_quality",
+        "inaccessible",
+        "other"
+      ]
+    }
+  }
+}

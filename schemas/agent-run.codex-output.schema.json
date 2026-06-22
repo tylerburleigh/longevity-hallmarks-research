@@ -251,6 +251,18 @@
             "summary": {
               "type": "string"
             },
+            "research_session_id": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+[a-z0-9._-]*$"
+            },
+            "search_log_id": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+[a-z0-9._-]*$"
+            },
+            "screening_run_id": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+[a-z0-9._-]*$"
+            },
             "generated_files": {
               "type": "array",
               "items": {
@@ -278,6 +290,18 @@
           "properties": {
             "summary": {
               "type": "string"
+            },
+            "research_session_id": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+[a-z0-9._-]*$"
+            },
+            "search_log_id": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+[a-z0-9._-]*$"
+            },
+            "screening_run_id": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+[a-z0-9._-]*$"
             },
             "candidate_change_id": {
               "type": "string",

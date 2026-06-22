@@ -15,6 +15,12 @@ Reusable JSON templates live in `docs/templates/agent-runs/`:
 - `supervisor-review.json`
 - `release-export.json`
 
+Reusable durable record templates live in:
+
+- `docs/templates/research-sessions/research-session.json`
+- `docs/templates/search-logs/search-log.json`
+- `docs/templates/screening-runs/screening-run.json`
+
 Reusable worker prompt templates live in `docs/prompts/codex-agents/`.
 
 Executed run prompt snapshots live in `research/agent-runs/prompts/`. These are audit artifacts, not reusable documentation. `agent_run.execution.prompt_file` should point to the snapshot used for that run. When a reusable template was the source, `agent_run.execution.prompt_template_file` should point back to the template.
@@ -36,6 +42,8 @@ Use `canonical_write_policy` to declare whether the run touched durable state:
 
 When `canonical_write_policy` is `candidate_change_required`, `outputs.candidate_change_id` and `outputs.proposed_records[]` are required. The reference audit checks that referenced candidate changes, research sessions, and proposed record paths exist and match their declared IDs.
 
+Search and screening runs should use `candidate_change_required` when they write `research_session`, `search_log`, `screening_run`, eligibility, or coverage records. Use `outputs.research_session_id`, `outputs.search_log_id`, and `outputs.screening_run_id` to make the durable work products directly discoverable.
+
 ## Required Output Shape
 
 Each run should include:
@@ -43,6 +51,7 @@ Each run should include:
 - `scope`: bounded question plus track, hallmark, or intervention IDs.
 - `outputs.summary`: concise result of the run.
 - `outputs.proposed_records[]`: canonical record paths created, updated, deleted, or release-accepted by the run.
+- search/screening IDs when present: `outputs.research_session_id`, `outputs.search_log_id`, or `outputs.screening_run_id`.
 
 Use `change_type: "release_accept"` when a narrow reviewed candidate accepts an existing canonical record into the release boundary without claiming that the candidate originally created the record. This is useful when a broad extraction or coverage candidate remains unfinished, but a stable subset of its records has passed scoped review.
 - `quality_checks[]`: checks run by the agent, including verification commands when applicable.

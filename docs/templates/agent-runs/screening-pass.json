@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "record_type": "agent_run",
-  "id": "replace-with-screening-run-id",
+  "id": "replace-with-screening-agent-run-id",
   "agent_role": "screening_agent",
   "agent_id": "codex-screening-agent",
   "mode": "coverage_repair",
@@ -18,31 +18,56 @@
   "execution": {
     "surface": "codex_exec",
     "isolation": "git_worktree",
-    "prompt_file": "docs/prompts/codex-agents/screening-pass.md",
+    "workspace_path": "replace-with-isolated-worktree-path",
+    "prompt_file": "research/agent-runs/prompts/replace-with-screening-agent-run-id.md",
+    "prompt_template_file": "docs/prompts/codex-agents/screening-pass.md",
     "output_schema_path": "schemas/agent-run.codex-output.schema.json",
-    "output_path": "research/agent-runs/replace-with-screening-run-id.json",
-    "jsonl_log_path": "research/agent-runs/logs/replace-with-screening-run-id.jsonl",
+    "output_path": "research/agent-runs/replace-with-screening-agent-run-id.json",
+    "jsonl_log_path": "research/agent-runs/logs/replace-with-screening-agent-run-id.jsonl",
     "sandbox": "workspace-write",
     "approval_policy": "never"
   },
   "inputs": [
     {
       "input_type": "record",
-      "reference": "research/sessions/replace-with-session.json",
+      "reference": "research/search-logs/replace-with-search-log-id.json",
       "summary": "Replace with search log or source list screened."
     }
   ],
   "outputs": {
     "summary": "Replace with screening decisions and candidate update summary.",
     "research_session_id": "replace-with-research-session-id",
+    "screening_run_id": "replace-with-screening-run-id",
     "candidate_change_id": "replace-with-candidate-change-id",
-    "proposed_records": []
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "replace-with-candidate-change-id",
+        "path": "data/candidate-changes/replace-with-candidate-change-id.json",
+        "change_type": "create",
+        "rationale": "Tracks the screening decisions and any canonical screening outputs."
+      },
+      {
+        "record_type": "screening_run",
+        "record_id": "replace-with-screening-run-id",
+        "path": "research/screening-runs/replace-with-screening-run-id.json",
+        "change_type": "create",
+        "rationale": "Records inclusion, exclusion, duplicate, wrong-scope, and deferred decisions for the bounded source set."
+      }
+    ],
+    "generated_files": [],
+    "export_paths": []
   },
   "quality_checks": [
     {
       "check_name": "screening_rules_applied",
       "status": "passed",
       "summary": "Replace with inclusion/exclusion rule confirmation."
+    },
+    {
+      "check_name": "durable_screening_run_written",
+      "status": "passed",
+      "summary": "Replace with screening-run path and decision coverage confirmation."
     }
   ],
   "blocking_issues": [],

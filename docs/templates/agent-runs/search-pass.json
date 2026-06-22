@@ -17,15 +17,17 @@
       "senolytics"
     ]
   },
-  "canonical_write_policy": "no_canonical_writes",
+  "canonical_write_policy": "candidate_change_required",
   "execution": {
     "surface": "codex_exec",
     "isolation": "git_worktree",
-    "prompt_file": "docs/prompts/codex-agents/search-pass.md",
+    "workspace_path": "replace-with-isolated-worktree-path",
+    "prompt_file": "research/agent-runs/prompts/replace-with-search-run-id.md",
+    "prompt_template_file": "docs/prompts/codex-agents/search-pass.md",
     "output_schema_path": "schemas/agent-run.codex-output.schema.json",
     "output_path": "research/agent-runs/replace-with-search-run-id.json",
     "jsonl_log_path": "research/agent-runs/logs/replace-with-search-run-id.jsonl",
-    "sandbox": "read-only",
+    "sandbox": "workspace-write",
     "approval_policy": "never"
   },
   "inputs": [
@@ -37,13 +39,45 @@
   ],
   "outputs": {
     "summary": "Replace with search result summary.",
-    "generated_files": []
+    "research_session_id": "replace-with-research-session-id",
+    "search_log_id": "replace-with-search-log-id",
+    "candidate_change_id": "replace-with-candidate-change-id",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "replace-with-candidate-change-id",
+        "path": "data/candidate-changes/replace-with-candidate-change-id.json",
+        "change_type": "create",
+        "rationale": "Tracks the durable search/session record set and review lanes."
+      },
+      {
+        "record_type": "research_session",
+        "record_id": "replace-with-research-session-id",
+        "path": "research/sessions/replace-with-research-session-id.json",
+        "change_type": "create",
+        "rationale": "Records the bounded research session."
+      },
+      {
+        "record_type": "search_log",
+        "record_id": "replace-with-search-log-id",
+        "path": "research/search-logs/replace-with-search-log-id.json",
+        "change_type": "create",
+        "rationale": "Records exact source databases, queries, dates, counts, hits, and no-op rationale."
+      }
+    ],
+    "generated_files": [],
+    "export_paths": []
   },
   "quality_checks": [
     {
       "check_name": "search_scope_bounded",
       "status": "passed",
       "summary": "Replace with scope-boundary confirmation."
+    },
+    {
+      "check_name": "durable_search_log_written",
+      "status": "passed",
+      "summary": "Replace with search-log and session path confirmation."
     }
   ],
   "blocking_issues": [],

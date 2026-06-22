@@ -27,6 +27,8 @@ const schemaByRecordType = {
   coverage_assessment: "./coverage-assessment.schema.json",
   coverage_status_export: "./coverage-status-export.schema.json",
   research_session: "./research-session.schema.json",
+  search_log: "./search-log.schema.json",
+  screening_run: "./screening-run.schema.json",
   candidate_change: "./candidate-change.schema.json",
   evidence_review: "./evidence-review.schema.json",
   agent_run: "./agent-run.schema.json",

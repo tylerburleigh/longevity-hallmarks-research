@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "codex_job",
+  "id": "replace-with-screening-agent-run-id",
+  "name": "Replace with bounded screening job name.",
+  "summary": "Runs a scoped screening pass that writes a screening_run and any eligibility or coverage records through a candidate_change.",
+  "lifecycle_status": "planned",
+  "agent_role": "screening_agent",
+  "mode": "coverage_repair",
+  "prompt_file": "docs/prompts/codex-agents/screening-pass.md",
+  "output_path": "research/agent-runs/replace-with-screening-agent-run-id.json",
+  "jsonl_log_path": "research/agent-runs/logs/replace-with-screening-agent-run-id.jsonl",
+  "scope": {
+    "question": "Replace with bounded screening question.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "execution": {
+    "workdir": "replace-with-isolated-worktree-path",
+    "isolation": "git_worktree",
+    "sandbox": "workspace-write",
+    "approval_policy": "never",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "timeout_ms": 1800000,
+    "no_output_timeout_ms": 300000
+  },
+  "expected_outputs": {
+    "canonical_write_policy": "candidate_change_required",
+    "candidate_change_id": "replace-with-candidate-change-id",
+    "required_review_lanes": [
+      "taxonomy_mapping"
+    ],
+    "proposed_record_paths": [
+      "data/candidate-changes/replace-with-candidate-change-id.json",
+      "research/screening-runs/replace-with-screening-run-id.json"
+    ],
+    "generated_file_paths": [],
+    "export_paths": []
+  },
+  "orchestration": {
+    "read_sets": [
+      "path:research/search-logs/replace-with-search-log-id.json",
+      "docs:screening-rules",
+      "scope:replace-with-bounded-scope"
+    ],
+    "write_sets": [
+      "path:data/candidate-changes/replace-with-candidate-change-id.json",
+      "path:research/screening-runs/replace-with-screening-run-id.json"
+    ],
+    "conflict_keys": [
+      "candidate_change:replace-with-candidate-change-id",
+      "search_log:replace-with-search-log-id",
+      "scope:replace-with-bounded-scope"
+    ],
+    "parallel_group": "screening-pass",
+    "reconciliation_required": true,
+    "expected_cost": {
+      "cost_class": "medium",
+      "expected_wall_time_ms": 1800000,
+      "expected_token_budget": 25000,
+      "io_intensity": "medium"
+    }
+  },
+  "quality_gates": [
+    "validate_records",
+    "audit_references",
+    "worker_output_contract",
+    "candidate_agent_run_ledger_match"
+  ],
+  "notes": [
+    "Add eligibility_decision or coverage_assessment paths to expected_outputs and write_sets when the run will create or update them."
+  ]
+}

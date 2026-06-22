@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "research_session",
+  "id": "replace-with-research-session-id",
+  "name": "Replace with bounded session name.",
+  "mode": "surveillance",
+  "started_at": "2026-06-22T00:00:00Z",
+  "completed_at": "2026-06-22T00:00:00Z",
+  "scope": {
+    "question": "Replace with bounded research question.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "selected_via": "explicit_track",
+  "outcome": "candidate_change_submitted",
+  "summary": "Replace with session-level search, screening, extraction, or synthesis summary.",
+  "candidate_change_id": "replace-with-candidate-change-id",
+  "next_recommended_mode": "coverage_repair",
+  "search_log": [],
+  "excluded_sources": []
+}

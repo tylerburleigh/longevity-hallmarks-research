@@ -557,7 +557,7 @@ Tasks:
 - [x] Add wrapper-enforced `worker_output_contract` checks for single-final-JSON output and repository-script validation discipline.
 - [x] Separate reusable Codex prompt templates from immutable run prompt snapshots.
 - [x] Add triage state generation.
-- [ ] Add templates for research sessions.
+- [x] Add templates for research sessions.
 - [x] Split live runnable `ops/codex-jobs/` specs from archived executed job snapshots.
 - [ ] Add default isolated-worktree execution helpers so mutable Codex jobs do not need foreground checkout.
 
@@ -609,7 +609,7 @@ Tasks:
 - [x] Add regression fixtures for negative audit cases, including missing provenance, unsupported promotion, stale exports, stale triage state, stale release-readiness state, duplicate active reviews, bad worker output, unsafe text retention, and invalid synthesis pooling.
 - [x] Add a lightweight SQLite or DuckDB generated read model for agents and downstream consumers that need joins over sources, studies, outcomes, results, reviews, candidates, and synthesis groups; canonical JSON records remain the source of truth.
 - [x] Add read-model audits requiring every generated row to include `record_type`, `id`, source `path`, maturity state, and provenance back to canonical JSON.
-- [ ] Add search/session generation templates so search and screening agents produce durable no-op searches, excluded-source decisions, and coverage updates without coordinator hand-entry.
+- [x] Add search/session generation templates so search and screening agents produce durable no-op searches, excluded-source decisions, and coverage updates without coordinator hand-entry.
 - [x] Add a release-readiness queue that distinguishes accepted canonical state from submitted/in-review generated state.
 - [x] Add release-readiness dependency checks so accepted records that depend on unreleased sources, studies, findings, outcomes, results, snapshots, or text snapshots stay out of accepted-record exports.
 - [x] Add a `release_accept` candidate change type so scoped supervisor-agent review can release stable existing records without promoting broad unfinished extraction or coverage candidates.
@@ -657,18 +657,18 @@ Exit criteria:
 
 ## Immediate Next Actions
 
-1. Add durable research-session, search-log, and screening-run generation templates.
-2. Add the self-healing job generator that turns triage-state repair recommendations into bounded live Codex job specs.
-3. Add the default isolated-worktree execution helper needed for safe concurrent Codex workers.
-4. Add a first parallel-batch planner for independent search, registry-refresh, extraction-refresh, and supervisor-review jobs.
-5. Finish full publication/table extraction for the D+Q bone RCT, including subgroup and event-specific safety details.
-6. Run extraction-refresh passes on the remaining human D+Q papers: DKD, IPF, and AD-risk cognition/mobility.
-7. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
-8. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
-9. Decide whether to install repo-local skills into the active Codex skills directory.
+1. Add the self-healing job generator that turns triage-state repair recommendations into bounded live Codex job specs.
+2. Add the default isolated-worktree execution helper needed for safe concurrent Codex workers.
+3. Add a first parallel-batch planner for independent search, registry-refresh, extraction-refresh, and supervisor-review jobs.
+4. Finish full publication/table extraction for the D+Q bone RCT, including subgroup and event-specific safety details.
+5. Run extraction-refresh passes on the remaining human D+Q papers: DKD, IPF, and AD-risk cognition/mobility.
+6. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
+7. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
+8. Decide whether to install repo-local skills into the active Codex skills directory.
 
 ## Change Log
 
+- 2026-06-22: Added first-class `search_log` and `screening_run` schemas, durable search/session/screening templates, Codex job templates, prompt guidance, agent-run output IDs, reference audits, and read-model relationship links for search and screening work products.
 - 2026-06-22: Promoted the D+Q endpoint synthesis-groups candidate and registry-markdown provenance-repair candidate to accepted, then hardened release-readiness so accepted records with unreleased graph dependencies remain blocked from accepted-record exports.
 - 2026-06-22: Added `release_accept` change semantics, accepted a narrow D+Q bone release-anchor candidate, and cleared accepted-record release blockers without promoting broad unfinished extraction or coverage candidates.
 - 2026-06-22: Added generated `consumer-contract.json`, schema validation, manifest hashing, and export audit checks for artifact stability, maturity semantics, release boundaries, stable fields, traceability fields, and required consumer checks.

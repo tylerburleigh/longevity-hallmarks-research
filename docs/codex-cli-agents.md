@@ -87,7 +87,7 @@ The wrapper enforces the worker output contract after `codex exec` exits and bef
 
 On success, the wrapper appends a `worker_output_contract` quality check to the persisted `agent_run`.
 
-Use `--sandbox read-only` for search, screening, review, and audit-only runs that should not edit files. Use `workspace-write` for extraction or synthesis workers that write candidate records. Use `danger-full-access` only in an externally isolated runner.
+Use `--sandbox read-only` for review and audit-only runs that should not edit files. Use `workspace-write` for search, screening, extraction, synthesis, and repair workers that write candidate-tracked records. Use `danger-full-access` only in an externally isolated runner.
 
 For release/export runs or any run whose persisted `agent_run` should be included in current export manifests, add:
 
@@ -135,6 +135,8 @@ When `canonical_write_policy` is `candidate_change_required`, the output must in
 - `quality_checks[]`
 - unresolved `blocking_issues[]` when the run is partial
 
+Search workers that write durable output should also include `outputs.research_session_id` and `outputs.search_log_id`. Screening workers that write durable output should include `outputs.research_session_id` and `outputs.screening_run_id`.
+
 Workers must not run ad hoc schema validators for their final response. The wrapper owns structured-output validation, and repository scripts own persisted-record validation. Use repository commands instead:
 
 ```bash
@@ -150,6 +152,8 @@ The reference audit requires changed canonical records to appear in both:
 - `agent_run.outputs.proposed_records[]`
 
 Agent-run records themselves are transaction logs and do not need to be proposed inside a candidate change.
+
+Durable search and screening records are not temporary notes. `research/search-logs/` records preserve exact query coverage and no-op rationale; `research/screening-runs/` records preserve inclusion, exclusion, duplicate, wrong-scope, and deferred decisions. Both should be proposed through a `candidate_change` when created or updated.
 
 The reference audit also infers required review lanes from proposed record types. Result, outcome, snapshot, synthesis, and safety/adverse-event records must declare the matching source-fidelity, extraction-fidelity, taxonomy-mapping, synthesis-boundary, or safety-limitation lanes before promotion can proceed.
 
@@ -181,6 +185,15 @@ Use these templates when a worker needs to retain ClinicalTrials.gov registry te
 - `docs/templates/codex-jobs/text-snapshot-supervisor-review.json`
 
 Copy a filled job into `ops/codex-jobs/live/` only when the run is ready to execute or when its pending output should become part of the audited job ledger. After the final `agent_run` is verified, move the job snapshot to `ops/codex-jobs/archive/`, set `lifecycle_status` to the final outcome, and record `final_agent_run_id` plus `archived_at`.
+
+## Search And Screening Jobs
+
+Use these templates when a worker needs to discover or screen candidate sources:
+
+- `docs/templates/codex-jobs/search-pass.json`
+- `docs/templates/codex-jobs/screening-pass.json`
+
+Search jobs should write `research/sessions/<id>.json` and `research/search-logs/<id>.json` through a candidate. Screening jobs should read one or more search logs and write `research/screening-runs/<id>.json`, with eligibility or coverage records added to the expected-output ledger when they are created or updated.
 
 ## Promotion Boundary
 

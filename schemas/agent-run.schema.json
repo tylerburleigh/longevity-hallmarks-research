@@ -255,6 +255,12 @@
         "research_session_id": {
           "$ref": "./common.schema.json#/$defs/identifier"
         },
+        "search_log_id": {
+          "$ref": "./common.schema.json#/$defs/identifier"
+        },
+        "screening_run_id": {
+          "$ref": "./common.schema.json#/$defs/identifier"
+        },
         "candidate_change_id": {
           "$ref": "./common.schema.json#/$defs/candidateChangeRef"
         },

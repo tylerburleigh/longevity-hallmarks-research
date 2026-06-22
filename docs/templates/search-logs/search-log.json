@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "search_log",
+  "id": "replace-with-search-log-id",
+  "name": "Replace with bounded search log name.",
+  "research_session_id": "replace-with-research-session-id",
+  "agent_run_id": "replace-with-search-run-id",
+  "searched_at": "2026-06-22T00:00:00Z",
+  "agent_id": "codex-search-agent",
+  "scope": {
+    "question": "Replace with bounded search question.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "search_strategy": {
+    "source_names": [
+      "PubMed",
+      "ClinicalTrials.gov"
+    ],
+    "rationale": "Replace with why these databases and query families cover the bounded scope.",
+    "planned_queries": [
+      "Replace with search string."
+    ]
+  },
+  "queries": [
+    {
+      "query_id": "pubmed-primary-query",
+      "source_name": "PubMed",
+      "query": "Replace with exact query string.",
+      "checked_at": "2026-06-22T00:00:00Z",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/",
+      "filters": [],
+      "result_count": 0,
+      "retrieved_count": 0,
+      "no_op": true,
+      "no_op_reason": "Replace with why no in-scope new candidates were found."
+    }
+  ],
+  "hits": [],
+  "canonical_source_ids": [],
+  "coverage_effect": "no_new_candidates",
+  "blocking_issues": [],
+  "summary": "Replace with query coverage and candidate-hit summary.",
+  "next_actions": [
+    "Create a screening run if candidate hits are present."
+  ]
+}

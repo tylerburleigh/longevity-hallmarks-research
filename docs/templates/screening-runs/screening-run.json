@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "screening_run",
+  "id": "replace-with-screening-run-id",
+  "name": "Replace with bounded screening run name.",
+  "research_session_id": "replace-with-research-session-id",
+  "agent_run_id": "replace-with-screening-agent-run-id",
+  "screened_at": "2026-06-22T00:00:00Z",
+  "agent_id": "codex-screening-agent",
+  "scope": {
+    "question": "Replace with bounded screening question.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "screening_rule_set": "docs/screening-rules.md",
+  "search_log_ids": [
+    "replace-with-search-log-id"
+  ],
+  "decisions": [
+    {
+      "decision_id": "replace-with-decision-id",
+      "reference": "Replace with search hit, source ID, DOI, PMID, NCT ID, or citation.",
+      "source_title": "Replace with source title when available.",
+      "url": "https://example.org/replace-with-source-url",
+      "search_hit_id": "replace-with-search-hit-id",
+      "decision": "deferred",
+      "reason_category": "other",
+      "next_action": "defer",
+      "rationale": "Replace with rule-based screening rationale."
+    }
+  ],
+  "included_source_ids": [],
+  "eligibility_decision_ids": [],
+  "candidate_change_id": "replace-with-candidate-change-id",
+  "blocking_issues": [],
+  "summary": "Replace with inclusion, exclusion, duplicate, and deferred decision summary.",
+  "next_actions": [
+    "Create extraction-refresh jobs for included sources."
+  ]
+}

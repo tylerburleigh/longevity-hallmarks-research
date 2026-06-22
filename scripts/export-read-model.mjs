@@ -389,6 +389,103 @@ function buildLinks(entries, recordIndex) {
           addLink({ links, entry, recordIndex, relationship: "covers_finding", targetRecordType: "finding", targetId: findingId, linkIndex: index });
         }
         break;
+      case "search_log":
+        addLink({
+          links,
+          entry,
+          recordIndex,
+          relationship: "documents_research_session",
+          targetRecordType: "research_session",
+          targetId: record.research_session_id,
+          linkIndex: 0
+        });
+        addLink({
+          links,
+          entry,
+          recordIndex,
+          relationship: "emitted_by_agent_run",
+          targetRecordType: "agent_run",
+          targetId: record.agent_run_id,
+          linkIndex: 1
+        });
+        for (const [index, sourceId] of (record.canonical_source_ids ?? []).entries()) {
+          addLink({ links, entry, recordIndex, relationship: "found_source", targetRecordType: "source", targetId: sourceId, linkIndex: index });
+        }
+        for (const [hitIndex, hit] of (record.hits ?? []).entries()) {
+          addLink({
+            links,
+            entry,
+            recordIndex,
+            relationship: "matched_source_hit",
+            targetRecordType: "source",
+            targetId: hit.source_id,
+            linkIndex: hitIndex
+          });
+        }
+        break;
+      case "screening_run":
+        addLink({
+          links,
+          entry,
+          recordIndex,
+          relationship: "screens_research_session",
+          targetRecordType: "research_session",
+          targetId: record.research_session_id,
+          linkIndex: 0
+        });
+        addLink({
+          links,
+          entry,
+          recordIndex,
+          relationship: "emitted_by_agent_run",
+          targetRecordType: "agent_run",
+          targetId: record.agent_run_id,
+          linkIndex: 1
+        });
+        for (const [index, searchLogId] of (record.search_log_ids ?? []).entries()) {
+          addLink({
+            links,
+            entry,
+            recordIndex,
+            relationship: "screens_search_log",
+            targetRecordType: "search_log",
+            targetId: searchLogId,
+            linkIndex: index
+          });
+        }
+        for (const [index, sourceId] of (record.included_source_ids ?? []).entries()) {
+          addLink({ links, entry, recordIndex, relationship: "includes_source", targetRecordType: "source", targetId: sourceId, linkIndex: index });
+        }
+        for (const [index, eligibilityDecisionId] of (record.eligibility_decision_ids ?? []).entries()) {
+          addLink({
+            links,
+            entry,
+            recordIndex,
+            relationship: "records_eligibility_decision",
+            targetRecordType: "eligibility_decision",
+            targetId: eligibilityDecisionId,
+            linkIndex: index
+          });
+        }
+        addLink({
+          links,
+          entry,
+          recordIndex,
+          relationship: "proposed_by_candidate_change",
+          targetRecordType: "candidate_change",
+          targetId: record.candidate_change_id,
+          linkIndex: 2
+        });
+        addLink({
+          links,
+          entry,
+          recordIndex,
+          relationship: "updates_coverage_assessment",
+          targetRecordType: "coverage_assessment",
+          targetId: record.coverage_assessment_id,
+          linkIndex: 3
+        });
+        break;
       case "synthesis_group":
         for (const [index, outcomeId] of (record.outcome_ids ?? []).entries()) {
           addLink({ links, entry, recordIndex, relationship: "groups_outcome", targetRecordType: "outcome", targetId: outcomeId, linkIndex: index });

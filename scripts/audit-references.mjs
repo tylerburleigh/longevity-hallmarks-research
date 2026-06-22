@@ -25,7 +25,9 @@ const collectionRules = [
   { prefix: "data/syntheses/", recordType: "synthesis" },
   { prefix: "data/synthesis-groups/", recordType: "synthesis_group" },
   { prefix: "research/agent-runs/", recordType: "agent_run" },
-  { prefix: "research/sessions/", recordType: "research_session" }
+  { prefix: "research/sessions/", recordType: "research_session" },
+  { prefix: "research/search-logs/", recordType: "search_log" },
+  { prefix: "research/screening-runs/", recordType: "screening_run" }
 ];
 
 const dataRoots = ["data", "research"];
@@ -179,6 +181,20 @@ function checkRef({ index, issues, ownerPath, field, recordType, recordId }) {
 function checkRefs({ index, issues, ownerPath, field, recordType, recordIds }) {
   for (const recordId of recordIds ?? []) {
     checkRef({ index, issues, ownerPath, field, recordType, recordId });
+  }
+}
+
+function checkUniqueValues({ issues, ownerPath, field, values }) {
+  const seen = new Set();
+  for (const value of values ?? []) {
+    if (!value) {
+      continue;
+    }
+    if (seen.has(value)) {
+      issues.push(`${ownerPath}: ${field} contains duplicate value "${value}".`);
+      continue;
+    }
+    seen.add(value);
   }
 }
 
@@ -1288,6 +1304,223 @@ async function audit() {
       });
     }
 
+    if (record.record_type === "search_log") {
+      const queryIds = new Set((record.queries ?? []).map((query) => query.query_id));
+      checkUniqueValues({
+        issues,
+        ownerPath: relativePath,
+        field: "queries[].query_id",
+        values: (record.queries ?? []).map((query) => query.query_id)
+      });
+      checkUniqueValues({
+        issues,
+        ownerPath: relativePath,
+        field: "hits[].hit_id",
+        values: (record.hits ?? []).map((hit) => hit.hit_id)
+      });
+      checkTaxonomyRefs({
+        index,
+        issues,
+        ownerPath: relativePath,
+        field: "scope.hallmark_ids[]",
+        taxonomySet: index.hallmarkIds,
+        taxonomyKind: "hallmark",
+        values: record.scope?.hallmark_ids
+      });
+      checkTaxonomyRefs({
+        index,
+        issues,
+        ownerPath: relativePath,
+        field: "scope.track_ids[]",
+        taxonomySet: index.trackIds,
+        taxonomyKind: "track",
+        values: record.scope?.track_ids
+      });
+      checkRef({
+        index,
+        issues,
+        ownerPath: relativePath,
+        field: "research_session_id",
+        recordType: "research_session",
+        recordId: record.research_session_id
+      });
+      checkRef({
+        index,
+        issues,
+        ownerPath: relativePath,
+        field: "agent_run_id",
+        recordType: "agent_run",
+        recordId: record.agent_run_id
+      });
+      checkRefs({
+        index,
+        issues,
+        ownerPath: relativePath,
+        field: "canonical_source_ids[]",
+        recordType: "source",
+        recordIds: record.canonical_source_ids
+      });
+      for (const [hitIndex, hit] of (record.hits ?? []).entries()) {
+        for (const queryId of hit.discovered_via_query_ids ?? []) {
+          if (!queryIds.has(queryId)) {
+            issues.push(`${relativePath}: hits[${hitIndex}].discovered_via_query_ids[] references missing query_id "${queryId}".`);
+          }
+        }
+        checkRef({
+          index,
+          issues,
+          ownerPath: relativePath,
+          field: `hits[${hitIndex}].source_id`,
+          recordType: "source",
+          recordId: hit.source_id
+        });
+      }
+    }
+
+    if (record.record_type === "screening_run") {
+      const linkedSearchHitIds = new Set();
+      for (const searchLogId of record.search_log_ids ?? []) {
+        const searchLog = getRecord(index, "search_log", searchLogId);
+        for (const hit of searchLog?.hits ?? []) {
+          linkedSearchHitIds.add(hit.hit_id);
+        }
+      }
+      const includedDecisionSourceIds = new Set(
+        (record.decisions ?? [])
+          .filter((decision) => decision.decision === "included")
+          .map((decision) => decision.source_id)
+          .filter(Boolean)
+      );
+      const decisionEligibilityIds = new Set(
+        (record.decisions ?? [])
+          .map((decision) => decision.eligibility_decision_id)
+          .filter(Boolean)
+      );
+      checkUniqueValues({
+        issues,
+        ownerPath: relativePath,
+        field: "decisions[].decision_id",
+        values: (record.decisions ?? []).map((decision) => decision.decision_id)
+      });
+      checkTaxonomyRefs({
+        index,
+        issues,
+        ownerPath: relativePath,
+        field: "scope.hallmark_ids[]",
+        taxonomySet: index.hallmarkIds,
+        taxonomyKind: "hallmark",
+        values: record.scope?.hallmark_ids
+      });
+      checkTaxonomyRefs({
+        index,
+        issues,
+        ownerPath: relativePath,
+        field: "scope.track_ids[]",
+        taxonomySet: index.trackIds,
+        taxonomyKind: "track",
+        values: record.scope?.track_ids
+      });
+      checkRef({
+        index,
+        issues,
+        ownerPath: relativePath,
+        field: "research_session_id",
+        recordType: "research_session",
+        recordId: record.research_session_id
+      });
+      checkRef({
+        index,
+        issues,
+        ownerPath: relativePath,
+        field: "agent_run_id",
+        recordType: "agent_run",
+        recordId: record.agent_run_id
+      });
+      checkRefs({
+        index,
+        issues,
+        ownerPath: relativePath,
+        field: "search_log_ids[]",
+        recordType: "search_log",
+        recordIds: record.search_log_ids
+      });
+      checkRefs({
+        index,
+        issues,
+        ownerPath: relativePath,
+        field: "included_source_ids[]",
+        recordType: "source",
+        recordIds: record.included_source_ids
+      });
+      checkRefs({
+        index,
+        issues,
+        ownerPath: relativePath,
+        field: "eligibility_decision_ids[]",
+        recordType: "eligibility_decision",
+        recordIds: record.eligibility_decision_ids
+      });
+      checkRef({
+        index,
+        issues,
+        ownerPath: relativePath,
+        field: "candidate_change_id",
+        recordType: "candidate_change",
+        recordId: record.candidate_change_id
+      });
+      checkRef({
+        index,
+        issues,
+        ownerPath: relativePath,
+        field: "coverage_assessment_id",
+        recordType: "coverage_assessment",
+        recordId: record.coverage_assessment_id
+      });
+      for (const [decisionIndex, decision] of (record.decisions ?? []).entries()) {
+        if (decision.search_hit_id && linkedSearchHitIds.size > 0 && !linkedSearchHitIds.has(decision.search_hit_id)) {
+          issues.push(
+            `${relativePath}: decisions[${decisionIndex}].search_hit_id references hit "${decision.search_hit_id}" outside search_log_ids[].`
+          );
+        }
+        checkRef({
+          index,
+          issues,
+          ownerPath: relativePath,
+          field: `decisions[${decisionIndex}].source_id`,
+          recordType: "source",
+          recordId: decision.source_id
+        });
+        checkRef({
+          index,
+          issues,
+          ownerPath: relativePath,
+          field: `decisions[${decisionIndex}].duplicate_of_source_id`,
+          recordType: "source",
+          recordId: decision.duplicate_of_source_id
+        });
+        checkRef({
+          index,
+          issues,
+          ownerPath: relativePath,
+          field: `decisions[${decisionIndex}].eligibility_decision_id`,
+          recordType: "eligibility_decision",
+          recordId: decision.eligibility_decision_id
+        });
+      }
+      for (const sourceId of record.included_source_ids ?? []) {
+        if (!includedDecisionSourceIds.has(sourceId)) {
+          issues.push(`${relativePath}: included_source_ids[] includes source "${sourceId}" without an included decision.`);
+        }
+      }
+      for (const eligibilityDecisionId of record.eligibility_decision_ids ?? []) {
+        if (!decisionEligibilityIds.has(eligibilityDecisionId)) {
+          issues.push(
+            `${relativePath}: eligibility_decision_ids[] includes decision "${eligibilityDecisionId}" without a matching decisions[].eligibility_decision_id.`
+          );
+        }
+      }
+    }
+
     if (record.record_type === "agent_run") {
       await checkAgentRunExecution({ issues, record, ownerPath: relativePath });
 
@@ -1316,6 +1549,22 @@ async function audit() {
         field: "outputs.research_session_id",
         recordType: "research_session",
         recordId: record.outputs?.research_session_id
+      });
+      checkRef({
+        index,
+        issues,
+        ownerPath: relativePath,
+        field: "outputs.search_log_id",
+        recordType: "search_log",
+        recordId: record.outputs?.search_log_id
+      });
+      checkRef({
+        index,
+        issues,
+        ownerPath: relativePath,
+        field: "outputs.screening_run_id",
+        recordType: "screening_run",
+        recordId: record.outputs?.screening_run_id
       });
       checkRef({
         index,

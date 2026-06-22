@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "senolytics-dq-bone-source-rights-seed-2026-06-22",
+  "name": "Seed D+Q bone source-rights classifications",
+  "summary": "Adds source_rights records for the D+Q bone registry and PubMed article sources so agents can enforce attribution, artifact retention, public-export, and remediation policy before text ingestion.",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-22T10:51:31Z",
+  "scope": {
+    "question": "Classify source rights for the D+Q bone RCT registry and PubMed sources before retained text artifact ingestion.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "senolytics-dq-bone-source-rights-seed-2026-06-22",
+      "path": "data/candidate-changes/senolytics-dq-bone-source-rights-seed-2026-06-22.json",
+      "change_type": "create",
+      "rationale": "Tracks the rights-classification seed records and required source-fidelity review lane."
+    },
+    {
+      "record_type": "source_rights",
+      "record_id": "source-rights-nct-04313634-2026-06-22",
+      "path": "data/source-rights/source-rights-nct-04313634-2026-06-22.json",
+      "change_type": "create",
+      "rationale": "Classifies the ClinicalTrials.gov registry source as public_registry with retained registry payload, normalized artifact, structured extraction, and manifest export permissions."
+    },
+    {
+      "record_type": "source_rights",
+      "record_id": "source-rights-pmid-38956196-2026-06-22",
+      "path": "data/source-rights/source-rights-pmid-38956196-2026-06-22.json",
+      "change_type": "create",
+      "rationale": "Classifies the PubMed/publisher article source as metadata_only until a reusable full-text or repository source is separately classified."
+    }
+  ],
+  "required_review_lanes": [
+    "source_fidelity"
+  ],
+  "evidence_review_ids": []
+}

@@ -24,6 +24,7 @@ const snapshotRequiredLocatorStatuses = new Set([
   "supervisor_agent_reviewed",
   "accepted"
 ]);
+const retainedSourceArtifactClasses = new Set(["raw_payload", "normalized_markdown", "section_index"]);
 
 async function exists(filePath) {
   try {
@@ -259,10 +260,42 @@ function checkEvidenceMapExport({ issues, evidenceMap, canonicalRecords }) {
   }
 }
 
+function checkTextSnapshotExport({ issues, textSnapshots, sourceRightsBySource }) {
+  for (const textSnapshot of textSnapshots) {
+    const retainedClasses = (textSnapshot.artifacts ?? [])
+      .map((artifact) => artifact.artifact_type)
+      .filter((artifactClass) => retainedSourceArtifactClasses.has(artifactClass));
+    if (retainedClasses.length === 0) {
+      continue;
+    }
+
+    const sourceRights = sourceRightsBySource.get(textSnapshot.source_id);
+    if (!sourceRights) {
+      issues.push(`exports/latest/text-snapshots.jsonl: text_snapshot "${textSnapshot.id}" lacks source_rights coverage.`);
+      continue;
+    }
+
+    if (sourceRights.public_export_policy?.allowed_content === "no_public_export") {
+      issues.push(`exports/latest/text-snapshots.jsonl: text_snapshot "${textSnapshot.id}" is exported for a no_public_export source.`);
+    }
+
+    if (sourceRights.public_export_policy?.allowed_content === "retained_artifacts_allowed") {
+      continue;
+    }
+
+    for (const artifact of textSnapshot.artifacts ?? []) {
+      if ("content" in artifact || "raw_text" in artifact || "markdown" in artifact) {
+        issues.push(`exports/latest/text-snapshots.jsonl: text_snapshot "${textSnapshot.id}" exports retained artifact content.`);
+      }
+    }
+  }
+}
+
 async function main() {
   const issues = [];
   const canonicalRecords = await loadCanonicalRecords();
   const sources = recordsOf(canonicalRecords, "source");
+  const sourceRights = recordsOf(canonicalRecords, "source_rights");
   const studies = recordsOf(canonicalRecords, "study");
   const findings = recordsOf(canonicalRecords, "finding");
   const textSnapshots = recordsOf(canonicalRecords, "text_snapshot");
@@ -276,9 +309,11 @@ async function main() {
   const synthesisGroups = recordsOf(canonicalRecords, "synthesis_group");
   const sourceSnapshotsById = new Map(recordsOf(canonicalRecords, "source_snapshot").map((snapshot) => [snapshot.id, snapshot]));
   const textSnapshotsById = new Map(textSnapshots.map((snapshot) => [snapshot.id, snapshot]));
+  const sourceRightsBySource = new Map(sourceRights.map((rights) => [rights.source_id, rights]));
 
   const expectedJsonlExports = [
     ["exports/latest/sources.jsonl", sources],
+    ["exports/latest/source-rights.jsonl", sourceRights],
     ["exports/latest/studies.jsonl", studies],
     ["exports/latest/findings.jsonl", findings],
     ["exports/latest/text-snapshots.jsonl", textSnapshots],
@@ -300,6 +335,11 @@ async function main() {
     sourceSnapshotsById,
     textSnapshotsById,
     ownerPath: "exports/latest/results.extraction_grade.jsonl"
+  });
+  checkTextSnapshotExport({
+    issues,
+    textSnapshots: actualExports.get("exports/latest/text-snapshots.jsonl") ?? [],
+    sourceRightsBySource
   });
 
   let manifest;
@@ -324,6 +364,7 @@ async function main() {
     const expectedCounts = {
       canonical_records: canonicalRecords.length,
       sources: sources.length,
+      source_rights: sourceRights.length,
       studies: studies.length,
       findings: findings.length,
       text_snapshots: textSnapshots.length,

@@ -8,6 +8,7 @@ const workspaceRoot = process.cwd();
 
 const collectionRules = [
   { prefix: "data/sources/", recordType: "source" },
+  { prefix: "data/source-rights/", recordType: "source_rights" },
   { prefix: "data/studies/", recordType: "study" },
   { prefix: "data/findings/", recordType: "finding" },
   { prefix: "data/coverage-assessments/", recordType: "coverage_assessment" },
@@ -57,7 +58,7 @@ const snapshotRequiredLocatorStatuses = new Set([
 const candidateReviewLaneRules = [
   {
     lane: "source_fidelity",
-    recordTypes: new Set(["source", "source_snapshot", "text_snapshot"])
+    recordTypes: new Set(["source", "source_rights", "source_snapshot", "text_snapshot"])
   },
   {
     lane: "extraction_fidelity",
@@ -279,6 +280,68 @@ function sourceAccessAllowsRetainedArtifacts(accessPolicy, artifactClasses = [])
     artifactRetentionAccessTiers.has(accessPolicy.access_tier) &&
     classes.every((artifactClass) => (accessPolicy.safe_artifact_classes ?? []).includes(artifactClass))
   );
+}
+
+function activeSourceRightsRecords(index, sourceId) {
+  return [...(index.recordsByType.get("source_rights")?.values() ?? [])]
+    .filter(({ record }) => record.source_id === sourceId && record.rights_status !== "remediated")
+    .map(({ record, relativePath }) => ({ record, relativePath }));
+}
+
+function artifactClassesAllowedByRights(rightsRecord, artifactClasses = []) {
+  const classes = artifactClasses.filter((artifactClass) => retainedSourceArtifactClasses.has(artifactClass));
+  if (classes.length === 0) {
+    return true;
+  }
+
+  return (
+    rightsRecord &&
+    artifactRetentionAccessTiers.has(rightsRecord.access_tier) &&
+    classes.every((artifactClass) => (rightsRecord.allowed_artifact_classes ?? []).includes(artifactClass))
+  );
+}
+
+function checkSourceRightsRecord({ issues, record, ownerPath }) {
+  const retainedClasses = (record.allowed_artifact_classes ?? []).filter((artifactClass) =>
+    retainedSourceArtifactClasses.has(artifactClass)
+  );
+
+  if (retainedClasses.length > 0 && !artifactRetentionAccessTiers.has(record.access_tier)) {
+    issues.push(`${ownerPath}: retained artifact classes require a safe artifact-retention access_tier.`);
+  }
+
+  const licenseName = record.license_or_terms?.name ?? "";
+  const isCreativeCommons = /\b(CC0|CC[- ]BY|Creative Commons)\b/i.test(licenseName);
+  if (isCreativeCommons && !record.license_or_terms?.license_url) {
+    issues.push(`${ownerPath}: Creative Commons source rights must include license_or_terms.license_url.`);
+  }
+
+  if (
+    record.public_export_policy?.allowed_content === "retained_artifacts_allowed" &&
+    record.access_tier !== "open_reusable"
+  ) {
+    issues.push(`${ownerPath}: public export of retained artifacts is only allowed for open_reusable sources.`);
+  }
+}
+
+function checkSourceRightsCollection({ index, issues }) {
+  const activeRightsBySource = new Map();
+
+  for (const { record, relativePath } of index.recordsByType.get("source_rights")?.values() ?? []) {
+    if (record.rights_status === "remediated") {
+      continue;
+    }
+
+    const group = activeRightsBySource.get(record.source_id) ?? [];
+    group.push(relativePath);
+    activeRightsBySource.set(record.source_id, group);
+  }
+
+  for (const [sourceId, paths] of activeRightsBySource.entries()) {
+    if (paths.length > 1) {
+      issues.push(`data/source-rights: source "${sourceId}" has multiple active source_rights records: ${paths.join(", ")}.`);
+    }
+  }
 }
 
 function checkTaxonomyRef({ index, issues, ownerPath, field, taxonomySet, taxonomyKind, value }) {
@@ -852,6 +915,7 @@ function checkSynthesisGroupCollection({ index, issues }) {
 
 async function audit() {
   const { index, issues } = await buildIndex();
+  checkSourceRightsCollection({ index, issues });
   checkSynthesisGroupCollection({ index, issues });
 
   const tracksTaxonomy = await readJsonIfExists("taxonomies/tracks.v1.json", { tracks: [] });
@@ -983,12 +1047,40 @@ async function audit() {
     if (record.record_type === "source_snapshot") {
       checkRef({ index, issues, ownerPath: relativePath, field: "source_id", recordType: "source", recordId: record.source_id });
       if (record.raw_storage?.stored) {
+        const [sourceRights] = activeSourceRightsRecords(index, record.source_id);
         if (!record.raw_storage.path) {
           issues.push(`${relativePath}: raw_storage.stored snapshots must include raw_storage.path.`);
         }
         if (!sourceAccessAllowsRetainedArtifacts(record.access_policy, ["raw_payload"])) {
           issues.push(
             `${relativePath}: raw_storage.stored snapshots must declare a safe raw_payload access_policy tier.`
+          );
+        }
+        if (!artifactClassesAllowedByRights(sourceRights, ["raw_payload"])) {
+          issues.push(
+            `${relativePath}: raw_storage.stored snapshots must have a source_rights record allowing raw_payload retention.`
+          );
+        }
+      }
+    }
+
+    if (record.record_type === "source_rights") {
+      checkSourceRightsRecord({ issues, record, ownerPath: relativePath });
+      checkRef({ index, issues, ownerPath: relativePath, field: "source_id", recordType: "source", recordId: record.source_id });
+      checkRefs({
+        index,
+        issues,
+        ownerPath: relativePath,
+        field: "source_snapshot_ids[]",
+        recordType: "source_snapshot",
+        recordIds: record.source_snapshot_ids
+      });
+
+      for (const sourceSnapshotId of record.source_snapshot_ids ?? []) {
+        const sourceSnapshot = getRecord(index, "source_snapshot", sourceSnapshotId);
+        if (sourceSnapshot && sourceSnapshot.source_id !== record.source_id) {
+          issues.push(
+            `${relativePath}: source_snapshot_ids[] includes "${sourceSnapshotId}" for source "${sourceSnapshot.source_id}", not "${record.source_id}".`
           );
         }
       }
@@ -1006,9 +1098,20 @@ async function audit() {
       });
 
       const retainedArtifactClasses = (record.artifacts ?? []).map((artifact) => artifact.artifact_type);
+      const [sourceRights] = activeSourceRightsRecords(index, record.source_id);
       if (!sourceAccessAllowsRetainedArtifacts(record.access_policy, retainedArtifactClasses)) {
         issues.push(
           `${relativePath}: retained raw, markdown, or section artifacts require open_reusable, public_registry, or author_manuscript_or_preprint_repository access.`
+        );
+      }
+      if (!artifactClassesAllowedByRights(sourceRights, retainedArtifactClasses)) {
+        issues.push(
+          `${relativePath}: retained raw, markdown, or section artifacts require a source_rights record allowing every retained artifact class.`
+        );
+      }
+      if (sourceRights && sourceRights.access_tier !== record.access_policy.access_tier) {
+        issues.push(
+          `${relativePath}: text_snapshot access_policy.access_tier "${record.access_policy.access_tier}" does not match source_rights access_tier "${sourceRights.access_tier}".`
         );
       }
 

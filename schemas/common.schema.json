@@ -55,6 +55,9 @@
     "agentRunRef": {
       "$ref": "#/$defs/identifier"
     },
+    "sourceRightsRef": {
+      "$ref": "#/$defs/identifier"
+    },
     "textSnapshotRef": {
       "$ref": "#/$defs/identifier"
     },

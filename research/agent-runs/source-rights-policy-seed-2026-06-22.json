@@ -1,0 +1,117 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "source-rights-policy-seed-2026-06-22",
+  "agent_role": "classification_agent",
+  "agent_id": "codex-coordinator",
+  "mode": "agent_directed",
+  "started_at": "2026-06-22T10:45:00Z",
+  "completed_at": "2026-06-22T10:51:31Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "Seed source-rights classifications for the D+Q bone RCT registry and PubMed sources before retained text artifact ingestion.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": [
+      "dasatinib-quercetin"
+    ]
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "interactive_session",
+    "isolation": "foreground_checkout",
+    "workspace_path": "/home/tyler/Workspace/longevity-hallmarks-research",
+    "sandbox": "danger-full-access",
+    "approval_policy": "not_applicable"
+  },
+  "inputs": [
+    {
+      "input_type": "user_request",
+      "reference": "chat-request-2026-06-22-source-rights-policy",
+      "summary": "User requested a legal-risk mitigation layer using attribution, disclaimers, and process controls."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/sources/nct-04313634.json",
+      "summary": "ClinicalTrials.gov registry source for the D+Q skeletal health trial."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/sources/pmid-38956196.json",
+      "summary": "PubMed-indexed Nature Medicine article source for the D+Q postmenopausal bone RCT."
+    },
+    {
+      "input_type": "source_snapshot",
+      "reference": "data/source-snapshots/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+      "summary": "ClinicalTrials.gov API v2 snapshot linked by the public_registry rights classification."
+    },
+    {
+      "input_type": "source_snapshot",
+      "reference": "data/source-snapshots/snapshot-pmid-38956196-pubmed-efetch-2026-06-21.json",
+      "summary": "PubMed EFetch snapshot linked by the metadata_only rights classification."
+    }
+  ],
+  "outputs": {
+    "summary": "Created a submitted source-rights seed candidate with one public_registry classification for the ClinicalTrials.gov source and one metadata_only classification for the PubMed/publisher article source.",
+    "candidate_change_id": "senolytics-dq-bone-source-rights-seed-2026-06-22",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "senolytics-dq-bone-source-rights-seed-2026-06-22",
+        "path": "data/candidate-changes/senolytics-dq-bone-source-rights-seed-2026-06-22.json",
+        "change_type": "create",
+        "rationale": "Tracks the rights-classification seed records and required source-fidelity review lane."
+      },
+      {
+        "record_type": "source_rights",
+        "record_id": "source-rights-nct-04313634-2026-06-22",
+        "path": "data/source-rights/source-rights-nct-04313634-2026-06-22.json",
+        "change_type": "create",
+        "rationale": "Classifies the ClinicalTrials.gov registry source as public_registry with retained registry payload, normalized artifact, structured extraction, and manifest export permissions."
+      },
+      {
+        "record_type": "source_rights",
+        "record_id": "source-rights-pmid-38956196-2026-06-22",
+        "path": "data/source-rights/source-rights-pmid-38956196-2026-06-22.json",
+        "change_type": "create",
+        "rationale": "Classifies the PubMed/publisher article source as metadata_only until a reusable full-text or repository source is separately classified."
+      }
+    ],
+    "generated_files": [
+      "data/candidate-changes/senolytics-dq-bone-source-rights-seed-2026-06-22.json",
+      "data/source-rights/source-rights-nct-04313634-2026-06-22.json",
+      "data/source-rights/source-rights-pmid-38956196-2026-06-22.json"
+    ],
+    "export_paths": [
+      "exports/latest/source-rights.jsonl",
+      "exports/latest/audit-manifest.json"
+    ]
+  },
+  "quality_checks": [
+    {
+      "check_name": "source_rights_schema",
+      "status": "passed",
+      "summary": "Source-rights records use the new source_rights schema fields for attribution, terms source, allowed artifact classes, public export policy, and remediation policy."
+    },
+    {
+      "check_name": "source_fidelity_review_lane",
+      "status": "passed",
+      "summary": "The candidate declares source_fidelity as a required review lane before any rights classification can be promoted."
+    },
+    {
+      "check_name": "verify_knowledge_base",
+      "status": "passed",
+      "summary": "npm run verify:knowledge-base passed after source-rights export refresh."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": [
+    "Run source-fidelity supervisor review for the source-rights candidate before promotion.",
+    "Use the ClinicalTrials.gov public_registry rights record for the first retained registry text-snapshot ingestion pass."
+  ]
+}

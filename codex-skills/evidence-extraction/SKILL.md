@@ -8,9 +8,10 @@ description: Extract source-backed evidence into the longevity hallmarks knowled
 ## Workflow
 
 1. Work from the repository root.
-2. Read `docs/extraction-rules.md`, `docs/screening-rules.md`, and `docs/text-ingestion-rules.md`.
+2. Read `docs/extraction-rules.md`, `docs/screening-rules.md`, `docs/source-rights-rules.md`, and `docs/text-ingestion-rules.md`.
 3. Read the relevant schemas before writing:
    - `schemas/source.schema.json`
+   - `schemas/source-rights.schema.json` when classifying attribution, terms, artifact retention, or export permissions
    - `schemas/study.schema.json`
    - `schemas/finding.schema.json`
    - `schemas/outcome.schema.json` or `schemas/result.schema.json` when extracting structured endpoints/results
@@ -50,6 +51,7 @@ Use stable IDs:
 - Include caveats when sample size, endpoint, duration, conflict, or translation boundary matters.
 - Use source-snapshot importers before extraction-grade PubMed or ClinicalTrials.gov extraction, and include `source_snapshot_id` on extraction-grade provenance locators.
 - Use `text_snapshot_id` on `full_text_extracted` provenance. Retain raw text or normalized markdown only for `open_reusable`, `public_registry`, or `author_manuscript_or_preprint_repository` access tiers.
+- Add or reuse `source_rights` before retained text artifact ingestion. Attribution is required metadata, but it is not permission to retain or redistribute protected expression.
 - Add `candidate_change` and `evidence_review` records when the extraction is intended to become durable canonical state.
 - Add an `agent_run` record with `canonical_write_policy: "candidate_change_required"` when extraction creates or updates canonical records.
 - Prefer isolated Codex CLI worker execution through `npm run agent:codex -- ...` when the extraction scope is bounded enough to delegate.

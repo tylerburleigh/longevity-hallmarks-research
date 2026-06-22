@@ -23,6 +23,7 @@ npm run audit:exports
 ## Files
 
 - `sources.jsonl`: canonical source records.
+- `source-rights.jsonl`: source-rights records with attribution, terms/license source, allowed artifact classes, public-export policy, and remediation state.
 - `studies.jsonl`: canonical study records.
 - `findings.jsonl`: canonical finding records.
 - `text-snapshots.jsonl`: retained source-text artifact manifests, access policy, hashes, extraction tooling, and section indexes.
@@ -52,6 +53,10 @@ Use `audit-manifest.json` to verify generated artifacts. The manifest intentiona
 Extraction-grade result exports must carry snapshot-linked provenance. For each provenance locator with `abstract_extracted`, `registry_extracted`, `full_text_extracted`, `agent_reviewed`, `supervisor_agent_reviewed`, or `accepted` status, include `source_snapshot_id` when the parent result is extraction-grade.
 
 Full-text extracted results must also include `text_snapshot_id`, and the referenced text snapshot must match the provenance `source_id` and `source_snapshot_id`.
+
+Use `source-rights.jsonl` before consuming `text-snapshots.jsonl`. Rights records state whether downstream exports may include only metadata and structured facts, artifact manifests, or retained artifacts.
+
+See `docs/consumer-disclaimer.md` for consumer-facing limitations.
 
 ## Current Limitations
 

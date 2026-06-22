@@ -1,0 +1,178 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./source-rights.schema.json",
+  "title": "Source rights",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "id",
+    "source_id",
+    "access_tier",
+    "rights_status",
+    "checked_at",
+    "classification_basis",
+    "attribution",
+    "license_or_terms",
+    "allowed_artifact_classes",
+    "public_export_policy",
+    "remediation"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "record_type": {
+      "const": "source_rights"
+    },
+    "id": {
+      "$ref": "./common.schema.json#/$defs/sourceRightsRef"
+    },
+    "source_id": {
+      "$ref": "./common.schema.json#/$defs/sourceRef"
+    },
+    "source_snapshot_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "./common.schema.json#/$defs/sourceSnapshotRef"
+      },
+      "uniqueItems": true
+    },
+    "access_tier": {
+      "$ref": "./common.schema.json#/$defs/accessTier"
+    },
+    "rights_status": {
+      "enum": [
+        "classified",
+        "unclassified",
+        "restricted",
+        "blocked",
+        "remediated"
+      ]
+    },
+    "checked_at": {
+      "$ref": "./common.schema.json#/$defs/dateTime"
+    },
+    "classification_basis": {
+      "type": "string"
+    },
+    "attribution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_title",
+        "source_url",
+        "citation"
+      ],
+      "properties": {
+        "source_title": {
+          "type": "string"
+        },
+        "source_url": {
+          "$ref": "./common.schema.json#/$defs/url"
+        },
+        "citation": {
+          "type": "string"
+        },
+        "rights_holder": {
+          "type": "string"
+        },
+        "required_notice": {
+          "type": "string"
+        }
+      }
+    },
+    "license_or_terms": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "source_url"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "source_url": {
+          "$ref": "./common.schema.json#/$defs/url"
+        },
+        "license_spdx": {
+          "type": "string"
+        },
+        "license_url": {
+          "$ref": "./common.schema.json#/$defs/url"
+        },
+        "terms_url": {
+          "$ref": "./common.schema.json#/$defs/url"
+        }
+      }
+    },
+    "allowed_artifact_classes": {
+      "type": "array",
+      "items": {
+        "$ref": "./common.schema.json#/$defs/artifactClass"
+      },
+      "uniqueItems": true
+    },
+    "public_export_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "allowed_content",
+        "conditions"
+      ],
+      "properties": {
+        "allowed_content": {
+          "enum": [
+            "metadata_and_structured_facts",
+            "metadata_structured_facts_and_artifact_manifests",
+            "retained_artifacts_allowed",
+            "no_public_export"
+          ]
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "remediation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "policy"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "no_notice",
+            "notice_received",
+            "remediation_in_progress",
+            "remediated",
+            "disputed"
+          ]
+        },
+        "policy": {
+          "type": "string"
+        },
+        "last_action_at": {
+          "$ref": "./common.schema.json#/$defs/dateTime"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    }
+  }
+}

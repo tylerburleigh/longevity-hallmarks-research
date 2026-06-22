@@ -90,4 +90,6 @@ New importer output includes `access_policy`.
 - ClinicalTrials.gov API snapshots are `public_registry`. They are eligible for retained raw payloads, normalized markdown or section JSON, section indexes, and structured extraction.
 - Open reusable full text, public repository copies, author manuscripts, and preprints should be represented by a source snapshot with `access_tier: "open_reusable"` or `access_tier: "author_manuscript_or_preprint_repository"` before a `text_snapshot` is created.
 
+Retained artifacts also require an active matching `source_rights` record. The snapshot access policy answers whether the fetched payload is artifact-eligible; the source-rights record answers how attribution, terms, public export, and remediation should be handled.
+
 See `docs/text-ingestion-rules.md` for the durable text artifact policy.

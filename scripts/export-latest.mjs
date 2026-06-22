@@ -20,6 +20,7 @@ const extractionGradeMaturityStatuses = new Set([
 
 const managedExportFiles = [
   "sources.jsonl",
+  "source-rights.jsonl",
   "studies.jsonl",
   "findings.jsonl",
   "text-snapshots.jsonl",
@@ -341,6 +342,7 @@ async function removeManagedExports() {
 async function main() {
   const records = await loadCanonicalRecords();
   const sources = recordsOf(records, "source");
+  const sourceRights = recordsOf(records, "source_rights");
   const studies = recordsOf(records, "study");
   const findings = recordsOf(records, "finding");
   const textSnapshots = recordsOf(records, "text_snapshot");
@@ -361,6 +363,12 @@ async function main() {
       format: "jsonl",
       description: "Canonical source records.",
       records: sources
+    },
+    {
+      relativePath: "exports/latest/source-rights.jsonl",
+      format: "jsonl",
+      description: "Source rights, attribution, artifact-retention, public-export, and remediation policy records.",
+      records: sourceRights
     },
     {
       relativePath: "exports/latest/studies.jsonl",
@@ -466,6 +474,7 @@ async function main() {
       ],
       included_record_types: [
         "source",
+        "source_rights",
         "study",
         "finding",
         "text_snapshot",
@@ -479,6 +488,7 @@ async function main() {
     record_counts: {
       canonical_records: records.length,
       sources: sources.length,
+      source_rights: sourceRights.length,
       studies: studies.length,
       findings: findings.length,
       text_snapshots: textSnapshots.length,

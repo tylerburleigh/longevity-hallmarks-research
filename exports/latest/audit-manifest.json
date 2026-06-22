@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "release_manifest",
   "id": "latest-consumer-export",
-  "generated_at": "2026-06-22T10:37:53.474Z",
+  "generated_at": "2026-06-22T10:54:54.652Z",
   "export_version": "0.1.0",
   "export_scope": {
     "description": "Consumer-facing latest export generated from canonical research and data records.",
@@ -19,6 +19,7 @@
     ],
     "included_record_types": [
       "source",
+      "source_rights",
       "study",
       "finding",
       "text_snapshot",
@@ -35,6 +36,13 @@
       "description": "Canonical source records.",
       "record_count": 10,
       "sha256": "61f42d6c7140ec14ca785872a6a167b1303f22271d5926a3f21bcc4ecaf38b8d"
+    },
+    {
+      "path": "exports/latest/source-rights.jsonl",
+      "format": "jsonl",
+      "description": "Source rights, attribution, artifact-retention, public-export, and remediation policy records.",
+      "record_count": 2,
+      "sha256": "414bd4b0932d917ab3e2db3454ef125397177daf162bd774c328dfa39b945450"
     },
     {
       "path": "exports/latest/studies.jsonl",
@@ -97,19 +105,20 @@
       "format": "json",
       "description": "Generated graph view of source, study, finding, outcome, result, coverage, and synthesis-compatibility links.",
       "record_count": 1,
-      "sha256": "00c0d12d4de4f3c1d8f725b0e523e363e58c57d9d698f945d5ad7186745410ef"
+      "sha256": "7a42f93763b7ef9cd67504d64ec1fa9e2bbf0ef8635ddc119541287644db98c2"
     },
     {
       "path": "exports/latest/coverage-status.json",
       "format": "json",
       "description": "Consumer coverage status with current/superseded flags and known-gap warnings.",
       "record_count": 1,
-      "sha256": "10cee43ade07a1dade8f3faf38de3b9afdaf0ef6e52131c4a3a6a5c9eeb85d10"
+      "sha256": "54a3c6748a3bf733f4afe342116edded656e6691c154368cea5d92f82214d3e6"
     }
   ],
   "record_counts": {
-    "canonical_records": 102,
+    "canonical_records": 106,
     "sources": 10,
+    "source_rights": 2,
     "studies": 9,
     "findings": 9,
     "text_snapshots": 0,

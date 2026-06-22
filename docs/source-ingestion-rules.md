@@ -65,7 +65,13 @@ Before retaining raw source text or normalized markdown, classify the source sna
 - `open_reusable`, `public_registry`, and `author_manuscript_or_preprint_repository` are artifact-retention tiers.
 - `metadata_only`, `read_only_access`, `blocked`, and `unknown` do not allow committed raw full text or normalized markdown artifacts.
 
-Use `docs/text-ingestion-rules.md` when creating `text_snapshot` records.
+Use `docs/source-rights-rules.md` before creating retained artifacts, and use `docs/text-ingestion-rules.md` when creating `text_snapshot` records.
+
+## Rights And Attribution
+
+Add or update a `source_rights` record before any retained text artifact is created. The rights record must identify attribution, license or terms source, allowed artifact classes, public-export scope, and remediation policy.
+
+Attribution is required metadata. It does not authorize retained full text or redistribution by itself.
 
 ## Before Adding A Source
 

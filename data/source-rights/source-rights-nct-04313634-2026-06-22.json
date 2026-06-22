@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "source_rights",
+  "id": "source-rights-nct-04313634-2026-06-22",
+  "source_id": "nct-04313634",
+  "source_snapshot_ids": [
+    "snapshot-nct-04313634-clinicaltrials-v2-2026-06-21"
+  ],
+  "access_tier": "public_registry",
+  "rights_status": "classified",
+  "checked_at": "2026-06-22T10:51:31Z",
+  "classification_basis": "ClinicalTrials.gov registry record and API payload are treated as public registry data suitable for retained raw payloads, normalized section artifacts, source hashes, provenance locators, and structured extraction.",
+  "attribution": {
+    "source_title": "Targeting Cellular Senescence With Senolytics to Improve Skeletal Health in Older Humans",
+    "source_url": "https://clinicaltrials.gov/study/NCT04313634",
+    "citation": "ClinicalTrials.gov. Targeting Cellular Senescence With Senolytics to Improve Skeletal Health in Older Humans. NCT04313634.",
+    "rights_holder": "ClinicalTrials.gov / National Library of Medicine",
+    "required_notice": "Attribute ClinicalTrials.gov and retain the NCT identifier in downstream records."
+  },
+  "license_or_terms": {
+    "name": "ClinicalTrials.gov Terms and Conditions",
+    "source_url": "https://clinicaltrials.gov/study/NCT04313634",
+    "terms_url": "https://clinicaltrials.gov/about-site/terms-conditions"
+  },
+  "allowed_artifact_classes": [
+    "raw_payload",
+    "normalized_markdown",
+    "section_index",
+    "metadata_summary",
+    "content_hash",
+    "provenance_locator",
+    "structured_extraction"
+  ],
+  "public_export_policy": {
+    "allowed_content": "metadata_structured_facts_and_artifact_manifests",
+    "conditions": [
+      "Public exports may include registry metadata, structured facts, hashes, provenance locators, and artifact manifests.",
+      "Public exports should not imply ClinicalTrials.gov endorsement of downstream synthesis."
+    ]
+  },
+  "remediation": {
+    "status": "no_notice",
+    "policy": "If an agent detects a rights conflict or receives a source-removal notice, remove retained artifacts from exports, preserve hashes and provenance locators, and route dependent records through a repair candidate."
+  },
+  "tags": [
+    "clinicaltrials",
+    "public-registry",
+    "source-rights",
+    "senolytics",
+    "bone"
+  ]
+}

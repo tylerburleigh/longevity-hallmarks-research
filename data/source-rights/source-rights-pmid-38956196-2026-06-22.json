@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "source_rights",
+  "id": "source-rights-pmid-38956196-2026-06-22",
+  "source_id": "pmid-38956196",
+  "source_snapshot_ids": [
+    "snapshot-pmid-38956196-pubmed-efetch-2026-06-21"
+  ],
+  "access_tier": "metadata_only",
+  "rights_status": "classified",
+  "checked_at": "2026-06-22T10:51:31Z",
+  "classification_basis": "PubMed metadata and abstract locators support citation, provenance, hashing, and structured metadata extraction. This rights record does not classify the publisher article as reusable full text or authorize retained article markdown.",
+  "attribution": {
+    "source_title": "Effects of intermittent senolytic therapy on bone metabolism in postmenopausal women: a phase 2 randomized controlled trial",
+    "source_url": "https://pubmed.ncbi.nlm.nih.gov/38956196/",
+    "citation": "Farr JN, Atkinson EJ, Achenbach SJ, Volkman TL, Tweed AJ, Vos SJ, Ruan M, Sfeir J, Drake MT, Saul D, Doolittle ML, Bancos I, Yu K, Tchkonia T, LeBrasseur NK, Kirkland JL, Monroe DG, Khosla S. Effects of intermittent senolytic therapy on bone metabolism in postmenopausal women: a phase 2 randomized controlled trial. Nature Medicine. 2024. PMID: 38956196. DOI: 10.1038/s41591-024-03096-2.",
+    "required_notice": "Attribute the article citation, PMID, DOI, and publisher source page in downstream records."
+  },
+  "license_or_terms": {
+    "name": "No reusable full-text license recorded in this rights classification",
+    "source_url": "https://doi.org/10.1038/s41591-024-03096-2"
+  },
+  "allowed_artifact_classes": [
+    "metadata_summary",
+    "content_hash",
+    "provenance_locator",
+    "structured_extraction"
+  ],
+  "public_export_policy": {
+    "allowed_content": "metadata_and_structured_facts",
+    "conditions": [
+      "Public exports may include citation metadata, source identifiers, provenance locators, hashes, and structured extracted facts.",
+      "Public exports must not include retained article full text or normalized article markdown from this rights classification."
+    ]
+  },
+  "remediation": {
+    "status": "no_notice",
+    "policy": "If an agent later finds an open reusable full-text source or repository copy, create a separate source snapshot and source_rights record before retaining text artifacts."
+  },
+  "tags": [
+    "pubmed",
+    "metadata-only",
+    "source-rights",
+    "senolytics",
+    "bone"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-dq-bone-release-anchor-source-fidelity-2026-06-22",
+  "candidate_change_id": "senolytics-dq-bone-release-anchor-2026-06-22",
+  "review_lane": "source_fidelity",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex-supervisor-agent",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "The release anchor cites existing source and source-snapshot records that match the D+Q postmenopausal bone RCT registry and PubMed-indexed article metadata. This review accepts those records as release dependencies while keeping article full-text retention outside the anchor scope.",
+  "findings": [
+    {
+      "finding_id": "registry-source-stable",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "The ClinicalTrials.gov source and API v2 snapshot are present and source-linked for NCT04313634.",
+      "why_it_matters": "Registry-extracted outcomes and results need a reproducible public source and snapshot dependency before they can enter accepted-record exports.",
+      "recommended_action": "Use the registry source and snapshot as the retained provenance base for this release boundary.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "pubmed-source-metadata-boundary",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "The PubMed source and EFetch snapshot are acceptable as metadata and abstract provenance, not as retained publisher full text.",
+      "why_it_matters": "The release boundary must distinguish article metadata access from reusable article full-text access.",
+      "recommended_action": "Keep full-text extraction work behind a separate rights-classified text snapshot.",
+      "resolution_status": "closed"
+    }
+  ]
+}

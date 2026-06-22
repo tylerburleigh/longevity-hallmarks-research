@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "triage_state",
   "id": "triage-state-v1",
-  "generated_at": "2026-06-22T16:56:46.961Z",
+  "generated_at": "2026-06-22T17:58:32.105Z",
   "source_roots": [
     "data",
     "research"
@@ -66,12 +66,12 @@
     }
   ],
   "summary": {
-    "candidate_count": 7,
-    "promotion_ready_count": 2,
+    "candidate_count": 8,
+    "promotion_ready_count": 0,
     "needs_review_count": 0,
     "needs_revision_count": 3,
     "blocked_count": 0,
-    "accepted_count": 2,
+    "accepted_count": 5,
     "applied_count": 0,
     "rejected_count": 0,
     "coverage_gap_count": 4,
@@ -80,7 +80,7 @@
     "stale_snapshot_count": 0,
     "watch_snapshot_count": 0,
     "partial_or_failed_agent_run_count": 1,
-    "recommended_job_count": 22
+    "recommended_job_count": 20
   },
   "candidate_readiness": [
     {
@@ -168,8 +168,8 @@
     {
       "candidate_change_id": "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
       "path": "data/candidate-changes/senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21.json",
-      "lifecycle_status": "in_review",
-      "readiness_status": "promotion_ready",
+      "lifecycle_status": "accepted",
+      "readiness_status": "accepted",
       "required_review_lanes": [
         "safety_limitations",
         "synthesis_boundary",
@@ -190,15 +190,13 @@
       "blocking_review_ids": [],
       "open_major_or_critical_review_ids": [],
       "proposed_record_count": 7,
-      "next_actions": [
-        "Promote candidate with npm run promote:candidate -- senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21 --status accepted after coordinator selection."
-      ]
+      "next_actions": []
     },
     {
       "candidate_change_id": "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
       "path": "data/candidate-changes/senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22.json",
-      "lifecycle_status": "in_review",
-      "readiness_status": "promotion_ready",
+      "lifecycle_status": "accepted",
+      "readiness_status": "accepted",
       "required_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
@@ -222,9 +220,7 @@
       "blocking_review_ids": [],
       "open_major_or_critical_review_ids": [],
       "proposed_record_count": 16,
-      "next_actions": [
-        "Promote candidate with npm run promote:candidate -- senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22 --status accepted after coordinator selection."
-      ]
+      "next_actions": []
     },
     {
       "candidate_change_id": "senolytics-dq-bone-registry-text-snapshot-2026-06-22",
@@ -248,6 +244,39 @@
       "blocking_review_ids": [],
       "open_major_or_critical_review_ids": [],
       "proposed_record_count": 3,
+      "next_actions": []
+    },
+    {
+      "candidate_change_id": "senolytics-dq-bone-release-anchor-2026-06-22",
+      "path": "data/candidate-changes/senolytics-dq-bone-release-anchor-2026-06-22.json",
+      "lifecycle_status": "accepted",
+      "readiness_status": "accepted",
+      "required_review_lanes": [
+        "extraction_fidelity",
+        "safety_limitations",
+        "source_fidelity",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "active_review_ids": [
+        "senolytics-dq-bone-release-anchor-extraction-fidelity-2026-06-22",
+        "senolytics-dq-bone-release-anchor-safety-limitations-2026-06-22",
+        "senolytics-dq-bone-release-anchor-source-fidelity-2026-06-22",
+        "senolytics-dq-bone-release-anchor-synthesis-boundary-2026-06-22",
+        "senolytics-dq-bone-release-anchor-taxonomy-mapping-2026-06-22"
+      ],
+      "complete_accepting_review_lanes": [
+        "extraction_fidelity",
+        "safety_limitations",
+        "source_fidelity",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "missing_review_lanes": [],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 21,
       "next_actions": []
     },
     {
@@ -301,10 +330,7 @@
       ]
     }
   ],
-  "promotion_ready_candidate_ids": [
-    "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
-    "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22"
-  ],
+  "promotion_ready_candidate_ids": [],
   "missing_review_lane_queue": [
     {
       "candidate_change_id": "senolytics-scaffold-bootstrap-2026-06-21",
@@ -871,32 +897,6 @@
     }
   ],
   "recommended_jobs": [
-    {
-      "job_id": "candidate-promotion-senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
-      "job_type": "candidate_promotion",
-      "priority": "high",
-      "source": "candidate_readiness",
-      "target_record_type": "candidate_change",
-      "target_record_id": "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
-      "rationale": "All required active review lanes are complete, accepting, non-blocking, and free of open major or critical findings.",
-      "suggested_command": "npm run promote:candidate -- senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21 --status accepted --dry-run",
-      "inputs": [
-        "data/candidate-changes/senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21.json"
-      ]
-    },
-    {
-      "job_id": "candidate-promotion-senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
-      "job_type": "candidate_promotion",
-      "priority": "high",
-      "source": "candidate_readiness",
-      "target_record_type": "candidate_change",
-      "target_record_id": "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
-      "rationale": "All required active review lanes are complete, accepting, non-blocking, and free of open major or critical findings.",
-      "suggested_command": "npm run promote:candidate -- senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22 --status accepted --dry-run",
-      "inputs": [
-        "data/candidate-changes/senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22.json"
-      ]
-    },
     {
       "job_id": "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21",
       "job_type": "candidate_revision",

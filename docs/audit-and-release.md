@@ -19,7 +19,7 @@ npm run verify:knowledge-base
 
 `export:triage-state` regenerates `ops/triage-state.v1.json`, the operational control-plane view over candidate readiness, extraction debt, snapshot staleness, partial agent runs, coverage gaps, and recommended jobs.
 
-`export:release-readiness` regenerates `ops/release-readiness.v1.json`, the release-boundary view over promotion-ready candidates, accepted or applied candidate outputs, and accepted records blocked by release-dependency checks.
+`export:release-readiness` regenerates `ops/release-readiness.v1.json`, the release-boundary view over promotion-ready candidates, accepted or applied candidate outputs, and accepted records blocked by release-dependency checks. Dependency checks include unreleased create or release-accept candidates and referenced graph records such as sources, studies, findings, outcomes, results, source snapshots, and text snapshots.
 
 `audit:exports` checks manifest hashes, verifies JSONL exports against current canonical records, checks coverage status flags, and requires snapshot-linked provenance for extraction-grade exported results.
 
@@ -46,7 +46,7 @@ Current audit coverage:
 - poolable synthesis groups must have required result maturity, effect value, uncertainty, comparison, and sample-size fields
 - export hash, row-content, coverage-status, and extraction-grade provenance checks
 - triage-state freshness checks for candidate readiness, extraction debt, snapshot staleness, coverage gaps, and recommended jobs
-- release-readiness freshness checks for promotion-ready candidates, accepted-record export eligibility, and accepted records blocked by release dependencies
+- release-readiness freshness checks for promotion-ready candidates, accepted-record export eligibility, and accepted records blocked by create, release-accept, or graph-reference release dependencies
 - deprecated non-agentic process vocabulary checks
 - negative audit regression fixtures for missing provenance, unsupported promotion, duplicate active review lanes, stale exports, stale triage state, stale release-readiness state, archived-job placement, bad worker-output ledgers, unsafe text-retention exports, invalid pooling, and deprecated process vocabulary
 

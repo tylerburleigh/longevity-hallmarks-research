@@ -1,0 +1,156 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "dq-bone-release-anchor-supervisor-review-2026-06-22",
+  "agent_role": "supervisor_agent",
+  "agent_id": "codex-coordinator",
+  "mode": "agent_directed",
+  "started_at": "2026-06-22T18:20:00Z",
+  "completed_at": "2026-06-22T18:34:00Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "Create and review a narrow D+Q bone release-anchor candidate so stable registry-extracted evidence can enter accepted-record exports without promoting broad unfinished candidates.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "stem_cell_exhaustion",
+      "chronic_inflammation"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": [
+      "dasatinib-quercetin"
+    ]
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "interactive_session",
+    "isolation": "foreground_checkout",
+    "workspace_path": "/home/tyler/Workspace/longevity-hallmarks-research",
+    "sandbox": "danger-full-access",
+    "approval_policy": "not_applicable",
+    "command": [
+      "npm",
+      "run",
+      "promote:candidate",
+      "--",
+      "senolytics-dq-bone-release-anchor-2026-06-22",
+      "--status",
+      "accepted"
+    ]
+  },
+  "inputs": [
+    {
+      "input_type": "export",
+      "reference": "ops/release-readiness.v1.json",
+      "summary": "Release-readiness showed accepted D+Q downstream records blocked by source, study, finding, outcome, result, and snapshot records created by broader unaccepted candidates."
+    },
+    {
+      "input_type": "candidate_change",
+      "reference": "data/candidate-changes/senolytics-bone-rct-extraction-refresh-2026-06-21.json",
+      "summary": "Broad extraction-refresh candidate remains in_review with full publication extraction and event-specific safety extraction debt."
+    },
+    {
+      "input_type": "candidate_change",
+      "reference": "data/candidate-changes/senolytics-coverage-repair-2026-06-21.json",
+      "summary": "Broad coverage-repair candidate remains in_review with unresolved review lanes, but contains the PubMed source, study, and finding records needed by the D+Q bone graph."
+    },
+    {
+      "input_type": "plan_item",
+      "reference": "plan.md",
+      "summary": "Resolve release-dependency blockers while preserving the distinction between accepted release state and unfinished extraction or coverage work."
+    }
+  ],
+  "outputs": {
+    "summary": "Added release_accept semantics, created a narrow D+Q bone release-anchor candidate with five accepting supervisor review lanes, promoted it to accepted, and regenerated release outputs so accepted-record blockers dropped to zero.",
+    "candidate_change_id": "senolytics-dq-bone-release-anchor-2026-06-22",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "senolytics-dq-bone-release-anchor-2026-06-22",
+        "path": "data/candidate-changes/senolytics-dq-bone-release-anchor-2026-06-22.json",
+        "change_type": "create",
+        "rationale": "Creates the release-anchor candidate, links five accepting review lanes, and records promotion to accepted."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "senolytics-dq-bone-release-anchor-source-fidelity-2026-06-22",
+        "path": "data/evidence-reviews/senolytics-dq-bone-release-anchor-source-fidelity-2026-06-22.json",
+        "change_type": "create",
+        "rationale": "Accepts the registry and PubMed metadata source dependencies for the narrow release anchor."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "senolytics-dq-bone-release-anchor-extraction-fidelity-2026-06-22",
+        "path": "data/evidence-reviews/senolytics-dq-bone-release-anchor-extraction-fidelity-2026-06-22.json",
+        "change_type": "create",
+        "rationale": "Accepts registry-extracted D+Q bone records while preserving full publication extraction as debt."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "senolytics-dq-bone-release-anchor-taxonomy-mapping-2026-06-22",
+        "path": "data/evidence-reviews/senolytics-dq-bone-release-anchor-taxonomy-mapping-2026-06-22.json",
+        "change_type": "create",
+        "rationale": "Accepts the scoped senolytics track and hallmark mapping for release-boundary retrieval."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "senolytics-dq-bone-release-anchor-synthesis-boundary-2026-06-22",
+        "path": "data/evidence-reviews/senolytics-dq-bone-release-anchor-synthesis-boundary-2026-06-22.json",
+        "change_type": "create",
+        "rationale": "Accepts evidence-map release while preserving synthesis-group pooling blockers."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "senolytics-dq-bone-release-anchor-safety-limitations-2026-06-22",
+        "path": "data/evidence-reviews/senolytics-dq-bone-release-anchor-safety-limitations-2026-06-22.json",
+        "change_type": "create",
+        "rationale": "Accepts aggregate registry adverse-event evidence while preserving event-specific safety extraction debt."
+      }
+    ],
+    "generated_files": [
+      "data/candidate-changes/senolytics-dq-bone-release-anchor-2026-06-22.json",
+      "data/evidence-reviews/senolytics-dq-bone-release-anchor-source-fidelity-2026-06-22.json",
+      "data/evidence-reviews/senolytics-dq-bone-release-anchor-extraction-fidelity-2026-06-22.json",
+      "data/evidence-reviews/senolytics-dq-bone-release-anchor-taxonomy-mapping-2026-06-22.json",
+      "data/evidence-reviews/senolytics-dq-bone-release-anchor-synthesis-boundary-2026-06-22.json",
+      "data/evidence-reviews/senolytics-dq-bone-release-anchor-safety-limitations-2026-06-22.json"
+    ],
+    "export_paths": [
+      "exports/latest/accepted-records.jsonl",
+      "exports/latest/audit-manifest.json",
+      "exports/latest/coverage-status.json",
+      "exports/latest/evidence-map.json",
+      "ops/triage-state.v1.json",
+      "ops/release-readiness.v1.json"
+    ]
+  },
+  "quality_checks": [
+    {
+      "check_name": "validate_records",
+      "status": "passed",
+      "summary": "npm run validate:records passed after adding release_accept schemas, the release-anchor candidate, and five review records."
+    },
+    {
+      "check_name": "promotion_gate",
+      "status": "passed",
+      "summary": "npm run promote:candidate -- senolytics-dq-bone-release-anchor-2026-06-22 --status accepted passed after all required active review lanes accepted."
+    },
+    {
+      "check_name": "release_readiness",
+      "status": "passed",
+      "summary": "After export refresh, ops/release-readiness.v1.json reports 5 release-ready accepted candidates, 34 accepted records, and 0 blocked accepted records."
+    },
+    {
+      "check_name": "verify_knowledge_base",
+      "status": "passed",
+      "summary": "npm run verify:knowledge-base passed after adding the agent-run ledger and regenerated exports."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": [
+    "Add the versioned consumer output contract.",
+    "Add the generated SQLite or DuckDB read model with provenance audits.",
+    "Keep full publication table extraction and event-specific safety extraction for the D+Q bone RCT in extraction debt."
+  ]
+}

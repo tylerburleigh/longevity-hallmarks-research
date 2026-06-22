@@ -1,0 +1,196 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "senolytics-dq-bone-release-anchor-2026-06-22",
+  "name": "D+Q bone registry evidence release anchor",
+  "summary": "Accepts the already-existing D+Q bone source, snapshot, study, finding, outcome, and result records as a narrow release boundary for registry-extracted evidence without promoting the broader unfinished extraction-refresh or coverage-repair candidates.",
+  "lifecycle_status": "accepted",
+  "submitted_at": "2026-06-22T18:20:00Z",
+  "scope": {
+    "question": "Release the vetted D+Q postmenopausal bone RCT registry-extracted evidence graph while preserving full publication extraction and event-specific safety extraction as future agent work.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "stem_cell_exhaustion",
+      "chronic_inflammation"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "senolytics-dq-bone-release-anchor-2026-06-22",
+      "path": "data/candidate-changes/senolytics-dq-bone-release-anchor-2026-06-22.json",
+      "change_type": "create",
+      "rationale": "Tracks the narrow release-anchor decision and required supervisor-agent review lanes."
+    },
+    {
+      "record_type": "source",
+      "record_id": "pmid-38956196",
+      "path": "data/sources/pmid-38956196.json",
+      "change_type": "release_accept",
+      "rationale": "Accepts the PubMed-indexed article source metadata as a dependency for the D+Q bone evidence graph without accepting publisher full-text retention."
+    },
+    {
+      "record_type": "source",
+      "record_id": "nct-04313634",
+      "path": "data/sources/nct-04313634.json",
+      "change_type": "release_accept",
+      "rationale": "Accepts the ClinicalTrials.gov source as the public registry source for posted outcome and adverse-event extraction."
+    },
+    {
+      "record_type": "source_snapshot",
+      "record_id": "snapshot-pmid-38956196-pubmed-efetch-2026-06-21",
+      "path": "data/source-snapshots/snapshot-pmid-38956196-pubmed-efetch-2026-06-21.json",
+      "change_type": "release_accept",
+      "rationale": "Accepts the PubMed EFetch metadata snapshot as a reproducible metadata and abstract provenance anchor."
+    },
+    {
+      "record_type": "source_snapshot",
+      "record_id": "snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+      "path": "data/source-snapshots/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+      "change_type": "release_accept",
+      "rationale": "Accepts the ClinicalTrials.gov API v2 snapshot as the reproducible posted-results provenance anchor."
+    },
+    {
+      "record_type": "study",
+      "record_id": "dq-postmenopausal-bone-rct",
+      "path": "data/studies/dq-postmenopausal-bone-rct.json",
+      "change_type": "release_accept",
+      "rationale": "Accepts the D+Q postmenopausal bone RCT study shell as the common study node for registry-extracted outcomes and results."
+    },
+    {
+      "record_type": "finding",
+      "record_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "path": "data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json",
+      "change_type": "release_accept",
+      "rationale": "Accepts the scoped finding as a registry and PubMed-metadata-supported summary while preserving later full-text extraction work."
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-ctx-20wk",
+      "path": "data/outcomes/dq-bone-ctx-20wk.json",
+      "change_type": "release_accept",
+      "rationale": "Accepts the exact 20-week CTx registry-extracted outcome."
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-p1np-2wk",
+      "path": "data/outcomes/dq-bone-p1np-2wk.json",
+      "change_type": "release_accept",
+      "rationale": "Accepts the exact 2-week P1NP registry-extracted outcome."
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-p1np-4wk",
+      "path": "data/outcomes/dq-bone-p1np-4wk.json",
+      "change_type": "release_accept",
+      "rationale": "Accepts the exact 4-week P1NP registry-extracted outcome."
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-p1np-20wk",
+      "path": "data/outcomes/dq-bone-p1np-20wk.json",
+      "change_type": "release_accept",
+      "rationale": "Accepts the exact 20-week P1NP registry-extracted outcome."
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-bmd-20wk",
+      "path": "data/outcomes/dq-bone-bmd-20wk.json",
+      "change_type": "release_accept",
+      "rationale": "Accepts the exact 20-week BMD registry-extracted outcome."
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-sasp-2wk",
+      "path": "data/outcomes/dq-bone-sasp-2wk.json",
+      "change_type": "release_accept",
+      "rationale": "Accepts the exact 2-week SASP biomarker registry-extracted outcome."
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-adverse-events-20wk",
+      "path": "data/outcomes/dq-bone-adverse-events-20wk.json",
+      "change_type": "release_accept",
+      "rationale": "Accepts the aggregate 20-week adverse-event registry-extracted outcome while preserving event-term extraction as safety debt."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-ctx-20wk-null",
+      "path": "data/results/dq-bone-ctx-20wk-null.json",
+      "change_type": "release_accept",
+      "rationale": "Accepts the extracted null primary CTx result as registry-extracted evidence."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-p1np-2wk-positive",
+      "path": "data/results/dq-bone-p1np-2wk-positive.json",
+      "change_type": "release_accept",
+      "rationale": "Accepts the extracted positive 2-week P1NP result as registry-extracted evidence."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-p1np-4wk-positive",
+      "path": "data/results/dq-bone-p1np-4wk-positive.json",
+      "change_type": "release_accept",
+      "rationale": "Accepts the extracted positive 4-week P1NP result as registry-extracted evidence."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-p1np-20wk-null",
+      "path": "data/results/dq-bone-p1np-20wk-null.json",
+      "change_type": "release_accept",
+      "rationale": "Accepts the extracted null 20-week P1NP result as registry-extracted evidence."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-bmd-20wk-inconclusive",
+      "path": "data/results/dq-bone-bmd-20wk-inconclusive.json",
+      "change_type": "release_accept",
+      "rationale": "Accepts the descriptive 20-week BMD result as registry-extracted evidence with missing effect fields preserved."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-sasp-2wk-null",
+      "path": "data/results/dq-bone-sasp-2wk-null.json",
+      "change_type": "release_accept",
+      "rationale": "Accepts the extracted null 2-week SASP biomarker result as registry-extracted evidence."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-adverse-events-20wk-mixed",
+      "path": "data/results/dq-bone-adverse-events-20wk-mixed.json",
+      "change_type": "release_accept",
+      "rationale": "Accepts the aggregate adverse-event result as registry-extracted safety evidence while preserving event-specific extraction as safety debt."
+    }
+  ],
+  "required_review_lanes": [
+    "source_fidelity",
+    "extraction_fidelity",
+    "taxonomy_mapping",
+    "synthesis_boundary",
+    "safety_limitations"
+  ],
+  "evidence_review_ids": [
+    "senolytics-dq-bone-release-anchor-source-fidelity-2026-06-22",
+    "senolytics-dq-bone-release-anchor-extraction-fidelity-2026-06-22",
+    "senolytics-dq-bone-release-anchor-taxonomy-mapping-2026-06-22",
+    "senolytics-dq-bone-release-anchor-synthesis-boundary-2026-06-22",
+    "senolytics-dq-bone-release-anchor-safety-limitations-2026-06-22"
+  ],
+  "promotion": {
+    "target_status": "accepted",
+    "promoted_at": "2026-06-22T17:58:14.498Z",
+    "promoted_by_agent": "promote-candidate",
+    "reviewed_review_ids": [
+      "senolytics-dq-bone-release-anchor-source-fidelity-2026-06-22",
+      "senolytics-dq-bone-release-anchor-extraction-fidelity-2026-06-22",
+      "senolytics-dq-bone-release-anchor-taxonomy-mapping-2026-06-22",
+      "senolytics-dq-bone-release-anchor-synthesis-boundary-2026-06-22",
+      "senolytics-dq-bone-release-anchor-safety-limitations-2026-06-22"
+    ],
+    "summary": "Promoted to accepted after all required active review lanes passed."
+  }
+}

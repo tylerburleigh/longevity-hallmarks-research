@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-dq-bone-release-anchor-safety-limitations-2026-06-22",
+  "candidate_change_id": "senolytics-dq-bone-release-anchor-2026-06-22",
+  "review_lane": "safety_limitations",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex-supervisor-agent",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "The anchor is acceptable for aggregate registry adverse-event evidence. It does not accept event-specific safety term extraction or a complete safety synthesis.",
+  "findings": [
+    {
+      "finding_id": "aggregate-safety-scope-explicit",
+      "severity": "note",
+      "category": "safety_limitation",
+      "claim_or_issue": "The safety records in this anchor are limited to aggregate ClinicalTrials.gov adverse-event evidence.",
+      "why_it_matters": "A consumer can use the aggregate safety signal while understanding that detailed event classes and counts are not yet extracted.",
+      "recommended_action": "Keep the aggregate safety result release-ready but require event-specific extraction before safety pooling or detailed safety claims.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "event-specific-safety-debt-preserved",
+      "severity": "minor",
+      "category": "safety_limitation",
+      "claim_or_issue": "Event-specific terms, categories, and counts remain outside this release anchor.",
+      "why_it_matters": "The system should not block all registry evidence release because detailed safety extraction remains incomplete.",
+      "recommended_action": "Keep event-specific safety extraction in future agent jobs and consumer limitations.",
+      "resolution_status": "closed"
+    }
+  ]
+}

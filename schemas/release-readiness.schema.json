@@ -337,6 +337,7 @@
           "items": {
             "enum": [
               "create",
+              "release_accept",
               "update"
             ]
           },
@@ -369,6 +370,7 @@
         "change_type": {
           "enum": [
             "create",
+            "release_accept",
             "update",
             "delete"
           ]
@@ -404,7 +406,10 @@
             "missing_record",
             "path_mismatch",
             "delete_not_releasable",
-            "unaccepted_create_dependency"
+            "unaccepted_create_dependency",
+            "missing_dependency",
+            "unaccepted_dependency",
+            "blocked_dependency"
           ]
         },
         "message": {

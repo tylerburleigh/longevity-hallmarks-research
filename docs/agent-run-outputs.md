@@ -32,7 +32,7 @@ The wrapper writes a prompt snapshot to `research/agent-runs/prompts/<agent_run_
 Use `canonical_write_policy` to declare whether the run touched durable state:
 
 - `no_canonical_writes`: analysis, search, screening, audit, or planning output only.
-- `candidate_change_required`: the run created or updated canonical records and must reference a `candidate_change`.
+- `candidate_change_required`: the run created, updated, deleted, or release-accepted canonical records and must reference a `candidate_change`.
 
 When `canonical_write_policy` is `candidate_change_required`, `outputs.candidate_change_id` and `outputs.proposed_records[]` are required. The reference audit checks that referenced candidate changes, research sessions, and proposed record paths exist and match their declared IDs.
 
@@ -42,7 +42,9 @@ Each run should include:
 
 - `scope`: bounded question plus track, hallmark, or intervention IDs.
 - `outputs.summary`: concise result of the run.
-- `outputs.proposed_records[]`: canonical record paths created or updated by the run.
+- `outputs.proposed_records[]`: canonical record paths created, updated, deleted, or release-accepted by the run.
+
+Use `change_type: "release_accept"` when a narrow reviewed candidate accepts an existing canonical record into the release boundary without claiming that the candidate originally created the record. This is useful when a broad extraction or coverage candidate remains unfinished, but a stable subset of its records has passed scoped review.
 - `quality_checks[]`: checks run by the agent, including verification commands when applicable.
 - wrapper-owned checks such as `worker_output_contract`, `post_export`, `post_triage_state_export`, and `post_verify` are appended by the wrapper, not predeclared by the worker.
 - `blocking_issues[]`: unresolved blockers.

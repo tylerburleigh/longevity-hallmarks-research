@@ -4,7 +4,7 @@
   "id": "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
   "name": "D+Q bone registry markdown provenance repair",
   "summary": "Adds retained ClinicalTrials.gov text_snapshot provenance and section-stable registry_record locators to existing D+Q bone registry-extracted finding, outcome, and result records without changing extracted values or scientific interpretations.",
-  "lifecycle_status": "in_review",
+  "lifecycle_status": "accepted",
   "submitted_at": "2026-06-22T13:00:00Z",
   "scope": {
     "question": "Upgrade D+Q bone registry-extracted records with retained ClinicalTrials.gov text-snapshot provenance.",
@@ -141,5 +141,17 @@
     "senolytics-dq-bone-registry-markdown-provenance-extraction-fidelity-2026-06-22",
     "senolytics-dq-bone-registry-markdown-provenance-taxonomy-mapping-2026-06-22",
     "senolytics-dq-bone-registry-markdown-provenance-safety-limitations-2026-06-22"
-  ]
+  ],
+  "promotion": {
+    "target_status": "accepted",
+    "promoted_at": "2026-06-22T17:45:58.346Z",
+    "promoted_by_agent": "promote-candidate",
+    "reviewed_review_ids": [
+      "senolytics-dq-bone-registry-markdown-provenance-source-fidelity-2026-06-22",
+      "senolytics-dq-bone-registry-markdown-provenance-extraction-fidelity-2026-06-22",
+      "senolytics-dq-bone-registry-markdown-provenance-taxonomy-mapping-2026-06-22",
+      "senolytics-dq-bone-registry-markdown-provenance-safety-limitations-2026-06-22"
+    ],
+    "summary": "Promoted to accepted after all required active review lanes passed."
+  }
 }

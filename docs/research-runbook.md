@@ -20,7 +20,9 @@ Prefer isolated `codex exec` worker runs for bounded search, screening, extracti
 
 Use `canonical_write_policy: "no_canonical_writes"` when the pass only analyzes, searches, screens, audits, or plans.
 
-Use `canonical_write_policy: "candidate_change_required"` when the pass creates or updates canonical records. In that case, the agent-run output must reference `outputs.candidate_change_id` and list every proposed record path in `outputs.proposed_records[]`.
+Use `canonical_write_policy: "candidate_change_required"` when the pass creates, updates, deletes, or release-accepts canonical records. In that case, the agent-run output must reference `outputs.candidate_change_id` and list every proposed record path in `outputs.proposed_records[]`.
+
+Use `change_type: "release_accept"` for a narrow, reviewed release-anchor candidate that accepts already-existing canonical records into the release boundary. Do not use it to bypass unfinished extraction work; keep remaining gaps visible as extraction debt, synthesis limitations, coverage gaps, or future Codex jobs.
 
 ## Candidate Review State
 

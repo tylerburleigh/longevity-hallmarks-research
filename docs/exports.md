@@ -47,7 +47,7 @@ JSONL lines preserve canonical record fields. Consumers should use each record's
 
 `ops/triage-state.v1.json` is a generated control-plane view, not a canonical evidence record. It classifies candidate readiness, promotion-ready candidates, review-lane queues, current coverage gaps, extraction debt, snapshot staleness, partial agent runs, and recommended jobs. `audit:triage-state` verifies that this file still matches canonical JSON inputs.
 
-`ops/release-readiness.v1.json` is a generated release-boundary view. It separates candidates that are not ready, candidates ready for promotion, accepted or applied candidates with exportable records, and accepted or applied records blocked by release-dependency checks. `audit:release-readiness` verifies that this file still matches canonical JSON inputs.
+`ops/release-readiness.v1.json` is a generated release-boundary view. It separates candidates that are not ready, candidates ready for promotion, accepted or applied candidates with exportable records, and accepted or applied records blocked by release-dependency checks. Release-dependency checks include unreleased create or release-accept dependencies and referenced graph records such as sources, studies, findings, outcomes, results, source snapshots, and text snapshots. `audit:release-readiness` verifies that this file still matches canonical JSON inputs.
 
 ## Consumer Guidance
 
@@ -60,6 +60,10 @@ Use `synthesis-groups.jsonl` before attempting meta-analysis. `pooling_decision:
 Use `coverage-status.json` to decide whether a track/hallmark scope is current and what gaps must be shown to users. `is_current: false` means a newer coverage assessment exists for the same track/hallmark pair.
 
 Use `accepted-records.jsonl` when consumers need the release-boundary view. Records appear there only after an accepted or applied candidate ledger proposes them and release-dependency checks do not block them. The export is an envelope around canonical records; use `accepted_record_type`, `accepted_record_id`, `path`, and `accepted_via_candidate_change_ids` to trace each item.
+
+An accepted candidate can be only partially releasable. In that case, `accepted-records.jsonl` may include the accepted candidate record while withholding proposed records whose graph dependencies are still submitted, in review, or blocked.
+
+`change_type: "release_accept"` means an accepted candidate has reviewed and released an existing canonical record without claiming original creation. Consumers should still read the canonical record's maturity, provenance, and synthesis fields before using it for analysis.
 
 Use `audit-manifest.json` to verify generated artifacts. The manifest intentionally hashes the data files and excludes itself from the hash list.
 
@@ -74,6 +78,6 @@ See `docs/consumer-disclaimer.md` for consumer-facing limitations.
 ## Current Limitations
 
 - The evidence-map export is a generated graph view, not a formal synthesis.
-- Accepted-record export is conservative: update proposals are blocked from the release export when their create candidate is still submitted or in review.
+- Accepted-record export is conservative: proposals are blocked from the release export when create candidates or referenced graph dependencies are still submitted, in review, or blocked.
 - Text-snapshot schema/export support exists, but article full-text fetchers and markdown normalizers have not yet been implemented.
 - Certainty assessments and endpoint-specific synthesis-group generation for the remaining human senolytics papers remain future work.

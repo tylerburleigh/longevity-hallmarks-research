@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-dq-bone-release-anchor-taxonomy-mapping-2026-06-22",
+  "candidate_change_id": "senolytics-dq-bone-release-anchor-2026-06-22",
+  "review_lane": "taxonomy_mapping",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex-supervisor-agent",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "The anchor's track and hallmark mapping is defensible for D+Q as a senolytics intervention with cellular senescence, stem cell exhaustion, and chronic inflammation relevance. Endpoint-level interpretations remain bounded by the individual outcome and result records.",
+  "findings": [
+    {
+      "finding_id": "senolytics-track-supported",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "Dasatinib plus quercetin is mapped to the senolytics track for this release boundary.",
+      "why_it_matters": "Consumers need a stable intervention-track key for evidence-map and meta-analysis filtering.",
+      "recommended_action": "Retain the senolytics track mapping and use endpoint records for more specific biological interpretation.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "hallmark-scope-not-overclaimed",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The anchor includes cellular senescence, stem cell exhaustion, and chronic inflammation because those are represented in the existing D+Q bone records and biomarker context.",
+      "why_it_matters": "Hallmark tags should support retrieval without implying that every endpoint directly measures every hallmark.",
+      "recommended_action": "Use outcome and result fields to distinguish measured clinical endpoints from inferred hallmark relevance.",
+      "resolution_status": "closed"
+    }
+  ]
+}

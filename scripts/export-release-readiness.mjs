@@ -116,31 +116,136 @@ function buildRecordIndex(entries) {
   return index;
 }
 
-function buildCreateCandidatesByRecord(candidateEntries) {
-  const createsByRecord = new Map();
+function buildCreationOrReleaseAcceptCandidatesByRecord(candidateEntries) {
+  const candidatesByRecord = new Map();
 
   for (const candidateEntry of candidateEntries) {
     for (const proposedRecord of candidateEntry.record.proposed_records ?? []) {
-      if (proposedRecord.change_type !== "create") {
+      if (!["create", "release_accept"].includes(proposedRecord.change_type)) {
         continue;
       }
 
       const key = recordKey(proposedRecord.record_type, proposedRecord.record_id);
-      const group = createsByRecord.get(key) ?? [];
+      const group = candidatesByRecord.get(key) ?? [];
       group.push(candidateEntry);
-      createsByRecord.set(key, group);
+      candidatesByRecord.set(key, group);
     }
   }
 
-  return createsByRecord;
+  return candidatesByRecord;
 }
 
-function buildReleaseBlockers({ proposedRecord, recordEntry, createsByRecord }) {
+function addBlocker(blockers, blocker) {
+  if (!blockers.some((existing) => existing.blocker_type === blocker.blocker_type && existing.message === blocker.message)) {
+    blockers.push(blocker);
+  }
+}
+
+function addDependency(dependencies, field, recordType, recordId) {
+  if (!recordId) {
+    return;
+  }
+
+  dependencies.push({
+    field,
+    record_type: recordType,
+    record_id: recordId,
+    key: recordKey(recordType, recordId)
+  });
+}
+
+function addManyDependencies(dependencies, field, recordType, recordIds = []) {
+  for (const recordId of recordIds ?? []) {
+    addDependency(dependencies, field, recordType, recordId);
+  }
+}
+
+function buildRecordDependencies(record) {
+  const dependencies = [];
+
+  switch (record.record_type) {
+    case "source_rights":
+      addDependency(dependencies, "source_id", "source", record.source_id);
+      addManyDependencies(dependencies, "source_snapshot_ids", "source_snapshot", record.source_snapshot_ids);
+      break;
+    case "source_snapshot":
+      addDependency(dependencies, "source_id", "source", record.source_id);
+      break;
+    case "text_snapshot":
+      addDependency(dependencies, "source_id", "source", record.source_id);
+      addDependency(dependencies, "source_snapshot_id", "source_snapshot", record.source_snapshot_id);
+      break;
+    case "study":
+      addManyDependencies(dependencies, "source_ids", "source", record.source_ids);
+      break;
+    case "finding":
+      addDependency(dependencies, "source_id", "source", record.source_id);
+      addDependency(dependencies, "study_id", "study", record.study_id);
+      break;
+    case "outcome":
+      addDependency(dependencies, "source_id", "source", record.source_id);
+      addDependency(dependencies, "study_id", "study", record.study_id);
+      addManyDependencies(dependencies, "finding_ids", "finding", record.finding_ids);
+      break;
+    case "result":
+      addDependency(dependencies, "source_id", "source", record.source_id);
+      addDependency(dependencies, "study_id", "study", record.study_id);
+      addDependency(dependencies, "outcome_id", "outcome", record.outcome_id);
+      addManyDependencies(dependencies, "finding_ids", "finding", record.finding_ids);
+      break;
+    case "coverage_assessment":
+      addManyDependencies(dependencies, "covered_source_ids", "source", record.covered_source_ids);
+      addManyDependencies(dependencies, "covered_finding_ids", "finding", record.covered_finding_ids);
+      break;
+    case "synthesis_group":
+      addManyDependencies(dependencies, "outcome_ids", "outcome", record.outcome_ids);
+      addManyDependencies(dependencies, "result_ids", "result", record.result_ids);
+      break;
+    default:
+      break;
+  }
+
+  for (const [locatorIndex, locator] of (record.provenance ?? []).entries()) {
+    addDependency(dependencies, `provenance[${locatorIndex}].source_id`, "source", locator.source_id);
+    addDependency(dependencies, `provenance[${locatorIndex}].source_snapshot_id`, "source_snapshot", locator.source_snapshot_id);
+    addDependency(dependencies, `provenance[${locatorIndex}].text_snapshot_id`, "text_snapshot", locator.text_snapshot_id);
+  }
+
+  const seen = new Set();
+  return dependencies.filter((dependency) => {
+    const key = `${dependency.field}:${dependency.key}`;
+    if (seen.has(key)) {
+      return false;
+    }
+    seen.add(key);
+    return true;
+  });
+}
+
+function buildAcceptedRecordKeys(candidateEntries) {
+  const keys = new Set();
+
+  for (const candidateEntry of candidateEntries) {
+    if (!acceptedCandidateStatuses.has(candidateEntry.record.lifecycle_status)) {
+      continue;
+    }
+
+    for (const proposedRecord of candidateEntry.record.proposed_records ?? []) {
+      if (proposedRecord.change_type !== "delete") {
+        keys.add(recordKey(proposedRecord.record_type, proposedRecord.record_id));
+      }
+    }
+  }
+
+  return keys;
+}
+
+function buildReleaseBlockers({ proposedRecord, recordEntry, creationOrReleaseAcceptsByRecord, recordsByKey, acceptedRecordKeys }) {
   const blockers = [];
   const key = recordKey(proposedRecord.record_type, proposedRecord.record_id);
 
   if (!recordEntry) {
-    blockers.push({
+    addBlocker(blockers, {
       blocker_type: "missing_record",
       message: `Proposed ${proposedRecord.record_type}:${proposedRecord.record_id} does not exist at ${proposedRecord.path}.`
     });
@@ -148,32 +253,49 @@ function buildReleaseBlockers({ proposedRecord, recordEntry, createsByRecord }) 
   }
 
   if (recordEntry.path !== proposedRecord.path) {
-    blockers.push({
+    addBlocker(blockers, {
       blocker_type: "path_mismatch",
       message: `Canonical ${proposedRecord.record_type}:${proposedRecord.record_id} lives at ${recordEntry.path}, not ${proposedRecord.path}.`
     });
   }
 
   if (proposedRecord.change_type === "delete") {
-    blockers.push({
+    addBlocker(blockers, {
       blocker_type: "delete_not_releasable",
       message: "Delete proposals are lifecycle operations and are not exported as accepted records."
     });
   }
 
   if (proposedRecord.change_type === "update") {
-    const createCandidates = createsByRecord.get(key) ?? [];
-    const acceptedCreateCandidateIds = createCandidates
+    const dependencyCandidates = creationOrReleaseAcceptsByRecord.get(key) ?? [];
+    const acceptedDependencyCandidateIds = dependencyCandidates
       .filter((candidateEntry) => acceptedCandidateStatuses.has(candidateEntry.record.lifecycle_status))
       .map((candidateEntry) => candidateEntry.record.id);
 
-    if (createCandidates.length > 0 && acceptedCreateCandidateIds.length === 0) {
-      blockers.push({
+    if (dependencyCandidates.length > 0 && acceptedDependencyCandidateIds.length === 0) {
+      addBlocker(blockers, {
         blocker_type: "unaccepted_create_dependency",
-        message: `Update depends on create candidate(s) that are not accepted or applied: ${createCandidates
+        message: `Update depends on create or release-accept candidate(s) that are not accepted or applied: ${dependencyCandidates
           .map((candidateEntry) => candidateEntry.record.id)
           .sort()
           .join(", ")}.`
+      });
+    }
+  }
+
+  for (const dependency of buildRecordDependencies(recordEntry.record)) {
+    if (!recordsByKey.has(dependency.key)) {
+      addBlocker(blockers, {
+        blocker_type: "missing_dependency",
+        message: `${proposedRecord.record_type}:${proposedRecord.record_id} references missing ${dependency.record_type}:${dependency.record_id} through ${dependency.field}.`
+      });
+      continue;
+    }
+
+    if (!acceptedRecordKeys.has(dependency.key)) {
+      addBlocker(blockers, {
+        blocker_type: "unaccepted_dependency",
+        message: `${proposedRecord.record_type}:${proposedRecord.record_id} depends on ${dependency.record_type}:${dependency.record_id} through ${dependency.field}, but that record is not proposed by an accepted or applied candidate.`
       });
     }
   }
@@ -182,11 +304,10 @@ function buildReleaseBlockers({ proposedRecord, recordEntry, createsByRecord }) 
 }
 
 function buildAcceptedRecordQueues({ candidateEntries, recordsByKey }) {
-  const createsByRecord = buildCreateCandidatesByRecord(candidateEntries);
-  const releaseReadyByRecord = new Map();
-  const blockedAcceptedRecords = [];
-  const releaseRecordsByCandidateId = new Map();
-  const blockedRecordsByCandidateId = new Map();
+  const creationOrReleaseAcceptsByRecord = buildCreationOrReleaseAcceptCandidatesByRecord(candidateEntries);
+  const acceptedRecordKeys = buildAcceptedRecordKeys(candidateEntries);
+  const itemsByKey = new Map();
+  const candidateItems = [];
 
   for (const candidateEntry of candidateEntries) {
     const candidate = candidateEntry.record;
@@ -197,8 +318,16 @@ function buildAcceptedRecordQueues({ candidateEntries, recordsByKey }) {
     for (const proposedRecord of candidate.proposed_records ?? []) {
       const key = recordKey(proposedRecord.record_type, proposedRecord.record_id);
       const recordEntry = recordsByKey.get(key);
-      const blockers = buildReleaseBlockers({ proposedRecord, recordEntry, createsByRecord });
+      const blockers = buildReleaseBlockers({
+        proposedRecord,
+        recordEntry,
+        creationOrReleaseAcceptsByRecord,
+        recordsByKey,
+        acceptedRecordKeys
+      });
+      const dependencies = recordEntry ? buildRecordDependencies(recordEntry.record).map((dependency) => dependency.key) : [];
       const baseItem = {
+        key,
         record_type: proposedRecord.record_type,
         record_id: proposedRecord.record_id,
         path: proposedRecord.path,
@@ -207,37 +336,106 @@ function buildAcceptedRecordQueues({ candidateEntries, recordsByKey }) {
         candidate_lifecycle_status: candidate.lifecycle_status
       };
 
-      if (blockers.length > 0) {
-        const blockedItem = {
-          ...baseItem,
-          blockers
-        };
-        blockedAcceptedRecords.push(blockedItem);
-        const blockedGroup = blockedRecordsByCandidateId.get(candidate.id) ?? [];
-        blockedGroup.push(blockedItem);
-        blockedRecordsByCandidateId.set(candidate.id, blockedGroup);
-        continue;
-      }
+      candidateItems.push({
+        ...baseItem,
+        dependencies
+      });
 
-      const existing = releaseReadyByRecord.get(key) ?? {
+      const existing = itemsByKey.get(key) ?? {
         record_type: proposedRecord.record_type,
         record_id: proposedRecord.record_id,
         path: proposedRecord.path,
         release_status: "accepted",
         candidate_change_ids: [],
         candidate_lifecycle_statuses: [],
-        change_types: []
+        change_types: [],
+        dependencies: new Set(),
+        blockers: []
       };
 
       existing.candidate_change_ids = sortStrings([...existing.candidate_change_ids, candidate.id]);
       existing.candidate_lifecycle_statuses = sortStrings([...existing.candidate_lifecycle_statuses, candidate.lifecycle_status]);
       existing.change_types = sortStrings([...existing.change_types, proposedRecord.change_type]);
-      releaseReadyByRecord.set(key, existing);
-
-      const releaseGroup = releaseRecordsByCandidateId.get(candidate.id) ?? [];
-      releaseGroup.push({ ...baseItem, release_status: "accepted" });
-      releaseRecordsByCandidateId.set(candidate.id, releaseGroup);
+      for (const dependency of dependencies) {
+        existing.dependencies.add(dependency);
+      }
+      for (const blocker of blockers) {
+        addBlocker(existing.blockers, blocker);
+      }
+      itemsByKey.set(key, existing);
     }
+  }
+
+  let changed = true;
+  while (changed) {
+    changed = false;
+    const blockedKeys = new Set([...itemsByKey.entries()].filter(([, item]) => item.blockers.length > 0).map(([key]) => key));
+
+    for (const [key, item] of itemsByKey.entries()) {
+      if (blockedKeys.has(key)) {
+        continue;
+      }
+
+      for (const dependencyKey of item.dependencies) {
+        if (!blockedKeys.has(dependencyKey)) {
+          continue;
+        }
+
+        const dependency = itemsByKey.get(dependencyKey);
+        addBlocker(item.blockers, {
+          blocker_type: "blocked_dependency",
+          message: `${item.record_type}:${item.record_id} depends on ${dependency.record_type}:${dependency.record_id}, which has release blockers.`
+        });
+        changed = true;
+      }
+    }
+  }
+
+  const releaseReadyByRecord = new Map();
+  const blockedAcceptedRecords = [];
+  const releaseRecordsByCandidateId = new Map();
+  const blockedRecordsByCandidateId = new Map();
+
+  for (const candidateItem of candidateItems) {
+    const aggregateItem = itemsByKey.get(candidateItem.key);
+    if (aggregateItem.blockers.length > 0) {
+      const blockedItem = {
+        record_type: candidateItem.record_type,
+        record_id: candidateItem.record_id,
+        path: candidateItem.path,
+        change_type: candidateItem.change_type,
+        candidate_change_id: candidateItem.candidate_change_id,
+        candidate_lifecycle_status: candidateItem.candidate_lifecycle_status,
+        blockers: aggregateItem.blockers
+      };
+      blockedAcceptedRecords.push(blockedItem);
+      const blockedGroup = blockedRecordsByCandidateId.get(candidateItem.candidate_change_id) ?? [];
+      blockedGroup.push(blockedItem);
+      blockedRecordsByCandidateId.set(candidateItem.candidate_change_id, blockedGroup);
+      continue;
+    }
+
+    releaseReadyByRecord.set(candidateItem.key, {
+      record_type: aggregateItem.record_type,
+      record_id: aggregateItem.record_id,
+      path: aggregateItem.path,
+      release_status: aggregateItem.release_status,
+      candidate_change_ids: aggregateItem.candidate_change_ids,
+      candidate_lifecycle_statuses: aggregateItem.candidate_lifecycle_statuses,
+      change_types: aggregateItem.change_types
+    });
+
+    const releaseGroup = releaseRecordsByCandidateId.get(candidateItem.candidate_change_id) ?? [];
+    releaseGroup.push({
+      record_type: candidateItem.record_type,
+      record_id: candidateItem.record_id,
+      path: candidateItem.path,
+      change_type: candidateItem.change_type,
+      candidate_change_id: candidateItem.candidate_change_id,
+      candidate_lifecycle_status: candidateItem.candidate_lifecycle_status,
+      release_status: "accepted"
+    });
+    releaseRecordsByCandidateId.set(candidateItem.candidate_change_id, releaseGroup);
   }
 
   return {
@@ -372,7 +570,7 @@ export async function buildReleaseReadiness({ generatedAt = new Date().toISOStri
     promotion_ready_candidate_ids: triageState.promotion_ready_candidate_ids,
     release_ready_candidate_ids: sortStrings(
       candidateReleaseStatuses
-        .filter((candidate) => ["release_ready", "partial_release_ready"].includes(candidate.release_status))
+        .filter((candidate) => candidate.release_status === "release_ready")
         .map((candidate) => candidate.candidate_change_id)
     ),
     release_blocked_candidate_ids: sortStrings(
@@ -391,7 +589,7 @@ export async function buildAcceptedRecordExportItems() {
   const recordsByKey = buildRecordIndex(entries);
   const releaseReadiness = await buildReleaseReadiness();
 
-  return releaseReadiness.release_ready_records.map((item) => {
+  const exportItems = releaseReadiness.release_ready_records.map((item) => {
     const recordEntry = recordsByKey.get(recordKey(item.record_type, item.record_id));
 
     return {
@@ -407,6 +605,8 @@ export async function buildAcceptedRecordExportItems() {
       record: recordEntry?.record
     };
   });
+
+  return sortObjects(exportItems, ["record_type", "id"]);
 }
 
 async function main() {

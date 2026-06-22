@@ -97,6 +97,7 @@
           "change_type": {
             "enum": [
               "create",
+              "release_accept",
               "update",
               "delete"
             ]

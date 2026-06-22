@@ -4,7 +4,7 @@
   "id": "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
   "name": "Create endpoint-specific D+Q bone synthesis compatibility groups",
   "summary": "Adds endpoint-specific synthesis_group records for the D+Q postmenopausal bone RCT so consumers can distinguish non-poolable endpoint, time-horizon, extraction, and safety blockers from the existing broad mixed compatibility group.",
-  "lifecycle_status": "in_review",
+  "lifecycle_status": "accepted",
   "submitted_at": "2026-06-21T21:45:00Z",
   "scope": {
     "question": "Create endpoint-specific synthesis compatibility groups for the D+Q postmenopausal bone RCT outcome/result records.",
@@ -76,5 +76,16 @@
     "senolytics-dq-bone-endpoint-taxonomy-mapping-2026-06-21",
     "senolytics-dq-bone-endpoint-synthesis-boundary-2026-06-21",
     "senolytics-dq-bone-endpoint-safety-limitations-2026-06-21"
-  ]
+  ],
+  "promotion": {
+    "target_status": "accepted",
+    "promoted_at": "2026-06-22T17:49:33.992Z",
+    "promoted_by_agent": "promote-candidate",
+    "reviewed_review_ids": [
+      "senolytics-dq-bone-endpoint-taxonomy-mapping-2026-06-21",
+      "senolytics-dq-bone-endpoint-synthesis-boundary-2026-06-21",
+      "senolytics-dq-bone-endpoint-safety-limitations-2026-06-21"
+    ],
+    "summary": "Promoted to accepted after all required active review lanes passed."
+  }
 }

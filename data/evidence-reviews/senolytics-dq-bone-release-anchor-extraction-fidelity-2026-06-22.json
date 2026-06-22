@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-dq-bone-release-anchor-extraction-fidelity-2026-06-22",
+  "candidate_change_id": "senolytics-dq-bone-release-anchor-2026-06-22",
+  "review_lane": "extraction_fidelity",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex-supervisor-agent",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "The release anchor is extraction-faithful for the registry-extracted D+Q bone outcomes and results it includes. It does not claim full publication table extraction, subgroup extraction, or complete supplement extraction.",
+  "findings": [
+    {
+      "finding_id": "registry-extraction-scope-explicit",
+      "severity": "note",
+      "category": "extraction_error",
+      "claim_or_issue": "The accepted outcome and result records are bounded to ClinicalTrials.gov posted results and PubMed metadata or abstract support.",
+      "why_it_matters": "Consumers can treat the records as registry-extracted evidence without mistaking them for full-text-extracted results.",
+      "recommended_action": "Preserve maturity and provenance fields that identify the records as registry-extracted.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "full-publication-extraction-debt-preserved",
+      "severity": "minor",
+      "category": "missing_caveat",
+      "claim_or_issue": "Full publication tables, supplements, and detailed subgroup values are not accepted by this anchor.",
+      "why_it_matters": "The system should release stable registry data while still routing richer full-text extraction to later agents.",
+      "recommended_action": "Keep full publication extraction visible in extraction debt and future Codex jobs.",
+      "resolution_status": "closed"
+    }
+  ]
+}

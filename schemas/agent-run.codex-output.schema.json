@@ -310,6 +310,7 @@
                     "type": "string",
                     "enum": [
                       "create",
+                      "release_accept",
                       "update",
                       "delete"
                     ]

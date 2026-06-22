@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-dq-bone-release-anchor-synthesis-boundary-2026-06-22",
+  "candidate_change_id": "senolytics-dq-bone-release-anchor-2026-06-22",
+  "review_lane": "synthesis_boundary",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex-supervisor-agent",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "The release anchor is suitable for evidence-map and endpoint-compatibility outputs, not for pooled effect estimation. Existing synthesis groups should continue to block pooling where effect fields, uncertainty, sample sizes, or endpoint compatibility are insufficient.",
+  "findings": [
+    {
+      "finding_id": "release-not-pooling-claim",
+      "severity": "note",
+      "category": "endpoint_boundary",
+      "claim_or_issue": "Accepting the anchor records does not make the D+Q bone endpoints meta-analysis-ready for pooled estimation.",
+      "why_it_matters": "Consumers need machine-readable release state without losing endpoint-level synthesis restrictions.",
+      "recommended_action": "Continue to route pooling decisions through synthesis_group records and missing_effect_fields.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "compatibility-groups-remain-authoritative",
+      "severity": "note",
+      "category": "endpoint_boundary",
+      "claim_or_issue": "Endpoint-specific synthesis groups remain the authoritative source for whether a result can be pooled.",
+      "why_it_matters": "Release-ready canonical records can still be non-poolable in a living meta-analysis.",
+      "recommended_action": "Use accepted records for traceable evidence access and synthesis groups for pooling eligibility.",
+      "resolution_status": "closed"
+    }
+  ]
+}

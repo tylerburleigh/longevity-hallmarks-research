@@ -36,3 +36,9 @@ npm run audit:codex-jobs
 ```
 
 `audit:self-healing-jobs` compares generated live specs against current triage state. If triage state changes, regenerate the batch with `--replace`.
+
+Execute generated jobs through the isolated worktree helper:
+
+```bash
+npm run agent:codex:worktree -- --job-file ops/codex-jobs/live/generated-self-healing/<job-id>.json --execute
+```

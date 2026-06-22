@@ -174,8 +174,10 @@ npm run audit:references
 For execution:
 
 ```bash
-npm run agent:codex -- ... --execute --post-export-verify
+npm run agent:codex:worktree -- --job-file ops/codex-jobs/live/<agent-run-id>.json --execute
 ```
+
+Use `agent:codex` directly only when the coordinator intentionally supplies an already isolated `--workdir`.
 
 ## Text Snapshot Jobs
 
@@ -200,6 +202,8 @@ Search jobs should write `research/sessions/<id>.json` and `research/search-logs
 Use `npm run jobs:self-healing` to convert current `ops/triage-state.v1.json` recommended jobs into bounded live Codex job specs under `ops/codex-jobs/live/generated-self-healing/`.
 
 Use `npm run audit:self-healing-jobs` to confirm generated live specs still match current triage state. See `docs/self-healing-jobs.md` for filters and regeneration commands.
+
+Use `npm run agent:codex:worktree -- --job-file <job> --execute` for generated self-healing jobs so repair edits happen in an isolated worktree before coordinator reconciliation.
 
 ## Promotion Boundary
 

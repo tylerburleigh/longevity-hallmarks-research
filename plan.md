@@ -559,7 +559,7 @@ Tasks:
 - [x] Add triage state generation.
 - [x] Add templates for research sessions.
 - [x] Split live runnable `ops/codex-jobs/` specs from archived executed job snapshots.
-- [ ] Add default isolated-worktree execution helpers so mutable Codex jobs do not need foreground checkout.
+- [x] Add default isolated-worktree execution helpers so mutable Codex jobs do not need foreground checkout.
 
 Exit criteria:
 
@@ -657,16 +657,16 @@ Exit criteria:
 
 ## Immediate Next Actions
 
-1. Add the default isolated-worktree execution helper needed for safe concurrent Codex workers.
-2. Add a first parallel-batch planner for independent search, registry-refresh, extraction-refresh, and supervisor-review jobs.
-3. Finish full publication/table extraction for the D+Q bone RCT, including subgroup and event-specific safety details.
-4. Run extraction-refresh passes on the remaining human D+Q papers: DKD, IPF, and AD-risk cognition/mobility.
-5. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
-6. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
-7. Decide whether to install repo-local skills into the active Codex skills directory.
+1. Add a first parallel-batch planner for independent search, registry-refresh, extraction-refresh, and supervisor-review jobs.
+2. Finish full publication/table extraction for the D+Q bone RCT, including subgroup and event-specific safety details.
+3. Run extraction-refresh passes on the remaining human D+Q papers: DKD, IPF, and AD-risk cognition/mobility.
+4. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
+5. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
+6. Decide whether to install repo-local skills into the active Codex skills directory.
 
 ## Change Log
 
+- 2026-06-22: Added an isolated Git worktree execution helper for Codex jobs, including plan-only checks, worktree creation, node_modules reuse, wrapper invocation, dirty-check protection, docs, and a verification audit for mutable live jobs.
 - 2026-06-22: Added a self-healing Codex job generator and freshness audit that convert triage-state recommended jobs into bounded live repair specs with candidate IDs, orchestration metadata, conflict keys, post-run gates, and generated-job drift checks.
 - 2026-06-22: Added first-class `search_log` and `screening_run` schemas, durable search/session/screening templates, Codex job templates, prompt guidance, agent-run output IDs, reference audits, and read-model relationship links for search and screening work products.
 - 2026-06-22: Promoted the D+Q endpoint synthesis-groups candidate and registry-markdown provenance-repair candidate to accepted, then hardened release-readiness so accepted records with unreleased graph dependencies remain blocked from accepted-record exports.

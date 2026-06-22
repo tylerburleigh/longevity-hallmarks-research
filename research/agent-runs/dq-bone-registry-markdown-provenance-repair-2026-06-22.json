@@ -1,0 +1,277 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "dq-bone-registry-markdown-provenance-repair-2026-06-22",
+  "agent_role": "extraction_agent",
+  "agent_id": "codex-cli-worker",
+  "mode": "extraction_refresh",
+  "started_at": "2026-06-22T13:00:00Z",
+  "completed_at": "2026-06-22T13:12:00Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "Upgrade D+Q bone registry-extracted records with retained ClinicalTrials.gov text-snapshot provenance.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": [
+      "dasatinib-quercetin"
+    ]
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "codex_exec",
+    "isolation": "foreground_checkout",
+    "workspace_path": "/home/tyler/Workspace/longevity-hallmarks-research",
+    "prompt_file": "docs/prompts/codex-agents/dq-bone-registry-markdown-provenance-repair-2026-06-22.md",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "output_path": "research/agent-runs/dq-bone-registry-markdown-provenance-repair-2026-06-22.json",
+    "jsonl_log_path": "research/agent-runs/logs/dq-bone-registry-markdown-provenance-repair-2026-06-22.jsonl",
+    "sandbox": "workspace-write",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "user_request",
+      "reference": "docs/prompts/codex-agents/dq-bone-registry-markdown-provenance-repair-2026-06-22.md; ops/codex-jobs/dq-bone-registry-markdown-provenance-repair-2026-06-22.json",
+      "summary": "Coordinator prompt and codex_job specification for the bounded D+Q bone registry markdown provenance repair."
+    },
+    {
+      "input_type": "other",
+      "reference": "plan.md; docs/text-ingestion-rules.md; docs/extraction-rules.md; docs/agent-run-outputs.md; docs/codex-cli-agents.md",
+      "summary": "Repository plan plus text-ingestion, extraction, agent-output, and Codex CLI worker rules used to constrain the repair."
+    },
+    {
+      "input_type": "other",
+      "reference": "schemas/outcome.schema.json; schemas/result.schema.json; schemas/finding.schema.json; schemas/candidate-change.schema.json; schemas/agent-run.codex-output.schema.json; schemas/agent-run.schema.json",
+      "summary": "Schemas read for scoped canonical records, candidate change, and final agent-run output shape."
+    },
+    {
+      "input_type": "source_snapshot",
+      "reference": "data/source-snapshots/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+      "summary": "ClinicalTrials.gov API v2 source snapshot ID preserved on all repaired NCT04313634 registry provenance locators."
+    },
+    {
+      "input_type": "text_snapshot",
+      "reference": "data/text-snapshots/text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+      "summary": "Retained public-registry text_snapshot providing raw payload, normalized markdown, section index, and artifact hashes for NCT04313634."
+    },
+    {
+      "input_type": "other",
+      "reference": "artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/registry.md; artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/sections.json",
+      "summary": "Normalized registry markdown and retained section index used to replace older ClinicalTrials.gov module locators with section-stable registry_record locators."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/sources/nct-04313634.json; data/sources/pmid-38956196.json; data/studies/dq-postmenopausal-bone-rct.json",
+      "summary": "Source and study context for the existing D+Q postmenopausal bone RCT records; PubMed provenance was preserved unchanged."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json",
+      "summary": "Scoped finding record updated only for the NCT04313634 registry provenance locator."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/outcomes/dq-bone-ctx-20wk.json; data/outcomes/dq-bone-p1np-2wk.json; data/outcomes/dq-bone-p1np-4wk.json; data/outcomes/dq-bone-p1np-20wk.json; data/outcomes/dq-bone-bmd-20wk.json; data/outcomes/dq-bone-sasp-2wk.json; data/outcomes/dq-bone-adverse-events-20wk.json",
+      "summary": "Scoped outcome records updated only for retained text_snapshot provenance and section-stable registry locators."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/results/dq-bone-ctx-20wk-null.json; data/results/dq-bone-p1np-2wk-positive.json; data/results/dq-bone-p1np-4wk-positive.json; data/results/dq-bone-p1np-20wk-null.json; data/results/dq-bone-bmd-20wk-inconclusive.json; data/results/dq-bone-sasp-2wk-null.json; data/results/dq-bone-adverse-events-20wk-mixed.json",
+      "summary": "Scoped result records updated only for retained text_snapshot provenance and section-stable registry locators."
+    }
+  ],
+  "outputs": {
+    "summary": "Created the submitted provenance-repair candidate and updated 15 scoped D+Q bone finding, outcome, and result records. Each existing NCT04313634 registry locator now carries the retained ClinicalTrials.gov text_snapshot_id and a registry_record section locator; source IDs, source_snapshot IDs, result values, directions, confidence, statements, caveats, and interpretations were preserved.",
+    "candidate_change_id": "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
+        "path": "data/candidate-changes/senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22.json",
+        "change_type": "create",
+        "rationale": "Tracks the registry markdown provenance repair change set and required review lanes."
+      },
+      {
+        "record_type": "finding",
+        "record_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+        "path": "data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json",
+        "change_type": "update",
+        "rationale": "Adds retained ClinicalTrials.gov text-snapshot provenance and section-stable registry_record locators to the existing registry-extracted finding."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-bone-adverse-events-20wk",
+        "path": "data/outcomes/dq-bone-adverse-events-20wk.json",
+        "change_type": "update",
+        "rationale": "Adds retained ClinicalTrials.gov text-snapshot provenance and a section-stable adverse-events locator to the existing registry-extracted outcome."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-bone-bmd-20wk",
+        "path": "data/outcomes/dq-bone-bmd-20wk.json",
+        "change_type": "update",
+        "rationale": "Adds retained ClinicalTrials.gov text-snapshot provenance and a section-stable posted-results locator to the existing registry-extracted outcome."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-bone-ctx-20wk",
+        "path": "data/outcomes/dq-bone-ctx-20wk.json",
+        "change_type": "update",
+        "rationale": "Adds retained ClinicalTrials.gov text-snapshot provenance and a section-stable posted-results locator to the existing registry-extracted outcome."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-bone-p1np-20wk",
+        "path": "data/outcomes/dq-bone-p1np-20wk.json",
+        "change_type": "update",
+        "rationale": "Adds retained ClinicalTrials.gov text-snapshot provenance and a section-stable posted-results locator to the existing registry-extracted outcome."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-bone-p1np-2wk",
+        "path": "data/outcomes/dq-bone-p1np-2wk.json",
+        "change_type": "update",
+        "rationale": "Adds retained ClinicalTrials.gov text-snapshot provenance and a section-stable posted-results locator to the existing registry-extracted outcome."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-bone-p1np-4wk",
+        "path": "data/outcomes/dq-bone-p1np-4wk.json",
+        "change_type": "update",
+        "rationale": "Adds retained ClinicalTrials.gov text-snapshot provenance and a section-stable posted-results locator to the existing registry-extracted outcome."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-bone-sasp-2wk",
+        "path": "data/outcomes/dq-bone-sasp-2wk.json",
+        "change_type": "update",
+        "rationale": "Adds retained ClinicalTrials.gov text-snapshot provenance and a section-stable posted-results locator to the existing registry-extracted outcome."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-adverse-events-20wk-mixed",
+        "path": "data/results/dq-bone-adverse-events-20wk-mixed.json",
+        "change_type": "update",
+        "rationale": "Adds retained ClinicalTrials.gov text-snapshot provenance and a section-stable adverse-events locator to the existing registry-extracted safety result."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-bmd-20wk-inconclusive",
+        "path": "data/results/dq-bone-bmd-20wk-inconclusive.json",
+        "change_type": "update",
+        "rationale": "Adds retained ClinicalTrials.gov text-snapshot provenance and a section-stable posted-results locator to the existing registry-extracted result."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-ctx-20wk-null",
+        "path": "data/results/dq-bone-ctx-20wk-null.json",
+        "change_type": "update",
+        "rationale": "Adds retained ClinicalTrials.gov text-snapshot provenance and a section-stable posted-results locator to the existing registry-extracted result."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-p1np-20wk-null",
+        "path": "data/results/dq-bone-p1np-20wk-null.json",
+        "change_type": "update",
+        "rationale": "Adds retained ClinicalTrials.gov text-snapshot provenance and a section-stable posted-results locator to the existing registry-extracted result."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-p1np-2wk-positive",
+        "path": "data/results/dq-bone-p1np-2wk-positive.json",
+        "change_type": "update",
+        "rationale": "Adds retained ClinicalTrials.gov text-snapshot provenance and a section-stable posted-results locator to the existing registry-extracted result."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-p1np-4wk-positive",
+        "path": "data/results/dq-bone-p1np-4wk-positive.json",
+        "change_type": "update",
+        "rationale": "Adds retained ClinicalTrials.gov text-snapshot provenance and a section-stable posted-results locator to the existing registry-extracted result."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-sasp-2wk-null",
+        "path": "data/results/dq-bone-sasp-2wk-null.json",
+        "change_type": "update",
+        "rationale": "Adds retained ClinicalTrials.gov text-snapshot provenance and a section-stable posted-results locator to the existing registry-extracted result."
+      }
+    ],
+    "generated_files": [
+      "data/candidate-changes/senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22.json",
+      "data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json",
+      "data/outcomes/dq-bone-adverse-events-20wk.json",
+      "data/outcomes/dq-bone-bmd-20wk.json",
+      "data/outcomes/dq-bone-ctx-20wk.json",
+      "data/outcomes/dq-bone-p1np-20wk.json",
+      "data/outcomes/dq-bone-p1np-2wk.json",
+      "data/outcomes/dq-bone-p1np-4wk.json",
+      "data/outcomes/dq-bone-sasp-2wk.json",
+      "data/results/dq-bone-adverse-events-20wk-mixed.json",
+      "data/results/dq-bone-bmd-20wk-inconclusive.json",
+      "data/results/dq-bone-ctx-20wk-null.json",
+      "data/results/dq-bone-p1np-20wk-null.json",
+      "data/results/dq-bone-p1np-2wk-positive.json",
+      "data/results/dq-bone-p1np-4wk-positive.json",
+      "data/results/dq-bone-sasp-2wk-null.json"
+    ],
+    "export_paths": [
+      "exports/latest/results.jsonl",
+      "exports/latest/evidence-map.json",
+      "exports/latest/coverage-status.json",
+      "exports/latest/audit-manifest.json"
+    ]
+  },
+  "quality_checks": [
+    {
+      "check_name": "text_snapshot_locator_support",
+      "status": "passed",
+      "summary": "Verified 15 NCT registry locators across 15 scoped records link to retained text snapshot sections posted-results-outcomes or adverse-events."
+    },
+    {
+      "check_name": "validate_records",
+      "status": "passed",
+      "summary": "npm run validate:records exited 0: Validated 123 JSON file(s)."
+    },
+    {
+      "check_name": "audit_references",
+      "status": "passed",
+      "summary": "npm run audit:references exited 0: Reference audit passed for 115 record file(s)."
+    },
+    {
+      "check_name": "candidate_agent_run_ledger_match",
+      "status": "passed",
+      "summary": "Final outputs.proposed_records is copied exactly from the candidate_change.proposed_records array, including the candidate record and all 15 scoped canonical updates."
+    },
+    {
+      "check_name": "supervisor_review_lanes",
+      "status": "passed",
+      "summary": "The submitted candidate declares source_fidelity, extraction_fidelity, taxonomy_mapping, and safety_limitations review lanes and was not promoted."
+    },
+    {
+      "check_name": "post_export",
+      "status": "passed",
+      "summary": "post_export exited 0: > longevity-hallmarks-research@0.1.0 export:latest > node scripts/export-latest.mjs Wrote 13 export file(s) to exports/latest."
+    },
+    {
+      "check_name": "post_verify",
+      "status": "passed",
+      "summary": "post_verify exited 0: > longevity-hallmarks-research@0.1.0 audit:agent-schemas > node scripts/audit-agent-schemas.mjs Agent schema audit passed. > longevity-hallmarks-research@0.1.0 audit:agentic-process > node scripts/audit-agentic-process.mjs Agentic process audit passed for 214 file(s)."
+    },
+    {
+      "check_name": "post_job_audit",
+      "status": "passed",
+      "summary": "post_job_audit exited 0: > longevity-hallmarks-research@0.1.0 audit:codex-jobs > node scripts/audit-codex-jobs.mjs Codex job audit passed for 3 job file(s)."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": [
+    "Supervisor agent should review the submitted candidate across source_fidelity, extraction_fidelity, taxonomy_mapping, and safety_limitations lanes before any promotion.",
+    "Coordinator wrapper should run configured post-run export and knowledge-base verification after writing the agent_run output."
+  ]
+}

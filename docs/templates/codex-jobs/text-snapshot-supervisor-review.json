@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "codex_job",
+  "id": "replace-with-text-snapshot-supervisor-run-id",
+  "name": "Replace with text-snapshot supervisor-review job name",
+  "summary": "Run source-fidelity and extraction-fidelity supervisor review lanes for a retained text-snapshot candidate.",
+  "agent_role": "supervisor_agent",
+  "mode": "extraction_refresh",
+  "prompt_file": "docs/prompts/codex-agents/text-snapshot-supervisor-review.md",
+  "output_path": "research/agent-runs/replace-with-text-snapshot-supervisor-run-id.json",
+  "jsonl_log_path": "research/agent-runs/logs/replace-with-text-snapshot-supervisor-run-id.jsonl",
+  "scope": {
+    "question": "Replace with the bounded text-snapshot supervisor-review question.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": [
+      "dasatinib-quercetin"
+    ],
+    "source_ids": [
+      "nct-04313634"
+    ],
+    "study_ids": [
+      "dq-postmenopausal-bone-rct"
+    ]
+  },
+  "execution": {
+    "isolation": "git_worktree",
+    "sandbox": "workspace-write",
+    "approval_policy": "never",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "timeout_ms": 1800000,
+    "no_output_timeout_ms": 300000
+  },
+  "expected_outputs": {
+    "canonical_write_policy": "candidate_change_required",
+    "candidate_change_id": "replace-with-candidate-change-id",
+    "required_review_lanes": [
+      "source_fidelity",
+      "extraction_fidelity"
+    ],
+    "proposed_record_paths": [
+      "data/candidate-changes/replace-with-candidate-change-id.json",
+      "data/evidence-reviews/replace-with-source-fidelity-review-id.json",
+      "data/evidence-reviews/replace-with-extraction-fidelity-review-id.json"
+    ],
+    "export_paths": [
+      "exports/latest/audit-manifest.json",
+      "exports/latest/coverage-status.json",
+      "exports/latest/evidence-map.json"
+    ]
+  },
+  "post_run": {
+    "export_latest": true,
+    "verify_knowledge_base": true
+  },
+  "quality_gates": [
+    "validate_records",
+    "audit_references",
+    "audit_exports",
+    "audit_agent_schemas",
+    "audit_agentic_process",
+    "supervisor_review_lanes"
+  ]
+}

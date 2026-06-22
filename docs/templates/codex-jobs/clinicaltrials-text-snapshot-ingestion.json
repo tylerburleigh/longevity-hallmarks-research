@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "codex_job",
+  "id": "replace-with-clinicaltrials-text-snapshot-run-id",
+  "name": "Replace with ClinicalTrials.gov text-snapshot ingestion job name",
+  "summary": "Ingest a retained ClinicalTrials.gov public-registry text snapshot through the importer and propose the resulting canonical record updates.",
+  "agent_role": "extraction_agent",
+  "mode": "extraction_refresh",
+  "prompt_file": "docs/prompts/codex-agents/clinicaltrials-text-snapshot-ingestion.md",
+  "output_path": "research/agent-runs/replace-with-clinicaltrials-text-snapshot-run-id.json",
+  "jsonl_log_path": "research/agent-runs/logs/replace-with-clinicaltrials-text-snapshot-run-id.jsonl",
+  "scope": {
+    "question": "Replace with the bounded ClinicalTrials.gov text-snapshot ingestion question.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": [
+      "dasatinib-quercetin"
+    ],
+    "source_ids": [
+      "nct-04313634"
+    ],
+    "study_ids": [
+      "dq-postmenopausal-bone-rct"
+    ]
+  },
+  "execution": {
+    "isolation": "git_worktree",
+    "sandbox": "workspace-write",
+    "approval_policy": "never",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "timeout_ms": 1800000,
+    "no_output_timeout_ms": 300000
+  },
+  "expected_outputs": {
+    "canonical_write_policy": "candidate_change_required",
+    "candidate_change_id": "replace-with-candidate-change-id",
+    "required_review_lanes": [
+      "source_fidelity",
+      "extraction_fidelity"
+    ],
+    "proposed_record_paths": [
+      "data/candidate-changes/replace-with-candidate-change-id.json",
+      "data/source-snapshots/replace-with-source-snapshot-id.json",
+      "data/text-snapshots/replace-with-text-snapshot-id.json"
+    ],
+    "generated_file_paths": [
+      "artifacts/sources/replace-with-source-id/replace-with-source-snapshot-id/raw.json",
+      "artifacts/sources/replace-with-source-id/replace-with-source-snapshot-id/registry.md",
+      "artifacts/sources/replace-with-source-id/replace-with-source-snapshot-id/sections.json"
+    ],
+    "export_paths": [
+      "exports/latest/source-rights.jsonl",
+      "exports/latest/text-snapshots.jsonl",
+      "exports/latest/audit-manifest.json"
+    ]
+  },
+  "post_run": {
+    "export_latest": true,
+    "verify_knowledge_base": true
+  },
+  "quality_gates": [
+    "validate_records",
+    "audit_references",
+    "audit_exports",
+    "audit_agent_schemas",
+    "audit_agentic_process",
+    "candidate_agent_run_ledger_match",
+    "supervisor_review_lanes"
+  ]
+}

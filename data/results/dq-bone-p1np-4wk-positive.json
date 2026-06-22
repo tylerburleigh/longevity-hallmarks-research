@@ -60,8 +60,9 @@
     {
       "source_id": "nct-04313634",
       "source_snapshot_id": "snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
-      "locator_type": "clinicaltrials_module",
-      "locator": "resultsSection.outcomeMeasuresModule.outcomeMeasures[2]",
+      "text_snapshot_id": "text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+      "locator_type": "registry_record",
+      "locator": "section:posted-results-outcomes outcomeMeasures[2]",
       "status": "registry_extracted",
       "note": "Posted secondary outcome group values and D+Q versus control p-value."
     },

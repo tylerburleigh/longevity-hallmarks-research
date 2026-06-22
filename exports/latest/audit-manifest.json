@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "release_manifest",
   "id": "latest-consumer-export",
-  "generated_at": "2026-06-22T11:27:30.696Z",
+  "generated_at": "2026-06-22T12:28:40.665Z",
   "export_version": "0.1.0",
   "export_scope": {
     "description": "Consumer-facing latest export generated from canonical research and data records.",
@@ -56,7 +56,7 @@
       "format": "jsonl",
       "description": "Canonical finding records with maturity and provenance fields preserved.",
       "record_count": 9,
-      "sha256": "1a93799e872e1636c64246c98e02b5c1a91175b43364d4b8913304f79f289718"
+      "sha256": "b7da394db014c18aa8bf2e7469e0a188a5d901fa8037c9c5f9a98ba1b025f672"
     },
     {
       "path": "exports/latest/text-snapshots.jsonl",
@@ -70,21 +70,21 @@
       "format": "jsonl",
       "description": "All canonical result records across maturity states.",
       "record_count": 14,
-      "sha256": "306e01227b7bb0896e387d21cec9399da3e1a382e50cf0e71020c8ccc96b1e91"
+      "sha256": "95d9c201c53fe6c8dd0a38406154cfd41427d6804e62e2129d47441b2e1af3e6"
     },
     {
       "path": "exports/latest/results.extraction_grade.jsonl",
       "format": "jsonl",
       "description": "Result records with registry, full-text, agent-reviewed, supervisor-agent-reviewed, or accepted extraction-grade maturity.",
       "record_count": 7,
-      "sha256": "cf8b7901e57217f7de0d2a1f78a1e592b152c5a8a615bb6c482ad5fcd07be048"
+      "sha256": "7d506a88c87336375a951c36a6fbbaf8dd70ffc7309459beca02477d46f09d6f"
     },
     {
       "path": "exports/latest/results.registry_extracted.jsonl",
       "format": "jsonl",
       "description": "Result records with registry-extracted structured values.",
       "record_count": 7,
-      "sha256": "cf8b7901e57217f7de0d2a1f78a1e592b152c5a8a615bb6c482ad5fcd07be048"
+      "sha256": "7d506a88c87336375a951c36a6fbbaf8dd70ffc7309459beca02477d46f09d6f"
     },
     {
       "path": "exports/latest/results.triage.jsonl",
@@ -105,18 +105,18 @@
       "format": "json",
       "description": "Generated graph view of source, study, finding, outcome, result, coverage, and synthesis-compatibility links.",
       "record_count": 1,
-      "sha256": "f6a8ce3cdf0c6ac9732a9f75dfeda936cc7db8a668935fa0f9ba81dca1e3b2a6"
+      "sha256": "9a38976e81b1de7957d93c727215cc3b5a21de3f4d5e031e23dfef748ad55ab5"
     },
     {
       "path": "exports/latest/coverage-status.json",
       "format": "json",
       "description": "Consumer coverage status with current/superseded flags and known-gap warnings.",
       "record_count": 1,
-      "sha256": "af6b580cb1d046941677304d1c75c0f180af31d50ed2b8fddc03011a77749d77"
+      "sha256": "e1704ac2f7453f1cbf36fec7b4497e68668d6107bb1a359f17423e489627ff95"
     }
   ],
   "record_counts": {
-    "canonical_records": 111,
+    "canonical_records": 116,
     "sources": 10,
     "source_rights": 2,
     "studies": 9,

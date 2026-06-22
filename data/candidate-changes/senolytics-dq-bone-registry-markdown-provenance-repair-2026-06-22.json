@@ -1,0 +1,139 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
+  "name": "D+Q bone registry markdown provenance repair",
+  "summary": "Adds retained ClinicalTrials.gov text_snapshot provenance and section-stable registry_record locators to existing D+Q bone registry-extracted finding, outcome, and result records without changing extracted values or scientific interpretations.",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-22T13:00:00Z",
+  "scope": {
+    "question": "Upgrade D+Q bone registry-extracted records with retained ClinicalTrials.gov text-snapshot provenance.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
+      "path": "data/candidate-changes/senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22.json",
+      "change_type": "create",
+      "rationale": "Tracks the registry markdown provenance repair change set and required review lanes."
+    },
+    {
+      "record_type": "finding",
+      "record_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "path": "data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json",
+      "change_type": "update",
+      "rationale": "Adds retained ClinicalTrials.gov text-snapshot provenance and section-stable registry_record locators to the existing registry-extracted finding."
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-adverse-events-20wk",
+      "path": "data/outcomes/dq-bone-adverse-events-20wk.json",
+      "change_type": "update",
+      "rationale": "Adds retained ClinicalTrials.gov text-snapshot provenance and a section-stable adverse-events locator to the existing registry-extracted outcome."
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-bmd-20wk",
+      "path": "data/outcomes/dq-bone-bmd-20wk.json",
+      "change_type": "update",
+      "rationale": "Adds retained ClinicalTrials.gov text-snapshot provenance and a section-stable posted-results locator to the existing registry-extracted outcome."
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-ctx-20wk",
+      "path": "data/outcomes/dq-bone-ctx-20wk.json",
+      "change_type": "update",
+      "rationale": "Adds retained ClinicalTrials.gov text-snapshot provenance and a section-stable posted-results locator to the existing registry-extracted outcome."
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-p1np-20wk",
+      "path": "data/outcomes/dq-bone-p1np-20wk.json",
+      "change_type": "update",
+      "rationale": "Adds retained ClinicalTrials.gov text-snapshot provenance and a section-stable posted-results locator to the existing registry-extracted outcome."
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-p1np-2wk",
+      "path": "data/outcomes/dq-bone-p1np-2wk.json",
+      "change_type": "update",
+      "rationale": "Adds retained ClinicalTrials.gov text-snapshot provenance and a section-stable posted-results locator to the existing registry-extracted outcome."
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-p1np-4wk",
+      "path": "data/outcomes/dq-bone-p1np-4wk.json",
+      "change_type": "update",
+      "rationale": "Adds retained ClinicalTrials.gov text-snapshot provenance and a section-stable posted-results locator to the existing registry-extracted outcome."
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-sasp-2wk",
+      "path": "data/outcomes/dq-bone-sasp-2wk.json",
+      "change_type": "update",
+      "rationale": "Adds retained ClinicalTrials.gov text-snapshot provenance and a section-stable posted-results locator to the existing registry-extracted outcome."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-adverse-events-20wk-mixed",
+      "path": "data/results/dq-bone-adverse-events-20wk-mixed.json",
+      "change_type": "update",
+      "rationale": "Adds retained ClinicalTrials.gov text-snapshot provenance and a section-stable adverse-events locator to the existing registry-extracted safety result."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-bmd-20wk-inconclusive",
+      "path": "data/results/dq-bone-bmd-20wk-inconclusive.json",
+      "change_type": "update",
+      "rationale": "Adds retained ClinicalTrials.gov text-snapshot provenance and a section-stable posted-results locator to the existing registry-extracted result."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-ctx-20wk-null",
+      "path": "data/results/dq-bone-ctx-20wk-null.json",
+      "change_type": "update",
+      "rationale": "Adds retained ClinicalTrials.gov text-snapshot provenance and a section-stable posted-results locator to the existing registry-extracted result."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-p1np-20wk-null",
+      "path": "data/results/dq-bone-p1np-20wk-null.json",
+      "change_type": "update",
+      "rationale": "Adds retained ClinicalTrials.gov text-snapshot provenance and a section-stable posted-results locator to the existing registry-extracted result."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-p1np-2wk-positive",
+      "path": "data/results/dq-bone-p1np-2wk-positive.json",
+      "change_type": "update",
+      "rationale": "Adds retained ClinicalTrials.gov text-snapshot provenance and a section-stable posted-results locator to the existing registry-extracted result."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-p1np-4wk-positive",
+      "path": "data/results/dq-bone-p1np-4wk-positive.json",
+      "change_type": "update",
+      "rationale": "Adds retained ClinicalTrials.gov text-snapshot provenance and a section-stable posted-results locator to the existing registry-extracted result."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-sasp-2wk-null",
+      "path": "data/results/dq-bone-sasp-2wk-null.json",
+      "change_type": "update",
+      "rationale": "Adds retained ClinicalTrials.gov text-snapshot provenance and a section-stable posted-results locator to the existing registry-extracted result."
+    }
+  ],
+  "required_review_lanes": [
+    "source_fidelity",
+    "extraction_fidelity",
+    "taxonomy_mapping",
+    "safety_limitations"
+  ]
+}

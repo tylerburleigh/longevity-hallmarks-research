@@ -4,7 +4,7 @@
   "id": "senolytics-dq-bone-registry-text-snapshot-2026-06-22",
   "name": "Create D+Q bone ClinicalTrials.gov text snapshot",
   "summary": "Creates the first retained text_snapshot for a safe public-registry source: the D+Q bone ClinicalTrials.gov API payload, normalized markdown, section index, and updated source-snapshot raw storage state.",
-  "lifecycle_status": "submitted",
+  "lifecycle_status": "accepted",
   "submitted_at": "2026-06-22T11:20:00Z",
   "scope": {
     "question": "Retain and normalize the ClinicalTrials.gov registry payload for the D+Q bone RCT so agents can reuse source text without repeated source processing.",
@@ -43,5 +43,18 @@
     "source_fidelity",
     "extraction_fidelity"
   ],
-  "evidence_review_ids": []
+  "evidence_review_ids": [
+    "senolytics-dq-bone-registry-text-snapshot-source-fidelity-2026-06-22",
+    "senolytics-dq-bone-registry-text-snapshot-extraction-fidelity-2026-06-22"
+  ],
+  "promotion": {
+    "target_status": "accepted",
+    "promoted_at": "2026-06-22T12:06:28.074Z",
+    "promoted_by_agent": "promote-candidate",
+    "reviewed_review_ids": [
+      "senolytics-dq-bone-registry-text-snapshot-source-fidelity-2026-06-22",
+      "senolytics-dq-bone-registry-text-snapshot-extraction-fidelity-2026-06-22"
+    ],
+    "summary": "Promoted to accepted after all required active review lanes passed."
+  }
 }

@@ -49,8 +49,9 @@
     {
       "source_id": "nct-04313634",
       "source_snapshot_id": "snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
-      "locator_type": "clinicaltrials_module",
-      "locator": "resultsSection.outcomeMeasuresModule outcomeMeasures[0..5]",
+      "text_snapshot_id": "text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+      "locator_type": "registry_record",
+      "locator": "section:posted-results-outcomes outcomeMeasures[0..5]; section:adverse-events",
       "status": "registry_extracted",
       "note": "ClinicalTrials.gov posted results provide group medians, ranges, p-values, and adverse-event aggregate counts."
     }

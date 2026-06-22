@@ -1,0 +1,120 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "registry-text-snapshot-supervisor-review-2026-06-22",
+  "agent_role": "supervisor_agent",
+  "agent_id": "codex-supervisor-agent",
+  "mode": "extraction_refresh",
+  "started_at": "2026-06-22T11:45:00Z",
+  "completed_at": "2026-06-22T11:55:00Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "Review source fidelity and extraction fidelity for the D+Q bone ClinicalTrials.gov registry text-snapshot candidate.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": [
+      "dasatinib-quercetin"
+    ]
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "interactive_session",
+    "isolation": "foreground_checkout",
+    "workspace_path": "/home/tyler/Workspace/longevity-hallmarks-research",
+    "sandbox": "danger-full-access",
+    "approval_policy": "not_applicable"
+  },
+  "inputs": [
+    {
+      "input_type": "candidate_change",
+      "reference": "data/candidate-changes/senolytics-dq-bone-registry-text-snapshot-2026-06-22.json",
+      "summary": "Submitted text-snapshot candidate for the retained D+Q bone ClinicalTrials.gov registry payload and normalized artifacts."
+    },
+    {
+      "input_type": "source_snapshot",
+      "reference": "data/source-snapshots/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+      "summary": "ClinicalTrials.gov source snapshot with public_registry access policy and raw_storage path."
+    },
+    {
+      "input_type": "text_snapshot",
+      "reference": "data/text-snapshots/text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+      "summary": "Retained registry text snapshot with raw JSON, normalized markdown, section-index artifacts, and hashes."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/source-rights/source-rights-nct-04313634-2026-06-22.json",
+      "summary": "Public-registry source-rights record allowing retained registry artifacts and artifact manifests."
+    },
+    {
+      "input_type": "other",
+      "reference": "artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/",
+      "summary": "Retained raw JSON, normalized markdown, and sections JSON artifacts reviewed for hash and section consistency."
+    }
+  ],
+  "outputs": {
+    "summary": "Completed source-fidelity and extraction-fidelity supervisor reviews for the registry text-snapshot candidate, linked both accepting non-blocking reviews, and moved the candidate to in_review.",
+    "candidate_change_id": "senolytics-dq-bone-registry-text-snapshot-2026-06-22",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "senolytics-dq-bone-registry-text-snapshot-2026-06-22",
+        "path": "data/candidate-changes/senolytics-dq-bone-registry-text-snapshot-2026-06-22.json",
+        "change_type": "update",
+        "rationale": "Moved the candidate to in_review and linked the accepting source-fidelity and extraction-fidelity supervisor reviews."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "senolytics-dq-bone-registry-text-snapshot-source-fidelity-2026-06-22",
+        "path": "data/evidence-reviews/senolytics-dq-bone-registry-text-snapshot-source-fidelity-2026-06-22.json",
+        "change_type": "create",
+        "rationale": "Records source-fidelity supervisor review of raw payload hash, access policy, source-rights alignment, and artifact paths."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "senolytics-dq-bone-registry-text-snapshot-extraction-fidelity-2026-06-22",
+        "path": "data/evidence-reviews/senolytics-dq-bone-registry-text-snapshot-extraction-fidelity-2026-06-22.json",
+        "change_type": "create",
+        "rationale": "Records extraction-fidelity supervisor review of normalized markdown sections, section index, and registry-text limitations."
+      }
+    ],
+    "generated_files": [
+      "data/evidence-reviews/senolytics-dq-bone-registry-text-snapshot-source-fidelity-2026-06-22.json",
+      "data/evidence-reviews/senolytics-dq-bone-registry-text-snapshot-extraction-fidelity-2026-06-22.json"
+    ],
+    "export_paths": [
+      "exports/latest/audit-manifest.json"
+    ]
+  },
+  "quality_checks": [
+    {
+      "check_name": "artifact_hashes_match_manifest",
+      "status": "passed",
+      "summary": "sha256sum verified that raw JSON, normalized markdown, and sections JSON match the hashes recorded in the text_snapshot manifest."
+    },
+    {
+      "check_name": "section_index_consistency",
+      "status": "passed",
+      "summary": "The text_snapshot section_index and sections.json both contain eight matching registry sections."
+    },
+    {
+      "check_name": "required_review_lanes",
+      "status": "passed",
+      "summary": "The candidate now has active complete source_fidelity and extraction_fidelity reviews with verdict accept and blocking false."
+    },
+    {
+      "check_name": "verify_knowledge_base",
+      "status": "passed",
+      "summary": "npm run verify:knowledge-base passed after review linkage and export refresh."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": [
+    "Promote or revise the registry text-snapshot candidate.",
+    "Use the retained registry markdown as input for the next registry extraction-refresh repair pass."
+  ]
+}

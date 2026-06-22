@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-dq-bone-registry-text-snapshot-source-fidelity-2026-06-22",
+  "candidate_change_id": "senolytics-dq-bone-registry-text-snapshot-2026-06-22",
+  "review_lane": "source_fidelity",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex-supervisor-agent",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Source fidelity is acceptable for the D+Q bone ClinicalTrials.gov text-snapshot candidate. The retained raw JSON hash matches the source_snapshot content hash, the source snapshot and text snapshot both use public_registry access policy, and the active source_rights record allows raw payload, normalized markdown, section index, content hash, provenance locator, and structured extraction artifact classes.",
+  "findings": [
+    {
+      "finding_id": "raw-payload-hash-matches-source-snapshot",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "The retained raw JSON SHA-256 is 3b2a5e094062fb8b16156c58dfaae082a473537da6961ebacf48b06bb19d0cb3, matching source_snapshot.content_sha256.",
+      "why_it_matters": "The artifact can be audited back to the exact registry payload represented by the source snapshot.",
+      "recommended_action": "Keep the source snapshot hash stable; create a refreshed snapshot and new text snapshot if ClinicalTrials.gov content changes.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "rights-and-access-policy-align",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "The text snapshot, linked source snapshot, and source_rights record all classify the source as public_registry for retained registry artifacts.",
+      "why_it_matters": "Artifact retention is controlled by both source access policy and source-rights policy, reducing rights drift.",
+      "recommended_action": "Continue blocking retained article full text unless a separate open reusable or repository source is classified.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "artifact-paths-and-hashes-present",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "The text_snapshot record lists raw JSON, normalized markdown, and section-index artifact paths with SHA-256 hashes.",
+      "why_it_matters": "Agents can reuse artifacts while audits can detect missing or changed retained files.",
+      "recommended_action": "Use the normalized markdown and sections JSON as preferred inputs for future registry extraction-refresh workers.",
+      "resolution_status": "closed"
+    }
+  ]
+}

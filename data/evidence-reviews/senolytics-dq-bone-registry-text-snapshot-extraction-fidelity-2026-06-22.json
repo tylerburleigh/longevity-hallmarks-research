@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-dq-bone-registry-text-snapshot-extraction-fidelity-2026-06-22",
+  "candidate_change_id": "senolytics-dq-bone-registry-text-snapshot-2026-06-22",
+  "review_lane": "extraction_fidelity",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex-supervisor-agent",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Extraction fidelity is acceptable for this registry text-snapshot normalization. The section index contains eight stable sections covering trial overview, study design, conditions, arms/interventions, eligibility, protocol outcomes, posted outcome measures, and adverse events. The normalized markdown preserves registry module locators and key posted-result group/analysis values, while explicitly limiting itself to a ClinicalTrials.gov registry record rather than article full text.",
+  "findings": [
+    {
+      "finding_id": "section-index-covers-registry-modules",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "The text snapshot has eight sections, matching the generated sections.json module index.",
+      "why_it_matters": "Stable section IDs and source locators let future agents cite reusable registry text regions rather than rereading the full raw JSON.",
+      "recommended_action": "Use section IDs such as posted-results-outcomes and adverse-events in future registry extraction-refresh provenance.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "posted-results-values-preserved",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "The normalized posted-results section preserves outcome titles, time frames, group labels, measured values, and p-values for the key registry outcome measures.",
+      "why_it_matters": "This makes the markdown useful for extraction agents while raw JSON remains available for audit and parser repair.",
+      "recommended_action": "Route any future result-record repair through the retained raw JSON and section-index artifacts before updating canonical results.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "normalization-boundary-explicit",
+      "severity": "note",
+      "category": "missing_caveat",
+      "claim_or_issue": "The text_snapshot quality limitations state that this is normalized ClinicalTrials.gov registry text, not article full text, and that markdown is derived from selected registry modules.",
+      "why_it_matters": "Consumers and agents should not treat this artifact as a complete publication or supplementary-material extraction.",
+      "recommended_action": "Keep full publication/table extraction as a separate source-rights and text-snapshot path.",
+      "resolution_status": "closed"
+    }
+  ]
+}

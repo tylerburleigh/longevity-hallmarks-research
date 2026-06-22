@@ -1142,6 +1142,15 @@ async function audit() {
           relativePath: artifact.path
         });
       }
+
+      if (
+        retainedArtifactClasses.includes("normalized_markdown") &&
+        (!record.quality?.limitations || record.quality.limitations.length === 0)
+      ) {
+        issues.push(
+          `${relativePath}: text_snapshot records with normalized_markdown artifacts must declare quality.limitations so downstream extraction agents can account for parser and normalization boundaries.`
+        );
+      }
     }
 
     if (record.record_type === "coverage_assessment") {

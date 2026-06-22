@@ -136,6 +136,15 @@ For execution:
 npm run agent:codex -- ... --execute --post-export-verify
 ```
 
+## Text Snapshot Jobs
+
+Use these templates when a worker needs to retain ClinicalTrials.gov registry text or review a retained text snapshot:
+
+- `docs/templates/codex-jobs/clinicaltrials-text-snapshot-ingestion.json`
+- `docs/templates/codex-jobs/text-snapshot-supervisor-review.json`
+
+Copy a filled job into `ops/codex-jobs/` only when the run is ready to execute or when its pending output should become part of the audited job ledger.
+
 ## Promotion Boundary
 
 CLI workers must not mark candidates `accepted` or `applied`.

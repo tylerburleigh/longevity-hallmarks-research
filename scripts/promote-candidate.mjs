@@ -2,6 +2,14 @@
 
 import { promises as fs } from "node:fs";
 import path from "node:path";
+import {
+  buildParallelReconciliation,
+  decisionResolvesFindingForCandidate,
+  detailedReconciliationFindings,
+  findingImpactsCandidate,
+  loadReconciliationDecisions,
+  unresolvedPromotionFindings
+} from "./reconcile-parallel-outputs.mjs";
 
 const workspaceRoot = process.cwd();
 const dataRoots = ["data", "research"];
@@ -135,8 +143,9 @@ async function checkProposedRecord({ issues, proposedRecord }) {
   }
 }
 
-async function collectPromotionIssues({ index, candidate, targetStatus }) {
+async function collectPromotionChecks({ index, candidate, targetStatus }) {
   const issues = [];
+  const reconciliationDecisionIds = [];
 
   if (targetStatus === "accepted" && candidate.lifecycle_status !== "in_review") {
     issues.push(`candidate must be in_review before promotion to accepted; current status is "${candidate.lifecycle_status}".`);
@@ -210,7 +219,35 @@ async function collectPromotionIssues({ index, candidate, targetStatus }) {
     await checkProposedRecord({ issues, proposedRecord });
   }
 
-  return issues;
+  const reconciliationReport = await buildParallelReconciliation();
+  const reconciliationDecisions = await loadReconciliationDecisions();
+  const impactedFindings = detailedReconciliationFindings(reconciliationReport)
+    .filter((finding) => finding.severity === "blocker")
+    .filter((finding) => findingImpactsCandidate(finding, candidate));
+  const unresolvedFindings = unresolvedPromotionFindings({
+    report: reconciliationReport,
+    decisions: reconciliationDecisions,
+    candidate
+  });
+
+  for (const finding of unresolvedFindings) {
+    issues.push(
+      `unresolved reconciliation finding "${finding.issue_id}" (${finding.category}) blocks promotion: ${finding.summary}`
+    );
+  }
+
+  for (const finding of impactedFindings) {
+    for (const decisionEntry of reconciliationDecisions) {
+      if (decisionResolvesFindingForCandidate(decisionEntry.record, finding, candidate)) {
+        reconciliationDecisionIds.push(decisionEntry.record.id);
+      }
+    }
+  }
+
+  return {
+    issues,
+    reconciliationDecisionIds: [...new Set(reconciliationDecisionIds)].sort((left, right) => left.localeCompare(right))
+  };
 }
 
 async function main() {
@@ -224,7 +261,7 @@ async function main() {
   }
 
   const candidate = candidateEntry.record;
-  const issues = await collectPromotionIssues({
+  const { issues, reconciliationDecisionIds } = await collectPromotionChecks({
     index,
     candidate,
     targetStatus: options.targetStatus
@@ -246,6 +283,7 @@ async function main() {
       promoted_at: new Date().toISOString(),
       promoted_by_agent: "promote-candidate",
       reviewed_review_ids: candidate.evidence_review_ids ?? [],
+      ...(reconciliationDecisionIds.length > 0 ? { reconciliation_decision_ids: reconciliationDecisionIds } : {}),
       summary: `Promoted to ${options.targetStatus} after all required active review lanes passed.`
     }
   };

@@ -12,6 +12,12 @@ The report is written to:
 ops/reconciliation/parallel-reconciliation.v1.json
 ```
 
+Explicit reconciliation decisions live under:
+
+```text
+ops/reconciliation/decisions/
+```
+
 It checks:
 
 - duplicate source identity by DOI, PMID, trial-registry source ID, URL, and source-type/name key
@@ -27,4 +33,6 @@ Freshness is enforced by:
 npm run audit:reconciliation
 ```
 
-The audit rebuilds the report from canonical state and ignores only `generated_at`. The report is intentionally diagnostic at this stage: open findings are recorded for agent routing and future promotion gates, while the audit only fails when the generated report is missing or stale.
+The audit rebuilds the report from canonical state and ignores only `generated_at`. It also checks any `reconciliation_decision` records against the current report, so stale issue IDs or mismatched issue categories fail verification.
+
+Promotion is blocked when a candidate is affected by a blocker-severity reconciliation finding unless a resolved `reconciliation_decision` record names that issue and candidate.

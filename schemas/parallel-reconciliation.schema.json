@@ -48,6 +48,7 @@
         "live_job_root",
         "archive_job_root",
         "batch_run_root",
+        "decision_root",
         "active_candidate_statuses",
         "duplicate_source_keys",
         "duplicate_study_keys",
@@ -64,6 +65,9 @@
           "type": "string"
         },
         "batch_run_root": {
+          "type": "string"
+        },
+        "decision_root": {
           "type": "string"
         },
         "active_candidate_statuses": {
@@ -124,6 +128,7 @@
         "reconciliation_batch_count",
         "parallel_batch_run_count",
         "pending_parallel_worker_count",
+        "reconciliation_decision_count",
         "incomplete_ledger_count",
         "open_finding_count",
         "blocking_finding_count",
@@ -183,6 +188,10 @@
           "minimum": 0
         },
         "pending_parallel_worker_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reconciliation_decision_count": {
           "type": "integer",
           "minimum": 0
         },

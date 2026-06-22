@@ -158,6 +158,13 @@
           },
           "uniqueItems": true
         },
+        "reconciliation_decision_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/identifier"
+          },
+          "uniqueItems": true
+        },
         "summary": {
           "type": "string"
         }

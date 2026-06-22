@@ -2,7 +2,12 @@
 
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import { buildParallelReconciliation, outputPath, workspaceRoot } from "./reconcile-parallel-outputs.mjs";
+import {
+  buildParallelReconciliation,
+  loadReconciliationDecisions,
+  outputPath,
+  workspaceRoot
+} from "./reconcile-parallel-outputs.mjs";
 
 const ignoredGeneratedValue = "<generated_at>";
 
@@ -60,6 +65,45 @@ async function main() {
       console.error(`Changed top-level section(s): ${diffs.join(", ")}.`);
     }
     console.error("Run npm run reconcile:parallel and review the generated diff.");
+    process.exit(1);
+  }
+
+  const findingById = new Map([
+    ...(actual.duplicate_sources ?? []),
+    ...(actual.duplicate_studies ?? []),
+    ...(actual.overlapping_candidate_proposals ?? []),
+    ...(actual.source_rights_conflicts ?? []),
+    ...(actual.incomplete_ledgers ?? [])
+  ].map((finding) => [finding.issue_id, finding]));
+  const decisionIssues = [];
+
+  for (const decisionEntry of await loadReconciliationDecisions()) {
+    const decision = decisionEntry.record;
+    if (decision.reconciliation_report_id !== actual.id) {
+      decisionIssues.push(
+        `${decisionEntry.path}: reconciliation_report_id "${decision.reconciliation_report_id}" does not match ${actual.id}.`
+      );
+    }
+
+    for (const issueId of decision.issue_ids ?? []) {
+      const finding = findingById.get(issueId);
+      if (!finding) {
+        decisionIssues.push(`${decisionEntry.path}: issue_ids[] references unknown current reconciliation issue "${issueId}".`);
+        continue;
+      }
+      if (!(decision.issue_categories ?? []).includes(finding.category)) {
+        decisionIssues.push(
+          `${decisionEntry.path}: issue "${issueId}" has category "${finding.category}" not listed in issue_categories[].`
+        );
+      }
+    }
+  }
+
+  if (decisionIssues.length > 0) {
+    console.error(`Parallel-reconciliation audit failed with ${decisionIssues.length} decision issue(s):`);
+    for (const issue of decisionIssues) {
+      console.error(`- ${issue}`);
+    }
     process.exit(1);
   }
 

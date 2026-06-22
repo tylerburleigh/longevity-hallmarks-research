@@ -11,6 +11,7 @@ export const batchPlanPath = "ops/codex-batches/parallel-batch-plan.v1.json";
 export const liveJobRoot = "ops/codex-jobs/live";
 export const archiveJobRoot = "ops/codex-jobs/archive";
 export const batchRunRoot = "ops/codex-batches/runs";
+export const reconciliationDecisionRoot = "ops/reconciliation/decisions";
 export const reconciliationVersion = "1.0.0";
 
 const canonicalRoots = ["data", "research"];
@@ -172,6 +173,21 @@ async function loadBatchRuns() {
   }
 
   return runs.toSorted((left, right) => left.path.localeCompare(right.path));
+}
+
+export async function loadReconciliationDecisions(rootPath = reconciliationDecisionRoot) {
+  const files = await walkJsonFiles(path.join(workspaceRoot, rootPath));
+  const decisions = [];
+
+  for (const filePath of files) {
+    const relativePath = toPosixRelative(filePath);
+    const record = await readJson(relativePath);
+    if (record?.record_type === "reconciliation_decision") {
+      decisions.push({ record, path: relativePath });
+    }
+  }
+
+  return decisions.toSorted((left, right) => left.path.localeCompare(right.path));
 }
 
 function addGroup(groups, key, entry) {
@@ -503,10 +519,68 @@ function openFindings(...findingGroups) {
     .toSorted((left, right) => left.issue_id.localeCompare(right.issue_id));
 }
 
+function candidateProposedPaths(candidate) {
+  return new Set((candidate.proposed_records ?? []).map((record) => record.path).filter(Boolean));
+}
+
+export function findingImpactsCandidate(finding, candidate) {
+  if (!candidate?.id) {
+    return false;
+  }
+
+  if (finding.category === "overlapping_candidate_proposal") {
+    return (finding.candidate_change_ids ?? []).includes(candidate.id);
+  }
+
+  if (finding.category === "incomplete_ledger") {
+    return finding.record_type === "candidate_change" && finding.record_id === candidate.id;
+  }
+
+  const proposedPaths = candidateProposedPaths(candidate);
+  if (["duplicate_source", "duplicate_study", "source_rights_conflict"].includes(finding.category)) {
+    return (finding.paths ?? []).some((findingPath) => proposedPaths.has(findingPath));
+  }
+
+  return false;
+}
+
+export function decisionResolvesFindingForCandidate(decision, finding, candidate) {
+  if (!decision || !finding || !candidate?.id) {
+    return false;
+  }
+  return (
+    decision.resolution_status === "resolved" &&
+    (decision.issue_ids ?? []).includes(finding.issue_id) &&
+    (decision.issue_categories ?? []).includes(finding.category) &&
+    (decision.candidate_change_ids ?? []).includes(candidate.id)
+  );
+}
+
+export function detailedReconciliationFindings(report) {
+  return [
+    ...(report.duplicate_sources ?? []),
+    ...(report.duplicate_studies ?? []),
+    ...(report.overlapping_candidate_proposals ?? []),
+    ...(report.source_rights_conflicts ?? []),
+    ...(report.incomplete_ledgers ?? [])
+  ];
+}
+
+export function unresolvedPromotionFindings({ report, decisions, candidate }) {
+  return detailedReconciliationFindings(report)
+    .filter((finding) => finding.severity === "blocker")
+    .filter((finding) => findingImpactsCandidate(finding, candidate))
+    .filter(
+      (finding) => !decisions.some((entry) => decisionResolvesFindingForCandidate(entry.record, finding, candidate))
+    )
+    .toSorted((left, right) => left.issue_id.localeCompare(right.issue_id));
+}
+
 export async function buildParallelReconciliation({ generatedAt = new Date().toISOString() } = {}) {
   const records = await loadRecords(canonicalRoots);
   const batchPlan = await readOptionalJson(batchPlanPath, undefined);
   const batchRuns = await loadBatchRuns();
+  const reconciliationDecisions = await loadReconciliationDecisions();
 
   const sourceEntries = records.filter((entry) => entry.record.record_type === "source");
   const studyEntries = records.filter((entry) => entry.record.record_type === "study");
@@ -538,6 +612,7 @@ export async function buildParallelReconciliation({ generatedAt = new Date().toI
       live_job_root: liveJobRoot,
       archive_job_root: archiveJobRoot,
       batch_run_root: batchRunRoot,
+      decision_root: reconciliationDecisionRoot,
       active_candidate_statuses: activeCandidateStatuses,
       duplicate_source_keys: duplicateSourceKeys,
       duplicate_study_keys: duplicateStudyKeys,
@@ -560,6 +635,7 @@ export async function buildParallelReconciliation({ generatedAt = new Date().toI
       pending_parallel_worker_count: incompleteLedgerItems.filter(
         (finding) => finding.ledger_type === "parallel_worker_pending_reconciliation"
       ).length,
+      reconciliation_decision_count: reconciliationDecisions.length,
       incomplete_ledger_count: incompleteLedgerItems.length,
       open_finding_count: allOpenFindings.length,
       blocking_finding_count: allOpenFindings.filter((finding) => finding.severity === "blocker").length,

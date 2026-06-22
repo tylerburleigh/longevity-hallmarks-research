@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "parallel_reconciliation",
   "id": "parallel-reconciliation-v1",
-  "generated_at": "2026-06-22T21:39:42.236Z",
+  "generated_at": "2026-06-22T22:00:29.194Z",
   "source_roots": [
     "data",
     "research",
@@ -15,6 +15,7 @@
     "live_job_root": "ops/codex-jobs/live",
     "archive_job_root": "ops/codex-jobs/archive",
     "batch_run_root": "ops/codex-batches/runs",
+    "decision_root": "ops/reconciliation/decisions",
     "active_candidate_statuses": [
       "draft",
       "submitted",
@@ -57,6 +58,7 @@
     "reconciliation_batch_count": 3,
     "parallel_batch_run_count": 0,
     "pending_parallel_worker_count": 0,
+    "reconciliation_decision_count": 0,
     "incomplete_ledger_count": 2,
     "open_finding_count": 10,
     "blocking_finding_count": 10,

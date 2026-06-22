@@ -8,12 +8,13 @@ Before release:
 npm run export:latest
 npm run export:triage-state
 npm run export:release-readiness
+npm run reconcile:parallel
 npm run verify:knowledge-base
 ```
 
 `verify:knowledge-base` runs schema validation, reference-integrity checks, export checks, read-model checks, triage-state freshness checks, release-readiness freshness checks, agent schema checks, Codex job conformance checks, and the agentic process vocabulary audit.
 
-`promote:candidate` advances a candidate to `accepted` or `applied` only after required supervisor-agent review gates pass.
+`promote:candidate` advances a candidate to `accepted` or `applied` only after required supervisor-agent review gates pass and blocker-severity reconciliation findings affecting that candidate have resolved `reconciliation_decision` records.
 
 `export:latest` regenerates the consumer-facing files in `exports/latest/`, including JSONL record exports, synthesis-group exports, coverage status, evidence-map view, SQLite read model, consumer contract, and audit manifest.
 
@@ -28,6 +29,8 @@ npm run verify:knowledge-base
 `audit:triage-state` checks that the persisted control-plane state still matches canonical JSON inputs, ignoring only the timestamp value.
 
 `audit:release-readiness` checks that the persisted release-boundary state still matches canonical JSON inputs, ignoring only the timestamp value.
+
+`audit:reconciliation` checks that the persisted parallel reconciliation report still matches canonical JSON and orchestration inputs, ignoring only the timestamp value. It also validates explicit reconciliation decisions against current issue IDs and issue categories.
 
 `test:audit-regressions` runs negative fixtures in isolated temp copies and verifies that known bad states fail the expected audit gates.
 
@@ -49,6 +52,7 @@ Current audit coverage:
 - export hash, row-content, consumer-contract, coverage-status, read-model, and extraction-grade provenance checks
 - triage-state freshness checks for candidate readiness, extraction debt, snapshot staleness, coverage gaps, and recommended jobs
 - release-readiness freshness checks for promotion-ready candidates, accepted-record export eligibility, and accepted records blocked by create, release-accept, or graph-reference release dependencies
+- reconciliation freshness checks for duplicate source/study identities, overlapping active candidate proposals, source-rights conflicts, candidate/agent-run ledgers, pending isolated-worker outputs, and explicit reconciliation decisions
 - deprecated non-agentic process vocabulary checks
 - negative audit regression fixtures for missing provenance, unsupported promotion, duplicate active review lanes, stale exports, stale triage state, stale release-readiness state, archived-job placement, bad worker-output ledgers, unsafe text-retention exports, invalid pooling, and deprecated process vocabulary
 

@@ -285,7 +285,7 @@ function sourceAccessAllowsRetainedArtifacts(accessPolicy, artifactClasses = [])
 function activeSourceRightsRecords(index, sourceId) {
   return [...(index.recordsByType.get("source_rights")?.values() ?? [])]
     .filter(({ record }) => record.source_id === sourceId && record.rights_status !== "remediated")
-    .map(({ record, relativePath }) => ({ record, relativePath }));
+    .map(({ record }) => record);
 }
 
 function artifactClassesAllowedByRights(rightsRecord, artifactClasses = []) {
@@ -1096,12 +1096,31 @@ async function audit() {
         recordType: "source_snapshot",
         recordId: record.source_snapshot_id
       });
+      const sourceSnapshot = getRecord(index, "source_snapshot", record.source_snapshot_id);
+      if (sourceSnapshot && sourceSnapshot.source_id !== record.source_id) {
+        issues.push(
+          `${relativePath}: source_snapshot_id "${record.source_snapshot_id}" belongs to source "${sourceSnapshot.source_id}", not "${record.source_id}".`
+        );
+      }
 
       const retainedArtifactClasses = (record.artifacts ?? []).map((artifact) => artifact.artifact_type);
       const [sourceRights] = activeSourceRightsRecords(index, record.source_id);
       if (!sourceAccessAllowsRetainedArtifacts(record.access_policy, retainedArtifactClasses)) {
         issues.push(
           `${relativePath}: retained raw, markdown, or section artifacts require open_reusable, public_registry, or author_manuscript_or_preprint_repository access.`
+        );
+      }
+      if (sourceSnapshot && !sourceAccessAllowsRetainedArtifacts(sourceSnapshot.access_policy, retainedArtifactClasses)) {
+        issues.push(
+          `${relativePath}: retained raw, markdown, or section artifacts require the linked source_snapshot access_policy to allow every retained artifact class.`
+        );
+      }
+      if (
+        sourceSnapshot?.access_policy?.access_tier &&
+        sourceSnapshot.access_policy.access_tier !== record.access_policy.access_tier
+      ) {
+        issues.push(
+          `${relativePath}: text_snapshot access_policy.access_tier "${record.access_policy.access_tier}" does not match source_snapshot access_tier "${sourceSnapshot.access_policy.access_tier}".`
         );
       }
       if (!artifactClassesAllowedByRights(sourceRights, retainedArtifactClasses)) {

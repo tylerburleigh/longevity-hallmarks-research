@@ -106,6 +106,7 @@ As of 2026-06-22, the repository has an initial JSON-file-backed scaffold:
 - Hardened Codex orchestration for pending-job ledgers, wrapper-owned post-run verification, and existing-output recovery after post-step failures.
 - Added an explicit source access policy and `text_snapshot` contract so retained raw text, normalized markdown, section indexes, hashes, and full-text provenance can be audited.
 - Added a `source_rights` contract so attribution, terms/license source, artifact-retention classes, public-export policy, and remediation state are machine-readable.
+- Added the first retained public-registry text snapshot for the D+Q bone ClinicalTrials.gov source, including raw JSON, normalized markdown, section index, artifact hashes, and source-snapshot raw-storage state.
 
 ## Target Architecture
 
@@ -368,6 +369,7 @@ Tasks:
 - [x] Add `text_snapshot` schema support for raw payloads, normalized markdown, section indexes, hashes, parser metadata, and full-text provenance.
 - [x] Add `source_rights` schema support for attribution, terms/license source, artifact-retention classes, public-export policy, and remediation state.
 - [x] Add retention and public-export audits that connect source snapshots, source-rights records, and text snapshots.
+- [x] Add the first retained ClinicalTrials.gov text-snapshot ingestion pass.
 
 Exit criteria:
 
@@ -468,9 +470,10 @@ Exit criteria:
 3. Run extraction-refresh passes on the remaining human D+Q papers: DKD, IPF, and AD-risk cognition/mobility.
 4. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
 5. Add triage state generation and research-session templates.
-6. Run source-fidelity supervisor review for `senolytics-dq-bone-source-rights-seed-2026-06-22`.
-7. Implement the first safe-tier text-ingestion pass: ClinicalTrials.gov registry payload artifacts first, then open reusable or author/repository full text for the D+Q bone RCT if available.
-8. Decide whether to install repo-local skills into the active Codex skills directory.
+6. Run source-fidelity and extraction-fidelity supervisor reviews for `senolytics-dq-bone-registry-text-snapshot-2026-06-22`.
+7. Promote or revise the source-rights seed candidate now that source-fidelity review is accepting.
+8. Use the retained ClinicalTrials.gov markdown as input for a registry extraction-refresh repair pass.
+9. Decide whether to install repo-local skills into the active Codex skills directory.
 
 ## Change Log
 
@@ -478,6 +481,7 @@ Exit criteria:
 - 2026-06-22: Hardened Codex orchestration with pending-job expected-output ledgers, post-run verification that avoids self-referential job-audit loops, and `--post-process-existing` recovery for completed worker outputs.
 - 2026-06-22: Added source access-policy and text-snapshot contracts, including safe retention tiers for open reusable sources, public registries, and author/preprint/repository copies.
 - 2026-06-22: Added source-rights schema, export, audits, source-rights documentation, consumer disclaimer, and a submitted D+Q bone rights-classification seed candidate.
+- 2026-06-22: Completed source-fidelity supervisor review for the D+Q bone source-rights seed and added the first retained ClinicalTrials.gov registry text snapshot with raw JSON, markdown, section index, and hashes.
 - 2026-06-21: Added maturity/provenance fields, semantic audit gates, candidate-completeness checking, and normalized the senolytics repair slice under the stricter process.
 - 2026-06-21: Added a senolytics coverage-repair slice with sources, studies, findings, outcomes, results, eligibility decisions, risk-of-bias triage, coverage assessment, and candidate-review ledger.
 - 2026-06-21: Added source-snapshot IDs to extraction-grade bone RCT provenance, reconciled coverage gaps, and added export audits for stale JSONL and snapshot-linked result provenance.

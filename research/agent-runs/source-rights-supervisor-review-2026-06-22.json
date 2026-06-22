@@ -1,0 +1,102 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "source-rights-supervisor-review-2026-06-22",
+  "agent_role": "supervisor_agent",
+  "agent_id": "codex-supervisor-agent",
+  "mode": "agent_directed",
+  "started_at": "2026-06-22T11:05:00Z",
+  "completed_at": "2026-06-22T11:12:00Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "Review source fidelity for the D+Q bone source-rights seed candidate before registry text ingestion.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": [
+      "dasatinib-quercetin"
+    ]
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "interactive_session",
+    "isolation": "foreground_checkout",
+    "workspace_path": "/home/tyler/Workspace/longevity-hallmarks-research",
+    "sandbox": "danger-full-access",
+    "approval_policy": "not_applicable"
+  },
+  "inputs": [
+    {
+      "input_type": "candidate_change",
+      "reference": "data/candidate-changes/senolytics-dq-bone-source-rights-seed-2026-06-22.json",
+      "summary": "Submitted rights-classification candidate covering the D+Q bone ClinicalTrials.gov and PubMed sources."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/source-rights/source-rights-nct-04313634-2026-06-22.json",
+      "summary": "ClinicalTrials.gov public_registry rights classification."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/source-rights/source-rights-pmid-38956196-2026-06-22.json",
+      "summary": "PubMed/publisher metadata_only rights classification."
+    },
+    {
+      "input_type": "record",
+      "reference": "docs/source-rights-rules.md",
+      "summary": "Source-rights operating rules for artifact retention, attribution, public export, and remediation."
+    }
+  ],
+  "outputs": {
+    "summary": "Completed source-fidelity supervisor review for the D+Q bone source-rights seed candidate, linked the accepting review, and moved the candidate to in_review.",
+    "candidate_change_id": "senolytics-dq-bone-source-rights-seed-2026-06-22",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "senolytics-dq-bone-source-rights-seed-2026-06-22",
+        "path": "data/candidate-changes/senolytics-dq-bone-source-rights-seed-2026-06-22.json",
+        "change_type": "update",
+        "rationale": "Moved the rights seed candidate to in_review and linked the accepting source-fidelity supervisor review."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "senolytics-dq-bone-source-rights-source-fidelity-2026-06-22",
+        "path": "data/evidence-reviews/senolytics-dq-bone-source-rights-source-fidelity-2026-06-22.json",
+        "change_type": "create",
+        "rationale": "Records the completed source-fidelity supervisor review for the source-rights candidate."
+      }
+    ],
+    "generated_files": [
+      "data/evidence-reviews/senolytics-dq-bone-source-rights-source-fidelity-2026-06-22.json"
+    ],
+    "export_paths": [
+      "exports/latest/audit-manifest.json"
+    ]
+  },
+  "quality_checks": [
+    {
+      "check_name": "source_fidelity_review_lane",
+      "status": "passed",
+      "summary": "The source-rights candidate now has one active complete source_fidelity review with verdict accept and blocking false."
+    },
+    {
+      "check_name": "rights_boundary",
+      "status": "passed",
+      "summary": "The review preserves the public_registry boundary for ClinicalTrials.gov and the metadata_only boundary for the PubMed/publisher article source."
+    },
+    {
+      "check_name": "verify_knowledge_base",
+      "status": "passed",
+      "summary": "npm run verify:knowledge-base passed after review linkage and export refresh."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": [
+    "Use the accepted source-fidelity review state to proceed with ClinicalTrials.gov registry text-snapshot ingestion.",
+    "Leave rights promotion to a separate promotion step if accepted-record export policy needs it."
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-dq-bone-source-rights-source-fidelity-2026-06-22",
+  "candidate_change_id": "senolytics-dq-bone-source-rights-seed-2026-06-22",
+  "review_lane": "source_fidelity",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex-supervisor-agent",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Source-rights source fidelity is acceptable for the D+Q bone rights seed. The ClinicalTrials.gov source is correctly classified as public_registry for registry payload retention and manifest export; the PubMed-indexed Nature Medicine article is correctly kept metadata_only until a reusable full-text or repository source is separately classified.",
+  "findings": [
+    {
+      "finding_id": "registry-rights-boundary-supported",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "The ClinicalTrials.gov record is classified as public_registry with raw payload, normalized markdown, section index, structured extraction, and artifact manifest permissions.",
+      "why_it_matters": "This gives agents a safe first source class for retained text artifacts and repeated extraction without overextending article full-text rights.",
+      "recommended_action": "Use the registry source-rights record for the first text_snapshot ingestion pass.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "pubmed-metadata-only-boundary-supported",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "The PubMed/publisher article source is classified as metadata_only rather than reusable full text.",
+      "why_it_matters": "This prevents the system from treating article citation or abstract access as permission to retain publisher full text or normalized article markdown.",
+      "recommended_action": "Create a separate open_reusable or author_manuscript_or_preprint_repository source-rights record only if a qualifying full-text source is found.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "remediation-policy-present",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "Both source-rights records include public-export and remediation policy.",
+      "why_it_matters": "Agentic text ingestion and export repair need explicit machine-readable actions when rights classification changes.",
+      "recommended_action": "Keep public exports limited to metadata, structured facts, hashes, locators, rights metadata, and artifact manifests unless a rights record explicitly allows retained artifacts.",
+      "resolution_status": "closed"
+    }
+  ]
+}

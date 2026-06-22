@@ -8,6 +8,7 @@
     "audit:references": "node scripts/audit-references.mjs",
     "ingest:pubmed": "node scripts/ingest-pubmed.mjs",
     "ingest:clinicaltrials": "node scripts/ingest-clinicaltrials.mjs",
+    "ingest:clinicaltrials-text": "node scripts/ingest-clinicaltrials-text-snapshot.mjs",
     "refresh:source-snapshot": "node scripts/refresh-source-snapshot.mjs",
     "diff:source-snapshot": "node scripts/diff-source-snapshot.mjs",
     "promote:candidate": "node scripts/promote-candidate.mjs",

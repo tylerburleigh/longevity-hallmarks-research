@@ -60,3 +60,19 @@ If a source hash changes, agents should refresh the source snapshot, regenerate 
 - If only `metadata_only` access exists, extraction should stay at metadata, abstract, registry, or triage maturity unless another safe full-text source is found.
 - Record parser limitations in `text_snapshot.quality.limitations`.
 - Use source-local section IDs in provenance locators so result extraction can be audited back to a stable text region.
+
+## ClinicalTrials.gov Registry Text
+
+Use the registry text-snapshot importer for ClinicalTrials.gov API snapshots:
+
+```bash
+npm run ingest:clinicaltrials-text -- --snapshot data/source-snapshots/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json
+```
+
+Write artifacts and the `text_snapshot` record:
+
+```bash
+npm run ingest:clinicaltrials-text -- --snapshot data/source-snapshots/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json --write
+```
+
+The importer fetches the source URL, verifies the fetched SHA-256 against `source_snapshot.content_sha256`, writes `raw.json`, `registry.md`, and `sections.json`, updates `source_snapshot.raw_storage`, and writes `data/text-snapshots/<id>.json`.

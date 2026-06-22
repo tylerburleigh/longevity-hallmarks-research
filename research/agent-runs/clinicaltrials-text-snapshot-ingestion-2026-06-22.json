@@ -1,0 +1,130 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "clinicaltrials-text-snapshot-ingestion-2026-06-22",
+  "agent_role": "extraction_agent",
+  "agent_id": "codex-coordinator",
+  "mode": "extraction_refresh",
+  "started_at": "2026-06-22T11:13:00Z",
+  "completed_at": "2026-06-22T11:20:00Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "Create the first retained ClinicalTrials.gov registry text snapshot for the D+Q bone RCT.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": [
+      "dasatinib-quercetin"
+    ]
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "interactive_session",
+    "isolation": "foreground_checkout",
+    "workspace_path": "/home/tyler/Workspace/longevity-hallmarks-research",
+    "sandbox": "danger-full-access",
+    "approval_policy": "not_applicable",
+    "command": [
+      "npm",
+      "run",
+      "ingest:clinicaltrials-text",
+      "--",
+      "--snapshot",
+      "data/source-snapshots/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+      "--created-at",
+      "2026-06-22T11:20:00Z",
+      "--write"
+    ]
+  },
+  "inputs": [
+    {
+      "input_type": "source_snapshot",
+      "reference": "data/source-snapshots/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+      "summary": "ClinicalTrials.gov API v2 source snapshot for NCT04313634; current API payload hash matched the recorded content hash before artifact retention."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/source-rights/source-rights-nct-04313634-2026-06-22.json",
+      "summary": "Public-registry source-rights record allowing retained raw payload, normalized markdown, section index, structured extraction, and artifact manifests."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/evidence-reviews/senolytics-dq-bone-source-rights-source-fidelity-2026-06-22.json",
+      "summary": "Accepting supervisor-agent source-fidelity review for the source-rights candidate."
+    },
+    {
+      "input_type": "other",
+      "reference": "scripts/ingest-clinicaltrials-text-snapshot.mjs",
+      "summary": "Registry text-snapshot importer used to fetch, hash-check, normalize, and write retained artifacts."
+    }
+  ],
+  "outputs": {
+    "summary": "Created a submitted text-snapshot candidate, updated the ClinicalTrials.gov source_snapshot with access policy and raw_storage path, and created the first retained text_snapshot record with raw JSON, normalized markdown, section index, and SHA-256 artifact hashes.",
+    "candidate_change_id": "senolytics-dq-bone-registry-text-snapshot-2026-06-22",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "senolytics-dq-bone-registry-text-snapshot-2026-06-22",
+        "path": "data/candidate-changes/senolytics-dq-bone-registry-text-snapshot-2026-06-22.json",
+        "change_type": "create",
+        "rationale": "Tracks the retained registry text artifact change set and required review lanes."
+      },
+      {
+        "record_type": "source_snapshot",
+        "record_id": "snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+        "path": "data/source-snapshots/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+        "change_type": "update",
+        "rationale": "Records public_registry access policy and raw_storage path for the retained ClinicalTrials.gov payload."
+      },
+      {
+        "record_type": "text_snapshot",
+        "record_id": "text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+        "path": "data/text-snapshots/text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+        "change_type": "create",
+        "rationale": "Creates the retained raw payload, normalized markdown, section index, parser metadata, and artifact hashes for registry-text reuse."
+      }
+    ],
+    "generated_files": [
+      "artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/raw.json",
+      "artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/registry.md",
+      "artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/sections.json",
+      "data/candidate-changes/senolytics-dq-bone-registry-text-snapshot-2026-06-22.json",
+      "data/text-snapshots/text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json"
+    ],
+    "export_paths": [
+      "exports/latest/text-snapshots.jsonl",
+      "exports/latest/audit-manifest.json"
+    ]
+  },
+  "quality_checks": [
+    {
+      "check_name": "source_snapshot_hash_match",
+      "status": "passed",
+      "summary": "The current ClinicalTrials.gov API payload SHA-256 matched source_snapshot.content_sha256 before raw artifact retention."
+    },
+    {
+      "check_name": "source_rights_allows_artifacts",
+      "status": "passed",
+      "summary": "The source_rights record allows raw_payload, normalized_markdown, section_index, structured_extraction, content_hash, and provenance_locator artifact classes for this public_registry source."
+    },
+    {
+      "check_name": "artifact_hashes_recorded",
+      "status": "passed",
+      "summary": "The text_snapshot record stores SHA-256 hashes for raw JSON, normalized markdown, and section-index JSON artifacts."
+    },
+    {
+      "check_name": "verify_knowledge_base",
+      "status": "passed",
+      "summary": "npm run verify:knowledge-base passed after text-snapshot ingestion and export refresh."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": [
+    "Run source_fidelity and extraction_fidelity supervisor reviews for the text-snapshot candidate before promotion.",
+    "Use the normalized registry markdown as the preferred input for future registry extraction-refresh workers."
+  ]
+}

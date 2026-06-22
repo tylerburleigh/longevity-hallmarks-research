@@ -25,8 +25,8 @@
     "adverse_event_time_frame": "Baseline to end of study, approximately 20 weeks"
   },
   "raw_storage": {
-    "stored": false,
-    "reason_not_stored": "Snapshot stores retrieval URL, content hash, and structured summary; raw JSON can be refetched from ClinicalTrials.gov API v2."
+    "stored": true,
+    "path": "artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/raw.json"
   },
   "tags": [
     "clinicaltrials",
@@ -34,5 +34,20 @@
     "senolytics",
     "bone",
     "posted-results"
-  ]
+  ],
+  "access_policy": {
+    "access_tier": "public_registry",
+    "artifact_policy": "retain_raw_and_markdown",
+    "safe_artifact_classes": [
+      "raw_payload",
+      "normalized_markdown",
+      "section_index",
+      "metadata_summary",
+      "content_hash",
+      "provenance_locator",
+      "structured_extraction"
+    ],
+    "basis": "ClinicalTrials.gov API records are public registry data and are treated as safe for raw artifact retention, normalization, and structured extraction.",
+    "checked_at": "2026-06-22T11:20:00Z"
+  }
 }

@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "release_manifest",
   "id": "latest-consumer-export",
-  "generated_at": "2026-06-22T10:54:54.652Z",
+  "generated_at": "2026-06-22T11:27:30.696Z",
   "export_version": "0.1.0",
   "export_scope": {
     "description": "Consumer-facing latest export generated from canonical research and data records.",
@@ -62,8 +62,8 @@
       "path": "exports/latest/text-snapshots.jsonl",
       "format": "jsonl",
       "description": "Retained source text artifacts, normalized markdown references, hashes, section indexes, and access policy metadata.",
-      "record_count": 0,
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      "record_count": 1,
+      "sha256": "e2e73af2ca3ea2e77558fa6a413379cac85510cda2b48785c1c59aa1ba8f6f3d"
     },
     {
       "path": "exports/latest/results.all.jsonl",
@@ -105,23 +105,23 @@
       "format": "json",
       "description": "Generated graph view of source, study, finding, outcome, result, coverage, and synthesis-compatibility links.",
       "record_count": 1,
-      "sha256": "7a42f93763b7ef9cd67504d64ec1fa9e2bbf0ef8635ddc119541287644db98c2"
+      "sha256": "f6a8ce3cdf0c6ac9732a9f75dfeda936cc7db8a668935fa0f9ba81dca1e3b2a6"
     },
     {
       "path": "exports/latest/coverage-status.json",
       "format": "json",
       "description": "Consumer coverage status with current/superseded flags and known-gap warnings.",
       "record_count": 1,
-      "sha256": "54a3c6748a3bf733f4afe342116edded656e6691c154368cea5d92f82214d3e6"
+      "sha256": "af6b580cb1d046941677304d1c75c0f180af31d50ed2b8fddc03011a77749d77"
     }
   ],
   "record_counts": {
-    "canonical_records": 106,
+    "canonical_records": 111,
     "sources": 10,
     "source_rights": 2,
     "studies": 9,
     "findings": 9,
-    "text_snapshots": 0,
+    "text_snapshots": 1,
     "results_all": 14,
     "results_extraction_grade": 7,
     "results_registry_extracted": 7,

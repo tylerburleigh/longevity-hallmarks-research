@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "senolytics-dq-bone-registry-text-snapshot-2026-06-22",
+  "name": "Create D+Q bone ClinicalTrials.gov text snapshot",
+  "summary": "Creates the first retained text_snapshot for a safe public-registry source: the D+Q bone ClinicalTrials.gov API payload, normalized markdown, section index, and updated source-snapshot raw storage state.",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-22T11:20:00Z",
+  "scope": {
+    "question": "Retain and normalize the ClinicalTrials.gov registry payload for the D+Q bone RCT so agents can reuse source text without repeated source processing.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "senolytics-dq-bone-registry-text-snapshot-2026-06-22",
+      "path": "data/candidate-changes/senolytics-dq-bone-registry-text-snapshot-2026-06-22.json",
+      "change_type": "create",
+      "rationale": "Tracks the retained registry text artifact change set and required review lanes."
+    },
+    {
+      "record_type": "source_snapshot",
+      "record_id": "snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+      "path": "data/source-snapshots/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+      "change_type": "update",
+      "rationale": "Records public_registry access policy and raw_storage path for the retained ClinicalTrials.gov payload."
+    },
+    {
+      "record_type": "text_snapshot",
+      "record_id": "text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+      "path": "data/text-snapshots/text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+      "change_type": "create",
+      "rationale": "Creates the retained raw payload, normalized markdown, section index, parser metadata, and artifact hashes for registry-text reuse."
+    }
+  ],
+  "required_review_lanes": [
+    "source_fidelity",
+    "extraction_fidelity"
+  ],
+  "evidence_review_ids": []
+}

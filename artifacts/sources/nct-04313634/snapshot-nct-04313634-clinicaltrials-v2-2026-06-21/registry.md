@@ -1,0 +1,396 @@
+# Targeting Cellular Senescence With Senolytics to Improve Skeletal Health in Older Humans
+
+## Trial Overview
+
+- source_snapshot_id: snapshot-nct-04313634-clinicaltrials-v2-2026-06-21
+- nct_id: NCT04313634
+- brief_title: Targeting Cellular Senescence With Senolytics to Improve Skeletal Health in Older Humans
+- official_title: Targeting Cellular Senescence With Senolytics to Improve Skeletal Health in Older Humans: A Phase 2, Single-Center, 20-week, Open-Label, Randomized Controlled Trial.
+- overall_status: COMPLETED
+- phase: PHASE2
+- enrollment: 74 ACTUAL
+- results_first_posted: 2024-07-22
+- last_update_posted: 2024-07-22
+
+## Study Design
+
+- study_type: INTERVENTIONAL
+- phases: PHASE2
+- allocation: RANDOMIZED
+- intervention_model: PARALLEL
+- primary_purpose: SUPPORTIVE_CARE
+- masking: NONE
+- enrollment_count: 74
+- enrollment_type: ACTUAL
+
+## Conditions And Keywords
+
+- conditions: Healthy
+
+## Arms And Interventions
+
+- arm: Dasatinib plus Quercetin Treatment Goup
+  - type: EXPERIMENTAL
+  - description: Subjects will receive Dasatinib (D; 100 mg for two days) plus Quercetin (Q; 1000 mg total daily for three consecutive days taken orally on an intermittent schedule (starting every 28 days) with no-therapy periods in between dosing regimens, repeated every 28 days over 20 weeks, resulting in five total dosing periods throughout the entire intervention
+  - interventions: Drug: Dasatinib; Drug: Quercetin
+- arm: Fisetin Treatment Group
+  - type: EXPERIMENTAL
+  - description: Subjects will receive Fisetin (F; \~20 mg/kg/day for three consecutive days) taken orally on an intermittent schedule (starting every 28 days) with no-therapy periods in between dosing regimens, repeated every 28 days over 20 weeks, resulting in five total dosing periods throughout the entire intervention
+  - interventions: Drug: Fisetin
+- arm: Untreated Control Group
+  - type: NO_INTERVENTION
+  - description: Subjects will not receive any intervention
+- intervention: Dasatinib
+  - type: DRUG
+  - description: Dasatinib will be supplied as 100 mg tablet white to off-white, biconvex, oval, film- coated
+- intervention: Quercetin
+  - type: DRUG
+  - description: Quercetin will be supplied as quercetin phytosome (sophora japonica concentrate (leaf) / phosphatidylcholine complex from Sunflower) 250 mg
+- intervention: Fisetin
+  - type: DRUG
+  - description: Fisetin will be supplied in 100 mg capsules to be administered orally
+
+## Eligibility
+
+- sex: FEMALE
+- minimum_age: 60 Years
+- healthy_volunteers: true
+- criteria: Inclusion Criteria:
+
+* Able and willing to provide informed consent.
+* Normal postmenopausal women
+* Aged ≥60 years
+
+Exclusion Criteria:
+
+* Hemoglobin A1c ≥8.0% at screening
+* Subjects who are type II diabetic and on insulin
+* Abnormal screening labs: Calcium \>10.1 mg/dL, Phosphorus \>4.7 mg/dL, Thyroid stimulating hormone (TSH) level \<0.3mU/L, Fasting blood glucose \>200 mg/dL.
+* Presence of significant liver (total bilirubin, AST, ALT, or alkaline phosphatase \>2x upper normal limit) or kidney disease (eGFR\<30 ml/min/1.73 m2 (using the cystatin C blood levels for analysis). If any elevation were to be noted (2x the normal limit), the study participant would stop treatment and have levels re-drawn in a month, per the clinical judgement of the investigator
+* Presence of a clinical diagnosis of heart failure
+* Known active malignancy (including myeloma)
+* Current diagnosis of malabsorption or undergoing treatment for malabsorption disease
+* If any of the laboratory blood work drawn at the study visits return with lab values outside of the "normal limits" or show a significant change from a previous value, a repeat blood draw would be done before the subject is excluded.
+* Gastric bypass/reduction
+* Hyperthyroidism
+* Acromegaly
+* Cushing's syndrome
+* Hypopituitarism
+* Subjects with a fracture within the past six months
+* Undergoing treatment with any medications that affect bone turnover, including the following:
+
+  * adrenocorticosteroids (\> 3 months at any time or \> 10 days within the previous yr, except for use of topical steroid creams or gels or inhaled steroids), anticonvulsant therapy (within the previous year), include only those taking Carbamazepine, Phenobarbital and Phenytoin,
+  * bisphosphonates (within the past 3 yrs),
+  * denosumab,
+  * estrogen (E) therapy or treatment with a selective E receptor modulator, or teriparatide (within the past yr)
+* QTc \>450 msec
+* Inability to provide consent
+* Inability to tolerate oral medication
+* Current diagnosis of hypo- or hyperparathyroidism or currently undergoing treatment for the disease
+* Subjects on therapeutic doses of anti-coagulants (e.g. warfarin, heparin, low molecular weight heparin, factor Xa inhibitors, etc)
+* Subjects with hypovitaminosis D (25-hydroxyvitamin D \[25(OH)D\] \<20 ng/ml, whose level does not improve above 20 ng/ml after two courses of 4-week treatment of 50,000 IU/d of Vitamin D. They will be referred to their primary provider should this occur.
+* Subjects taking anti-arrhythmic medications known to cause QTc prolongation
+* Subjects taking potentially senolytic agents within the last 6 months: Quercetin, Luteolin, Dasatinib, Piperlongumine, or Navitoclax
+* Subjects currently taking drugs that induce cellular senescence: alkylating agents, anthracyclines, platins, other chemotherapy
+* Subjects taking H2 antagonists, unless randomized to the control group
+* Tyrosine kinase inhibitor therapy
+* Subjects not having a PBTL p16INK4a mRNA expression level \>95 percentile of young female controls (this cut-off is depicted by the dotted line in Fig. 6)
+* Known hypersensitivity or allergy to Dasatinib orQuercetin
+* Subjects taking the following antimicrobial agents: Aminoglycosides, Azole antifungals (fluconazole, miconazole, voriconazole, itraconazole), Macrolides (clarithromycin, erythromycin), Antivirals (nelfinavir, indinavir, saquinavir, ritonavir, elbasvir/grazoprevir), Rifampin
+* If the DXA assessment reveals a spine or femur neck T-score \< -2.5, the participant will be advised of this. She would then be given the option of withdrawing from the study to immediately start an osteoporosis drug through her primary care physician or continue in the study and defer osteoporosis drug treatment for the duration of the study (20 weeks). Given that osteoporosis is a chronic, long-term disease, the 20-week deferral would pose a minimal risk to the participant and she would be free to make this choice.
+* Subjects taking medications that are sensitive to substrates or substrates with a narrow therapeutic range for CYP3A4, CYP2C8, CYP2C9, or CYP2D6 or strong inhibitors or inducers of CYP3A4 (e.g., cyclosporine, tacrolimus or sirolimus). If antifungals are necessary from an infectious disease perspective, then they will be allowed only if the levels are therapeutic.
+* Subjects taking strong inhibitors of CYP3A4
+* Subjects on antiplatelet agents (Clopidogrel \[Plavix\]; Dipyridamole + Asprin \[Aggrenox\]; Ticagrelor \[Brilinta\]; Prasugrel \[Effient\]; Ticlopidine \[Ticlid\] or Other) who are unable or unwilling to reduce or hold therapy prior to and during the study drug dosing periods. Subjects may continue their previous regimen between study drug dosing periods.
+* Subjects on quinolone antibiotic therapy for treatment or for prevention of infections within ten days.
+* Subjects taking proton pump inhibitors and unwilling to discontinue therapy for two days before and during the study drug dosing periods.
+* Subjects with clinically evident fluid retention
+* Subjects with evidence of right heart strain on ECG
+* Subjects with a history of pulmonary hypertension
+* Subjects with an abnormal Complete Blood Count (clinically insignificant changes would be acceptable based on the judgement of the investigators)
+* Presence of any condition the Investigator believes would place the subject at risk or would preclude the subject from successfully completing all aspects of the trial.
+
+## Protocol Outcomes
+
+- primary_outcomes[0]: Change in C-terminal Telopeptide of Type I Collagen [CTX]; time_frame=Baseline, 20 weeks
+- secondary_outcomes[0]: Change in Bone Turnover Markers; time_frame=Baseline, 2 weeks
+- secondary_outcomes[1]: Change in Bone Turnover Markers; time_frame=Baseline, 4 weeks
+- secondary_outcomes[2]: Change in Bone Turnover Markers; time_frame=Baseline, 20 weeks
+- secondary_outcomes[3]: Change in Bone Mineral Density (BMD); time_frame=Baseline, 20 weeks
+- secondary_outcomes[4]: Change in Plasma Senescence-associated Secretory Phenotype (SASP); time_frame=Baseline, 2 weeks
+
+## Posted Results Outcomes
+
+- outcomeMeasures[0]: Change in C-terminal Telopeptide of Type I Collagen [CTX]
+  - time_frame: Baseline, 20 weeks
+  - description: Percent change in serum bone turnover markers C-terminal telopeptide of type I collagen \[CTX\]. The C-terminal telopeptide (CTX), also known as carboxy-terminal collagen crosslinks, is a biomarker used to measure the rate of bone turnover. It provides valuable information for assessing bone health and evaluating treatment responses.
+  - type: PRIMARY
+  - group OG000: Dasatinib Plus Quercetin Treatment Goup
+  - group OG001: Fisetin Treatment Group
+  - group OG002: Untreated Control Group
+  - class: Unlabeled class
+    - measurement group=OG000 value=-4.1 spread=NA
+    - measurement group=OG001 value=13.7 spread=NA
+    - measurement group=OG002 value=-7.7 spread=NA
+  - analysis groups=OG000; OG002 method=unknown p_value=0.611
+- outcomeMeasures[1]: Change in Bone Turnover Markers
+  - time_frame: Baseline, 2 weeks
+  - description: Percent change in amino-terminal propeptide of type I collagen (P1NP). The P1NP assay measures the serum concentration of the amino-terminal propeptide of type I procollagen (P1NP). As the concentration of this extension propeptide is directly proportional to the amount of new collagen laid down in bone, it can be used to assess bone formation.
+  - type: SECONDARY
+  - group OG000: Dasatinib Plus Quercetin Treatment Goup
+  - group OG001: Fisetin Treatment Group
+  - group OG002: Untreated Control Group
+  - class: Unlabeled class
+    - measurement group=OG000 value=0.8 spread=NA
+    - measurement group=OG001 value=-31.9 spread=NA
+    - measurement group=OG002 value=-15.2 spread=NA
+  - analysis groups=OG000; OG002 method=unknown p_value=0.020
+- outcomeMeasures[2]: Change in Bone Turnover Markers
+  - time_frame: Baseline, 4 weeks
+  - description: Percent change in amino-terminal propeptide of type I collagen (P1NP). The P1NP assay measures the serum concentration of the amino-terminal propeptide of type I procollagen (P1NP). As the concentration of this extension propeptide is directly proportional to the amount of new collagen laid down in bone, it can be used to assess bone formation.
+  - type: SECONDARY
+  - group OG000: Dasatinib Plus Quercetin Treatment Goup
+  - group OG001: Untreated Control Group
+  - class: Unlabeled class
+    - measurement group=OG000 value=4.2 spread=NA
+    - measurement group=OG001 value=-12.1 spread=NA
+  - analysis groups=OG000; OG001 method=unknown p_value=0.024
+- outcomeMeasures[3]: Change in Bone Turnover Markers
+  - time_frame: Baseline, 20 weeks
+  - description: Percent change in amino-terminal propeptide of type I collagen (P1NP). The P1NP assay measures the serum concentration of the amino-terminal propeptide of type I procollagen (P1NP). As the concentration of this extension propeptide is directly proportional to the amount of new collagen laid down in bone, it can be used to assess bone formation.
+  - type: SECONDARY
+  - group OG000: Dasatinib Plus Quercetin Treatment Goup
+  - group OG001: Fisetin Treatment Group
+  - group OG002: Untreated Control Group
+  - class: Unlabeled class
+    - measurement group=OG000 value=-8.6 spread=NA
+    - measurement group=OG001 value=4.5 spread=NA
+    - measurement group=OG002 value=0.1 spread=NA
+  - analysis groups=OG000; OG002 method=unknown p_value=0.149
+- outcomeMeasures[4]: Change in Bone Mineral Density (BMD)
+  - time_frame: Baseline, 20 weeks
+  - description: Percent change in BMD by dual-energy X-ray absorptiometry (DXA) at the lumbar spine, hip ((total and femoral neck (FN), and radius (total and ultra-distal)).
+  - type: SECONDARY
+  - group OG000: Dasatinib Plus Quercetin Treatment Goup
+  - group OG001: Fisetin Treatment Group
+  - group OG002: Untreated Control Group
+  - class: Lumbar Spine
+    - measurement group=OG000 value=-0.2 spread=NA
+    - measurement group=OG001 value=0 spread=NA
+    - measurement group=OG002 value=0.5 spread=NA
+  - class: Hip (Femoral neck )
+    - measurement group=OG000 value=-0.3 spread=NA
+    - measurement group=OG001 value=-0.9 spread=NA
+    - measurement group=OG002 value=-0.5 spread=NA
+  - class: Radius
+    - measurement group=OG000 value=0.4 spread=NA
+    - measurement group=OG001 value=0.7 spread=NA
+    - measurement group=OG002 value=0.2 spread=NA
+- outcomeMeasures[5]: Change in Plasma Senescence-associated Secretory Phenotype (SASP)
+  - time_frame: Baseline, 2 weeks
+  - description: Percent change in SASP cells (representing the total senescence cell burden) present. Assessment of senescence markers in bone at baseline and 2 weeks.
+  - type: SECONDARY
+  - group OG000: Dasatinib Plus Quercetin Treatment Goup
+  - group OG001: Fisetin Treatment Group
+  - group OG002: Untreated Control Group
+  - class: Unlabeled class
+    - measurement group=OG000 value=-2.6 spread=NA
+    - measurement group=OG001 value=-0.9 spread=NA
+    - measurement group=OG002 value=-2.5 spread=NA
+  - analysis groups=OG000; OG002 method=unknown p_value=0.953
+
+## Adverse Events
+
+- time_frame: Adverse Events were collected from baseline to end of study, approximately 20 weeks
+- event_group EG000: Dasatinib Plus Quercetin Treatment Goup
+  - description: Subjects received Dasatinib (D; 100 mg for two days) plus Quercetin (Q; 1000 mg total daily) for three consecutive days taken orally on an intermittent schedule (starting every 28 days) with no-therapy periods in between dosing regimens, repeated every 28 days over 20 weeks, resulted in five total dosing periods throughout the entire intervention
+
+Dasatinib: Dasatinib will be supplied as 100 mg tablet white to off-white, biconvex, oval, film- coated
+
+Quercetin: Quercetin will be supplied as quercetin phytosome (sophora japonica concentrate (leaf) / phosphatidylcholine complex from Sunflower) 250 mg
+  - deaths_num_affected: 0
+  - serious_num_affected: 0
+  - other_num_affected: 23
+- event_group EG001: Fisetin Treatment Group
+  - description: Subjects received Fisetin (F; \~20 mg/kg/day for three consecutive days) taken orally on an intermittent schedule (starting every 28 days) with no-therapy periods in between dosing regimens, repeated every 28 days over 20 weeks, resulted in five total dosing periods throughout the entire intervention
+
+Fisetin: Fisetin will be supplied in 100 mg capsules to be administered orally
+  - deaths_num_affected: 0
+  - serious_num_affected: 1
+  - other_num_affected: 12
+- event_group EG002: Untreated Control Group
+  - description: Subjects did not receive any intervention
+  - deaths_num_affected: 0
+  - serious_num_affected: 0
+  - other_num_affected: 5
+- seriousEvents: Gastric hemorrhage (Gastrointestinal disorders)
+  - group=EG000 affected=0 at_risk=30
+  - group=EG001 affected=1 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Abdominal distention (Gastrointestinal disorders)
+  - group=EG000 affected=0 at_risk=30
+  - group=EG001 affected=1 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Abdominal pain (Gastrointestinal disorders)
+  - group=EG000 affected=0 at_risk=30
+  - group=EG001 affected=1 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Constipation (Gastrointestinal disorders)
+  - group=EG000 affected=3 at_risk=30
+  - group=EG001 affected=1 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Diarrhea (Gastrointestinal disorders)
+  - group=EG000 affected=7 at_risk=30
+  - group=EG001 affected=1 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Dry Mouth (Gastrointestinal disorders)
+  - group=EG000 affected=0 at_risk=30
+  - group=EG001 affected=1 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Gastroesophageal reflux disease (Gastrointestinal disorders)
+  - group=EG000 affected=2 at_risk=30
+  - group=EG001 affected=0 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Nausea (General disorders)
+  - group=EG000 affected=5 at_risk=30
+  - group=EG001 affected=1 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Allergic rhinitis (Respiratory, thoracic and mediastinal disorders)
+  - group=EG000 affected=0 at_risk=30
+  - group=EG001 affected=1 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Cough (Respiratory, thoracic and mediastinal disorders)
+  - group=EG000 affected=1 at_risk=30
+  - group=EG001 affected=0 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Covid (Respiratory, thoracic and mediastinal disorders)
+  - group=EG000 affected=2 at_risk=30
+  - group=EG001 affected=0 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Respiratory, thoracic and mediastinal disorders - other (Respiratory, thoracic and mediastinal disorders)
+  - group=EG000 affected=1 at_risk=30
+  - group=EG001 affected=0 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Anorexia (Metabolism and nutrition disorders)
+  - group=EG000 affected=1 at_risk=30
+  - group=EG001 affected=1 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Dehydration (Metabolism and nutrition disorders)
+  - group=EG000 affected=0 at_risk=30
+  - group=EG001 affected=1 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Metabolism and nutrition disorders - other (Metabolism and nutrition disorders)
+  - group=EG000 affected=0 at_risk=30
+  - group=EG001 affected=1 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Arthritis (Musculoskeletal and connective tissue disorders)
+  - group=EG000 affected=1 at_risk=30
+  - group=EG001 affected=0 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Back pain (Musculoskeletal and connective tissue disorders)
+  - group=EG000 affected=1 at_risk=30
+  - group=EG001 affected=0 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Neck pain (Musculoskeletal and connective tissue disorders)
+  - group=EG000 affected=1 at_risk=30
+  - group=EG001 affected=0 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Cardiac disorders - other (Cardiac disorders)
+  - group=EG000 affected=1 at_risk=30
+  - group=EG001 affected=0 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Depression (Psychiatric disorders)
+  - group=EG000 affected=1 at_risk=30
+  - group=EG001 affected=0 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Insomnia (Psychiatric disorders)
+  - group=EG000 affected=1 at_risk=30
+  - group=EG001 affected=0 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Dizziness (Nervous system disorders)
+  - group=EG000 affected=1 at_risk=30
+  - group=EG001 affected=0 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Extrapyramidal disorder (Nervous system disorders)
+  - group=EG000 affected=1 at_risk=30
+  - group=EG001 affected=0 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Headache (Nervous system disorders)
+  - group=EG000 affected=16 at_risk=30
+  - group=EG001 affected=1 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Muscle weakness (Nervous system disorders)
+  - group=EG000 affected=1 at_risk=30
+  - group=EG001 affected=0 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Neuralgia (Nervous system disorders)
+  - group=EG000 affected=0 at_risk=30
+  - group=EG001 affected=1 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Dry Skin (Skin and subcutaneous tissue disorders)
+  - group=EG000 affected=1 at_risk=30
+  - group=EG001 affected=0 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Hyperhidrosis (Skin and subcutaneous tissue disorders)
+  - group=EG000 affected=1 at_risk=30
+  - group=EG001 affected=0 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Skin and subcutaneous tissue disorders - other (Skin and subcutaneous tissue disorders)
+  - group=EG000 affected=1 at_risk=30
+  - group=EG001 affected=0 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Facial pain (General disorders)
+  - group=EG000 affected=1 at_risk=30
+  - group=EG001 affected=0 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Fatigue (General disorders)
+  - group=EG000 affected=4 at_risk=30
+  - group=EG001 affected=1 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Flu like symptoms (General disorders)
+  - group=EG000 affected=0 at_risk=30
+  - group=EG001 affected=1 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Pain (General disorders)
+  - group=EG000 affected=3 at_risk=30
+  - group=EG001 affected=1 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Flushing (Vascular disorders)
+  - group=EG000 affected=1 at_risk=30
+  - group=EG001 affected=1 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Hot flashes (Reproductive system and breast disorders)
+  - group=EG000 affected=1 at_risk=30
+  - group=EG001 affected=0 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Menorrhagia (Reproductive system and breast disorders)
+  - group=EG000 affected=0 at_risk=30
+  - group=EG001 affected=0 at_risk=14
+  - group=EG002 affected=1 at_risk=30
+- otherEvents: Renal and urinary disorders - other (Renal and urinary disorders)
+  - group=EG000 affected=0 at_risk=30
+  - group=EG001 affected=1 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Urinary frequency (Renal and urinary disorders)
+  - group=EG000 affected=0 at_risk=30
+  - group=EG001 affected=1 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Skin infection (Skin and subcutaneous tissue disorders)
+  - group=EG000 affected=1 at_risk=30
+  - group=EG001 affected=0 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Vertigo (Ear and labyrinth disorders)
+  - group=EG000 affected=2 at_risk=30
+  - group=EG001 affected=1 at_risk=14
+  - group=EG002 affected=1 at_risk=30
+- otherEvents: Cataract surgery (Eye disorders)
+  - group=EG000 affected=1 at_risk=30
+  - group=EG001 affected=1 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Fracture (Musculoskeletal and connective tissue disorders)
+  - group=EG000 affected=0 at_risk=30
+  - group=EG001 affected=1 at_risk=14
+  - group=EG002 affected=0 at_risk=30
+- otherEvents: Pain in extremity (Musculoskeletal and connective tissue disorders)
+  - group=EG000 affected=2 at_risk=30
+  - group=EG001 affected=5 at_risk=14
+  - group=EG002 affected=3 at_risk=30

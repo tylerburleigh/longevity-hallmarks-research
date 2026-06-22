@@ -39,7 +39,7 @@ Current audit coverage:
 - local source, study, outcome, result, finding, candidate-change, evidence-review, eligibility, risk-of-bias, hallmark, and track references
 - agent-run references to candidate changes, research sessions, and proposed record paths
 - `codex_exec` agent-run execution metadata points to existing prompt, schema, and output paths
-- `codex_job` specs stay split between runnable `ops/codex-jobs/live/` jobs and final `ops/codex-jobs/archive/` snapshots, with archived jobs matching final agent-run metadata, expected output paths, required review lanes, quality gates, logs, and post-run checks
+- `codex_job` specs stay split between runnable `ops/codex-jobs/live/` jobs and final `ops/codex-jobs/archive/` snapshots, with archived jobs matching final agent-run metadata, expected output paths, required review lanes, orchestration metadata, quality gates, logs, and post-run checks
 - synthesis-group references to outcomes, results, and missing-field result IDs
 - candidate-change proposed record paths
 - active required review-lane records for `in_review`, `accepted`, and `applied` candidate changes

@@ -17,6 +17,7 @@
     "scope",
     "execution",
     "expected_outputs",
+    "orchestration",
     "quality_gates"
   ],
   "properties": {
@@ -203,6 +204,81 @@
         }
       }
     },
+    "orchestration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "read_sets",
+        "write_sets",
+        "conflict_keys",
+        "parallel_group",
+        "reconciliation_required",
+        "expected_cost"
+      ],
+      "properties": {
+        "read_sets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/orchestrationKey"
+          },
+          "uniqueItems": true
+        },
+        "write_sets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/orchestrationKey"
+          },
+          "uniqueItems": true
+        },
+        "conflict_keys": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/orchestrationKey"
+          },
+          "uniqueItems": true
+        },
+        "parallel_group": {
+          "$ref": "#/$defs/parallelGroup"
+        },
+        "reconciliation_required": {
+          "type": "boolean"
+        },
+        "expected_cost": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "cost_class",
+            "expected_wall_time_ms",
+            "expected_token_budget",
+            "io_intensity"
+          ],
+          "properties": {
+            "cost_class": {
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ]
+            },
+            "expected_wall_time_ms": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "expected_token_budget": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "io_intensity": {
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ]
+            }
+          }
+        }
+      }
+    },
     "post_run": {
       "type": "object",
       "additionalProperties": false,
@@ -330,6 +406,14 @@
         "synthesis_boundary",
         "safety_limitations"
       ]
+    },
+    "orchestrationKey": {
+      "type": "string",
+      "pattern": "^[a-z0-9_.-]+:[a-z0-9_./-]+$"
+    },
+    "parallelGroup": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+[a-z0-9._-]*$"
     }
   }
 }

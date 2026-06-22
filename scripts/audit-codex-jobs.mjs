@@ -195,12 +195,59 @@ function checkJobLifecycle({ issues, job, ownerPath, outputExists }) {
   }
 }
 
+function checkOrchestrationMetadata({ issues, job, ownerPath }) {
+  const orchestration = job.orchestration ?? {};
+  const readSets = orchestration.read_sets ?? [];
+  const writeSets = orchestration.write_sets ?? [];
+  const conflictKeys = orchestration.conflict_keys ?? [];
+
+  if (readSets.length === 0) {
+    issues.push(`${ownerPath}: orchestration.read_sets must declare at least one dependency key.`);
+  }
+
+  if ((job.expected_outputs?.canonical_write_policy === "candidate_change_required" || job.execution?.sandbox === "workspace-write") && writeSets.length === 0) {
+    issues.push(`${ownerPath}: orchestration.write_sets must declare planned write keys for jobs that can modify canonical state.`);
+  }
+
+  if (writeSets.length > 0 && conflictKeys.length === 0) {
+    issues.push(`${ownerPath}: orchestration.conflict_keys must declare serialization keys when write_sets are present.`);
+  }
+
+  for (const proposedPath of job.expected_outputs?.proposed_record_paths ?? []) {
+    const writeKey = `path:${proposedPath}`;
+    if (!writeSets.includes(writeKey)) {
+      issues.push(`${ownerPath}: orchestration.write_sets missing expected proposed record path key "${writeKey}".`);
+    }
+  }
+
+  if (job.expected_outputs?.candidate_change_id) {
+    const candidateConflictKey = `candidate_change:${job.expected_outputs.candidate_change_id}`;
+    if (!conflictKeys.includes(candidateConflictKey)) {
+      issues.push(`${ownerPath}: orchestration.conflict_keys missing candidate key "${candidateConflictKey}".`);
+    }
+  }
+
+  if (job.agent_role === "supervisor_agent") {
+    for (const lane of job.expected_outputs?.required_review_lanes ?? []) {
+      const reviewLaneConflictKey = `review_lane:${lane}`;
+      if (!conflictKeys.includes(reviewLaneConflictKey)) {
+        issues.push(`${ownerPath}: supervisor job orchestration.conflict_keys missing review lane key "${reviewLaneConflictKey}".`);
+      }
+    }
+  }
+
+  if (job.execution?.sandbox === "read-only" && writeSets.length > 0) {
+    issues.push(`${ownerPath}: read-only jobs must not declare orchestration.write_sets.`);
+  }
+}
+
 async function checkCodexJob({ issues, job, ownerPath }) {
   await checkPathExists({ issues, ownerPath, field: "prompt_file", relativePath: job.prompt_file });
   await checkPathExists({ issues, ownerPath, field: "execution.output_schema_path", relativePath: job.execution?.output_schema_path });
   const outputExists = await exists(path.join(workspaceRoot, job.output_path));
 
   checkJobLifecycle({ issues, job, ownerPath, outputExists });
+  checkOrchestrationMetadata({ issues, job, ownerPath });
 
   if (job.post_run?.verify_knowledge_base && !job.post_run?.export_latest) {
     issues.push(
@@ -329,11 +376,38 @@ async function checkCodexJob({ issues, job, ownerPath }) {
   }
 }
 
+function checkActiveJobConflicts({ issues, activeJobs }) {
+  for (let leftIndex = 0; leftIndex < activeJobs.length; leftIndex += 1) {
+    for (let rightIndex = leftIndex + 1; rightIndex < activeJobs.length; rightIndex += 1) {
+      const left = activeJobs[leftIndex];
+      const right = activeJobs[rightIndex];
+      if (left.job.orchestration?.parallel_group !== right.job.orchestration?.parallel_group) {
+        continue;
+      }
+
+      const leftConflictKeys = new Set(left.job.orchestration?.conflict_keys ?? []);
+      const overlappingConflictKeys = (right.job.orchestration?.conflict_keys ?? []).filter((key) => leftConflictKeys.has(key));
+      if (overlappingConflictKeys.length === 0) {
+        continue;
+      }
+
+      if (left.job.orchestration?.reconciliation_required && right.job.orchestration?.reconciliation_required) {
+        continue;
+      }
+
+      issues.push(
+        `${left.ownerPath} and ${right.ownerPath}: active jobs share parallel_group "${left.job.orchestration?.parallel_group}" and conflict key(s) [${stableArrayLabel(overlappingConflictKeys)}] without reconciliation_required on both jobs.`
+      );
+    }
+  }
+}
+
 async function main() {
   const issues = [];
   const jobFiles = await walkJsonFiles(jobRoot);
   let liveJobCount = 0;
   let archivedJobCount = 0;
+  const activeJobs = [];
 
   for (const filePath of jobFiles) {
     const ownerPath = toPosixRelative(filePath);
@@ -344,12 +418,17 @@ async function main() {
     }
     if (ownerPath.startsWith(liveJobPathPrefix)) {
       liveJobCount += 1;
+      if (activeJobStatuses.has(job.lifecycle_status)) {
+        activeJobs.push({ job, ownerPath });
+      }
     }
     if (ownerPath.startsWith(archiveJobPathPrefix)) {
       archivedJobCount += 1;
     }
     await checkCodexJob({ issues, job, ownerPath });
   }
+
+  checkActiveJobConflicts({ issues, activeJobs });
 
   if (issues.length > 0) {
     console.error(`Codex job audit failed with ${issues.length} issue(s):`);

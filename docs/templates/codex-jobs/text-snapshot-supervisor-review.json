@@ -54,6 +54,35 @@
       "exports/latest/evidence-map.json"
     ]
   },
+  "orchestration": {
+    "read_sets": [
+      "track:senolytics",
+      "hallmark:cellular_senescence",
+      "intervention:dasatinib-quercetin",
+      "source:nct-04313634",
+      "study:dq-postmenopausal-bone-rct",
+      "candidate_change:replace-with-candidate-change-id"
+    ],
+    "write_sets": [
+      "path:data/candidate-changes/replace-with-candidate-change-id.json",
+      "path:data/evidence-reviews/replace-with-source-fidelity-review-id.json",
+      "path:data/evidence-reviews/replace-with-extraction-fidelity-review-id.json"
+    ],
+    "conflict_keys": [
+      "candidate_change:replace-with-candidate-change-id",
+      "review_lane:source_fidelity",
+      "review_lane:extraction_fidelity",
+      "parallel_group:supervisor-review"
+    ],
+    "parallel_group": "supervisor-review",
+    "reconciliation_required": false,
+    "expected_cost": {
+      "cost_class": "low",
+      "expected_wall_time_ms": 1800000,
+      "expected_token_budget": 60000,
+      "io_intensity": "low"
+    }
+  },
   "post_run": {
     "export_latest": true,
     "verify_knowledge_base": true

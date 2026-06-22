@@ -48,6 +48,31 @@
       "exports/latest/audit-manifest.json"
     ]
   },
+  "orchestration": {
+    "read_sets": [
+      "track:senolytics",
+      "hallmark:cellular_senescence",
+      "intervention:dasatinib-quercetin",
+      "result:replace-with-result-id",
+      "export:latest"
+    ],
+    "write_sets": [
+      "path:data/candidate-changes/replace-with-candidate-change-id.json"
+    ],
+    "conflict_keys": [
+      "candidate_change:replace-with-candidate-change-id",
+      "result:replace-with-result-id",
+      "parallel_group:synthesis-refresh"
+    ],
+    "parallel_group": "synthesis-refresh",
+    "reconciliation_required": false,
+    "expected_cost": {
+      "cost_class": "medium",
+      "expected_wall_time_ms": 1800000,
+      "expected_token_budget": 80000,
+      "io_intensity": "medium"
+    }
+  },
   "post_run": {
     "export_latest": true,
     "verify_knowledge_base": true

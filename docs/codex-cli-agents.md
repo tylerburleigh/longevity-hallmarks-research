@@ -43,6 +43,17 @@ Job files use `record_type: "codex_job"` and are validated by `schemas/codex-job
 
 By default, the wrapper writes a dry-run command plan under `research/agent-runs/logs/`. Add `--execute` only when the worktree is ready for the worker to run.
 
+Job specs must declare `orchestration` metadata before they are runnable:
+
+- `read_sets`: records, scopes, exports, or artifacts the worker reads.
+- `write_sets`: canonical paths or artifacts the worker may write.
+- `conflict_keys`: serialization keys that prevent unsafe overlap between live jobs.
+- `parallel_group`: the batch class a scheduler may consider for concurrent execution.
+- `reconciliation_required`: whether overlapping outputs require a later reconciliation pass.
+- `expected_cost`: wall-time, token-budget, and I/O class hints for scheduling.
+
+Use stable keys such as `source:nct-04313634`, `study:dq-postmenopausal-bone-rct`, `candidate_change:<id>`, `path:data/results/<id>.json`, and `parallel_group:extraction-refresh`. `audit:codex-jobs` requires every expected proposed record path to appear in `write_sets`, supervisor jobs to conflict on their review lanes, and active live jobs in the same `parallel_group` to avoid overlapping `conflict_keys` unless both jobs require reconciliation.
+
 The wrapper builds a `codex exec` command with:
 
 - `--json` for event streams
@@ -114,7 +125,7 @@ Every worker final output must pass two schema gates:
 - `schemas/agent-run.schema.json` is the canonical repository validator used by `npm run validate:records`.
 - `npm run audit:agent-schemas` checks the shared enum contract between the two schemas.
 - `npm run audit:release-readiness` checks that the generated release-boundary queue still matches candidate lifecycle state and accepted-record export eligibility.
-- `npm run audit:codex-jobs` checks that persisted `codex_job` specs match their final `agent_run` records, candidate records, expected paths, required review lanes, quality gates, logs, and post-run checks.
+- `npm run audit:codex-jobs` checks that persisted `codex_job` specs match their final `agent_run` records, candidate records, expected paths, required review lanes, quality gates, orchestration metadata, logs, and post-run checks.
 - `worker_output_contract` checks the JSONL worker stream for a single final JSON `agent_run` and rejects ad hoc schema-validation snippets.
 
 When `canonical_write_policy` is `candidate_change_required`, the output must include:

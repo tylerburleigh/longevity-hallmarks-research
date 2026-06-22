@@ -1,0 +1,379 @@
+{
+  "schema_version": "1.0.0",
+  "fixtures": [
+    {
+      "id": "search-batch",
+      "description": "Independent search jobs share batches until the worker-width limit is reached.",
+      "max_workers": 2,
+      "parallel_group": "search-batch",
+      "jobs": [
+        {
+          "id": "fixture-search-cellular-senescence",
+          "agent_role": "search_agent",
+          "mode": "search",
+          "read_sets": [
+            "query:cellular-senescence"
+          ],
+          "write_sets": [
+            "path:research/search-logs/fixture-search-cellular-senescence.json"
+          ],
+          "conflict_keys": [
+            "search_query:cellular-senescence"
+          ]
+        },
+        {
+          "id": "fixture-search-dna-damage",
+          "agent_role": "search_agent",
+          "mode": "search",
+          "read_sets": [
+            "query:dna-damage"
+          ],
+          "write_sets": [
+            "path:research/search-logs/fixture-search-dna-damage.json"
+          ],
+          "conflict_keys": [
+            "search_query:dna-damage"
+          ]
+        },
+        {
+          "id": "fixture-search-mitochondrial-dysfunction",
+          "agent_role": "search_agent",
+          "mode": "search",
+          "read_sets": [
+            "query:mitochondrial-dysfunction"
+          ],
+          "write_sets": [
+            "path:research/search-logs/fixture-search-mitochondrial-dysfunction.json"
+          ],
+          "conflict_keys": [
+            "search_query:mitochondrial-dysfunction"
+          ]
+        }
+      ],
+      "expected": {
+        "summary": {
+          "live_job_count": 3,
+          "schedulable_job_count": 3,
+          "deferred_job_count": 0,
+          "batch_count": 2,
+          "max_batch_width": 2,
+          "independent_batch_count": 2,
+          "reconciliation_batch_count": 0
+        },
+        "batches": [
+          {
+            "parallel_group": "search-batch",
+            "execution_class": "independent",
+            "reconciliation_required": false,
+            "job_ids": [
+              "fixture-search-cellular-senescence",
+              "fixture-search-dna-damage"
+            ],
+            "overlapping_execution_keys": []
+          },
+          {
+            "parallel_group": "search-batch",
+            "execution_class": "independent",
+            "reconciliation_required": false,
+            "job_ids": [
+              "fixture-search-mitochondrial-dysfunction"
+            ],
+            "overlapping_execution_keys": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "registry-refresh-batch",
+      "description": "Registry refresh jobs for different registry records share a batch, while running work is deferred.",
+      "max_workers": 4,
+      "parallel_group": "registry-refresh-batch",
+      "jobs": [
+        {
+          "id": "fixture-registry-refresh-nct00000001",
+          "agent_role": "extraction_agent",
+          "mode": "registry_refresh",
+          "read_sets": [
+            "registry:nct00000001"
+          ],
+          "write_sets": [
+            "path:data/source-snapshots/fixture-nct00000001.json"
+          ],
+          "conflict_keys": [
+            "registry:nct00000001"
+          ]
+        },
+        {
+          "id": "fixture-registry-refresh-nct00000002",
+          "agent_role": "extraction_agent",
+          "mode": "registry_refresh",
+          "read_sets": [
+            "registry:nct00000002"
+          ],
+          "write_sets": [
+            "path:data/source-snapshots/fixture-nct00000002.json"
+          ],
+          "conflict_keys": [
+            "registry:nct00000002"
+          ]
+        },
+        {
+          "id": "fixture-registry-refresh-running",
+          "lifecycle_status": "running",
+          "agent_role": "extraction_agent",
+          "mode": "registry_refresh",
+          "read_sets": [
+            "registry:nct00000003"
+          ],
+          "write_sets": [
+            "path:data/source-snapshots/fixture-nct00000003.json"
+          ],
+          "conflict_keys": [
+            "registry:nct00000003"
+          ]
+        }
+      ],
+      "expected": {
+        "summary": {
+          "live_job_count": 3,
+          "schedulable_job_count": 2,
+          "deferred_job_count": 1,
+          "batch_count": 1,
+          "max_batch_width": 2,
+          "independent_batch_count": 1,
+          "reconciliation_batch_count": 0
+        },
+        "batches": [
+          {
+            "parallel_group": "registry-refresh-batch",
+            "execution_class": "independent",
+            "reconciliation_required": false,
+            "job_ids": [
+              "fixture-registry-refresh-nct00000001",
+              "fixture-registry-refresh-nct00000002"
+            ],
+            "overlapping_execution_keys": []
+          }
+        ],
+        "deferred_jobs": [
+          {
+            "job_id": "fixture-registry-refresh-running",
+            "reason": "already_running"
+          }
+        ]
+      }
+    },
+    {
+      "id": "extraction-refresh-batch",
+      "description": "Overlapping extraction refresh jobs can share a reconciliation-required batch when every overlapping job opts into reconciliation.",
+      "max_workers": 4,
+      "parallel_group": "extraction-refresh-batch",
+      "jobs": [
+        {
+          "id": "fixture-extraction-result-a-effect",
+          "agent_role": "extraction_agent",
+          "mode": "extraction_refresh",
+          "read_sets": [
+            "path:data/results/fixture-result-a.json"
+          ],
+          "write_sets": [
+            "path:data/results/fixture-result-a.json",
+            "target_record:result/fixture-result-a"
+          ],
+          "conflict_keys": [
+            "target_record:result/fixture-result-a"
+          ],
+          "reconciliation_required": true
+        },
+        {
+          "id": "fixture-extraction-result-a-safety",
+          "agent_role": "extraction_agent",
+          "mode": "extraction_refresh",
+          "read_sets": [
+            "path:data/results/fixture-result-a.json"
+          ],
+          "write_sets": [
+            "path:data/results/fixture-result-a.json",
+            "target_record:result/fixture-result-a"
+          ],
+          "conflict_keys": [
+            "target_record:result/fixture-result-a"
+          ],
+          "reconciliation_required": true
+        }
+      ],
+      "expected": {
+        "summary": {
+          "live_job_count": 2,
+          "schedulable_job_count": 2,
+          "deferred_job_count": 0,
+          "batch_count": 1,
+          "max_batch_width": 2,
+          "independent_batch_count": 0,
+          "reconciliation_batch_count": 1
+        },
+        "batches": [
+          {
+            "parallel_group": "extraction-refresh-batch",
+            "execution_class": "reconciliation_required",
+            "reconciliation_required": true,
+            "job_ids": [
+              "fixture-extraction-result-a-effect",
+              "fixture-extraction-result-a-safety"
+            ],
+            "overlapping_execution_keys": [
+              "path:data/results/fixture-result-a.json",
+              "target_record:result/fixture-result-a"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "supervisor-review-batch",
+      "description": "Supervisor review lanes for the same source candidate share a batch when lane write keys are independent.",
+      "max_workers": 4,
+      "parallel_group": "supervisor-review-batch",
+      "jobs": [
+        {
+          "id": "fixture-supervisor-review-source-fidelity",
+          "agent_role": "supervisor_agent",
+          "mode": "agent_directed",
+          "read_sets": [
+            "path:data/candidate-changes/fixture-candidate.json"
+          ],
+          "write_sets": [
+            "candidate_review:fixture-candidate/source_fidelity",
+            "path:data/evidence-reviews/fixture-source-fidelity.json"
+          ],
+          "conflict_keys": [
+            "candidate_review:fixture-candidate/source_fidelity"
+          ]
+        },
+        {
+          "id": "fixture-supervisor-review-taxonomy-mapping",
+          "agent_role": "supervisor_agent",
+          "mode": "agent_directed",
+          "read_sets": [
+            "path:data/candidate-changes/fixture-candidate.json"
+          ],
+          "write_sets": [
+            "candidate_review:fixture-candidate/taxonomy_mapping",
+            "path:data/evidence-reviews/fixture-taxonomy-mapping.json"
+          ],
+          "conflict_keys": [
+            "candidate_review:fixture-candidate/taxonomy_mapping"
+          ]
+        }
+      ],
+      "expected": {
+        "summary": {
+          "live_job_count": 2,
+          "schedulable_job_count": 2,
+          "deferred_job_count": 0,
+          "batch_count": 1,
+          "max_batch_width": 2,
+          "independent_batch_count": 1,
+          "reconciliation_batch_count": 0
+        },
+        "batches": [
+          {
+            "parallel_group": "supervisor-review-batch",
+            "execution_class": "independent",
+            "reconciliation_required": false,
+            "job_ids": [
+              "fixture-supervisor-review-source-fidelity",
+              "fixture-supervisor-review-taxonomy-mapping"
+            ],
+            "overlapping_execution_keys": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "self-healing-repair-batch",
+      "description": "Self-healing repairs for distinct targets share a batch while same-target repairs without reconciliation are serialized.",
+      "max_workers": 4,
+      "parallel_group": "self-healing-repair-batch",
+      "jobs": [
+        {
+          "id": "fixture-self-healing-alpha",
+          "agent_role": "self_healing_agent",
+          "mode": "agent_directed",
+          "read_sets": [
+            "triage_job:fixture-alpha"
+          ],
+          "write_sets": [
+            "candidate_change:fixture-alpha-repair",
+            "target_record:result/fixture-alpha"
+          ],
+          "conflict_keys": [
+            "target_record:result/fixture-alpha"
+          ]
+        },
+        {
+          "id": "fixture-self-healing-alpha-followup",
+          "agent_role": "self_healing_agent",
+          "mode": "agent_directed",
+          "read_sets": [
+            "triage_job:fixture-alpha-followup"
+          ],
+          "write_sets": [
+            "candidate_change:fixture-alpha-followup-repair",
+            "target_record:result/fixture-alpha"
+          ],
+          "conflict_keys": [
+            "target_record:result/fixture-alpha"
+          ]
+        },
+        {
+          "id": "fixture-self-healing-beta",
+          "agent_role": "self_healing_agent",
+          "mode": "agent_directed",
+          "read_sets": [
+            "triage_job:fixture-beta"
+          ],
+          "write_sets": [
+            "candidate_change:fixture-beta-repair",
+            "target_record:result/fixture-beta"
+          ],
+          "conflict_keys": [
+            "target_record:result/fixture-beta"
+          ]
+        }
+      ],
+      "expected": {
+        "summary": {
+          "live_job_count": 3,
+          "schedulable_job_count": 3,
+          "deferred_job_count": 0,
+          "batch_count": 2,
+          "max_batch_width": 2,
+          "independent_batch_count": 2,
+          "reconciliation_batch_count": 0
+        },
+        "batches": [
+          {
+            "parallel_group": "self-healing-repair-batch",
+            "execution_class": "independent",
+            "reconciliation_required": false,
+            "job_ids": [
+              "fixture-self-healing-alpha",
+              "fixture-self-healing-beta"
+            ],
+            "overlapping_execution_keys": []
+          },
+          {
+            "parallel_group": "self-healing-repair-batch",
+            "execution_class": "independent",
+            "reconciliation_required": false,
+            "job_ids": [
+              "fixture-self-healing-alpha-followup"
+            ],
+            "overlapping_execution_keys": []
+          }
+        ]
+      }
+    }
+  ]
+}

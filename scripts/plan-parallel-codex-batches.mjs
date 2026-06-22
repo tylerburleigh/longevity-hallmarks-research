@@ -244,8 +244,12 @@ function groupIntoBatches(schedulableJobs, maxWorkers) {
   return batches.map((batch, index) => materializeBatch(batch, index + 1));
 }
 
-export async function buildParallelBatchPlan({ generatedAt = new Date().toISOString(), maxWorkers = defaultMaxWorkers } = {}) {
-  const liveJobs = await loadLiveJobs();
+export function buildParallelBatchPlanFromJobs({
+  liveJobs,
+  generatedAt = new Date().toISOString(),
+  maxWorkers = defaultMaxWorkers,
+  sourceJobRoot = liveJobRoot
+} = {}) {
   const schedulableJobs = [];
   const deferredJobs = [];
 
@@ -277,7 +281,7 @@ export async function buildParallelBatchPlan({ generatedAt = new Date().toISOStr
     record_type: "parallel_batch_plan",
     id: "parallel-batch-plan-v1",
     generated_at: generatedAt,
-    source_job_root: liveJobRoot,
+    source_job_root: sourceJobRoot,
     planner_version: plannerVersion,
     scheduler_policy: {
       max_workers_per_batch: maxWorkers,
@@ -299,6 +303,16 @@ export async function buildParallelBatchPlan({ generatedAt = new Date().toISOStr
     batches,
     deferred_jobs: deferredJobs.toSorted((left, right) => left.job_id.localeCompare(right.job_id))
   };
+}
+
+export async function buildParallelBatchPlan({ generatedAt = new Date().toISOString(), maxWorkers = defaultMaxWorkers } = {}) {
+  const liveJobs = await loadLiveJobs();
+  return buildParallelBatchPlanFromJobs({
+    liveJobs,
+    generatedAt,
+    maxWorkers,
+    sourceJobRoot: liveJobRoot
+  });
 }
 
 async function writeJson(relativePath, value) {

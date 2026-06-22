@@ -31,6 +31,14 @@ npm run audit:parallel-batches
 
 If live jobs change, regenerate the plan with `npm run jobs:plan-parallel`.
 
+Run scheduler fixtures:
+
+```bash
+npm run test:scheduler-fixtures
+```
+
+The fixture manifest at `tests/fixtures/scheduler-fixtures.json` exercises search, registry refresh, extraction refresh, supervisor review, and self-healing repair batches against the same planner used for live jobs. These fixtures cover width limits, running-job deferral, reconciliation-required overlaps, lane-scoped supervisor review keys, and same-target serialization.
+
 ## Batch Runner
 
 Preview a planned batch without starting workers:

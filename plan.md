@@ -634,7 +634,7 @@ Tasks:
 - [x] Add a parallel batch runner that starts isolated-worktree Codex workers, tracks worker state, captures logs, and archives completed job snapshots.
 - [x] Add a reconciliation agent that compares parallel outputs for duplicate sources, duplicate studies, overlapping candidate proposals, conflicting source-rights classifications, and incomplete ledgers.
 - [x] Add conflict audits that block promotion when candidate outputs overlap without an explicit reconciliation record.
-- [ ] Add support for parallel supervisor review lanes over the same candidate when lanes are independent.
+- [x] Add support for parallel supervisor review lanes over the same candidate when lanes are independent.
 - [ ] Add orchestration metrics covering wall-clock time, failed workers, duplicated work, conflict rate, accepted records produced, extraction debt resolved, and release artifacts updated.
 - [ ] Add scheduler fixtures for search-batch, registry-refresh-batch, extraction-refresh-batch, supervisor-review-batch, and self-healing-repair-batch runs.
 
@@ -657,16 +657,18 @@ Exit criteria:
 
 ## Immediate Next Actions
 
-1. Add support for parallel supervisor review lanes over the same candidate when lanes are independent.
-2. Run extraction-refresh passes on the remaining human D+Q papers: DKD, IPF, and AD-risk cognition/mobility.
-3. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
-4. Run supervisor-review lanes for `senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22`: source fidelity, extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
-5. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry or article text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
-6. Decide whether to install repo-local skills into the active Codex skills directory.
+1. Add orchestration metrics covering wall-clock time, failed workers, duplicated work, conflict rate, accepted records produced, extraction debt resolved, and release artifacts updated.
+2. Add scheduler fixtures for search-batch, registry-refresh-batch, extraction-refresh-batch, supervisor-review-batch, and self-healing-repair-batch runs.
+3. Run extraction-refresh passes on the remaining human D+Q papers: DKD, IPF, and AD-risk cognition/mobility.
+4. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
+5. Run supervisor-review lanes for `senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22`: source fidelity, extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
+6. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry or article text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
+7. Decide whether to install repo-local skills into the active Codex skills directory.
 
 ## Change Log
 
 - 2026-06-22: Added promotion-blocking reconciliation decisions so `promote:candidate` rejects overlapping candidate outputs, duplicate source/study conflicts, source-rights conflicts, incomplete ledgers, and pending isolated-worker outputs unless resolved by explicit reconciliation-decision records.
+- 2026-06-22: Split generated candidate-review supervisor jobs into lane-scoped independent Codex jobs with candidate-review read/write keys, obsolete generated-job pruning, Codex-job audit guardrails, refreshed parallel batches, and refreshed reconciliation state.
 - 2026-06-22: Added a generated parallel reconciliation agent and freshness audit covering duplicate source/study identities, overlapping active candidate proposals, source-rights conflicts, candidate/agent-run ledger gaps, and pending isolated-worker outputs.
 - 2026-06-22: Retained a PMC author-manuscript text snapshot for the D+Q bone RCT, extracted high-p16 T3 subgroup effects and adverse-event term counts, added conservative subgroup/safety synthesis boundaries, and submitted the full-text extraction candidate for supervisor review.
 - 2026-06-22: Added a parallel Codex batch runner, run-state schema, batch-run audit, package commands, and docs for starting isolated-worktree workers with durable state, JSONL logs, bounded concurrency, pending-reconciliation status, and completed-job archiving.

@@ -21,6 +21,8 @@ Batching policy:
 - Jobs with overlapping execution keys can share a batch only when every overlapping job declares `reconciliation_required: true`.
 - Batch commands use `npm run agent:codex:worktree -- --job-file <job> --execute`.
 
+Supervisor review lane jobs generated from candidate-readiness triage use lane-scoped `candidate_review:<candidate_change_id>/<review_lane>` write and conflict keys. They may read the same source candidate and still share an independent batch when they cover different review lanes, because read/read overlap does not create a write conflict. Candidate-review lane jobs must not declare broad writes to the source candidate record.
+
 Run the freshness audit:
 
 ```bash

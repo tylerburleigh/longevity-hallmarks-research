@@ -111,6 +111,62 @@ function checkPathExists({ issues, ownerPath, field, relativePath }) {
   });
 }
 
+function candidateChangeIdsFromReadSets(readSets) {
+  return (readSets ?? [])
+    .map((key) => key.match(/^path:data\/candidate-changes\/([^/]+)\.json$/)?.[1])
+    .filter(Boolean)
+    .sort();
+}
+
+function hasReviewLaneConflictKey({ conflictKeys, candidateChangeIds, lane }) {
+  if (conflictKeys.includes(`review_lane:${lane}`)) {
+    return true;
+  }
+
+  return candidateChangeIds.some((candidateChangeId) => conflictKeys.includes(`candidate_review:${candidateChangeId}/${lane}`));
+}
+
+function checkCandidateReviewLaneOrchestration({ issues, ownerPath, job, readSets, writeSets, conflictKeys }) {
+  if (job.agent_role !== "supervisor_agent" || job.orchestration?.parallel_group !== "candidate-review") {
+    return;
+  }
+
+  const expectedLanes = job.expected_outputs?.required_review_lanes ?? [];
+  const candidateChangeIds = candidateChangeIdsFromReadSets(readSets);
+  const repairCandidatePath = job.expected_outputs?.candidate_change_id
+    ? `path:data/candidate-changes/${job.expected_outputs.candidate_change_id}.json`
+    : undefined;
+
+  if (expectedLanes.length !== 1) {
+    issues.push(`${ownerPath}: candidate-review parallel jobs must declare exactly one required_review_lanes[] item.`);
+  }
+
+  if (candidateChangeIds.length !== 1) {
+    issues.push(`${ownerPath}: candidate-review parallel jobs must read exactly one source candidate_change path.`);
+    return;
+  }
+
+  const [candidateChangeId] = candidateChangeIds;
+  for (const lane of expectedLanes) {
+    const laneKey = `candidate_review:${candidateChangeId}/${lane}`;
+    if (!writeSets.includes(laneKey)) {
+      issues.push(`${ownerPath}: candidate-review lane job orchestration.write_sets missing lane key "${laneKey}".`);
+    }
+    if (!conflictKeys.includes(laneKey)) {
+      issues.push(`${ownerPath}: candidate-review lane job orchestration.conflict_keys missing lane key "${laneKey}".`);
+    }
+  }
+
+  for (const writeKey of writeSets) {
+    if (writeKey.startsWith("target_record:candidate_change/")) {
+      issues.push(`${ownerPath}: candidate-review lane jobs must use lane-scoped write keys instead of broad "${writeKey}".`);
+    }
+    if (writeKey.startsWith("path:data/candidate-changes/") && writeKey !== repairCandidatePath) {
+      issues.push(`${ownerPath}: candidate-review lane jobs must not write the source candidate path "${writeKey}".`);
+    }
+  }
+}
+
 function qualityChecksByName(agentRun) {
   const checks = new Map();
   for (const check of agentRun.quality_checks ?? []) {
@@ -229,13 +285,16 @@ function checkOrchestrationMetadata({ issues, job, ownerPath }) {
   }
 
   if (job.agent_role === "supervisor_agent") {
+    const candidateChangeIds = candidateChangeIdsFromReadSets(readSets);
     for (const lane of job.expected_outputs?.required_review_lanes ?? []) {
       const reviewLaneConflictKey = `review_lane:${lane}`;
-      if (!conflictKeys.includes(reviewLaneConflictKey)) {
-        issues.push(`${ownerPath}: supervisor job orchestration.conflict_keys missing review lane key "${reviewLaneConflictKey}".`);
+      if (!hasReviewLaneConflictKey({ conflictKeys, candidateChangeIds, lane })) {
+        issues.push(`${ownerPath}: supervisor job orchestration.conflict_keys missing review lane key "${reviewLaneConflictKey}" or a candidate-scoped candidate_review lane key.`);
       }
     }
   }
+
+  checkCandidateReviewLaneOrchestration({ issues, ownerPath, job, readSets, writeSets, conflictKeys });
 
   if (job.execution?.sandbox === "read-only" && writeSets.length > 0) {
     issues.push(`${ownerPath}: read-only jobs must not declare orchestration.write_sets.`);

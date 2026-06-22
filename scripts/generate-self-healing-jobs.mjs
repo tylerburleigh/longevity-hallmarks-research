@@ -253,6 +253,10 @@ function scopeFromRecommendedJob(recordIndex, recommendedJob) {
 }
 
 function reviewLanesForJob(recordIndex, recommendedJob) {
+  if ((recommendedJob.required_review_lanes ?? []).length > 0) {
+    return sortStrings(recommendedJob.required_review_lanes);
+  }
+
   if (recommendedJob.job_type === "candidate_review") {
     const candidate = getRecord(recordIndex, "candidate_change", recommendedJob.target_record_id);
     return sortStrings(candidate?.required_review_lanes);
@@ -321,32 +325,66 @@ function parallelGroupForJob(recommendedJob) {
   return recommendedJob.job_type.replace(/_/g, "-");
 }
 
+function sourceJobId(recommendedJob) {
+  return recommendedJob.source_job_id ?? recommendedJob.job_id;
+}
+
+function candidateReviewLaneKey(recommendedJob, lane) {
+  return `candidate_review:${recommendedJob.target_record_id}/${lane}`;
+}
+
 function buildReadSets(recommendedJob) {
   return sortStrings([
     `path:${triageStatePath}`,
-    `triage_job:${recommendedJob.job_id}`,
+    `triage_job:${sourceJobId(recommendedJob)}`,
     ...((recommendedJob.inputs ?? []).map((inputPath) => `path:${inputPath}`))
   ]);
 }
 
-function buildWriteSets({ recommendedJob, candidateChangeId }) {
-  return sortStrings([
+function buildWriteSets({ recommendedJob, candidateChangeId, requiredReviewLanes = [] }) {
+  const candidateChangeKeys = [
     `candidate_change:${candidateChangeId}`,
-    `path:data/candidate-changes/${candidateChangeId}.json`,
+    `path:data/candidate-changes/${candidateChangeId}.json`
+  ];
+
+  if (recommendedJob.job_type === "candidate_review") {
+    return sortStrings([
+      ...candidateChangeKeys,
+      ...requiredReviewLanes.map((lane) => candidateReviewLaneKey(recommendedJob, lane))
+    ]);
+  }
+
+  return sortStrings([
+    ...candidateChangeKeys,
     `target_record:${recommendedJob.target_record_type}/${recommendedJob.target_record_id}`,
     ...((recommendedJob.inputs ?? []).map((inputPath) => `path:${inputPath}`))
   ]);
 }
 
 function buildConflictKeys({ recommendedJob, candidateChangeId, requiredReviewLanes = [] }) {
+  const candidateChangeKeys = [
+    `candidate_change:${candidateChangeId}`
+  ];
+
+  if (recommendedJob.job_type === "candidate_review") {
+    return sortStrings([
+      ...candidateChangeKeys,
+      ...requiredReviewLanes.map((lane) => candidateReviewLaneKey(recommendedJob, lane))
+    ]);
+  }
+
   return sortStrings([
     `candidate_change:${candidateChangeId}`,
     `target_record:${recommendedJob.target_record_type}/${recommendedJob.target_record_id}`,
-    `triage_job:${recommendedJob.job_id}`,
+    `triage_job:${sourceJobId(recommendedJob)}`,
     ...(agentRoleForJob(recommendedJob) === "supervisor_agent"
       ? requiredReviewLanes.map((lane) => `review_lane:${lane}`)
       : [])
   ]);
+}
+
+function reconciliationRequiredForJob(recommendedJob) {
+  return recommendedJob.job_type !== "candidate_review";
 }
 
 function buildQualityGates(recommendedJob) {
@@ -400,10 +438,10 @@ function buildJob(recordIndex, recommendedJob) {
     },
     orchestration: {
       read_sets: buildReadSets(recommendedJob),
-      write_sets: buildWriteSets({ recommendedJob, candidateChangeId }),
+      write_sets: buildWriteSets({ recommendedJob, candidateChangeId, requiredReviewLanes }),
       conflict_keys: buildConflictKeys({ recommendedJob, candidateChangeId, requiredReviewLanes }),
       parallel_group: parallelGroupForJob(recommendedJob),
-      reconciliation_required: true,
+      reconciliation_required: reconciliationRequiredForJob(recommendedJob),
       expected_cost: jobCost(recommendedJob)
     },
     post_run: {
@@ -412,11 +450,31 @@ function buildJob(recordIndex, recommendedJob) {
     },
     quality_gates: buildQualityGates(recommendedJob),
     notes: [
-      `Generated from ${triageStatePath} recommended_jobs[] item ${recommendedJob.job_id}.`,
+      `Generated from ${triageStatePath} recommended_jobs[] item ${sourceJobId(recommendedJob)}.`,
       `Source queue: ${recommendedJob.source}.`,
+      ...(recommendedJob.review_lane ? [`Supervisor review lane: ${recommendedJob.review_lane}.`] : []),
       "The worker should keep edits bounded to the target record, listed inputs, and the candidate repair ledger."
     ]
   };
+}
+
+function expandedCandidateReviewJobs(recordIndex, recommendedJob) {
+  return reviewLanesForJob(recordIndex, recommendedJob).map((reviewLane) => ({
+    ...recommendedJob,
+    source_job_id: recommendedJob.job_id,
+    job_id: `${recommendedJob.job_id}-${reviewLane.replace(/_/g, "-")}`,
+    rationale: `Required review lane is missing: ${reviewLane}.`,
+    review_lane: reviewLane,
+    required_review_lanes: [reviewLane]
+  }));
+}
+
+function expandedRecommendedJobs(recordIndex, recommendedJob) {
+  if (recommendedJob.job_type === "candidate_review") {
+    return expandedCandidateReviewJobs(recordIndex, recommendedJob);
+  }
+
+  return [recommendedJob];
 }
 
 export async function loadTriageState() {
@@ -439,9 +497,11 @@ export async function buildSelfHealingJobs(options = {}) {
     if (options.jobType && recommendedJob.job_type !== options.jobType) {
       continue;
     }
-    jobs.push(buildJob(recordIndex, recommendedJob));
-    if (jobs.length >= limit) {
-      break;
+    for (const expandedJob of expandedRecommendedJobs(recordIndex, recommendedJob)) {
+      jobs.push(buildJob(recordIndex, expandedJob));
+      if (jobs.length >= limit) {
+        return jobs;
+      }
     }
   }
 
@@ -470,6 +530,24 @@ async function existingJobIds() {
   return ids;
 }
 
+async function pruneObsoleteGeneratedJobs({ outputDir, expectedJobs }) {
+  const expectedPaths = new Set(expectedJobs.map((job) => generatedJobPath(job, outputDir)));
+  const files = await walkJsonFiles(path.join(workspaceRoot, outputDir));
+  const removed = [];
+
+  for (const filePath of files) {
+    const relativePath = toPosixRelative(filePath);
+    if (expectedPaths.has(relativePath)) {
+      continue;
+    }
+
+    await fs.rm(filePath);
+    removed.push(relativePath);
+  }
+
+  return removed;
+}
+
 async function main() {
   const options = parseArgs(process.argv.slice(2));
   const existingIds = await existingJobIds();
@@ -490,11 +568,19 @@ async function main() {
     });
   }
 
+  const removedObsoletePaths = options.replace && !options.dryRun
+    ? await pruneObsoleteGeneratedJobs({
+        outputDir: options.outputDir,
+        expectedJobs: await buildSelfHealingJobs({ limit: Number.POSITIVE_INFINITY })
+      })
+    : [];
+
   const summary = {
     generated_from: triageStatePath,
     selected_job_count: jobs.length,
     dry_run: options.dryRun,
-    jobs: output
+    jobs: output,
+    removed_obsolete_paths: removedObsoletePaths
   };
 
   console.log(JSON.stringify(summary, null, 2));

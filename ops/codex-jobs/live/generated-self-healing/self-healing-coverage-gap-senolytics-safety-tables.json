@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "codex_job",
+  "id": "self-healing-coverage-gap-senolytics-safety-tables",
+  "name": "Self-healing repair: coverage-gap-senolytics-safety-tables",
+  "summary": "Aggregate adverse-event counts were extracted for the D+Q bone RCT, but event-specific adverse-event terms, discontinuation details, dosing cadence, and durability details remain incomplete across the human evidence slice.",
+  "lifecycle_status": "ready",
+  "agent_role": "extraction_agent",
+  "mode": "extraction_refresh",
+  "prompt_file": "docs/prompts/codex-agents/extraction-refresh.md",
+  "output_path": "research/agent-runs/self-healing-coverage-gap-senolytics-safety-tables.json",
+  "jsonl_log_path": "research/agent-runs/logs/self-healing-coverage-gap-senolytics-safety-tables.jsonl",
+  "scope": {
+    "question": "extraction_refresh: Aggregate adverse-event counts were extracted for the D+Q bone RCT, but event-specific adverse-event terms, discontinuation details, dosing cadence, and durability details remain incomplete across the human evidence slice.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "execution": {
+    "isolation": "git_worktree",
+    "sandbox": "workspace-write",
+    "approval_policy": "never",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "timeout_ms": 3600000,
+    "no_output_timeout_ms": 300000
+  },
+  "expected_outputs": {
+    "canonical_write_policy": "candidate_change_required",
+    "candidate_change_id": "coverage-gap-senolytics-safety-tables-repair",
+    "required_review_lanes": [
+      "extraction_fidelity",
+      "safety_limitations",
+      "synthesis_boundary",
+      "taxonomy_mapping"
+    ]
+  },
+  "orchestration": {
+    "read_sets": [
+      "path:data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+      "path:ops/triage-state.v1.json",
+      "triage_job:coverage-gap-senolytics-safety-tables"
+    ],
+    "write_sets": [
+      "candidate_change:coverage-gap-senolytics-safety-tables-repair",
+      "path:data/candidate-changes/coverage-gap-senolytics-safety-tables-repair.json",
+      "path:data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+      "target_record:coverage_assessment/senolytics-coverage-repair-2026-06-21"
+    ],
+    "conflict_keys": [
+      "candidate_change:coverage-gap-senolytics-safety-tables-repair",
+      "target_record:coverage_assessment/senolytics-coverage-repair-2026-06-21",
+      "triage_job:coverage-gap-senolytics-safety-tables"
+    ],
+    "parallel_group": "extraction-refresh",
+    "reconciliation_required": true,
+    "expected_cost": {
+      "cost_class": "high",
+      "expected_wall_time_ms": 3600000,
+      "expected_token_budget": 100000,
+      "io_intensity": "high"
+    }
+  },
+  "post_run": {
+    "export_latest": true,
+    "verify_knowledge_base": true
+  },
+  "quality_gates": [
+    "validate_records",
+    "audit_references",
+    "audit_exports",
+    "audit_agent_schemas",
+    "audit_agentic_process",
+    "worker_output_contract",
+    "candidate_agent_run_ledger_match"
+  ],
+  "notes": [
+    "Generated from ops/triage-state.v1.json recommended_jobs[] item coverage-gap-senolytics-safety-tables.",
+    "Source queue: coverage_gap.",
+    "The worker should keep edits bounded to the target record, listed inputs, and the candidate repair ledger."
+  ]
+}

@@ -29,6 +29,8 @@ Codex job templates live in `docs/templates/codex-jobs/`. Use them when a run ne
 
 Persisted job specs under `ops/codex-jobs/` are enforced by `npm run audit:codex-jobs`. Runnable jobs live under `ops/codex-jobs/live/`; executed or retired snapshots live under `ops/codex-jobs/archive/`. The audit checks that final archived jobs match the final `agent_run`, candidate ledger, expected paths, review lanes, quality gates, logs, and post-run checks.
 
+Self-healing job specs can be generated from `ops/triage-state.v1.json` with `npm run jobs:self-healing`. Generated live specs are freshness-checked by `npm run audit:self-healing-jobs`.
+
 For `codex exec` jobs, the wrapper also appends `worker_output_contract` after it verifies that the worker emitted a single final JSON `agent_run`, that the final message matches the wrapper-written output file, and that the worker did not use inline schema-validation snippets instead of repository validation scripts.
 
 The wrapper writes a prompt snapshot to `research/agent-runs/prompts/<agent_run_id>.md` before execution. Run-specific prompts should be stored there instead of under `docs/prompts/codex-agents/`.

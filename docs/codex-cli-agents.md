@@ -195,6 +195,12 @@ Use these templates when a worker needs to discover or screen candidate sources:
 
 Search jobs should write `research/sessions/<id>.json` and `research/search-logs/<id>.json` through a candidate. Screening jobs should read one or more search logs and write `research/screening-runs/<id>.json`, with eligibility or coverage records added to the expected-output ledger when they are created or updated.
 
+## Self-Healing Jobs
+
+Use `npm run jobs:self-healing` to convert current `ops/triage-state.v1.json` recommended jobs into bounded live Codex job specs under `ops/codex-jobs/live/generated-self-healing/`.
+
+Use `npm run audit:self-healing-jobs` to confirm generated live specs still match current triage state. See `docs/self-healing-jobs.md` for filters and regeneration commands.
+
 ## Promotion Boundary
 
 CLI workers must not mark candidates `accepted` or `applied`.

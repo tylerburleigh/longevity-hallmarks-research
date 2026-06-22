@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "codex_job",
+  "id": "self-healing-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21",
+  "name": "Self-healing repair: candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21",
+  "summary": "Candidate has revision lanes or open findings: extraction_fidelity, safety_limitations.",
+  "lifecycle_status": "ready",
+  "agent_role": "self_healing_agent",
+  "mode": "agent_directed",
+  "prompt_file": "docs/prompts/codex-agents/self-healing-repair.md",
+  "output_path": "research/agent-runs/self-healing-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21.json",
+  "jsonl_log_path": "research/agent-runs/logs/self-healing-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21.jsonl",
+  "scope": {
+    "question": "candidate_revision: Candidate has revision lanes or open findings: extraction_fidelity, safety_limitations.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "chronic_inflammation",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "execution": {
+    "isolation": "git_worktree",
+    "sandbox": "workspace-write",
+    "approval_policy": "never",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "timeout_ms": 3600000,
+    "no_output_timeout_ms": 300000
+  },
+  "expected_outputs": {
+    "canonical_write_policy": "candidate_change_required",
+    "candidate_change_id": "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
+    "required_review_lanes": [
+      "extraction_fidelity",
+      "safety_limitations",
+      "source_fidelity",
+      "synthesis_boundary",
+      "taxonomy_mapping"
+    ]
+  },
+  "orchestration": {
+    "read_sets": [
+      "path:data/candidate-changes/senolytics-bone-rct-extraction-refresh-2026-06-21.json",
+      "path:ops/triage-state.v1.json",
+      "triage_job:candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21"
+    ],
+    "write_sets": [
+      "candidate_change:candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
+      "path:data/candidate-changes/candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair.json",
+      "path:data/candidate-changes/senolytics-bone-rct-extraction-refresh-2026-06-21.json",
+      "target_record:candidate_change/senolytics-bone-rct-extraction-refresh-2026-06-21"
+    ],
+    "conflict_keys": [
+      "candidate_change:candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
+      "target_record:candidate_change/senolytics-bone-rct-extraction-refresh-2026-06-21",
+      "triage_job:candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21"
+    ],
+    "parallel_group": "candidate-revision",
+    "reconciliation_required": true,
+    "expected_cost": {
+      "cost_class": "high",
+      "expected_wall_time_ms": 3600000,
+      "expected_token_budget": 100000,
+      "io_intensity": "medium"
+    }
+  },
+  "post_run": {
+    "export_latest": true,
+    "verify_knowledge_base": true
+  },
+  "quality_gates": [
+    "validate_records",
+    "audit_references",
+    "audit_exports",
+    "audit_agent_schemas",
+    "audit_agentic_process",
+    "worker_output_contract",
+    "candidate_agent_run_ledger_match"
+  ],
+  "notes": [
+    "Generated from ops/triage-state.v1.json recommended_jobs[] item candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21.",
+    "Source queue: candidate_readiness.",
+    "The worker should keep edits bounded to the target record, listed inputs, and the candidate repair ledger."
+  ]
+}

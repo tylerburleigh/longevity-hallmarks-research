@@ -12,6 +12,7 @@
     "refresh:source-snapshot": "node scripts/refresh-source-snapshot.mjs",
     "diff:source-snapshot": "node scripts/diff-source-snapshot.mjs",
     "promote:candidate": "node scripts/promote-candidate.mjs",
+    "jobs:self-healing": "node scripts/generate-self-healing-jobs.mjs",
     "agent:codex": "node scripts/run-codex-agent.mjs",
     "export:latest": "node scripts/export-latest.mjs",
     "export:read-model": "node scripts/export-read-model.mjs",
@@ -19,6 +20,7 @@
     "export:release-readiness": "node scripts/export-release-readiness.mjs",
     "audit:triage-state": "node scripts/audit-triage-state.mjs",
     "audit:release-readiness": "node scripts/audit-release-readiness.mjs",
+    "audit:self-healing-jobs": "node scripts/audit-self-healing-jobs.mjs",
     "audit:exports": "node scripts/audit-exports.mjs",
     "audit:read-model": "node scripts/audit-read-model.mjs",
     "audit:agent-schemas": "node scripts/audit-agent-schemas.mjs",
@@ -26,7 +28,7 @@
     "audit:agentic-process": "node scripts/audit-agentic-process.mjs",
     "test:audit-regressions": "node scripts/test-audit-regressions.mjs",
     "verify:knowledge-base:post-run": "npm run validate:records && npm run audit:references && npm run audit:exports && npm run audit:read-model && npm run audit:triage-state && npm run audit:release-readiness && npm run audit:agent-schemas && npm run audit:agentic-process",
-    "verify:knowledge-base": "npm run validate:records && npm run audit:references && npm run audit:exports && npm run audit:read-model && npm run audit:triage-state && npm run audit:release-readiness && npm run audit:agent-schemas && npm run audit:codex-jobs && npm run audit:agentic-process && npm run test:audit-regressions"
+    "verify:knowledge-base": "npm run validate:records && npm run audit:references && npm run audit:exports && npm run audit:read-model && npm run audit:triage-state && npm run audit:release-readiness && npm run audit:self-healing-jobs && npm run audit:agent-schemas && npm run audit:codex-jobs && npm run audit:agentic-process && npm run test:audit-regressions"
   },
   "devDependencies": {
     "ajv": "^8.20.0",

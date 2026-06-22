@@ -601,7 +601,7 @@ Tasks:
 - [x] Add `ops/triage-state.v1.json` generated from coverage gaps, stale snapshots, failed or partial agent runs, missing review lanes, blocked candidates, and explicit user priorities.
 - [x] Add a candidate-readiness generator/export that classifies each candidate as `submitted`, `needs_review`, `needs_revision`, `promotion_ready`, `accepted`, `applied`, or `blocked`.
 - [x] Add a stale-source and stale-text-snapshot queue using snapshot dates, source status changes, registry posted-results changes, and source-rights remediation state.
-- [ ] Add a self-healing job generator that creates bounded repair candidates for broken links, missing provenance, missing effect fields, stale exports, and incomplete ledgers.
+- [x] Add a self-healing job generator that creates bounded repair candidates for broken links, missing provenance, missing effect fields, stale exports, and incomplete ledgers.
 - [x] Add an extraction-debt queue for records that are useful but not yet synthesis-ready: missing effect value, uncertainty, comparator, denominator, group values, event-specific safety counts, or full-text locators.
 - [x] Add a triage-state freshness audit so generated control-plane state cannot drift from canonical JSON inputs.
 - [x] Add an active job lifecycle model for Codex jobs: `planned`, `ready`, `running`, `succeeded`, `failed`, `superseded`, and `archived`.
@@ -657,17 +657,17 @@ Exit criteria:
 
 ## Immediate Next Actions
 
-1. Add the self-healing job generator that turns triage-state repair recommendations into bounded live Codex job specs.
-2. Add the default isolated-worktree execution helper needed for safe concurrent Codex workers.
-3. Add a first parallel-batch planner for independent search, registry-refresh, extraction-refresh, and supervisor-review jobs.
-4. Finish full publication/table extraction for the D+Q bone RCT, including subgroup and event-specific safety details.
-5. Run extraction-refresh passes on the remaining human D+Q papers: DKD, IPF, and AD-risk cognition/mobility.
-6. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
-7. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
-8. Decide whether to install repo-local skills into the active Codex skills directory.
+1. Add the default isolated-worktree execution helper needed for safe concurrent Codex workers.
+2. Add a first parallel-batch planner for independent search, registry-refresh, extraction-refresh, and supervisor-review jobs.
+3. Finish full publication/table extraction for the D+Q bone RCT, including subgroup and event-specific safety details.
+4. Run extraction-refresh passes on the remaining human D+Q papers: DKD, IPF, and AD-risk cognition/mobility.
+5. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
+6. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
+7. Decide whether to install repo-local skills into the active Codex skills directory.
 
 ## Change Log
 
+- 2026-06-22: Added a self-healing Codex job generator and freshness audit that convert triage-state recommended jobs into bounded live repair specs with candidate IDs, orchestration metadata, conflict keys, post-run gates, and generated-job drift checks.
 - 2026-06-22: Added first-class `search_log` and `screening_run` schemas, durable search/session/screening templates, Codex job templates, prompt guidance, agent-run output IDs, reference audits, and read-model relationship links for search and screening work products.
 - 2026-06-22: Promoted the D+Q endpoint synthesis-groups candidate and registry-markdown provenance-repair candidate to accepted, then hardened release-readiness so accepted records with unreleased graph dependencies remain blocked from accepted-record exports.
 - 2026-06-22: Added `release_accept` change semantics, accepted a narrow D+Q bone release-anchor candidate, and cleared accepted-record release blockers without promoting broad unfinished extraction or coverage candidates.

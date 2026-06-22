@@ -213,6 +213,8 @@ Batch commands use `agent:codex:worktree`, so planned mutable workers retain iso
 
 Run `npm run audit:parallel-batch-runs` to check persisted batch-run ledgers. Completed workers that wrote only to isolated worktrees stay marked `succeeded_pending_reconciliation` until the coordinator imports their outputs, verifies the repository, and archives the completed job snapshot. See `docs/parallel-batch-planner.md`.
 
+Use `npm run metrics:orchestration` after planning, running, or reconciling batches to refresh `ops/codex-batches/orchestration-metrics.v1.json`. The freshness audit is `npm run audit:orchestration-metrics`; see `docs/orchestration-metrics.md`.
+
 ## Promotion Boundary
 
 CLI workers must not mark candidates `accepted` or `applied`.

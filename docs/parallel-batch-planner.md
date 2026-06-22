@@ -68,3 +68,12 @@ npm run audit:reconciliation
 ```
 
 The generated reconciliation report compares duplicate source/study identities, overlapping candidate proposals, source-rights conflicts, candidate/agent-run ledgers, and pending isolated-worktree worker outputs.
+
+Refresh orchestration metrics after planning, running, or reconciling jobs:
+
+```bash
+npm run metrics:orchestration
+npm run audit:orchestration-metrics
+```
+
+The generated metrics artifact reports planned wall-clock savings, worker outcomes, duplicate-work pressure, conflict rate, accepted records produced, extraction-debt pressure, and release artifact counts. See `docs/orchestration-metrics.md`.

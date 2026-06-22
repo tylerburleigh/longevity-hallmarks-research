@@ -1,0 +1,800 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./orchestration-metrics.schema.json",
+  "title": "Agent orchestration metrics",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "id",
+    "generated_at",
+    "source_roots",
+    "metric_policy",
+    "summary",
+    "planned_parallelism",
+    "worker_outcomes",
+    "output_value",
+    "quality_pressure"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "record_type": {
+      "const": "orchestration_metrics"
+    },
+    "id": {
+      "$ref": "./common.schema.json#/$defs/identifier"
+    },
+    "generated_at": {
+      "$ref": "./common.schema.json#/$defs/dateTime"
+    },
+    "source_roots": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "metric_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "batch_plan_path",
+        "batch_run_root",
+        "live_job_root",
+        "archive_job_root",
+        "reconciliation_path",
+        "triage_state_path",
+        "release_readiness_path",
+        "export_root",
+        "accepted_candidate_statuses",
+        "accepted_record_excluded_record_types",
+        "extraction_debt_record_types"
+      ],
+      "properties": {
+        "batch_plan_path": {
+          "type": "string"
+        },
+        "batch_run_root": {
+          "type": "string"
+        },
+        "live_job_root": {
+          "type": "string"
+        },
+        "archive_job_root": {
+          "type": "string"
+        },
+        "reconciliation_path": {
+          "type": "string"
+        },
+        "triage_state_path": {
+          "type": "string"
+        },
+        "release_readiness_path": {
+          "type": "string"
+        },
+        "export_root": {
+          "type": "string"
+        },
+        "accepted_candidate_statuses": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "accepted_record_excluded_record_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "extraction_debt_record_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "planned_live_job_count",
+        "archived_job_count",
+        "planned_parallel_batch_count",
+        "planned_parallel_worker_count",
+        "planned_independent_batch_count",
+        "planned_reconciliation_batch_count",
+        "max_planned_batch_width",
+        "planned_serial_wall_time_ms",
+        "planned_parallel_wall_time_ms",
+        "planned_wall_time_savings_ms",
+        "planned_speedup_ratio",
+        "executed_parallel_batch_run_count",
+        "executed_worker_count",
+        "failed_worker_count",
+        "pending_reconciliation_worker_count",
+        "succeeded_worker_count",
+        "actual_worker_wall_time_ms",
+        "actual_batch_wall_time_ms",
+        "agent_run_count",
+        "succeeded_agent_run_count",
+        "partial_agent_run_count",
+        "failed_agent_run_count",
+        "agent_run_wall_time_ms",
+        "duplicate_work_group_count",
+        "duplicate_work_record_count",
+        "conflict_finding_count",
+        "conflict_rate",
+        "open_finding_rate",
+        "accepted_candidate_count",
+        "accepted_records_produced_count",
+        "extraction_debt_open_count",
+        "extraction_debt_high_priority_open_count",
+        "extraction_debt_resolved_candidate_count",
+        "extraction_debt_resolved_record_count",
+        "release_ready_candidate_count",
+        "release_blocked_candidate_count",
+        "release_artifact_count",
+        "release_ready_record_count"
+      ],
+      "properties": {
+        "planned_live_job_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "archived_job_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "planned_parallel_batch_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "planned_parallel_worker_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "planned_independent_batch_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "planned_reconciliation_batch_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_planned_batch_width": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "planned_serial_wall_time_ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "planned_parallel_wall_time_ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "planned_wall_time_savings_ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "planned_speedup_ratio": {
+          "type": "number",
+          "minimum": 0
+        },
+        "executed_parallel_batch_run_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "executed_worker_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "failed_worker_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pending_reconciliation_worker_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "succeeded_worker_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "actual_worker_wall_time_ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "actual_batch_wall_time_ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "agent_run_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "succeeded_agent_run_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "partial_agent_run_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "failed_agent_run_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "agent_run_wall_time_ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "duplicate_work_group_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "duplicate_work_record_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "conflict_finding_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "conflict_rate": {
+          "type": "number",
+          "minimum": 0
+        },
+        "open_finding_rate": {
+          "type": "number",
+          "minimum": 0
+        },
+        "accepted_candidate_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "accepted_records_produced_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "extraction_debt_open_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "extraction_debt_high_priority_open_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "extraction_debt_resolved_candidate_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "extraction_debt_resolved_record_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "release_ready_candidate_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "release_blocked_candidate_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "release_artifact_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "release_ready_record_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "planned_parallelism": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "by_parallel_group",
+        "batches"
+      ],
+      "properties": {
+        "by_parallel_group": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/plannedGroupMetric"
+          }
+        },
+        "batches": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/plannedBatchMetric"
+          }
+        }
+      }
+    },
+    "worker_outcomes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "batch_runs",
+        "worker_status_counts",
+        "agent_run_status_counts",
+        "agent_run_role_counts"
+      ],
+      "properties": {
+        "batch_runs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/batchRunMetric"
+          }
+        },
+        "worker_status_counts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/countByKey"
+          }
+        },
+        "agent_run_status_counts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/countByKey"
+          }
+        },
+        "agent_run_role_counts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/countByKey"
+          }
+        }
+      }
+    },
+    "output_value": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "accepted_records_by_type",
+        "accepted_candidates",
+        "extraction_debt",
+        "release"
+      ],
+      "properties": {
+        "accepted_records_by_type": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/countByKey"
+          }
+        },
+        "accepted_candidates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/acceptedCandidateMetric"
+          }
+        },
+        "extraction_debt": {
+          "$ref": "#/$defs/extractionDebtMetric"
+        },
+        "release": {
+          "$ref": "#/$defs/releaseMetric"
+        }
+      }
+    },
+    "quality_pressure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "duplicate_work",
+        "conflicts",
+        "worker_failures"
+      ],
+      "properties": {
+        "duplicate_work": {
+          "$ref": "#/$defs/duplicateWorkMetric"
+        },
+        "conflicts": {
+          "$ref": "#/$defs/conflictMetric"
+        },
+        "worker_failures": {
+          "$ref": "#/$defs/workerFailureMetric"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "countByKey": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "key",
+        "count"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "plannedGroupMetric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "parallel_group",
+        "batch_count",
+        "job_count",
+        "independent_batch_count",
+        "reconciliation_batch_count",
+        "max_batch_width",
+        "expected_wall_time_ms",
+        "expected_token_budget",
+        "overlapping_execution_key_count"
+      ],
+      "properties": {
+        "parallel_group": {
+          "type": "string"
+        },
+        "batch_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "job_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "independent_batch_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reconciliation_batch_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_batch_width": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "expected_wall_time_ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "expected_token_budget": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "overlapping_execution_key_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "plannedBatchMetric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "batch_id",
+        "parallel_group",
+        "execution_class",
+        "reconciliation_required",
+        "job_count",
+        "expected_wall_time_ms",
+        "expected_token_budget",
+        "overlapping_execution_key_count"
+      ],
+      "properties": {
+        "batch_id": {
+          "$ref": "./common.schema.json#/$defs/identifier"
+        },
+        "parallel_group": {
+          "type": "string"
+        },
+        "execution_class": {
+          "enum": [
+            "independent",
+            "reconciliation_required"
+          ]
+        },
+        "reconciliation_required": {
+          "type": "boolean"
+        },
+        "job_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "expected_wall_time_ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "expected_token_budget": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "overlapping_execution_key_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "batchRunMetric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "batch_run_id",
+        "path",
+        "batch_id",
+        "parallel_group",
+        "status",
+        "started_at",
+        "wall_time_ms",
+        "worker_count",
+        "failed_worker_count",
+        "pending_reconciliation_worker_count",
+        "succeeded_worker_count"
+      ],
+      "properties": {
+        "batch_run_id": {
+          "$ref": "./common.schema.json#/$defs/identifier"
+        },
+        "path": {
+          "type": "string"
+        },
+        "batch_id": {
+          "$ref": "./common.schema.json#/$defs/identifier"
+        },
+        "parallel_group": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "started_at": {
+          "$ref": "./common.schema.json#/$defs/dateTime"
+        },
+        "completed_at": {
+          "$ref": "./common.schema.json#/$defs/dateTime"
+        },
+        "wall_time_ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "worker_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "failed_worker_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pending_reconciliation_worker_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "succeeded_worker_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "acceptedCandidateMetric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_change_id",
+        "lifecycle_status",
+        "submitted_at",
+        "proposed_record_count",
+        "accepted_record_count",
+        "extraction_debt_record_count",
+        "related_agent_run_ids"
+      ],
+      "properties": {
+        "candidate_change_id": {
+          "$ref": "./common.schema.json#/$defs/candidateChangeRef"
+        },
+        "lifecycle_status": {
+          "type": "string"
+        },
+        "submitted_at": {
+          "$ref": "./common.schema.json#/$defs/dateTime"
+        },
+        "promoted_at": {
+          "$ref": "./common.schema.json#/$defs/dateTime"
+        },
+        "proposed_record_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "accepted_record_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "extraction_debt_record_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "related_agent_run_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/agentRunRef"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "extractionDebtMetric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "open_count",
+        "high_priority_open_count",
+        "resolved_candidate_count",
+        "resolved_record_count",
+        "resolved_records_by_type"
+      ],
+      "properties": {
+        "open_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "high_priority_open_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "resolved_candidate_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "resolved_record_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "resolved_records_by_type": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/countByKey"
+          }
+        }
+      }
+    },
+    "releaseMetric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "release_ready_candidate_count",
+        "release_blocked_candidate_count",
+        "release_ready_record_count",
+        "blocked_accepted_record_count",
+        "release_artifact_count",
+        "export_files"
+      ],
+      "properties": {
+        "release_ready_candidate_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "release_blocked_candidate_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "release_ready_record_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "blocked_accepted_record_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "release_artifact_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "export_files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "duplicateWorkMetric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "group_count",
+        "record_count",
+        "duplicate_source_group_count",
+        "duplicate_study_group_count",
+        "overlapping_candidate_group_count"
+      ],
+      "properties": {
+        "group_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "record_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "duplicate_source_group_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "duplicate_study_group_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "overlapping_candidate_group_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "conflictMetric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "open_finding_count",
+        "blocking_finding_count",
+        "warning_finding_count",
+        "conflict_rate",
+        "open_finding_rate",
+        "reconciliation_batch_rate"
+      ],
+      "properties": {
+        "open_finding_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "blocking_finding_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "warning_finding_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "conflict_rate": {
+          "type": "number",
+          "minimum": 0
+        },
+        "open_finding_rate": {
+          "type": "number",
+          "minimum": 0
+        },
+        "reconciliation_batch_rate": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "workerFailureMetric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "failed_worker_count",
+        "partial_or_failed_agent_run_count"
+      ],
+      "properties": {
+        "failed_worker_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "partial_or_failed_agent_run_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}

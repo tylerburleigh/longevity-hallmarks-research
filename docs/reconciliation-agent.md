@@ -36,3 +36,12 @@ npm run audit:reconciliation
 The audit rebuilds the report from canonical state and ignores only `generated_at`. It also checks any `reconciliation_decision` records against the current report, so stale issue IDs or mismatched issue categories fail verification.
 
 Promotion is blocked when a candidate is affected by a blocker-severity reconciliation finding unless a resolved `reconciliation_decision` record names that issue and candidate.
+
+After refreshing reconciliation, update orchestration metrics:
+
+```bash
+npm run metrics:orchestration
+npm run audit:orchestration-metrics
+```
+
+The metrics artifact uses reconciliation findings to report duplicate-work pressure, conflict rate, worker outcomes, accepted output, extraction-debt pressure, and release artifact counts.

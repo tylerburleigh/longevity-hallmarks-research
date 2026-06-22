@@ -694,6 +694,11 @@ async function runPostSteps(options) {
     await appendOutputQualityCheck(options, releaseReadinessEvent);
     const reconciliationEvent = await runCoordinatorCommand(options, "post_reconciliation_export", "npm", ["run", "reconcile:parallel"]);
     await appendOutputQualityCheck(options, reconciliationEvent);
+    const orchestrationMetricsEvent = await runCoordinatorCommand(options, "post_orchestration_metrics_export", "npm", [
+      "run",
+      "metrics:orchestration"
+    ]);
+    await appendOutputQualityCheck(options, orchestrationMetricsEvent);
   }
   if (options.postVerify) {
     const event = await runCoordinatorCommand(options, "post_verify", "npm", ["run", "verify:knowledge-base:post-run"]);

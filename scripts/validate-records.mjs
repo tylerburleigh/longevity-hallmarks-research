@@ -36,6 +36,7 @@ const schemaByRecordType = {
   parallel_batch_plan: "./parallel-batch-plan.schema.json",
   parallel_batch_run: "./parallel-batch-run.schema.json",
   parallel_reconciliation: "./parallel-reconciliation.schema.json",
+  orchestration_metrics: "./orchestration-metrics.schema.json",
   reconciliation_decision: "./reconciliation-decision.schema.json",
   triage_state: "./triage-state.schema.json",
   release_readiness: "./release-readiness.schema.json",

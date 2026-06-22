@@ -1,0 +1,416 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./release-readiness.schema.json",
+  "title": "Release readiness control-plane state",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "id",
+    "generated_at",
+    "source_roots",
+    "release_boundary",
+    "summary",
+    "promotion_ready_candidate_ids",
+    "release_ready_candidate_ids",
+    "release_blocked_candidate_ids",
+    "candidate_release_statuses",
+    "release_ready_records",
+    "blocked_accepted_records"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "record_type": {
+      "const": "release_readiness"
+    },
+    "id": {
+      "$ref": "./common.schema.json#/$defs/identifier"
+    },
+    "generated_at": {
+      "$ref": "./common.schema.json#/$defs/dateTime"
+    },
+    "source_roots": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "release_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "description",
+        "accepted_candidate_statuses",
+        "accepted_record_export_path",
+        "canonical_source_of_truth"
+      ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "accepted_candidate_statuses": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "accepted",
+              "applied"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "accepted_record_export_path": {
+          "type": "string"
+        },
+        "canonical_source_of_truth": {
+          "type": "string"
+        }
+      }
+    },
+    "summary": {
+      "$ref": "#/$defs/summary"
+    },
+    "promotion_ready_candidate_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "./common.schema.json#/$defs/candidateChangeRef"
+      },
+      "uniqueItems": true
+    },
+    "release_ready_candidate_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "./common.schema.json#/$defs/candidateChangeRef"
+      },
+      "uniqueItems": true
+    },
+    "release_blocked_candidate_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "./common.schema.json#/$defs/candidateChangeRef"
+      },
+      "uniqueItems": true
+    },
+    "candidate_release_statuses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/candidateReleaseStatus"
+      }
+    },
+    "release_ready_records": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/releaseReadyRecord"
+      }
+    },
+    "blocked_accepted_records": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/blockedAcceptedRecord"
+      }
+    }
+  },
+  "$defs": {
+    "reviewLane": {
+      "enum": [
+        "source_fidelity",
+        "extraction_fidelity",
+        "taxonomy_mapping",
+        "synthesis_boundary",
+        "safety_limitations"
+      ]
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_count",
+        "not_ready_candidate_count",
+        "promotion_ready_candidate_count",
+        "release_ready_candidate_count",
+        "partial_release_ready_candidate_count",
+        "release_blocked_candidate_count",
+        "accepted_or_applied_candidate_count",
+        "accepted_record_count",
+        "blocked_accepted_record_count"
+      ],
+      "properties": {
+        "candidate_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "not_ready_candidate_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "promotion_ready_candidate_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "release_ready_candidate_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "partial_release_ready_candidate_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "release_blocked_candidate_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "accepted_or_applied_candidate_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "accepted_record_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "blocked_accepted_record_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "candidateLifecycleStatus": {
+      "enum": [
+        "draft",
+        "submitted",
+        "in_review",
+        "needs_revision",
+        "accepted",
+        "rejected",
+        "applied"
+      ]
+    },
+    "readinessStatus": {
+      "enum": [
+        "submitted",
+        "needs_review",
+        "needs_revision",
+        "promotion_ready",
+        "accepted",
+        "applied",
+        "blocked",
+        "rejected"
+      ]
+    },
+    "releaseStatus": {
+      "enum": [
+        "not_ready",
+        "promotion_ready",
+        "release_ready",
+        "partial_release_ready",
+        "release_blocked"
+      ]
+    },
+    "candidateReleaseStatus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_change_id",
+        "path",
+        "lifecycle_status",
+        "readiness_status",
+        "release_status",
+        "required_review_lanes",
+        "active_review_ids",
+        "proposed_record_count",
+        "release_ready_record_count",
+        "blocked_record_count",
+        "release_ready_record_ids",
+        "blocked_record_ids",
+        "next_actions"
+      ],
+      "properties": {
+        "candidate_change_id": {
+          "$ref": "./common.schema.json#/$defs/candidateChangeRef"
+        },
+        "path": {
+          "type": "string"
+        },
+        "lifecycle_status": {
+          "$ref": "#/$defs/candidateLifecycleStatus"
+        },
+        "readiness_status": {
+          "$ref": "#/$defs/readinessStatus"
+        },
+        "release_status": {
+          "$ref": "#/$defs/releaseStatus"
+        },
+        "required_review_lanes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reviewLane"
+          },
+          "uniqueItems": true
+        },
+        "active_review_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/evidenceReviewRef"
+          },
+          "uniqueItems": true
+        },
+        "proposed_record_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "release_ready_record_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "blocked_record_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "release_ready_record_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/identifier"
+          },
+          "uniqueItems": true
+        },
+        "blocked_record_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/identifier"
+          },
+          "uniqueItems": true
+        },
+        "next_actions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "releaseReadyRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "record_type",
+        "record_id",
+        "path",
+        "release_status",
+        "candidate_change_ids",
+        "candidate_lifecycle_statuses",
+        "change_types"
+      ],
+      "properties": {
+        "record_type": {
+          "type": "string"
+        },
+        "record_id": {
+          "$ref": "./common.schema.json#/$defs/identifier"
+        },
+        "path": {
+          "type": "string"
+        },
+        "release_status": {
+          "const": "accepted"
+        },
+        "candidate_change_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/candidateChangeRef"
+          },
+          "uniqueItems": true
+        },
+        "candidate_lifecycle_statuses": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "accepted",
+              "applied"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "change_types": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "create",
+              "update"
+            ]
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "blockedAcceptedRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "record_type",
+        "record_id",
+        "path",
+        "change_type",
+        "candidate_change_id",
+        "candidate_lifecycle_status",
+        "blockers"
+      ],
+      "properties": {
+        "record_type": {
+          "type": "string"
+        },
+        "record_id": {
+          "$ref": "./common.schema.json#/$defs/identifier"
+        },
+        "path": {
+          "type": "string"
+        },
+        "change_type": {
+          "enum": [
+            "create",
+            "update",
+            "delete"
+          ]
+        },
+        "candidate_change_id": {
+          "$ref": "./common.schema.json#/$defs/candidateChangeRef"
+        },
+        "candidate_lifecycle_status": {
+          "enum": [
+            "accepted",
+            "applied"
+          ]
+        },
+        "blockers": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/releaseBlocker"
+          }
+        }
+      }
+    },
+    "releaseBlocker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "blocker_type",
+        "message"
+      ],
+      "properties": {
+        "blocker_type": {
+          "enum": [
+            "missing_record",
+            "path_mismatch",
+            "delete_not_releasable",
+            "unaccepted_create_dependency"
+          ]
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

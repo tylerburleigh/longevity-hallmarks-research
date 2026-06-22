@@ -119,6 +119,27 @@
       ]
     },
     {
+      "id": "stale-release-readiness",
+      "description": "Generated release-readiness state must match canonical records.",
+      "command": [
+        "npm",
+        "run",
+        "audit:release-readiness"
+      ],
+      "operations": [
+        {
+          "type": "set_json",
+          "path": "ops/release-readiness.v1.json",
+          "pointer": "/summary/accepted_record_count",
+          "value": 999
+        }
+      ],
+      "expected_failure_substrings": [
+        "Release-readiness audit failed",
+        "summary"
+      ]
+    },
+    {
       "id": "archived-job-in-live-queue",
       "description": "Final job snapshots must not remain in the live runnable queue.",
       "command": [

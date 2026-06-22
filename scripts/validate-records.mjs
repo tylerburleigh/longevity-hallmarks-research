@@ -32,6 +32,7 @@ const schemaByRecordType = {
   agent_run: "./agent-run.schema.json",
   codex_job: "./codex-job.schema.json",
   triage_state: "./triage-state.schema.json",
+  release_readiness: "./release-readiness.schema.json",
   release_manifest: "./release-manifest.schema.json"
 };
 

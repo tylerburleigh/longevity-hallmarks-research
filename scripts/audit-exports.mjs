@@ -3,6 +3,7 @@
 import { createHash } from "node:crypto";
 import { promises as fs } from "node:fs";
 import path from "node:path";
+import { buildAcceptedRecordExportItems } from "./export-release-readiness.mjs";
 
 const workspaceRoot = process.cwd();
 const canonicalRoots = ["data", "research"];
@@ -296,6 +297,7 @@ async function main() {
   const canonicalRecords = await loadCanonicalRecords();
   const sources = recordsOf(canonicalRecords, "source");
   const sourceRights = recordsOf(canonicalRecords, "source_rights");
+  const acceptedRecords = await buildAcceptedRecordExportItems();
   const studies = recordsOf(canonicalRecords, "study");
   const findings = recordsOf(canonicalRecords, "finding");
   const textSnapshots = recordsOf(canonicalRecords, "text_snapshot");
@@ -314,6 +316,7 @@ async function main() {
   const expectedJsonlExports = [
     ["exports/latest/sources.jsonl", sources],
     ["exports/latest/source-rights.jsonl", sourceRights],
+    ["exports/latest/accepted-records.jsonl", acceptedRecords],
     ["exports/latest/studies.jsonl", studies],
     ["exports/latest/findings.jsonl", findings],
     ["exports/latest/text-snapshots.jsonl", textSnapshots],
@@ -365,6 +368,7 @@ async function main() {
       canonical_records: canonicalRecords.length,
       sources: sources.length,
       source_rights: sourceRights.length,
+      accepted_records: acceptedRecords.length,
       studies: studies.length,
       findings: findings.length,
       text_snapshots: textSnapshots.length,

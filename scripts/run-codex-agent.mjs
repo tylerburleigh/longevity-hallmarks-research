@@ -468,6 +468,7 @@ const wrapperOwnedQualityChecks = new Set([
   "worker_output_contract",
   "post_export",
   "post_triage_state_export",
+  "post_release_readiness_export",
   "post_verify",
   "post_job_audit",
   "post_output_validate"
@@ -685,6 +686,11 @@ async function runPostSteps(options) {
     await appendOutputQualityCheck(options, event);
     const triageStateEvent = await runCoordinatorCommand(options, "post_triage_state_export", "npm", ["run", "export:triage-state"]);
     await appendOutputQualityCheck(options, triageStateEvent);
+    const releaseReadinessEvent = await runCoordinatorCommand(options, "post_release_readiness_export", "npm", [
+      "run",
+      "export:release-readiness"
+    ]);
+    await appendOutputQualityCheck(options, releaseReadinessEvent);
   }
   if (options.postVerify) {
     const event = await runCoordinatorCommand(options, "post_verify", "npm", ["run", "verify:knowledge-base:post-run"]);

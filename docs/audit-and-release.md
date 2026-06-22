@@ -7,10 +7,11 @@ Before release:
 ```bash
 npm run export:latest
 npm run export:triage-state
+npm run export:release-readiness
 npm run verify:knowledge-base
 ```
 
-`verify:knowledge-base` runs schema validation, reference-integrity checks, export checks, triage-state freshness checks, agent schema checks, Codex job conformance checks, and the agentic process vocabulary audit.
+`verify:knowledge-base` runs schema validation, reference-integrity checks, export checks, triage-state freshness checks, release-readiness freshness checks, agent schema checks, Codex job conformance checks, and the agentic process vocabulary audit.
 
 `promote:candidate` advances a candidate to `accepted` or `applied` only after required supervisor-agent review gates pass.
 
@@ -18,9 +19,13 @@ npm run verify:knowledge-base
 
 `export:triage-state` regenerates `ops/triage-state.v1.json`, the operational control-plane view over candidate readiness, extraction debt, snapshot staleness, partial agent runs, coverage gaps, and recommended jobs.
 
+`export:release-readiness` regenerates `ops/release-readiness.v1.json`, the release-boundary view over promotion-ready candidates, accepted or applied candidate outputs, and accepted records blocked by release-dependency checks.
+
 `audit:exports` checks manifest hashes, verifies JSONL exports against current canonical records, checks coverage status flags, and requires snapshot-linked provenance for extraction-grade exported results.
 
 `audit:triage-state` checks that the persisted control-plane state still matches canonical JSON inputs, ignoring only the timestamp value.
+
+`audit:release-readiness` checks that the persisted release-boundary state still matches canonical JSON inputs, ignoring only the timestamp value.
 
 `test:audit-regressions` runs negative fixtures in isolated temp copies and verifies that known bad states fail the expected audit gates.
 
@@ -41,7 +46,8 @@ Current audit coverage:
 - poolable synthesis groups must have required result maturity, effect value, uncertainty, comparison, and sample-size fields
 - export hash, row-content, coverage-status, and extraction-grade provenance checks
 - triage-state freshness checks for candidate readiness, extraction debt, snapshot staleness, coverage gaps, and recommended jobs
+- release-readiness freshness checks for promotion-ready candidates, accepted-record export eligibility, and accepted records blocked by release dependencies
 - deprecated non-agentic process vocabulary checks
-- negative audit regression fixtures for missing provenance, unsupported promotion, duplicate active review lanes, stale exports, stale triage state, archived-job placement, bad worker-output ledgers, unsafe text-retention exports, invalid pooling, and deprecated process vocabulary
+- negative audit regression fixtures for missing provenance, unsupported promotion, duplicate active review lanes, stale exports, stale triage state, stale release-readiness state, archived-job placement, bad worker-output ledgers, unsafe text-retention exports, invalid pooling, and deprecated process vocabulary
 
-Future release checks should verify accepted-record exports, raw-payload retention, and endpoint-specific synthesis-group completeness.
+Future release checks should verify endpoint-specific synthesis-group completeness and release snapshots for versioned public packages.

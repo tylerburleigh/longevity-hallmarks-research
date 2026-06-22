@@ -111,6 +111,128 @@ As of 2026-06-22, the repository has an initial JSON-file-backed scaffold:
 - Added reusable Codex CLI prompts/job templates for ClinicalTrials.gov text-snapshot ingestion and supervisor review.
 - Ran a Codex CLI extraction-refresh job that used the retained ClinicalTrials.gov markdown to add text-snapshot provenance and section-stable registry locators to existing D+Q bone finding, outcome, and result records.
 
+## Current System Assessment
+
+The system is strongest today as an audited agentic research-control plane. It has schemas, provenance, source-rights policy, retained text-snapshot contracts, candidate-review gates, Codex job lifecycle controls, generated exports, triage state, and negative regression fixtures.
+
+It is not yet a mature living meta-analysis at scale. The system can prevent unsupported claims from being released, but it still needs stronger autonomous gathering, deeper extraction, endpoint normalization, generated query access, and release packaging before it can serve as a comprehensive evidence substrate for longevity science.
+
+Current strengths:
+
+- Audit-first architecture: durable records are validated, linked, reviewed, exported, and regression-tested.
+- Clear separation between canonical records, generated exports, operational triage state, Codex job specs, archived run snapshots, and source-text artifacts.
+- Stronger source accountability: retained text artifacts have rights records, access policy, artifact hashes, parser metadata, and section-stable provenance.
+- Candidate lifecycle controls: generated agent output remains proposed state until automated checks and agent-supervisor reviews support promotion.
+- Synthesis restraint: poolability is blocked when effect values, uncertainty, comparators, sample sizes, endpoint compatibility, or provenance are insufficient.
+
+Current weaknesses and hardening priorities:
+
+- Evidence breadth is still narrow, with most depth concentrated in the senolytics/D+Q vertical slice.
+- Discovery and screening are not autonomous enough: durable search sessions, no-op searches, excluded-source decisions, and coverage updates still need stronger generation templates and runnable jobs.
+- Extraction depth is uneven: useful records exist, but many are not yet synthesis-ready because effect values, uncertainty, group denominators, subgroup details, safety event counts, or full-text locators are missing.
+- Endpoint and effect normalization are underdeveloped, limiting cross-study comparability and formal synthesis.
+- The query surface is underpowered: JSONL exports are available, but agents and downstream consumers still need a generated read model for joins across sources, studies, outcomes, results, reviews, candidates, and synthesis groups.
+- Self-healing is incomplete: triage state identifies repair work, but the system does not yet generate bounded Codex job specs for those repairs.
+- Orchestration is not yet parallel-aware: live jobs have lifecycle state, but they do not yet declare enough dependency and conflict metadata for a scheduler to run independent agents concurrently.
+- The release boundary needs tightening: accepted canonical records, submitted candidates, in-review state, promotion-ready state, and released consumer artifacts should be clearly separated.
+- Statistical readiness is early: the system records why pooling is blocked, but it does not yet provide enough normalized effect data to produce many quantitative estimates.
+
+## Consumer Output Contract
+
+The primary consumer contract should be explicit and versioned so researchers, agents, notebooks, dashboards, and APIs know which artifacts are stable enough to consume.
+
+Consumer-facing layers:
+
+- Canonical JSON records are the source of truth and remain schema-validated.
+- `exports/latest/` contains regenerated read artifacts for common downstream use.
+- The future SQLite/DuckDB read model is a generated index, not an authority; every row should retain `record_type`, `id`, source `path`, maturity state, and provenance links back to canonical JSON.
+- Accepted-record and release-readiness exports should separate released evidence from submitted or in-review generated state.
+- Audit manifests should describe generation time, source inputs, export hashes, schema versions, and verification commands.
+
+Data-product maturity levels should be visible to consumers:
+
+- `triage`: useful for work planning, not evidence synthesis.
+- `extraction_grade`: source-located extracted data with required provenance.
+- `synthesis_ready`: effect, uncertainty, comparator, denominator, endpoint, and timepoint fields are compatible enough for synthesis evaluation.
+- `promotion_ready`: generated change has passed required agent-supervisor review lanes and can be promoted.
+- `accepted`: canonical state has passed promotion gates.
+- `released`: accepted state has been packaged into consumer-facing release artifacts.
+
+Consumers can rely on:
+
+- Stable record IDs and schema versions.
+- Provenance links from claims/results back to source snapshots, retained text sections when available, and source-rights policy.
+- Maturity status, synthesis blockers, and extraction-debt signals.
+- Candidate readiness and release-readiness state.
+
+Consumers should not treat as final:
+
+- Submitted or in-review candidates.
+- Registry-only result direction when the record lacks extraction-grade support.
+- Synthesis groups marked blocked, pending, or missing required pooling fields.
+- Generated read-model rows that cannot be traced back to canonical JSON.
+
+## End-To-End Agentic Flow
+
+The target operating loop is:
+
+1. `triage_agent` reads coverage gaps, extraction debt, stale snapshots, candidate readiness, and release state.
+2. `search_agent` creates a bounded search session with query strings, source locations, no-op searches, and excluded-source decisions.
+3. `screening_agent` records inclusion, exclusion, duplicate, and wrong-scope decisions.
+4. `dedupe_linker_agent` resolves DOI, PMID, PMCID, NCT, registry, title, and preprint duplicates.
+5. `trial_registry_agent` and import scripts snapshot registry or PubMed state.
+6. `extraction_agent` creates proposed source, study, outcome, result, finding, risk-of-bias, and text-provenance records.
+7. `classification_agent` maps records to hallmarks, tracks, interventions, mechanisms, endpoints, and modality fields.
+8. `synthesis_agent` builds evidence-map and synthesis-group records, marking pooling as allowed, pending, or blocked.
+9. `review_agent` and `supervisor_agent` verify source fidelity, extraction fidelity, taxonomy mapping, synthesis boundaries, and safety limitations.
+10. `self_healing_agent` turns audit failures, stale state, missing provenance, and missing effect fields into bounded repair candidates.
+11. `release_agent` promotes accepted records, builds release artifacts, verifies exports, and updates the audit manifest.
+
+## Parallel Agent Orchestration
+
+The orchestration layer should treat agent work as a dependency graph, not a single serial queue. Many evidence-gathering and review tasks can run concurrently when they read shared state but write isolated candidate outputs.
+
+Naturally parallel work:
+
+- Search agents across different tracks, hallmarks, intervention classes, mechanisms, sources, or query families.
+- Registry and PubMed refresh jobs across independent NCT IDs, PMIDs, PMCIDs, or DOIs.
+- Source-rights classification across independent sources.
+- Text-snapshot ingestion across independent public registries, preprints, repositories, or open reusable records.
+- Extraction-refresh jobs across different papers, trials, model systems, or endpoint families.
+- Supervisor review lanes that inspect the same candidate from different review perspectives.
+- Coverage-gap, extraction-debt, and synthesis-readiness audits across independent tracks or endpoint groups.
+
+Work requiring serialization or reconciliation:
+
+- Promotion from candidate state into accepted canonical records.
+- Release artifact generation.
+- Changes to shared taxonomies or controlled vocabularies.
+- Dedupe/linking work that may merge multiple sources, studies, trials, or preprints.
+- Jobs that target the same canonical record IDs, source snapshots, text snapshots, candidate IDs, or export paths.
+- Formal synthesis over a group that depends on all relevant extraction jobs being complete.
+
+Every runnable Codex job should eventually declare:
+
+- `read_sets`: record IDs, export files, source snapshots, text snapshots, or query layers it depends on.
+- `write_sets`: candidate files, agent-run files, logs, source snapshots, text snapshots, or generated artifacts it may create.
+- `conflict_keys`: stable identifiers used to prevent unsafe concurrent writes.
+- `parallel_group`: scheduler-assigned batch ID for jobs that can run concurrently.
+- `reconciliation_required`: whether outputs need dedupe, conflict checks, or synthesis boundary review before promotion.
+- `expected_cost`: optional runtime, token, and network-use estimate for batch planning.
+
+The target scheduler loop is:
+
+1. Read triage state, live Codex jobs, candidate readiness, extraction debt, and stale-source queues.
+2. Build a dependency graph from `read_sets`, `write_sets`, and `conflict_keys`.
+3. Group independent jobs into bounded parallel batches.
+4. Run each worker in an isolated worktree with structured output and wrapper-owned verification.
+5. Archive completed job snapshots and final agent-run records.
+6. Run a reconciliation pass that detects duplicate candidates, overlapping record proposals, conflicting source classifications, and incomplete ledgers.
+7. Generate follow-up review, repair, promotion, or release jobs.
+8. Record orchestration metrics: wall-clock time, worker failures, duplicate work, conflicts, accepted records produced, extraction-debt resolved, and release artifacts updated.
+
+Parallelism should increase throughput without weakening auditability. Workers can gather, extract, classify, and review in parallel, but canonical promotion and release remain gated, serialized operations.
+
 ## Target Architecture
 
 The durable core should be an evidence graph plus a review ledger.
@@ -396,13 +518,15 @@ Tasks:
 - [x] Add text-snapshot export contract for retained source-text artifacts.
 - [x] Add source-rights export contract for downstream attribution and retention policy checks.
 - [x] Add candidate-readiness export for promotion-ready, blocked, needs-review, and needs-repair candidate states.
-- [ ] Add an accepted-record export once promotion gates exist.
+- [ ] Add a versioned consumer output contract that defines stable artifacts, maturity states, release boundaries, and fields consumers can rely on.
+- [x] Add an accepted-record export once promotion gates exist.
 
 Exit criteria:
 
 - [x] `exports/latest/` can be regenerated from canonical records.
 - [x] Export files include enough IDs and provenance links to support downstream use.
 - [x] Export audit fails when extraction-grade result exports lack required provenance depth.
+- [x] Consumer-facing artifacts distinguish triage, extraction-grade, promotion-ready, and accepted evidence; synthesis-ready and released versioned packages remain future work.
 
 ### Phase 4: Agent-Orchestrated Runs
 
@@ -457,12 +581,15 @@ Tasks:
 - [x] Add an agentic process audit that rejects deprecated non-agentic process vocabulary.
 - [x] Add controlled synthesis blocker vocabulary for missing pooling fields.
 - [x] Add synthesis-group audits for result/outcome consistency and duplicate overlapping strata.
+- [ ] Add endpoint-normalization and effect-harmonization rules for units, timepoints, comparison direction, uncertainty metrics, subgroup records, and safety events.
+- [ ] Add synthesis-readiness exports per endpoint/intervention group so consumers can see why each group is poolable, pending, or blocked.
 - [ ] Add endpoint-specific synthesis-group generation for the remaining human senolytics papers.
 
 Exit criteria:
 
 - The system can produce both evidence maps and formal synthesis records.
 - Meta-analysis is only attempted when compatibility rules are satisfied.
+- Endpoint, effect, comparator, timepoint, and uncertainty fields are normalized enough for agent-supervised synthesis decisions.
 
 ### Phase 6: Agentic Control Plane And Self-Healing
 
@@ -478,10 +605,11 @@ Tasks:
 - [x] Add a triage-state freshness audit so generated control-plane state cannot drift from canonical JSON inputs.
 - [x] Add an active job lifecycle model for Codex jobs: `planned`, `ready`, `running`, `succeeded`, `failed`, `superseded`, and `archived`.
 - [x] Move executed job specs or immutable job snapshots out of the live runnable job directory once their final `agent_run` is verified.
-- [x] Add regression fixtures for negative audit cases, including missing provenance, unsupported promotion, stale exports, duplicate active reviews, bad worker output, unsafe text retention, and invalid synthesis pooling.
+- [x] Add regression fixtures for negative audit cases, including missing provenance, unsupported promotion, stale exports, stale triage state, stale release-readiness state, duplicate active reviews, bad worker output, unsafe text retention, and invalid synthesis pooling.
 - [ ] Add a lightweight SQLite or DuckDB generated read model for agents and downstream consumers that need joins over sources, studies, outcomes, results, reviews, candidates, and synthesis groups; canonical JSON records remain the source of truth.
+- [ ] Add read-model audits requiring every generated row to include `record_type`, `id`, source `path`, maturity state, and provenance back to canonical JSON.
 - [ ] Add search/session generation templates so search and screening agents produce durable no-op searches, excluded-source decisions, and coverage updates without coordinator hand-entry.
-- [ ] Add a release-readiness queue that distinguishes accepted canonical state from submitted/in-review generated state.
+- [x] Add a release-readiness queue that distinguishes accepted canonical state from submitted/in-review generated state.
 
 Exit criteria:
 
@@ -492,6 +620,28 @@ Exit criteria:
 - Consumers can query current evidence, gaps, and synthesis readiness without reconstructing joins manually.
 - The query layer is rebuildable from canonical JSON, includes `record_type`, `id`, and source `path` on every row, and cannot be used to bypass JSON schemas, provenance, or review gates.
 
+### Phase 7: Parallel Agent Orchestration
+
+Goal: let the system run independent Codex workers concurrently while preserving provenance, candidate isolation, conflict detection, and release discipline.
+
+Tasks:
+
+- [ ] Add Codex job dependency metadata: `read_sets`, `write_sets`, `conflict_keys`, `parallel_group`, `reconciliation_required`, and `expected_cost`.
+- [ ] Add a scheduler that groups live runnable jobs into safe parallel batches based on dependency and conflict metadata.
+- [ ] Add a parallel batch runner that starts isolated-worktree Codex workers, tracks worker state, captures logs, and archives completed job snapshots.
+- [ ] Add a reconciliation agent that compares parallel outputs for duplicate sources, duplicate studies, overlapping candidate proposals, conflicting source-rights classifications, and incomplete ledgers.
+- [ ] Add conflict audits that block promotion when candidate outputs overlap without an explicit reconciliation record.
+- [ ] Add support for parallel supervisor review lanes over the same candidate when lanes are independent.
+- [ ] Add orchestration metrics covering wall-clock time, failed workers, duplicated work, conflict rate, accepted records produced, extraction debt resolved, and release artifacts updated.
+- [ ] Add scheduler fixtures for search-batch, registry-refresh-batch, extraction-refresh-batch, supervisor-review-batch, and self-healing-repair-batch runs.
+
+Exit criteria:
+
+- The orchestrator can identify which live jobs may run concurrently and which must be serialized.
+- Search, registry refresh, text ingestion, extraction refresh, and supervisor-review lanes can be batched without weakening candidate-review gates.
+- Parallel outputs cannot be promoted until dedupe, conflict checks, expected-output ledgers, and required review lanes pass.
+- Completed parallel batches leave durable job snapshots, logs, final agent-run records, reconciliation records, and metrics.
+
 ## Initial Open Questions
 
 - Should this be JSON-file-backed first, or should we introduce SQLite/DuckDB early for queries?
@@ -500,24 +650,34 @@ Exit criteria:
 - Should we import existing `lev-tracker` records or start clean and selectively port?
 - How strict should agent review gates be before the first real data release?
 - What output contract should downstream consumers rely on first: JSONL, JSON graph, SQLite, or static API?
+- What concurrency limits should the orchestrator enforce by default for search, extraction, review, and release jobs?
 
 ## Immediate Next Actions
 
-1. Decide whether to promote or revise review-passing candidates, starting with the D+Q bone endpoint synthesis candidate and the D+Q registry-markdown provenance-repair candidate.
-2. Finish full publication/table extraction for the D+Q bone RCT, including subgroup and event-specific safety details.
-3. Run extraction-refresh passes on the remaining human D+Q papers: DKD, IPF, and AD-risk cognition/mobility.
-4. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
+1. Decide whether to promote or revise the D+Q bone endpoint synthesis candidate and the D+Q registry-markdown provenance-repair candidate, using `ops/release-readiness.v1.json` to catch release dependencies.
+2. Add the versioned consumer output contract so researchers, agents, notebooks, dashboards, and APIs know which artifacts and maturity states are stable enough to consume.
+3. Add the generated SQLite/DuckDB read model plus provenance audits so consumers can query joins without bypassing canonical JSON.
+4. Add Codex job dependency metadata and conflict keys so the orchestrator can distinguish parallel-safe jobs from serialized jobs.
 5. Add durable research-session, search-log, and screening-run generation templates.
-6. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
-7. Decide whether to install repo-local skills into the active Codex skills directory.
+6. Add the self-healing job generator that turns triage-state repair recommendations into bounded live Codex job specs.
+7. Add the default isolated-worktree execution helper needed for safe concurrent Codex workers.
+8. Add a first parallel-batch planner for independent search, registry-refresh, extraction-refresh, and supervisor-review jobs.
+9. Finish full publication/table extraction for the D+Q bone RCT, including subgroup and event-specific safety details.
+10. Run extraction-refresh passes on the remaining human D+Q papers: DKD, IPF, and AD-risk cognition/mobility.
+11. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
+12. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
+13. Decide whether to install repo-local skills into the active Codex skills directory.
 
 ## Change Log
 
+- 2026-06-22: Added accepted-record export, generated release-readiness queue, release-boundary freshness audit, and Codex wrapper post-export refresh for release state.
+- 2026-06-22: Added parallel agent orchestration design with dependency metadata, conflict keys, parallel batches, reconciliation passes, serialized promotion/release gates, and orchestration metrics.
+- 2026-06-22: Added current system assessment, consumer output contract, end-to-end agentic flow, and hardening priorities for release boundaries, query access, search/screen generation, self-healing jobs, extraction depth, and synthesis readiness.
 - 2026-06-22: Added the next system priorities for an agentic control plane: triage state, candidate readiness, self-healing repair queues, live-versus-archived job specs, regression fixtures, query indexes, and durable search/session generation.
 - 2026-06-22: Added generated triage-state control-plane output covering candidate readiness, promotion-ready candidates, review-lane queues, current coverage gaps, extraction debt, snapshot staleness, partial agent runs, and recommended jobs.
 - 2026-06-22: Added a non-mutating triage-state freshness audit and wired Codex post-export steps to regenerate the control-plane state before post-run verification.
 - 2026-06-22: Split runnable Codex job specs from archived executed snapshots with job lifecycle metadata, live/archive path audits, and archived final-run provenance links.
-- 2026-06-22: Added executable negative audit regression fixtures covering missing provenance, unsupported promotion, duplicate active review lanes, stale exports, stale triage state, archived-job placement, bad worker-output ledgers, unsafe text-retention exports, invalid pooling, and deprecated process vocabulary.
+- 2026-06-22: Added executable negative audit regression fixtures covering missing provenance, unsupported promotion, duplicate active review lanes, stale exports, stale triage state, stale release-readiness state, archived-job placement, bad worker-output ledgers, unsafe text-retention exports, invalid pooling, and deprecated process vocabulary.
 - 2026-06-22: Moved run-specific Codex prompts out of reusable docs and into `research/agent-runs/prompts/`; added wrapper support for future prompt snapshots plus `prompt_template_file` and `job_file` execution provenance.
 - 2026-06-22: Added a wrapper-enforced `worker_output_contract` quality gate for future Codex runs, rejecting multiple JSON `agent_run` messages and inline Node/AJV schema-validation snippets; updated Codex job templates and operating docs.
 - 2026-06-22: Ran the D+Q registry-markdown provenance-repair supervisor-review Codex job; source-fidelity, extraction-fidelity, taxonomy-mapping, and safety-limitations reviews are complete, accepting, non-blocking, and linked to the candidate, which is now `in_review`.

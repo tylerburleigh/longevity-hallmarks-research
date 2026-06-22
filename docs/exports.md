@@ -7,6 +7,7 @@ Regenerate it from canonical records:
 ```bash
 npm run export:latest
 npm run export:triage-state
+npm run export:release-readiness
 ```
 
 Validate after generation:
@@ -20,12 +21,14 @@ To audit exports without regenerating them:
 ```bash
 npm run audit:exports
 npm run audit:triage-state
+npm run audit:release-readiness
 ```
 
 ## Files
 
 - `sources.jsonl`: canonical source records.
 - `source-rights.jsonl`: source-rights records with attribution, terms/license source, allowed artifact classes, public-export policy, and remediation state.
+- `accepted-records.jsonl`: release-boundary export of records proposed by accepted or applied candidates and not blocked by dependency checks.
 - `studies.jsonl`: canonical study records.
 - `findings.jsonl`: canonical finding records.
 - `text-snapshots.jsonl`: retained source-text artifact manifests, access policy, hashes, extraction tooling, and section indexes.
@@ -44,6 +47,8 @@ JSONL lines preserve canonical record fields. Consumers should use each record's
 
 `ops/triage-state.v1.json` is a generated control-plane view, not a canonical evidence record. It classifies candidate readiness, promotion-ready candidates, review-lane queues, current coverage gaps, extraction debt, snapshot staleness, partial agent runs, and recommended jobs. `audit:triage-state` verifies that this file still matches canonical JSON inputs.
 
+`ops/release-readiness.v1.json` is a generated release-boundary view. It separates candidates that are not ready, candidates ready for promotion, accepted or applied candidates with exportable records, and accepted or applied records blocked by release-dependency checks. `audit:release-readiness` verifies that this file still matches canonical JSON inputs.
+
 ## Consumer Guidance
 
 Use `results.extraction_grade.jsonl` when structured result values are required. In the current data this file is registry-only, so use `results.registry_extracted.jsonl` when consumers need to distinguish ClinicalTrials.gov posted-result extraction from future full-text or accepted extraction.
@@ -53,6 +58,8 @@ Use `results.triage.jsonl` only for discovery, work queues, dashboards that expl
 Use `synthesis-groups.jsonl` before attempting meta-analysis. `pooling_decision: "pooling_blocked"` means the group may still be useful evidence-map context, but consumers should not compute a pooled estimate from its `result_ids`.
 
 Use `coverage-status.json` to decide whether a track/hallmark scope is current and what gaps must be shown to users. `is_current: false` means a newer coverage assessment exists for the same track/hallmark pair.
+
+Use `accepted-records.jsonl` when consumers need the release-boundary view. Records appear there only after an accepted or applied candidate ledger proposes them and release-dependency checks do not block them. The export is an envelope around canonical records; use `accepted_record_type`, `accepted_record_id`, `path`, and `accepted_via_candidate_change_ids` to trace each item.
 
 Use `audit-manifest.json` to verify generated artifacts. The manifest intentionally hashes the data files and excludes itself from the hash list.
 
@@ -67,6 +74,6 @@ See `docs/consumer-disclaimer.md` for consumer-facing limitations.
 ## Current Limitations
 
 - The evidence-map export is a generated graph view, not a formal synthesis.
-- There is no accepted-record export yet, although candidate promotion gates now exist.
+- Accepted-record export is conservative: update proposals are blocked from the release export when their create candidate is still submitted or in review.
 - Text-snapshot schema/export support exists, but article full-text fetchers and markdown normalizers have not yet been implemented.
 - Certainty assessments and endpoint-specific synthesis-group generation for the remaining human senolytics papers remain future work.

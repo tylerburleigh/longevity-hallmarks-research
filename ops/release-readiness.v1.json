@@ -1,0 +1,326 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "release_readiness",
+  "id": "release-readiness-v1",
+  "generated_at": "2026-06-22T16:58:27.074Z",
+  "source_roots": [
+    "data",
+    "research"
+  ],
+  "release_boundary": {
+    "description": "Generated release boundary over candidate lifecycle state. Accepted-record exports include only records proposed by accepted or applied candidates and not blocked by release-dependency checks.",
+    "accepted_candidate_statuses": [
+      "accepted",
+      "applied"
+    ],
+    "accepted_record_export_path": "exports/latest/accepted-records.jsonl",
+    "canonical_source_of_truth": "data/ and research/ JSON records"
+  },
+  "summary": {
+    "candidate_count": 7,
+    "not_ready_candidate_count": 3,
+    "promotion_ready_candidate_count": 2,
+    "release_ready_candidate_count": 1,
+    "partial_release_ready_candidate_count": 1,
+    "release_blocked_candidate_count": 1,
+    "accepted_or_applied_candidate_count": 2,
+    "accepted_record_count": 5,
+    "blocked_accepted_record_count": 1
+  },
+  "promotion_ready_candidate_ids": [
+    "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
+    "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22"
+  ],
+  "release_ready_candidate_ids": [
+    "senolytics-dq-bone-registry-text-snapshot-2026-06-22",
+    "senolytics-dq-bone-source-rights-seed-2026-06-22"
+  ],
+  "release_blocked_candidate_ids": [
+    "senolytics-dq-bone-registry-text-snapshot-2026-06-22"
+  ],
+  "candidate_release_statuses": [
+    {
+      "candidate_change_id": "senolytics-bone-rct-extraction-refresh-2026-06-21",
+      "path": "data/candidate-changes/senolytics-bone-rct-extraction-refresh-2026-06-21.json",
+      "lifecycle_status": "in_review",
+      "readiness_status": "needs_revision",
+      "release_status": "not_ready",
+      "required_review_lanes": [
+        "extraction_fidelity",
+        "safety_limitations",
+        "source_fidelity",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "active_review_ids": [
+        "senolytics-bone-rct-extraction-fidelity-2026-06-21",
+        "senolytics-bone-rct-safety-limitations-2026-06-21",
+        "senolytics-bone-rct-source-fidelity-2026-06-21",
+        "senolytics-bone-rct-synthesis-boundary-2026-06-21",
+        "senolytics-bone-rct-taxonomy-mapping-2026-06-21"
+      ],
+      "proposed_record_count": 28,
+      "release_ready_record_count": 0,
+      "blocked_record_count": 0,
+      "release_ready_record_ids": [],
+      "blocked_record_ids": [],
+      "next_actions": [
+        "Create a repair candidate addressing extraction_fidelity, safety_limitations.",
+        "Resolve open major or critical review findings in senolytics-bone-rct-extraction-fidelity-2026-06-21, senolytics-bone-rct-safety-limitations-2026-06-21."
+      ]
+    },
+    {
+      "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
+      "path": "data/candidate-changes/senolytics-coverage-repair-2026-06-21.json",
+      "lifecycle_status": "in_review",
+      "readiness_status": "needs_revision",
+      "release_status": "not_ready",
+      "required_review_lanes": [
+        "extraction_fidelity",
+        "safety_limitations",
+        "source_fidelity",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "active_review_ids": [
+        "senolytics-coverage-repair-extraction-fidelity-2026-06-21",
+        "senolytics-coverage-repair-safety-limitations-2026-06-21",
+        "senolytics-coverage-repair-source-fidelity-2026-06-21",
+        "senolytics-coverage-repair-synthesis-boundary-2026-06-21",
+        "senolytics-coverage-repair-taxonomy-mapping-2026-06-21"
+      ],
+      "proposed_record_count": 62,
+      "release_ready_record_count": 0,
+      "blocked_record_count": 0,
+      "release_ready_record_ids": [],
+      "blocked_record_ids": [],
+      "next_actions": [
+        "Create a repair candidate addressing extraction_fidelity, safety_limitations, source_fidelity, synthesis_boundary, taxonomy_mapping.",
+        "Resolve open major or critical review findings in senolytics-coverage-repair-extraction-fidelity-2026-06-21, senolytics-coverage-repair-safety-limitations-2026-06-21, senolytics-coverage-repair-source-fidelity-2026-06-21, senolytics-coverage-repair-synthesis-boundary-2026-06-21, senolytics-coverage-repair-taxonomy-mapping-2026-06-21."
+      ]
+    },
+    {
+      "candidate_change_id": "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
+      "path": "data/candidate-changes/senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21.json",
+      "lifecycle_status": "in_review",
+      "readiness_status": "promotion_ready",
+      "release_status": "promotion_ready",
+      "required_review_lanes": [
+        "safety_limitations",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "active_review_ids": [
+        "senolytics-dq-bone-endpoint-safety-limitations-2026-06-21",
+        "senolytics-dq-bone-endpoint-synthesis-boundary-2026-06-21",
+        "senolytics-dq-bone-endpoint-taxonomy-mapping-2026-06-21"
+      ],
+      "proposed_record_count": 7,
+      "release_ready_record_count": 0,
+      "blocked_record_count": 0,
+      "release_ready_record_ids": [],
+      "blocked_record_ids": [],
+      "next_actions": [
+        "Promote candidate senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21 before release artifacts include its proposed records."
+      ]
+    },
+    {
+      "candidate_change_id": "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
+      "path": "data/candidate-changes/senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22.json",
+      "lifecycle_status": "in_review",
+      "readiness_status": "promotion_ready",
+      "release_status": "promotion_ready",
+      "required_review_lanes": [
+        "extraction_fidelity",
+        "safety_limitations",
+        "source_fidelity",
+        "taxonomy_mapping"
+      ],
+      "active_review_ids": [
+        "senolytics-dq-bone-registry-markdown-provenance-extraction-fidelity-2026-06-22",
+        "senolytics-dq-bone-registry-markdown-provenance-safety-limitations-2026-06-22",
+        "senolytics-dq-bone-registry-markdown-provenance-source-fidelity-2026-06-22",
+        "senolytics-dq-bone-registry-markdown-provenance-taxonomy-mapping-2026-06-22"
+      ],
+      "proposed_record_count": 16,
+      "release_ready_record_count": 0,
+      "blocked_record_count": 0,
+      "release_ready_record_ids": [],
+      "blocked_record_ids": [],
+      "next_actions": [
+        "Promote candidate senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22 before release artifacts include its proposed records."
+      ]
+    },
+    {
+      "candidate_change_id": "senolytics-dq-bone-registry-text-snapshot-2026-06-22",
+      "path": "data/candidate-changes/senolytics-dq-bone-registry-text-snapshot-2026-06-22.json",
+      "lifecycle_status": "accepted",
+      "readiness_status": "accepted",
+      "release_status": "partial_release_ready",
+      "required_review_lanes": [
+        "extraction_fidelity",
+        "source_fidelity"
+      ],
+      "active_review_ids": [
+        "senolytics-dq-bone-registry-text-snapshot-extraction-fidelity-2026-06-22",
+        "senolytics-dq-bone-registry-text-snapshot-source-fidelity-2026-06-22"
+      ],
+      "proposed_record_count": 3,
+      "release_ready_record_count": 2,
+      "blocked_record_count": 1,
+      "release_ready_record_ids": [
+        "senolytics-dq-bone-registry-text-snapshot-2026-06-22",
+        "text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21"
+      ],
+      "blocked_record_ids": [
+        "snapshot-nct-04313634-clinicaltrials-v2-2026-06-21"
+      ],
+      "next_actions": [
+        "Included records without blockers are eligible for accepted-record export.",
+        "Resolve blocked records before treating the whole candidate as fully released: source_snapshot:snapshot-nct-04313634-clinicaltrials-v2-2026-06-21."
+      ]
+    },
+    {
+      "candidate_change_id": "senolytics-dq-bone-source-rights-seed-2026-06-22",
+      "path": "data/candidate-changes/senolytics-dq-bone-source-rights-seed-2026-06-22.json",
+      "lifecycle_status": "accepted",
+      "readiness_status": "accepted",
+      "release_status": "release_ready",
+      "required_review_lanes": [
+        "source_fidelity"
+      ],
+      "active_review_ids": [
+        "senolytics-dq-bone-source-rights-source-fidelity-2026-06-22"
+      ],
+      "proposed_record_count": 3,
+      "release_ready_record_count": 3,
+      "blocked_record_count": 0,
+      "release_ready_record_ids": [
+        "senolytics-dq-bone-source-rights-seed-2026-06-22",
+        "source-rights-nct-04313634-2026-06-22",
+        "source-rights-pmid-38956196-2026-06-22"
+      ],
+      "blocked_record_ids": [],
+      "next_actions": [
+        "Included in accepted-record export."
+      ]
+    },
+    {
+      "candidate_change_id": "senolytics-scaffold-bootstrap-2026-06-21",
+      "path": "data/candidate-changes/senolytics-scaffold-bootstrap-2026-06-21.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "needs_revision",
+      "release_status": "not_ready",
+      "required_review_lanes": [
+        "source_fidelity",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "active_review_ids": [
+        "senolytics-scaffold-source-fidelity-2026-06-21"
+      ],
+      "proposed_record_count": 6,
+      "release_ready_record_count": 0,
+      "blocked_record_count": 0,
+      "release_ready_record_ids": [],
+      "blocked_record_ids": [],
+      "next_actions": [
+        "Create a repair candidate addressing source_fidelity.",
+        "After repair, complete missing review lanes: synthesis_boundary, taxonomy_mapping."
+      ]
+    }
+  ],
+  "release_ready_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "senolytics-dq-bone-registry-text-snapshot-2026-06-22",
+      "path": "data/candidate-changes/senolytics-dq-bone-registry-text-snapshot-2026-06-22.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-registry-text-snapshot-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
+    },
+    {
+      "record_type": "candidate_change",
+      "record_id": "senolytics-dq-bone-source-rights-seed-2026-06-22",
+      "path": "data/candidate-changes/senolytics-dq-bone-source-rights-seed-2026-06-22.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-source-rights-seed-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
+    },
+    {
+      "record_type": "source_rights",
+      "record_id": "source-rights-nct-04313634-2026-06-22",
+      "path": "data/source-rights/source-rights-nct-04313634-2026-06-22.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-source-rights-seed-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
+    },
+    {
+      "record_type": "source_rights",
+      "record_id": "source-rights-pmid-38956196-2026-06-22",
+      "path": "data/source-rights/source-rights-pmid-38956196-2026-06-22.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-source-rights-seed-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
+    },
+    {
+      "record_type": "text_snapshot",
+      "record_id": "text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+      "path": "data/text-snapshots/text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-registry-text-snapshot-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
+    }
+  ],
+  "blocked_accepted_records": [
+    {
+      "record_type": "source_snapshot",
+      "record_id": "snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+      "path": "data/source-snapshots/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+      "change_type": "update",
+      "candidate_change_id": "senolytics-dq-bone-registry-text-snapshot-2026-06-22",
+      "candidate_lifecycle_status": "accepted",
+      "blockers": [
+        {
+          "blocker_type": "unaccepted_create_dependency",
+          "message": "Update depends on create candidate(s) that are not accepted or applied: senolytics-bone-rct-extraction-refresh-2026-06-21."
+        }
+      ]
+    }
+  ]
+}

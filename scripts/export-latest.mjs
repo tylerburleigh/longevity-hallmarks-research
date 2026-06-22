@@ -3,6 +3,7 @@
 import { createHash } from "node:crypto";
 import { promises as fs } from "node:fs";
 import path from "node:path";
+import { buildAcceptedRecordExportItems } from "./export-release-readiness.mjs";
 
 const workspaceRoot = process.cwd();
 const exportDir = path.join(workspaceRoot, "exports", "latest");
@@ -21,6 +22,7 @@ const extractionGradeMaturityStatuses = new Set([
 const managedExportFiles = [
   "sources.jsonl",
   "source-rights.jsonl",
+  "accepted-records.jsonl",
   "studies.jsonl",
   "findings.jsonl",
   "text-snapshots.jsonl",
@@ -343,6 +345,7 @@ async function main() {
   const records = await loadCanonicalRecords();
   const sources = recordsOf(records, "source");
   const sourceRights = recordsOf(records, "source_rights");
+  const acceptedRecords = await buildAcceptedRecordExportItems();
   const studies = recordsOf(records, "study");
   const findings = recordsOf(records, "finding");
   const textSnapshots = recordsOf(records, "text_snapshot");
@@ -369,6 +372,12 @@ async function main() {
       format: "jsonl",
       description: "Source rights, attribution, artifact-retention, public-export, and remediation policy records.",
       records: sourceRights
+    },
+    {
+      relativePath: "exports/latest/accepted-records.jsonl",
+      format: "jsonl",
+      description: "Release-boundary export of records proposed by accepted or applied candidates and not blocked by dependency checks.",
+      records: acceptedRecords
     },
     {
       relativePath: "exports/latest/studies.jsonl",
@@ -489,6 +498,7 @@ async function main() {
       canonical_records: records.length,
       sources: sources.length,
       source_rights: sourceRights.length,
+      accepted_records: acceptedRecords.length,
       studies: studies.length,
       findings: findings.length,
       text_snapshots: textSnapshots.length,
@@ -501,6 +511,7 @@ async function main() {
     },
     notes: [
       "JSONL records preserve canonical record fields.",
+      "Use accepted-records.jsonl for the release-boundary view of accepted or applied candidate outputs.",
       "Use results.extraction_grade.jsonl for structured result values.",
       "Use results.registry_extracted.jsonl to isolate ClinicalTrials.gov posted-result extraction.",
       "Use results.triage.jsonl only as a work queue or weak signal; it is not extraction-grade evidence.",

@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "outcome",
+  "id": "dq-bone-p16-t3-p1np-4wk",
+  "name": "High-p16 T3 4-week P1NP percent change",
+  "summary": "Exploratory subgroup outcome: percent change from baseline to 4 weeks in serum P1NP among participants in the highest tertile of baseline T cell p16 mRNA levels.",
+  "source_id": "pmid-38956196",
+  "study_id": "dq-postmenopausal-bone-rct",
+  "finding_ids": [
+    "dq-bone-rct-primary-null-subgroup-biomarker-signal"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence",
+    "stem_cell_exhaustion"
+  ],
+  "track_ids": [
+    "senolytics"
+  ],
+  "endpoint_category": "biomarker",
+  "measurement_type": "molecular_biomarker",
+  "measurement_method": "Serum amino-terminal propeptide of type I collagen (P1NP) percent change stratified by baseline T cell p16_variant 5 mRNA tertile",
+  "unit": "percentage-point difference relative to control",
+  "timepoint": "Baseline to 4 weeks",
+  "analysis_role": "exploratory",
+  "population_or_model": "Postmenopausal women in the highest tertile of baseline T cell p16 mRNA levels",
+  "directionality_preferred": "higher_better",
+  "tags": [
+    "senolytics",
+    "human",
+    "randomized-trial",
+    "bone",
+    "p1np",
+    "subgroup",
+    "p16",
+    "exploratory"
+  ],
+  "maturity_status": "full_text_extracted",
+  "provenance": [
+    {
+      "source_id": "pmid-38956196",
+      "source_snapshot_id": "snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+      "text_snapshot_id": "text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+      "locator_type": "full_text_section",
+      "locator": "section:pmc-s7-exploratory-and-post-hoc-analyses; Fig. 4a",
+      "status": "full_text_extracted",
+      "note": "PMC author-manuscript exploratory analysis reports the high-p16 T3 subgroup P1NP effect at 4 weeks."
+    }
+  ],
+  "target_hallmark_ids": [
+    "cellular_senescence"
+  ],
+  "measured_hallmark_ids": [
+    "cellular_senescence"
+  ]
+}

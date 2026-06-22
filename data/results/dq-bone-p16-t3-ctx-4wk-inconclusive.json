@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "result",
+  "id": "dq-bone-p16-t3-ctx-4wk-inconclusive",
+  "name": "High-p16 T3 4-week CTx inconclusive exploratory result",
+  "source_id": "pmid-38956196",
+  "study_id": "dq-postmenopausal-bone-rct",
+  "outcome_id": "dq-bone-p16-t3-ctx-4wk",
+  "finding_ids": [
+    "dq-bone-rct-primary-null-subgroup-biomarker-signal"
+  ],
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "comparator": "Untreated control within high-p16 T3 subgroup",
+  "arm_details": "Highest tertile of baseline T cell p16_variant 5 mRNA levels; article notes limited power because the T3 subgroup had about 10 participants per study arm.",
+  "sample_size": 20,
+  "result_type": "quantitative_effect",
+  "effect": {
+    "measure": "percent_change",
+    "value": -18,
+    "p_value": "0.053",
+    "unit": "percentage-point difference relative to control",
+    "raw_text": "In the high-p16 T3 subgroup, serum CTx showed a -18% relative-to-control decrease at 4 weeks; P=0.053."
+  },
+  "analysis": {
+    "comparison": "D+Q versus untreated control in T3 subgroup",
+    "method": "Two-sided Wilcoxon rank-sum test",
+    "p_value": "0.053",
+    "effect_note": "Exploratory subgroup effect was close to, but above, the conventional P<0.05 threshold."
+  },
+  "direction": "inconclusive",
+  "evidence_tier": "human_biomarker",
+  "confidence": "low",
+  "maturity_status": "full_text_extracted",
+  "provenance": [
+    {
+      "source_id": "pmid-38956196",
+      "source_snapshot_id": "snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+      "text_snapshot_id": "text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+      "locator_type": "full_text_section",
+      "locator": "section:pmc-s7-exploratory-and-post-hoc-analyses; Fig. 4b",
+      "status": "full_text_extracted",
+      "note": "Full-text exploratory subgroup paragraph and figure caption provide the effect, p-value, subgroup definition, and T3 sample size at 4 weeks."
+    }
+  ],
+  "statement": "In the exploratory high-p16 T3 subgroup, the 4-week CTx decrease was directionally similar to the 2-week signal but statistically inconclusive.",
+  "time_horizon": "Baseline to 4 weeks",
+  "caveats": [
+    "Exploratory subgroup analysis; do not generalize to the overall randomized comparison.",
+    "This result contrasts with the null overall primary CTx result at 20 weeks.",
+    "The reported P=0.053 should not be represented as a confirmed effect."
+  ],
+  "tags": [
+    "senolytics",
+    "human",
+    "randomized-trial",
+    "bone",
+    "ctx",
+    "subgroup",
+    "p16",
+    "exploratory",
+    "inconclusive"
+  ]
+}

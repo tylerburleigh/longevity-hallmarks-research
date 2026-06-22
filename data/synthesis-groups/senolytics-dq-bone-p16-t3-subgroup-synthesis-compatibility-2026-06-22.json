@@ -1,0 +1,135 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "synthesis_group",
+  "id": "senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22",
+  "name": "D+Q bone high-p16 T3 exploratory subgroup synthesis compatibility",
+  "assessed_at": "2026-06-22T21:20:00Z",
+  "question": "Can exploratory high-p16 T3 subgroup effects from the D+Q postmenopausal bone RCT be pooled for a meta-analysis estimate?",
+  "track_ids": [
+    "senolytics"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence",
+    "stem_cell_exhaustion"
+  ],
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "compatibility_basis": {
+    "population": "Postmenopausal women in the highest tertile of baseline T cell p16 mRNA levels within one phase 2 randomized trial.",
+    "intervention": "Intermittent dasatinib plus quercetin.",
+    "comparator": "Untreated control within the high-p16 T3 subgroup.",
+    "endpoint_family": "Exploratory subgroup P1NP, CTx, and distal radius BMD percent-change endpoints.",
+    "time_horizon": "Baseline to 2 weeks, 4 weeks, or approximately 20 weeks depending on endpoint.",
+    "effect_metric": "Relative percent difference versus untreated control within the exploratory T3 subgroup.",
+    "variance_model": "No variance model selected because records come from one exploratory subgroup analysis, mix marker identities and time horizons, and lack CI, standard error, or variance."
+  },
+  "outcome_ids": [
+    "dq-bone-p16-t3-p1np-2wk",
+    "dq-bone-p16-t3-p1np-4wk",
+    "dq-bone-p16-t3-ctx-2wk",
+    "dq-bone-p16-t3-ctx-4wk",
+    "dq-bone-p16-t3-radius-bmd-20wk"
+  ],
+  "result_ids": [
+    "dq-bone-p16-t3-p1np-2wk-positive",
+    "dq-bone-p16-t3-p1np-4wk-inconclusive",
+    "dq-bone-p16-t3-ctx-2wk-positive",
+    "dq-bone-p16-t3-ctx-4wk-inconclusive",
+    "dq-bone-p16-t3-radius-bmd-20wk-positive"
+  ],
+  "compatibility_status": "not_poolable",
+  "pooling_decision": "pooling_blocked",
+  "pooling_rationale": "These records are useful for hypothesis tracking and subgroup-aware evidence maps, but they should not be pooled as one meta-analytic endpoint. They come from one exploratory post hoc subgroup in a single trial, mix P1NP, CTx, and radius BMD endpoints, use different time horizons, and report p-values without CI, standard error, or variance.",
+  "non_pooling_reason": "Keep high-p16 T3 subgroup effects separate from overall randomized endpoints and from each other unless future compatible records share marker identity, time horizon, subgroup definition, effect metric, and uncertainty.",
+  "pooling_requirements": {
+    "minimum_result_count": 2,
+    "required_result_maturity_statuses": [
+      "full_text_extracted",
+      "agent_reviewed",
+      "supervisor_agent_reviewed",
+      "accepted"
+    ],
+    "required_effect_fields": [
+      "effect.value",
+      "effect.uncertainty",
+      "analysis.comparison",
+      "sample_size",
+      "compatible_time_horizon",
+      "marker_level_identity"
+    ],
+    "missing_effect_fields_by_result": [
+      {
+        "result_id": "dq-bone-p16-t3-p1np-2wk-positive",
+        "missing_fields": [
+          "effect.uncertainty"
+        ],
+        "impact": "blocks_pooling",
+        "note": "The result reports effect value and p-value, but no CI, standard error, or variance."
+      },
+      {
+        "result_id": "dq-bone-p16-t3-p1np-4wk-inconclusive",
+        "missing_fields": [
+          "effect.uncertainty"
+        ],
+        "impact": "blocks_pooling",
+        "note": "The result reports effect value and p-value, but no CI, standard error, or variance."
+      },
+      {
+        "result_id": "dq-bone-p16-t3-ctx-2wk-positive",
+        "missing_fields": [
+          "effect.uncertainty"
+        ],
+        "impact": "blocks_pooling",
+        "note": "The result reports effect value and p-value, but no CI, standard error, or variance."
+      },
+      {
+        "result_id": "dq-bone-p16-t3-ctx-4wk-inconclusive",
+        "missing_fields": [
+          "effect.uncertainty"
+        ],
+        "impact": "blocks_pooling",
+        "note": "The result reports effect value and p-value, but no CI, standard error, or variance."
+      },
+      {
+        "result_id": "dq-bone-p16-t3-radius-bmd-20wk-positive",
+        "missing_fields": [
+          "effect.uncertainty"
+        ],
+        "impact": "blocks_pooling",
+        "note": "The result reports effect value and p-value, but no CI, standard error, or variance."
+      }
+    ]
+  },
+  "agent_supervision": {
+    "assessing_agent": "codex-extraction-agent",
+    "supervisor_agent": "pending-supervisor-review",
+    "audit_status": "passed",
+    "self_healing_actions": [
+      "Keep high-p16 T3 subgroup records separated from overall randomized endpoint records.",
+      "Only create a pooled subgroup synthesis when future records share subgroup definition, marker identity, time horizon, and uncertainty fields.",
+      "Route supplement/table extraction to a scoped extraction agent if variance or CI fields become available from lawful source snapshots."
+    ]
+  },
+  "maturity_status": "agent_reviewed",
+  "provenance": [
+    {
+      "source_id": "pmid-38956196",
+      "source_snapshot_id": "snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+      "text_snapshot_id": "text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+      "locator_type": "full_text_section",
+      "locator": "section:pmc-s7-exploratory-and-post-hoc-analyses",
+      "status": "full_text_extracted",
+      "note": "Exploratory/post hoc analysis section reports high-p16 T3 subgroup effects and subgroup sample sizes for P1NP, CTx, and BMD endpoints."
+    }
+  ],
+  "tags": [
+    "senolytics",
+    "dasatinib-quercetin",
+    "bone",
+    "p16",
+    "subgroup",
+    "exploratory",
+    "pooling-blocked"
+  ]
+}

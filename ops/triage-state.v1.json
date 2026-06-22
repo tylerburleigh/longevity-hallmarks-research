@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "triage_state",
   "id": "triage-state-v1",
-  "generated_at": "2026-06-22T17:58:32.105Z",
+  "generated_at": "2026-06-22T21:18:55.177Z",
   "source_roots": [
     "data",
     "research"
@@ -66,9 +66,9 @@
     }
   ],
   "summary": {
-    "candidate_count": 8,
+    "candidate_count": 9,
     "promotion_ready_count": 0,
-    "needs_review_count": 0,
+    "needs_review_count": 1,
     "needs_revision_count": 3,
     "blocked_count": 0,
     "accepted_count": 5,
@@ -76,11 +76,11 @@
     "rejected_count": 0,
     "coverage_gap_count": 4,
     "high_priority_coverage_gap_count": 2,
-    "extraction_debt_count": 38,
+    "extraction_debt_count": 47,
     "stale_snapshot_count": 0,
     "watch_snapshot_count": 0,
     "partial_or_failed_agent_run_count": 1,
-    "recommended_job_count": 20
+    "recommended_job_count": 27
   },
   "candidate_readiness": [
     {
@@ -191,6 +191,35 @@
       "open_major_or_critical_review_ids": [],
       "proposed_record_count": 7,
       "next_actions": []
+    },
+    {
+      "candidate_change_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
+      "path": "data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "needs_review",
+      "required_review_lanes": [
+        "extraction_fidelity",
+        "safety_limitations",
+        "source_fidelity",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "active_review_ids": [],
+      "complete_accepting_review_lanes": [],
+      "missing_review_lanes": [
+        "extraction_fidelity",
+        "safety_limitations",
+        "source_fidelity",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 19,
+      "next_actions": [
+        "Run supervisor review lanes: extraction_fidelity, safety_limitations, source_fidelity, synthesis_boundary, taxonomy_mapping."
+      ]
     },
     {
       "candidate_change_id": "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
@@ -333,6 +362,36 @@
   "promotion_ready_candidate_ids": [],
   "missing_review_lane_queue": [
     {
+      "candidate_change_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
+      "path": "data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json",
+      "review_lane": "extraction_fidelity",
+      "next_action": "Run extraction_fidelity supervisor review for senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22."
+    },
+    {
+      "candidate_change_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
+      "path": "data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json",
+      "review_lane": "safety_limitations",
+      "next_action": "Run safety_limitations supervisor review for senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22."
+    },
+    {
+      "candidate_change_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
+      "path": "data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json",
+      "review_lane": "source_fidelity",
+      "next_action": "Run source_fidelity supervisor review for senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22."
+    },
+    {
+      "candidate_change_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
+      "path": "data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json",
+      "review_lane": "synthesis_boundary",
+      "next_action": "Run synthesis_boundary supervisor review for senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22."
+    },
+    {
+      "candidate_change_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
+      "path": "data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json",
+      "review_lane": "taxonomy_mapping",
+      "next_action": "Run taxonomy_mapping supervisor review for senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22."
+    },
+    {
       "candidate_change_id": "senolytics-scaffold-bootstrap-2026-06-21",
       "path": "data/candidate-changes/senolytics-scaffold-bootstrap-2026-06-21.json",
       "review_lane": "synthesis_boundary",
@@ -392,6 +451,58 @@
     }
   ],
   "extraction_debt": [
+    {
+      "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-adverse-event-terms-20wk-mixed-adverse_event.event_specific_counts",
+      "result_id": "dq-bone-adverse-event-terms-20wk-mixed",
+      "path": "data/results/dq-bone-adverse-event-terms-20wk-mixed.json",
+      "synthesis_group_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "missing_field": "adverse_event.event_specific_counts",
+      "debt_type": "missing_adverse_event_event_specific_counts",
+      "severity": "high",
+      "source": "synthesis_group_missing_effect_fields",
+      "impact": "blocks_pooling",
+      "note": "The publication table extraction provides descriptive preferred-term counts for reported terms, but it lacks structured adverse-event term fields, comparative effect value, uncertainty, and explicit zero/not-reported semantics for blank cells.",
+      "next_action": "Run extraction refresh for dq-bone-adverse-event-terms-20wk-mixed to resolve adverse_event.event_specific_counts."
+    },
+    {
+      "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-adverse-event-terms-20wk-mixed-adverse_event.preferred_term",
+      "result_id": "dq-bone-adverse-event-terms-20wk-mixed",
+      "path": "data/results/dq-bone-adverse-event-terms-20wk-mixed.json",
+      "synthesis_group_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "missing_field": "adverse_event.preferred_term",
+      "debt_type": "missing_adverse_event_preferred_term",
+      "severity": "high",
+      "source": "synthesis_group_missing_effect_fields",
+      "impact": "blocks_pooling",
+      "note": "The publication table extraction provides descriptive preferred-term counts for reported terms, but it lacks structured adverse-event term fields, comparative effect value, uncertainty, and explicit zero/not-reported semantics for blank cells.",
+      "next_action": "Run extraction refresh for dq-bone-adverse-event-terms-20wk-mixed to resolve adverse_event.preferred_term."
+    },
+    {
+      "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-adverse-event-terms-20wk-mixed-effect.uncertainty",
+      "result_id": "dq-bone-adverse-event-terms-20wk-mixed",
+      "path": "data/results/dq-bone-adverse-event-terms-20wk-mixed.json",
+      "synthesis_group_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "missing_field": "effect.uncertainty",
+      "debt_type": "missing_effect_uncertainty",
+      "severity": "high",
+      "source": "synthesis_group_missing_effect_fields",
+      "impact": "blocks_pooling",
+      "note": "The publication table extraction provides descriptive preferred-term counts for reported terms, but it lacks structured adverse-event term fields, comparative effect value, uncertainty, and explicit zero/not-reported semantics for blank cells.",
+      "next_action": "Run extraction refresh for dq-bone-adverse-event-terms-20wk-mixed to resolve effect.uncertainty."
+    },
+    {
+      "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-adverse-event-terms-20wk-mixed-effect.value",
+      "result_id": "dq-bone-adverse-event-terms-20wk-mixed",
+      "path": "data/results/dq-bone-adverse-event-terms-20wk-mixed.json",
+      "synthesis_group_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "missing_field": "effect.value",
+      "debt_type": "missing_effect_value",
+      "severity": "high",
+      "source": "synthesis_group_missing_effect_fields",
+      "impact": "blocks_pooling",
+      "note": "The publication table extraction provides descriptive preferred-term counts for reported terms, but it lacks structured adverse-event term fields, comparative effect value, uncertainty, and explicit zero/not-reported semantics for blank cells.",
+      "next_action": "Run extraction refresh for dq-bone-adverse-event-terms-20wk-mixed to resolve effect.value."
+    },
     {
       "debt_id": "debt-senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21-dq-bone-adverse-events-20wk-mixed-analysis.comparison",
       "result_id": "dq-bone-adverse-events-20wk-mixed",
@@ -625,6 +736,71 @@
       "impact": "blocks_pooling",
       "note": "The registry record has group medians and a p-value, but no extractable effect value or variance estimate.",
       "next_action": "Run extraction refresh for dq-bone-ctx-20wk-null to resolve effect.value."
+    },
+    {
+      "debt_id": "debt-senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22-dq-bone-p16-t3-ctx-2wk-positive-effect.uncertainty",
+      "result_id": "dq-bone-p16-t3-ctx-2wk-positive",
+      "path": "data/results/dq-bone-p16-t3-ctx-2wk-positive.json",
+      "synthesis_group_id": "senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22",
+      "missing_field": "effect.uncertainty",
+      "debt_type": "missing_effect_uncertainty",
+      "severity": "high",
+      "source": "synthesis_group_missing_effect_fields",
+      "impact": "blocks_pooling",
+      "note": "The result reports effect value and p-value, but no CI, standard error, or variance.",
+      "next_action": "Run extraction refresh for dq-bone-p16-t3-ctx-2wk-positive to resolve effect.uncertainty."
+    },
+    {
+      "debt_id": "debt-senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22-dq-bone-p16-t3-ctx-4wk-inconclusive-effect.uncertainty",
+      "result_id": "dq-bone-p16-t3-ctx-4wk-inconclusive",
+      "path": "data/results/dq-bone-p16-t3-ctx-4wk-inconclusive.json",
+      "synthesis_group_id": "senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22",
+      "missing_field": "effect.uncertainty",
+      "debt_type": "missing_effect_uncertainty",
+      "severity": "high",
+      "source": "synthesis_group_missing_effect_fields",
+      "impact": "blocks_pooling",
+      "note": "The result reports effect value and p-value, but no CI, standard error, or variance.",
+      "next_action": "Run extraction refresh for dq-bone-p16-t3-ctx-4wk-inconclusive to resolve effect.uncertainty."
+    },
+    {
+      "debt_id": "debt-senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22-dq-bone-p16-t3-p1np-2wk-positive-effect.uncertainty",
+      "result_id": "dq-bone-p16-t3-p1np-2wk-positive",
+      "path": "data/results/dq-bone-p16-t3-p1np-2wk-positive.json",
+      "synthesis_group_id": "senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22",
+      "missing_field": "effect.uncertainty",
+      "debt_type": "missing_effect_uncertainty",
+      "severity": "high",
+      "source": "synthesis_group_missing_effect_fields",
+      "impact": "blocks_pooling",
+      "note": "The result reports effect value and p-value, but no CI, standard error, or variance.",
+      "next_action": "Run extraction refresh for dq-bone-p16-t3-p1np-2wk-positive to resolve effect.uncertainty."
+    },
+    {
+      "debt_id": "debt-senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22-dq-bone-p16-t3-p1np-4wk-inconclusive-effect.uncertainty",
+      "result_id": "dq-bone-p16-t3-p1np-4wk-inconclusive",
+      "path": "data/results/dq-bone-p16-t3-p1np-4wk-inconclusive.json",
+      "synthesis_group_id": "senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22",
+      "missing_field": "effect.uncertainty",
+      "debt_type": "missing_effect_uncertainty",
+      "severity": "high",
+      "source": "synthesis_group_missing_effect_fields",
+      "impact": "blocks_pooling",
+      "note": "The result reports effect value and p-value, but no CI, standard error, or variance.",
+      "next_action": "Run extraction refresh for dq-bone-p16-t3-p1np-4wk-inconclusive to resolve effect.uncertainty."
+    },
+    {
+      "debt_id": "debt-senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22-dq-bone-p16-t3-radius-bmd-20wk-positive-effect.uncertainty",
+      "result_id": "dq-bone-p16-t3-radius-bmd-20wk-positive",
+      "path": "data/results/dq-bone-p16-t3-radius-bmd-20wk-positive.json",
+      "synthesis_group_id": "senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22",
+      "missing_field": "effect.uncertainty",
+      "debt_type": "missing_effect_uncertainty",
+      "severity": "high",
+      "source": "synthesis_group_missing_effect_fields",
+      "impact": "blocks_pooling",
+      "note": "The result reports effect value and p-value, but no CI, standard error, or variance.",
+      "next_action": "Run extraction refresh for dq-bone-p16-t3-radius-bmd-20wk-positive to resolve effect.uncertainty."
     },
     {
       "debt_id": "debt-senolytics-dq-bone-p1np-20wk-synthesis-compatibility-2026-06-21-dq-bone-p1np-20wk-null-effect.uncertainty",
@@ -898,6 +1074,18 @@
   ],
   "recommended_jobs": [
     {
+      "job_id": "candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
+      "job_type": "candidate_review",
+      "priority": "high",
+      "source": "candidate_readiness",
+      "target_record_type": "candidate_change",
+      "target_record_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
+      "rationale": "Required review lanes are missing: extraction_fidelity, safety_limitations, source_fidelity, synthesis_boundary, taxonomy_mapping.",
+      "inputs": [
+        "data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json"
+      ]
+    },
+    {
       "job_id": "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21",
       "job_type": "candidate_revision",
       "priority": "high",
@@ -958,6 +1146,18 @@
       ]
     },
     {
+      "job_id": "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed",
+      "job_type": "extraction_refresh",
+      "priority": "high",
+      "source": "extraction_debt",
+      "target_record_type": "result",
+      "target_record_id": "dq-bone-adverse-event-terms-20wk-mixed",
+      "rationale": "Resolve missing synthesis fields: adverse_event.event_specific_counts, adverse_event.preferred_term, effect.uncertainty, effect.value.",
+      "inputs": [
+        "data/results/dq-bone-adverse-event-terms-20wk-mixed.json"
+      ]
+    },
+    {
       "job_id": "extraction-debt-dq-bone-adverse-events-20wk-mixed",
       "job_type": "extraction_refresh",
       "priority": "high",
@@ -991,6 +1191,66 @@
       "rationale": "Resolve missing synthesis fields: effect.uncertainty, effect.value.",
       "inputs": [
         "data/results/dq-bone-ctx-20wk-null.json"
+      ]
+    },
+    {
+      "job_id": "extraction-debt-dq-bone-p16-t3-ctx-2wk-positive",
+      "job_type": "extraction_refresh",
+      "priority": "high",
+      "source": "extraction_debt",
+      "target_record_type": "result",
+      "target_record_id": "dq-bone-p16-t3-ctx-2wk-positive",
+      "rationale": "Resolve missing synthesis fields: effect.uncertainty.",
+      "inputs": [
+        "data/results/dq-bone-p16-t3-ctx-2wk-positive.json"
+      ]
+    },
+    {
+      "job_id": "extraction-debt-dq-bone-p16-t3-ctx-4wk-inconclusive",
+      "job_type": "extraction_refresh",
+      "priority": "high",
+      "source": "extraction_debt",
+      "target_record_type": "result",
+      "target_record_id": "dq-bone-p16-t3-ctx-4wk-inconclusive",
+      "rationale": "Resolve missing synthesis fields: effect.uncertainty.",
+      "inputs": [
+        "data/results/dq-bone-p16-t3-ctx-4wk-inconclusive.json"
+      ]
+    },
+    {
+      "job_id": "extraction-debt-dq-bone-p16-t3-p1np-2wk-positive",
+      "job_type": "extraction_refresh",
+      "priority": "high",
+      "source": "extraction_debt",
+      "target_record_type": "result",
+      "target_record_id": "dq-bone-p16-t3-p1np-2wk-positive",
+      "rationale": "Resolve missing synthesis fields: effect.uncertainty.",
+      "inputs": [
+        "data/results/dq-bone-p16-t3-p1np-2wk-positive.json"
+      ]
+    },
+    {
+      "job_id": "extraction-debt-dq-bone-p16-t3-p1np-4wk-inconclusive",
+      "job_type": "extraction_refresh",
+      "priority": "high",
+      "source": "extraction_debt",
+      "target_record_type": "result",
+      "target_record_id": "dq-bone-p16-t3-p1np-4wk-inconclusive",
+      "rationale": "Resolve missing synthesis fields: effect.uncertainty.",
+      "inputs": [
+        "data/results/dq-bone-p16-t3-p1np-4wk-inconclusive.json"
+      ]
+    },
+    {
+      "job_id": "extraction-debt-dq-bone-p16-t3-radius-bmd-20wk-positive",
+      "job_type": "extraction_refresh",
+      "priority": "high",
+      "source": "extraction_debt",
+      "target_record_type": "result",
+      "target_record_id": "dq-bone-p16-t3-radius-bmd-20wk-positive",
+      "rationale": "Resolve missing synthesis fields: effect.uncertainty.",
+      "inputs": [
+        "data/results/dq-bone-p16-t3-radius-bmd-20wk-positive.json"
       ]
     },
     {

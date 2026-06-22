@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "evidence_map",
   "id": "latest-consumer-evidence-map",
-  "generated_at": "2026-06-22T19:20:16.564Z",
+  "generated_at": "2026-06-22T21:18:50.623Z",
   "scope": {
     "description": "Generated consumer evidence graph over canonical source, study, finding, outcome, result, coverage-assessment, and synthesis-group records.",
     "record_types": [
@@ -18,16 +18,17 @@
   "node_counts": {
     "coverage_assessment": 2,
     "finding": 9,
-    "outcome": 14,
-    "result": 14,
+    "outcome": 19,
+    "result": 20,
     "source": 10,
     "study": 9,
-    "synthesis_group": 7
+    "synthesis_group": 8
   },
   "maturity_counts": {
-    "agent_reviewed": 6,
+    "agent_reviewed": 7,
+    "full_text_extracted": 12,
     "metadata_imported": 18,
-    "registry_extracted": 16,
+    "registry_extracted": 15,
     "screened": 6,
     "supervisor_agent_reviewed": 1,
     "triage_summary": 29
@@ -64,7 +65,7 @@
       "record_type": "finding",
       "id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
       "name": "D+Q bone RCT needs primary-null and subgroup-signal separation",
-      "maturity_status": "registry_extracted",
+      "maturity_status": "full_text_extracted",
       "evidence_tier": "human_biomarker",
       "direction": "mixed",
       "track_ids": [
@@ -234,6 +235,71 @@
     },
     {
       "record_type": "outcome",
+      "id": "dq-bone-p16-t3-ctx-2wk",
+      "name": "High-p16 T3 2-week CTx percent change",
+      "maturity_status": "full_text_extracted",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "stem_cell_exhaustion"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "id": "dq-bone-p16-t3-ctx-4wk",
+      "name": "High-p16 T3 4-week CTx percent change",
+      "maturity_status": "full_text_extracted",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "stem_cell_exhaustion"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "id": "dq-bone-p16-t3-p1np-2wk",
+      "name": "High-p16 T3 2-week P1NP percent change",
+      "maturity_status": "full_text_extracted",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "stem_cell_exhaustion"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "id": "dq-bone-p16-t3-p1np-4wk",
+      "name": "High-p16 T3 4-week P1NP percent change",
+      "maturity_status": "full_text_extracted",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "stem_cell_exhaustion"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "id": "dq-bone-p16-t3-radius-bmd-20wk",
+      "name": "High-p16 T3 20-week radius BMD percent change",
+      "maturity_status": "full_text_extracted",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "stem_cell_exhaustion"
+      ]
+    },
+    {
+      "record_type": "outcome",
       "id": "dq-bone-p1np-20wk",
       "name": "20-week P1NP percent change",
       "maturity_status": "registry_extracted",
@@ -369,6 +435,14 @@
     },
     {
       "record_type": "result",
+      "id": "dq-bone-adverse-event-terms-20wk-mixed",
+      "name": "D+Q 20-week adverse-event term table result",
+      "maturity_status": "full_text_extracted",
+      "evidence_tier": "clinical_or_mortality",
+      "direction": "mixed"
+    },
+    {
+      "record_type": "result",
       "id": "dq-bone-adverse-events-20wk-mixed",
       "name": "D+Q 20-week adverse-event aggregate result",
       "maturity_status": "registry_extracted",
@@ -390,6 +464,46 @@
       "maturity_status": "registry_extracted",
       "evidence_tier": "human_biomarker",
       "direction": "null"
+    },
+    {
+      "record_type": "result",
+      "id": "dq-bone-p16-t3-ctx-2wk-positive",
+      "name": "High-p16 T3 2-week CTx positive exploratory result",
+      "maturity_status": "full_text_extracted",
+      "evidence_tier": "human_biomarker",
+      "direction": "positive"
+    },
+    {
+      "record_type": "result",
+      "id": "dq-bone-p16-t3-ctx-4wk-inconclusive",
+      "name": "High-p16 T3 4-week CTx inconclusive exploratory result",
+      "maturity_status": "full_text_extracted",
+      "evidence_tier": "human_biomarker",
+      "direction": "inconclusive"
+    },
+    {
+      "record_type": "result",
+      "id": "dq-bone-p16-t3-p1np-2wk-positive",
+      "name": "High-p16 T3 2-week P1NP positive exploratory result",
+      "maturity_status": "full_text_extracted",
+      "evidence_tier": "human_biomarker",
+      "direction": "positive"
+    },
+    {
+      "record_type": "result",
+      "id": "dq-bone-p16-t3-p1np-4wk-inconclusive",
+      "name": "High-p16 T3 4-week P1NP inconclusive exploratory result",
+      "maturity_status": "full_text_extracted",
+      "evidence_tier": "human_biomarker",
+      "direction": "inconclusive"
+    },
+    {
+      "record_type": "result",
+      "id": "dq-bone-p16-t3-radius-bmd-20wk-positive",
+      "name": "High-p16 T3 20-week radius BMD positive exploratory result",
+      "maturity_status": "full_text_extracted",
+      "evidence_tier": "human_biomarker",
+      "direction": "positive"
     },
     {
       "record_type": "result",
@@ -670,6 +784,21 @@
       "name": "D+Q bone RCT 20-week CTx synthesis compatibility",
       "maturity_status": "agent_reviewed",
       "compatibility_status": "needs_extraction",
+      "pooling_decision": "pooling_blocked",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "stem_cell_exhaustion"
+      ]
+    },
+    {
+      "record_type": "synthesis_group",
+      "id": "senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22",
+      "name": "D+Q bone high-p16 T3 exploratory subgroup synthesis compatibility",
+      "maturity_status": "agent_reviewed",
+      "compatibility_status": "not_poolable",
       "pooling_decision": "pooling_blocked",
       "track_ids": [
         "senolytics"
@@ -1108,6 +1237,111 @@
     },
     {
       "from_type": "outcome",
+      "from_id": "dq-bone-p16-t3-ctx-2wk",
+      "to_type": "source",
+      "to_id": "pmid-38956196",
+      "relationship": "defined_from"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-p16-t3-ctx-2wk",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "measured_in"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-p16-t3-ctx-2wk",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-p16-t3-ctx-4wk",
+      "to_type": "source",
+      "to_id": "pmid-38956196",
+      "relationship": "defined_from"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-p16-t3-ctx-4wk",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "measured_in"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-p16-t3-ctx-4wk",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-p16-t3-p1np-2wk",
+      "to_type": "source",
+      "to_id": "pmid-38956196",
+      "relationship": "defined_from"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-p16-t3-p1np-2wk",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "measured_in"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-p16-t3-p1np-2wk",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-p16-t3-p1np-4wk",
+      "to_type": "source",
+      "to_id": "pmid-38956196",
+      "relationship": "defined_from"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-p16-t3-p1np-4wk",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "measured_in"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-p16-t3-p1np-4wk",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-p16-t3-radius-bmd-20wk",
+      "to_type": "source",
+      "to_id": "pmid-38956196",
+      "relationship": "defined_from"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-p16-t3-radius-bmd-20wk",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "measured_in"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-bone-p16-t3-radius-bmd-20wk",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "outcome",
       "from_id": "dq-bone-p1np-20wk",
       "to_type": "source",
       "to_id": "nct-04313634",
@@ -1346,6 +1580,34 @@
     },
     {
       "from_type": "result",
+      "from_id": "dq-bone-adverse-event-terms-20wk-mixed",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-adverse-event-terms-20wk-mixed",
+      "to_type": "source",
+      "to_id": "pmid-38956196",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-adverse-event-terms-20wk-mixed",
+      "to_type": "outcome",
+      "to_id": "dq-bone-adverse-events-20wk",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-adverse-event-terms-20wk-mixed",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
       "from_id": "dq-bone-adverse-events-20wk-mixed",
       "to_type": "study",
       "to_id": "dq-postmenopausal-bone-rct",
@@ -1424,6 +1686,146 @@
     {
       "from_type": "result",
       "from_id": "dq-bone-ctx-20wk-null",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-p16-t3-ctx-2wk-positive",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-p16-t3-ctx-2wk-positive",
+      "to_type": "source",
+      "to_id": "pmid-38956196",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-p16-t3-ctx-2wk-positive",
+      "to_type": "outcome",
+      "to_id": "dq-bone-p16-t3-ctx-2wk",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-p16-t3-ctx-2wk-positive",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-p16-t3-ctx-4wk-inconclusive",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-p16-t3-ctx-4wk-inconclusive",
+      "to_type": "source",
+      "to_id": "pmid-38956196",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-p16-t3-ctx-4wk-inconclusive",
+      "to_type": "outcome",
+      "to_id": "dq-bone-p16-t3-ctx-4wk",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-p16-t3-ctx-4wk-inconclusive",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-p16-t3-p1np-2wk-positive",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-p16-t3-p1np-2wk-positive",
+      "to_type": "source",
+      "to_id": "pmid-38956196",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-p16-t3-p1np-2wk-positive",
+      "to_type": "outcome",
+      "to_id": "dq-bone-p16-t3-p1np-2wk",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-p16-t3-p1np-2wk-positive",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-p16-t3-p1np-4wk-inconclusive",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-p16-t3-p1np-4wk-inconclusive",
+      "to_type": "source",
+      "to_id": "pmid-38956196",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-p16-t3-p1np-4wk-inconclusive",
+      "to_type": "outcome",
+      "to_id": "dq-bone-p16-t3-p1np-4wk",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-p16-t3-p1np-4wk-inconclusive",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-p16-t3-radius-bmd-20wk-positive",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-p16-t3-radius-bmd-20wk-positive",
+      "to_type": "source",
+      "to_id": "pmid-38956196",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-p16-t3-radius-bmd-20wk-positive",
+      "to_type": "outcome",
+      "to_id": "dq-bone-p16-t3-radius-bmd-20wk",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-p16-t3-radius-bmd-20wk-positive",
       "to_type": "finding",
       "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
       "relationship": "supports_finding"
@@ -1808,6 +2210,76 @@
     },
     {
       "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22",
+      "to_type": "result",
+      "to_id": "dq-bone-p16-t3-ctx-2wk-positive",
+      "relationship": "assesses_pooling_compatibility"
+    },
+    {
+      "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22",
+      "to_type": "result",
+      "to_id": "dq-bone-p16-t3-ctx-4wk-inconclusive",
+      "relationship": "assesses_pooling_compatibility"
+    },
+    {
+      "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22",
+      "to_type": "result",
+      "to_id": "dq-bone-p16-t3-p1np-2wk-positive",
+      "relationship": "assesses_pooling_compatibility"
+    },
+    {
+      "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22",
+      "to_type": "result",
+      "to_id": "dq-bone-p16-t3-p1np-4wk-inconclusive",
+      "relationship": "assesses_pooling_compatibility"
+    },
+    {
+      "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22",
+      "to_type": "result",
+      "to_id": "dq-bone-p16-t3-radius-bmd-20wk-positive",
+      "relationship": "assesses_pooling_compatibility"
+    },
+    {
+      "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22",
+      "to_type": "outcome",
+      "to_id": "dq-bone-p16-t3-ctx-2wk",
+      "relationship": "groups_outcome"
+    },
+    {
+      "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22",
+      "to_type": "outcome",
+      "to_id": "dq-bone-p16-t3-ctx-4wk",
+      "relationship": "groups_outcome"
+    },
+    {
+      "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22",
+      "to_type": "outcome",
+      "to_id": "dq-bone-p16-t3-p1np-2wk",
+      "relationship": "groups_outcome"
+    },
+    {
+      "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22",
+      "to_type": "outcome",
+      "to_id": "dq-bone-p16-t3-p1np-4wk",
+      "relationship": "groups_outcome"
+    },
+    {
+      "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22",
+      "to_type": "outcome",
+      "to_id": "dq-bone-p16-t3-radius-bmd-20wk",
+      "relationship": "groups_outcome"
+    },
+    {
+      "from_type": "synthesis_group",
       "from_id": "senolytics-dq-bone-p1np-20wk-synthesis-compatibility-2026-06-21",
       "to_type": "result",
       "to_id": "dq-bone-p1np-20wk-null",
@@ -1945,6 +2417,13 @@
       "to_type": "outcome",
       "to_id": "dq-bone-sasp-2wk",
       "relationship": "groups_outcome"
+    },
+    {
+      "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "to_type": "result",
+      "to_id": "dq-bone-adverse-event-terms-20wk-mixed",
+      "relationship": "assesses_pooling_compatibility"
     },
     {
       "from_type": "synthesis_group",

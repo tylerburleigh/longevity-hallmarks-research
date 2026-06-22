@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "result",
+  "id": "dq-bone-p16-t3-p1np-4wk-inconclusive",
+  "name": "High-p16 T3 4-week P1NP inconclusive exploratory result",
+  "source_id": "pmid-38956196",
+  "study_id": "dq-postmenopausal-bone-rct",
+  "outcome_id": "dq-bone-p16-t3-p1np-4wk",
+  "finding_ids": [
+    "dq-bone-rct-primary-null-subgroup-biomarker-signal"
+  ],
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "comparator": "Untreated control within high-p16 T3 subgroup",
+  "arm_details": "Highest tertile of baseline T cell p16_variant 5 mRNA levels; article notes limited power because the T3 subgroup had about 10 participants per study arm.",
+  "sample_size": 20,
+  "result_type": "quantitative_effect",
+  "effect": {
+    "measure": "percent_change",
+    "value": 38,
+    "p_value": "0.160",
+    "unit": "percentage-point difference relative to control",
+    "raw_text": "In the high-p16 T3 subgroup, serum P1NP showed a +38% relative-to-control increase at 4 weeks but with greater variability; P=0.160."
+  },
+  "analysis": {
+    "comparison": "D+Q versus untreated control in T3 subgroup",
+    "method": "Two-sided Wilcoxon rank-sum test",
+    "p_value": "0.160",
+    "effect_note": "Exploratory subgroup effect did not reach conventional statistical significance at 4 weeks."
+  },
+  "direction": "inconclusive",
+  "evidence_tier": "human_biomarker",
+  "confidence": "low",
+  "maturity_status": "full_text_extracted",
+  "provenance": [
+    {
+      "source_id": "pmid-38956196",
+      "source_snapshot_id": "snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+      "text_snapshot_id": "text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+      "locator_type": "full_text_section",
+      "locator": "section:pmc-s7-exploratory-and-post-hoc-analyses; Fig. 4a",
+      "status": "full_text_extracted",
+      "note": "Full-text exploratory subgroup paragraph and figure caption provide the effect, p-value, subgroup definition, and T3 sample size at 4 weeks."
+    }
+  ],
+  "statement": "In the exploratory high-p16 T3 subgroup, the 4-week P1NP increase was directionally similar to the 2-week signal but statistically inconclusive.",
+  "time_horizon": "Baseline to 4 weeks",
+  "caveats": [
+    "Exploratory subgroup analysis; do not generalize to the overall randomized comparison.",
+    "The article reports p-value and relative percent difference, but no CI, standard error, or variance.",
+    "The reported P=0.160 and greater variability make this a non-confirmatory signal."
+  ],
+  "tags": [
+    "senolytics",
+    "human",
+    "randomized-trial",
+    "bone",
+    "p1np",
+    "subgroup",
+    "p16",
+    "exploratory",
+    "inconclusive"
+  ]
+}

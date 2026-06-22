@@ -26,6 +26,8 @@
   "time_horizon": "Phase 2 trial follow-up period for bone metabolism outcomes",
   "caveats": [
     "Primary endpoint, exploratory subgroup, and biomarker outcomes must be extracted separately before any synthesis claim.",
+    "Exploratory high-p16 T3 subgroup records should remain separated from overall randomized endpoints.",
+    "Publication adverse-event table blanks are not encoded as zeros because the table reports events above a reporting threshold.",
     "Bone metabolism evidence should not be generalized to global aging outcomes."
   ],
   "tags": [
@@ -36,7 +38,7 @@
     "bone",
     "mixed"
   ],
-  "maturity_status": "registry_extracted",
+  "maturity_status": "full_text_extracted",
   "provenance": [
     {
       "source_id": "pmid-38956196",
@@ -54,6 +56,15 @@
       "locator": "section:posted-results-outcomes outcomeMeasures[0..5]; section:adverse-events",
       "status": "registry_extracted",
       "note": "ClinicalTrials.gov posted results provide group medians, ranges, p-values, and adverse-event aggregate counts."
+    },
+    {
+      "source_id": "pmid-38956196",
+      "source_snapshot_id": "snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+      "text_snapshot_id": "text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+      "locator_type": "full_text_section",
+      "locator": "section:pmc-s7-exploratory-and-post-hoc-analyses; section:pmc-s6-safety-and-adverse-events; section:pmc-t2-extended-data-table-1",
+      "status": "full_text_extracted",
+      "note": "Full-text extraction separates overall null primary endpoint context, exploratory high-p16 subgroup signals, and publication adverse-event term table."
     }
   ],
   "target_hallmark_ids": [

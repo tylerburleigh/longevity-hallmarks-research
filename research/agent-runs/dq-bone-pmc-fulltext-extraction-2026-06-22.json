@@ -1,0 +1,269 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "dq-bone-pmc-fulltext-extraction-2026-06-22",
+  "agent_role": "extraction_agent",
+  "agent_id": "codex-interactive",
+  "mode": "extraction_refresh",
+  "started_at": "2026-06-22T21:05:00Z",
+  "completed_at": "2026-06-22T21:20:00Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "Retain the PMC author-manuscript source text and extract full-text subgroup and adverse-event table details for the D+Q postmenopausal bone RCT.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": [
+      "dasatinib-quercetin"
+    ]
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "interactive_session",
+    "isolation": "foreground_checkout",
+    "workspace_path": "/home/tyler/Workspace/longevity-hallmarks-research",
+    "sandbox": "danger-full-access",
+    "approval_policy": "not_applicable"
+  },
+  "inputs": [
+    {
+      "input_type": "user_request",
+      "reference": "conversation",
+      "summary": "User asked to continue the plan item for full D+Q bone publication/table extraction."
+    },
+    {
+      "input_type": "plan_item",
+      "reference": "plan.md#immediate-next-actions",
+      "summary": "Immediate next action: finish full publication/table extraction for the D+Q bone RCT, including subgroup and event-specific safety details."
+    },
+    {
+      "input_type": "source_snapshot",
+      "reference": "data/source-snapshots/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
+      "summary": "PMC author-manuscript article-content HTML snapshot for PMID 38956196."
+    },
+    {
+      "input_type": "text_snapshot",
+      "reference": "data/text-snapshots/text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
+      "summary": "Retained raw HTML, normalized markdown, section index, hashes, and access policy for the PMC author-manuscript text."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json; data/outcomes/dq-bone-*.json; data/results/dq-bone-*.json",
+      "summary": "Existing D+Q bone records used to align new subgroup and adverse-event term extraction with existing registry and abstract provenance."
+    },
+    {
+      "input_type": "other",
+      "reference": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md; artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/sections.json",
+      "summary": "Normalized article markdown and section index used for section-stable full-text locators."
+    }
+  ],
+  "outputs": {
+    "summary": "Created a submitted candidate for the D+Q bone PMC full-text extraction upgrade. The run added retained PMC source/text snapshots, high-p16 T3 subgroup outcome/result records, a descriptive adverse-event term result, full-text finding provenance, and conservative synthesis-compatibility boundaries that keep exploratory subgroup and safety pooling blocked.",
+    "candidate_change_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
+        "path": "data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json",
+        "change_type": "create",
+        "rationale": "Tracks the PMC author-manuscript full-text extraction upgrade and required review lanes."
+      },
+      {
+        "record_type": "source",
+        "record_id": "pmid-38956196",
+        "path": "data/sources/pmid-38956196.json",
+        "change_type": "update",
+        "rationale": "Adds the PMC author-manuscript URL as a retained source-text access point."
+      },
+      {
+        "record_type": "source_rights",
+        "record_id": "source-rights-pmid-38956196-2026-06-22",
+        "path": "data/source-rights/source-rights-pmid-38956196-2026-06-22.json",
+        "change_type": "update",
+        "rationale": "Classifies the PMC author-manuscript copy for retained raw/markdown artifacts and metadata/structured-fact public export."
+      },
+      {
+        "record_type": "source_snapshot",
+        "record_id": "snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+        "path": "data/source-snapshots/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
+        "change_type": "create",
+        "rationale": "Captures the fetched PMC author-manuscript article-content HTML with hashes and source metadata."
+      },
+      {
+        "record_type": "text_snapshot",
+        "record_id": "text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+        "path": "data/text-snapshots/text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
+        "change_type": "create",
+        "rationale": "Adds retained normalized markdown, raw HTML, section index, and artifact hashes for full-text extraction."
+      },
+      {
+        "record_type": "finding",
+        "record_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+        "path": "data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json",
+        "change_type": "update",
+        "rationale": "Adds full-text provenance and caveats separating primary-null, exploratory subgroup, and safety table evidence."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-bone-p16-t3-p1np-2wk",
+        "path": "data/outcomes/dq-bone-p16-t3-p1np-2wk.json",
+        "change_type": "create",
+        "rationale": "Adds an exploratory high-p16 T3 2-week P1NP subgroup outcome."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-bone-p16-t3-p1np-4wk",
+        "path": "data/outcomes/dq-bone-p16-t3-p1np-4wk.json",
+        "change_type": "create",
+        "rationale": "Adds an exploratory high-p16 T3 4-week P1NP subgroup outcome."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-bone-p16-t3-ctx-2wk",
+        "path": "data/outcomes/dq-bone-p16-t3-ctx-2wk.json",
+        "change_type": "create",
+        "rationale": "Adds an exploratory high-p16 T3 2-week CTx subgroup outcome."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-bone-p16-t3-ctx-4wk",
+        "path": "data/outcomes/dq-bone-p16-t3-ctx-4wk.json",
+        "change_type": "create",
+        "rationale": "Adds an exploratory high-p16 T3 4-week CTx subgroup outcome."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-bone-p16-t3-radius-bmd-20wk",
+        "path": "data/outcomes/dq-bone-p16-t3-radius-bmd-20wk.json",
+        "change_type": "create",
+        "rationale": "Adds an exploratory high-p16 T3 20-week distal-radius BMD subgroup outcome."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-p16-t3-p1np-2wk-positive",
+        "path": "data/results/dq-bone-p16-t3-p1np-2wk-positive.json",
+        "change_type": "create",
+        "rationale": "Extracts the full-text high-p16 T3 2-week P1NP effect and p-value."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-p16-t3-p1np-4wk-inconclusive",
+        "path": "data/results/dq-bone-p16-t3-p1np-4wk-inconclusive.json",
+        "change_type": "create",
+        "rationale": "Extracts the full-text high-p16 T3 4-week P1NP effect and p-value."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-p16-t3-ctx-2wk-positive",
+        "path": "data/results/dq-bone-p16-t3-ctx-2wk-positive.json",
+        "change_type": "create",
+        "rationale": "Extracts the full-text high-p16 T3 2-week CTx effect and p-value."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-p16-t3-ctx-4wk-inconclusive",
+        "path": "data/results/dq-bone-p16-t3-ctx-4wk-inconclusive.json",
+        "change_type": "create",
+        "rationale": "Extracts the full-text high-p16 T3 4-week CTx effect and p-value."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-p16-t3-radius-bmd-20wk-positive",
+        "path": "data/results/dq-bone-p16-t3-radius-bmd-20wk-positive.json",
+        "change_type": "create",
+        "rationale": "Extracts the full-text high-p16 T3 20-week distal-radius BMD effect and p-value."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-adverse-event-terms-20wk-mixed",
+        "path": "data/results/dq-bone-adverse-event-terms-20wk-mixed.json",
+        "change_type": "create",
+        "rationale": "Extracts descriptive adverse-event term counts from the publication table with zero/not-reported caveats."
+      },
+      {
+        "record_type": "synthesis_group",
+        "record_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+        "path": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+        "change_type": "update",
+        "rationale": "Adds publication adverse-event table provenance and keeps safety pooling blocked until effect and uncertainty fields are supported."
+      },
+      {
+        "record_type": "synthesis_group",
+        "record_id": "senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22",
+        "path": "data/synthesis-groups/senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22.json",
+        "change_type": "create",
+        "rationale": "Creates a subgroup compatibility boundary that prevents exploratory high-p16 T3 effects from being pooled as overall endpoints."
+      }
+    ],
+    "generated_files": [
+      "scripts/ingest-pmc-author-manuscript-text-snapshot.mjs",
+      "data/sources/pmid-38956196.json",
+      "data/source-rights/source-rights-pmid-38956196-2026-06-22.json",
+      "data/source-snapshots/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
+      "data/text-snapshots/text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
+      "data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json",
+      "data/outcomes/dq-bone-p16-t3-p1np-2wk.json",
+      "data/outcomes/dq-bone-p16-t3-p1np-4wk.json",
+      "data/outcomes/dq-bone-p16-t3-ctx-2wk.json",
+      "data/outcomes/dq-bone-p16-t3-ctx-4wk.json",
+      "data/outcomes/dq-bone-p16-t3-radius-bmd-20wk.json",
+      "data/results/dq-bone-p16-t3-p1np-2wk-positive.json",
+      "data/results/dq-bone-p16-t3-p1np-4wk-inconclusive.json",
+      "data/results/dq-bone-p16-t3-ctx-2wk-positive.json",
+      "data/results/dq-bone-p16-t3-ctx-4wk-inconclusive.json",
+      "data/results/dq-bone-p16-t3-radius-bmd-20wk-positive.json",
+      "data/results/dq-bone-adverse-event-terms-20wk-mixed.json",
+      "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+      "data/synthesis-groups/senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22.json",
+      "data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json",
+      "research/agent-runs/dq-bone-pmc-fulltext-extraction-2026-06-22.json",
+      "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/raw.html",
+      "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+      "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/sections.json"
+    ],
+    "export_paths": [
+      "exports/latest/results.jsonl",
+      "exports/latest/evidence-map.json",
+      "exports/latest/coverage-status.json",
+      "exports/latest/audit-manifest.json",
+      "exports/latest/read-model.sqlite",
+      "ops/triage-state.v1.json",
+      "ops/release-readiness.v1.json"
+    ]
+  },
+  "quality_checks": [
+    {
+      "check_name": "pmc_text_snapshot_created",
+      "status": "passed",
+      "summary": "Created source_snapshot and text_snapshot records for PMC11705617 with retained raw HTML, normalized markdown, section index, hashes, and artifact paths."
+    },
+    {
+      "check_name": "full_text_extraction_created",
+      "status": "passed",
+      "summary": "Created high-p16 T3 subgroup outcome/result records and a descriptive adverse-event term table result with section-stable PMC locators."
+    },
+    {
+      "check_name": "synthesis_boundaries",
+      "status": "passed",
+      "summary": "Safety and exploratory subgroup synthesis groups keep pooling blocked pending compatible records, uncertainty fields, and supported zero/not-reported semantics."
+    },
+    {
+      "check_name": "candidate_ledger_complete",
+      "status": "passed",
+      "summary": "The submitted candidate lists every changed data and research record required by repository candidate-completeness audits."
+    },
+    {
+      "check_name": "verify_knowledge_base",
+      "status": "passed",
+      "summary": "Full knowledge-base verification passed after export/control-plane refresh."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": [
+    "Route the submitted candidate through source_fidelity, extraction_fidelity, taxonomy_mapping, synthesis_boundary, and safety_limitations supervisor lanes."
+  ]
+}

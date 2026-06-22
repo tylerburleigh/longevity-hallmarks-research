@@ -338,11 +338,14 @@ function buildWriteSets({ recommendedJob, candidateChangeId }) {
   ]);
 }
 
-function buildConflictKeys({ recommendedJob, candidateChangeId }) {
+function buildConflictKeys({ recommendedJob, candidateChangeId, requiredReviewLanes = [] }) {
   return sortStrings([
     `candidate_change:${candidateChangeId}`,
     `target_record:${recommendedJob.target_record_type}/${recommendedJob.target_record_id}`,
-    `triage_job:${recommendedJob.job_id}`
+    `triage_job:${recommendedJob.job_id}`,
+    ...(agentRoleForJob(recommendedJob) === "supervisor_agent"
+      ? requiredReviewLanes.map((lane) => `review_lane:${lane}`)
+      : [])
   ]);
 }
 
@@ -398,7 +401,7 @@ function buildJob(recordIndex, recommendedJob) {
     orchestration: {
       read_sets: buildReadSets(recommendedJob),
       write_sets: buildWriteSets({ recommendedJob, candidateChangeId }),
-      conflict_keys: buildConflictKeys({ recommendedJob, candidateChangeId }),
+      conflict_keys: buildConflictKeys({ recommendedJob, candidateChangeId, requiredReviewLanes }),
       parallel_group: parallelGroupForJob(recommendedJob),
       reconciliation_required: true,
       expected_cost: jobCost(recommendedJob)

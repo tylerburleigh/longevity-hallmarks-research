@@ -657,15 +657,16 @@ Exit criteria:
 
 ## Immediate Next Actions
 
-1. Finish full publication/table extraction for the D+Q bone RCT, including subgroup and event-specific safety details.
-2. Add a reconciliation agent that compares parallel worker outputs for duplicate sources, duplicate studies, overlapping candidate proposals, conflicting source-rights classifications, and incomplete ledgers.
-3. Run extraction-refresh passes on the remaining human D+Q papers: DKD, IPF, and AD-risk cognition/mobility.
-4. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
-5. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
+1. Add a reconciliation agent that compares parallel worker outputs for duplicate sources, duplicate studies, overlapping candidate proposals, conflicting source-rights classifications, and incomplete ledgers.
+2. Run extraction-refresh passes on the remaining human D+Q papers: DKD, IPF, and AD-risk cognition/mobility.
+3. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
+4. Run supervisor-review lanes for `senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22`: source fidelity, extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
+5. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry or article text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
 6. Decide whether to install repo-local skills into the active Codex skills directory.
 
 ## Change Log
 
+- 2026-06-22: Retained a PMC author-manuscript text snapshot for the D+Q bone RCT, extracted high-p16 T3 subgroup effects and adverse-event term counts, added conservative subgroup/safety synthesis boundaries, and submitted the full-text extraction candidate for supervisor review.
 - 2026-06-22: Added a parallel Codex batch runner, run-state schema, batch-run audit, package commands, and docs for starting isolated-worktree workers with durable state, JSONL logs, bounded concurrency, pending-reconciliation status, and completed-job archiving.
 - 2026-06-22: Added a generated parallel Codex batch plan, planner script, schema, and freshness audit that group live runnable jobs by parallel group, conflict/read/write overlap, reconciliation requirements, and isolated-worktree execution commands.
 - 2026-06-22: Added an isolated Git worktree execution helper for Codex jobs, including plan-only checks, worktree creation, node_modules reuse, wrapper invocation, dirty-check protection, docs, and a verification audit for mutable live jobs.

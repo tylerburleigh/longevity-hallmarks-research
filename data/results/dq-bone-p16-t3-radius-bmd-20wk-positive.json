@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "result",
+  "id": "dq-bone-p16-t3-radius-bmd-20wk-positive",
+  "name": "High-p16 T3 20-week radius BMD positive exploratory result",
+  "source_id": "pmid-38956196",
+  "study_id": "dq-postmenopausal-bone-rct",
+  "outcome_id": "dq-bone-p16-t3-radius-bmd-20wk",
+  "finding_ids": [
+    "dq-bone-rct-primary-null-subgroup-biomarker-signal"
+  ],
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "comparator": "Untreated control within high-p16 T3 subgroup",
+  "arm_details": "Highest tertile of baseline T cell p16_variant 5 mRNA levels; Fig. 5 caption reports T3 sample sizes of 19, 19, and 15 for radius, femur neck, and lumbar spine BMD analyses.",
+  "sample_size": 19,
+  "result_type": "quantitative_effect",
+  "effect": {
+    "measure": "percent_change",
+    "value": 2.7,
+    "p_value": "0.004",
+    "unit": "percentage-point difference relative to control",
+    "raw_text": "In the high-p16 T3 subgroup, radius BMD increased by 2.7% in response to D+Q relative to control at 20 weeks; P=0.004."
+  },
+  "analysis": {
+    "comparison": "D+Q versus untreated control in T3 subgroup",
+    "method": "Two-sided Wilcoxon rank-sum test",
+    "p_value": "0.004",
+    "effect_note": "Exploratory site-specific BMD subgroup effect at the radius."
+  },
+  "direction": "positive",
+  "evidence_tier": "human_biomarker",
+  "confidence": "low",
+  "maturity_status": "full_text_extracted",
+  "provenance": [
+    {
+      "source_id": "pmid-38956196",
+      "source_snapshot_id": "snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+      "text_snapshot_id": "text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+      "locator_type": "full_text_section",
+      "locator": "section:pmc-s7-exploratory-and-post-hoc-analyses; Fig. 5a",
+      "status": "full_text_extracted",
+      "note": "Full-text exploratory subgroup paragraph and Fig. 5 caption provide the effect, p-value, subgroup definition, site, and T3 BMD sample sizes."
+    }
+  ],
+  "statement": "In an exploratory high-p16 T3 subgroup, D+Q increased radius BMD versus untreated control at 20 weeks.",
+  "time_horizon": "Baseline to 20 weeks",
+  "caveats": [
+    "Exploratory subgroup analysis; do not generalize to the overall BMD result.",
+    "Femur neck and lumbar spine BMD changes were not significant even in the T3 subgroup.",
+    "The article reports p-value and relative percent difference, but no CI, standard error, or variance."
+  ],
+  "tags": [
+    "senolytics",
+    "human",
+    "randomized-trial",
+    "bone",
+    "bmd",
+    "radius",
+    "subgroup",
+    "p16",
+    "exploratory",
+    "positive"
+  ]
+}

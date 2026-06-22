@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "result",
+  "id": "dq-bone-p16-t3-p1np-2wk-positive",
+  "name": "High-p16 T3 2-week P1NP positive exploratory result",
+  "source_id": "pmid-38956196",
+  "study_id": "dq-postmenopausal-bone-rct",
+  "outcome_id": "dq-bone-p16-t3-p1np-2wk",
+  "finding_ids": [
+    "dq-bone-rct-primary-null-subgroup-biomarker-signal"
+  ],
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "comparator": "Untreated control within high-p16 T3 subgroup",
+  "arm_details": "Highest tertile of baseline T cell p16_variant 5 mRNA levels; article notes limited power because the T3 subgroup had about 10 participants per study arm.",
+  "sample_size": 21,
+  "result_type": "quantitative_effect",
+  "effect": {
+    "measure": "percent_change",
+    "value": 34,
+    "p_value": "0.035",
+    "unit": "percentage-point difference relative to control",
+    "raw_text": "In the high-p16 T3 subgroup, serum P1NP increased at 2 weeks in D+Q relative to control by +34%; P=0.035."
+  },
+  "analysis": {
+    "comparison": "D+Q versus untreated control in T3 subgroup",
+    "method": "Two-sided Wilcoxon rank-sum test",
+    "p_value": "0.035",
+    "effect_note": "Exploratory subgroup effect based on baseline T cell p16_variant 5 tertile."
+  },
+  "direction": "positive",
+  "evidence_tier": "human_biomarker",
+  "confidence": "low",
+  "maturity_status": "full_text_extracted",
+  "provenance": [
+    {
+      "source_id": "pmid-38956196",
+      "source_snapshot_id": "snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+      "text_snapshot_id": "text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+      "locator_type": "full_text_section",
+      "locator": "section:pmc-s7-exploratory-and-post-hoc-analyses; Fig. 4a",
+      "status": "full_text_extracted",
+      "note": "Full-text exploratory subgroup paragraph and figure caption provide the effect, p-value, subgroup definition, and T3 sample size at 2 weeks."
+    }
+  ],
+  "statement": "In an exploratory high-p16 T3 subgroup, D+Q increased serum P1NP versus untreated control at 2 weeks.",
+  "time_horizon": "Baseline to 2 weeks",
+  "caveats": [
+    "Exploratory subgroup analysis; do not generalize to the overall randomized comparison.",
+    "The article reports p-value and relative percent difference, but no CI, standard error, or variance.",
+    "T3 subgroup power was limited because each study arm had about 10 participants."
+  ],
+  "tags": [
+    "senolytics",
+    "human",
+    "randomized-trial",
+    "bone",
+    "p1np",
+    "subgroup",
+    "p16",
+    "exploratory",
+    "positive"
+  ]
+}

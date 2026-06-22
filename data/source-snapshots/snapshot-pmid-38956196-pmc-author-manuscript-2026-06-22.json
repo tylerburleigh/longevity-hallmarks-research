@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "source_snapshot",
+  "id": "snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+  "source_id": "pmid-38956196",
+  "snapshot_type": "other",
+  "retrieved_at": "2026-06-22T21:05:00Z",
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11705617/",
+  "content_type": "text/html; charset=utf-8",
+  "content_sha256": "18ba76cf013096fd1208c8c8ff4142f4159d8548ecdca8e19d2dcb9a54be9ea0",
+  "payload_summary": {
+    "pmcid": "PMC11705617",
+    "pmid": "38956196",
+    "nihmsid": "NIHMS2037628",
+    "article_title": "Effects of intermittent senolytic therapy on bone metabolism in postmenopausal women: a phase 2 randomized controlled trial",
+    "journal": "Nature medicine",
+    "doi": "10.1038/s41591-024-03096-2",
+    "repository_copy_type": "manuscript",
+    "ncbi_domain": "nihpa",
+    "section_count": 39,
+    "supplement_links": [
+      "https://pmc.ncbi.nlm.nih.gov/articles/instance/11705617/bin/NIHMS2037628-supplement-Supplement.pdf"
+    ]
+  },
+  "access_policy": {
+    "access_tier": "author_manuscript_or_preprint_repository",
+    "artifact_policy": "retain_raw_and_markdown",
+    "safe_artifact_classes": [
+      "raw_payload",
+      "normalized_markdown",
+      "section_index",
+      "metadata_summary",
+      "content_hash",
+      "provenance_locator",
+      "structured_extraction"
+    ],
+    "basis": "PMC identifies this copy as an NIHPA author manuscript. Repository policy treats public author-manuscript repository copies as artifact-eligible with attribution, hashes, and public exports limited to metadata, structured facts, and artifact manifests.",
+    "checked_at": "2026-06-22T21:05:00Z",
+    "license_or_terms": "PMC author manuscript and NLM public-access terms; not classified as PMC Open Access."
+  },
+  "raw_storage": {
+    "stored": true,
+    "path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/raw.html"
+  },
+  "tags": [
+    "pmc",
+    "author-manuscript",
+    "source-snapshot",
+    "senolytics",
+    "bone"
+  ]
+}

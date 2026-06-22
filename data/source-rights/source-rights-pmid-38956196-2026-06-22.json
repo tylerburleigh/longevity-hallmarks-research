@@ -4,23 +4,29 @@
   "id": "source-rights-pmid-38956196-2026-06-22",
   "source_id": "pmid-38956196",
   "source_snapshot_ids": [
-    "snapshot-pmid-38956196-pubmed-efetch-2026-06-21"
+    "snapshot-pmid-38956196-pubmed-efetch-2026-06-21",
+    "snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22"
   ],
-  "access_tier": "metadata_only",
+  "access_tier": "author_manuscript_or_preprint_repository",
   "rights_status": "classified",
-  "checked_at": "2026-06-22T10:51:31Z",
-  "classification_basis": "PubMed metadata and abstract locators support citation, provenance, hashing, and structured metadata extraction. This rights record does not classify the publisher article as reusable full text or authorize retained article markdown.",
+  "checked_at": "2026-06-22T21:05:00Z",
+  "classification_basis": "PubMed metadata and abstract locators support citation, provenance, hashing, and structured metadata extraction. PMC identifies PMC11705617 as an NIHPA author manuscript, not a PMC Open Access article; repository policy treats public author-manuscript repository copies as artifact-eligible with attribution, hashes, source locators, structured extraction, and public exports limited to metadata, structured facts, and artifact manifests.",
   "attribution": {
     "source_title": "Effects of intermittent senolytic therapy on bone metabolism in postmenopausal women: a phase 2 randomized controlled trial",
-    "source_url": "https://pubmed.ncbi.nlm.nih.gov/38956196/",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11705617/",
     "citation": "Farr JN, Atkinson EJ, Achenbach SJ, Volkman TL, Tweed AJ, Vos SJ, Ruan M, Sfeir J, Drake MT, Saul D, Doolittle ML, Bancos I, Yu K, Tchkonia T, LeBrasseur NK, Kirkland JL, Monroe DG, Khosla S. Effects of intermittent senolytic therapy on bone metabolism in postmenopausal women: a phase 2 randomized controlled trial. Nature Medicine. 2024. PMID: 38956196. DOI: 10.1038/s41591-024-03096-2.",
-    "required_notice": "Attribute the article citation, PMID, DOI, and publisher source page in downstream records."
+    "rights_holder": "Authors / Nature Medicine / NIH Public Access",
+    "required_notice": "Attribute the article citation, PMID, PMCID, DOI, PMC author-manuscript page, and publisher source page in downstream records."
   },
   "license_or_terms": {
-    "name": "No reusable full-text license recorded in this rights classification",
-    "source_url": "https://doi.org/10.1038/s41591-024-03096-2"
+    "name": "PMC author manuscript under NIH Public Access; not classified as PMC Open Access",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11705617/",
+    "terms_url": "https://pmc.ncbi.nlm.nih.gov/about/copyright/"
   },
   "allowed_artifact_classes": [
+    "raw_payload",
+    "normalized_markdown",
+    "section_index",
     "metadata_summary",
     "content_hash",
     "provenance_locator",
@@ -29,17 +35,18 @@
   "public_export_policy": {
     "allowed_content": "metadata_and_structured_facts",
     "conditions": [
-      "Public exports may include citation metadata, source identifiers, provenance locators, hashes, and structured extracted facts.",
+      "Public exports may include citation metadata, source identifiers, provenance locators, hashes, source-rights metadata, artifact manifests, and structured extracted facts.",
       "Public exports must not include retained article full text or normalized article markdown from this rights classification."
     ]
   },
   "remediation": {
     "status": "no_notice",
-    "policy": "If an agent later finds an open reusable full-text source or repository copy, create a separate source snapshot and source_rights record before retaining text artifacts."
+    "policy": "If an agent detects a rights conflict or receives a source-removal notice, remove retained artifacts from exports, preserve hashes and provenance locators, and route dependent records through a repair candidate."
   },
   "tags": [
     "pubmed",
-    "metadata-only",
+    "pmc",
+    "author-manuscript",
     "source-rights",
     "senolytics",
     "bone"

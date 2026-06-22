@@ -1,0 +1,463 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "text_snapshot",
+  "id": "text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+  "source_id": "pmid-38956196",
+  "source_snapshot_id": "snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+  "created_at": "2026-06-22T21:05:00Z",
+  "text_scope": "full_text",
+  "access_policy": {
+    "access_tier": "author_manuscript_or_preprint_repository",
+    "artifact_policy": "retain_raw_and_markdown",
+    "safe_artifact_classes": [
+      "raw_payload",
+      "normalized_markdown",
+      "section_index",
+      "metadata_summary",
+      "content_hash",
+      "provenance_locator",
+      "structured_extraction"
+    ],
+    "basis": "PMC identifies this copy as an NIHPA author manuscript. Repository policy treats public author-manuscript repository copies as artifact-eligible with attribution, hashes, and public exports limited to metadata, structured facts, and artifact manifests.",
+    "checked_at": "2026-06-22T21:05:00Z",
+    "license_or_terms": "PMC author manuscript and NLM public-access terms; not classified as PMC Open Access."
+  },
+  "artifacts": [
+    {
+      "artifact_type": "raw_payload",
+      "path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/raw.html",
+      "content_type": "text/html; charset=utf-8",
+      "sha256": "18ba76cf013096fd1208c8c8ff4142f4159d8548ecdca8e19d2dcb9a54be9ea0",
+      "notes": "PMC author-manuscript article-content HTML extracted from the fetched article page."
+    },
+    {
+      "artifact_type": "normalized_markdown",
+      "path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+      "content_type": "text/markdown",
+      "sha256": "571c53ecd402c35c3f957bcf4f8448515a7ccc78731f569e7c1768c8e97513f0",
+      "notes": "Pandoc-normalized markdown generated from the PMC article-content section."
+    },
+    {
+      "artifact_type": "section_index",
+      "path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/sections.json",
+      "content_type": "application/json",
+      "sha256": "bcc38af36ea297608ef6ca6cceafcd14add2c240fb6b8718c5813dceadead634",
+      "notes": "Line-indexed heading map for the normalized article markdown."
+    }
+  ],
+  "extraction": {
+    "tool": "scripts/ingest-pmc-author-manuscript-text-snapshot.mjs",
+    "tool_version": "1.0.0",
+    "command": "node scripts/ingest-pmc-author-manuscript-text-snapshot.mjs --pmcid PMC11705617 --source-id pmid-38956196 --date 2026-06-22 --retrieved-at 2026-06-22T21:05:00Z --created-at 2026-06-22T21:05:00Z --write",
+    "normalized_format": "markdown",
+    "normalized_at": "2026-06-22T21:05:00Z"
+  },
+  "section_index": [
+    {
+      "section_id": "pmc-abs1-abstract",
+      "title": "Abstract",
+      "heading_path": [
+        "Abstract"
+      ],
+      "start_line": 7,
+      "end_line": 138,
+      "source_locator": "PMC section ABS1"
+    },
+    {
+      "section_id": "pmc-s1-results",
+      "title": "Results",
+      "heading_path": [
+        "Results"
+      ],
+      "start_line": 139,
+      "end_line": 142,
+      "source_locator": "PMC section S1"
+    },
+    {
+      "section_id": "pmc-s2-p16-expression-in-t-cells-as-a-senescence-biomarker",
+      "title": "p16 expression in T cells as a senescence biomarker",
+      "heading_path": [
+        "p16 expression in T cells as a senescence biomarker"
+      ],
+      "start_line": 143,
+      "end_line": 200,
+      "source_locator": "PMC section S2"
+    },
+    {
+      "section_id": "pmc-s3-study-participants-and-study-design",
+      "title": "Study participants and study design",
+      "heading_path": [
+        "Study participants and study design"
+      ],
+      "start_line": 201,
+      "end_line": 244,
+      "source_locator": "PMC section S3"
+    },
+    {
+      "section_id": "pmc-t1-table-1",
+      "title": "Table 1 |.",
+      "heading_path": [
+        "Table 1 |."
+      ],
+      "start_line": 245,
+      "end_line": 338,
+      "source_locator": "PMC section T1"
+    },
+    {
+      "section_id": "pmc-s4-primary-endpoint",
+      "title": "Primary endpoint",
+      "heading_path": [
+        "Primary endpoint"
+      ],
+      "start_line": 339,
+      "end_line": 370,
+      "source_locator": "PMC section S4"
+    },
+    {
+      "section_id": "pmc-s5-secondary-endpoints",
+      "title": "Secondary endpoints",
+      "heading_path": [
+        "Secondary endpoints"
+      ],
+      "start_line": 371,
+      "end_line": 391,
+      "source_locator": "PMC section S5"
+    },
+    {
+      "section_id": "pmc-s6-safety-and-adverse-events",
+      "title": "Safety and adverse events",
+      "heading_path": [
+        "Safety and adverse events"
+      ],
+      "start_line": 392,
+      "end_line": 413,
+      "source_locator": "PMC section S6"
+    },
+    {
+      "section_id": "pmc-s7-exploratory-and-post-hoc-analyses",
+      "title": "Exploratory and post hoc analyses",
+      "heading_path": [
+        "Exploratory and post hoc analyses"
+      ],
+      "start_line": 414,
+      "end_line": 526,
+      "source_locator": "PMC section S7"
+    },
+    {
+      "section_id": "pmc-s8-assessment-of-sasp-factors",
+      "title": "Assessment of SASP factors",
+      "heading_path": [
+        "Assessment of SASP factors"
+      ],
+      "start_line": 527,
+      "end_line": 547,
+      "source_locator": "PMC section S8"
+    },
+    {
+      "section_id": "pmc-s9-discussion",
+      "title": "Discussion",
+      "heading_path": [
+        "Discussion"
+      ],
+      "start_line": 548,
+      "end_line": 833,
+      "source_locator": "PMC section S9"
+    },
+    {
+      "section_id": "pmc-s10-online-content",
+      "title": "Online content",
+      "heading_path": [
+        "Online content"
+      ],
+      "start_line": 834,
+      "end_line": 849,
+      "source_locator": "PMC section S10"
+    },
+    {
+      "section_id": "pmc-s11-methods",
+      "title": "Methods",
+      "heading_path": [
+        "Methods"
+      ],
+      "start_line": 850,
+      "end_line": 853,
+      "source_locator": "PMC section S11"
+    },
+    {
+      "section_id": "pmc-s12-study-design",
+      "title": "Study design",
+      "heading_path": [
+        "Study design"
+      ],
+      "start_line": 854,
+      "end_line": 903,
+      "source_locator": "PMC section S12"
+    },
+    {
+      "section_id": "pmc-s13-selection-of-study-participants",
+      "title": "Selection of study participants",
+      "heading_path": [
+        "Selection of study participants"
+      ],
+      "start_line": 904,
+      "end_line": 945,
+      "source_locator": "PMC section S13"
+    },
+    {
+      "section_id": "pmc-s14-screen-visit",
+      "title": "Screen visit",
+      "heading_path": [
+        "Screen visit"
+      ],
+      "start_line": 946,
+      "end_line": 956,
+      "source_locator": "PMC section S14"
+    },
+    {
+      "section_id": "pmc-s15-dosages-of-d-q",
+      "title": "Dosages of D + Q",
+      "heading_path": [
+        "Dosages of D + Q"
+      ],
+      "start_line": 957,
+      "end_line": 980,
+      "source_locator": "PMC section S15"
+    },
+    {
+      "section_id": "pmc-s16-evaluation-of-safety-and-tolerability",
+      "title": "Evaluation of safety and tolerability",
+      "heading_path": [
+        "Evaluation of safety and tolerability"
+      ],
+      "start_line": 981,
+      "end_line": 994,
+      "source_locator": "PMC section S16"
+    },
+    {
+      "section_id": "pmc-s17-study-endpoints",
+      "title": "Study endpoints",
+      "heading_path": [
+        "Study endpoints"
+      ],
+      "start_line": 995,
+      "end_line": 1007,
+      "source_locator": "PMC section S17"
+    },
+    {
+      "section_id": "pmc-s18-measurement-of-t-cell-p16-mrna-levels",
+      "title": "Measurement of T cell *p16* mRNA levels",
+      "heading_path": [
+        "Measurement of T cell *p16* mRNA levels"
+      ],
+      "start_line": 1008,
+      "end_line": 1041,
+      "source_locator": "PMC section S18"
+    },
+    {
+      "section_id": "pmc-s19-population-cohort-for-analyses-of-t-cell-p16-mrna-level",
+      "title": "Population cohort for analyses of T cell *p16* mRNA level",
+      "heading_path": [
+        "Population cohort for analyses of T cell *p16* mRNA level"
+      ],
+      "start_line": 1042,
+      "end_line": 1052,
+      "source_locator": "PMC section S19"
+    },
+    {
+      "section_id": "pmc-s20-serum-biochemical-and-sasp-assays",
+      "title": "Serum biochemical and SASP assays",
+      "heading_path": [
+        "Serum biochemical and SASP assays"
+      ],
+      "start_line": 1053,
+      "end_line": 1073,
+      "source_locator": "PMC section S20"
+    },
+    {
+      "section_id": "pmc-s21-dxa-measurements",
+      "title": "DXA measurements",
+      "heading_path": [
+        "DXA measurements"
+      ],
+      "start_line": 1074,
+      "end_line": 1087,
+      "source_locator": "PMC section S21"
+    },
+    {
+      "section_id": "pmc-s22-statistical-analyses",
+      "title": "Statistical analyses",
+      "heading_path": [
+        "Statistical analyses"
+      ],
+      "start_line": 1088,
+      "end_line": 1110,
+      "source_locator": "PMC section S22"
+    },
+    {
+      "section_id": "pmc-s23-statistics-and-reproducibility",
+      "title": "Statistics and reproducibility",
+      "heading_path": [
+        "Statistics and reproducibility"
+      ],
+      "start_line": 1111,
+      "end_line": 1119,
+      "source_locator": "PMC section S23"
+    },
+    {
+      "section_id": "pmc-s24-reporting-summary",
+      "title": "Reporting summary",
+      "heading_path": [
+        "Reporting summary"
+      ],
+      "start_line": 1120,
+      "end_line": 1130,
+      "source_locator": "PMC section S24"
+    },
+    {
+      "section_id": "pmc-s25-extended-data",
+      "title": "Extended Data",
+      "heading_path": [
+        "Extended Data"
+      ],
+      "start_line": 1131,
+      "end_line": 1275,
+      "source_locator": "PMC section S25"
+    },
+    {
+      "section_id": "pmc-t2-extended-data-table-1",
+      "title": "Extended Data Table 1 |.",
+      "heading_path": [
+        "Extended Data Table 1 |."
+      ],
+      "start_line": 1276,
+      "end_line": 1370,
+      "source_locator": "PMC section T2"
+    },
+    {
+      "section_id": "pmc-t3-extended-data-table-2",
+      "title": "Extended Data Table 2 |.",
+      "heading_path": [
+        "Extended Data Table 2 |."
+      ],
+      "start_line": 1371,
+      "end_line": 1670,
+      "source_locator": "PMC section T3"
+    },
+    {
+      "section_id": "pmc-t4-extended-data-table-3",
+      "title": "Extended Data Table 3 |.",
+      "heading_path": [
+        "Extended Data Table 3 |."
+      ],
+      "start_line": 1671,
+      "end_line": 2010,
+      "source_locator": "PMC section T4"
+    },
+    {
+      "section_id": "pmc-t5-extended-data-table-4",
+      "title": "Extended Data Table 4 |.",
+      "heading_path": [
+        "Extended Data Table 4 |."
+      ],
+      "start_line": 2011,
+      "end_line": 2041,
+      "source_locator": "PMC section T5"
+    },
+    {
+      "section_id": "pmc-sm1-supplementary-material",
+      "title": "Supplementary Material",
+      "heading_path": [
+        "Supplementary Material"
+      ],
+      "start_line": 2042,
+      "end_line": 2071,
+      "source_locator": "PMC section SM1"
+    },
+    {
+      "section_id": "pmc-s26-acknowledgements",
+      "title": "Acknowledgements",
+      "heading_path": [
+        "Acknowledgements"
+      ],
+      "start_line": 2072,
+      "end_line": 2085,
+      "source_locator": "PMC section S26"
+    },
+    {
+      "section_id": "pmc-fn-group1-footnotes",
+      "title": "Footnotes",
+      "heading_path": [
+        "Footnotes"
+      ],
+      "start_line": 2086,
+      "end_line": 2145,
+      "source_locator": "PMC section fn-group1"
+    },
+    {
+      "section_id": "pmc-s27-data-availability",
+      "title": "Data availability",
+      "heading_path": [
+        "Data availability"
+      ],
+      "start_line": 2146,
+      "end_line": 2163,
+      "source_locator": "PMC section S27"
+    },
+    {
+      "section_id": "pmc-ref-list1-references",
+      "title": "References",
+      "heading_path": [
+        "References"
+      ],
+      "start_line": 2164,
+      "end_line": 2638,
+      "source_locator": "PMC section ref-list1"
+    },
+    {
+      "section_id": "pmc-_ad93_-associated-data",
+      "title": "Associated Data",
+      "heading_path": [
+        "Associated Data"
+      ],
+      "start_line": 2639,
+      "end_line": 2645,
+      "source_locator": "PMC section _ad93_"
+    },
+    {
+      "section_id": "pmc-_adsm93_-supplementary-materials",
+      "title": "Supplementary Materials",
+      "heading_path": [
+        "Supplementary Materials"
+      ],
+      "start_line": 2646,
+      "end_line": 2677,
+      "source_locator": "PMC section _adsm93_"
+    },
+    {
+      "section_id": "pmc-_adda93_-data-availability-statement",
+      "title": "Data Availability Statement",
+      "heading_path": [
+        "Data Availability Statement"
+      ],
+      "start_line": 2678,
+      "end_line": 2699,
+      "source_locator": "PMC section _adda93_"
+    }
+  ],
+  "quality": {
+    "status": "complete",
+    "limitations": [
+      "This snapshot is generated from the PMC author-manuscript HTML, not the publisher version of record.",
+      "Pandoc normalization preserves some HTML blocks for complex tables and figure/table structures.",
+      "Supplementary PDF and source-data files are referenced when visible but are not normalized in this text snapshot."
+    ]
+  },
+  "tags": [
+    "pmc",
+    "author-manuscript",
+    "full-text",
+    "text-snapshot",
+    "senolytics",
+    "bone"
+  ]
+}

@@ -1,0 +1,166 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "result",
+  "id": "dq-bone-adverse-event-terms-20wk-mixed",
+  "name": "D+Q 20-week adverse-event term table result",
+  "source_id": "pmid-38956196",
+  "study_id": "dq-postmenopausal-bone-rct",
+  "outcome_id": "dq-bone-adverse-events-20wk",
+  "finding_ids": [
+    "dq-bone-rct-primary-null-subgroup-biomarker-signal"
+  ],
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "comparator": "Untreated control",
+  "arm_details": "Publication Extended Data Table 1 lists adverse events reported in more than one participant for each group; blank cells are retained as not reported in that table, not converted to zero.",
+  "sample_size": 60,
+  "group_values": [
+    {
+      "group_id": "control-overall",
+      "group_label": "Control overall adverse events",
+      "sample_size": 30,
+      "statistic": "count",
+      "value": 5,
+      "unit": "participants affected"
+    },
+    {
+      "group_id": "dq-overall",
+      "group_label": "D+Q overall adverse events",
+      "sample_size": 30,
+      "statistic": "count",
+      "value": 23,
+      "unit": "participants affected"
+    },
+    {
+      "group_id": "dq-headache",
+      "group_label": "D+Q headache",
+      "sample_size": 30,
+      "statistic": "count",
+      "value": 16,
+      "unit": "participants affected"
+    },
+    {
+      "group_id": "dq-diarrhea",
+      "group_label": "D+Q diarrhea",
+      "sample_size": 30,
+      "statistic": "count",
+      "value": 7,
+      "unit": "participants affected"
+    },
+    {
+      "group_id": "dq-nausea",
+      "group_label": "D+Q nausea",
+      "sample_size": 30,
+      "statistic": "count",
+      "value": 5,
+      "unit": "participants affected"
+    },
+    {
+      "group_id": "dq-constipation",
+      "group_label": "D+Q constipation",
+      "sample_size": 30,
+      "statistic": "count",
+      "value": 3,
+      "unit": "participants affected"
+    },
+    {
+      "group_id": "dq-gastrointestinal-reflux",
+      "group_label": "D+Q gastrointestinal reflux",
+      "sample_size": 30,
+      "statistic": "count",
+      "value": 2,
+      "unit": "participants affected"
+    },
+    {
+      "group_id": "dq-vertigo",
+      "group_label": "D+Q vertigo",
+      "sample_size": 30,
+      "statistic": "count",
+      "value": 2,
+      "unit": "participants affected"
+    },
+    {
+      "group_id": "dq-fatigue",
+      "group_label": "D+Q fatigue",
+      "sample_size": 30,
+      "statistic": "count",
+      "value": 4,
+      "unit": "participants affected"
+    },
+    {
+      "group_id": "control-body-pain",
+      "group_label": "Control body pain",
+      "sample_size": 30,
+      "statistic": "count",
+      "value": 2,
+      "unit": "participants affected"
+    },
+    {
+      "group_id": "dq-body-pain",
+      "group_label": "D+Q body pain",
+      "sample_size": 30,
+      "statistic": "count",
+      "value": 5,
+      "unit": "participants affected"
+    }
+  ],
+  "result_type": "safety_event",
+  "effect": {
+    "measure": "descriptive",
+    "raw_text": "Publication Extended Data Table 1 reports overall adverse events in 5/30 control and 23/30 D+Q participants; D+Q event terms included headache 16/30, diarrhea 7/30, nausea 5/30, constipation 3/30, gastrointestinal reflux 2/30, vertigo 2/30, fatigue 4/30, and body pain 5/30, while control body pain was 2/30."
+  },
+  "analysis": {
+    "comparison": "D+Q versus untreated control",
+    "effect_note": "Event-term table is descriptive. Blank table cells are not encoded as zero because the table only lists events reported in more than one participant for each group."
+  },
+  "direction": "mixed",
+  "evidence_tier": "clinical_or_mortality",
+  "confidence": "moderate",
+  "maturity_status": "full_text_extracted",
+  "provenance": [
+    {
+      "source_id": "pmid-38956196",
+      "source_snapshot_id": "snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+      "text_snapshot_id": "text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+      "locator_type": "table",
+      "locator": "section:pmc-t2-extended-data-table-1",
+      "status": "full_text_extracted",
+      "note": "Extended Data Table 1 lists adverse events in study participants as N (%)."
+    },
+    {
+      "source_id": "pmid-38956196",
+      "source_snapshot_id": "snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+      "text_snapshot_id": "text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+      "locator_type": "full_text_section",
+      "locator": "section:pmc-s6-safety-and-adverse-events",
+      "status": "full_text_extracted",
+      "note": "Safety paragraph states no serious or severe adverse events related to D+Q administration occurred and describes withdrawals."
+    },
+    {
+      "source_id": "nct-04313634",
+      "source_snapshot_id": "snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+      "text_snapshot_id": "text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+      "locator_type": "registry_record",
+      "locator": "section:adverse-events",
+      "status": "registry_extracted",
+      "note": "ClinicalTrials.gov posted aggregate serious adverse event, other adverse event, and death counts."
+    }
+  ],
+  "statement": "Publication table extraction shows adverse events were more frequently reported in the D+Q arm, especially headache and gastrointestinal complaints, with no D+Q-related serious or severe adverse events reported in the article.",
+  "time_horizon": "Baseline to approximately 20 weeks",
+  "caveats": [
+    "Event-term table is descriptive and should not be converted into a pooled safety effect without event-specific denominators, explicit zero handling, and uncertainty.",
+    "Open-label design may inflate subjective adverse-event reporting in the D+Q arm.",
+    "Withdrawals included one D+Q participant with QTc interval prolongation after dasatinib, one D+Q participant with fatigue and nonspecific side effects, one D+Q participant with COVID concerns, and two control participants with early termination."
+  ],
+  "tags": [
+    "senolytics",
+    "human",
+    "randomized-trial",
+    "bone",
+    "safety",
+    "adverse-events",
+    "full-text-extracted"
+  ]
+}

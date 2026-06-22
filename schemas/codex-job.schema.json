@@ -212,6 +212,7 @@
           "audit_exports",
           "audit_agentic_process",
           "audit_agent_schemas",
+          "worker_output_contract",
           "candidate_agent_run_ledger_match",
           "supervisor_review_lanes"
         ]

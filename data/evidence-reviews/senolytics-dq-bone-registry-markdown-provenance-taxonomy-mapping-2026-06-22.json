@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-dq-bone-registry-markdown-provenance-taxonomy-mapping-2026-06-22",
+  "candidate_change_id": "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
+  "review_lane": "taxonomy_mapping",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex-supervisor-agent",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Taxonomy mapping is complete and non-blocking for this scoped provenance repair. The candidate updates existing D+Q bone finding, outcome, and result records with text-snapshot provenance only and does not create new hallmark, track, intervention, source, study, outcome, or result identities.",
+  "findings": [
+    {
+      "finding_id": "candidate-ledger-stays-in-provenance-scope",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The candidate ledger contains one candidate_change record plus updates to one existing finding, seven existing outcomes, and seven existing results.",
+      "why_it_matters": "A provenance-repair candidate should not silently expand the evidence graph or introduce new taxonomy-bearing evidence identities.",
+      "recommended_action": "Route any future new outcome, result, source, study, hallmark, track, or intervention identity through a separate extraction or taxonomy candidate.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "scope-identifiers-remain-aligned",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The reviewed records remain under the senolytics and dasatinib-quercetin scope, with no new source or study identifiers introduced by the provenance repair.",
+      "why_it_matters": "Stable identifiers prevent downstream evidence maps from treating a locator repair as a new evidence body.",
+      "recommended_action": "Keep this candidate limited to provenance linkage and section-stable locators.",
+      "resolution_status": "closed"
+    }
+  ]
+}

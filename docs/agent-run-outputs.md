@@ -21,6 +21,8 @@ Codex job templates live in `docs/templates/codex-jobs/`. Use them when a run ne
 
 Persisted job specs under `ops/codex-jobs/` are enforced by `npm run audit:codex-jobs`. The audit checks that the final `agent_run`, candidate ledger, expected paths, review lanes, quality gates, logs, and post-run checks match the job contract.
 
+For `codex exec` jobs, the wrapper also appends `worker_output_contract` after it verifies that the worker emitted a single final JSON `agent_run`, that the final message matches the wrapper-written output file, and that the worker did not use inline schema-validation snippets instead of repository validation scripts.
+
 ## Write Policy
 
 Use `canonical_write_policy` to declare whether the run touched durable state:
@@ -38,6 +40,7 @@ Each run should include:
 - `outputs.summary`: concise result of the run.
 - `outputs.proposed_records[]`: canonical record paths created or updated by the run.
 - `quality_checks[]`: checks run by the agent, including verification commands when applicable.
+- wrapper-owned checks such as `worker_output_contract`, `post_export`, and `post_verify` are appended by the wrapper, not predeclared by the worker.
 - `blocking_issues[]`: unresolved blockers.
 - `next_actions[]`: the next agent action or review lane.
 

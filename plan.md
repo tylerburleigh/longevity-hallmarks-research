@@ -428,6 +428,7 @@ Tasks:
 - [x] Add pending-job ledger support so in-flight Codex workers can verify changed records before final `agent_run` output exists.
 - [x] Add post-step recovery for existing Codex worker outputs and split wrapper post-verification to avoid self-referential job-audit loops.
 - [x] Add Codex CLI prompt and job templates for ClinicalTrials.gov text-snapshot ingestion and supervisor review.
+- [x] Add wrapper-enforced `worker_output_contract` checks for single-final-JSON output and repository-script validation discipline.
 - [ ] Add triage state generation.
 - [ ] Add templates for research sessions.
 
@@ -470,18 +471,19 @@ Exit criteria:
 
 ## Immediate Next Actions
 
-1. Decide whether to promote or revise the D+Q bone endpoint synthesis candidate now that all required supervisor review lanes are complete and accepting.
+1. Decide whether to promote or revise review-passing candidates, starting with the D+Q bone endpoint synthesis candidate and the D+Q registry-markdown provenance-repair candidate.
 2. Finish full publication/table extraction for the D+Q bone RCT, including subgroup and event-specific safety details.
 3. Run extraction-refresh passes on the remaining human D+Q papers: DKD, IPF, and AD-risk cognition/mobility.
 4. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
 5. Add triage state generation and research-session templates.
-6. Run supervisor-agent review lanes for `senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22`: source fidelity, extraction fidelity, taxonomy mapping, and safety limitations.
-7. Harden Codex worker prompts with smaller local examples and sandbox-compatible provenance checks so workers do less exploratory repository reading.
-8. Turn the text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry text.
-9. Decide whether to install repo-local skills into the active Codex skills directory.
+6. Require `worker_output_contract` in new live `ops/codex-jobs/` specs; do not retrofit historical logs that document prior worker-output failures.
+7. Turn the text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry text.
+8. Decide whether to install repo-local skills into the active Codex skills directory.
 
 ## Change Log
 
+- 2026-06-22: Added a wrapper-enforced `worker_output_contract` quality gate for future Codex runs, rejecting multiple JSON `agent_run` messages and inline Node/AJV schema-validation snippets; updated Codex job templates and operating docs.
+- 2026-06-22: Ran the D+Q registry-markdown provenance-repair supervisor-review Codex job; source-fidelity, extraction-fidelity, taxonomy-mapping, and safety-limitations reviews are complete, accepting, non-blocking, and linked to the candidate, which is now `in_review`.
 - 2026-06-22: Ran and imported the D+Q bone endpoint synthesis supervisor-review Codex job; taxonomy-mapping, synthesis-boundary, and safety-limitations reviews are complete, accepting, non-blocking, and linked to the candidate.
 - 2026-06-22: Hardened Codex orchestration with pending-job expected-output ledgers, post-run verification that avoids self-referential job-audit loops, and `--post-process-existing` recovery for completed worker outputs.
 - 2026-06-22: Added source access-policy and text-snapshot contracts, including safe retention tiers for open reusable sources, public registries, and author/preprint/repository copies.

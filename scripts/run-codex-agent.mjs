@@ -218,6 +218,21 @@ function resolveRepoPath(relativeOrAbsolutePath) {
     : path.join(workspaceRoot, relativeOrAbsolutePath);
 }
 
+function stableStringify(value) {
+  if (Array.isArray(value)) {
+    return `[${value.map((item) => stableStringify(item)).join(",")}]`;
+  }
+
+  if (value && typeof value === "object") {
+    return `{${Object.keys(value)
+      .sort()
+      .map((key) => `${JSON.stringify(key)}:${stableStringify(value[key])}`)
+      .join(",")}}`;
+  }
+
+  return JSON.stringify(value);
+}
+
 async function exists(filePath) {
   try {
     await fs.access(filePath);
@@ -248,7 +263,7 @@ In the final JSON object, set execution.surface to "codex_exec", execution.isola
   const jobInstruction = options.job
     ? `\n\nCodex job specification:\n${JSON.stringify(options.job, null, 2)}`
     : "";
-  const outputInstruction = `Do not write the agent_run output path directly. Return the final JSON object as your final message; the wrapper writes output_path from that final message. Coordinator post-run export or verification steps run after codex exec exits when requested.`;
+  const outputInstruction = `Do not write the agent_run output path directly. Return the final JSON object as your final message; the wrapper writes output_path from that final message. Do not emit interim JSON objects, placeholder agent_run records, or JSON-shaped progress messages before the final response. Use plain progress text only when needed. Do not run ad hoc Node/AJV/schema-validation snippets for the final agent_run; use repository scripts such as npm run validate:records, npm run audit:references, npm run audit:agent-schemas, and npm run verify:knowledge-base. Coordinator post-run export or verification steps run after codex exec exits when requested.`;
   const fullPrompt = `${prompt}${jobInstruction}
 
 ${outputInstruction}`;
@@ -400,6 +415,147 @@ async function executeCommand(options, command) {
   });
 }
 
+function isAgentMessage(event) {
+  return event?.item?.type === "agent_message" && typeof event.item.text === "string";
+}
+
+function isCommandExecution(event) {
+  return event?.item?.type === "command_execution" && typeof event.item.command === "string";
+}
+
+function tryParseJsonObject(text) {
+  try {
+    const parsed = JSON.parse(text);
+    return parsed && typeof parsed === "object" && !Array.isArray(parsed) ? parsed : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+function isAdHocSchemaValidationCommand(command) {
+  const runsInlineNode =
+    /\bnode\s+(?:--input-type=module\s+)?-\s*<<|(?:\bnode\s+--eval\b|\bnode\s+-e\b)/.test(command);
+  if (!runsInlineNode) {
+    return false;
+  }
+
+  return /\bAjv\b|\bajv\b|validateSchema|agent-run\.schema|agent-run\.codex-output\.schema|common\.schema/.test(command);
+}
+
+function shortCommand(command) {
+  return command.length > 220 ? `${command.slice(0, 217)}...` : command;
+}
+
+const wrapperOwnedQualityChecks = new Set([
+  "worker_output_contract",
+  "post_export",
+  "post_verify",
+  "post_job_audit",
+  "post_output_validate"
+]);
+
+async function appendCoordinatorAuditEvent(options, { name, exitCode, summary, issues = [] }) {
+  const event = {
+    type: exitCode === 0 ? "coordinator.audit.completed" : "coordinator.audit.failed",
+    name,
+    started_at: new Date().toISOString(),
+    completed_at: new Date().toISOString(),
+    exit_code: exitCode,
+    summary,
+    issues
+  };
+  await appendLogEvent(options, event);
+  process.stdout.write(`${JSON.stringify(event)}\n`);
+  return event;
+}
+
+async function auditWorkerOutputContract(options) {
+  const logPath = resolveRepoPath(options.log);
+  const outputPath = resolveRepoPath(options.output);
+  const lines = (await fs.readFile(logPath, "utf8")).split("\n").filter(Boolean);
+  const issues = [];
+  const events = [];
+
+  for (const [index, line] of lines.entries()) {
+    try {
+      events.push(JSON.parse(line));
+    } catch (error) {
+      issues.push(`${options.log}: line ${index + 1} is not valid JSONL: ${error.message}`);
+    }
+  }
+
+  const agentMessages = [];
+  const agentRunMessages = [];
+  const adHocSchemaCommands = [];
+
+  for (const [eventIndex, event] of events.entries()) {
+    if (isAgentMessage(event)) {
+      const agentMessage = { eventIndex, text: event.item.text };
+      agentMessages.push(agentMessage);
+      const parsed = tryParseJsonObject(event.item.text);
+      if (parsed?.record_type === "agent_run") {
+        agentRunMessages.push({ ...agentMessage, parsed });
+      }
+    }
+
+    if (isCommandExecution(event) && isAdHocSchemaValidationCommand(event.item.command)) {
+      adHocSchemaCommands.push(event.item.command);
+    }
+  }
+
+  if (agentRunMessages.length !== 1) {
+    issues.push(`${options.log}: expected exactly one JSON agent_run message, found ${agentRunMessages.length}.`);
+  } else {
+    const workerDeclaredWrapperChecks = (agentRunMessages[0].parsed.quality_checks ?? [])
+      .map((check) => check.check_name)
+      .filter((checkName) => wrapperOwnedQualityChecks.has(checkName));
+    if (workerDeclaredWrapperChecks.length > 0) {
+      issues.push(
+        `${options.log}: worker final agent_run predeclares wrapper-owned quality check(s): ${workerDeclaredWrapperChecks.join(", ")}.`
+      );
+    }
+
+    const finalAgentMessage = agentMessages.at(-1);
+    if (finalAgentMessage?.eventIndex !== agentRunMessages[0].eventIndex) {
+      issues.push(`${options.log}: the sole JSON agent_run message must be the final worker agent_message.`);
+    }
+
+    if (await exists(outputPath)) {
+      const outputRecord = JSON.parse(await fs.readFile(outputPath, "utf8"));
+      if (stableStringify(outputRecord) !== stableStringify(agentRunMessages[0].parsed)) {
+        issues.push(`${options.output}: final agent_run message does not match the wrapper-written output file before post-run annotations.`);
+      }
+    } else {
+      issues.push(`${options.output}: wrapper output file was not written.`);
+    }
+  }
+
+  if (adHocSchemaCommands.length > 0) {
+    issues.push(
+      `${options.log}: ad hoc inline schema validation is forbidden; use repository validation scripts instead. Command(s): ${adHocSchemaCommands
+        .map(shortCommand)
+        .join(" | ")}`
+    );
+  }
+
+  if (issues.length > 0) {
+    await appendCoordinatorAuditEvent(options, {
+      name: "worker_output_contract",
+      exitCode: 1,
+      summary: `Worker output contract failed with ${issues.length} issue(s).`,
+      issues
+    });
+    throw new Error(`worker_output_contract failed: ${issues.join(" ")}`);
+  }
+
+  const event = await appendCoordinatorAuditEvent(options, {
+    name: "worker_output_contract",
+    exitCode: 0,
+    summary: "Worker emitted exactly one final JSON agent_run message, matched output_path, and avoided ad hoc schema-validation snippets."
+  });
+  await appendOutputQualityCheck(options, event);
+}
+
 async function appendLogEvent(options, event) {
   await fs.mkdir(path.dirname(resolveRepoPath(options.log)), { recursive: true });
   await fs.appendFile(resolveRepoPath(options.log), `${JSON.stringify(event)}\n`);
@@ -469,6 +625,10 @@ function runCoordinatorCommand(options, name, command, args) {
 }
 
 function summarizeCoordinatorCommand(event) {
+  if (event.summary) {
+    return event.summary;
+  }
+
   const lines = (event.stdout ?? "")
     .split("\n")
     .map((line) => line.trim())
@@ -538,6 +698,7 @@ async function main() {
   }
 
   await executeCommand(options, command);
+  await auditWorkerOutputContract(options);
   await runPostSteps(options);
   console.log(`Codex worker output written to ${options.output}.`);
 }

@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-dq-bone-registry-markdown-provenance-source-fidelity-2026-06-22",
+  "candidate_change_id": "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
+  "review_lane": "source_fidelity",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex-supervisor-agent",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Source fidelity is complete and non-blocking for the registry markdown provenance repair. The repaired NCT04313634 locators retain source_id nct-04313634, source_snapshot_id snapshot-nct-04313634-clinicaltrials-v2-2026-06-21, and text_snapshot_id text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21, and the text snapshot is derived from the same ClinicalTrials.gov source snapshot.",
+  "findings": [
+    {
+      "finding_id": "nct-source-chain-preserved",
+      "severity": "note",
+      "category": "source_mismatch",
+      "claim_or_issue": "All repaired NCT04313634 registry locators use the same source, source snapshot, and retained text snapshot identifiers.",
+      "why_it_matters": "The provenance repair must strengthen locator auditability without remapping evidence to a different source or snapshot.",
+      "recommended_action": "Keep these identifiers stable unless a future ClinicalTrials.gov refresh creates a new source_snapshot and text_snapshot pair.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "text-snapshot-derived-from-same-source-snapshot",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "The retained text_snapshot record cites source_id nct-04313634 and source_snapshot_id snapshot-nct-04313634-clinicaltrials-v2-2026-06-21, matching the linked source_snapshot record.",
+      "why_it_matters": "Registry markdown locators are only source-faithful if the normalized text was generated from the exact snapshot cited by extraction-grade records.",
+      "recommended_action": "Continue citing both source_snapshot_id and text_snapshot_id on extraction-grade registry provenance for this retained registry payload.",
+      "resolution_status": "closed"
+    }
+  ]
+}

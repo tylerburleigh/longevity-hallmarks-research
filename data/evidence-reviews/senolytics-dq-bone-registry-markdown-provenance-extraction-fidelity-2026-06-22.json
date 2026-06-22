@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-dq-bone-registry-markdown-provenance-extraction-fidelity-2026-06-22",
+  "candidate_change_id": "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
+  "review_lane": "extraction_fidelity",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex-supervisor-agent",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Extraction fidelity is complete and non-blocking for this provenance repair. The repaired NCT04313634 locators use locator_type registry_record and point to retained section IDs in the sections.json artifact, with outcome/result locators anchored to posted-results-outcomes or adverse-events as appropriate.",
+  "findings": [
+    {
+      "finding_id": "registry-record-locators-used",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "The repaired NCT04313634 provenance entries use locator_type registry_record rather than older module-only or prose-only locators.",
+      "why_it_matters": "The extraction rules require source-located provenance for extraction-grade registry records, and registry_record locators bind the record back to retained registry text.",
+      "recommended_action": "Continue using registry_record locators for retained ClinicalTrials.gov text-snapshot provenance.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "retained-section-ids-cited",
+      "severity": "note",
+      "category": "extraction_error",
+      "claim_or_issue": "Outcome and result locators cite section:posted-results-outcomes for posted endpoint values and section:adverse-events for aggregate safety counts; the finding locator cites both retained sections.",
+      "why_it_matters": "Section-stable locators make the repaired provenance auditable against artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/sections.json.",
+      "recommended_action": "Use the retained section index as the audit source for future repairs to these registry-extracted records.",
+      "resolution_status": "closed"
+    }
+  ]
+}

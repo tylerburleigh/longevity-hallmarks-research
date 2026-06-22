@@ -59,6 +59,15 @@ Optional execution guards:
 
 The worker returns the final JSON object as its final message. The wrapper writes that object to `--output`; the worker should not write the `agent_run` output path directly.
 
+The wrapper enforces the worker output contract after `codex exec` exits and before post-run export or verification:
+
+- exactly one worker `agent_message` may contain a JSON object with `record_type: "agent_run"`
+- that JSON `agent_run` must be the final worker `agent_message`
+- that final message must match the wrapper-written `-o` output file before coordinator post-run annotations
+- inline Node/AJV/schema-validation snippets for the final `agent_run` are rejected; workers must use repository scripts instead
+
+On success, the wrapper appends a `worker_output_contract` quality check to the persisted `agent_run`.
+
 Use `--sandbox read-only` for search, screening, review, and audit-only runs that should not edit files. Use `workspace-write` for extraction or synthesis workers that write candidate records. Use `danger-full-access` only in an externally isolated runner.
 
 For release/export runs or any run whose persisted `agent_run` should be included in current export manifests, add:
@@ -97,6 +106,7 @@ Every worker final output must pass two schema gates:
 - `schemas/agent-run.schema.json` is the canonical repository validator used by `npm run validate:records`.
 - `npm run audit:agent-schemas` checks the shared enum contract between the two schemas.
 - `npm run audit:codex-jobs` checks that persisted `codex_job` specs match their final `agent_run` records, candidate records, expected paths, required review lanes, quality gates, logs, and post-run checks.
+- `worker_output_contract` checks the JSONL worker stream for a single final JSON `agent_run` and rejects ad hoc schema-validation snippets.
 
 When `canonical_write_policy` is `candidate_change_required`, the output must include:
 
@@ -105,7 +115,14 @@ When `canonical_write_policy` is `candidate_change_required`, the output must in
 - `quality_checks[]`
 - unresolved `blocking_issues[]` when the run is partial
 
-Workers should not run ad hoc schema validators for their final response after repository verification has passed. The wrapper owns structured-output validation, and repository scripts own persisted-record validation.
+Workers must not run ad hoc schema validators for their final response. The wrapper owns structured-output validation, and repository scripts own persisted-record validation. Use repository commands instead:
+
+```bash
+npm run validate:records
+npm run audit:references
+npm run audit:agent-schemas
+npm run verify:knowledge-base
+```
 
 The reference audit requires changed canonical records to appear in both:
 
@@ -116,7 +133,7 @@ Agent-run records themselves are transaction logs and do not need to be proposed
 
 The reference audit also infers required review lanes from proposed record types. Result, outcome, snapshot, synthesis, and safety/adverse-event records must declare the matching source-fidelity, extraction-fidelity, taxonomy-mapping, synthesis-boundary, or safety-limitation lanes before promotion can proceed.
 
-When a job file declares `quality_gates[]`, each gate must be satisfied by a passed `agent_run.quality_checks[]` entry or by a passed aggregate verification check recognized by the job audit. Jobs with `post_run.export_latest` or `post_run.verify_knowledge_base` must also have passed wrapper-owned `post_export` or `post_verify` quality checks. Workers must not predeclare those wrapper-owned checks in their final response.
+When a job file declares `quality_gates[]`, each gate must be satisfied by a passed `agent_run.quality_checks[]` entry or by a passed aggregate verification check recognized by the job audit. Jobs with `post_run.export_latest` or `post_run.verify_knowledge_base` must also have passed wrapper-owned `post_export` or `post_verify` quality checks. Workers must not predeclare wrapper-owned checks such as `worker_output_contract`, `post_export`, or `post_verify` in their final response.
 
 ## Logs And Replay
 

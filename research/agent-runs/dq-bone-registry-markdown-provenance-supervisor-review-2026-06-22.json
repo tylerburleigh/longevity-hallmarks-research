@@ -1,0 +1,201 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "dq-bone-registry-markdown-provenance-supervisor-review-2026-06-22",
+  "agent_role": "supervisor_agent",
+  "agent_id": "codex-supervisor-agent",
+  "mode": "extraction_refresh",
+  "started_at": "2026-06-22T13:45:00Z",
+  "completed_at": "2026-06-22T14:02:52Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "Review source fidelity, extraction fidelity, taxonomy mapping, and safety limitations for the D+Q bone registry markdown provenance repair candidate.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": [
+      "dasatinib-quercetin"
+    ]
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "codex_exec",
+    "isolation": "foreground_checkout",
+    "workspace_path": "/home/tyler/Workspace/longevity-hallmarks-research",
+    "prompt_file": "docs/prompts/codex-agents/dq-bone-registry-markdown-provenance-supervisor-review-2026-06-22.md",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "output_path": "research/agent-runs/dq-bone-registry-markdown-provenance-supervisor-review-2026-06-22.json",
+    "jsonl_log_path": "research/agent-runs/logs/dq-bone-registry-markdown-provenance-supervisor-review-2026-06-22.jsonl",
+    "sandbox": "workspace-write",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "user_request",
+      "reference": "docs/prompts/codex-agents/dq-bone-registry-markdown-provenance-supervisor-review-2026-06-22.md; ops/codex-jobs/dq-bone-registry-markdown-provenance-supervisor-review-2026-06-22.json",
+      "summary": "Coordinator prompt and codex_job specification for the bounded D+Q bone registry markdown provenance supervisor review."
+    },
+    {
+      "input_type": "other",
+      "reference": "plan.md; docs/text-ingestion-rules.md; docs/extraction-rules.md; docs/agent-run-outputs.md; docs/codex-cli-agents.md",
+      "summary": "Repository plan plus text-ingestion, extraction, agent-output, and Codex CLI worker rules used to constrain the review."
+    },
+    {
+      "input_type": "other",
+      "reference": "schemas/evidence-review.schema.json; schemas/candidate-change.schema.json; schemas/agent-run.codex-output.schema.json; schemas/agent-run.schema.json",
+      "summary": "Schemas used for evidence review records, candidate lifecycle update, and final agent-run output shape."
+    },
+    {
+      "input_type": "candidate_change",
+      "reference": "data/candidate-changes/senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22.json",
+      "summary": "Submitted provenance-repair candidate reviewed and updated to in_review with four evidence_review_ids."
+    },
+    {
+      "input_type": "source_snapshot",
+      "reference": "data/source-snapshots/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+      "summary": "ClinicalTrials.gov API v2 source snapshot used to verify the NCT04313634 source_snapshot_id and source_id chain."
+    },
+    {
+      "input_type": "text_snapshot",
+      "reference": "data/text-snapshots/text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+      "summary": "Retained public-registry text snapshot used to verify source_snapshot linkage, artifact hashes, and section index metadata."
+    },
+    {
+      "input_type": "other",
+      "reference": "artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/sections.json; artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/registry.md; artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/raw.json",
+      "summary": "Retained registry artifacts used to verify section-stable locators for posted-results-outcomes and adverse-events."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/sources/nct-04313634.json; data/sources/pmid-38956196.json; data/studies/dq-postmenopausal-bone-rct.json",
+      "summary": "Source and study context for the existing D+Q postmenopausal bone RCT records."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json",
+      "summary": "Finding record reviewed for preserved NCT registry provenance and scoped taxonomy mapping."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/outcomes/dq-bone-ctx-20wk.json; data/outcomes/dq-bone-p1np-2wk.json; data/outcomes/dq-bone-p1np-4wk.json; data/outcomes/dq-bone-p1np-20wk.json; data/outcomes/dq-bone-bmd-20wk.json; data/outcomes/dq-bone-sasp-2wk.json; data/outcomes/dq-bone-adverse-events-20wk.json",
+      "summary": "Outcome records reviewed for registry_record locators, retained text_snapshot_id values, and scoped identity preservation."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/results/dq-bone-ctx-20wk-null.json; data/results/dq-bone-p1np-2wk-positive.json; data/results/dq-bone-p1np-4wk-positive.json; data/results/dq-bone-p1np-20wk-null.json; data/results/dq-bone-bmd-20wk-inconclusive.json; data/results/dq-bone-sasp-2wk-null.json; data/results/dq-bone-adverse-events-20wk-mixed.json",
+      "summary": "Result records reviewed for retained registry provenance and safety-interpretation boundaries."
+    },
+    {
+      "input_type": "record",
+      "reference": "research/agent-runs/dq-bone-registry-markdown-provenance-repair-2026-06-22.json",
+      "summary": "Submitted extraction-agent run record used to confirm the candidate scope and provenance-repair ledger."
+    }
+  ],
+  "outputs": {
+    "summary": "Completed four supervisor-agent evidence review lanes for the D+Q bone registry markdown provenance repair, set the candidate to in_review, and linked the four evidence reviews. All four lanes are complete, accepting, non-blocking, and have no open major or critical findings; the candidate was not promoted.",
+    "candidate_change_id": "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
+        "path": "data/candidate-changes/senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22.json",
+        "change_type": "update",
+        "rationale": "Moved the candidate to in_review and linked the four active supervisor-agent evidence review records."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "senolytics-dq-bone-registry-markdown-provenance-source-fidelity-2026-06-22",
+        "path": "data/evidence-reviews/senolytics-dq-bone-registry-markdown-provenance-source-fidelity-2026-06-22.json",
+        "change_type": "create",
+        "rationale": "Records the completed source-fidelity supervisor review for the registry markdown provenance repair candidate."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "senolytics-dq-bone-registry-markdown-provenance-extraction-fidelity-2026-06-22",
+        "path": "data/evidence-reviews/senolytics-dq-bone-registry-markdown-provenance-extraction-fidelity-2026-06-22.json",
+        "change_type": "create",
+        "rationale": "Records the completed extraction-fidelity supervisor review for the registry markdown provenance repair candidate."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "senolytics-dq-bone-registry-markdown-provenance-taxonomy-mapping-2026-06-22",
+        "path": "data/evidence-reviews/senolytics-dq-bone-registry-markdown-provenance-taxonomy-mapping-2026-06-22.json",
+        "change_type": "create",
+        "rationale": "Records the completed taxonomy-mapping supervisor review for the registry markdown provenance repair candidate."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "senolytics-dq-bone-registry-markdown-provenance-safety-limitations-2026-06-22",
+        "path": "data/evidence-reviews/senolytics-dq-bone-registry-markdown-provenance-safety-limitations-2026-06-22.json",
+        "change_type": "create",
+        "rationale": "Records the completed safety-limitations supervisor review for the registry markdown provenance repair candidate."
+      }
+    ],
+    "generated_files": [
+      "data/evidence-reviews/senolytics-dq-bone-registry-markdown-provenance-source-fidelity-2026-06-22.json",
+      "data/evidence-reviews/senolytics-dq-bone-registry-markdown-provenance-extraction-fidelity-2026-06-22.json",
+      "data/evidence-reviews/senolytics-dq-bone-registry-markdown-provenance-taxonomy-mapping-2026-06-22.json",
+      "data/evidence-reviews/senolytics-dq-bone-registry-markdown-provenance-safety-limitations-2026-06-22.json"
+    ],
+    "export_paths": [
+      "exports/latest/audit-manifest.json",
+      "exports/latest/coverage-status.json",
+      "exports/latest/evidence-map.json"
+    ]
+  },
+  "quality_checks": [
+    {
+      "check_name": "supervisor_review_lanes",
+      "status": "passed",
+      "summary": "Verified source_fidelity, extraction_fidelity, taxonomy_mapping, and safety_limitations reviews are complete, accepting, non-blocking, and free of open major or critical findings."
+    },
+    {
+      "check_name": "validate_records",
+      "status": "passed",
+      "summary": "npm run validate:records exited 0: Validated 129 JSON file(s)."
+    },
+    {
+      "check_name": "audit_references",
+      "status": "passed",
+      "summary": "npm run audit:references exited 0: Reference audit passed for 120 record file(s)."
+    },
+    {
+      "check_name": "audit_agent_schemas",
+      "status": "passed",
+      "summary": "npm run audit:agent-schemas exited 0: Agent schema audit passed."
+    },
+    {
+      "check_name": "audit_agentic_process",
+      "status": "passed",
+      "summary": "npm run audit:agentic-process exited 0: Agentic process audit passed for 221 file(s)."
+    },
+    {
+      "check_name": "audit_exports",
+      "status": "not_run",
+      "summary": "Deferred to coordinator post-run export and verification so the final agent_run output can be included before export auditing."
+    },
+    {
+      "check_name": "post_export",
+      "status": "passed",
+      "summary": "post_export exited 0: > longevity-hallmarks-research@0.1.0 export:latest > node scripts/export-latest.mjs Wrote 13 export file(s) to exports/latest."
+    },
+    {
+      "check_name": "post_verify",
+      "status": "passed",
+      "summary": "post_verify exited 0: > longevity-hallmarks-research@0.1.0 audit:agent-schemas > node scripts/audit-agent-schemas.mjs Agent schema audit passed. > longevity-hallmarks-research@0.1.0 audit:agentic-process > node scripts/audit-agentic-process.mjs Agentic process audit passed for 222 file(s)."
+    },
+    {
+      "check_name": "post_job_audit",
+      "status": "passed",
+      "summary": "post_job_audit exited 0: > longevity-hallmarks-research@0.1.0 audit:codex-jobs > node scripts/audit-codex-jobs.mjs Codex job audit passed for 4 job file(s)."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": [
+    "Leave the candidate in_review for coordinator handling; no promotion was performed by this worker."
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-dq-bone-registry-markdown-provenance-safety-limitations-2026-06-22",
+  "candidate_change_id": "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
+  "review_lane": "safety_limitations",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex-supervisor-agent",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Safety limitations are complete and non-blocking for this provenance repair. The adverse-event outcome and result remain bounded to posted ClinicalTrials.gov aggregate group counts, cite the retained adverse-events section, and do not create event-specific comparative safety effects beyond the retained registry text.",
+  "findings": [
+    {
+      "finding_id": "aggregate-safety-boundary-preserved",
+      "severity": "note",
+      "category": "safety_limitation",
+      "claim_or_issue": "The safety outcome and result cite section:adverse-events and retain aggregate adverse-event wording and counts rather than creating event-specific safety result records.",
+      "why_it_matters": "Posted registry aggregate counts are useful for evidence mapping but are not enough to support preferred-term comparative safety claims.",
+      "recommended_action": "Keep event-specific adverse-event extraction as a separate future extraction-refresh task.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "event-specific-overreach-absent",
+      "severity": "note",
+      "category": "interpretation_overreach",
+      "claim_or_issue": "The safety result states aggregate serious, death, and other-adverse-event counts and includes caveats that preferred-term enumeration and formal safety synthesis remain pending.",
+      "why_it_matters": "This preserves the boundary between registry aggregate reporting and event-specific comparative safety interpretation.",
+      "recommended_action": "Do not promote any event-specific safety inference until preferred-term counts and comparative effect fields are extracted and reviewed.",
+      "resolution_status": "closed"
+    }
+  ]
+}

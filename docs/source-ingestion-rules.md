@@ -58,6 +58,15 @@ Agent-curated primary sources include regulatory documents, official databases, 
 - Include issuer or venue in the ID.
 - Record source-quality concerns in a research session or evidence review.
 
+## Text Access Tiers
+
+Before retaining raw source text or normalized markdown, classify the source snapshot access tier:
+
+- `open_reusable`, `public_registry`, and `author_manuscript_or_preprint_repository` are artifact-retention tiers.
+- `metadata_only`, `read_only_access`, `blocked`, and `unknown` do not allow committed raw full text or normalized markdown artifacts.
+
+Use `docs/text-ingestion-rules.md` when creating `text_snapshot` records.
+
 ## Before Adding A Source
 
 Search for duplicates first:

@@ -221,6 +221,7 @@
               "coverage_gap",
               "candidate_change",
               "source_snapshot",
+              "text_snapshot",
               "record",
               "export",
               "other"

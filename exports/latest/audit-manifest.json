@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "release_manifest",
   "id": "latest-consumer-export",
-  "generated_at": "2026-06-22T10:16:24.031Z",
+  "generated_at": "2026-06-22T10:37:53.474Z",
   "export_version": "0.1.0",
   "export_scope": {
     "description": "Consumer-facing latest export generated from canonical research and data records.",
@@ -21,6 +21,7 @@
       "source",
       "study",
       "finding",
+      "text_snapshot",
       "result",
       "coverage_assessment",
       "synthesis_group",
@@ -48,6 +49,13 @@
       "description": "Canonical finding records with maturity and provenance fields preserved.",
       "record_count": 9,
       "sha256": "1a93799e872e1636c64246c98e02b5c1a91175b43364d4b8913304f79f289718"
+    },
+    {
+      "path": "exports/latest/text-snapshots.jsonl",
+      "format": "jsonl",
+      "description": "Retained source text artifacts, normalized markdown references, hashes, section indexes, and access policy metadata.",
+      "record_count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
       "path": "exports/latest/results.all.jsonl",
@@ -89,14 +97,14 @@
       "format": "json",
       "description": "Generated graph view of source, study, finding, outcome, result, coverage, and synthesis-compatibility links.",
       "record_count": 1,
-      "sha256": "5f5e37efafbf86f37e018c18e2450ce91af9f814aea2503fc3701883c4019531"
+      "sha256": "00c0d12d4de4f3c1d8f725b0e523e363e58c57d9d698f945d5ad7186745410ef"
     },
     {
       "path": "exports/latest/coverage-status.json",
       "format": "json",
       "description": "Consumer coverage status with current/superseded flags and known-gap warnings.",
       "record_count": 1,
-      "sha256": "3a88b86dd7a88116bde6ae43efeb5c7ed6636e2fe9326a44c51a72961c42bb3f"
+      "sha256": "10cee43ade07a1dade8f3faf38de3b9afdaf0ef6e52131c4a3a6a5c9eeb85d10"
     }
   ],
   "record_counts": {
@@ -104,6 +112,7 @@
     "sources": 10,
     "studies": 9,
     "findings": 9,
+    "text_snapshots": 0,
     "results_all": 14,
     "results_extraction_grade": 7,
     "results_registry_extracted": 7,

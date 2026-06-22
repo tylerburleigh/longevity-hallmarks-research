@@ -22,6 +22,7 @@ const managedExportFiles = [
   "sources.jsonl",
   "studies.jsonl",
   "findings.jsonl",
+  "text-snapshots.jsonl",
   "results.all.jsonl",
   "results.extraction_grade.jsonl",
   "results.registry_extracted.jsonl",
@@ -342,6 +343,7 @@ async function main() {
   const sources = recordsOf(records, "source");
   const studies = recordsOf(records, "study");
   const findings = recordsOf(records, "finding");
+  const textSnapshots = recordsOf(records, "text_snapshot");
   const results = recordsOf(records, "result");
   const extractionGradeResults = sortRecords(results.filter((record) => isExtractionGradeRecord(record)));
   const registryExtractedResults = sortRecords(
@@ -371,6 +373,12 @@ async function main() {
       format: "jsonl",
       description: "Canonical finding records with maturity and provenance fields preserved.",
       records: findings
+    },
+    {
+      relativePath: "exports/latest/text-snapshots.jsonl",
+      format: "jsonl",
+      description: "Retained source text artifacts, normalized markdown references, hashes, section indexes, and access policy metadata.",
+      records: textSnapshots
     },
     {
       relativePath: "exports/latest/results.all.jsonl",
@@ -456,7 +464,16 @@ async function main() {
         "supervisor_agent_reviewed",
         "accepted"
       ],
-      included_record_types: ["source", "study", "finding", "result", "coverage_assessment", "synthesis_group", "evidence_map"]
+      included_record_types: [
+        "source",
+        "study",
+        "finding",
+        "text_snapshot",
+        "result",
+        "coverage_assessment",
+        "synthesis_group",
+        "evidence_map"
+      ]
     },
     files,
     record_counts: {
@@ -464,6 +481,7 @@ async function main() {
       sources: sources.length,
       studies: studies.length,
       findings: findings.length,
+      text_snapshots: textSnapshots.length,
       results_all: results.length,
       results_extraction_grade: extractionGradeResults.length,
       results_registry_extracted: registryExtractedResults.length,

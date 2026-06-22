@@ -8,13 +8,14 @@ description: Extract source-backed evidence into the longevity hallmarks knowled
 ## Workflow
 
 1. Work from the repository root.
-2. Read `docs/extraction-rules.md` and `docs/screening-rules.md`.
+2. Read `docs/extraction-rules.md`, `docs/screening-rules.md`, and `docs/text-ingestion-rules.md`.
 3. Read the relevant schemas before writing:
    - `schemas/source.schema.json`
    - `schemas/study.schema.json`
    - `schemas/finding.schema.json`
    - `schemas/outcome.schema.json` or `schemas/result.schema.json` when extracting structured endpoints/results
    - `schemas/source-snapshot.schema.json` when using PubMed, ClinicalTrials.gov, or another refreshable primary-source endpoint
+   - `schemas/text-snapshot.schema.json` when retained raw text, normalized markdown, or section indexes support extraction
    - `schemas/candidate-change.schema.json` when proposing durable changes
 4. Inspect the scoped track in `taxonomies/tracks.v1.json`.
 5. Search existing records before creating new IDs:
@@ -48,6 +49,7 @@ Use stable IDs:
 - Do not infer human aging efficacy from animal, biomarker, disease-specific, or registry-only evidence.
 - Include caveats when sample size, endpoint, duration, conflict, or translation boundary matters.
 - Use source-snapshot importers before extraction-grade PubMed or ClinicalTrials.gov extraction, and include `source_snapshot_id` on extraction-grade provenance locators.
+- Use `text_snapshot_id` on `full_text_extracted` provenance. Retain raw text or normalized markdown only for `open_reusable`, `public_registry`, or `author_manuscript_or_preprint_repository` access tiers.
 - Add `candidate_change` and `evidence_review` records when the extraction is intended to become durable canonical state.
 - Add an `agent_run` record with `canonical_write_policy: "candidate_change_required"` when extraction creates or updates canonical records.
 - Prefer isolated Codex CLI worker execution through `npm run agent:codex -- ...` when the extraction scope is bounded enough to delegate.

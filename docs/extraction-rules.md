@@ -29,6 +29,8 @@ Do not create a `result` without a linked `outcome`. If a paper reports an effec
 
 Extraction-grade records (`registry_extracted`, `full_text_extracted`, `agent_reviewed`, `supervisor_agent_reviewed`, or `accepted`) need source-located provenance. For PubMed or ClinicalTrials.gov-derived extraction, include `source_snapshot_id` on each extraction-grade provenance locator.
 
+Full-text extraction must cite a retained `text_snapshot_id` in addition to `source_snapshot_id`. Do not mark a result `full_text_extracted` from a source that only has `metadata_only`, `read_only_access`, `blocked`, or `unknown` artifact access.
+
 Use `result_type: "no_posted_result"` for registry or trial-watch records only when the absence of posted results is itself decision-relevant.
 
 ## Screening And Bias Rules

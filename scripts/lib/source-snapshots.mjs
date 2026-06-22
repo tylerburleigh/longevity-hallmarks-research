@@ -44,6 +44,38 @@ export function sha256(value) {
   return createHash("sha256").update(value).digest("hex");
 }
 
+function pubmedMetadataAccessPolicy(checkedAt) {
+  return {
+    access_tier: "metadata_only",
+    artifact_policy: "retain_metadata_hashes_and_locators",
+    safe_artifact_classes: ["metadata_summary", "content_hash", "provenance_locator", "structured_extraction"],
+    basis:
+      "PubMed EFetch provides public metadata and abstract payloads for source identification and provenance, but it is not a reusable full-text source by itself.",
+    checked_at: checkedAt,
+    notes:
+      "Use a separate open reusable full text, public repository copy, author manuscript, preprint, or registry source before retaining raw full text or normalized markdown."
+  };
+}
+
+function clinicalTrialsAccessPolicy(checkedAt) {
+  return {
+    access_tier: "public_registry",
+    artifact_policy: "retain_raw_and_markdown",
+    safe_artifact_classes: [
+      "raw_payload",
+      "normalized_markdown",
+      "section_index",
+      "metadata_summary",
+      "content_hash",
+      "provenance_locator",
+      "structured_extraction"
+    ],
+    basis:
+      "ClinicalTrials.gov API records are public registry data and are treated as safe for raw artifact retention, normalization, and structured extraction.",
+    checked_at: checkedAt
+  };
+}
+
 export function toPrettyJson(value) {
   return `${JSON.stringify(value, null, 2)}\n`;
 }
@@ -147,6 +179,7 @@ export async function buildPubmedSnapshot({ pmid, sourceId = `pmid-${pmid}`, ret
         publication_types: allTags(text, "PublicationType"),
         abstract_excerpt: abstractText ? abstractText.slice(0, 1200) : undefined
       },
+      access_policy: pubmedMetadataAccessPolicy(retrievedAt),
       raw_storage: {
         stored: false,
         reason_not_stored: "Snapshot stores retrieval URL, content hash, and parsed metadata summary; raw XML can be refetched from NCBI EFetch."
@@ -212,6 +245,7 @@ export async function buildClinicalTrialsSnapshot({
         posted_outcome_count: outcomeMeasures.length,
         adverse_event_time_frame: results.adverseEventsModule?.timeFrame
       },
+      access_policy: clinicalTrialsAccessPolicy(retrievedAt),
       raw_storage: {
         stored: false,
         reason_not_stored: "Snapshot stores retrieval URL, content hash, and parsed metadata summary; raw JSON can be refetched from ClinicalTrials.gov API v2."
@@ -256,4 +290,3 @@ export async function diffSnapshot(snapshot) {
     unchanged: snapshot.content_type === contentType && snapshot.content_sha256 === currentHash
   };
 }
-

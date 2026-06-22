@@ -55,6 +55,9 @@
     "agentRunRef": {
       "$ref": "#/$defs/identifier"
     },
+    "textSnapshotRef": {
+      "$ref": "#/$defs/identifier"
+    },
     "sourceType": {
       "enum": [
         "journal_article",
@@ -165,6 +168,72 @@
         "accepted"
       ]
     },
+    "accessTier": {
+      "enum": [
+        "open_reusable",
+        "public_registry",
+        "author_manuscript_or_preprint_repository",
+        "metadata_only",
+        "read_only_access",
+        "blocked",
+        "unknown"
+      ]
+    },
+    "artifactClass": {
+      "enum": [
+        "raw_payload",
+        "normalized_markdown",
+        "section_index",
+        "metadata_summary",
+        "content_hash",
+        "provenance_locator",
+        "structured_extraction"
+      ]
+    },
+    "sourceAccessPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "access_tier",
+        "artifact_policy",
+        "safe_artifact_classes",
+        "basis",
+        "checked_at"
+      ],
+      "properties": {
+        "access_tier": {
+          "$ref": "#/$defs/accessTier"
+        },
+        "artifact_policy": {
+          "enum": [
+            "retain_raw_and_markdown",
+            "retain_raw_only",
+            "retain_markdown_only",
+            "retain_metadata_hashes_and_locators",
+            "no_retention"
+          ]
+        },
+        "safe_artifact_classes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/artifactClass"
+          },
+          "uniqueItems": true
+        },
+        "basis": {
+          "type": "string"
+        },
+        "license_or_terms": {
+          "type": "string"
+        },
+        "checked_at": {
+          "$ref": "#/$defs/dateTime"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
     "provenanceLocator": {
       "type": "object",
       "additionalProperties": false,
@@ -180,6 +249,9 @@
         },
         "source_snapshot_id": {
           "$ref": "#/$defs/sourceSnapshotRef"
+        },
+        "text_snapshot_id": {
+          "$ref": "#/$defs/textSnapshotRef"
         },
         "locator_type": {
           "enum": [

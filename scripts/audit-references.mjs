@@ -14,6 +14,7 @@ const collectionRules = [
   { prefix: "data/candidate-changes/", recordType: "candidate_change" },
   { prefix: "data/evidence-reviews/", recordType: "evidence_review" },
   { prefix: "data/source-snapshots/", recordType: "source_snapshot" },
+  { prefix: "data/text-snapshots/", recordType: "text_snapshot" },
   { prefix: "data/outcomes/", recordType: "outcome" },
   { prefix: "data/results/", recordType: "result" },
   { prefix: "data/eligibility-decisions/", recordType: "eligibility_decision" },
@@ -56,11 +57,11 @@ const snapshotRequiredLocatorStatuses = new Set([
 const candidateReviewLaneRules = [
   {
     lane: "source_fidelity",
-    recordTypes: new Set(["source", "source_snapshot"])
+    recordTypes: new Set(["source", "source_snapshot", "text_snapshot"])
   },
   {
     lane: "extraction_fidelity",
-    recordTypes: new Set(["source_snapshot", "outcome", "result", "risk_of_bias", "certainty_assessment"])
+    recordTypes: new Set(["source_snapshot", "text_snapshot", "outcome", "result", "risk_of_bias", "certainty_assessment"])
   },
   {
     lane: "taxonomy_mapping",
@@ -82,6 +83,12 @@ const candidateReviewLaneRules = [
   }
 ];
 const safetyScopePattern = /\b(safety|adverse[-_ ]?event|adverse|harm|tolerability|toxicity)\b/i;
+const artifactRetentionAccessTiers = new Set([
+  "open_reusable",
+  "public_registry",
+  "author_manuscript_or_preprint_repository"
+]);
+const retainedSourceArtifactClasses = new Set(["raw_payload", "normalized_markdown", "section_index"]);
 
 async function exists(filePath) {
   try {
@@ -216,6 +223,39 @@ function checkProvenance({ index, issues, ownerPath, record }) {
       }
     }
 
+    if (locator.text_snapshot_id) {
+      checkRef({
+        index,
+        issues,
+        ownerPath,
+        field: `provenance[${locatorIndex}].text_snapshot_id`,
+        recordType: "text_snapshot",
+        recordId: locator.text_snapshot_id
+      });
+
+      const textSnapshot = getRecord(index, "text_snapshot", locator.text_snapshot_id);
+      if (textSnapshot && textSnapshot.source_id !== locator.source_id) {
+        issues.push(
+          `${ownerPath}: provenance[${locatorIndex}].text_snapshot_id "${locator.text_snapshot_id}" belongs to source "${textSnapshot.source_id}", not "${locator.source_id}".`
+        );
+      }
+      if (
+        textSnapshot &&
+        locator.source_snapshot_id &&
+        textSnapshot.source_snapshot_id !== locator.source_snapshot_id
+      ) {
+        issues.push(
+          `${ownerPath}: provenance[${locatorIndex}].text_snapshot_id "${locator.text_snapshot_id}" derives from source_snapshot "${textSnapshot.source_snapshot_id}", not "${locator.source_snapshot_id}".`
+        );
+      }
+    }
+
+    if (locator.status === "full_text_extracted" && !locator.text_snapshot_id) {
+      issues.push(
+        `${ownerPath}: full_text_extracted provenance[${locatorIndex}] must include text_snapshot_id.`
+      );
+    }
+
     if (
       synthesisReadyStatuses.has(record.maturity_status) &&
       snapshotRequiredLocatorStatuses.has(locator.status) &&
@@ -226,6 +266,19 @@ function checkProvenance({ index, issues, ownerPath, record }) {
       );
     }
   }
+}
+
+function sourceAccessAllowsRetainedArtifacts(accessPolicy, artifactClasses = []) {
+  const classes = artifactClasses.filter((artifactClass) => retainedSourceArtifactClasses.has(artifactClass));
+  if (classes.length === 0) {
+    return true;
+  }
+
+  return (
+    accessPolicy &&
+    artifactRetentionAccessTiers.has(accessPolicy.access_tier) &&
+    classes.every((artifactClass) => (accessPolicy.safe_artifact_classes ?? []).includes(artifactClass))
+  );
 }
 
 function checkTaxonomyRef({ index, issues, ownerPath, field, taxonomySet, taxonomyKind, value }) {
@@ -929,6 +982,44 @@ async function audit() {
 
     if (record.record_type === "source_snapshot") {
       checkRef({ index, issues, ownerPath: relativePath, field: "source_id", recordType: "source", recordId: record.source_id });
+      if (record.raw_storage?.stored) {
+        if (!record.raw_storage.path) {
+          issues.push(`${relativePath}: raw_storage.stored snapshots must include raw_storage.path.`);
+        }
+        if (!sourceAccessAllowsRetainedArtifacts(record.access_policy, ["raw_payload"])) {
+          issues.push(
+            `${relativePath}: raw_storage.stored snapshots must declare a safe raw_payload access_policy tier.`
+          );
+        }
+      }
+    }
+
+    if (record.record_type === "text_snapshot") {
+      checkRef({ index, issues, ownerPath: relativePath, field: "source_id", recordType: "source", recordId: record.source_id });
+      checkRef({
+        index,
+        issues,
+        ownerPath: relativePath,
+        field: "source_snapshot_id",
+        recordType: "source_snapshot",
+        recordId: record.source_snapshot_id
+      });
+
+      const retainedArtifactClasses = (record.artifacts ?? []).map((artifact) => artifact.artifact_type);
+      if (!sourceAccessAllowsRetainedArtifacts(record.access_policy, retainedArtifactClasses)) {
+        issues.push(
+          `${relativePath}: retained raw, markdown, or section artifacts require open_reusable, public_registry, or author_manuscript_or_preprint_repository access.`
+        );
+      }
+
+      for (const [artifactIndex, artifact] of (record.artifacts ?? []).entries()) {
+        await checkRepoPathExists({
+          issues,
+          ownerPath: relativePath,
+          field: `artifacts[${artifactIndex}].path`,
+          relativePath: artifact.path
+        });
+      }
     }
 
     if (record.record_type === "coverage_assessment") {

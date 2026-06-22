@@ -1,0 +1,179 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./text-snapshot.schema.json",
+  "title": "Text snapshot",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "id",
+    "source_id",
+    "source_snapshot_id",
+    "created_at",
+    "text_scope",
+    "access_policy",
+    "artifacts",
+    "extraction"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "record_type": {
+      "const": "text_snapshot"
+    },
+    "id": {
+      "$ref": "./common.schema.json#/$defs/textSnapshotRef"
+    },
+    "source_id": {
+      "$ref": "./common.schema.json#/$defs/sourceRef"
+    },
+    "source_snapshot_id": {
+      "$ref": "./common.schema.json#/$defs/sourceSnapshotRef"
+    },
+    "created_at": {
+      "$ref": "./common.schema.json#/$defs/dateTime"
+    },
+    "text_scope": {
+      "enum": [
+        "full_text",
+        "abstract",
+        "registry_record",
+        "metadata_record",
+        "supplement",
+        "other"
+      ]
+    },
+    "access_policy": {
+      "$ref": "./common.schema.json#/$defs/sourceAccessPolicy"
+    },
+    "artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "artifact_type",
+          "path",
+          "sha256"
+        ],
+        "properties": {
+          "artifact_type": {
+            "$ref": "./common.schema.json#/$defs/artifactClass"
+          },
+          "path": {
+            "type": "string"
+          },
+          "content_type": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "extraction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tool",
+        "normalized_format",
+        "normalized_at"
+      ],
+      "properties": {
+        "tool": {
+          "type": "string"
+        },
+        "tool_version": {
+          "type": "string"
+        },
+        "command": {
+          "type": "string"
+        },
+        "normalized_format": {
+          "enum": [
+            "markdown",
+            "plain_text",
+            "json_sections",
+            "not_normalized"
+          ]
+        },
+        "normalized_at": {
+          "$ref": "./common.schema.json#/$defs/dateTime"
+        }
+      }
+    },
+    "section_index": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "section_id",
+          "title"
+        ],
+        "properties": {
+          "section_id": {
+            "$ref": "./common.schema.json#/$defs/identifier"
+          },
+          "title": {
+            "type": "string"
+          },
+          "heading_path": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "start_line": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "end_line": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "source_locator": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "complete",
+            "partial",
+            "failed"
+          ]
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    }
+  }
+}

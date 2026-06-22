@@ -55,6 +55,9 @@
       "type": "object",
       "additionalProperties": true
     },
+    "access_policy": {
+      "$ref": "./common.schema.json#/$defs/sourceAccessPolicy"
+    },
     "raw_storage": {
       "type": "object",
       "additionalProperties": false,

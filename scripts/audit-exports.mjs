@@ -142,7 +142,7 @@ function checkJsonlExport({ issues, relativePath, expectedRecords }) {
     });
 }
 
-function checkExtractionGradeProvenance({ issues, records, sourceSnapshotsById, ownerPath }) {
+function checkExtractionGradeProvenance({ issues, records, sourceSnapshotsById, textSnapshotsById, ownerPath }) {
   for (const record of records) {
     if (record.record_type !== "result" || !extractionGradeMaturityStatuses.has(record.maturity_status)) {
       continue;
@@ -168,6 +168,27 @@ function checkExtractionGradeProvenance({ issues, records, sourceSnapshotsById, 
         issues.push(
           `${ownerPath}: result "${record.id}" provenance[${locatorIndex}] snapshot "${locator.source_snapshot_id}" belongs to "${snapshot.source_id}", not "${locator.source_id}".`
         );
+      }
+
+      if (locator.status === "full_text_extracted") {
+        if (!locator.text_snapshot_id) {
+          issues.push(`${ownerPath}: result "${record.id}" provenance[${locatorIndex}] lacks text_snapshot_id for full-text extraction.`);
+          continue;
+        }
+
+        const textSnapshot = textSnapshotsById.get(locator.text_snapshot_id);
+        if (!textSnapshot) {
+          issues.push(
+            `${ownerPath}: result "${record.id}" provenance[${locatorIndex}] references missing text_snapshot "${locator.text_snapshot_id}".`
+          );
+          continue;
+        }
+
+        if (textSnapshot.source_id !== locator.source_id || textSnapshot.source_snapshot_id !== locator.source_snapshot_id) {
+          issues.push(
+            `${ownerPath}: result "${record.id}" provenance[${locatorIndex}] text_snapshot "${locator.text_snapshot_id}" does not match provenance source/source_snapshot.`
+          );
+        }
       }
     }
   }
@@ -244,6 +265,7 @@ async function main() {
   const sources = recordsOf(canonicalRecords, "source");
   const studies = recordsOf(canonicalRecords, "study");
   const findings = recordsOf(canonicalRecords, "finding");
+  const textSnapshots = recordsOf(canonicalRecords, "text_snapshot");
   const results = recordsOf(canonicalRecords, "result");
   const extractionGradeResults = sortRecords(results.filter((record) => extractionGradeMaturityStatuses.has(record.maturity_status)));
   const registryExtractedResults = sortRecords(results.filter((record) => record.maturity_status === "registry_extracted"));
@@ -253,11 +275,13 @@ async function main() {
   const coverageAssessments = recordsOf(canonicalRecords, "coverage_assessment");
   const synthesisGroups = recordsOf(canonicalRecords, "synthesis_group");
   const sourceSnapshotsById = new Map(recordsOf(canonicalRecords, "source_snapshot").map((snapshot) => [snapshot.id, snapshot]));
+  const textSnapshotsById = new Map(textSnapshots.map((snapshot) => [snapshot.id, snapshot]));
 
   const expectedJsonlExports = [
     ["exports/latest/sources.jsonl", sources],
     ["exports/latest/studies.jsonl", studies],
     ["exports/latest/findings.jsonl", findings],
+    ["exports/latest/text-snapshots.jsonl", textSnapshots],
     ["exports/latest/results.all.jsonl", results],
     ["exports/latest/results.extraction_grade.jsonl", extractionGradeResults],
     ["exports/latest/results.registry_extracted.jsonl", registryExtractedResults],
@@ -274,6 +298,7 @@ async function main() {
     issues,
     records: actualExports.get("exports/latest/results.extraction_grade.jsonl") ?? [],
     sourceSnapshotsById,
+    textSnapshotsById,
     ownerPath: "exports/latest/results.extraction_grade.jsonl"
   });
 
@@ -301,6 +326,7 @@ async function main() {
       sources: sources.length,
       studies: studies.length,
       findings: findings.length,
+      text_snapshots: textSnapshots.length,
       results_all: results.length,
       results_extraction_grade: extractionGradeResults.length,
       results_registry_extracted: registryExtractedResults.length,

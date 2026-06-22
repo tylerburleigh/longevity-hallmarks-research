@@ -81,3 +81,13 @@ npm run diff:source-snapshot -- data/source-snapshots/snapshot-nct-04313634-clin
 - Snapshot hashes are audit signals. A changed hash does not automatically mean a claim changed, but it should trigger review.
 - Candidate changes that add or update records derived from refreshed snapshots must include both the snapshot and dependent evidence records.
 - If raw payload retention is required for a source, set `raw_storage.stored: true` and record the local path; otherwise the snapshot is a hash-and-summary audit record rather than a complete archival copy.
+
+## Access Policy
+
+New importer output includes `access_policy`.
+
+- PubMed EFetch snapshots are `metadata_only` by default. They support metadata summaries, hashes, locators, and structured extraction from metadata or abstracts, but they are not treated as reusable full text by themselves.
+- ClinicalTrials.gov API snapshots are `public_registry`. They are eligible for retained raw payloads, normalized markdown or section JSON, section indexes, and structured extraction.
+- Open reusable full text, public repository copies, author manuscripts, and preprints should be represented by a source snapshot with `access_tier: "open_reusable"` or `access_tier: "author_manuscript_or_preprint_repository"` before a `text_snapshot` is created.
+
+See `docs/text-ingestion-rules.md` for the durable text artifact policy.

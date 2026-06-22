@@ -25,6 +25,7 @@ npm run audit:exports
 - `sources.jsonl`: canonical source records.
 - `studies.jsonl`: canonical study records.
 - `findings.jsonl`: canonical finding records.
+- `text-snapshots.jsonl`: retained source-text artifact manifests, access policy, hashes, extraction tooling, and section indexes.
 - `results.all.jsonl`: all canonical result records.
 - `results.extraction_grade.jsonl`: registry, full-text, agent-reviewed, supervisor-agent-reviewed, or accepted result records.
 - `results.registry_extracted.jsonl`: extraction-grade registry result records with structured group values.
@@ -50,8 +51,11 @@ Use `audit-manifest.json` to verify generated artifacts. The manifest intentiona
 
 Extraction-grade result exports must carry snapshot-linked provenance. For each provenance locator with `abstract_extracted`, `registry_extracted`, `full_text_extracted`, `agent_reviewed`, `supervisor_agent_reviewed`, or `accepted` status, include `source_snapshot_id` when the parent result is extraction-grade.
 
+Full-text extracted results must also include `text_snapshot_id`, and the referenced text snapshot must match the provenance `source_id` and `source_snapshot_id`.
+
 ## Current Limitations
 
 - The evidence-map export is a generated graph view, not a formal synthesis.
 - There is no accepted-record export yet, although candidate promotion gates now exist.
-- Full-text extraction, raw-payload archival, certainty assessments, and endpoint-specific synthesis-group generation remain future work.
+- Text-snapshot schema/export support exists, but article full-text fetchers and markdown normalizers have not yet been implemented.
+- Certainty assessments and endpoint-specific synthesis-group generation for the remaining human senolytics papers remain future work.

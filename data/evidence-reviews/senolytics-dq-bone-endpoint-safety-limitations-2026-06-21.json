@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-dq-bone-endpoint-safety-limitations-2026-06-21",
+  "candidate_change_id": "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
+  "review_lane": "safety_limitations",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex-supervisor-agent",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Safety limitations are complete for the endpoint synthesis candidate. The safety group is explicitly scoped to aggregate 20-week adverse-event data and blocks safety pooling until event-specific preferred terms, arm-level counts, comparative effects, and uncertainty are extracted from at least two compatible safety results.",
+  "findings": [
+    {
+      "finding_id": "aggregate-safety-boundary-explicit",
+      "severity": "note",
+      "category": "safety_limitation",
+      "claim_or_issue": "The safety synthesis group identifies the current result as aggregate safety data, not event-specific safety extraction.",
+      "why_it_matters": "Aggregate adverse-event counts are useful for evidence mapping but are not enough for event-level safety synthesis.",
+      "recommended_action": "Retain the pooling_blocked state until event-specific adverse-event records are available.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "event-specific-fields-required",
+      "severity": "note",
+      "category": "safety_limitation",
+      "claim_or_issue": "The group lists adverse_event.preferred_term and adverse_event.event_specific_counts as required missing fields.",
+      "why_it_matters": "This makes the remaining safety extraction gap auditable without blocking this compatibility-boundary candidate.",
+      "recommended_action": "Route preferred-term adverse-event extraction to a future extraction_refresh pass before any safety meta-analysis attempt.",
+      "resolution_status": "closed"
+    }
+  ]
+}

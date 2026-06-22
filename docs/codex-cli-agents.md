@@ -69,6 +69,16 @@ For release/export runs or any run whose persisted `agent_run` should be include
 
 This runs `npm run export:latest` and `npm run verify:knowledge-base` after `codex exec` has written the final `agent_run` JSON. The post-step results are appended to the worker JSONL log as coordinator events and summarized back into the `agent_run.quality_checks[]` array. The wrapper then runs `npm run validate:records` so the persisted output record is schema-checked after coordinator annotations.
 
+The wrapper runs post-run verification in two parts to avoid a self-referential `post_verify` audit loop: core repository verification first, then `audit:codex-jobs` after the wrapper appends the `post_verify` quality check.
+
+If a worker succeeds but a wrapper post-step fails, recover without rerunning the worker:
+
+```bash
+npm run agent:codex -- \
+  --job-file ops/codex-jobs/<agent-run-id>.json \
+  --post-process-existing
+```
+
 ## Isolation
 
 Preferred isolation order:
@@ -95,6 +105,8 @@ When `canonical_write_policy` is `candidate_change_required`, the output must in
 - `quality_checks[]`
 - unresolved `blocking_issues[]` when the run is partial
 
+Workers should not run ad hoc schema validators for their final response after repository verification has passed. The wrapper owns structured-output validation, and repository scripts own persisted-record validation.
+
 The reference audit requires changed canonical records to appear in both:
 
 - `candidate_change.proposed_records[]`
@@ -104,7 +116,7 @@ Agent-run records themselves are transaction logs and do not need to be proposed
 
 The reference audit also infers required review lanes from proposed record types. Result, outcome, snapshot, synthesis, and safety/adverse-event records must declare the matching source-fidelity, extraction-fidelity, taxonomy-mapping, synthesis-boundary, or safety-limitation lanes before promotion can proceed.
 
-When a job file declares `quality_gates[]`, each gate must be satisfied by a passed `agent_run.quality_checks[]` entry or by a passed aggregate verification check recognized by the job audit. Jobs with `post_run.export_latest` or `post_run.verify_knowledge_base` must also have passed wrapper-owned `post_export` or `post_verify` quality checks.
+When a job file declares `quality_gates[]`, each gate must be satisfied by a passed `agent_run.quality_checks[]` entry or by a passed aggregate verification check recognized by the job audit. Jobs with `post_run.export_latest` or `post_run.verify_knowledge_base` must also have passed wrapper-owned `post_export` or `post_verify` quality checks. Workers must not predeclare those wrapper-owned checks in their final response.
 
 ## Logs And Replay
 

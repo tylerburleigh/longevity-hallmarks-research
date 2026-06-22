@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-dq-bone-endpoint-taxonomy-mapping-2026-06-21",
+  "candidate_change_id": "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
+  "review_lane": "taxonomy_mapping",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex-supervisor-agent",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Taxonomy mapping is complete for the endpoint synthesis candidate. The proposed groups consistently map to the senolytics track, the dasatinib-quercetin intervention, and the cellular-senescence and stem-cell-exhaustion scope declared by the candidate without introducing unsupported new hallmark or intervention labels.",
+  "findings": [
+    {
+      "finding_id": "candidate-scope-aligned",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "All six proposed endpoint-specific synthesis groups carry the candidate track, hallmark, and intervention identifiers.",
+      "why_it_matters": "Consistent identifiers let downstream evidence-map consumers filter these compatibility decisions with the D+Q bone RCT scope.",
+      "recommended_action": "Keep the endpoint-specific groups under the senolytics and dasatinib-quercetin scope unless a later taxonomy refresh creates a more specific bone-endpoint facet.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "endpoint-labels-not-hallmark-overclaims",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The endpoint-family labels distinguish CTx, P1NP, BMD, SASP, and safety outcomes rather than treating every endpoint as direct hallmark efficacy.",
+      "why_it_matters": "This preserves the distinction between senolytic mechanism scope and measured bone, biomarker, and safety endpoints.",
+      "recommended_action": "Continue using endpoint-specific compatibility groups instead of broad hallmark-only synthesis buckets.",
+      "resolution_status": "closed"
+    }
+  ]
+}

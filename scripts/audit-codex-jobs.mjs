@@ -132,18 +132,44 @@ function checkQualityGate({ issues, ownerPath, checks, gate }) {
   issues.push(`${ownerPath}: quality gate "${gate}" is not satisfied by a passed quality_checks[] entry.`);
 }
 
+function checkCandidateAgentRunLedgerMatch({ issues, ownerPath, candidate, agentRun }) {
+  const candidatePaths = sortedArray((candidate.proposed_records ?? []).map((record) => record.path));
+  const agentRunPaths = sortedArray((agentRun.outputs?.proposed_records ?? []).map((record) => record.path));
+
+  if (candidatePaths.length !== agentRunPaths.length) {
+    issues.push(
+      `${ownerPath}: candidate_agent_run_ledger_match expected ${candidatePaths.length} candidate path(s), found ${agentRunPaths.length} agent-run path(s).`
+    );
+    return;
+  }
+
+  for (const [index, candidatePath] of candidatePaths.entries()) {
+    if (agentRunPaths[index] !== candidatePath) {
+      issues.push(
+        `${ownerPath}: candidate_agent_run_ledger_match expected candidate paths [${stableArrayLabel(candidatePaths)}], found agent-run paths [${stableArrayLabel(agentRunPaths)}].`
+      );
+      return;
+    }
+  }
+}
+
 async function checkCodexJob({ issues, job, ownerPath }) {
   await checkPathExists({ issues, ownerPath, field: "prompt_file", relativePath: job.prompt_file });
   await checkPathExists({ issues, ownerPath, field: "execution.output_schema_path", relativePath: job.execution?.output_schema_path });
-  await checkPathExists({ issues, ownerPath, field: "output_path", relativePath: job.output_path });
-  await checkPathExists({ issues, ownerPath, field: "jsonl_log_path", relativePath: job.jsonl_log_path });
 
-  const commandLogPath = job.jsonl_log_path?.replace(/\.jsonl$/, ".command.jsonl");
-  await checkPathExists({ issues, ownerPath, field: "command_log_path", relativePath: commandLogPath });
+  if (job.post_run?.verify_knowledge_base && !job.post_run?.export_latest) {
+    issues.push(
+      `${ownerPath}: post_run.verify_knowledge_base must also set post_run.export_latest so the final agent_run record cannot stale export audits.`
+    );
+  }
 
   if (!(await exists(path.join(workspaceRoot, job.output_path)))) {
     return;
   }
+
+  await checkPathExists({ issues, ownerPath, field: "jsonl_log_path", relativePath: job.jsonl_log_path });
+  const commandLogPath = job.jsonl_log_path?.replace(/\.jsonl$/, ".command.jsonl");
+  await checkPathExists({ issues, ownerPath, field: "command_log_path", relativePath: commandLogPath });
 
   const agentRun = await readJson(job.output_path);
   const checks = qualityChecksByName(agentRun);
@@ -226,13 +252,9 @@ async function checkCodexJob({ issues, job, ownerPath }) {
         expected: job.expected_outputs.required_review_lanes,
         actual: candidate.required_review_lanes
       });
-      checkArrayEqual({
-        issues,
-        ownerPath,
-        field: "candidate_change.proposed_records[].path",
-        expected: job.expected_outputs.proposed_record_paths,
-        actual: (candidate.proposed_records ?? []).map((record) => record.path)
-      });
+      if ((job.quality_gates ?? []).includes("candidate_agent_run_ledger_match")) {
+        checkCandidateAgentRunLedgerMatch({ issues, ownerPath, candidate, agentRun });
+      }
     }
   }
 

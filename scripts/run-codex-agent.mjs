@@ -22,6 +22,7 @@ Options:
   --timeout-ms <integer>           Optional wall-clock timeout for codex exec.
   --no-output-timeout-ms <integer> Optional stdout-idle timeout for codex exec.
   --execute                        Run codex exec. Without this, print a dry-run plan.
+  --post-process-existing          Skip codex exec and run configured post-run steps on an existing output file.
   --no-ephemeral                   Persist Codex session files instead of using --ephemeral.
   --post-export                    Run npm run export:latest after codex exec writes the final output.
   --post-verify                    Run npm run verify:knowledge-base after codex exec and any post-export step.
@@ -37,6 +38,7 @@ function parseArgs(argv) {
     workdir: workspaceRoot,
     outputSchema: "schemas/agent-run.codex-output.schema.json",
     execute: false,
+    postProcessExisting: false,
     ephemeral: true,
     postExport: false,
     postVerify: false,
@@ -101,6 +103,10 @@ function parseArgs(argv) {
       case "--execute":
         options.execute = true;
         options.provided.add("execute");
+        break;
+      case "--post-process-existing":
+        options.postProcessExisting = true;
+        options.provided.add("postProcessExisting");
         break;
       case "--no-ephemeral":
         options.ephemeral = false;
@@ -212,6 +218,15 @@ function resolveRepoPath(relativeOrAbsolutePath) {
     : path.join(workspaceRoot, relativeOrAbsolutePath);
 }
 
+async function exists(filePath) {
+  try {
+    await fs.access(filePath);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 async function buildCommand(options) {
   const promptTemplate = await fs.readFile(resolveRepoPath(options.promptFile), "utf8");
   const prompt = `${promptTemplate}
@@ -288,6 +303,7 @@ async function writeCommandPlan(options, command) {
     timeout_ms: options.timeoutMs,
     no_output_timeout_ms: options.noOutputTimeoutMs,
     execute: options.execute,
+    post_process_existing: options.postProcessExisting,
     post_export: options.postExport,
     post_verify: options.postVerify,
     command: redactPrompt(command)
@@ -484,11 +500,36 @@ async function appendOutputQualityCheck(options, event) {
   await fs.writeFile(outputPath, `${JSON.stringify(record, null, 2)}\n`);
 }
 
+async function runPostSteps(options) {
+  if (options.postExport) {
+    const event = await runCoordinatorCommand(options, "post_export", "npm", ["run", "export:latest"]);
+    await appendOutputQualityCheck(options, event);
+  }
+  if (options.postVerify) {
+    const event = await runCoordinatorCommand(options, "post_verify", "npm", ["run", "verify:knowledge-base:post-run"]);
+    await appendOutputQualityCheck(options, event);
+    const jobAuditEvent = await runCoordinatorCommand(options, "post_job_audit", "npm", ["run", "audit:codex-jobs"]);
+    await appendOutputQualityCheck(options, jobAuditEvent);
+  }
+  if (options.postExport || options.postVerify) {
+    await runCoordinatorCommand(options, "post_output_validate", "npm", ["run", "validate:records"]);
+  }
+}
+
 async function main() {
   const options = validateOptions(await applyJobFile(parseArgs(process.argv.slice(2))));
   await ensureParentDirectories(options);
   const command = await buildCommand(options);
   const planPath = await writeCommandPlan(options, command);
+
+  if (options.postProcessExisting) {
+    if (!(await exists(resolveRepoPath(options.output)))) {
+      throw new Error(`Cannot post-process missing output file: ${options.output}`);
+    }
+    await runPostSteps(options);
+    console.log(`Codex worker output post-processed at ${options.output}.`);
+    return;
+  }
 
   if (!options.execute) {
     console.log(`Wrote dry-run command plan to ${planPath}.`);
@@ -497,17 +538,7 @@ async function main() {
   }
 
   await executeCommand(options, command);
-  if (options.postExport) {
-    const event = await runCoordinatorCommand(options, "post_export", "npm", ["run", "export:latest"]);
-    await appendOutputQualityCheck(options, event);
-  }
-  if (options.postVerify) {
-    const event = await runCoordinatorCommand(options, "post_verify", "npm", ["run", "verify:knowledge-base"]);
-    await appendOutputQualityCheck(options, event);
-  }
-  if (options.postExport || options.postVerify) {
-    await runCoordinatorCommand(options, "post_output_validate", "npm", ["run", "validate:records"]);
-  }
+  await runPostSteps(options);
   console.log(`Codex worker output written to ${options.output}.`);
 }
 

@@ -17,6 +17,7 @@
     "audit:agent-schemas": "node scripts/audit-agent-schemas.mjs",
     "audit:codex-jobs": "node scripts/audit-codex-jobs.mjs",
     "audit:agentic-process": "node scripts/audit-agentic-process.mjs",
+    "verify:knowledge-base:post-run": "npm run validate:records && npm run audit:references && npm run audit:exports && npm run audit:agent-schemas && npm run audit:agentic-process",
     "verify:knowledge-base": "npm run validate:records && npm run audit:references && npm run audit:exports && npm run audit:agent-schemas && npm run audit:codex-jobs && npm run audit:agentic-process"
   },
   "devDependencies": {

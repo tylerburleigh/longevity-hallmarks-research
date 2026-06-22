@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-dq-bone-endpoint-synthesis-boundary-2026-06-21",
+  "candidate_change_id": "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
+  "review_lane": "synthesis_boundary",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex-supervisor-agent",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Synthesis boundaries are complete and non-blocking for this candidate. The proposed records split the broad D+Q bone registry compatibility assessment into endpoint- and time-horizon-specific groups, and each group blocks pooling where result count, time horizon, effect estimate, uncertainty, site specificity, marker identity, or safety-event structure is insufficient.",
+  "findings": [
+    {
+      "finding_id": "endpoint-boundaries-separated",
+      "severity": "note",
+      "category": "endpoint_boundary",
+      "claim_or_issue": "The candidate separates 20-week CTx, short-term P1NP, 20-week P1NP, 20-week BMD, 2-week SASP, and 20-week safety compatibility decisions.",
+      "why_it_matters": "This prevents consumers from pooling unlike endpoints or mixing primary, secondary, exploratory, biomarker, density, and safety outcomes.",
+      "recommended_action": "Keep these endpoint-specific groups as the compatibility boundary for D+Q bone synthesis until additional comparable studies or extracted effects are available.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "pooling-blockers-machine-readable",
+      "severity": "note",
+      "category": "interpretation_overreach",
+      "claim_or_issue": "Each proposed group uses pooling_blocked with controlled missing-field blockers rather than prose-only cautions.",
+      "why_it_matters": "Machine-readable blockers reduce the risk that downstream consumers treat registry medians, p-values, repeated timepoints, or descriptive site summaries as meta-analyzable effects.",
+      "recommended_action": "Require any later pooling_allowed change to add compatible result counts plus effect values, uncertainty, comparison, and endpoint-specific required fields.",
+      "resolution_status": "closed"
+    }
+  ]
+}

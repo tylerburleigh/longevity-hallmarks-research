@@ -73,7 +73,7 @@ This project should extract and harden the research substrate, while leaving beh
 
 ## Current Implementation State
 
-As of 2026-06-21, the repository has an initial JSON-file-backed scaffold:
+As of 2026-06-22, the repository has an initial JSON-file-backed scaffold:
 
 - Node package setup with AJV validation.
 - `npm run validate:records`.
@@ -102,6 +102,8 @@ As of 2026-06-21, the repository has an initial JSON-file-backed scaffold:
 - Added Codex job-spec schema support, worker timeout guards, agent-schema drift auditing, inferred candidate review-lane checks, and controlled synthesis blocker vocabulary.
 - Reran the D+Q bone endpoint synthesis worker from a durable `codex_job` spec in a fresh isolated worktree and imported the verified submitted candidate, endpoint-specific synthesis groups, final agent-run record, and refreshed exports.
 - Added Codex job conformance auditing so persisted job specs must match final agent-run metadata, expected outputs, review lanes, quality gates, logs, and post-run checks.
+- Ran the D+Q bone endpoint synthesis supervisor-review worker from a durable `codex_job`; imported complete accepting taxonomy-mapping, synthesis-boundary, and safety-limitations review records and moved the candidate to `in_review`.
+- Hardened Codex orchestration for pending-job ledgers, wrapper-owned post-run verification, and existing-output recovery after post-step failures.
 
 ## Target Architecture
 
@@ -400,6 +402,9 @@ Tasks:
 - [x] Infer required candidate review lanes from proposed record types.
 - [x] Rerun and import a candidate-producing synthesis worker through a durable job spec.
 - [x] Add Codex job conformance auditing for expected outputs, review lanes, quality gates, and post-run checks.
+- [x] Run and import a supervisor-agent review worker through a durable job spec.
+- [x] Add pending-job ledger support so in-flight Codex workers can verify changed records before final `agent_run` output exists.
+- [x] Add post-step recovery for existing Codex worker outputs and split wrapper post-verification to avoid self-referential job-audit loops.
 - [ ] Add triage state generation.
 - [ ] Add templates for research sessions.
 
@@ -442,17 +447,18 @@ Exit criteria:
 
 ## Immediate Next Actions
 
-1. Run taxonomy-mapping, synthesis-boundary, and safety-limitations supervisor-agent review lanes for `senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21`.
-2. Decide whether to promote or revise the D+Q bone endpoint synthesis candidate after supervisor-agent reviews complete.
-3. Finish full publication/table extraction for the D+Q bone RCT, including subgroup and event-specific safety details.
-4. Run extraction-refresh passes on the remaining human D+Q papers: DKD, IPF, and AD-risk cognition/mobility.
-5. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
-6. Add triage state generation and research-session templates.
-7. Decide whether raw source payloads should be archived locally for extraction-grade snapshots or only hash-referenced.
-8. Decide whether to install repo-local skills into the active Codex skills directory.
+1. Decide whether to promote or revise the D+Q bone endpoint synthesis candidate now that all required supervisor review lanes are complete and accepting.
+2. Finish full publication/table extraction for the D+Q bone RCT, including subgroup and event-specific safety details.
+3. Run extraction-refresh passes on the remaining human D+Q papers: DKD, IPF, and AD-risk cognition/mobility.
+4. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
+5. Add triage state generation and research-session templates.
+6. Decide whether raw source payloads should be archived locally for extraction-grade snapshots or only hash-referenced.
+7. Decide whether to install repo-local skills into the active Codex skills directory.
 
 ## Change Log
 
+- 2026-06-22: Ran and imported the D+Q bone endpoint synthesis supervisor-review Codex job; taxonomy-mapping, synthesis-boundary, and safety-limitations reviews are complete, accepting, non-blocking, and linked to the candidate.
+- 2026-06-22: Hardened Codex orchestration with pending-job expected-output ledgers, post-run verification that avoids self-referential job-audit loops, and `--post-process-existing` recovery for completed worker outputs.
 - 2026-06-21: Added maturity/provenance fields, semantic audit gates, candidate-completeness checking, and normalized the senolytics repair slice under the stricter process.
 - 2026-06-21: Added a senolytics coverage-repair slice with sources, studies, findings, outcomes, results, eligibility decisions, risk-of-bias triage, coverage assessment, and candidate-review ledger.
 - 2026-06-21: Added source-snapshot IDs to extraction-grade bone RCT provenance, reconciled coverage gaps, and added export audits for stale JSONL and snapshot-linked result provenance.

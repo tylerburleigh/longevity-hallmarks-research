@@ -381,7 +381,7 @@ function getChangedRecordPaths({ excludedPrefixes = [] } = {}) {
 }
 
 function checkCandidateCompleteness({ index, issues }) {
-  const changedRecordPaths = getChangedRecordPaths({ excludedPrefixes: ["research/agent-runs/"] });
+  const changedRecordPaths = getChangedRecordPaths({ excludedPrefixes: ["research/agent-runs/", "data/evidence-reviews/"] });
   if (changedRecordPaths.length === 0) {
     return;
   }
@@ -403,13 +403,42 @@ function checkCandidateCompleteness({ index, issues }) {
   }
 }
 
-function checkAgentRunCompleteness({ index, issues }) {
+async function getPendingCodexJobProposedPaths() {
+  const proposedPaths = new Set();
+  const jobRoot = path.join(workspaceRoot, "ops", "codex-jobs");
+
+  for (const filePath of await walkJsonFiles(jobRoot)) {
+    const relativePath = toPosixRelative(filePath);
+    let job;
+    try {
+      job = await readJson(relativePath);
+    } catch {
+      continue;
+    }
+
+    if (job.record_type !== "codex_job") {
+      continue;
+    }
+
+    if (job.output_path && (await exists(path.join(workspaceRoot, job.output_path)))) {
+      continue;
+    }
+
+    for (const proposedPath of job.expected_outputs?.proposed_record_paths ?? []) {
+      proposedPaths.add(proposedPath);
+    }
+  }
+
+  return proposedPaths;
+}
+
+async function checkAgentRunCompleteness({ index, issues }) {
   const changedRecordPaths = getChangedRecordPaths({ excludedPrefixes: ["research/agent-runs/"] });
   if (changedRecordPaths.length === 0) {
     return;
   }
 
-  const proposedPaths = new Set();
+  const proposedPaths = await getPendingCodexJobProposedPaths();
   for (const { record } of index.records) {
     if (record.record_type !== "agent_run" || record.canonical_write_policy !== "candidate_change_required") {
       continue;
@@ -1119,7 +1148,7 @@ async function audit() {
   }
 
   checkCandidateCompleteness({ index, issues });
-  checkAgentRunCompleteness({ index, issues });
+  await checkAgentRunCompleteness({ index, issues });
 
   if (issues.length > 0) {
     console.error(`Reference audit failed with ${issues.length} issue(s):`);

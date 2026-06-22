@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "orchestration_metrics",
   "id": "orchestration-metrics-v1",
-  "generated_at": "2026-06-22T22:45:05.110Z",
+  "generated_at": "2026-06-22T23:23:16.243Z",
   "source_roots": [
     "data",
     "exports/latest",
@@ -42,17 +42,17 @@
     ]
   },
   "summary": {
-    "planned_live_job_count": 10,
+    "planned_live_job_count": 11,
     "archived_job_count": 4,
-    "planned_parallel_batch_count": 4,
-    "planned_parallel_worker_count": 10,
-    "planned_independent_batch_count": 3,
+    "planned_parallel_batch_count": 5,
+    "planned_parallel_worker_count": 11,
+    "planned_independent_batch_count": 4,
     "planned_reconciliation_batch_count": 1,
     "max_planned_batch_width": 4,
-    "planned_serial_wall_time_ms": 36000000,
-    "planned_parallel_wall_time_ms": 14400000,
+    "planned_serial_wall_time_ms": 36900000,
+    "planned_parallel_wall_time_ms": 15300000,
     "planned_wall_time_savings_ms": 21600000,
-    "planned_speedup_ratio": 2.5,
+    "planned_speedup_ratio": 2.4118,
     "executed_parallel_batch_run_count": 0,
     "executed_worker_count": 0,
     "failed_worker_count": 0,
@@ -68,7 +68,7 @@
     "duplicate_work_group_count": 8,
     "duplicate_work_record_count": 17,
     "conflict_finding_count": 10,
-    "conflict_rate": 0.25,
+    "conflict_rate": 0.2,
     "open_finding_rate": 2.5,
     "accepted_candidate_count": 5,
     "accepted_records_produced_count": 45,
@@ -115,6 +115,17 @@
         "expected_wall_time_ms": 3600000,
         "expected_token_budget": 200000,
         "overlapping_execution_key_count": 2
+      },
+      {
+        "parallel_group": "orchestration-smoke",
+        "batch_count": 1,
+        "job_count": 1,
+        "independent_batch_count": 1,
+        "reconciliation_batch_count": 0,
+        "max_batch_width": 1,
+        "expected_wall_time_ms": 900000,
+        "expected_token_budget": 20000,
+        "overlapping_execution_key_count": 0
       }
     ],
     "batches": [
@@ -157,6 +168,16 @@
         "expected_wall_time_ms": 3600000,
         "expected_token_budget": 200000,
         "overlapping_execution_key_count": 2
+      },
+      {
+        "batch_id": "parallel-batch-005-orchestration-smoke",
+        "parallel_group": "orchestration-smoke",
+        "execution_class": "independent",
+        "reconciliation_required": true,
+        "job_count": 1,
+        "expected_wall_time_ms": 900000,
+        "expected_token_budget": 20000,
+        "overlapping_execution_key_count": 0
       }
     ]
   },
@@ -363,9 +384,9 @@
       "open_finding_count": 10,
       "blocking_finding_count": 10,
       "warning_finding_count": 0,
-      "conflict_rate": 0.25,
+      "conflict_rate": 0.2,
       "open_finding_rate": 2.5,
-      "reconciliation_batch_rate": 0.25
+      "reconciliation_batch_rate": 0.2
     },
     "worker_failures": {
       "failed_worker_count": 0,

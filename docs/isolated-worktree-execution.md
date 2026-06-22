@@ -27,6 +27,23 @@ npm run agent:codex:worktree -- \
 
 The helper refuses to create a worktree from a dirty foreground checkout unless `--allow-dirty` is supplied. When `--allow-dirty` is used, the new worktree is still based on the selected Git ref, not on uncommitted foreground edits.
 
+Use the synthetic smoke job before production extraction-refresh work:
+
+```bash
+npm run agent:codex:worktree -- \
+  --job-file ops/codex-jobs/live/orchestration-smoke-codex-worktree-2026-06-22.json \
+  --plan-only
+```
+
+After the smoke job is committed, execute it from a clean coordinator checkout with `--execute`. The worker should create only the smoke candidate path declared by `tests/fixtures/orchestration-smoke-output-contract.json`.
+
+After importing the worker output into the coordinator checkout, archive the live smoke job with:
+
+```bash
+npm run jobs:archive -- \
+  --job-file ops/codex-jobs/live/orchestration-smoke-codex-worktree-2026-06-22.json
+```
+
 Useful options:
 
 - `--worktree-root <path>` changes the parent directory for generated worktrees.

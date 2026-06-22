@@ -660,6 +660,26 @@ function summarizeCoordinatorCommand(event) {
     : `${event.name} exited ${event.exit_code}.`;
 }
 
+function toRepoRelative(relativeOrAbsolutePath) {
+  return path.relative(workspaceRoot, resolveRepoPath(relativeOrAbsolutePath)).split(path.sep).join("/");
+}
+
+function isLiveCodexJobPath(jobFile) {
+  return toRepoRelative(jobFile).startsWith("ops/codex-jobs/live/");
+}
+
+async function appendDeferredPostJobAuditEvent(options) {
+  const event = {
+    type: "coordinator.audit.deferred",
+    name: "post_job_audit",
+    started_at: new Date().toISOString(),
+    completed_at: new Date().toISOString(),
+    summary: "Deferred until the completed live job snapshot is archived and the final agent_run points at the archive path."
+  };
+  await appendLogEvent(options, event);
+  process.stdout.write(`${JSON.stringify(event)}\n`);
+}
+
 async function appendOutputQualityCheck(options, event) {
   const outputPath = resolveRepoPath(options.output);
   const record = JSON.parse(await fs.readFile(outputPath, "utf8"));
@@ -703,8 +723,12 @@ async function runPostSteps(options) {
   if (options.postVerify) {
     const event = await runCoordinatorCommand(options, "post_verify", "npm", ["run", "verify:knowledge-base:post-run"]);
     await appendOutputQualityCheck(options, event);
-    const jobAuditEvent = await runCoordinatorCommand(options, "post_job_audit", "npm", ["run", "audit:codex-jobs"]);
-    await appendOutputQualityCheck(options, jobAuditEvent);
+    if (options.jobFile && isLiveCodexJobPath(options.jobFile) && (await exists(resolveRepoPath(options.output)))) {
+      await appendDeferredPostJobAuditEvent(options);
+    } else {
+      const jobAuditEvent = await runCoordinatorCommand(options, "post_job_audit", "npm", ["run", "audit:codex-jobs"]);
+      await appendOutputQualityCheck(options, jobAuditEvent);
+    }
   }
   if (options.postExport || options.postVerify) {
     await runCoordinatorCommand(options, "post_output_validate", "npm", ["run", "validate:records"]);

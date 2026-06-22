@@ -97,7 +97,7 @@ For release/export runs or any run whose persisted `agent_run` should be include
 
 This runs `npm run export:latest`, `npm run export:triage-state`, `npm run export:release-readiness`, `npm run reconcile:parallel`, and `npm run verify:knowledge-base` after `codex exec` has written the final `agent_run` JSON. The post-step results are appended to the worker JSONL log as coordinator events and summarized back into the `agent_run.quality_checks[]` array. The wrapper then runs `npm run validate:records` so the persisted output record is schema-checked after coordinator annotations.
 
-The wrapper runs post-run verification in two parts to avoid a self-referential `post_verify` audit loop: core repository verification first, then `audit:codex-jobs` after the wrapper appends the `post_verify` quality check.
+The wrapper runs post-run verification in two parts to avoid a self-referential `post_verify` audit loop: core repository verification first, then `audit:codex-jobs` after the wrapper appends the `post_verify` quality check. If the job file is still a live `ops/codex-jobs/live/` spec with a completed output, the wrapper defers `post_job_audit` until the coordinator archives the job snapshot and the final `agent_run.execution.job_file` points at the archive path.
 
 If a worker succeeds but a wrapper post-step fails, recover without rerunning the worker:
 
@@ -214,6 +214,23 @@ Batch commands use `agent:codex:worktree`, so planned mutable workers retain iso
 Run `npm run audit:parallel-batch-runs` to check persisted batch-run ledgers. Completed workers that wrote only to isolated worktrees stay marked `succeeded_pending_reconciliation` until the coordinator imports their outputs, verifies the repository, and archives the completed job snapshot. See `docs/parallel-batch-planner.md`.
 
 Use `npm run metrics:orchestration` after planning, running, or reconciling batches to refresh `ops/codex-batches/orchestration-metrics.v1.json`. The freshness audit is `npm run audit:orchestration-metrics`; see `docs/orchestration-metrics.md`.
+
+## Orchestration Smoke Jobs
+
+Use `ops/codex-jobs/live/orchestration-smoke-codex-worktree-2026-06-22.json` as the current synthetic worktree smoke job. It writes only `data/candidate-changes/orchestration-smoke-candidate-2026-06-22.json` and is checked against `tests/fixtures/orchestration-smoke-output-contract.json` by:
+
+```bash
+npm run audit:orchestration-smoke-contract
+```
+
+Run it only from a committed coordinator checkout. The expected sequence is isolated execution, candidate/output import, post-run export and verification, completed-job archival, then a full `npm run verify:knowledge-base`.
+
+For a completed single-job run whose output has been imported into the coordinator checkout, archive the live job with:
+
+```bash
+npm run jobs:archive -- \
+  --job-file ops/codex-jobs/live/orchestration-smoke-codex-worktree-2026-06-22.json
+```
 
 ## Promotion Boundary
 

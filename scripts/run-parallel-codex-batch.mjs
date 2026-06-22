@@ -117,6 +117,24 @@ async function writeJson(relativePath, value) {
   await fs.writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`);
 }
 
+async function updateArchivedAgentRunJobPath(job, archivePath) {
+  const outputPath = resolveRepoPath(job.output_path);
+  if (!(await exists(outputPath))) {
+    return;
+  }
+
+  const agentRun = JSON.parse(await fs.readFile(outputPath, "utf8"));
+  if (agentRun.record_type !== "agent_run") {
+    return;
+  }
+
+  agentRun.execution = {
+    ...(agentRun.execution ?? {}),
+    job_file: archivePath
+  };
+  await writeJson(job.output_path, agentRun);
+}
+
 async function appendLog(logPath, event) {
   await fs.mkdir(path.dirname(resolveRepoPath(logPath)), { recursive: true });
   await fs.appendFile(resolveRepoPath(logPath), `${JSON.stringify(event)}\n`);
@@ -245,6 +263,7 @@ async function maybeArchiveJob(worker, completedAt) {
     final_agent_run_id: job.id,
     archived_at: completedAt
   };
+  await updateArchivedAgentRunJobPath(job, archivePath);
   await writeJson(archivePath, archivedJob);
   await fs.rm(resolveRepoPath(worker.job_path));
   worker.archive_path = archivePath;

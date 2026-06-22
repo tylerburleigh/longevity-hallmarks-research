@@ -104,6 +104,7 @@ As of 2026-06-22, the repository has an initial JSON-file-backed scaffold:
 - Added Codex job conformance auditing so persisted job specs must match final agent-run metadata, expected outputs, review lanes, quality gates, logs, and post-run checks.
 - Ran the D+Q bone endpoint synthesis supervisor-review worker from a durable `codex_job`; imported complete accepting taxonomy-mapping, synthesis-boundary, and safety-limitations review records and moved the candidate to `in_review`.
 - Hardened Codex orchestration for pending-job ledgers, wrapper-owned post-run verification, and existing-output recovery after post-step failures.
+- Added a synthetic orchestration smoke job and fixture contract for proving isolated Codex execution before broader extraction refreshes.
 - Added an explicit source access policy and `text_snapshot` contract so retained raw text, normalized markdown, section indexes, hashes, and full-text provenance can be audited.
 - Added a `source_rights` contract so attribution, terms/license source, artifact-retention classes, public-export policy, and remediation state are machine-readable.
 - Added the first retained public-registry text snapshot for the D+Q bone ClinicalTrials.gov source, including raw JSON, normalized markdown, section index, artifact hashes, and source-snapshot raw-storage state.
@@ -131,9 +132,9 @@ Current weaknesses and hardening priorities:
 - Discovery and screening are not autonomous enough: durable search sessions, no-op searches, excluded-source decisions, and coverage updates still need stronger generation templates and runnable jobs.
 - Extraction depth is uneven: useful records exist, but many are not yet synthesis-ready because effect values, uncertainty, group denominators, subgroup details, safety event counts, or full-text locators are missing.
 - Endpoint and effect normalization are underdeveloped, limiting cross-study comparability and formal synthesis.
-- The query surface is underpowered: JSONL exports are available, but agents and downstream consumers still need a generated read model for joins across sources, studies, outcomes, results, reviews, candidates, and synthesis groups.
-- Self-healing is incomplete: triage state identifies repair work, but the system does not yet generate bounded Codex job specs for those repairs.
-- Orchestration is not yet parallel-aware: live jobs have lifecycle state, but they do not yet declare enough dependency and conflict metadata for a scheduler to run independent agents concurrently.
+- The query surface is improving through generated SQLite read models, but agents and downstream consumers still need broader query examples and contract tests over common meta-analysis questions.
+- Self-healing is generated and schedulable, but repair workers still need more end-to-end execution runs before we trust the loop under load.
+- Orchestration is static-testable and parallel-aware, and now has a synthetic smoke-job contract, but it is not yet battle-tested enough: we need executed synthetic jobs, real isolated worktree runs, parallel batch runs, failure injection, recovery drills, and metrics/reconciliation checks before starting broader research extraction.
 - The release boundary needs tightening: accepted canonical records, submitted candidates, in-review state, promotion-ready state, and released consumer artifacts should be clearly separated.
 - Statistical readiness is early: the system records why pooling is blocked, but it does not yet provide enough normalized effect data to produce many quantitative estimates.
 
@@ -645,6 +646,27 @@ Exit criteria:
 - Parallel outputs cannot be promoted until dedupe, conflict checks, expected-output ledgers, and required review lanes pass.
 - Completed parallel batches leave durable job snapshots, logs, final agent-run records, reconciliation records, and metrics.
 
+### Phase 8: Codex Orchestration Battle Tests
+
+Goal: prove the Codex execution system under controlled load before using it for broader research-data generation.
+
+Tasks:
+
+- [x] Add a tiny synthetic Codex smoke job that writes a harmless candidate/output fixture through the normal wrapper, schema, log, prompt-snapshot, post-export, post-verify, and archive path.
+- [x] Add a single-job archive command that rewrites the final `agent_run.execution.job_file` to the archived job snapshot.
+- [ ] Execute one isolated-worktree smoke job with `agent:codex:worktree --execute`, then inspect the final `agent_run`, command log, JSONL log, candidate ledger, archived job snapshot, reconciliation report, metrics report, and clean coordinator checkout.
+- [ ] Execute a small parallel synthetic batch with independent jobs, then inspect batch-run state, worker worktrees, logs, outputs, reconciliation state, metrics state, and archive behavior.
+- [ ] Inject known failure modes: failed worker, missing output, overlapping writes, stale generated job, pending reconciliation, broken candidate ledger, post-step failure, and rerun/recovery after existing output.
+- [ ] Add or extend audits and regression fixtures for every weakness discovered during battle tests.
+- [ ] Add a readiness gate for real extraction-refresh pilots: smoke job passes, parallel batch passes, failure fixtures pass, metrics refresh passes, reconciliation state has no unresolved orchestration blocker caused by the test run, and the worktree is clean.
+
+Exit criteria:
+
+- Synthetic single-worker and parallel-worker runs are repeatable from durable `codex_job` specs.
+- Failures are observable as structured job, batch-run, reconciliation, metrics, and audit signals.
+- Recovery and archiving paths work without hidden coordinator edits or stale live jobs.
+- The first real extraction-refresh pilot is allowed only after the battle-test readiness gate passes.
+
 ## Initial Open Questions
 
 - Should this be JSON-file-backed first, or should we introduce SQLite/DuckDB early for queries?
@@ -657,15 +679,20 @@ Exit criteria:
 
 ## Immediate Next Actions
 
-1. Run extraction-refresh passes on the remaining human D+Q papers: DKD, IPF, and AD-risk cognition/mobility.
-2. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
-3. Run supervisor-review lanes for `senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22`: source fidelity, extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
-4. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry or article text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
-5. Decide whether to install repo-local skills into the active Codex skills directory.
+1. Execute one isolated-worktree smoke job through `agent:codex:worktree --execute` from a committed coordinator checkout, import the worker output, archive it with `npm run jobs:archive`, and inspect logs, output, reconciliation, metrics, and worktree cleanliness.
+2. Execute a small parallel synthetic batch and inspect batch-run state, worker outputs, reconciliation, metrics, and archive behavior.
+3. Inject failure-mode runs and add audits or regression fixtures for every weakness discovered.
+4. After the battle-test readiness gate passes, run one bounded extraction-refresh pilot for a remaining human D+Q paper instead of launching DKD, IPF, and AD-risk cognition/mobility together.
+5. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
+6. Run supervisor-review lanes for `senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22`: source fidelity, extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
+7. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry or article text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
+8. Decide whether to install repo-local skills into the active Codex skills directory.
 
 ## Change Log
 
+- 2026-06-22: Added an orchestration smoke Codex job, reusable smoke prompt, fixture contract audit, live-job post-audit deferral, single-job archival command, and archive-time agent-run job-file relinking so isolated execution can be battle-tested before production extraction-refresh jobs.
 - 2026-06-22: Added promotion-blocking reconciliation decisions so `promote:candidate` rejects overlapping candidate outputs, duplicate source/study conflicts, source-rights conflicts, incomplete ledgers, and pending isolated-worker outputs unless resolved by explicit reconciliation-decision records.
+- 2026-06-22: Added a Codex orchestration battle-test phase and moved broad extraction-refresh work behind synthetic smoke jobs, parallel execution drills, failure injection, recovery checks, metrics refresh, reconciliation checks, and a clean-worktree readiness gate.
 - 2026-06-22: Added generated orchestration metrics with schema, freshness audit, post-run refresh wiring, docs, and verification coverage for planned wall-clock savings, worker outcomes, duplicate-work pressure, conflict rate, accepted outputs, extraction-debt pressure, and release artifacts.
 - 2026-06-22: Added scheduler fixture coverage for search, registry refresh, extraction refresh, supervisor review, and self-healing repair batches, plus a planner injection API and verification wiring for width limits, running-job deferral, reconciliation overlaps, lane-scoped reviews, and same-target repair serialization.
 - 2026-06-22: Split generated candidate-review supervisor jobs into lane-scoped independent Codex jobs with candidate-review read/write keys, obsolete generated-job pruning, Codex-job audit guardrails, refreshed parallel batches, and refreshed reconciliation state.

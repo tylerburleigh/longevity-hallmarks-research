@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "release_manifest",
   "id": "latest-consumer-export",
-  "generated_at": "2026-06-22T18:02:20.081Z",
+  "generated_at": "2026-06-22T18:35:18.005Z",
   "export_version": "0.1.0",
   "export_scope": {
     "description": "Consumer-facing latest export generated from canonical research and data records.",
@@ -26,7 +26,8 @@
       "result",
       "coverage_assessment",
       "synthesis_group",
-      "evidence_map"
+      "evidence_map",
+      "consumer_output_contract"
     ]
   },
   "files": [
@@ -112,14 +113,21 @@
       "format": "json",
       "description": "Generated graph view of source, study, finding, outcome, result, coverage, and synthesis-compatibility links.",
       "record_count": 1,
-      "sha256": "7dfb50e4033e69393988aa8ccf920a727ac309939266491f8bd6ece2ad7927cc"
+      "sha256": "502d388b7e02a6b8d00eec803f417ca64820d105483ffaa17e4324bc3bb69e4c"
     },
     {
       "path": "exports/latest/coverage-status.json",
       "format": "json",
       "description": "Consumer coverage status with current/superseded flags and known-gap warnings.",
       "record_count": 1,
-      "sha256": "65a9b1ad19e28c3d86504f6ae52f9e165bbd819bf5c331870d4350298d1b2f42"
+      "sha256": "191641ee33ee157ca782c8b34f38f25d1ecb5da3c7caf6c5c6e9911372edbca7"
+    },
+    {
+      "path": "exports/latest/consumer-contract.json",
+      "format": "json",
+      "description": "Versioned machine-readable contract for consumer-facing export artifacts.",
+      "record_count": 1,
+      "sha256": "93ce3583b2036228ae2c9ce85e3b5cbed6f5591613c92acf31abef9e684b56d8"
     }
   ],
   "record_counts": {
@@ -135,9 +143,11 @@
     "results_registry_extracted": 7,
     "results_triage": 7,
     "synthesis_groups": 7,
-    "coverage_assessments": 2
+    "coverage_assessments": 2,
+    "consumer_contracts": 1
   },
   "notes": [
+    "Use consumer-contract.json as the versioned machine-readable contract for stable artifact paths, maturity semantics, release boundaries, and required consumer checks.",
     "JSONL records preserve canonical record fields.",
     "Use accepted-records.jsonl for the release-boundary view of accepted or applied candidate outputs.",
     "Use results.extraction_grade.jsonl for structured result values.",

@@ -15,13 +15,13 @@ npm run verify:knowledge-base
 
 `promote:candidate` advances a candidate to `accepted` or `applied` only after required supervisor-agent review gates pass.
 
-`export:latest` regenerates the consumer-facing files in `exports/latest/`, including JSONL record exports, synthesis-group exports, coverage status, evidence-map view, and audit manifest.
+`export:latest` regenerates the consumer-facing files in `exports/latest/`, including JSONL record exports, synthesis-group exports, coverage status, evidence-map view, consumer contract, and audit manifest.
 
 `export:triage-state` regenerates `ops/triage-state.v1.json`, the operational control-plane view over candidate readiness, extraction debt, snapshot staleness, partial agent runs, coverage gaps, and recommended jobs.
 
 `export:release-readiness` regenerates `ops/release-readiness.v1.json`, the release-boundary view over promotion-ready candidates, accepted or applied candidate outputs, and accepted records blocked by release-dependency checks. Dependency checks include unreleased create or release-accept candidates and referenced graph records such as sources, studies, findings, outcomes, results, source snapshots, and text snapshots.
 
-`audit:exports` checks manifest hashes, verifies JSONL exports against current canonical records, checks coverage status flags, and requires snapshot-linked provenance for extraction-grade exported results.
+`audit:exports` checks manifest hashes, verifies JSONL exports against current canonical records, checks the consumer contract against the manifest, checks coverage status flags, and requires snapshot-linked provenance for extraction-grade exported results.
 
 `audit:triage-state` checks that the persisted control-plane state still matches canonical JSON inputs, ignoring only the timestamp value.
 
@@ -44,7 +44,7 @@ Current audit coverage:
 - promotion metadata for accepted or applied candidate changes
 - source-snapshot references in extraction-grade provenance
 - poolable synthesis groups must have required result maturity, effect value, uncertainty, comparison, and sample-size fields
-- export hash, row-content, coverage-status, and extraction-grade provenance checks
+- export hash, row-content, consumer-contract, coverage-status, and extraction-grade provenance checks
 - triage-state freshness checks for candidate readiness, extraction debt, snapshot staleness, coverage gaps, and recommended jobs
 - release-readiness freshness checks for promotion-ready candidates, accepted-record export eligibility, and accepted records blocked by create, release-accept, or graph-reference release dependencies
 - deprecated non-agentic process vocabulary checks

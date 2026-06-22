@@ -33,7 +33,8 @@ const schemaByRecordType = {
   codex_job: "./codex-job.schema.json",
   triage_state: "./triage-state.schema.json",
   release_readiness: "./release-readiness.schema.json",
-  release_manifest: "./release-manifest.schema.json"
+  release_manifest: "./release-manifest.schema.json",
+  consumer_output_contract: "./consumer-output-contract.schema.json"
 };
 
 const schemaByExactPath = {

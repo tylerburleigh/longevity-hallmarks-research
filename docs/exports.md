@@ -39,6 +39,7 @@ npm run audit:release-readiness
 - `synthesis-groups.jsonl`: compatibility groups with poolability decisions, missing effect fields, and agent-supervision metadata.
 - `evidence-map.json`: generated node/edge view over sources, studies, findings, outcomes, results, coverage assessments, and synthesis groups.
 - `coverage-status.json`: current and superseded coverage assessments with known gaps and consumer warnings.
+- `consumer-contract.json`: versioned machine-readable contract for stable artifact paths, maturity semantics, release boundaries, required fields, traceability fields, and required consumer checks.
 - `audit-manifest.json`: export manifest with file counts and SHA-256 hashes.
 
 JSONL lines preserve canonical record fields. Consumers should use each record's `record_type`, `id`, `maturity_status`, `provenance`, `evidence_tier`, and `direction` rather than relying only on the export filename.
@@ -50,6 +51,8 @@ JSONL lines preserve canonical record fields. Consumers should use each record's
 `ops/release-readiness.v1.json` is a generated release-boundary view. It separates candidates that are not ready, candidates ready for promotion, accepted or applied candidates with exportable records, and accepted or applied records blocked by release-dependency checks. Release-dependency checks include unreleased create or release-accept dependencies and referenced graph records such as sources, studies, findings, outcomes, results, source snapshots, and text snapshots. `audit:release-readiness` verifies that this file still matches canonical JSON inputs.
 
 ## Consumer Guidance
+
+Use `consumer-contract.json` first when integrating a downstream app, notebook, API, or agent. It declares the contract version, artifact stability tier, authority type, required fields, traceability fields, intended uses, prohibited uses, maturity-state semantics, release boundaries, and required consumer checks.
 
 Use `results.extraction_grade.jsonl` when structured result values are required. In the current data this file is registry-only, so use `results.registry_extracted.jsonl` when consumers need to distinguish ClinicalTrials.gov posted-result extraction from future full-text or accepted extraction.
 
@@ -65,7 +68,7 @@ An accepted candidate can be only partially releasable. In that case, `accepted-
 
 `change_type: "release_accept"` means an accepted candidate has reviewed and released an existing canonical record without claiming original creation. Consumers should still read the canonical record's maturity, provenance, and synthesis fields before using it for analysis.
 
-Use `audit-manifest.json` to verify generated artifacts. The manifest intentionally hashes the data files and excludes itself from the hash list.
+Use `audit-manifest.json` to verify generated artifacts. The manifest hashes generated export files, including `consumer-contract.json`, and intentionally excludes itself from the hash list.
 
 Extraction-grade result exports must carry snapshot-linked provenance. For each provenance locator with `abstract_extracted`, `registry_extracted`, `full_text_extracted`, `agent_reviewed`, `supervisor_agent_reviewed`, or `accepted` status, include `source_snapshot_id` when the parent result is extraction-grade.
 
@@ -79,5 +82,6 @@ See `docs/consumer-disclaimer.md` for consumer-facing limitations.
 
 - The evidence-map export is a generated graph view, not a formal synthesis.
 - Accepted-record export is conservative: proposals are blocked from the release export when create candidates or referenced graph dependencies are still submitted, in review, or blocked.
+- The consumer contract is latest-only; immutable versioned release packages remain future work.
 - Text-snapshot schema/export support exists, but article full-text fetchers and markdown normalizers have not yet been implemented.
 - Certainty assessments and endpoint-specific synthesis-group generation for the remaining human senolytics papers remain future work.

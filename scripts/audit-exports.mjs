@@ -292,6 +292,62 @@ function checkTextSnapshotExport({ issues, textSnapshots, sourceRightsBySource }
   }
 }
 
+async function checkConsumerContractExport({ issues, consumerContract, manifest }) {
+  if (consumerContract.contract_version !== manifest.export_version) {
+    issues.push("exports/latest/consumer-contract.json: contract_version does not match audit-manifest export_version.");
+  }
+
+  const artifactPaths = new Set((consumerContract.artifacts ?? []).map((artifact) => artifact.path));
+  const manifestPaths = new Set((manifest.files ?? []).map((file) => file.path));
+  const expectedArtifactPaths = new Set([...manifestPaths, manifestPath]);
+
+  for (const artifactPath of expectedArtifactPaths) {
+    if (!artifactPaths.has(artifactPath)) {
+      issues.push(`exports/latest/consumer-contract.json: missing artifact contract for ${artifactPath}.`);
+    }
+  }
+
+  for (const artifact of consumerContract.artifacts ?? []) {
+    if (!expectedArtifactPaths.has(artifact.path)) {
+      issues.push(`exports/latest/consumer-contract.json: artifact contract references unmanaged path ${artifact.path}.`);
+    }
+
+    if ((artifact.required_fields ?? []).length === 0) {
+      issues.push(`exports/latest/consumer-contract.json: artifact ${artifact.path} lacks required_fields.`);
+    }
+
+    if ((artifact.traceability_fields ?? []).length === 0) {
+      issues.push(`exports/latest/consumer-contract.json: artifact ${artifact.path} lacks traceability_fields.`);
+    }
+  }
+
+  for (const check of consumerContract.required_consumer_checks ?? []) {
+    for (const requiredArtifact of check.required_artifacts ?? []) {
+      const resolvedPath = path.join(workspaceRoot, requiredArtifact);
+      if (!requiredArtifact.startsWith("exports/latest/") && !requiredArtifact.startsWith("ops/")) {
+        issues.push(
+          `exports/latest/consumer-contract.json: required_consumer_checks[] references unsupported artifact path ${requiredArtifact}.`
+        );
+      }
+      if (!(await exists(resolvedPath))) {
+        issues.push(`exports/latest/consumer-contract.json: required_consumer_checks[] references missing artifact ${requiredArtifact}.`);
+      }
+    }
+  }
+
+  const acceptedArtifact = (consumerContract.artifacts ?? []).find((artifact) => artifact.path === "exports/latest/accepted-records.jsonl");
+  if (!acceptedArtifact || acceptedArtifact.authority !== "release_boundary") {
+    issues.push("exports/latest/consumer-contract.json: accepted-records.jsonl must be declared as the release_boundary artifact.");
+  }
+
+  const extractionArtifact = (consumerContract.artifacts ?? []).find(
+    (artifact) => artifact.path === "exports/latest/results.extraction_grade.jsonl"
+  );
+  if (!extractionArtifact || !(extractionArtifact.maturity_scope ?? []).includes("registry_extracted")) {
+    issues.push("exports/latest/consumer-contract.json: extraction-grade result artifact lacks extraction maturity scope.");
+  }
+}
+
 async function main() {
   const issues = [];
   const canonicalRecords = await loadCanonicalRecords();
@@ -377,10 +433,21 @@ async function main() {
       results_registry_extracted: registryExtractedResults.length,
       results_triage: triageResults.length,
       synthesis_groups: synthesisGroups.length,
-      coverage_assessments: coverageAssessments.length
+      coverage_assessments: coverageAssessments.length,
+      consumer_contracts: 1
     };
     if (stableStringify(manifest.record_counts ?? {}) !== stableStringify(expectedCounts)) {
       issues.push(`${manifestPath}: record_counts do not match current canonical records; run npm run export:latest.`);
+    }
+
+    try {
+      await checkConsumerContractExport({
+        issues,
+        consumerContract: await readJson("exports/latest/consumer-contract.json"),
+        manifest
+      });
+    } catch (error) {
+      issues.push(`exports/latest/consumer-contract.json: could not read export: ${error.message}`);
     }
   }
 

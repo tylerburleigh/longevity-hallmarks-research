@@ -1,0 +1,678 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "consumer_output_contract",
+  "id": "latest-consumer-output-contract",
+  "contract_version": "0.1.0",
+  "generated_at": "2026-06-22T18:35:18.005Z",
+  "canonical_source_of_truth": "Canonical JSON records under data/ and research/ remain authoritative.",
+  "generated_export_root": "exports/latest",
+  "stability_model": {
+    "stable": "Path, format, record_type, required fields, and core semantics are intended to remain compatible within this contract version.",
+    "experimental": "Artifact is useful for agents and consumers but structure may change before a major contract release.",
+    "operational": "Artifact is intended for orchestration and audits, not direct scientific interpretation."
+  },
+  "artifacts": [
+    {
+      "path": "exports/latest/sources.jsonl",
+      "format": "jsonl",
+      "stability": "stable",
+      "authority": "canonical_projection",
+      "description": "Canonical source records.",
+      "record_types": [
+        "source"
+      ],
+      "required_fields": [
+        "record_type",
+        "id",
+        "source_type",
+        "title"
+      ],
+      "intended_uses": [
+        "Source lookup, citation display, source-to-study joins, and provenance resolution."
+      ],
+      "prohibited_uses": [
+        "Do not infer extraction maturity or release status from source presence alone."
+      ],
+      "traceability_fields": [
+        "record_type",
+        "id",
+        "url",
+        "external_ids"
+      ]
+    },
+    {
+      "path": "exports/latest/source-rights.jsonl",
+      "format": "jsonl",
+      "stability": "stable",
+      "authority": "canonical_projection",
+      "description": "Source rights, attribution, artifact-retention, public-export, and remediation policy records.",
+      "record_types": [
+        "source_rights"
+      ],
+      "required_fields": [
+        "record_type",
+        "id",
+        "source_id",
+        "access_tier",
+        "artifact_policy",
+        "public_export_policy"
+      ],
+      "intended_uses": [
+        "Attribution, artifact-retention checks, public-export checks, and text-snapshot consumption policy."
+      ],
+      "prohibited_uses": [
+        "Do not treat source access as evidence quality or synthesis readiness."
+      ],
+      "traceability_fields": [
+        "record_type",
+        "id",
+        "source_id",
+        "terms_or_license_url",
+        "checked_at"
+      ]
+    },
+    {
+      "path": "exports/latest/accepted-records.jsonl",
+      "format": "jsonl",
+      "stability": "stable",
+      "authority": "release_boundary",
+      "description": "Release-boundary export of records proposed by accepted or applied candidates and not blocked by dependency checks.",
+      "record_types": [
+        "accepted_record_export_item"
+      ],
+      "required_fields": [
+        "record_type",
+        "id",
+        "accepted_record_type",
+        "accepted_record_id",
+        "path",
+        "release_status",
+        "accepted_via_candidate_change_ids",
+        "record"
+      ],
+      "intended_uses": [
+        "Release-boundary consumption, accepted-record traceability, and downstream snapshots that exclude in-review work."
+      ],
+      "prohibited_uses": [
+        "Do not assume released records are synthesis-ready; inspect maturity_status and synthesis_group pooling fields."
+      ],
+      "traceability_fields": [
+        "accepted_record_type",
+        "accepted_record_id",
+        "path",
+        "accepted_via_candidate_change_ids",
+        "change_types"
+      ]
+    },
+    {
+      "path": "exports/latest/studies.jsonl",
+      "format": "jsonl",
+      "stability": "stable",
+      "authority": "canonical_projection",
+      "description": "Canonical study records.",
+      "record_types": [
+        "study"
+      ],
+      "required_fields": [
+        "record_type",
+        "id",
+        "study_type",
+        "source_ids",
+        "population"
+      ],
+      "intended_uses": [
+        "Study lookup, population/intervention filtering, and joins from findings, outcomes, and results."
+      ],
+      "prohibited_uses": [
+        "Do not use study records alone as extracted effect evidence."
+      ],
+      "traceability_fields": [
+        "record_type",
+        "id",
+        "source_ids"
+      ]
+    },
+    {
+      "path": "exports/latest/findings.jsonl",
+      "format": "jsonl",
+      "stability": "stable",
+      "authority": "canonical_projection",
+      "description": "Canonical finding records with maturity and provenance fields preserved.",
+      "record_types": [
+        "finding"
+      ],
+      "required_fields": [
+        "record_type",
+        "id",
+        "source_id",
+        "summary",
+        "maturity_status",
+        "provenance"
+      ],
+      "intended_uses": [
+        "Claim-level evidence maps, narrative summaries, and source-linked finding retrieval."
+      ],
+      "prohibited_uses": [
+        "Do not treat finding direction as a pooled effect estimate."
+      ],
+      "traceability_fields": [
+        "record_type",
+        "id",
+        "source_id",
+        "study_id",
+        "provenance"
+      ]
+    },
+    {
+      "path": "exports/latest/text-snapshots.jsonl",
+      "format": "jsonl",
+      "stability": "stable",
+      "authority": "canonical_projection",
+      "description": "Retained source text artifacts, normalized markdown references, hashes, section indexes, and access policy metadata.",
+      "record_types": [
+        "text_snapshot"
+      ],
+      "required_fields": [
+        "record_type",
+        "id",
+        "source_id",
+        "source_snapshot_id",
+        "access_policy",
+        "artifacts",
+        "section_index"
+      ],
+      "intended_uses": [
+        "Reusable source-text manifests, retained artifact lookup, hash verification, and section-stable extraction provenance."
+      ],
+      "prohibited_uses": [
+        "Do not export retained artifact content unless the matching source_rights record allows it."
+      ],
+      "traceability_fields": [
+        "record_type",
+        "id",
+        "source_id",
+        "source_snapshot_id",
+        "artifacts[].path",
+        "artifacts[].sha256"
+      ]
+    },
+    {
+      "path": "exports/latest/results.all.jsonl",
+      "format": "jsonl",
+      "stability": "stable",
+      "authority": "canonical_projection",
+      "description": "All canonical result records across maturity states.",
+      "record_types": [
+        "result"
+      ],
+      "required_fields": [
+        "record_type",
+        "id",
+        "source_id",
+        "study_id",
+        "outcome_id",
+        "maturity_status",
+        "provenance"
+      ],
+      "intended_uses": [
+        "Complete result inventory, maturity filtering, extraction-debt discovery, and evidence-map joins."
+      ],
+      "prohibited_uses": [
+        "Do not use all rows as synthesis-ready effects without maturity and synthesis checks."
+      ],
+      "traceability_fields": [
+        "record_type",
+        "id",
+        "source_id",
+        "study_id",
+        "outcome_id",
+        "provenance"
+      ]
+    },
+    {
+      "path": "exports/latest/results.extraction_grade.jsonl",
+      "format": "jsonl",
+      "stability": "stable",
+      "authority": "canonical_projection",
+      "description": "Result records with registry, full-text, agent-reviewed, supervisor-agent-reviewed, or accepted extraction-grade maturity.",
+      "record_types": [
+        "result"
+      ],
+      "required_fields": [
+        "record_type",
+        "id",
+        "source_id",
+        "study_id",
+        "outcome_id",
+        "maturity_status",
+        "provenance"
+      ],
+      "maturity_scope": [
+        "registry_extracted",
+        "full_text_extracted",
+        "agent_reviewed",
+        "supervisor_agent_reviewed",
+        "accepted"
+      ],
+      "intended_uses": [
+        "Structured extracted-result analysis, evidence tables, and synthesis-readiness screening."
+      ],
+      "prohibited_uses": [
+        "Do not pool without checking effect value, uncertainty, comparator, sample size, and synthesis_group compatibility."
+      ],
+      "traceability_fields": [
+        "record_type",
+        "id",
+        "source_id",
+        "source_snapshot_id",
+        "text_snapshot_id",
+        "provenance"
+      ]
+    },
+    {
+      "path": "exports/latest/results.registry_extracted.jsonl",
+      "format": "jsonl",
+      "stability": "stable",
+      "authority": "canonical_projection",
+      "description": "Result records with registry-extracted structured values.",
+      "record_types": [
+        "result"
+      ],
+      "required_fields": [
+        "record_type",
+        "id",
+        "maturity_status",
+        "provenance",
+        "group_values"
+      ],
+      "maturity_scope": [
+        "registry_extracted"
+      ],
+      "intended_uses": [
+        "ClinicalTrials.gov posted-result analysis and registry-only extraction review."
+      ],
+      "prohibited_uses": [
+        "Do not treat registry-only extraction as full publication extraction."
+      ],
+      "traceability_fields": [
+        "record_type",
+        "id",
+        "source_id",
+        "source_snapshot_id",
+        "provenance"
+      ]
+    },
+    {
+      "path": "exports/latest/results.triage.jsonl",
+      "format": "jsonl",
+      "stability": "stable",
+      "authority": "canonical_projection",
+      "description": "Result records that remain metadata, screening, abstract, or triage summaries.",
+      "record_types": [
+        "result"
+      ],
+      "required_fields": [
+        "record_type",
+        "id",
+        "maturity_status",
+        "source_id"
+      ],
+      "maturity_scope": [
+        "metadata_imported",
+        "screened",
+        "triage_summary",
+        "abstract_extracted"
+      ],
+      "intended_uses": [
+        "Discovery, work queues, dashboards, and extraction-priority planning."
+      ],
+      "prohibited_uses": [
+        "Do not use triage rows as synthesis-ready extracted effects or final treatment claims."
+      ],
+      "traceability_fields": [
+        "record_type",
+        "id",
+        "source_id",
+        "provenance"
+      ]
+    },
+    {
+      "path": "exports/latest/synthesis-groups.jsonl",
+      "format": "jsonl",
+      "stability": "stable",
+      "authority": "canonical_projection",
+      "description": "Synthesis compatibility groups with poolability decisions, missing effect fields, and agent supervision metadata.",
+      "record_types": [
+        "synthesis_group"
+      ],
+      "required_fields": [
+        "record_type",
+        "id",
+        "result_ids",
+        "pooling_decision",
+        "pooling_requirements"
+      ],
+      "intended_uses": [
+        "Poolability checks, missing-field discovery, endpoint compatibility review, and synthesis blocking rationale."
+      ],
+      "prohibited_uses": [
+        "Do not compute pooled estimates from groups with pooling_decision other than pooling_allowed."
+      ],
+      "traceability_fields": [
+        "record_type",
+        "id",
+        "outcome_ids",
+        "result_ids",
+        "provenance"
+      ]
+    },
+    {
+      "path": "exports/latest/evidence-map.json",
+      "format": "json",
+      "stability": "experimental",
+      "authority": "generated_index",
+      "description": "Generated graph view of source, study, finding, outcome, result, coverage, and synthesis-compatibility links.",
+      "record_types": [
+        "evidence_map"
+      ],
+      "required_fields": [
+        "record_type",
+        "id",
+        "nodes",
+        "edges",
+        "node_counts"
+      ],
+      "intended_uses": [
+        "Graph browsing, dependency visualization, and machine traversal across evidence nodes."
+      ],
+      "prohibited_uses": [
+        "Do not treat generated graph edges as a substitute for canonical record provenance."
+      ],
+      "traceability_fields": [
+        "nodes[].record_type",
+        "nodes[].id",
+        "edges[].from_id",
+        "edges[].to_id"
+      ]
+    },
+    {
+      "path": "exports/latest/coverage-status.json",
+      "format": "json",
+      "stability": "stable",
+      "authority": "generated_index",
+      "description": "Consumer coverage status with current/superseded flags and known-gap warnings.",
+      "record_types": [
+        "coverage_status_export"
+      ],
+      "required_fields": [
+        "record_type",
+        "id",
+        "items",
+        "record_counts"
+      ],
+      "intended_uses": [
+        "Coverage dashboards, current/superseded coverage checks, and known-gap display."
+      ],
+      "prohibited_uses": [
+        "Do not treat vertical-slice coverage as synthesis-ready coverage unless coverage_scope says synthesis_ready."
+      ],
+      "traceability_fields": [
+        "items[].coverage_assessment_id",
+        "items[].covered_source_ids",
+        "items[].covered_finding_ids"
+      ]
+    },
+    {
+      "path": "exports/latest/consumer-contract.json",
+      "format": "json",
+      "stability": "stable",
+      "authority": "manifest",
+      "description": "Versioned machine-readable contract for consumer-facing export artifacts.",
+      "record_types": [
+        "consumer_output_contract"
+      ],
+      "required_fields": [
+        "record_type",
+        "id",
+        "contract_version",
+        "artifacts",
+        "maturity_states",
+        "release_boundaries"
+      ],
+      "intended_uses": [
+        "Consumer integration, version negotiation, stable-field discovery, and machine-readable export policy."
+      ],
+      "prohibited_uses": [
+        "Do not treat the contract as evidence data; use it to decide how to consume evidence artifacts."
+      ],
+      "traceability_fields": [
+        "artifacts[].path",
+        "artifacts[].required_fields",
+        "release_boundaries[].source"
+      ]
+    },
+    {
+      "path": "exports/latest/audit-manifest.json",
+      "format": "json",
+      "stability": "stable",
+      "authority": "manifest",
+      "description": "Export manifest with file counts and SHA-256 hashes.",
+      "record_types": [
+        "release_manifest"
+      ],
+      "required_fields": [
+        "record_type",
+        "id",
+        "export_version",
+        "files",
+        "record_counts"
+      ],
+      "intended_uses": [
+        "Export freshness checks, file hashing, and generated artifact inventory."
+      ],
+      "prohibited_uses": [
+        "Do not use manifest presence as evidence that individual records are accepted or synthesis-ready."
+      ],
+      "traceability_fields": [
+        "files[].path",
+        "files[].sha256",
+        "record_counts"
+      ]
+    }
+  ],
+  "maturity_states": [
+    {
+      "state": "metadata_imported",
+      "consumer_level": "triage",
+      "meaning": "Metadata exists, but evidence content has not been extracted.",
+      "allowed_uses": [
+        "Discovery",
+        "deduplication",
+        "screening queues"
+      ],
+      "not_allowed_uses": [
+        "Evidence synthesis",
+        "effect claims"
+      ]
+    },
+    {
+      "state": "screened",
+      "consumer_level": "triage",
+      "meaning": "A source or record has passed a screening decision but remains non-extracted.",
+      "allowed_uses": [
+        "Eligibility tracking",
+        "coverage planning"
+      ],
+      "not_allowed_uses": [
+        "Quantitative analysis",
+        "clinical interpretation"
+      ]
+    },
+    {
+      "state": "triage_summary",
+      "consumer_level": "triage",
+      "meaning": "A weak summary exists for planning and prioritization.",
+      "allowed_uses": [
+        "Work queues",
+        "coverage dashboards",
+        "hypothesis discovery"
+      ],
+      "not_allowed_uses": [
+        "Meta-analysis",
+        "final evidence claims"
+      ]
+    },
+    {
+      "state": "abstract_extracted",
+      "consumer_level": "triage",
+      "meaning": "Extracted from abstract-level text only.",
+      "allowed_uses": [
+        "Preliminary summaries",
+        "extraction-priority ranking"
+      ],
+      "not_allowed_uses": [
+        "Synthesis-ready effect estimates unless later upgraded"
+      ]
+    },
+    {
+      "state": "registry_extracted",
+      "consumer_level": "extraction_grade",
+      "meaning": "Structured values are extracted from a trial registry or equivalent public registry source with snapshot-linked provenance.",
+      "allowed_uses": [
+        "Evidence tables",
+        "registry-only analyses",
+        "synthesis-readiness screening"
+      ],
+      "not_allowed_uses": [
+        "Full-publication claims",
+        "pooling without effect/uncertainty/comparator checks"
+      ]
+    },
+    {
+      "state": "full_text_extracted",
+      "consumer_level": "extraction_grade",
+      "meaning": "Structured values are extracted from retained or rights-classified full text with text-snapshot provenance.",
+      "allowed_uses": [
+        "Evidence tables",
+        "synthesis-readiness screening",
+        "source-located review"
+      ],
+      "not_allowed_uses": [
+        "Pooling without synthesis-group compatibility checks"
+      ]
+    },
+    {
+      "state": "agent_reviewed",
+      "consumer_level": "reviewed",
+      "meaning": "An agent has reviewed the record, but supervisor-agent acceptance may still be pending.",
+      "allowed_uses": [
+        "Reviewed work queues",
+        "secondary agent checks"
+      ],
+      "not_allowed_uses": [
+        "Released evidence unless present in accepted-records.jsonl"
+      ]
+    },
+    {
+      "state": "supervisor_agent_reviewed",
+      "consumer_level": "reviewed",
+      "meaning": "A supervisor-agent review has inspected the record or candidate scope.",
+      "allowed_uses": [
+        "Promotion consideration",
+        "reviewed evidence tables with caveats"
+      ],
+      "not_allowed_uses": [
+        "Accepted release claims unless promotion gates and release-readiness pass"
+      ]
+    },
+    {
+      "state": "accepted",
+      "consumer_level": "accepted",
+      "meaning": "The record or candidate state has passed the repository promotion gates.",
+      "allowed_uses": [
+        "Accepted canonical state",
+        "release-boundary inclusion when dependencies pass"
+      ],
+      "not_allowed_uses": [
+        "Assuming synthesis readiness without endpoint compatibility and effect-field checks"
+      ]
+    }
+  ],
+  "release_boundaries": [
+    {
+      "boundary": "canonical",
+      "source": "data/ and research/ JSON records",
+      "meaning": "All schema-valid canonical records, including submitted and in-review generated state.",
+      "consumer_rule": "Use for audit and agent work, but filter lifecycle_status and maturity_status before scientific consumption."
+    },
+    {
+      "boundary": "latest_export",
+      "source": "exports/latest/",
+      "meaning": "Regenerated consumer artifacts derived from canonical JSON.",
+      "consumer_rule": "Use with audit-manifest hashes and this contract; do not edit generated exports directly."
+    },
+    {
+      "boundary": "accepted_records",
+      "source": "exports/latest/accepted-records.jsonl",
+      "meaning": "Accepted or applied candidate outputs whose release dependencies are also accepted and unblocked.",
+      "consumer_rule": "Use as the preferred release boundary for downstream snapshots, then inspect each embedded record's maturity and synthesis fields."
+    },
+    {
+      "boundary": "operational_state",
+      "source": "ops/triage-state.v1.json and ops/release-readiness.v1.json",
+      "meaning": "Generated control-plane state for agents and maintainers.",
+      "consumer_rule": "Use to schedule work and assess release status; do not treat operational queues as evidence records."
+    }
+  ],
+  "required_consumer_checks": [
+    {
+      "check_id": "manifest-hashes",
+      "description": "Verify every file hash listed in exports/latest/audit-manifest.json before using generated artifacts.",
+      "required_artifacts": [
+        "exports/latest/audit-manifest.json"
+      ]
+    },
+    {
+      "check_id": "release-boundary",
+      "description": "Use accepted-records.jsonl when consumers require released records rather than submitted or in-review canonical state.",
+      "required_artifacts": [
+        "exports/latest/accepted-records.jsonl",
+        "ops/release-readiness.v1.json"
+      ]
+    },
+    {
+      "check_id": "maturity-filter",
+      "description": "Filter records by maturity_status before using them for extraction-grade analysis or synthesis screening.",
+      "required_artifacts": [
+        "exports/latest/results.all.jsonl",
+        "exports/latest/results.extraction_grade.jsonl"
+      ]
+    },
+    {
+      "check_id": "pooling-boundary",
+      "description": "Consult synthesis-groups.jsonl before computing pooled estimates.",
+      "required_artifacts": [
+        "exports/latest/synthesis-groups.jsonl"
+      ]
+    },
+    {
+      "check_id": "rights-boundary",
+      "description": "Consult source-rights.jsonl before consuming text-snapshot artifacts or exposing retained source text.",
+      "required_artifacts": [
+        "exports/latest/source-rights.jsonl",
+        "exports/latest/text-snapshots.jsonl"
+      ]
+    }
+  ],
+  "non_authoritative_artifacts": [
+    "Generated exports are projections; canonical JSON records under data/ and research/ remain authoritative.",
+    "Generated graph edges in evidence-map.json are navigation aids and do not replace record-level provenance.",
+    "Future SQLite or DuckDB read models are generated indexes and must retain canonical record traceability."
+  ],
+  "current_limitations": [
+    "The current public contract is latest-only; immutable versioned release packages are future work.",
+    "Most extraction-grade data is currently registry-extracted, not full-text-extracted.",
+    "Synthesis groups usually block pooling because effect values, uncertainty, denominators, compatible time horizons, or event-specific safety fields are missing.",
+    "The evidence base is concentrated in the senolytics/D+Q vertical slice."
+  ]
+}

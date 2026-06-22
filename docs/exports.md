@@ -20,6 +20,7 @@ To audit exports without regenerating them:
 
 ```bash
 npm run audit:exports
+npm run audit:read-model
 npm run audit:triage-state
 npm run audit:release-readiness
 ```
@@ -39,6 +40,7 @@ npm run audit:release-readiness
 - `synthesis-groups.jsonl`: compatibility groups with poolability decisions, missing effect fields, and agent-supervision metadata.
 - `evidence-map.json`: generated node/edge view over sources, studies, findings, outcomes, results, coverage assessments, and synthesis groups.
 - `coverage-status.json`: current and superseded coverage assessments with known gaps and consumer warnings.
+- `read-model.sqlite`: generated SQLite query index over canonical JSON records, with traced tables for sources, studies, findings, outcomes, results, synthesis groups, candidate changes, evidence reviews, record links, and provenance.
 - `consumer-contract.json`: versioned machine-readable contract for stable artifact paths, maturity semantics, release boundaries, required fields, traceability fields, and required consumer checks.
 - `audit-manifest.json`: export manifest with file counts and SHA-256 hashes.
 
@@ -54,6 +56,15 @@ JSONL lines preserve canonical record fields. Consumers should use each record's
 
 Use `consumer-contract.json` first when integrating a downstream app, notebook, API, or agent. It declares the contract version, artifact stability tier, authority type, required fields, traceability fields, intended uses, prohibited uses, maturity-state semantics, release boundaries, and required consumer checks.
 
+Use `read-model.sqlite` when consumers or agents need joins without reparsing every JSON record. It is a generated index, not an authority. Each traced row includes `record_type`, `id`, `path`, `maturity_status`, `provenance_json`, `canonical_json`, and `canonical_sha256`; `audit:read-model` verifies those rows against current canonical JSON.
+
+Example:
+
+```bash
+sqlite3 -header -column exports/latest/read-model.sqlite \
+  "select result_id, maturity_status, study_name, outcome_name from result_evidence order by result_id;"
+```
+
 Use `results.extraction_grade.jsonl` when structured result values are required. In the current data this file is registry-only, so use `results.registry_extracted.jsonl` when consumers need to distinguish ClinicalTrials.gov posted-result extraction from future full-text or accepted extraction.
 
 Use `results.triage.jsonl` only for discovery, work queues, dashboards that explicitly show maturity, or "needs extraction" views. Do not treat triage result direction as a synthesis-ready effect.
@@ -68,7 +79,7 @@ An accepted candidate can be only partially releasable. In that case, `accepted-
 
 `change_type: "release_accept"` means an accepted candidate has reviewed and released an existing canonical record without claiming original creation. Consumers should still read the canonical record's maturity, provenance, and synthesis fields before using it for analysis.
 
-Use `audit-manifest.json` to verify generated artifacts. The manifest hashes generated export files, including `consumer-contract.json`, and intentionally excludes itself from the hash list.
+Use `audit-manifest.json` to verify generated artifacts. The manifest hashes generated export files, including `read-model.sqlite` and `consumer-contract.json`, and intentionally excludes itself from the hash list.
 
 Extraction-grade result exports must carry snapshot-linked provenance. For each provenance locator with `abstract_extracted`, `registry_extracted`, `full_text_extracted`, `agent_reviewed`, `supervisor_agent_reviewed`, or `accepted` status, include `source_snapshot_id` when the parent result is extraction-grade.
 
@@ -81,6 +92,7 @@ See `docs/consumer-disclaimer.md` for consumer-facing limitations.
 ## Current Limitations
 
 - The evidence-map export is a generated graph view, not a formal synthesis.
+- The SQLite read model is a generated query index and cannot override canonical JSON, schemas, provenance, or release gates.
 - Accepted-record export is conservative: proposals are blocked from the release export when create candidates or referenced graph dependencies are still submitted, in review, or blocked.
 - The consumer contract is latest-only; immutable versioned release packages remain future work.
 - Text-snapshot schema/export support exists, but article full-text fetchers and markdown normalizers have not yet been implemented.

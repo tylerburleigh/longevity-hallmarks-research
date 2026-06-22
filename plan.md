@@ -145,7 +145,7 @@ Consumer-facing layers:
 
 - Canonical JSON records are the source of truth and remain schema-validated.
 - `exports/latest/` contains regenerated read artifacts for common downstream use.
-- The future SQLite/DuckDB read model is a generated index, not an authority; every row should retain `record_type`, `id`, source `path`, maturity state, and provenance links back to canonical JSON.
+- `read-model.sqlite` is a generated index, not an authority; every traced row retains `record_type`, `id`, `path`, maturity state, provenance JSON, canonical JSON, and a canonical JSON hash.
 - Accepted-record and release-readiness exports should separate released evidence from submitted or in-review generated state.
 - `consumer-contract.json` describes artifact stability, authority type, required fields, traceability fields, intended uses, prohibited uses, maturity-state semantics, release boundaries, and required consumer checks.
 - Audit manifests should describe generation time, source inputs, export hashes, schema versions, and verification commands.
@@ -607,8 +607,8 @@ Tasks:
 - [x] Add an active job lifecycle model for Codex jobs: `planned`, `ready`, `running`, `succeeded`, `failed`, `superseded`, and `archived`.
 - [x] Move executed job specs or immutable job snapshots out of the live runnable job directory once their final `agent_run` is verified.
 - [x] Add regression fixtures for negative audit cases, including missing provenance, unsupported promotion, stale exports, stale triage state, stale release-readiness state, duplicate active reviews, bad worker output, unsafe text retention, and invalid synthesis pooling.
-- [ ] Add a lightweight SQLite or DuckDB generated read model for agents and downstream consumers that need joins over sources, studies, outcomes, results, reviews, candidates, and synthesis groups; canonical JSON records remain the source of truth.
-- [ ] Add read-model audits requiring every generated row to include `record_type`, `id`, source `path`, maturity state, and provenance back to canonical JSON.
+- [x] Add a lightweight SQLite or DuckDB generated read model for agents and downstream consumers that need joins over sources, studies, outcomes, results, reviews, candidates, and synthesis groups; canonical JSON records remain the source of truth.
+- [x] Add read-model audits requiring every generated row to include `record_type`, `id`, source `path`, maturity state, and provenance back to canonical JSON.
 - [ ] Add search/session generation templates so search and screening agents produce durable no-op searches, excluded-source decisions, and coverage updates without coordinator hand-entry.
 - [x] Add a release-readiness queue that distinguishes accepted canonical state from submitted/in-review generated state.
 - [x] Add release-readiness dependency checks so accepted records that depend on unreleased sources, studies, findings, outcomes, results, snapshots, or text snapshots stay out of accepted-record exports.
@@ -657,23 +657,23 @@ Exit criteria:
 
 ## Immediate Next Actions
 
-1. Add the generated SQLite/DuckDB read model plus provenance audits so consumers can query joins without bypassing canonical JSON.
-2. Add Codex job dependency metadata and conflict keys so the orchestrator can distinguish parallel-safe jobs from serialized jobs.
-3. Add durable research-session, search-log, and screening-run generation templates.
-4. Add the self-healing job generator that turns triage-state repair recommendations into bounded live Codex job specs.
-5. Add the default isolated-worktree execution helper needed for safe concurrent Codex workers.
-6. Add a first parallel-batch planner for independent search, registry-refresh, extraction-refresh, and supervisor-review jobs.
-7. Finish full publication/table extraction for the D+Q bone RCT, including subgroup and event-specific safety details.
-8. Run extraction-refresh passes on the remaining human D+Q papers: DKD, IPF, and AD-risk cognition/mobility.
-9. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
-10. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
-11. Decide whether to install repo-local skills into the active Codex skills directory.
+1. Add Codex job dependency metadata and conflict keys so the orchestrator can distinguish parallel-safe jobs from serialized jobs.
+2. Add durable research-session, search-log, and screening-run generation templates.
+3. Add the self-healing job generator that turns triage-state repair recommendations into bounded live Codex job specs.
+4. Add the default isolated-worktree execution helper needed for safe concurrent Codex workers.
+5. Add a first parallel-batch planner for independent search, registry-refresh, extraction-refresh, and supervisor-review jobs.
+6. Finish full publication/table extraction for the D+Q bone RCT, including subgroup and event-specific safety details.
+7. Run extraction-refresh passes on the remaining human D+Q papers: DKD, IPF, and AD-risk cognition/mobility.
+8. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
+9. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
+10. Decide whether to install repo-local skills into the active Codex skills directory.
 
 ## Change Log
 
 - 2026-06-22: Promoted the D+Q endpoint synthesis-groups candidate and registry-markdown provenance-repair candidate to accepted, then hardened release-readiness so accepted records with unreleased graph dependencies remain blocked from accepted-record exports.
 - 2026-06-22: Added `release_accept` change semantics, accepted a narrow D+Q bone release-anchor candidate, and cleared accepted-record release blockers without promoting broad unfinished extraction or coverage candidates.
 - 2026-06-22: Added generated `consumer-contract.json`, schema validation, manifest hashing, and export audit checks for artifact stability, maturity semantics, release boundaries, stable fields, traceability fields, and required consumer checks.
+- 2026-06-22: Added generated `read-model.sqlite`, SQLite export and audit scripts, manifest hashing, consumer-contract coverage, and verification gates for traceable query rows over sources, studies, findings, outcomes, results, reviews, candidates, synthesis groups, links, and provenance.
 - 2026-06-22: Added accepted-record export, generated release-readiness queue, release-boundary freshness audit, and Codex wrapper post-export refresh for release state.
 - 2026-06-22: Added parallel agent orchestration design with dependency metadata, conflict keys, parallel batches, reconciliation passes, serialized promotion/release gates, and orchestration metrics.
 - 2026-06-22: Added current system assessment, consumer output contract, end-to-end agentic flow, and hardening priorities for release boundaries, query access, search/screen generation, self-healing jobs, extraction depth, and synthesis readiness.

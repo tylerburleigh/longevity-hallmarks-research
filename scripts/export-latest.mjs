@@ -4,6 +4,7 @@ import { createHash } from "node:crypto";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { buildAcceptedRecordExportItems } from "./export-release-readiness.mjs";
+import { exportReadModel, readModelPath } from "./export-read-model.mjs";
 
 const workspaceRoot = process.cwd();
 const exportDir = path.join(workspaceRoot, "exports", "latest");
@@ -34,6 +35,7 @@ const managedExportFiles = [
   "synthesis-groups.jsonl",
   "evidence-map.json",
   "coverage-status.json",
+  "read-model.sqlite",
   "consumer-contract.json",
   "audit-manifest.json"
 ];
@@ -167,6 +169,30 @@ const artifactContractDetails = {
     intended_uses: ["Coverage dashboards, current/superseded coverage checks, and known-gap display."],
     prohibited_uses: ["Do not treat vertical-slice coverage as synthesis-ready coverage unless coverage_scope says synthesis_ready."],
     traceability_fields: ["items[].coverage_assessment_id", "items[].covered_source_ids", "items[].covered_finding_ids"]
+  },
+  "exports/latest/read-model.sqlite": {
+    stability: "stable",
+    authority: "generated_index",
+    record_types: [
+      "source",
+      "study",
+      "finding",
+      "outcome",
+      "result",
+      "candidate_change",
+      "evidence_review",
+      "synthesis_group"
+    ],
+    required_fields: ["record_type", "id", "path", "maturity_status", "provenance_json", "canonical_json", "canonical_sha256"],
+    intended_uses: [
+      "SQLite joins across sources, studies, outcomes, results, reviews, candidates, and synthesis groups.",
+      "Agent queries that need indexed access without reparsing every canonical JSON file."
+    ],
+    prohibited_uses: [
+      "Do not edit the database directly.",
+      "Do not treat the database as authoritative when it conflicts with canonical JSON."
+    ],
+    traceability_fields: ["record_type", "id", "path", "maturity_status", "provenance_json", "canonical_sha256"]
   },
   "exports/latest/consumer-contract.json": {
     stability: "stable",
@@ -785,6 +811,14 @@ async function main() {
     records: [coverageStatus]
   });
 
+  const readModel = await exportReadModel({ generatedAt, outputPath: readModelPath });
+  exportEntries.push({
+    relativePath: readModel.path,
+    format: "sqlite",
+    description: "Generated SQLite read model for indexed joins over canonical JSON records.",
+    records: Array.from({ length: readModel.record_count }, () => null)
+  });
+
   const consumerContract = buildConsumerContract([
     ...exportEntries,
     {
@@ -860,10 +894,12 @@ async function main() {
       results_triage: triageResults.length,
       synthesis_groups: synthesisGroups.length,
       coverage_assessments: coverageAssessments.length,
+      read_model_records: readModel.record_count,
       consumer_contracts: 1
     },
     notes: [
       "Use consumer-contract.json as the versioned machine-readable contract for stable artifact paths, maturity semantics, release boundaries, and required consumer checks.",
+      "Use read-model.sqlite as a generated query index only; canonical JSON records remain authoritative.",
       "JSONL records preserve canonical record fields.",
       "Use accepted-records.jsonl for the release-boundary view of accepted or applied candidate outputs.",
       "Use results.extraction_grade.jsonl for structured result values.",

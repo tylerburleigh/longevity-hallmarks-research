@@ -434,6 +434,7 @@ async function main() {
       results_triage: triageResults.length,
       synthesis_groups: synthesisGroups.length,
       coverage_assessments: coverageAssessments.length,
+      read_model_records: canonicalRecords.length,
       consumer_contracts: 1
     };
     if (stableStringify(manifest.record_counts ?? {}) !== stableStringify(expectedCounts)) {

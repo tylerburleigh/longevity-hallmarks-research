@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "release_manifest",
   "id": "latest-consumer-export",
-  "generated_at": "2026-06-22T18:35:18.005Z",
+  "generated_at": "2026-06-22T19:20:16.564Z",
   "export_version": "0.1.0",
   "export_scope": {
     "description": "Consumer-facing latest export generated from canonical research and data records.",
@@ -113,21 +113,28 @@
       "format": "json",
       "description": "Generated graph view of source, study, finding, outcome, result, coverage, and synthesis-compatibility links.",
       "record_count": 1,
-      "sha256": "502d388b7e02a6b8d00eec803f417ca64820d105483ffaa17e4324bc3bb69e4c"
+      "sha256": "16f183e32c83eb155308191bc602b312281e3c93de3895547d9fbd69c2eb9f5e"
     },
     {
       "path": "exports/latest/coverage-status.json",
       "format": "json",
       "description": "Consumer coverage status with current/superseded flags and known-gap warnings.",
       "record_count": 1,
-      "sha256": "191641ee33ee157ca782c8b34f38f25d1ecb5da3c7caf6c5c6e9911372edbca7"
+      "sha256": "da5d84848e140762950a8fb48ef86b4fbf46e2c3fe915cbca5f477b3593faaf2"
+    },
+    {
+      "path": "exports/latest/read-model.sqlite",
+      "format": "sqlite",
+      "description": "Generated SQLite read model for indexed joins over canonical JSON records.",
+      "record_count": 128,
+      "sha256": "5f445ea917f06a540f0bf0f179040a8b67d27e26123e20a0fb671529118ceb87"
     },
     {
       "path": "exports/latest/consumer-contract.json",
       "format": "json",
       "description": "Versioned machine-readable contract for consumer-facing export artifacts.",
       "record_count": 1,
-      "sha256": "93ce3583b2036228ae2c9ce85e3b5cbed6f5591613c92acf31abef9e684b56d8"
+      "sha256": "24f8a74c36909f6fffca3ea23628eb1a473b625d4224d18f37b96b305d1552fd"
     }
   ],
   "record_counts": {
@@ -144,10 +151,12 @@
     "results_triage": 7,
     "synthesis_groups": 7,
     "coverage_assessments": 2,
+    "read_model_records": 128,
     "consumer_contracts": 1
   },
   "notes": [
     "Use consumer-contract.json as the versioned machine-readable contract for stable artifact paths, maturity semantics, release boundaries, and required consumer checks.",
+    "Use read-model.sqlite as a generated query index only; canonical JSON records remain authoritative.",
     "JSONL records preserve canonical record fields.",
     "Use accepted-records.jsonl for the release-boundary view of accepted or applied candidate outputs.",
     "Use results.extraction_grade.jsonl for structured result values.",

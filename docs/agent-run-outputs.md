@@ -15,13 +15,17 @@ Reusable JSON templates live in `docs/templates/agent-runs/`:
 - `supervisor-review.json`
 - `release-export.json`
 
-Worker prompt templates live in `docs/prompts/codex-agents/`.
+Reusable worker prompt templates live in `docs/prompts/codex-agents/`.
+
+Executed run prompt snapshots live in `research/agent-runs/prompts/`. These are audit artifacts, not reusable documentation. `agent_run.execution.prompt_file` should point to the snapshot used for that run. When a reusable template was the source, `agent_run.execution.prompt_template_file` should point back to the template.
 
 Codex job templates live in `docs/templates/codex-jobs/`. Use them when a run needs a durable execution spec that includes scope, expected outputs, post-run gates, timeout settings, and review-lane expectations.
 
 Persisted job specs under `ops/codex-jobs/` are enforced by `npm run audit:codex-jobs`. The audit checks that the final `agent_run`, candidate ledger, expected paths, review lanes, quality gates, logs, and post-run checks match the job contract.
 
 For `codex exec` jobs, the wrapper also appends `worker_output_contract` after it verifies that the worker emitted a single final JSON `agent_run`, that the final message matches the wrapper-written output file, and that the worker did not use inline schema-validation snippets instead of repository validation scripts.
+
+The wrapper writes a prompt snapshot to `research/agent-runs/prompts/<agent_run_id>.md` before execution. Run-specific prompts should be stored there instead of under `docs/prompts/codex-agents/`.
 
 ## Write Policy
 

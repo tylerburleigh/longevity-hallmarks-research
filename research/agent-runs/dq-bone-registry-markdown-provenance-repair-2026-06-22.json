@@ -26,7 +26,8 @@
     "surface": "codex_exec",
     "isolation": "foreground_checkout",
     "workspace_path": "/home/tyler/Workspace/longevity-hallmarks-research",
-    "prompt_file": "docs/prompts/codex-agents/dq-bone-registry-markdown-provenance-repair-2026-06-22.md",
+    "prompt_file": "research/agent-runs/prompts/dq-bone-registry-markdown-provenance-repair-2026-06-22.md",
+    "job_file": "ops/codex-jobs/dq-bone-registry-markdown-provenance-repair-2026-06-22.json",
     "output_schema_path": "schemas/agent-run.codex-output.schema.json",
     "output_path": "research/agent-runs/dq-bone-registry-markdown-provenance-repair-2026-06-22.json",
     "jsonl_log_path": "research/agent-runs/logs/dq-bone-registry-markdown-provenance-repair-2026-06-22.jsonl",
@@ -36,7 +37,7 @@
   "inputs": [
     {
       "input_type": "user_request",
-      "reference": "docs/prompts/codex-agents/dq-bone-registry-markdown-provenance-repair-2026-06-22.md; ops/codex-jobs/dq-bone-registry-markdown-provenance-repair-2026-06-22.json",
+      "reference": "research/agent-runs/prompts/dq-bone-registry-markdown-provenance-repair-2026-06-22.md; ops/codex-jobs/dq-bone-registry-markdown-provenance-repair-2026-06-22.json",
       "summary": "Coordinator prompt and codex_job specification for the bounded D+Q bone registry markdown provenance repair."
     },
     {

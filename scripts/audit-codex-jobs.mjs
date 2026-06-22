@@ -187,7 +187,20 @@ async function checkCodexJob({ issues, job, ownerPath }) {
 
   checkEqual({ issues, ownerPath, field: "execution.surface", expected: "codex_exec", actual: agentRun.execution?.surface });
   checkEqual({ issues, ownerPath, field: "execution.isolation", expected: job.execution?.isolation, actual: agentRun.execution?.isolation });
-  checkEqual({ issues, ownerPath, field: "execution.prompt_file", expected: job.prompt_file, actual: agentRun.execution?.prompt_file });
+  if (agentRun.execution?.prompt_template_file) {
+    checkEqual({
+      issues,
+      ownerPath,
+      field: "execution.prompt_template_file",
+      expected: job.prompt_file,
+      actual: agentRun.execution.prompt_template_file
+    });
+  } else {
+    checkEqual({ issues, ownerPath, field: "execution.prompt_file", expected: job.prompt_file, actual: agentRun.execution?.prompt_file });
+  }
+  if (agentRun.execution?.job_file) {
+    checkEqual({ issues, ownerPath, field: "execution.job_file", expected: ownerPath, actual: agentRun.execution.job_file });
+  }
   checkEqual({
     issues,
     ownerPath,

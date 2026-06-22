@@ -6,7 +6,7 @@
   "summary": "Run source-fidelity, extraction-fidelity, taxonomy-mapping, and safety-limitations supervisor-agent review lanes for the D+Q bone registry markdown provenance repair candidate.",
   "agent_role": "supervisor_agent",
   "mode": "extraction_refresh",
-  "prompt_file": "docs/prompts/codex-agents/dq-bone-registry-markdown-provenance-supervisor-review-2026-06-22.md",
+  "prompt_file": "research/agent-runs/prompts/dq-bone-registry-markdown-provenance-supervisor-review-2026-06-22.md",
   "output_path": "research/agent-runs/dq-bone-registry-markdown-provenance-supervisor-review-2026-06-22.json",
   "jsonl_log_path": "research/agent-runs/logs/dq-bone-registry-markdown-provenance-supervisor-review-2026-06-22.jsonl",
   "scope": {

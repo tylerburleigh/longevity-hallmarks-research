@@ -429,6 +429,7 @@ Tasks:
 - [x] Add post-step recovery for existing Codex worker outputs and split wrapper post-verification to avoid self-referential job-audit loops.
 - [x] Add Codex CLI prompt and job templates for ClinicalTrials.gov text-snapshot ingestion and supervisor review.
 - [x] Add wrapper-enforced `worker_output_contract` checks for single-final-JSON output and repository-script validation discipline.
+- [x] Separate reusable Codex prompt templates from immutable run prompt snapshots.
 - [ ] Add triage state generation.
 - [ ] Add templates for research sessions.
 
@@ -477,11 +478,12 @@ Exit criteria:
 4. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
 5. Add triage state generation and research-session templates.
 6. Require `worker_output_contract` in new live `ops/codex-jobs/` specs; do not retrofit historical logs that document prior worker-output failures.
-7. Turn the text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry text.
+7. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
 8. Decide whether to install repo-local skills into the active Codex skills directory.
 
 ## Change Log
 
+- 2026-06-22: Moved run-specific Codex prompts out of reusable docs and into `research/agent-runs/prompts/`; added wrapper support for future prompt snapshots plus `prompt_template_file` and `job_file` execution provenance.
 - 2026-06-22: Added a wrapper-enforced `worker_output_contract` quality gate for future Codex runs, rejecting multiple JSON `agent_run` messages and inline Node/AJV schema-validation snippets; updated Codex job templates and operating docs.
 - 2026-06-22: Ran the D+Q registry-markdown provenance-repair supervisor-review Codex job; source-fidelity, extraction-fidelity, taxonomy-mapping, and safety-limitations reviews are complete, accepting, non-blocking, and linked to the candidate, which is now `in_review`.
 - 2026-06-22: Ran and imported the D+Q bone endpoint synthesis supervisor-review Codex job; taxonomy-mapping, synthesis-boundary, and safety-limitations reviews are complete, accepting, non-blocking, and linked to the candidate.

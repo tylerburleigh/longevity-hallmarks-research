@@ -168,6 +168,12 @@
         "prompt_file": {
           "type": "string"
         },
+        "prompt_template_file": {
+          "type": "string"
+        },
+        "job_file": {
+          "type": "string"
+        },
         "output_schema_path": {
           "type": "string"
         },

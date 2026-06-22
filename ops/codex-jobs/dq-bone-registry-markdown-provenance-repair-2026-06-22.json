@@ -6,7 +6,7 @@
   "summary": "Use the retained ClinicalTrials.gov registry markdown text snapshot to add text_snapshot provenance to existing D+Q bone registry-extracted finding, outcome, and result records.",
   "agent_role": "extraction_agent",
   "mode": "extraction_refresh",
-  "prompt_file": "docs/prompts/codex-agents/dq-bone-registry-markdown-provenance-repair-2026-06-22.md",
+  "prompt_file": "research/agent-runs/prompts/dq-bone-registry-markdown-provenance-repair-2026-06-22.md",
   "output_path": "research/agent-runs/dq-bone-registry-markdown-provenance-repair-2026-06-22.json",
   "jsonl_log_path": "research/agent-runs/logs/dq-bone-registry-markdown-provenance-repair-2026-06-22.jsonl",
   "scope": {

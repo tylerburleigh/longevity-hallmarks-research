@@ -52,6 +52,14 @@ The wrapper builds a `codex exec` command with:
 - top-level `--ask-for-approval never` by default
 - `--ephemeral` by default
 
+Before execution, the wrapper writes the complete generated prompt to:
+
+```text
+research/agent-runs/prompts/<agent-run-id>.md
+```
+
+The worker should report that snapshot path as `execution.prompt_file`. When the source prompt was a reusable template under `docs/prompts/codex-agents/`, the worker should also report it as `execution.prompt_template_file`. Run-specific prompts belong under `research/agent-runs/prompts/`, not under the reusable template directory.
+
 Optional execution guards:
 
 - `--timeout-ms <integer>` stops a worker that exceeds the wall-clock limit.

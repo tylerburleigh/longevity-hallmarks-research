@@ -458,6 +458,22 @@ async function checkAgentRunExecution({ issues, record, ownerPath }) {
     field: "execution.prompt_file",
     relativePath: record.execution.prompt_file
   });
+  if (record.execution.prompt_template_file) {
+    await checkRepoPathExists({
+      issues,
+      ownerPath,
+      field: "execution.prompt_template_file",
+      relativePath: record.execution.prompt_template_file
+    });
+  }
+  if (record.execution.job_file) {
+    await checkRepoPathExists({
+      issues,
+      ownerPath,
+      field: "execution.job_file",
+      relativePath: record.execution.job_file
+    });
+  }
   await checkRepoPathExists({
     issues,
     ownerPath,

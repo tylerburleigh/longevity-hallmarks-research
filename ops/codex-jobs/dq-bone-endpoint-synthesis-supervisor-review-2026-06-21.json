@@ -6,7 +6,7 @@
   "summary": "Run taxonomy-mapping, synthesis-boundary, and safety-limitations supervisor-agent review lanes for the D+Q bone endpoint synthesis candidate.",
   "agent_role": "supervisor_agent",
   "mode": "synthesis_refresh",
-  "prompt_file": "docs/prompts/codex-agents/dq-bone-endpoint-synthesis-supervisor-review-2026-06-21.md",
+  "prompt_file": "research/agent-runs/prompts/dq-bone-endpoint-synthesis-supervisor-review-2026-06-21.md",
   "output_path": "research/agent-runs/dq-bone-endpoint-synthesis-supervisor-review-2026-06-21.json",
   "jsonl_log_path": "research/agent-runs/logs/dq-bone-endpoint-synthesis-supervisor-review-2026-06-21.jsonl",
   "scope": {

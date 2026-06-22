@@ -244,12 +244,17 @@ async function exists(filePath) {
 
 async function buildCommand(options) {
   const promptTemplate = await fs.readFile(resolveRepoPath(options.promptFile), "utf8");
+  const promptSnapshotPath = `research/agent-runs/prompts/${options.id}.md`;
+  const promptTemplatePath = path.resolve(resolveRepoPath(options.promptFile));
+  const promptSnapshotResolvedPath = path.resolve(resolveRepoPath(promptSnapshotPath));
+  const hasSeparatePromptTemplate = promptTemplatePath !== promptSnapshotResolvedPath;
   const prompt = `${promptTemplate}
 
 Coordinator metadata:
 - agent_run_id: ${options.id}
 - agent_role: ${options.role ?? "unspecified"}
-- prompt_file: ${options.promptFile}
+- prompt_file: ${promptSnapshotPath}
+${hasSeparatePromptTemplate ? `- prompt_template_file: ${options.promptFile}` : ""}
 - output_path: ${options.output}
 - output_schema_path: ${options.outputSchema}
 - jsonl_log_path: ${options.log}
@@ -259,7 +264,7 @@ Coordinator metadata:
 - approval_policy: ${options.approvalPolicy}
 ${options.jobFile ? `- job_file: ${options.jobFile}` : ""}
 
-In the final JSON object, set execution.surface to "codex_exec", execution.isolation to the isolation mode above, execution.prompt_file to the prompt file above, execution.output_schema_path to the output schema path above, execution.output_path to the output path above, execution.jsonl_log_path to the JSONL log path above, execution.sandbox to the sandbox above, and execution.approval_policy to the approval policy above.`;
+In the final JSON object, set execution.surface to "codex_exec", execution.isolation to the isolation mode above, execution.prompt_file to the prompt file above, ${hasSeparatePromptTemplate ? "execution.prompt_template_file to the prompt_template_file above, " : ""}${options.jobFile ? "execution.job_file to the job_file above, " : ""}execution.output_schema_path to the output schema path above, execution.output_path to the output path above, execution.jsonl_log_path to the JSONL log path above, execution.sandbox to the sandbox above, and execution.approval_policy to the approval policy above.`;
   const jobInstruction = options.job
     ? `\n\nCodex job specification:\n${JSON.stringify(options.job, null, 2)}`
     : "";
@@ -267,6 +272,13 @@ In the final JSON object, set execution.surface to "codex_exec", execution.isola
   const fullPrompt = `${prompt}${jobInstruction}
 
 ${outputInstruction}`;
+  options.promptSnapshot = promptSnapshotPath;
+  options.promptTemplateFile = hasSeparatePromptTemplate ? options.promptFile : undefined;
+  if (hasSeparatePromptTemplate) {
+    await fs.mkdir(path.dirname(promptSnapshotResolvedPath), { recursive: true });
+    await fs.writeFile(promptSnapshotResolvedPath, fullPrompt);
+  }
+
   const command = [
     "codex",
     "--ask-for-approval",
@@ -307,6 +319,8 @@ async function writeCommandPlan(options, command) {
     id: options.id,
     role: options.role,
     prompt_file: options.promptFile,
+    prompt_snapshot_file: options.promptSnapshot,
+    prompt_template_file: options.promptTemplateFile,
     output: options.output,
     log: options.log,
     output_schema: options.outputSchema,

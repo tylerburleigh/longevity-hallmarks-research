@@ -209,7 +209,9 @@ Use `npm run agent:codex:worktree -- --job-file <job> --execute` for generated s
 
 Use `npm run jobs:plan-parallel` to group runnable live jobs into safe batches using each job's orchestration metadata. The generated plan lives at `ops/codex-batches/parallel-batch-plan.v1.json` and is checked by `npm run audit:parallel-batches`.
 
-Batch commands use `agent:codex:worktree`, so planned mutable workers retain isolated checkouts by default. See `docs/parallel-batch-planner.md`.
+Batch commands use `agent:codex:worktree`, so planned mutable workers retain isolated checkouts by default. Use `npm run jobs:run-batch -- --batch-id <batch-id>` to preview a batch-run record, then add `--execute` to start bounded concurrent workers. Executed batch state is stored under `ops/codex-batches/runs/`, with JSONL coordinator logs under `ops/codex-batches/logs/`.
+
+Run `npm run audit:parallel-batch-runs` to check persisted batch-run ledgers. Completed workers that wrote only to isolated worktrees stay marked `succeeded_pending_reconciliation` until the coordinator imports their outputs, verifies the repository, and archives the completed job snapshot. See `docs/parallel-batch-planner.md`.
 
 ## Promotion Boundary
 

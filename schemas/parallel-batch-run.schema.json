@@ -1,0 +1,192 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./parallel-batch-run.schema.json",
+  "title": "Parallel Codex batch run",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "id",
+    "batch_plan_id",
+    "batch_plan_path",
+    "batch_id",
+    "batch_sequence",
+    "parallel_group",
+    "execution_class",
+    "reconciliation_required",
+    "started_at",
+    "status",
+    "log_path",
+    "worker_states",
+    "summary",
+    "next_actions"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "record_type": {
+      "const": "parallel_batch_run"
+    },
+    "id": {
+      "$ref": "./common.schema.json#/$defs/identifier"
+    },
+    "batch_plan_id": {
+      "$ref": "./common.schema.json#/$defs/identifier"
+    },
+    "batch_plan_path": {
+      "type": "string"
+    },
+    "batch_id": {
+      "$ref": "./common.schema.json#/$defs/identifier"
+    },
+    "batch_sequence": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "parallel_group": {
+      "type": "string"
+    },
+    "execution_class": {
+      "enum": [
+        "independent",
+        "reconciliation_required"
+      ]
+    },
+    "reconciliation_required": {
+      "type": "boolean"
+    },
+    "started_at": {
+      "$ref": "./common.schema.json#/$defs/dateTime"
+    },
+    "completed_at": {
+      "$ref": "./common.schema.json#/$defs/dateTime"
+    },
+    "status": {
+      "enum": [
+        "planned",
+        "running",
+        "succeeded",
+        "partial",
+        "failed"
+      ]
+    },
+    "log_path": {
+      "type": "string"
+    },
+    "worker_states": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/workerState"
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "planned_count",
+        "running_count",
+        "succeeded_count",
+        "pending_reconciliation_count",
+        "failed_count",
+        "archived_count"
+      ],
+      "properties": {
+        "planned_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "running_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "succeeded_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pending_reconciliation_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "failed_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "archived_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "next_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "workerState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "job_id",
+        "job_path",
+        "command",
+        "status"
+      ],
+      "properties": {
+        "job_id": {
+          "$ref": "./common.schema.json#/$defs/agentRunRef"
+        },
+        "job_path": {
+          "type": "string"
+        },
+        "command": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "status": {
+          "enum": [
+            "planned",
+            "running",
+            "succeeded",
+            "succeeded_pending_reconciliation",
+            "failed",
+            "skipped"
+          ]
+        },
+        "started_at": {
+          "$ref": "./common.schema.json#/$defs/dateTime"
+        },
+        "completed_at": {
+          "$ref": "./common.schema.json#/$defs/dateTime"
+        },
+        "exit_code": {
+          "type": "integer"
+        },
+        "worktree_path": {
+          "type": "string"
+        },
+        "output_path": {
+          "type": "string"
+        },
+        "worker_log_path": {
+          "type": "string"
+        },
+        "archive_path": {
+          "type": "string"
+        },
+        "issues": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

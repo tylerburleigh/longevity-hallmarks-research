@@ -28,3 +28,32 @@ npm run audit:parallel-batches
 ```
 
 If live jobs change, regenerate the plan with `npm run jobs:plan-parallel`.
+
+## Batch Runner
+
+Preview a planned batch without starting workers:
+
+```bash
+npm run jobs:run-batch -- --batch-id parallel-batch-001-candidate-revision
+```
+
+Start the workers from a planned batch:
+
+```bash
+npm run jobs:run-batch -- --batch-id parallel-batch-001-candidate-revision --execute
+```
+
+The runner writes durable state to:
+
+```text
+ops/codex-batches/runs/<run-id>.json
+ops/codex-batches/logs/<run-id>.jsonl
+```
+
+Use `--max-workers <n>` to bound concurrency, `--post-export-verify` to forward the worker post-run verification flag, and `--archive-completed` when the coordinator checkout already contains the final worker output. If a worker succeeds in its isolated worktree but the final output is not present in the coordinator checkout, the run records `succeeded_pending_reconciliation` so a later reconciliation pass can import, verify, and archive the job snapshot.
+
+Run the batch-run audit:
+
+```bash
+npm run audit:parallel-batch-runs
+```

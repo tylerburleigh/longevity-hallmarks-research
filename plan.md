@@ -631,7 +631,7 @@ Tasks:
 
 - [x] Add Codex job dependency metadata: `read_sets`, `write_sets`, `conflict_keys`, `parallel_group`, `reconciliation_required`, and `expected_cost`.
 - [x] Add a scheduler that groups live runnable jobs into safe parallel batches based on dependency and conflict metadata.
-- [ ] Add a parallel batch runner that starts isolated-worktree Codex workers, tracks worker state, captures logs, and archives completed job snapshots.
+- [x] Add a parallel batch runner that starts isolated-worktree Codex workers, tracks worker state, captures logs, and archives completed job snapshots.
 - [ ] Add a reconciliation agent that compares parallel outputs for duplicate sources, duplicate studies, overlapping candidate proposals, conflicting source-rights classifications, and incomplete ledgers.
 - [ ] Add conflict audits that block promotion when candidate outputs overlap without an explicit reconciliation record.
 - [ ] Add support for parallel supervisor review lanes over the same candidate when lanes are independent.
@@ -657,8 +657,8 @@ Exit criteria:
 
 ## Immediate Next Actions
 
-1. Add a parallel batch runner that starts isolated-worktree Codex workers, tracks worker state, captures logs, and archives completed job snapshots.
-2. Finish full publication/table extraction for the D+Q bone RCT, including subgroup and event-specific safety details.
+1. Finish full publication/table extraction for the D+Q bone RCT, including subgroup and event-specific safety details.
+2. Add a reconciliation agent that compares parallel worker outputs for duplicate sources, duplicate studies, overlapping candidate proposals, conflicting source-rights classifications, and incomplete ledgers.
 3. Run extraction-refresh passes on the remaining human D+Q papers: DKD, IPF, and AD-risk cognition/mobility.
 4. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
 5. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
@@ -666,6 +666,7 @@ Exit criteria:
 
 ## Change Log
 
+- 2026-06-22: Added a parallel Codex batch runner, run-state schema, batch-run audit, package commands, and docs for starting isolated-worktree workers with durable state, JSONL logs, bounded concurrency, pending-reconciliation status, and completed-job archiving.
 - 2026-06-22: Added a generated parallel Codex batch plan, planner script, schema, and freshness audit that group live runnable jobs by parallel group, conflict/read/write overlap, reconciliation requirements, and isolated-worktree execution commands.
 - 2026-06-22: Added an isolated Git worktree execution helper for Codex jobs, including plan-only checks, worktree creation, node_modules reuse, wrapper invocation, dirty-check protection, docs, and a verification audit for mutable live jobs.
 - 2026-06-22: Added a self-healing Codex job generator and freshness audit that convert triage-state recommended jobs into bounded live repair specs with candidate IDs, orchestration metadata, conflict keys, post-run gates, and generated-job drift checks.

@@ -1,0 +1,305 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./parallel-batch-plan.schema.json",
+  "title": "Parallel Codex batch plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "id",
+    "generated_at",
+    "source_job_root",
+    "planner_version",
+    "scheduler_policy",
+    "summary",
+    "batches",
+    "deferred_jobs"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "record_type": {
+      "const": "parallel_batch_plan"
+    },
+    "id": {
+      "$ref": "./common.schema.json#/$defs/identifier"
+    },
+    "generated_at": {
+      "$ref": "./common.schema.json#/$defs/dateTime"
+    },
+    "source_job_root": {
+      "type": "string"
+    },
+    "planner_version": {
+      "type": "string"
+    },
+    "scheduler_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "max_workers_per_batch",
+        "schedulable_statuses",
+        "running_status_policy",
+        "conflict_policy"
+      ],
+      "properties": {
+        "max_workers_per_batch": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "schedulable_statuses": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "planned",
+              "ready"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "running_status_policy": {
+          "enum": [
+            "defer"
+          ]
+        },
+        "conflict_policy": {
+          "enum": [
+            "same_group_no_overlap_or_reconciliation"
+          ]
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "live_job_count",
+        "schedulable_job_count",
+        "deferred_job_count",
+        "batch_count",
+        "max_batch_width",
+        "independent_batch_count",
+        "reconciliation_batch_count",
+        "estimated_wall_time_ms",
+        "estimated_token_budget"
+      ],
+      "properties": {
+        "live_job_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "schedulable_job_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "deferred_job_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "batch_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_batch_width": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "independent_batch_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reconciliation_batch_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "estimated_wall_time_ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "estimated_token_budget": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "batches": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/batch"
+      }
+    },
+    "deferred_jobs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/deferredJob"
+      }
+    }
+  },
+  "$defs": {
+    "batch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "batch_id",
+        "sequence",
+        "parallel_group",
+        "execution_class",
+        "reconciliation_required",
+        "job_ids",
+        "job_paths",
+        "agent_roles",
+        "modes",
+        "read_sets",
+        "write_sets",
+        "conflict_keys",
+        "overlapping_execution_keys",
+        "expected_cost",
+        "commands"
+      ],
+      "properties": {
+        "batch_id": {
+          "$ref": "./common.schema.json#/$defs/identifier"
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "parallel_group": {
+          "type": "string"
+        },
+        "execution_class": {
+          "enum": [
+            "independent",
+            "reconciliation_required"
+          ]
+        },
+        "reconciliation_required": {
+          "type": "boolean"
+        },
+        "job_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/agentRunRef"
+          },
+          "uniqueItems": true
+        },
+        "job_paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "agent_roles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "modes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "read_sets": {
+          "$ref": "#/$defs/keyList"
+        },
+        "write_sets": {
+          "$ref": "#/$defs/keyList"
+        },
+        "conflict_keys": {
+          "$ref": "#/$defs/keyList"
+        },
+        "overlapping_execution_keys": {
+          "$ref": "#/$defs/keyList"
+        },
+        "expected_cost": {
+          "$ref": "#/$defs/expectedCost"
+        },
+        "commands": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "deferredJob": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "job_id",
+        "job_path",
+        "reason",
+        "details"
+      ],
+      "properties": {
+        "job_id": {
+          "$ref": "./common.schema.json#/$defs/agentRunRef"
+        },
+        "job_path": {
+          "type": "string"
+        },
+        "reason": {
+          "enum": [
+            "already_running",
+            "unsupported_status",
+            "missing_orchestration"
+          ]
+        },
+        "details": {
+          "type": "string"
+        }
+      }
+    },
+    "keyList": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "expectedCost": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cost_class",
+        "expected_wall_time_ms",
+        "expected_token_budget",
+        "io_intensity"
+      ],
+      "properties": {
+        "cost_class": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "expected_wall_time_ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "expected_token_budget": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "io_intensity": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -205,6 +205,12 @@ Use `npm run audit:self-healing-jobs` to confirm generated live specs still matc
 
 Use `npm run agent:codex:worktree -- --job-file <job> --execute` for generated self-healing jobs so repair edits happen in an isolated worktree before coordinator reconciliation.
 
+## Parallel Batch Plans
+
+Use `npm run jobs:plan-parallel` to group runnable live jobs into safe batches using each job's orchestration metadata. The generated plan lives at `ops/codex-batches/parallel-batch-plan.v1.json` and is checked by `npm run audit:parallel-batches`.
+
+Batch commands use `agent:codex:worktree`, so planned mutable workers retain isolated checkouts by default. See `docs/parallel-batch-planner.md`.
+
 ## Promotion Boundary
 
 CLI workers must not mark candidates `accepted` or `applied`.

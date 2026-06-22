@@ -1,0 +1,196 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "parallel_batch_plan",
+  "id": "parallel-batch-plan-v1",
+  "generated_at": "2026-06-22T20:26:11.370Z",
+  "source_job_root": "ops/codex-jobs/live",
+  "planner_version": "1.0.0",
+  "scheduler_policy": {
+    "max_workers_per_batch": 4,
+    "schedulable_statuses": [
+      "planned",
+      "ready"
+    ],
+    "running_status_policy": "defer",
+    "conflict_policy": "same_group_no_overlap_or_reconciliation"
+  },
+  "summary": {
+    "live_job_count": 5,
+    "schedulable_job_count": 5,
+    "deferred_job_count": 0,
+    "batch_count": 2,
+    "max_batch_width": 3,
+    "independent_batch_count": 1,
+    "reconciliation_batch_count": 1,
+    "estimated_wall_time_ms": 7200000,
+    "estimated_token_budget": 500000
+  },
+  "batches": [
+    {
+      "batch_id": "parallel-batch-001-candidate-revision",
+      "sequence": 1,
+      "parallel_group": "candidate-revision",
+      "execution_class": "independent",
+      "reconciliation_required": true,
+      "job_ids": [
+        "self-healing-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21",
+        "self-healing-candidate-revision-senolytics-coverage-repair-2026-06-21",
+        "self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21"
+      ],
+      "job_paths": [
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21.json",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-revision-senolytics-coverage-repair-2026-06-21.json",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21.json"
+      ],
+      "agent_roles": [
+        "self_healing_agent"
+      ],
+      "modes": [
+        "agent_directed"
+      ],
+      "read_sets": [
+        "path:data/candidate-changes/senolytics-bone-rct-extraction-refresh-2026-06-21.json",
+        "path:data/candidate-changes/senolytics-coverage-repair-2026-06-21.json",
+        "path:data/candidate-changes/senolytics-scaffold-bootstrap-2026-06-21.json",
+        "path:ops/triage-state.v1.json",
+        "triage_job:candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21",
+        "triage_job:candidate-revision-senolytics-coverage-repair-2026-06-21",
+        "triage_job:candidate-revision-senolytics-scaffold-bootstrap-2026-06-21"
+      ],
+      "write_sets": [
+        "candidate_change:candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
+        "candidate_change:candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
+        "candidate_change:candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair",
+        "path:data/candidate-changes/candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair.json",
+        "path:data/candidate-changes/candidate-revision-senolytics-coverage-repair-2026-06-21-repair.json",
+        "path:data/candidate-changes/candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair.json",
+        "path:data/candidate-changes/senolytics-bone-rct-extraction-refresh-2026-06-21.json",
+        "path:data/candidate-changes/senolytics-coverage-repair-2026-06-21.json",
+        "path:data/candidate-changes/senolytics-scaffold-bootstrap-2026-06-21.json",
+        "target_record:candidate_change/senolytics-bone-rct-extraction-refresh-2026-06-21",
+        "target_record:candidate_change/senolytics-coverage-repair-2026-06-21",
+        "target_record:candidate_change/senolytics-scaffold-bootstrap-2026-06-21"
+      ],
+      "conflict_keys": [
+        "candidate_change:candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
+        "candidate_change:candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
+        "candidate_change:candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair",
+        "target_record:candidate_change/senolytics-bone-rct-extraction-refresh-2026-06-21",
+        "target_record:candidate_change/senolytics-coverage-repair-2026-06-21",
+        "target_record:candidate_change/senolytics-scaffold-bootstrap-2026-06-21",
+        "triage_job:candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21",
+        "triage_job:candidate-revision-senolytics-coverage-repair-2026-06-21",
+        "triage_job:candidate-revision-senolytics-scaffold-bootstrap-2026-06-21"
+      ],
+      "overlapping_execution_keys": [],
+      "expected_cost": {
+        "cost_class": "high",
+        "expected_wall_time_ms": 3600000,
+        "expected_token_budget": 300000,
+        "io_intensity": "medium"
+      },
+      "commands": [
+        [
+          "npm",
+          "run",
+          "agent:codex:worktree",
+          "--",
+          "--job-file",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21.json",
+          "--execute"
+        ],
+        [
+          "npm",
+          "run",
+          "agent:codex:worktree",
+          "--",
+          "--job-file",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-revision-senolytics-coverage-repair-2026-06-21.json",
+          "--execute"
+        ],
+        [
+          "npm",
+          "run",
+          "agent:codex:worktree",
+          "--",
+          "--job-file",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21.json",
+          "--execute"
+        ]
+      ]
+    },
+    {
+      "batch_id": "parallel-batch-002-extraction-refresh",
+      "sequence": 2,
+      "parallel_group": "extraction-refresh",
+      "execution_class": "reconciliation_required",
+      "reconciliation_required": true,
+      "job_ids": [
+        "self-healing-coverage-gap-senolytics-exact-effect-extraction",
+        "self-healing-coverage-gap-senolytics-safety-tables"
+      ],
+      "job_paths": [
+        "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-exact-effect-extraction.json",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-safety-tables.json"
+      ],
+      "agent_roles": [
+        "extraction_agent"
+      ],
+      "modes": [
+        "extraction_refresh"
+      ],
+      "read_sets": [
+        "path:data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+        "path:ops/triage-state.v1.json",
+        "triage_job:coverage-gap-senolytics-exact-effect-extraction",
+        "triage_job:coverage-gap-senolytics-safety-tables"
+      ],
+      "write_sets": [
+        "candidate_change:coverage-gap-senolytics-exact-effect-extraction-repair",
+        "candidate_change:coverage-gap-senolytics-safety-tables-repair",
+        "path:data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-repair.json",
+        "path:data/candidate-changes/coverage-gap-senolytics-safety-tables-repair.json",
+        "path:data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+        "target_record:coverage_assessment/senolytics-coverage-repair-2026-06-21"
+      ],
+      "conflict_keys": [
+        "candidate_change:coverage-gap-senolytics-exact-effect-extraction-repair",
+        "candidate_change:coverage-gap-senolytics-safety-tables-repair",
+        "target_record:coverage_assessment/senolytics-coverage-repair-2026-06-21",
+        "triage_job:coverage-gap-senolytics-exact-effect-extraction",
+        "triage_job:coverage-gap-senolytics-safety-tables"
+      ],
+      "overlapping_execution_keys": [
+        "path:data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+        "target_record:coverage_assessment/senolytics-coverage-repair-2026-06-21"
+      ],
+      "expected_cost": {
+        "cost_class": "high",
+        "expected_wall_time_ms": 3600000,
+        "expected_token_budget": 200000,
+        "io_intensity": "high"
+      },
+      "commands": [
+        [
+          "npm",
+          "run",
+          "agent:codex:worktree",
+          "--",
+          "--job-file",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-exact-effect-extraction.json",
+          "--execute"
+        ],
+        [
+          "npm",
+          "run",
+          "agent:codex:worktree",
+          "--",
+          "--job-file",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-safety-tables.json",
+          "--execute"
+        ]
+      ]
+    }
+  ],
+  "deferred_jobs": []
+}

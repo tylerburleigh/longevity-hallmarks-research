@@ -659,7 +659,7 @@ Tasks:
 - [x] Add export refresh sequencing and exclude raw agent-run logs from the process-language audit after smoke post-verify exposed stale generated artifacts and raw-log scan failures.
 - [x] Let the smoke-contract audit resolve either the live job spec or its archived completed snapshot after the smoke job is archived.
 - [x] Execute one isolated-worktree smoke job with `agent:codex:worktree --execute`, then inspect the final `agent_run`, command log, JSONL log, candidate ledger, archived job snapshot, reconciliation report, metrics report, and clean coordinator checkout.
-- [ ] Tighten synthetic smoke prompts or job budgets so tiny orchestration fixtures do not over-read broad repository context before writing expected outputs.
+- [x] Tighten synthetic smoke prompts or job budgets so tiny orchestration fixtures do not over-read broad repository context before writing expected outputs.
 - [ ] Execute a small parallel synthetic batch with independent jobs, then inspect batch-run state, worker worktrees, logs, outputs, reconciliation state, metrics state, and archive behavior.
 - [ ] Inject known failure modes: failed worker, missing output, overlapping writes, stale generated job, pending reconciliation, broken candidate ledger, post-step failure, and rerun/recovery after existing output.
 - [ ] Add or extend audits and regression fixtures for every weakness discovered during battle tests.
@@ -684,14 +684,13 @@ Exit criteria:
 
 ## Immediate Next Actions
 
-1. Tighten synthetic smoke prompts or job budgets so tiny orchestration fixtures stay bounded and fast.
-2. Execute a small parallel synthetic batch and inspect batch-run state, worker outputs, reconciliation, metrics, and archive behavior.
-3. Inject failure-mode runs and add audits or regression fixtures for every weakness discovered.
-4. After the battle-test readiness gate passes, run one bounded extraction-refresh pilot for a remaining human D+Q paper instead of launching DKD, IPF, and AD-risk cognition/mobility together.
-5. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
-6. Run supervisor-review lanes for `senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22`: source fidelity, extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
-7. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry or article text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
-8. Decide whether to install repo-local skills into the active Codex skills directory.
+1. Execute a small parallel synthetic batch and inspect batch-run state, worker outputs, reconciliation, metrics, and archive behavior.
+2. Inject failure-mode runs and add audits or regression fixtures for every weakness discovered.
+3. After the battle-test readiness gate passes, run one bounded extraction-refresh pilot for a remaining human D+Q paper instead of launching DKD, IPF, and AD-risk cognition/mobility together.
+4. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
+5. Run supervisor-review lanes for `senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22`: source fidelity, extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
+6. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry or article text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
+7. Decide whether to install repo-local skills into the active Codex skills directory.
 
 ## Change Log
 
@@ -702,6 +701,7 @@ Exit criteria:
 - 2026-06-22: Fourth orchestration smoke attempt produced the expected worker candidate and passed the worker-output contract, but post-verify caught a stale manifest hash after a standalone read-model refresh; removed the redundant read-model post-step and added final `export:latest` refreshes after wrapper annotations.
 - 2026-06-22: Fifth orchestration smoke attempt passed worker contract and post-verify, then coordinator archival exposed that the smoke-contract audit still expected the live job path; updated the audit to accept the archived completed job snapshot after archival.
 - 2026-06-22: Completed the isolated-worktree smoke job, imported the candidate, agent run, prompt snapshot, logs, archived job snapshot, reconciliation, metrics, triage, release-readiness, and consumer exports; full verification passed, with remaining efficiency debt around over-broad worker inspection.
+- 2026-06-22: Tightened synthetic smoke execution with a bounded smoke prompt, reusable smoke job template, and wrapper-enforced `max_command_events` guard so fixture jobs can fail fast when workers over-inspect the repository.
 - 2026-06-22: Added promotion-blocking reconciliation decisions so `promote:candidate` rejects overlapping candidate outputs, duplicate source/study conflicts, source-rights conflicts, incomplete ledgers, and pending isolated-worker outputs unless resolved by explicit reconciliation-decision records.
 - 2026-06-22: Added a Codex orchestration battle-test phase and moved broad extraction-refresh work behind synthetic smoke jobs, parallel execution drills, failure injection, recovery checks, metrics refresh, reconciliation checks, and a clean-worktree readiness gate.
 - 2026-06-22: Added generated orchestration metrics with schema, freshness audit, post-run refresh wiring, docs, and verification coverage for planned wall-clock savings, worker outcomes, duplicate-work pressure, conflict rate, accepted outputs, extraction-debt pressure, and release artifacts.

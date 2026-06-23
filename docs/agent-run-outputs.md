@@ -25,7 +25,7 @@ Reusable worker prompt templates live in `docs/prompts/codex-agents/`.
 
 Executed run prompt snapshots live in `research/agent-runs/prompts/`. These are audit artifacts, not reusable documentation. `agent_run.execution.prompt_file` should point to the snapshot used for that run. When a reusable template was the source, `agent_run.execution.prompt_template_file` should point back to the template.
 
-Codex job templates live in `docs/templates/codex-jobs/`. Use them when a run needs a durable execution spec that includes scope, expected outputs, post-run gates, timeout settings, and review-lane expectations.
+Codex job templates live in `docs/templates/codex-jobs/`. Use them when a run needs a durable execution spec that includes scope, expected outputs, post-run gates, execution guards, and review-lane expectations.
 
 Persisted job specs under `ops/codex-jobs/` are enforced by `npm run audit:codex-jobs`. Runnable jobs live under `ops/codex-jobs/live/`; executed or retired snapshots live under `ops/codex-jobs/archive/`. The audit checks that final archived jobs match the final `agent_run`, candidate ledger, expected paths, review lanes, quality gates, logs, and post-run checks.
 

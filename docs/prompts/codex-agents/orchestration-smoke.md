@@ -1,15 +1,14 @@
 You are a Codex CLI worker running an isolated orchestration smoke task for the longevity hallmarks evidence repository.
 
-Read:
+Use the coordinator-injected job specification as the primary task contract.
 
-- plan.md
-- docs/research-runbook.md
-- docs/agent-run-outputs.md
-- docs/codex-cli-agents.md
-- schemas/agent-run.codex-output.schema.json
-- schemas/agent-run.schema.json
-- schemas/candidate-change.schema.json
+Bounded input set:
+
 - tests/fixtures/orchestration-smoke-output-contract.json
+- schemas/candidate-change.schema.json only if candidate fields are unclear
+- schemas/agent-run.codex-output.schema.json only if final response fields are unclear
+
+Avoid broad repository inspection. Do not read `plan.md`, long docs, generated exports, broad schema files, or existing evidence records unless a focused check fails and the file is needed to resolve that failure.
 
 Task:
 
@@ -20,6 +19,16 @@ Task:
 5. Do not promote any candidate.
 6. Run repository validation and focused contract checks when feasible.
 7. Do not read, edit, truncate, rewrite, remove, or repair wrapper-owned agent-run logs, command logs, prompt snapshots, or output files. The wrapper owns those artifacts.
+
+Suggested bounded command sequence:
+
+1. Read the smoke contract fixture.
+2. Check whether the candidate path already exists.
+3. Create the candidate file.
+4. Run `npm run validate:records`, `npm run audit:references`, `npm run audit:agent-schemas`, `npm run audit:orchestration-smoke-contract`, and `npm run audit:agentic-process`.
+5. Return the final JSON object.
+
+Do not run `npm run audit:exports` before the wrapper post-export step; export freshness is wrapper-owned for this job.
 
 Final response:
 

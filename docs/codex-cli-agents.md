@@ -39,7 +39,9 @@ npm run agent:codex -- \
   --job-file ops/codex-jobs/live/<agent-run-id>.json
 ```
 
-Job files use `record_type: "codex_job"` and are validated by `schemas/codex-job.schema.json` when stored under validated repository roots such as `ops/`. Runnable jobs live under `ops/codex-jobs/live/` with `lifecycle_status` set to `planned`, `ready`, or `running`. Executed or retired snapshots live under `ops/codex-jobs/archive/` with final lifecycle metadata. Command-line flags override matching live-job fields, so a coordinator can reuse the same job spec with a different `--workdir`, `--execute`, or timeout setting.
+Job files use `record_type: "codex_job"` and are validated by `schemas/codex-job.schema.json` when stored under validated repository roots such as `ops/`. Runnable jobs live under `ops/codex-jobs/live/` with `lifecycle_status` set to `planned`, `ready`, or `running`. Executed or retired snapshots live under `ops/codex-jobs/archive/` with final lifecycle metadata. Command-line flags override matching live-job fields, so a coordinator can reuse the same job spec with a different `--workdir`, `--execute`, or execution guard.
+
+Job execution guards may include `timeout_ms`, `no_output_timeout_ms`, and `max_command_events`. Use low `max_command_events` budgets for synthetic smoke jobs and other fixture jobs whose expected command sequence is known.
 
 By default, the wrapper writes a dry-run command plan under `research/agent-runs/logs/`. Add `--execute` only when the worktree is ready for the worker to run.
 
@@ -75,6 +77,7 @@ Optional execution guards:
 
 - `--timeout-ms <integer>` stops a worker that exceeds the wall-clock limit.
 - `--no-output-timeout-ms <integer>` stops a worker that produces no JSONL stdout for the configured interval.
+- `--max-command-events <integer>` stops a worker after it starts more than the configured number of shell command events.
 
 The worker returns the final JSON object as its final message. The wrapper writes that object to `--output`; the worker should not write the `agent_run` output path directly.
 
@@ -229,7 +232,7 @@ npm run audit:orchestration-smoke-contract
 
 The smoke-contract audit resolves the live job before execution and the archived completed job snapshot after archival.
 
-Run it only from a committed coordinator checkout. The expected sequence is isolated execution, candidate/output import, post-run export and verification, completed-job archival, then a full `npm run verify:knowledge-base`.
+For the next smoke run, start from `docs/templates/codex-jobs/orchestration-smoke.json`, fill unique IDs, update the smoke contract fixture, and keep `execution.max_command_events` low. Run it only from a committed coordinator checkout. The expected sequence is isolated execution, candidate/output import, post-run export and verification, completed-job archival, then a full `npm run verify:knowledge-base`.
 
 For a completed single-job run whose output has been imported into the coordinator checkout, archive the live job with:
 

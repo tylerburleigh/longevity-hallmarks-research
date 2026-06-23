@@ -690,14 +690,14 @@ Exit criteria:
 
 ## Immediate Next Actions
 
-1. Run supervisor-review lanes for `senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
-2. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
-3. Run supervisor-review lanes for `senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22`: source fidelity, extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
-4. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry or article text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
-5. Decide whether to install repo-local skills into the active Codex skills directory.
+1. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
+2. Run supervisor-review lanes for `senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22`: source fidelity, extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
+3. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry or article text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
+4. Decide whether to install repo-local skills into the active Codex skills directory.
 
 ## Change Log
 
+- 2026-06-23: Completed four supervisor-review lanes for the D+Q headache adverse-event extraction candidate. The extraction-fidelity, taxonomy-mapping, safety-limitations, and synthesis-boundary reviews are accepting and non-blocking; the candidate is now in_review with all required lanes linked, while promotion remains a separate coordinator action.
 - 2026-06-23: Added structured `result.adverse_event` fields for preferred terms, arm-level event counts, count-status semantics, and zero-handling; migrated the D+Q headache result and safety synthesis boundary; added adverse-event pooling audits, read-model `adverse_event_json`, consumer-contract text, and regression coverage for unsafe comparative safety effects.
 - 2026-06-23: Added extraction context packs as first-class records with schema validation, path/locator audits, Codex job conformance checks, a D+Q headache table-row pack, a reusable extraction-refresh table-row job template, prompt guidance to read packs before broad discovery, and regression coverage for broken retained-artifact paths.
 - 2026-06-22: Added an orchestration smoke Codex job, reusable smoke prompt, fixture contract audit, live-job post-audit deferral, single-job archival command, and archive-time agent-run job-file relinking so isolated execution can be battle-tested before production extraction-refresh jobs.

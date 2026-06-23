@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "triage_state",
   "id": "triage-state-v1",
-  "generated_at": "2026-06-23T13:12:25.751Z",
+  "generated_at": "2026-06-23T14:07:50.715Z",
   "source_roots": [
     "data",
     "research"
@@ -67,8 +67,8 @@
   ],
   "summary": {
     "candidate_count": 14,
-    "promotion_ready_count": 0,
-    "needs_review_count": 2,
+    "promotion_ready_count": 1,
+    "needs_review_count": 1,
     "needs_revision_count": 3,
     "blocked_count": 0,
     "accepted_count": 5,
@@ -263,28 +263,33 @@
     {
       "candidate_change_id": "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
       "path": "data/candidate-changes/senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23.json",
-      "lifecycle_status": "submitted",
-      "readiness_status": "needs_review",
+      "lifecycle_status": "in_review",
+      "readiness_status": "promotion_ready",
       "required_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
         "synthesis_boundary",
         "taxonomy_mapping"
       ],
-      "active_review_ids": [],
-      "complete_accepting_review_lanes": [],
-      "missing_review_lanes": [
+      "active_review_ids": [
+        "senolytics-dq-bone-headache-ae-extraction-fidelity-2026-06-23",
+        "senolytics-dq-bone-headache-ae-safety-limitations-2026-06-23",
+        "senolytics-dq-bone-headache-ae-synthesis-boundary-2026-06-23",
+        "senolytics-dq-bone-headache-ae-taxonomy-mapping-2026-06-23"
+      ],
+      "complete_accepting_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
         "synthesis_boundary",
         "taxonomy_mapping"
       ],
+      "missing_review_lanes": [],
       "revision_review_lanes": [],
       "blocking_review_ids": [],
       "open_major_or_critical_review_ids": [],
       "proposed_record_count": 3,
       "next_actions": [
-        "Run supervisor review lanes: extraction_fidelity, safety_limitations, synthesis_boundary, taxonomy_mapping."
+        "Promote candidate with npm run promote:candidate -- senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23 --status accepted after coordinator selection."
       ]
     },
     {
@@ -454,32 +459,10 @@
       ]
     }
   ],
-  "promotion_ready_candidate_ids": [],
+  "promotion_ready_candidate_ids": [
+    "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23"
+  ],
   "missing_review_lane_queue": [
-    {
-      "candidate_change_id": "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
-      "path": "data/candidate-changes/senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23.json",
-      "review_lane": "extraction_fidelity",
-      "next_action": "Run extraction_fidelity supervisor review for senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23."
-    },
-    {
-      "candidate_change_id": "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
-      "path": "data/candidate-changes/senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23.json",
-      "review_lane": "safety_limitations",
-      "next_action": "Run safety_limitations supervisor review for senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23."
-    },
-    {
-      "candidate_change_id": "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
-      "path": "data/candidate-changes/senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23.json",
-      "review_lane": "synthesis_boundary",
-      "next_action": "Run synthesis_boundary supervisor review for senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23."
-    },
-    {
-      "candidate_change_id": "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
-      "path": "data/candidate-changes/senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23.json",
-      "review_lane": "taxonomy_mapping",
-      "next_action": "Run taxonomy_mapping supervisor review for senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23."
-    },
     {
       "candidate_change_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
       "path": "data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json",
@@ -1247,13 +1230,14 @@
   ],
   "recommended_jobs": [
     {
-      "job_id": "candidate-review-senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
-      "job_type": "candidate_review",
+      "job_id": "candidate-promotion-senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
+      "job_type": "candidate_promotion",
       "priority": "high",
       "source": "candidate_readiness",
       "target_record_type": "candidate_change",
       "target_record_id": "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
-      "rationale": "Required review lanes are missing: extraction_fidelity, safety_limitations, synthesis_boundary, taxonomy_mapping.",
+      "rationale": "All required active review lanes are complete, accepting, non-blocking, and free of open major or critical findings.",
+      "suggested_command": "npm run promote:candidate -- senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23 --status accepted --dry-run",
       "inputs": [
         "data/candidate-changes/senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23.json"
       ]

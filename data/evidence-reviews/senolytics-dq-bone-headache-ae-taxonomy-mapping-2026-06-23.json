@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-dq-bone-headache-ae-taxonomy-mapping-2026-06-23",
+  "candidate_change_id": "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
+  "review_lane": "taxonomy_mapping",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex-supervisor-agent",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Taxonomy mapping is complete for the headache adverse-event candidate. The result and synthesis update remain within the senolytics track, dasatinib-quercetin intervention, D+Q bone RCT study, and safety outcome scope without adding unsupported efficacy or hallmark labels.",
+  "findings": [
+    {
+      "finding_id": "senolytics-scope-aligned",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The candidate maps to senolytics, dasatinib-quercetin, cellular_senescence, and stem_cell_exhaustion consistently with the parent D+Q bone records.",
+      "why_it_matters": "Stable identifiers keep the headache adverse-event result filterable with the D+Q bone safety evidence set.",
+      "recommended_action": "Keep the result under the existing D+Q bone safety outcome and do not split it into a separate track.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "safety-not-efficacy",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The candidate treats headache as a safety_event result rather than an efficacy, biomarker, or hallmark-response endpoint.",
+      "why_it_matters": "This prevents consumers from mixing adverse-event burden with treatment-effect evidence for bone or senescence biomarkers.",
+      "recommended_action": "Continue routing event-specific adverse-event terms through safety outcomes and safety synthesis groups.",
+      "resolution_status": "closed"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-dq-bone-headache-ae-synthesis-boundary-2026-06-23",
+  "candidate_change_id": "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
+  "review_lane": "synthesis_boundary",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex-supervisor-agent",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Synthesis boundary review is complete for the headache adverse-event candidate. The candidate adds a term-specific safety result and updates the 20-week safety synthesis group while keeping pooling blocked because event-specific control counts, comparative effects, uncertainty, and multiple compatible safety results remain unavailable.",
+  "findings": [
+    {
+      "finding_id": "pooling-remains-blocked",
+      "severity": "note",
+      "category": "endpoint_boundary",
+      "claim_or_issue": "The safety synthesis group still uses pooling_blocked after adding the headache result.",
+      "why_it_matters": "The new structured adverse-event fields improve extraction quality but do not make the single-trial safety row meta-analyzable.",
+      "recommended_action": "Require explicit arm counts, effect values, uncertainty, and compatible additional results before any pooling_allowed change.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "term-specific-boundary-preserved",
+      "severity": "note",
+      "category": "interpretation_overreach",
+      "claim_or_issue": "The candidate stays bounded to the headache preferred-term row and does not broaden to all adverse-event terms.",
+      "why_it_matters": "Term-specific extraction should be auditable row by row so safety synthesis can distinguish headache from gastrointestinal, fatigue, pain, and aggregate adverse-event records.",
+      "recommended_action": "Use separate context-pack bounded extraction jobs for additional adverse-event terms.",
+      "resolution_status": "closed"
+    }
+  ]
+}

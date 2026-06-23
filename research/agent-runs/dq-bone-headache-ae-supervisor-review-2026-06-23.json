@@ -1,0 +1,132 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "dq-bone-headache-ae-supervisor-review-2026-06-23",
+  "agent_role": "supervisor_agent",
+  "agent_id": "codex-coordinator",
+  "mode": "extraction_refresh",
+  "started_at": "2026-06-23T14:00:00Z",
+  "completed_at": "2026-06-23T14:06:40Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "Run supervisor-review lanes for the D+Q bone headache adverse-event extraction candidate.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": [
+      "dasatinib-quercetin"
+    ]
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "interactive_session",
+    "isolation": "foreground_checkout",
+    "workspace_path": "/home/tyler/Workspace/longevity-hallmarks-research",
+    "sandbox": "danger-full-access",
+    "approval_policy": "not_applicable"
+  },
+  "inputs": [
+    {
+      "input_type": "plan_item",
+      "reference": "plan.md#Immediate Next Actions",
+      "summary": "Plan requested supervisor-review lanes for the D+Q headache adverse-event extraction candidate."
+    },
+    {
+      "input_type": "candidate_change",
+      "reference": "data/candidate-changes/senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23.json",
+      "summary": "Reviewed candidate lifecycle, required review lanes, proposed headache result, and safety synthesis update."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/results/dq-bone-headache-20wk-descriptive.json",
+      "summary": "Reviewed the structured headache adverse_event fields, source-located provenance, blank control-cell semantics, and descriptive effect boundary."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+      "summary": "Reviewed safety synthesis compatibility, missing effect fields, and pooling_blocked rationale after the headache term-specific update."
+    },
+    {
+      "input_type": "other",
+      "reference": "ops/extraction-context-packs/dq-bone-headache-ae-table-row-2026-06-23.json",
+      "summary": "Used the retained context pack to verify table row scope, source locators, target records, and source-artifact hashes."
+    }
+  ],
+  "outputs": {
+    "summary": "Completed extraction_fidelity, taxonomy_mapping, safety_limitations, and synthesis_boundary supervisor-review lanes for the D+Q bone headache adverse-event extraction candidate; set the candidate to in_review and linked the four accepting, non-blocking evidence reviews.",
+    "candidate_change_id": "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
+        "path": "data/candidate-changes/senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23.json",
+        "change_type": "update",
+        "rationale": "Moved the candidate to in_review and linked the four active supervisor-agent evidence review records."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "senolytics-dq-bone-headache-ae-extraction-fidelity-2026-06-23",
+        "path": "data/evidence-reviews/senolytics-dq-bone-headache-ae-extraction-fidelity-2026-06-23.json",
+        "change_type": "create",
+        "rationale": "Records the completed extraction-fidelity supervisor review for the headache adverse-event candidate."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "senolytics-dq-bone-headache-ae-taxonomy-mapping-2026-06-23",
+        "path": "data/evidence-reviews/senolytics-dq-bone-headache-ae-taxonomy-mapping-2026-06-23.json",
+        "change_type": "create",
+        "rationale": "Records the completed taxonomy-mapping supervisor review for the headache adverse-event candidate."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "senolytics-dq-bone-headache-ae-safety-limitations-2026-06-23",
+        "path": "data/evidence-reviews/senolytics-dq-bone-headache-ae-safety-limitations-2026-06-23.json",
+        "change_type": "create",
+        "rationale": "Records the completed safety-limitations supervisor review for the headache adverse-event candidate."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "senolytics-dq-bone-headache-ae-synthesis-boundary-2026-06-23",
+        "path": "data/evidence-reviews/senolytics-dq-bone-headache-ae-synthesis-boundary-2026-06-23.json",
+        "change_type": "create",
+        "rationale": "Records the completed synthesis-boundary supervisor review for the headache adverse-event candidate."
+      }
+    ],
+    "generated_files": [
+      "data/evidence-reviews/senolytics-dq-bone-headache-ae-extraction-fidelity-2026-06-23.json",
+      "data/evidence-reviews/senolytics-dq-bone-headache-ae-taxonomy-mapping-2026-06-23.json",
+      "data/evidence-reviews/senolytics-dq-bone-headache-ae-safety-limitations-2026-06-23.json",
+      "data/evidence-reviews/senolytics-dq-bone-headache-ae-synthesis-boundary-2026-06-23.json"
+    ],
+    "export_paths": [
+      "exports/latest/audit-manifest.json",
+      "exports/latest/coverage-status.json",
+      "exports/latest/evidence-map.json",
+      "ops/triage-state.v1.json",
+      "ops/release-readiness.v1.json",
+      "ops/reconciliation/parallel-reconciliation.v1.json",
+      "ops/codex-batches/orchestration-metrics.v1.json"
+    ]
+  },
+  "quality_checks": [
+    {
+      "check_name": "supervisor_review_lanes",
+      "status": "passed",
+      "summary": "Verified extraction_fidelity, taxonomy_mapping, safety_limitations, and synthesis_boundary reviews are complete, accepting, non-blocking, and free of open major or critical findings."
+    },
+    {
+      "check_name": "validate_records",
+      "status": "passed",
+      "summary": "npm run validate:records passed after adding the four review records and candidate linkage."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": [
+    "Refresh generated control-plane state and run full repository verification.",
+    "Use the promotion command only if coordinator scope calls for accepting this candidate."
+  ]
+}

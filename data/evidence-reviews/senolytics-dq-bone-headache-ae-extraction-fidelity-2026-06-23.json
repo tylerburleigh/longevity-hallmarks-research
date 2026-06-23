@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-dq-bone-headache-ae-extraction-fidelity-2026-06-23",
+  "candidate_change_id": "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
+  "review_lane": "extraction_fidelity",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex-supervisor-agent",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Extraction fidelity is complete for the headache adverse-event candidate. The proposed result is bounded to the retained Extended Data Table 1 headache row, preserves the D+Q 16/30 count, records the blank control cell as not reported or below threshold, and cites both the table and safety-section provenance.",
+  "findings": [
+    {
+      "finding_id": "headache-row-values-preserved",
+      "severity": "note",
+      "category": "extraction_error",
+      "claim_or_issue": "The structured adverse_event fields preserve the source row values: control blank and D+Q 16 (53%).",
+      "why_it_matters": "Consumers can recover the extracted count without reading prose fields or treating the blank control cell as an explicit zero.",
+      "recommended_action": "Keep the table-row provenance and adverse_event count-status fields attached to the result.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "control-blank-not-zero",
+      "severity": "note",
+      "category": "missing_caveat",
+      "claim_or_issue": "The control arm headache count is encoded as not_reported_or_below_threshold, not zero.",
+      "why_it_matters": "This prevents downstream effect calculations that would depend on unsupported zero handling.",
+      "recommended_action": "Do not add a comparative effect unless a retained source or schema rule supports explicit zero semantics.",
+      "resolution_status": "closed"
+    }
+  ]
+}

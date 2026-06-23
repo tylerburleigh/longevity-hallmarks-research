@@ -121,6 +121,7 @@ const generatedTableColumns = {
     "effect_json",
     "sample_size_json",
     "group_values_json",
+    "adverse_event_json",
     "analysis_json"
   ],
   synthesis_groups: [
@@ -658,6 +659,7 @@ export function buildReadModelRows(entries) {
         effect_json: jsonValue(record.effect ?? null),
         sample_size_json: jsonValue(record.sample_size ?? null),
         group_values_json: arrayJson(record.group_values),
+        adverse_event_json: jsonValue(record.adverse_event ?? null),
         analysis_json: jsonValue(record.analysis ?? null)
       });
     }
@@ -836,6 +838,7 @@ CREATE TABLE results (
   effect_json TEXT,
   sample_size_json TEXT,
   group_values_json TEXT,
+  adverse_event_json TEXT,
   analysis_json TEXT
 );
 
@@ -961,6 +964,7 @@ SELECT
   r.effect_json,
   r.sample_size_json,
   r.group_values_json,
+  r.adverse_event_json,
   r.provenance_json,
   r.canonical_sha256
 FROM results r

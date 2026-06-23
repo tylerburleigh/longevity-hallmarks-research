@@ -3,7 +3,7 @@
   "record_type": "consumer_output_contract",
   "id": "latest-consumer-output-contract",
   "contract_version": "0.1.0",
-  "generated_at": "2026-06-23T12:10:48.783Z",
+  "generated_at": "2026-06-23T13:12:26.196Z",
   "canonical_source_of_truth": "Canonical JSON records under data/ and research/ remain authoritative.",
   "generated_export_root": "exports/latest",
   "stability_model": {
@@ -255,7 +255,7 @@
         "accepted"
       ],
       "intended_uses": [
-        "Structured extracted-result analysis, evidence tables, and synthesis-readiness screening."
+        "Structured extracted-result analysis, adverse-event term/count retrieval, evidence tables, and synthesis-readiness screening."
       ],
       "prohibited_uses": [
         "Do not pool without checking effect value, uncertainty, comparator, sample size, and synthesis_group compatibility."
@@ -266,7 +266,8 @@
         "source_id",
         "source_snapshot_id",
         "text_snapshot_id",
-        "provenance"
+        "provenance",
+        "adverse_event"
       ]
     },
     {
@@ -448,7 +449,7 @@
         "canonical_sha256"
       ],
       "intended_uses": [
-        "SQLite joins across sources, studies, outcomes, results, reviews, candidates, and synthesis groups.",
+        "SQLite joins across sources, studies, outcomes, results, adverse-event fields, reviews, candidates, and synthesis groups.",
         "Agent queries that need indexed access without reparsing every canonical JSON file."
       ],
       "prohibited_uses": [

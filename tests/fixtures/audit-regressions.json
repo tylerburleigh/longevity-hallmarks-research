@@ -510,6 +510,54 @@
       ]
     },
     {
+      "id": "broken-extraction-context-pack-artifact",
+      "description": "Extraction context packs must point at retained artifacts that exist.",
+      "command": [
+        "npm",
+        "run",
+        "audit:extraction-context-packs"
+      ],
+      "operations": [
+        {
+          "type": "set_json",
+          "path": "ops/extraction-context-packs/dq-bone-headache-ae-table-row-2026-06-23.json",
+          "pointer": "/source_context/artifact_paths/0/path",
+          "value": "artifacts/sources/pmid-38956196/missing-article.md"
+        }
+      ],
+      "expected_failure_substrings": [
+        "Extraction context-pack audit failed",
+        "source_context.artifact_paths[0].path path does not exist"
+      ]
+    },
+    {
+      "id": "adverse-event-zero-handling-blocks-effect",
+      "description": "Safety-event results cannot encode comparative effects when adverse-event zero handling blocks them.",
+      "command": [
+        "npm",
+        "run",
+        "audit:references"
+      ],
+      "operations": [
+        {
+          "type": "set_json",
+          "path": "data/results/dq-bone-headache-20wk-descriptive.json",
+          "pointer": "/effect/measure",
+          "value": "risk_ratio"
+        },
+        {
+          "type": "set_json",
+          "path": "data/results/dq-bone-headache-20wk-descriptive.json",
+          "pointer": "/effect/value",
+          "value": 2.0
+        }
+      ],
+      "expected_failure_substrings": [
+        "adverse_event.zero_handling blocks comparative effects",
+        "comparative estimate"
+      ]
+    },
+    {
       "id": "deprecated-non-agentic-process-vocabulary",
       "description": "Agentic process audit must reject deprecated process vocabulary.",
       "command": [

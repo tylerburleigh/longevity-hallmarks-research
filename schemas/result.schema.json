@@ -190,6 +190,88 @@
         }
       }
     },
+    "adverse_event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "preferred_term",
+        "term_source",
+        "event_specific_counts",
+        "zero_handling"
+      ],
+      "properties": {
+        "preferred_term": {
+          "type": "string"
+        },
+        "term_source": {
+          "enum": [
+            "publication_table",
+            "trial_registry",
+            "meddra",
+            "source_text",
+            "agent_normalized",
+            "other"
+          ]
+        },
+        "seriousness": {
+          "enum": [
+            "serious",
+            "non_serious",
+            "mixed",
+            "not_reported"
+          ]
+        },
+        "severity": {
+          "enum": [
+            "mild",
+            "moderate",
+            "severe",
+            "mixed",
+            "not_reported"
+          ]
+        },
+        "relatedness": {
+          "enum": [
+            "related",
+            "not_related",
+            "mixed",
+            "not_reported"
+          ]
+        },
+        "event_specific_counts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/adverseEventArmCount"
+          },
+          "minItems": 1
+        },
+        "zero_handling": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "control_zero_status",
+            "supports_comparative_effect"
+          ],
+          "properties": {
+            "control_zero_status": {
+              "enum": [
+                "explicit_zero",
+                "not_reported",
+                "not_reported_or_below_threshold",
+                "not_applicable",
+                "unknown"
+              ]
+            },
+            "supports_comparative_effect": {
+              "type": "boolean"
+            },
+            "rationale": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
     "direction": {
       "$ref": "./common.schema.json#/$defs/evidenceDirection"
     },
@@ -223,6 +305,129 @@
         "type": "string"
       },
       "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "adverseEventArmCount": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "arm_id",
+        "arm_label",
+        "sample_size",
+        "count_status",
+        "raw_value"
+      ],
+      "properties": {
+        "arm_id": {
+          "type": "string"
+        },
+        "arm_label": {
+          "type": "string"
+        },
+        "sample_size": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "count_status": {
+          "enum": [
+            "reported_count",
+            "explicit_zero",
+            "not_reported",
+            "not_reported_or_below_threshold",
+            "not_applicable",
+            "unknown"
+          ]
+        },
+        "event_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "percent": {
+          "type": "number",
+          "minimum": 0
+        },
+        "raw_value": {
+          "type": "string"
+        },
+        "interpretation": {
+          "type": "string"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "count_status": {
+                "enum": [
+                  "reported_count",
+                  "explicit_zero"
+                ]
+              }
+            },
+            "required": [
+              "count_status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "event_count": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "event_count"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "count_status": {
+                "const": "explicit_zero"
+              }
+            },
+            "required": [
+              "count_status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "event_count": {
+                "const": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "count_status": {
+                "enum": [
+                  "not_reported",
+                  "not_reported_or_below_threshold",
+                  "not_applicable",
+                  "unknown"
+                ]
+              }
+            },
+            "required": [
+              "count_status"
+            ]
+          },
+          "then": {
+            "not": {
+              "properties": {
+                "event_count": {}
+              },
+              "required": [
+                "event_count"
+              ]
+            }
+          }
+        }
+      ]
     }
   }
 }

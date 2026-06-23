@@ -119,9 +119,9 @@ const artifactContractDetails = {
     record_types: ["result"],
     required_fields: ["record_type", "id", "source_id", "study_id", "outcome_id", "maturity_status", "provenance"],
     maturity_scope: ["registry_extracted", "full_text_extracted", "agent_reviewed", "supervisor_agent_reviewed", "accepted"],
-    intended_uses: ["Structured extracted-result analysis, evidence tables, and synthesis-readiness screening."],
+    intended_uses: ["Structured extracted-result analysis, adverse-event term/count retrieval, evidence tables, and synthesis-readiness screening."],
     prohibited_uses: ["Do not pool without checking effect value, uncertainty, comparator, sample size, and synthesis_group compatibility."],
-    traceability_fields: ["record_type", "id", "source_id", "source_snapshot_id", "text_snapshot_id", "provenance"]
+    traceability_fields: ["record_type", "id", "source_id", "source_snapshot_id", "text_snapshot_id", "provenance", "adverse_event"]
   },
   "exports/latest/results.registry_extracted.jsonl": {
     stability: "stable",
@@ -185,7 +185,7 @@ const artifactContractDetails = {
     ],
     required_fields: ["record_type", "id", "path", "maturity_status", "provenance_json", "canonical_json", "canonical_sha256"],
     intended_uses: [
-      "SQLite joins across sources, studies, outcomes, results, reviews, candidates, and synthesis groups.",
+      "SQLite joins across sources, studies, outcomes, results, adverse-event fields, reviews, candidates, and synthesis groups.",
       "Agent queries that need indexed access without reparsing every canonical JSON file."
     ],
     prohibited_uses: [

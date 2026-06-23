@@ -34,8 +34,8 @@
   ],
   "compatibility_status": "needs_extraction",
   "pooling_decision": "pooling_blocked",
-  "pooling_rationale": "Pooling remains blocked after adding the headache-specific result. The new result preserves the D+Q headache count from Extended Data Table 1 and the blank control-cell ambiguity, but it does not provide a defensible D+Q versus control risk ratio, risk difference, CI, standard error, or variance. The current result schema also cannot directly encode adverse_event.preferred_term or adverse_event.event_specific_counts as structured fields.",
-  "non_pooling_reason": "Do not pool safety until adverse events are represented with structured preferred terms, event-specific arm counts with explicit zero/not-reported semantics, a valid comparison, and effect uncertainty from at least two compatible safety results.",
+  "pooling_rationale": "Pooling remains blocked after adding structured headache adverse-event fields. The headache result now preserves the preferred term, D+Q headache count, and blank control-cell semantics, but it still does not provide an explicit control event count, defensible D+Q versus control risk ratio, risk difference, CI, standard error, or variance.",
+  "non_pooling_reason": "Do not pool safety until adverse events have structured preferred terms, event-specific arm counts with explicit zero/not-reported semantics, a valid comparison, and effect uncertainty from at least two compatible safety results.",
   "pooling_requirements": {
     "minimum_result_count": 2,
     "required_result_maturity_statuses": [
@@ -84,11 +84,10 @@
         "missing_fields": [
           "effect.value",
           "effect.uncertainty",
-          "adverse_event.preferred_term",
           "adverse_event.event_specific_counts"
         ],
         "impact": "blocks_pooling",
-        "note": "The term-specific result records the headache row using valid result fields and the D+Q 16/30 group value, but the result schema has no structured adverse_event object and the control cell remains blank/ambiguous rather than an explicit event count."
+        "note": "The term-specific result now has structured adverse_event.preferred_term and arm-level count-status fields. Pooling remains blocked because the control headache cell is blank/ambiguous rather than an explicit event count, and no comparative effect or uncertainty is available."
       }
     ]
   },
@@ -97,8 +96,8 @@
     "supervisor_agent": "pending-supervisor-review",
     "audit_status": "passed",
     "self_healing_actions": [
-      "Keep safety pooling blocked until adverse events are split into term-specific result records with explicit zero/not-reported semantics.",
-      "Extend the result schema before treating adverse_event.preferred_term or adverse_event.event_specific_counts as directly structured extraction fields.",
+      "Keep safety pooling blocked until adverse-event records have explicit event counts or explicit zero semantics for every compared arm.",
+      "Use result.adverse_event preferred-term and event-specific count fields for future term-level safety extraction.",
       "Create comparative safety effect records only when the extraction process can derive or source risk ratios, risk differences, and uncertainty without unsupported assumptions."
     ]
   },

@@ -163,6 +163,31 @@ function checkPathExists({ issues, ownerPath, field, relativePath }) {
   });
 }
 
+async function readOptionalJson({ issues, ownerPath, field, relativePath }) {
+  if (!relativePath) {
+    return undefined;
+  }
+
+  const resolvedPath = path.resolve(workspaceRoot, relativePath);
+  const normalizedPath = toPosixRelative(resolvedPath);
+  if (!normalizedPath || normalizedPath.startsWith("..")) {
+    issues.push(`${ownerPath}: ${field} must stay inside the repository: ${relativePath}.`);
+    return undefined;
+  }
+
+  if (!(await exists(resolvedPath))) {
+    issues.push(`${ownerPath}: ${field} path does not exist: ${relativePath}.`);
+    return undefined;
+  }
+
+  try {
+    return JSON.parse(await fs.readFile(resolvedPath, "utf8"));
+  } catch (error) {
+    issues.push(`${ownerPath}: ${field} is not valid JSON: ${error.message}`);
+    return undefined;
+  }
+}
+
 function candidateChangeIdsFromReadSets(readSets) {
   return (readSets ?? [])
     .map((key) => key.match(/^path:data\/candidate-changes\/([^/]+)\.json$/)?.[1])
@@ -391,6 +416,87 @@ function checkActiveCommandBudget({ issues, job, ownerPath }) {
   }
 }
 
+async function checkContextPack({ issues, job, ownerPath }) {
+  const isRunnableLiveJob = ownerPath.startsWith(liveJobPathPrefix) && activeJobStatuses.has(job.lifecycle_status);
+  const isExtractionPilot = job.mode === "extraction_refresh" && job.orchestration?.parallel_group === "extraction-pilot";
+
+  if (isRunnableLiveJob && isExtractionPilot && !job.context_pack_path) {
+    issues.push(`${ownerPath}: live extraction-pilot jobs must declare context_pack_path.`);
+    return;
+  }
+
+  if (!job.context_pack_path) {
+    return;
+  }
+
+  const contextPack = await readOptionalJson({
+    issues,
+    ownerPath,
+    field: "context_pack_path",
+    relativePath: job.context_pack_path
+  });
+
+  if (!contextPack) {
+    return;
+  }
+
+  if (contextPack.record_type !== "extraction_context_pack") {
+    issues.push(`${ownerPath}: context_pack_path must reference record_type "extraction_context_pack".`);
+    return;
+  }
+
+  const readSets = job.orchestration?.read_sets ?? [];
+  if (!readSets.includes(`context_pack:${contextPack.id}`)) {
+    issues.push(`${ownerPath}: orchestration.read_sets missing context pack key "context_pack:${contextPack.id}".`);
+  }
+
+  for (const field of ["hallmark_ids", "track_ids", "intervention_ids", "source_ids", "study_ids", "outcome_ids", "result_ids"]) {
+    checkArrayEqual({
+      issues,
+      ownerPath,
+      field: `context_pack.scope.${field}`,
+      expected: contextPack.scope?.[field],
+      actual: job.scope?.[field]
+    });
+  }
+
+  checkEqual({
+    issues,
+    ownerPath,
+    field: "context_pack.expected_outputs.candidate_change_id",
+    expected: contextPack.expected_outputs?.candidate_change_id,
+    actual: job.expected_outputs?.candidate_change_id
+  });
+  checkArrayEqual({
+    issues,
+    ownerPath,
+    field: "context_pack.expected_outputs.proposed_record_paths",
+    expected: contextPack.expected_outputs?.proposed_record_paths,
+    actual: job.expected_outputs?.proposed_record_paths
+  });
+  checkArrayEqual({
+    issues,
+    ownerPath,
+    field: "context_pack.expected_outputs.generated_file_paths",
+    expected: contextPack.expected_outputs?.generated_file_paths,
+    actual: job.expected_outputs?.generated_file_paths
+  });
+  checkArrayEqual({
+    issues,
+    ownerPath,
+    field: "context_pack.expected_outputs.export_paths",
+    expected: contextPack.expected_outputs?.export_paths,
+    actual: job.expected_outputs?.export_paths
+  });
+  checkArrayEqual({
+    issues,
+    ownerPath,
+    field: "context_pack.expected_outputs.required_review_lanes",
+    expected: contextPack.expected_outputs?.required_review_lanes,
+    actual: job.expected_outputs?.required_review_lanes
+  });
+}
+
 async function checkCodexJob({ issues, job, ownerPath }) {
   await checkPathExists({ issues, ownerPath, field: "prompt_file", relativePath: job.prompt_file });
   await checkPathExists({ issues, ownerPath, field: "execution.output_schema_path", relativePath: job.execution?.output_schema_path });
@@ -399,6 +505,7 @@ async function checkCodexJob({ issues, job, ownerPath }) {
   checkJobLifecycle({ issues, job, ownerPath, outputExists });
   checkOrchestrationMetadata({ issues, job, ownerPath });
   checkActiveCommandBudget({ issues, job, ownerPath });
+  await checkContextPack({ issues, job, ownerPath });
 
   if (job.post_run?.verify_knowledge_base && !job.post_run?.export_latest) {
     issues.push(

@@ -3,7 +3,7 @@
   "record_type": "candidate_change",
   "id": "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
   "name": "D+Q bone headache adverse-event extraction pilot",
-  "summary": "Adds a term-specific headache adverse-event result from the retained PMC author-manuscript Extended Data Table 1 and updates the 20-week safety synthesis boundary while keeping safety pooling blocked.",
+  "summary": "Adds a structured term-specific headache adverse-event result from the retained PMC author-manuscript Extended Data Table 1 and updates the 20-week safety synthesis boundary while keeping safety pooling blocked.",
   "lifecycle_status": "submitted",
   "submitted_at": "2026-06-23T12:03:00Z",
   "scope": {
@@ -29,14 +29,14 @@
       "record_id": "dq-bone-headache-20wk-descriptive",
       "path": "data/results/dq-bone-headache-20wk-descriptive.json",
       "change_type": "create",
-      "rationale": "Extracts the headache preferred-term row from Extended Data Table 1 as a descriptive safety_event result without converting the blank control cell to zero."
+      "rationale": "Extracts the headache preferred-term row from Extended Data Table 1 as a descriptive safety_event result with structured adverse_event fields and without converting the blank control cell to zero."
     },
     {
       "record_type": "synthesis_group",
       "record_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
       "path": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
       "change_type": "update",
-      "rationale": "Adds the headache term-specific result to the safety synthesis boundary and records schema and zero/not-reported blockers that keep pooling blocked."
+      "rationale": "Adds the headache term-specific result to the safety synthesis boundary and records zero/not-reported blockers that keep pooling blocked."
     }
   ],
   "required_review_lanes": [

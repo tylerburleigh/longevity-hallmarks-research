@@ -729,6 +729,8 @@ function checkSemanticEvidenceRules({ issues, record, ownerPath }) {
   }
 
   if (record.record_type === "result") {
+    checkAdverseEventResultRules({ issues, record, ownerPath });
+
     if (record.result_type === "no_posted_result") {
       if (record.evidence_tier !== "registry") {
         issues.push(`${ownerPath}: no_posted_result records must use evidence_tier "registry".`);
@@ -789,6 +791,43 @@ function checkSemanticEvidenceRules({ issues, record, ownerPath }) {
   }
 }
 
+function checkAdverseEventResultRules({ issues, record, ownerPath }) {
+  if (record.adverse_event && record.result_type !== "safety_event") {
+    issues.push(`${ownerPath}: adverse_event data is only valid on safety_event results.`);
+  }
+
+  if (!record.adverse_event) {
+    return;
+  }
+
+  const adverseEvent = record.adverse_event;
+  const armIds = new Set();
+  for (const [armIndex, count] of (adverseEvent.event_specific_counts ?? []).entries()) {
+    if (armIds.has(count.arm_id)) {
+      issues.push(`${ownerPath}: adverse_event.event_specific_counts[${armIndex}].arm_id duplicates "${count.arm_id}".`);
+    }
+    armIds.add(count.arm_id);
+
+    if (typeof count.event_count === "number" && typeof count.sample_size === "number" && count.event_count > count.sample_size) {
+      issues.push(`${ownerPath}: adverse_event.event_specific_counts[${armIndex}].event_count exceeds sample_size.`);
+    }
+
+    if (typeof count.percent === "number" && typeof count.event_count === "number" && typeof count.sample_size === "number" && count.sample_size > 0) {
+      const computedPercent = (count.event_count / count.sample_size) * 100;
+      if (Math.abs(computedPercent - count.percent) > 1) {
+        issues.push(`${ownerPath}: adverse_event.event_specific_counts[${armIndex}].percent is inconsistent with event_count/sample_size.`);
+      }
+    }
+  }
+
+  if (adverseEvent.zero_handling?.supports_comparative_effect === false) {
+    const comparativeMeasures = new Set(["risk_ratio", "odds_ratio", "hazard_ratio"]);
+    if (comparativeMeasures.has(record.effect?.measure) || typeof record.effect?.value === "number") {
+      issues.push(`${ownerPath}: adverse_event.zero_handling blocks comparative effects, but effect fields encode a comparative estimate.`);
+    }
+  }
+}
+
 function resultHasPoolingField(result, field) {
   switch (field) {
     case "effect.value":
@@ -820,6 +859,22 @@ function resultHasPoolingField(result, field) {
         Array.isArray(result.group_values) &&
         result.group_values.length > 0 &&
         result.group_values.every((group) => typeof group.dispersion === "string" && group.dispersion.length > 0)
+      );
+    case "adverse_event.preferred_term":
+      return typeof result.adverse_event?.preferred_term === "string" && result.adverse_event.preferred_term.length > 0;
+    case "adverse_event.event_specific_counts":
+      return (
+        Array.isArray(result.adverse_event?.event_specific_counts) &&
+        result.adverse_event.event_specific_counts.length >= 2 &&
+        result.adverse_event.event_specific_counts.every((count) => {
+          if (typeof count.sample_size !== "number" || count.sample_size <= 0) {
+            return false;
+          }
+          if (count.count_status === "explicit_zero") {
+            return count.event_count === 0;
+          }
+          return count.count_status === "reported_count" && typeof count.event_count === "number";
+        })
       );
     default:
       return false;

@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "release_manifest",
   "id": "latest-consumer-export",
-  "generated_at": "2026-06-23T12:10:48.783Z",
+  "generated_at": "2026-06-23T13:12:26.196Z",
   "export_version": "0.1.0",
   "export_scope": {
     "description": "Consumer-facing latest export generated from canonical research and data records.",
@@ -78,14 +78,14 @@
       "format": "jsonl",
       "description": "All canonical result records across maturity states.",
       "record_count": 21,
-      "sha256": "8676f3c6288936269cf8bef1e67684ba0c694fc0cf2a40a27c810f27b67996d9"
+      "sha256": "8d42abc36399c579b6c2097b57c51b6e0ffaffea6b482066483af4c786b99e3b"
     },
     {
       "path": "exports/latest/results.extraction_grade.jsonl",
       "format": "jsonl",
       "description": "Result records with registry, full-text, agent-reviewed, supervisor-agent-reviewed, or accepted extraction-grade maturity.",
       "record_count": 14,
-      "sha256": "62605804747c8ca97c76a3220371e8ed57172bfc6adebc4fb6b5524dc488f194"
+      "sha256": "f054f9ca7afe021caecc822628923c4e7defd23d1ef30b79eb6b7e8f250400e5"
     },
     {
       "path": "exports/latest/results.registry_extracted.jsonl",
@@ -106,35 +106,35 @@
       "format": "jsonl",
       "description": "Synthesis compatibility groups with poolability decisions, missing effect fields, and agent supervision metadata.",
       "record_count": 8,
-      "sha256": "b1241322b26e5ba029c56860892e6bb82fa7c2d10aacd4563bc40cac7b44c3ba"
+      "sha256": "532ba03b524e96fa38c43300081b54804c499d8b01dcd514677a631ed0190b62"
     },
     {
       "path": "exports/latest/evidence-map.json",
       "format": "json",
       "description": "Generated graph view of source, study, finding, outcome, result, coverage, and synthesis-compatibility links.",
       "record_count": 1,
-      "sha256": "2c0afc5e129afae01ee0c54b3892002234dd6d4cade4566147db6346502236b3"
+      "sha256": "914b815c2c3041e08d47e939c0bdc435f491a54a91f292da2d5899d56d7c370a"
     },
     {
       "path": "exports/latest/coverage-status.json",
       "format": "json",
       "description": "Consumer coverage status with current/superseded flags and known-gap warnings.",
       "record_count": 1,
-      "sha256": "41364a7a4b33134d2c8b70a0ab262df094a859dfa98f396a9ab96866dfebdb1a"
+      "sha256": "68a142b98c6501b31de1b7a43f59b04a4d0ee66e464fdb57b01d3a1bcf88f3c9"
     },
     {
       "path": "exports/latest/read-model.sqlite",
       "format": "sqlite",
       "description": "Generated SQLite read model for indexed joins over canonical JSON records.",
       "record_count": 155,
-      "sha256": "0a41c00fb5891edbc998e6cf51553f00d0df3fcc90ffe5113dc749e88b7cbf1f"
+      "sha256": "44a3f133f179d5093df6f119a0d9f8d1869b37c1a218c4556c92436795f78205"
     },
     {
       "path": "exports/latest/consumer-contract.json",
       "format": "json",
       "description": "Versioned machine-readable contract for consumer-facing export artifacts.",
       "record_count": 1,
-      "sha256": "c763d63539cbcc9990818cd0ba5c6911dce83d6236743359c63e0f1b0b8c3043"
+      "sha256": "43213e112aa65b7c76577d78020b905bfe79efa37abad76027fe010f033e7d02"
     }
   ],
   "record_counts": {

@@ -43,6 +43,8 @@ Job files use `record_type: "codex_job"` and are validated by `schemas/codex-job
 
 Job execution guards may include `timeout_ms`, `no_output_timeout_ms`, and `max_command_events`. Use low `max_command_events` budgets for synthetic smoke jobs and other fixture jobs whose expected command sequence is known.
 
+Extraction-refresh jobs may declare `context_pack_path` pointing at an `extraction_context_pack` record under `ops/extraction-context-packs/`. Live jobs in the `extraction-pilot` parallel group must declare one. The worker reads the pack first and uses its retained artifact locators, target records, schema slices, exemplar records, expected outputs, and verification commands as the bounded task contract.
+
 By default, the wrapper writes a dry-run command plan under `research/agent-runs/logs/`. Add `--execute` only when the worktree is ready for the worker to run.
 
 Job specs must declare `orchestration` metadata before they are runnable:
@@ -55,6 +57,8 @@ Job specs must declare `orchestration` metadata before they are runnable:
 - `expected_cost`: wall-time, token-budget, and I/O class hints for scheduling.
 
 Use stable keys such as `source:nct-04313634`, `study:dq-postmenopausal-bone-rct`, `candidate_change:<id>`, `path:data/results/<id>.json`, and `parallel_group:extraction-refresh`. `audit:codex-jobs` requires every expected proposed record path to appear in `write_sets`, supervisor jobs to conflict on their review lanes, and active live jobs in the same `parallel_group` to avoid overlapping `conflict_keys` unless both jobs require reconciliation.
+
+Jobs that declare a context pack should include `context_pack:<id>` in `read_sets`. `audit:codex-jobs` checks that the pack scope and expected outputs match the job, while `audit:extraction-context-packs` checks retained artifact paths, locators, target paths, schemas, exemplars, and output alignment.
 
 The wrapper builds a `codex exec` command with:
 

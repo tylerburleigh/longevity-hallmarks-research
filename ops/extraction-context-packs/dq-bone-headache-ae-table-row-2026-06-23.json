@@ -1,0 +1,260 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "extraction_context_pack",
+  "id": "dq-bone-headache-ae-table-row-2026-06-23",
+  "pack_type": "table_row_extraction",
+  "created_at": "2026-06-23T12:20:00Z",
+  "purpose": "Compact context pack for D+Q bone headache adverse-event row extraction.",
+  "scope": {
+    "question": "Use the retained PMC author-manuscript text snapshot for PMID 38956196 to propose a term-specific headache adverse-event result for the D+Q postmenopausal bone RCT. Keep the change bounded to the headache row in Extended Data Table 1, preserve blank-cell zero/not-reported ambiguity, and keep safety pooling blocked unless the existing schemas can support a defensible comparative effect.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": [
+      "dasatinib-quercetin"
+    ],
+    "source_ids": [
+      "pmid-38956196"
+    ],
+    "study_ids": [
+      "dq-postmenopausal-bone-rct"
+    ],
+    "outcome_ids": [
+      "dq-bone-adverse-events-20wk"
+    ],
+    "result_ids": [
+      "dq-bone-adverse-event-terms-20wk-mixed",
+      "dq-bone-headache-20wk-descriptive"
+    ]
+  },
+  "source_context": {
+    "source_id": "pmid-38956196",
+    "source_snapshot_id": "snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+    "text_snapshot_id": "text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+    "artifact_paths": [
+      {
+        "artifact_type": "normalized_markdown",
+        "path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+        "sha256": "571c53ecd402c35c3f957bcf4f8448515a7ccc78731f569e7c1768c8e97513f0",
+        "content_type": "text/markdown"
+      },
+      {
+        "artifact_type": "section_index",
+        "path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/sections.json",
+        "sha256": "bcc38af36ea297608ef6ca6cceafcd14add2c240fb6b8718c5813dceadead634",
+        "content_type": "application/json"
+      }
+    ],
+    "primary_locators": [
+      {
+        "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+        "locator_type": "table",
+        "locator": "section:pmc-t2-extended-data-table-1",
+        "section_id": "pmc-t2-extended-data-table-1",
+        "start_line": 1276,
+        "end_line": 1363,
+        "evidence_role": "primary_table"
+      },
+      {
+        "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+        "locator_type": "full_text_section",
+        "locator": "section:pmc-s6-safety-and-adverse-events",
+        "section_id": "pmc-s6-safety-and-adverse-events",
+        "start_line": 392,
+        "end_line": 408,
+        "evidence_role": "safety_context"
+      }
+    ]
+  },
+  "target_context": {
+    "input_records": [
+      {
+        "record_type": "source_snapshot",
+        "record_id": "snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+        "path": "data/source-snapshots/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
+        "role": "retained_source_snapshot"
+      },
+      {
+        "record_type": "text_snapshot",
+        "record_id": "text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+        "path": "data/text-snapshots/text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
+        "role": "retained_text_snapshot"
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-bone-adverse-events-20wk",
+        "path": "data/outcomes/dq-bone-adverse-events-20wk.json",
+        "role": "target_outcome"
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-adverse-event-terms-20wk-mixed",
+        "path": "data/results/dq-bone-adverse-event-terms-20wk-mixed.json",
+        "role": "adjacent_term_result"
+      },
+      {
+        "record_type": "synthesis_group",
+        "record_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+        "path": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+        "role": "safety_synthesis_boundary"
+      }
+    ],
+    "target_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
+        "path": "data/candidate-changes/senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23.json",
+        "role": "candidate_ledger",
+        "record_state": "existing"
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-headache-20wk-descriptive",
+        "path": "data/results/dq-bone-headache-20wk-descriptive.json",
+        "role": "term_specific_result",
+        "record_state": "existing"
+      },
+      {
+        "record_type": "synthesis_group",
+        "record_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+        "path": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+        "role": "safety_synthesis_boundary",
+        "record_state": "existing"
+      }
+    ]
+  },
+  "extraction_targets": [
+    {
+      "target_label": "Headache adverse-event row",
+      "source_locator": {
+        "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+        "locator_type": "table",
+        "locator": "section:pmc-t2-extended-data-table-1; row:Headache",
+        "section_id": "pmc-t2-extended-data-table-1",
+        "start_line": 1304,
+        "end_line": 1307,
+        "evidence_role": "primary_row"
+      },
+      "table_columns": [
+        "Control",
+        "D+Q"
+      ],
+      "extracted_cells": [
+        {
+          "group": "Control",
+          "raw_value": "",
+          "interpretation": "Blank table cell under the publication threshold; preserve as zero/not-reported ambiguity rather than an explicit zero count."
+        },
+        {
+          "group": "D+Q",
+          "raw_value": "16 (53%)",
+          "numeric_value": 16,
+          "unit": "participants affected",
+          "sample_size": 30,
+          "interpretation": "D+Q headache count and percent for the 20-week safety table."
+        }
+      ],
+      "interpretation_rules": [
+        "Preserve the blank control cell as zero/not-reported ambiguity.",
+        "Do not calculate a comparative effect unless an explicit control count is sourced or an approved schema rule supports the zero handling.",
+        "Do not broaden extraction to other adverse-event rows."
+      ]
+    }
+  ],
+  "schema_context": {
+    "schema_paths": [
+      "schemas/result.schema.json",
+      "schemas/candidate-change.schema.json",
+      "schemas/synthesis-group.schema.json",
+      "schemas/agent-run.codex-output.schema.json",
+      "schemas/agent-run.schema.json"
+    ],
+    "required_fields": [
+      "result.group_values[].sample_size",
+      "result.adverse_event.preferred_term",
+      "result.adverse_event.event_specific_counts[]",
+      "result.adverse_event.zero_handling",
+      "result.provenance[].source_snapshot_id",
+      "result.provenance[].text_snapshot_id",
+      "candidate_change.proposed_records[]",
+      "agent_run.outputs.proposed_records[]"
+    ],
+    "known_schema_limitations": [
+      "The retained table does not provide an explicit control headache count, so adverse_event.zero_handling must block comparative effect calculation."
+    ]
+  },
+  "exemplar_records": [
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-adverse-event-terms-20wk-mixed",
+      "path": "data/results/dq-bone-adverse-event-terms-20wk-mixed.json",
+      "role": "adjacent_adverse_event_term_result"
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-adverse-events-20wk-mixed",
+      "path": "data/results/dq-bone-adverse-events-20wk-mixed.json",
+      "role": "aggregate_adverse_event_result"
+    },
+    {
+      "record_type": "candidate_change",
+      "record_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
+      "path": "data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json",
+      "role": "full_text_candidate_pattern"
+    }
+  ],
+  "expected_outputs": {
+    "candidate_change_id": "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
+    "proposed_record_paths": [
+      "data/candidate-changes/senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23.json",
+      "data/results/dq-bone-headache-20wk-descriptive.json",
+      "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json"
+    ],
+    "generated_file_paths": [],
+    "export_paths": [
+      "exports/latest/results.jsonl",
+      "exports/latest/synthesis-groups.jsonl",
+      "exports/latest/evidence-map.json",
+      "exports/latest/coverage-status.json",
+      "exports/latest/audit-manifest.json",
+      "exports/latest/read-model.sqlite",
+      "ops/triage-state.v1.json",
+      "ops/release-readiness.v1.json",
+      "ops/reconciliation/parallel-reconciliation.v1.json",
+      "ops/codex-batches/orchestration-metrics.v1.json"
+    ],
+    "required_review_lanes": [
+      "extraction_fidelity",
+      "taxonomy_mapping",
+      "safety_limitations",
+      "synthesis_boundary"
+    ]
+  },
+  "verification": {
+    "worker_commands": [
+      "npm run validate:records",
+      "npm run audit:references",
+      "npm run audit:agent-schemas",
+      "npm run audit:agentic-process"
+    ],
+    "coordinator_post_run": [
+      "npm run export:latest",
+      "npm run verify:knowledge-base"
+    ]
+  },
+  "constraints": [
+    "Stay bounded to the headache row and linked safety-section context.",
+    "Use retained source_snapshot_id and text_snapshot_id provenance for all full-text extracted records.",
+    "Represent the blank control cell as ambiguous rather than zero.",
+    "Keep safety pooling blocked unless structured counts, comparative effect fields, and uncertainty are available."
+  ],
+  "known_limitations": [
+    "The retained row does not supply an explicit control headache count.",
+    "The adverse_event fields encode the D+Q count and control ambiguity but do not create a comparative effect estimate.",
+    "The source table is from an open-label trial, so subjective adverse-event reporting may be biased."
+  ]
+}

@@ -668,8 +668,8 @@ Tasks:
 - [x] Add a readiness gate for real extraction-refresh pilots: smoke job passes, parallel batch passes, failure fixtures pass, metrics refresh passes, reconciliation state has no unresolved orchestration blocker caused by the test run, and the clean pre-pilot command confirms no pending file changes.
 - [x] Add command-event budget policy for runnable live Codex jobs, with audited budget ranges by job class and generator defaults for self-healing jobs.
 - [x] Execute the first bounded real extraction-refresh pilot through `jobs:run-batch`, import the declared outputs, archive the completed job, refresh generated state, and pass full verification.
-- [ ] Add compact extraction context packs so bounded workers receive the exact source rows, schema slices, expected exemplars, and verification commands needed for the job class.
-- [ ] Extend safety-result structure for adverse-event preferred terms, event-specific arm counts, and zero/not-reported semantics before attempting comparative safety pooling.
+- [x] Add compact extraction context packs so bounded workers receive the exact source rows, schema slices, expected exemplars, and verification commands needed for the job class.
+- [x] Extend safety-result structure for adverse-event preferred terms, event-specific arm counts, and zero/not-reported semantics before attempting comparative safety pooling.
 
 Exit criteria:
 
@@ -690,16 +690,16 @@ Exit criteria:
 
 ## Immediate Next Actions
 
-1. Create a compact extraction context-pack format for table-row extraction jobs, then update the extraction-refresh prompt to prefer the pack over broad repository discovery.
-2. Add structured adverse-event fields to the result schema or a linked safety-event detail record, then migrate the D+Q headache pilot from prose/tag encoding to structured preferred-term/count encoding.
-3. Run supervisor-review lanes for `senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
-4. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
-5. Run supervisor-review lanes for `senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22`: source fidelity, extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
-6. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry or article text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
-7. Decide whether to install repo-local skills into the active Codex skills directory.
+1. Run supervisor-review lanes for `senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
+2. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
+3. Run supervisor-review lanes for `senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22`: source fidelity, extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
+4. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry or article text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
+5. Decide whether to install repo-local skills into the active Codex skills directory.
 
 ## Change Log
 
+- 2026-06-23: Added structured `result.adverse_event` fields for preferred terms, arm-level event counts, count-status semantics, and zero-handling; migrated the D+Q headache result and safety synthesis boundary; added adverse-event pooling audits, read-model `adverse_event_json`, consumer-contract text, and regression coverage for unsafe comparative safety effects.
+- 2026-06-23: Added extraction context packs as first-class records with schema validation, path/locator audits, Codex job conformance checks, a D+Q headache table-row pack, a reusable extraction-refresh table-row job template, prompt guidance to read packs before broad discovery, and regression coverage for broken retained-artifact paths.
 - 2026-06-22: Added an orchestration smoke Codex job, reusable smoke prompt, fixture contract audit, live-job post-audit deferral, single-job archival command, and archive-time agent-run job-file relinking so isolated execution can be battle-tested before production extraction-refresh jobs.
 - 2026-06-22: First orchestration smoke execution attempt exposed Codex response-format strictness for optional schema properties; updated the Codex output schema to require nullable optional fields, added wrapper null-pruning before persistence, and extended agent-schema auditing to enforce strict response object shape.
 - 2026-06-22: Second orchestration smoke attempt exposed worker mutability over file-backed JSONL logs; changed the wrapper to audit captured stdout, restore the JSONL log from captured events, reject protected artifact mutation, and forbid progress messages under strict output-schema runs.

@@ -40,7 +40,7 @@ npm run audit:release-readiness
 - `synthesis-groups.jsonl`: compatibility groups with poolability decisions, missing effect fields, and agent-supervision metadata.
 - `evidence-map.json`: generated node/edge view over sources, studies, findings, outcomes, results, coverage assessments, and synthesis groups.
 - `coverage-status.json`: current and superseded coverage assessments with known gaps and consumer warnings.
-- `read-model.sqlite`: generated SQLite query index over canonical JSON records, with traced tables for sources, studies, findings, outcomes, results, synthesis groups, candidate changes, evidence reviews, record links, and provenance.
+- `read-model.sqlite`: generated SQLite query index over canonical JSON records, with traced tables for sources, studies, findings, outcomes, results, synthesis groups, candidate changes, evidence reviews, record links, and provenance. The `results` table includes `adverse_event_json` for structured safety-event preferred terms, arm counts, and zero-handling.
 - `consumer-contract.json`: versioned machine-readable contract for stable artifact paths, maturity semantics, release boundaries, required fields, traceability fields, and required consumer checks.
 - `audit-manifest.json`: export manifest with file counts and SHA-256 hashes.
 
@@ -65,7 +65,7 @@ sqlite3 -header -column exports/latest/read-model.sqlite \
   "select result_id, maturity_status, study_name, outcome_name from result_evidence order by result_id;"
 ```
 
-Use `results.extraction_grade.jsonl` when structured result values are required. In the current data this file is registry-only, so use `results.registry_extracted.jsonl` when consumers need to distinguish ClinicalTrials.gov posted-result extraction from future full-text or accepted extraction.
+Use `results.extraction_grade.jsonl` when structured result values are required. Safety-event consumers should inspect `adverse_event` when present and respect `zero_handling.supports_comparative_effect` before computing comparative effects.
 
 Use `results.triage.jsonl` only for discovery, work queues, dashboards that explicitly show maturity, or "needs extraction" views. Do not treat triage result direction as a synthesis-ready effect.
 

@@ -1,0 +1,130 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "codex_job",
+  "id": "replace-with-extraction-agent-run-id",
+  "name": "Replace with bounded table-row extraction job name.",
+  "summary": "Runs one context-pack bounded table-row extraction refresh through a candidate_change.",
+  "lifecycle_status": "planned",
+  "agent_role": "extraction_agent",
+  "mode": "extraction_refresh",
+  "prompt_file": "docs/prompts/codex-agents/extraction-refresh.md",
+  "context_pack_path": "ops/extraction-context-packs/replace-with-context-pack-id.json",
+  "output_path": "research/agent-runs/replace-with-extraction-agent-run-id.json",
+  "jsonl_log_path": "research/agent-runs/logs/replace-with-extraction-agent-run-id.jsonl",
+  "scope": {
+    "question": "Replace with bounded table-row extraction question.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": [
+      "replace-with-intervention-id"
+    ],
+    "source_ids": [
+      "replace-with-source-id"
+    ],
+    "study_ids": [
+      "replace-with-study-id"
+    ],
+    "outcome_ids": [
+      "replace-with-outcome-id"
+    ],
+    "result_ids": [
+      "replace-with-existing-or-target-result-id"
+    ]
+  },
+  "execution": {
+    "isolation": "git_worktree",
+    "sandbox": "workspace-write",
+    "approval_policy": "never",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "timeout_ms": 1800000,
+    "no_output_timeout_ms": 300000,
+    "max_command_events": 120
+  },
+  "expected_outputs": {
+    "canonical_write_policy": "candidate_change_required",
+    "candidate_change_id": "replace-with-candidate-change-id",
+    "required_review_lanes": [
+      "extraction_fidelity",
+      "taxonomy_mapping",
+      "safety_limitations",
+      "synthesis_boundary"
+    ],
+    "proposed_record_paths": [
+      "data/candidate-changes/replace-with-candidate-change-id.json",
+      "data/results/replace-with-result-id.json",
+      "data/synthesis-groups/replace-with-synthesis-group-id.json"
+    ],
+    "generated_file_paths": [],
+    "export_paths": [
+      "exports/latest/results.jsonl",
+      "exports/latest/synthesis-groups.jsonl",
+      "exports/latest/evidence-map.json",
+      "exports/latest/coverage-status.json",
+      "exports/latest/audit-manifest.json",
+      "exports/latest/read-model.sqlite",
+      "ops/triage-state.v1.json",
+      "ops/release-readiness.v1.json",
+      "ops/reconciliation/parallel-reconciliation.v1.json",
+      "ops/codex-batches/orchestration-metrics.v1.json"
+    ]
+  },
+  "orchestration": {
+    "read_sets": [
+      "context_pack:replace-with-context-pack-id",
+      "source:replace-with-source-id",
+      "study:replace-with-study-id",
+      "outcome:replace-with-outcome-id",
+      "result:replace-with-existing-or-target-result-id",
+      "source_snapshot:replace-with-source-snapshot-id",
+      "text_snapshot:replace-with-text-snapshot-id",
+      "path:replace-with-retained-artifact-path",
+      "track:senolytics",
+      "hallmark:cellular_senescence",
+      "intervention:replace-with-intervention-id"
+    ],
+    "write_sets": [
+      "candidate_change:replace-with-candidate-change-id",
+      "path:data/candidate-changes/replace-with-candidate-change-id.json",
+      "path:data/results/replace-with-result-id.json",
+      "path:data/synthesis-groups/replace-with-synthesis-group-id.json",
+      "target_record:result/replace-with-result-id",
+      "target_record:synthesis_group/replace-with-synthesis-group-id"
+    ],
+    "conflict_keys": [
+      "candidate_change:replace-with-candidate-change-id",
+      "target_record:result/replace-with-result-id",
+      "target_record:synthesis_group/replace-with-synthesis-group-id",
+      "source:replace-with-source-id",
+      "study:replace-with-study-id"
+    ],
+    "parallel_group": "extraction-pilot",
+    "reconciliation_required": false,
+    "expected_cost": {
+      "cost_class": "medium",
+      "expected_wall_time_ms": 1800000,
+      "expected_token_budget": 65000,
+      "io_intensity": "medium"
+    }
+  },
+  "post_run": {
+    "export_latest": true,
+    "verify_knowledge_base": true
+  },
+  "quality_gates": [
+    "validate_records",
+    "audit_references",
+    "audit_exports",
+    "audit_agent_schemas",
+    "audit_agentic_process",
+    "worker_output_contract",
+    "candidate_agent_run_ledger_match"
+  ],
+  "notes": [
+    "Fill all placeholder IDs and create the matching context pack before moving this template into ops/codex-jobs/live/.",
+    "Keep the worker bounded to the context pack unless validation reveals a pack inconsistency."
+  ]
+}

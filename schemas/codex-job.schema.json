@@ -48,6 +48,9 @@
     "prompt_file": {
       "type": "string"
     },
+    "context_pack_path": {
+      "type": "string"
+    },
     "output_path": {
       "type": "string"
     },

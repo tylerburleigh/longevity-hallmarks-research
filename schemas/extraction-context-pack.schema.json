@@ -1,0 +1,478 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./extraction-context-pack.schema.json",
+  "title": "Extraction context pack",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "id",
+    "pack_type",
+    "created_at",
+    "purpose",
+    "scope",
+    "source_context",
+    "target_context",
+    "extraction_targets",
+    "schema_context",
+    "exemplar_records",
+    "expected_outputs",
+    "verification",
+    "constraints",
+    "known_limitations"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "record_type": {
+      "const": "extraction_context_pack"
+    },
+    "id": {
+      "$ref": "./common.schema.json#/$defs/identifier"
+    },
+    "pack_type": {
+      "enum": [
+        "table_row_extraction"
+      ]
+    },
+    "created_at": {
+      "$ref": "./common.schema.json#/$defs/dateTime"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "question"
+      ],
+      "properties": {
+        "question": {
+          "type": "string"
+        },
+        "hallmark_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/hallmarkRef"
+          },
+          "uniqueItems": true
+        },
+        "track_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/trackRef"
+          },
+          "uniqueItems": true
+        },
+        "intervention_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/identifier"
+          },
+          "uniqueItems": true
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/sourceRef"
+          },
+          "uniqueItems": true
+        },
+        "study_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/studyRef"
+          },
+          "uniqueItems": true
+        },
+        "outcome_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/outcomeRef"
+          },
+          "uniqueItems": true
+        },
+        "result_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/resultRef"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "source_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "source_snapshot_id",
+        "text_snapshot_id",
+        "artifact_paths",
+        "primary_locators"
+      ],
+      "properties": {
+        "source_id": {
+          "$ref": "./common.schema.json#/$defs/sourceRef"
+        },
+        "source_snapshot_id": {
+          "$ref": "./common.schema.json#/$defs/sourceSnapshotRef"
+        },
+        "text_snapshot_id": {
+          "$ref": "./common.schema.json#/$defs/textSnapshotRef"
+        },
+        "artifact_paths": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/artifactPath"
+          },
+          "minItems": 1
+        },
+        "primary_locators": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/sourceLocator"
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "target_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "input_records",
+        "target_records"
+      ],
+      "properties": {
+        "input_records": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/recordPointer"
+          }
+        },
+        "target_records": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/targetRecordPointer"
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "extraction_targets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/extractionTarget"
+      },
+      "minItems": 1
+    },
+    "schema_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_paths",
+        "required_fields",
+        "known_schema_limitations"
+      ],
+      "properties": {
+        "schema_paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "required_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "known_schema_limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "exemplar_records": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/recordPointer"
+      }
+    },
+    "expected_outputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_change_id",
+        "proposed_record_paths",
+        "generated_file_paths",
+        "export_paths",
+        "required_review_lanes"
+      ],
+      "properties": {
+        "candidate_change_id": {
+          "$ref": "./common.schema.json#/$defs/candidateChangeRef"
+        },
+        "proposed_record_paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "generated_file_paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "export_paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "required_review_lanes": {
+          "type": "array",
+          "items": {
+            "$ref": "./codex-job.schema.json#/$defs/reviewLane"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "worker_commands",
+        "coordinator_post_run"
+      ],
+      "properties": {
+        "worker_commands": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "coordinator_post_run": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "known_limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "artifactPath": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_type",
+        "path"
+      ],
+      "properties": {
+        "artifact_type": {
+          "$ref": "./common.schema.json#/$defs/artifactClass"
+        },
+        "path": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "content_type": {
+          "type": "string"
+        }
+      }
+    },
+    "sourceLocator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_path",
+        "locator_type",
+        "locator",
+        "section_id",
+        "start_line",
+        "end_line"
+      ],
+      "properties": {
+        "artifact_path": {
+          "type": "string"
+        },
+        "locator_type": {
+          "enum": [
+            "full_text_section",
+            "table",
+            "figure",
+            "supplement",
+            "registry_section",
+            "other"
+          ]
+        },
+        "locator": {
+          "type": "string"
+        },
+        "section_id": {
+          "type": "string"
+        },
+        "start_line": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "end_line": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "evidence_role": {
+          "type": "string"
+        }
+      }
+    },
+    "recordPointer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "record_type",
+        "record_id",
+        "path"
+      ],
+      "properties": {
+        "record_type": {
+          "type": "string"
+        },
+        "record_id": {
+          "$ref": "./common.schema.json#/$defs/identifier"
+        },
+        "path": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        }
+      }
+    },
+    "targetRecordPointer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "record_type",
+        "record_id",
+        "path",
+        "record_state"
+      ],
+      "properties": {
+        "record_type": {
+          "type": "string"
+        },
+        "record_id": {
+          "$ref": "./common.schema.json#/$defs/identifier"
+        },
+        "path": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "record_state": {
+          "enum": [
+            "existing",
+            "proposed"
+          ]
+        }
+      }
+    },
+    "extractionTarget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "target_label",
+        "source_locator",
+        "table_columns",
+        "extracted_cells",
+        "interpretation_rules"
+      ],
+      "properties": {
+        "target_label": {
+          "type": "string"
+        },
+        "source_locator": {
+          "$ref": "#/$defs/sourceLocator"
+        },
+        "table_columns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "extracted_cells": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "group",
+              "raw_value",
+              "interpretation"
+            ],
+            "properties": {
+              "group": {
+                "type": "string"
+              },
+              "raw_value": {
+                "type": "string"
+              },
+              "numeric_value": {
+                "type": "number"
+              },
+              "unit": {
+                "type": "string"
+              },
+              "sample_size": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "interpretation": {
+                "type": "string"
+              }
+            }
+          },
+          "minItems": 1
+        },
+        "interpretation_rules": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

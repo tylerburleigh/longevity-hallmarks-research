@@ -23,6 +23,8 @@ Batching policy:
 
 Supervisor review lane jobs generated from candidate-readiness triage use lane-scoped `candidate_review:<candidate_change_id>/<review_lane>` write and conflict keys. They may read the same source candidate and still share an independent batch when they cover different review lanes, because read/read overlap does not create a write conflict. Candidate-review lane jobs must not declare broad writes to the source candidate record.
 
+Generated candidate-review lane jobs also carry compact `supervisor_review_context_pack` contracts. These packs make parallel supervisor work easier to audit because each lane has an explicit target candidate, review lane, expected evidence-review output path, prior review-state summary, and bounded verification commands.
+
 Run the freshness audit:
 
 ```bash
@@ -74,6 +76,8 @@ Runnable live jobs must declare `execution.max_command_events`. The cap is a run
 - default: 25-120
 
 If a real worker reaches its cap before producing a final `agent_run`, keep the failed batch-run record, inspect the worker log, and either tighten the job context or adjust the job-class budget before rerunning.
+
+Generated candidate-review supervisor jobs currently use a 90-command cap, inside the supervisor-review audit range. This is intended to leave room for focused record inspection plus validation while still catching broad repository wandering.
 
 Run the batch-run audit:
 

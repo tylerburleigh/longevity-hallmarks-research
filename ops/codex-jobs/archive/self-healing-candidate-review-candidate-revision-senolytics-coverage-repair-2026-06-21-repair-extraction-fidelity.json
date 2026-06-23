@@ -4,7 +4,7 @@
   "id": "self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-extraction-fidelity",
   "name": "Self-healing repair: candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-extraction-fidelity",
   "summary": "Required review lane is missing: extraction_fidelity.",
-  "lifecycle_status": "ready",
+  "lifecycle_status": "succeeded",
   "agent_role": "supervisor_agent",
   "mode": "agent_directed",
   "prompt_file": "docs/prompts/codex-agents/supervisor-review.md",
@@ -28,7 +28,7 @@
     "output_schema_path": "schemas/agent-run.codex-output.schema.json",
     "timeout_ms": 3600000,
     "no_output_timeout_ms": 300000,
-    "max_command_events": 70
+    "max_command_events": 90
   },
   "expected_outputs": {
     "canonical_write_policy": "candidate_change_required",
@@ -80,5 +80,7 @@
     "Source queue: candidate_readiness.",
     "Supervisor review lane: extraction_fidelity.",
     "The worker should keep edits bounded to the target record, listed inputs, and the candidate repair ledger."
-  ]
+  ],
+  "final_agent_run_id": "self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-extraction-fidelity",
+  "archived_at": "2026-06-23T15:55:28.637Z"
 }

@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "candidate-revision-senolytics-coverage-repair-2026-06-21-repair-source-fidelity-2026-06-23",
+  "candidate_change_id": "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
+  "review_lane": "source_fidelity",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex-cli-worker",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "The source-fidelity lane is acceptable for this lifecycle repair. The candidate only creates a repair candidate and updates the broad senolytics coverage candidate's lifecycle and summary to match existing needs_revision source-review findings; it does not alter source, study, finding, outcome, result, snapshot, or extraction records.",
+  "findings": [
+    {
+      "finding_id": "target-source-gap-preserved",
+      "severity": "note",
+      "category": "missing_caveat",
+      "claim_or_issue": "The repaired senolytics-coverage-repair-2026-06-21 summary preserves the existing source_fidelity needs_revision state, including the open full-text-extraction-pending major finding on the underlying broad candidate.",
+      "why_it_matters": "Accepting this source_fidelity lane for the lifecycle repair must not be interpreted as clearing source support for the broad senolytics evidence slice.",
+      "recommended_action": "Keep senolytics-coverage-repair-2026-06-21 in needs_revision until a narrower source and extraction repair closes the underlying open source-fidelity finding.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "no-source-evidence-mutation",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "The candidate-revision repair proposes only candidate_change record changes and does not create, update, accept, or release any source-facing evidence record.",
+      "why_it_matters": "The source_fidelity review can be complete for this lane without re-auditing every PubMed, registry, text-snapshot, or result locator in the broad coverage candidate.",
+      "recommended_action": "Limit this acceptance to the lifecycle repair scope and require separate source-fidelity review for any future candidate that changes source, snapshot, extraction, or provenance records.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "promotion-boundary-clear",
+      "severity": "minor",
+      "category": "missing_caveat",
+      "claim_or_issue": "The target repair candidate still needs the remaining required supervisor lanes before it can become promotion-ready.",
+      "why_it_matters": "A single accepting source_fidelity lane does not complete extraction_fidelity, taxonomy_mapping, synthesis_boundary, or safety_limitations review for this repair candidate.",
+      "recommended_action": "Leave candidate-revision-senolytics-coverage-repair-2026-06-21-repair unpromoted until every required active review lane is complete and accepting.",
+      "resolution_status": "closed"
+    }
+  ]
+}

@@ -1,0 +1,322 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./supervisor-review-context-pack.schema.json",
+  "title": "Supervisor review context pack",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "id",
+    "pack_type",
+    "created_at",
+    "purpose",
+    "scope",
+    "target_candidate",
+    "review_lane",
+    "review_context",
+    "schema_context",
+    "expected_outputs",
+    "verification",
+    "constraints",
+    "known_limitations"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "record_type": {
+      "const": "supervisor_review_context_pack"
+    },
+    "id": {
+      "$ref": "./common.schema.json#/$defs/identifier"
+    },
+    "pack_type": {
+      "enum": [
+        "candidate_review_lane"
+      ]
+    },
+    "created_at": {
+      "$ref": "./common.schema.json#/$defs/dateTime"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "scope": {
+      "$ref": "./codex-job.schema.json#/properties/scope"
+    },
+    "target_candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_change_id",
+        "path",
+        "lifecycle_status",
+        "required_review_lanes",
+        "proposed_record_count",
+        "proposed_records"
+      ],
+      "properties": {
+        "candidate_change_id": {
+          "$ref": "./common.schema.json#/$defs/candidateChangeRef"
+        },
+        "path": {
+          "type": "string"
+        },
+        "lifecycle_status": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "required_review_lanes": {
+          "type": "array",
+          "items": {
+            "$ref": "./codex-job.schema.json#/$defs/reviewLane"
+          },
+          "uniqueItems": true
+        },
+        "proposed_record_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "proposed_records": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/proposedRecordPointer"
+          }
+        }
+      }
+    },
+    "review_lane": {
+      "$ref": "./codex-job.schema.json#/$defs/reviewLane"
+    },
+    "review_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "active_review_records",
+        "complete_accepting_review_lanes",
+        "missing_review_lanes",
+        "open_major_or_critical_review_ids",
+        "lane_acceptance_criteria",
+        "relevant_input_records"
+      ],
+      "properties": {
+        "active_review_records": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/recordPointer"
+          }
+        },
+        "complete_accepting_review_lanes": {
+          "type": "array",
+          "items": {
+            "$ref": "./codex-job.schema.json#/$defs/reviewLane"
+          },
+          "uniqueItems": true
+        },
+        "missing_review_lanes": {
+          "type": "array",
+          "items": {
+            "$ref": "./codex-job.schema.json#/$defs/reviewLane"
+          },
+          "uniqueItems": true
+        },
+        "open_major_or_critical_review_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/evidenceReviewRef"
+          },
+          "uniqueItems": true
+        },
+        "lane_acceptance_criteria": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "relevant_input_records": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/recordPointer"
+          }
+        }
+      }
+    },
+    "schema_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_paths",
+        "required_fields",
+        "known_schema_limitations"
+      ],
+      "properties": {
+        "schema_paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "required_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "known_schema_limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "expected_outputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_change_id",
+        "evidence_review_id",
+        "proposed_record_paths",
+        "generated_file_paths",
+        "export_paths",
+        "required_review_lanes"
+      ],
+      "properties": {
+        "candidate_change_id": {
+          "$ref": "./common.schema.json#/$defs/candidateChangeRef"
+        },
+        "evidence_review_id": {
+          "$ref": "./common.schema.json#/$defs/evidenceReviewRef"
+        },
+        "proposed_record_paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "generated_file_paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "export_paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "required_review_lanes": {
+          "type": "array",
+          "items": {
+            "$ref": "./codex-job.schema.json#/$defs/reviewLane"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "worker_commands",
+        "coordinator_post_run"
+      ],
+      "properties": {
+        "worker_commands": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "coordinator_post_run": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "known_limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "recordPointer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "record_type",
+        "record_id",
+        "path"
+      ],
+      "properties": {
+        "record_type": {
+          "type": "string"
+        },
+        "record_id": {
+          "$ref": "./common.schema.json#/$defs/identifier"
+        },
+        "path": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        }
+      }
+    },
+    "proposedRecordPointer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "record_type",
+        "record_id",
+        "path",
+        "change_type",
+        "rationale"
+      ],
+      "properties": {
+        "record_type": {
+          "type": "string"
+        },
+        "record_id": {
+          "$ref": "./common.schema.json#/$defs/identifier"
+        },
+        "path": {
+          "type": "string"
+        },
+        "change_type": {
+          "enum": [
+            "create",
+            "release_accept",
+            "update",
+            "delete"
+          ]
+        },
+        "rationale": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

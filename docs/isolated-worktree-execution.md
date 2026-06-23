@@ -25,7 +25,7 @@ npm run agent:codex:worktree -- \
   --execute
 ```
 
-The helper refuses to create a worktree from a dirty foreground checkout unless `--allow-dirty` is supplied. When `--allow-dirty` is used, the new worktree is still based on the selected Git ref, not on uncommitted foreground edits.
+The helper refuses to create a worktree from a dirty foreground checkout unless `--allow-dirty` is supplied. When `--allow-dirty` is used, the new worktree starts from the selected Git ref and then overlays the coordinator checkout's tracked diff plus untracked files before the wrapper starts. Use this for test runs of uncommitted orchestration fixes; use a committed checkout for release-grade runs.
 
 Use the synthetic smoke job before production extraction-refresh work:
 
@@ -48,6 +48,7 @@ Useful options:
 
 - `--worktree-root <path>` changes the parent directory for generated worktrees.
 - `--worktree-path <path>` selects an exact worktree path.
+- Worktree paths must be outside the foreground repository.
 - `--base-ref <ref>` changes the detached worktree base ref.
 - `--post-export-verify`, `--timeout-ms`, and `--no-output-timeout-ms` are forwarded to `agent:codex`.
 

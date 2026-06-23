@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "candidate-revision-senolytics-coverage-repair-2026-06-21-repair-taxonomy-mapping-2026-06-23",
+  "candidate_change_id": "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
+  "review_lane": "taxonomy_mapping",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex-cli-worker",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "The taxonomy-mapping lane is acceptable for this lifecycle repair. The repair candidate is scoped to the senolytics track, cellular senescence, and chronic inflammation, matching the target candidate and the provisional senolytics track's primary and secondary hallmark mapping; it does not clear the broad coverage-repair candidate's unresolved record-level taxonomy review debt.",
+  "findings": [
+    {
+      "finding_id": "scope-mapping-aligned",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The repair candidate uses the same senolytics track and cellular_senescence plus chronic_inflammation hallmark scope as the target broad coverage-repair candidate.",
+      "why_it_matters": "The repair is a lifecycle and review-lane artifact for the existing senolytics candidate, so changing its track or hallmark scope would distort candidate readiness and triage queues.",
+      "recommended_action": "Keep the repair candidate scoped to senolytics, cellular_senescence, and chronic_inflammation.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "track-definition-supports-scope",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The provisional senolytics track lists cellular_senescence as its primary hallmark and chronic_inflammation as a secondary hallmark for senescent-cell clearance work that may affect SASP or inflammatory signaling.",
+      "why_it_matters": "This supports the repair candidate's high-level taxonomy mapping while preserving that individual evidence records still need lane-specific review before the underlying broad candidate can be promoted.",
+      "recommended_action": "Use this acceptance only for the lifecycle repair candidate; require separate record-level taxonomy review before promoting the broad senolytics coverage-repair candidate.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "underlying-taxonomy-gap-preserved",
+      "severity": "minor",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The target repair candidate updates senolytics-coverage-repair-2026-06-21 to remain in needs_revision and explicitly preserves taxonomy_mapping among the unresolved review gaps.",
+      "why_it_matters": "Accepting this lane must not be misread as resolving the original open major taxonomy finding for the broad coverage-repair records.",
+      "recommended_action": "Leave senolytics-coverage-repair-2026-06-21 unpromoted until a narrower taxonomy review or repair closes the original record-level mapping finding.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "no-evidence-taxonomy-mutation",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The candidate-revision repair proposes only candidate_change records and does not create, update, accept, or release any finding, outcome, result, study, source, or taxonomy record.",
+      "why_it_matters": "The taxonomy lane can be complete for the lifecycle repair without revalidating every evidence-record mapping because no evidence taxonomy mapping is changed by this candidate.",
+      "recommended_action": "Require independent taxonomy_mapping review for any future candidate that changes evidence-facing taxonomy fields.",
+      "resolution_status": "closed"
+    }
+  ]
+}

@@ -1,17 +1,17 @@
 {
   "schema_version": "1.0.0",
   "record_type": "codex_job",
-  "id": "self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-taxonomy-mapping",
-  "name": "Self-healing repair: candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-taxonomy-mapping",
-  "summary": "Required review lane is missing: taxonomy_mapping.",
-  "lifecycle_status": "ready",
+  "id": "self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary",
+  "name": "Self-healing repair: candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary",
+  "summary": "Required review lane is missing: synthesis_boundary.",
+  "lifecycle_status": "succeeded",
   "agent_role": "supervisor_agent",
   "mode": "agent_directed",
   "prompt_file": "docs/prompts/codex-agents/supervisor-review.md",
-  "output_path": "research/agent-runs/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-taxonomy-mapping.json",
-  "jsonl_log_path": "research/agent-runs/logs/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-taxonomy-mapping.jsonl",
+  "output_path": "research/agent-runs/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary.json",
+  "jsonl_log_path": "research/agent-runs/logs/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary.jsonl",
   "scope": {
-    "question": "candidate_review: Required review lane is missing: taxonomy_mapping.",
+    "question": "candidate_review: Required review lane is missing: synthesis_boundary.",
     "hallmark_ids": [
       "cellular_senescence",
       "chronic_inflammation"
@@ -28,13 +28,13 @@
     "output_schema_path": "schemas/agent-run.codex-output.schema.json",
     "timeout_ms": 3600000,
     "no_output_timeout_ms": 300000,
-    "max_command_events": 70
+    "max_command_events": 90
   },
   "expected_outputs": {
     "canonical_write_policy": "candidate_change_required",
-    "candidate_change_id": "candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-taxonomy-mapping-repair",
+    "candidate_change_id": "candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary-repair",
     "required_review_lanes": [
-      "taxonomy_mapping"
+      "synthesis_boundary"
     ]
   },
   "orchestration": {
@@ -44,13 +44,13 @@
       "triage_job:candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair"
     ],
     "write_sets": [
-      "candidate_change:candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-taxonomy-mapping-repair",
-      "candidate_review:candidate-revision-senolytics-coverage-repair-2026-06-21-repair/taxonomy_mapping",
-      "path:data/candidate-changes/candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-taxonomy-mapping-repair.json"
+      "candidate_change:candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary-repair",
+      "candidate_review:candidate-revision-senolytics-coverage-repair-2026-06-21-repair/synthesis_boundary",
+      "path:data/candidate-changes/candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary-repair.json"
     ],
     "conflict_keys": [
-      "candidate_change:candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-taxonomy-mapping-repair",
-      "candidate_review:candidate-revision-senolytics-coverage-repair-2026-06-21-repair/taxonomy_mapping"
+      "candidate_change:candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary-repair",
+      "candidate_review:candidate-revision-senolytics-coverage-repair-2026-06-21-repair/synthesis_boundary"
     ],
     "parallel_group": "candidate-review",
     "reconciliation_required": false,
@@ -78,7 +78,9 @@
   "notes": [
     "Generated from ops/triage-state.v1.json recommended_jobs[] item candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair.",
     "Source queue: candidate_readiness.",
-    "Supervisor review lane: taxonomy_mapping.",
+    "Supervisor review lane: synthesis_boundary.",
     "The worker should keep edits bounded to the target record, listed inputs, and the candidate repair ledger."
-  ]
+  ],
+  "final_agent_run_id": "self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary",
+  "archived_at": "2026-06-23T15:55:28.825Z"
 }

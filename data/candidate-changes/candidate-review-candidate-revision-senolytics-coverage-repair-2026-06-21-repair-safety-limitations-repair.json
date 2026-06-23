@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-safety-limitations-repair",
+  "name": "Safety-limitations review repair for candidate-revision senolytics coverage repair",
+  "summary": "Creates the missing safety_limitations supervisor review for candidate-revision-senolytics-coverage-repair-2026-06-21-repair. The review accepts only the lifecycle repair's safety boundary and keeps the underlying broad senolytics coverage candidate's safety gaps unresolved.",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-23T15:30:02Z",
+  "scope": {
+    "question": "Repair the missing safety_limitations review lane for the candidate-revision senolytics coverage-repair lifecycle candidate.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "chronic_inflammation"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-safety-limitations-repair",
+      "path": "data/candidate-changes/candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-safety-limitations-repair.json",
+      "change_type": "create",
+      "rationale": "Tracks this bounded repair candidate for the missing safety_limitations review lane."
+    },
+    {
+      "record_type": "evidence_review",
+      "record_id": "candidate-revision-senolytics-coverage-repair-2026-06-21-repair-safety-limitations-2026-06-23",
+      "path": "data/evidence-reviews/candidate-revision-senolytics-coverage-repair-2026-06-21-repair-safety-limitations-2026-06-23.json",
+      "change_type": "create",
+      "rationale": "Records the completed safety-limitations supervisor review for the candidate-revision senolytics coverage repair."
+    }
+  ],
+  "required_review_lanes": [
+    "safety_limitations"
+  ]
+}

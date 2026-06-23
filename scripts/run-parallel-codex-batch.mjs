@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { spawn } from "node:child_process";
+import { spawn, spawnSync } from "node:child_process";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -157,16 +157,20 @@ function selectedBatch(plan, options) {
 
 function commandWithOptions(command, options) {
   const next = [...command];
+  const isWorktreeCommand = next.some((part) => part === "agent:codex:worktree" || part.endsWith("run-codex-worktree.mjs"));
   if (!options.execute) {
     const executeIndex = next.indexOf("--execute");
     if (executeIndex !== -1) {
       next.splice(executeIndex, 1);
     }
   }
+  if (!isWorktreeCommand) {
+    return next;
+  }
   if (options.baseRef) {
     next.push("--base-ref", options.baseRef);
   }
-  if (options.allowDirty) {
+  if (options.allowDirty || options.execute) {
     next.push("--allow-dirty");
   }
   if (options.worktreeRoot) {
@@ -176,6 +180,30 @@ function commandWithOptions(command, options) {
     next.push("--post-export-verify");
   }
   return next;
+}
+
+function foregroundStatus() {
+  const result = spawnSync("git", ["status", "--porcelain", "--untracked-files=all"], {
+    cwd: workspaceRoot,
+    encoding: "utf8"
+  });
+
+  if (result.status !== 0) {
+    return undefined;
+  }
+
+  return result.stdout.trim();
+}
+
+function assertInitialForegroundReady(options) {
+  if (!options.execute || options.allowDirty) {
+    return;
+  }
+
+  const status = foregroundStatus();
+  if (status) {
+    throw new Error("Foreground checkout has changes before batch-run state is written; commit, stash, or rerun with --allow-dirty.");
+  }
 }
 
 function initialRunRecord({ plan, batch, options, startedAt }) {
@@ -247,6 +275,29 @@ function nextActionsForRun(workerStates) {
   return actions;
 }
 
+function recordWorkerDiagnostic({ worker, streamName, line }) {
+  if (streamName !== "stderr") {
+    return;
+  }
+
+  const diagnosticPatterns = [
+    /codex exec exceeded max_command_events/i,
+    /Foreground checkout has changes/i,
+    /git apply --binary failed/i,
+    /isolated Codex wrapper exited with code/i
+  ];
+
+  if (!diagnosticPatterns.some((pattern) => pattern.test(line))) {
+    return;
+  }
+
+  if ((worker.issues ?? []).includes(line)) {
+    return;
+  }
+
+  worker.issues = [...(worker.issues ?? []), line];
+}
+
 async function maybeArchiveJob(worker, completedAt) {
   const job = await readJson(worker.job_path);
   const outputPath = resolveRepoPath(job.output_path);
@@ -274,6 +325,70 @@ async function maybeArchiveJob(worker, completedAt) {
   await fs.rm(resolveRepoPath(worker.job_path));
   worker.archive_path = archivePath;
   worker.status = "succeeded";
+}
+
+function createInterruptionController() {
+  const activeChildren = new Set();
+  let interruptedSignal;
+
+  return {
+    get interrupted() {
+      return Boolean(interruptedSignal);
+    },
+    get signal() {
+      return interruptedSignal;
+    },
+    addChild(child) {
+      activeChildren.add(child);
+      if (interruptedSignal) {
+        child.kill(interruptedSignal);
+      }
+    },
+    removeChild(child) {
+      activeChildren.delete(child);
+    },
+    requestInterruption(signal) {
+      if (interruptedSignal) {
+        return;
+      }
+      interruptedSignal = signal;
+      for (const child of activeChildren) {
+        child.kill(signal);
+      }
+    }
+  };
+}
+
+function installInterruptionHandlers(controller) {
+  const signals = ["SIGINT", "SIGTERM"];
+  const handlers = signals.map((signal) => {
+    const handler = () => {
+      if (controller.interrupted) {
+        process.exit(1);
+      }
+      controller.requestInterruption(signal);
+    };
+    process.on(signal, handler);
+    return [signal, handler];
+  });
+
+  return () => {
+    for (const [signal, handler] of handlers) {
+      process.off(signal, handler);
+    }
+  };
+}
+
+function markUnfinishedWorkersInterrupted(workerStates, signal, completedAt) {
+  for (const worker of workerStates) {
+    if (worker.status !== "planned" && worker.status !== "running") {
+      continue;
+    }
+    worker.status = "failed";
+    worker.completed_at = worker.completed_at ?? completedAt;
+    worker.exit_code = worker.exit_code ?? 1;
+    worker.issues = [...(worker.issues ?? []), `Worker interrupted by coordinator signal ${signal}.`];
+  }
 }
 
 async function finalizeWorker({ worker, exitCode, completedAt, archiveCompleted }) {
@@ -307,7 +422,7 @@ function parseHelperEvent(line) {
   }
 }
 
-async function runWorker({ worker, runRecordPath, runRecord, archiveCompleted }) {
+async function runWorker({ worker, runRecordPath, runRecord, archiveCompleted, controller }) {
   worker.status = "running";
   worker.started_at = new Date().toISOString();
   runRecord.summary = summarizeWorkers(runRecord.worker_states);
@@ -325,6 +440,7 @@ async function runWorker({ worker, runRecordPath, runRecord, archiveCompleted })
       cwd: workspaceRoot,
       stdio: ["ignore", "pipe", "pipe"]
     });
+    controller?.addChild(child);
     const streamBuffers = {
       stdout: "",
       stderr: ""
@@ -347,6 +463,7 @@ async function runWorker({ worker, runRecordPath, runRecord, archiveCompleted })
       if (helperEvent?.type === "codex_worktree.prepared" && helperEvent.worktree_path) {
         worker.worktree_path = helperEvent.worktree_path;
       }
+      recordWorkerDiagnostic({ worker, streamName, line });
       queueLog({
           type: `parallel_batch.worker_${streamName}`,
           batch_run_id: runRecord.id,
@@ -382,10 +499,12 @@ async function runWorker({ worker, runRecordPath, runRecord, archiveCompleted })
     child.stdout.on("data", (chunk) => handleChunk("stdout", chunk));
     child.stderr.on("data", (chunk) => handleChunk("stderr", chunk));
     child.on("error", (error) => {
+      controller?.removeChild(child);
       worker.issues = [...(worker.issues ?? []), error.message];
       finish(1);
     });
     child.on("close", (code, signal) => {
+      controller?.removeChild(child);
       flushStream("stdout");
       flushStream("stderr");
       if (signal) {
@@ -412,7 +531,7 @@ async function runWorker({ worker, runRecordPath, runRecord, archiveCompleted })
   });
 }
 
-async function runWorkers({ runRecord, runRecordPath, maxWorkers, archiveCompleted }) {
+async function runWorkers({ runRecord, runRecordPath, maxWorkers, archiveCompleted, controller }) {
   const queue = [...runRecord.worker_states];
   const active = new Set();
 
@@ -421,7 +540,7 @@ async function runWorkers({ runRecord, runRecordPath, maxWorkers, archiveComplet
       return;
     }
     const worker = queue.shift();
-    const promise = runWorker({ worker, runRecordPath, runRecord, archiveCompleted })
+    const promise = runWorker({ worker, runRecordPath, runRecord, archiveCompleted, controller })
       .finally(() => {
         active.delete(promise);
       });
@@ -429,11 +548,13 @@ async function runWorkers({ runRecord, runRecordPath, maxWorkers, archiveComplet
   }
 
   while (queue.length > 0 || active.size > 0) {
-    while (queue.length > 0 && active.size < maxWorkers) {
+    while (!controller?.interrupted && queue.length > 0 && active.size < maxWorkers) {
       await startNext();
     }
     if (active.size > 0) {
       await Promise.race(active);
+    } else if (controller?.interrupted) {
+      break;
     }
   }
 }
@@ -444,6 +565,7 @@ async function main() {
   if (plan.record_type !== "parallel_batch_plan") {
     throw new Error(`${options.plan}: expected record_type "parallel_batch_plan".`);
   }
+  assertInitialForegroundReady(options);
   const batch = selectedBatch(plan, options);
   const startedAt = new Date().toISOString();
   const runRecord = initialRunRecord({ plan, batch, options, startedAt });
@@ -464,9 +586,30 @@ async function main() {
   });
 
   const maxWorkers = Math.min(options.maxWorkers ?? runRecord.worker_states.length, runRecord.worker_states.length);
-  await runWorkers({ runRecord, runRecordPath, maxWorkers, archiveCompleted: options.archiveCompleted });
+  const controller = createInterruptionController();
+  const uninstallInterruptionHandlers = installInterruptionHandlers(controller);
+  try {
+    await runWorkers({
+      runRecord,
+      runRecordPath,
+      maxWorkers,
+      archiveCompleted: options.archiveCompleted,
+      controller
+    });
+  } finally {
+    uninstallInterruptionHandlers();
+  }
 
   runRecord.completed_at = new Date().toISOString();
+  if (controller.interrupted) {
+    markUnfinishedWorkersInterrupted(runRecord.worker_states, controller.signal, runRecord.completed_at);
+    await appendLog(runRecord.log_path, {
+      type: "parallel_batch.run_interrupted",
+      batch_run_id: runRecord.id,
+      completed_at: runRecord.completed_at,
+      signal: controller.signal
+    });
+  }
   runRecord.status = summarizeRunStatus(runRecord.worker_states);
   runRecord.summary = summarizeWorkers(runRecord.worker_states);
   runRecord.next_actions = nextActionsForRun(runRecord.worker_states);

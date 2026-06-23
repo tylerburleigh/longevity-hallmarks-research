@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "parallel_batch_plan",
   "id": "parallel-batch-plan-v1",
-  "generated_at": "2026-06-23T14:52:58.747Z",
+  "generated_at": "2026-06-23T16:08:43.781Z",
   "source_job_root": "ops/codex-jobs/live",
   "planner_version": "1.0.0",
   "scheduler_policy": {
@@ -33,115 +33,16 @@
       "execution_class": "independent",
       "reconciliation_required": false,
       "job_ids": [
-        "self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-extraction-fidelity",
-        "self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-safety-limitations",
-        "self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-source-fidelity",
-        "self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary"
-      ],
-      "job_paths": [
-        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-extraction-fidelity.json",
-        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-safety-limitations.json",
-        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-source-fidelity.json",
-        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary.json"
-      ],
-      "agent_roles": [
-        "supervisor_agent"
-      ],
-      "modes": [
-        "agent_directed"
-      ],
-      "read_sets": [
-        "path:data/candidate-changes/candidate-revision-senolytics-coverage-repair-2026-06-21-repair.json",
-        "path:ops/triage-state.v1.json",
-        "triage_job:candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair"
-      ],
-      "write_sets": [
-        "candidate_change:candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-extraction-fidelity-repair",
-        "candidate_change:candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-safety-limitations-repair",
-        "candidate_change:candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-source-fidelity-repair",
-        "candidate_change:candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary-repair",
-        "candidate_review:candidate-revision-senolytics-coverage-repair-2026-06-21-repair/extraction_fidelity",
-        "candidate_review:candidate-revision-senolytics-coverage-repair-2026-06-21-repair/safety_limitations",
-        "candidate_review:candidate-revision-senolytics-coverage-repair-2026-06-21-repair/source_fidelity",
-        "candidate_review:candidate-revision-senolytics-coverage-repair-2026-06-21-repair/synthesis_boundary",
-        "path:data/candidate-changes/candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-extraction-fidelity-repair.json",
-        "path:data/candidate-changes/candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-safety-limitations-repair.json",
-        "path:data/candidate-changes/candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-source-fidelity-repair.json",
-        "path:data/candidate-changes/candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary-repair.json"
-      ],
-      "conflict_keys": [
-        "candidate_change:candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-extraction-fidelity-repair",
-        "candidate_change:candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-safety-limitations-repair",
-        "candidate_change:candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-source-fidelity-repair",
-        "candidate_change:candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary-repair",
-        "candidate_review:candidate-revision-senolytics-coverage-repair-2026-06-21-repair/extraction_fidelity",
-        "candidate_review:candidate-revision-senolytics-coverage-repair-2026-06-21-repair/safety_limitations",
-        "candidate_review:candidate-revision-senolytics-coverage-repair-2026-06-21-repair/source_fidelity",
-        "candidate_review:candidate-revision-senolytics-coverage-repair-2026-06-21-repair/synthesis_boundary"
-      ],
-      "overlapping_execution_keys": [],
-      "expected_cost": {
-        "cost_class": "high",
-        "expected_wall_time_ms": 3600000,
-        "expected_token_budget": 400000,
-        "io_intensity": "medium"
-      },
-      "commands": [
-        [
-          "npm",
-          "run",
-          "agent:codex:worktree",
-          "--",
-          "--job-file",
-          "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-extraction-fidelity.json",
-          "--execute"
-        ],
-        [
-          "npm",
-          "run",
-          "agent:codex:worktree",
-          "--",
-          "--job-file",
-          "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-safety-limitations.json",
-          "--execute"
-        ],
-        [
-          "npm",
-          "run",
-          "agent:codex:worktree",
-          "--",
-          "--job-file",
-          "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-source-fidelity.json",
-          "--execute"
-        ],
-        [
-          "npm",
-          "run",
-          "agent:codex:worktree",
-          "--",
-          "--job-file",
-          "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary.json",
-          "--execute"
-        ]
-      ]
-    },
-    {
-      "batch_id": "parallel-batch-002-candidate-review",
-      "sequence": 2,
-      "parallel_group": "candidate-review",
-      "execution_class": "independent",
-      "reconciliation_required": false,
-      "job_ids": [
-        "self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-taxonomy-mapping",
         "self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity",
         "self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations",
-        "self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-source-fidelity"
+        "self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-source-fidelity",
+        "self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-synthesis-boundary"
       ],
       "job_paths": [
-        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-taxonomy-mapping.json",
         "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity.json",
         "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations.json",
-        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-source-fidelity.json"
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-source-fidelity.json",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-synthesis-boundary.json"
       ],
       "agent_roles": [
         "supervisor_agent"
@@ -150,35 +51,41 @@
         "agent_directed"
       ],
       "read_sets": [
-        "path:data/candidate-changes/candidate-revision-senolytics-coverage-repair-2026-06-21-repair.json",
+        "context_pack:self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity",
+        "context_pack:self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations",
+        "context_pack:self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-source-fidelity",
+        "context_pack:self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-synthesis-boundary",
         "path:data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json",
         "path:ops/triage-state.v1.json",
-        "triage_job:candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
         "triage_job:candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
       ],
       "write_sets": [
-        "candidate_change:candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-taxonomy-mapping-repair",
         "candidate_change:candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity-repair",
         "candidate_change:candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations-repair",
         "candidate_change:candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-source-fidelity-repair",
-        "candidate_review:candidate-revision-senolytics-coverage-repair-2026-06-21-repair/taxonomy_mapping",
+        "candidate_change:candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-synthesis-boundary-repair",
         "candidate_review:senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22/extraction_fidelity",
         "candidate_review:senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22/safety_limitations",
         "candidate_review:senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22/source_fidelity",
-        "path:data/candidate-changes/candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-taxonomy-mapping-repair.json",
+        "candidate_review:senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22/synthesis_boundary",
         "path:data/candidate-changes/candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity-repair.json",
         "path:data/candidate-changes/candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations-repair.json",
-        "path:data/candidate-changes/candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-source-fidelity-repair.json"
+        "path:data/candidate-changes/candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-source-fidelity-repair.json",
+        "path:data/candidate-changes/candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-synthesis-boundary-repair.json",
+        "path:data/evidence-reviews/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity.json",
+        "path:data/evidence-reviews/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations.json",
+        "path:data/evidence-reviews/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-source-fidelity.json",
+        "path:data/evidence-reviews/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-synthesis-boundary.json"
       ],
       "conflict_keys": [
-        "candidate_change:candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-taxonomy-mapping-repair",
         "candidate_change:candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity-repair",
         "candidate_change:candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations-repair",
         "candidate_change:candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-source-fidelity-repair",
-        "candidate_review:candidate-revision-senolytics-coverage-repair-2026-06-21-repair/taxonomy_mapping",
+        "candidate_change:candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-synthesis-boundary-repair",
         "candidate_review:senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22/extraction_fidelity",
         "candidate_review:senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22/safety_limitations",
-        "candidate_review:senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22/source_fidelity"
+        "candidate_review:senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22/source_fidelity",
+        "candidate_review:senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22/synthesis_boundary"
       ],
       "overlapping_execution_keys": [],
       "expected_cost": {
@@ -188,15 +95,6 @@
         "io_intensity": "medium"
       },
       "commands": [
-        [
-          "npm",
-          "run",
-          "agent:codex:worktree",
-          "--",
-          "--job-file",
-          "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-taxonomy-mapping.json",
-          "--execute"
-        ],
         [
           "npm",
           "run",
@@ -223,21 +121,28 @@
           "--job-file",
           "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-source-fidelity.json",
           "--execute"
+        ],
+        [
+          "npm",
+          "run",
+          "agent:codex:worktree",
+          "--",
+          "--job-file",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-synthesis-boundary.json",
+          "--execute"
         ]
       ]
     },
     {
-      "batch_id": "parallel-batch-003-candidate-review",
-      "sequence": 3,
+      "batch_id": "parallel-batch-002-candidate-review",
+      "sequence": 2,
       "parallel_group": "candidate-review",
       "execution_class": "independent",
       "reconciliation_required": false,
       "job_ids": [
-        "self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-synthesis-boundary",
         "self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping"
       ],
       "job_paths": [
-        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-synthesis-boundary.json",
         "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping.json"
       ],
       "agent_roles": [
@@ -247,41 +152,29 @@
         "agent_directed"
       ],
       "read_sets": [
+        "context_pack:self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping",
         "path:data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json",
         "path:ops/triage-state.v1.json",
         "triage_job:candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
       ],
       "write_sets": [
-        "candidate_change:candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-synthesis-boundary-repair",
         "candidate_change:candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping-repair",
-        "candidate_review:senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22/synthesis_boundary",
         "candidate_review:senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22/taxonomy_mapping",
-        "path:data/candidate-changes/candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-synthesis-boundary-repair.json",
-        "path:data/candidate-changes/candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping-repair.json"
+        "path:data/candidate-changes/candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping-repair.json",
+        "path:data/evidence-reviews/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping.json"
       ],
       "conflict_keys": [
-        "candidate_change:candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-synthesis-boundary-repair",
         "candidate_change:candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping-repair",
-        "candidate_review:senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22/synthesis_boundary",
         "candidate_review:senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22/taxonomy_mapping"
       ],
       "overlapping_execution_keys": [],
       "expected_cost": {
         "cost_class": "high",
         "expected_wall_time_ms": 3600000,
-        "expected_token_budget": 200000,
+        "expected_token_budget": 100000,
         "io_intensity": "medium"
       },
       "commands": [
-        [
-          "npm",
-          "run",
-          "agent:codex:worktree",
-          "--",
-          "--job-file",
-          "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-synthesis-boundary.json",
-          "--execute"
-        ],
         [
           "npm",
           "run",
@@ -294,8 +187,8 @@
       ]
     },
     {
-      "batch_id": "parallel-batch-004-candidate-revision",
-      "sequence": 4,
+      "batch_id": "parallel-batch-003-candidate-revision",
+      "sequence": 3,
       "parallel_group": "candidate-revision",
       "execution_class": "independent",
       "reconciliation_required": true,
@@ -379,18 +272,22 @@
       ]
     },
     {
-      "batch_id": "parallel-batch-005-extraction-refresh",
-      "sequence": 5,
+      "batch_id": "parallel-batch-004-extraction-refresh",
+      "sequence": 4,
       "parallel_group": "extraction-refresh",
       "execution_class": "reconciliation_required",
       "reconciliation_required": true,
       "job_ids": [
         "self-healing-coverage-gap-senolytics-exact-effect-extraction",
-        "self-healing-coverage-gap-senolytics-safety-tables"
+        "self-healing-coverage-gap-senolytics-safety-tables",
+        "self-healing-extraction-debt-dq-bone-adverse-event-terms-20wk-mixed",
+        "self-healing-extraction-debt-dq-bone-adverse-events-20wk-mixed"
       ],
       "job_paths": [
         "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-exact-effect-extraction.json",
-        "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-safety-tables.json"
+        "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-safety-tables.json",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-adverse-event-terms-20wk-mixed.json",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-adverse-events-20wk-mixed.json"
       ],
       "agent_roles": [
         "extraction_agent"
@@ -400,24 +297,42 @@
       ],
       "read_sets": [
         "path:data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+        "path:data/results/dq-bone-adverse-event-terms-20wk-mixed.json",
+        "path:data/results/dq-bone-adverse-events-20wk-mixed.json",
         "path:ops/triage-state.v1.json",
         "triage_job:coverage-gap-senolytics-exact-effect-extraction",
-        "triage_job:coverage-gap-senolytics-safety-tables"
+        "triage_job:coverage-gap-senolytics-safety-tables",
+        "triage_job:extraction-debt-dq-bone-adverse-event-terms-20wk-mixed",
+        "triage_job:extraction-debt-dq-bone-adverse-events-20wk-mixed"
       ],
       "write_sets": [
         "candidate_change:coverage-gap-senolytics-exact-effect-extraction-repair",
         "candidate_change:coverage-gap-senolytics-safety-tables-repair",
+        "candidate_change:extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair",
+        "candidate_change:extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
         "path:data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-repair.json",
         "path:data/candidate-changes/coverage-gap-senolytics-safety-tables-repair.json",
+        "path:data/candidate-changes/extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair.json",
+        "path:data/candidate-changes/extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.json",
         "path:data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
-        "target_record:coverage_assessment/senolytics-coverage-repair-2026-06-21"
+        "path:data/results/dq-bone-adverse-event-terms-20wk-mixed.json",
+        "path:data/results/dq-bone-adverse-events-20wk-mixed.json",
+        "target_record:coverage_assessment/senolytics-coverage-repair-2026-06-21",
+        "target_record:result/dq-bone-adverse-event-terms-20wk-mixed",
+        "target_record:result/dq-bone-adverse-events-20wk-mixed"
       ],
       "conflict_keys": [
         "candidate_change:coverage-gap-senolytics-exact-effect-extraction-repair",
         "candidate_change:coverage-gap-senolytics-safety-tables-repair",
+        "candidate_change:extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair",
+        "candidate_change:extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
         "target_record:coverage_assessment/senolytics-coverage-repair-2026-06-21",
+        "target_record:result/dq-bone-adverse-event-terms-20wk-mixed",
+        "target_record:result/dq-bone-adverse-events-20wk-mixed",
         "triage_job:coverage-gap-senolytics-exact-effect-extraction",
-        "triage_job:coverage-gap-senolytics-safety-tables"
+        "triage_job:coverage-gap-senolytics-safety-tables",
+        "triage_job:extraction-debt-dq-bone-adverse-event-terms-20wk-mixed",
+        "triage_job:extraction-debt-dq-bone-adverse-events-20wk-mixed"
       ],
       "overlapping_execution_keys": [
         "path:data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
@@ -426,7 +341,7 @@
       "expected_cost": {
         "cost_class": "high",
         "expected_wall_time_ms": 3600000,
-        "expected_token_budget": 200000,
+        "expected_token_budget": 400000,
         "io_intensity": "high"
       },
       "commands": [
@@ -446,6 +361,117 @@
           "--",
           "--job-file",
           "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-safety-tables.json",
+          "--execute"
+        ],
+        [
+          "npm",
+          "run",
+          "agent:codex:worktree",
+          "--",
+          "--job-file",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-adverse-event-terms-20wk-mixed.json",
+          "--execute"
+        ],
+        [
+          "npm",
+          "run",
+          "agent:codex:worktree",
+          "--",
+          "--job-file",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-adverse-events-20wk-mixed.json",
+          "--execute"
+        ]
+      ]
+    },
+    {
+      "batch_id": "parallel-batch-005-extraction-refresh",
+      "sequence": 5,
+      "parallel_group": "extraction-refresh",
+      "execution_class": "independent",
+      "reconciliation_required": true,
+      "job_ids": [
+        "self-healing-extraction-debt-dq-bone-bmd-20wk-inconclusive",
+        "self-healing-extraction-debt-dq-bone-ctx-20wk-null",
+        "self-healing-extraction-debt-dq-bone-headache-20wk-descriptive"
+      ],
+      "job_paths": [
+        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-bmd-20wk-inconclusive.json",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-ctx-20wk-null.json",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-headache-20wk-descriptive.json"
+      ],
+      "agent_roles": [
+        "extraction_agent"
+      ],
+      "modes": [
+        "extraction_refresh"
+      ],
+      "read_sets": [
+        "path:data/results/dq-bone-bmd-20wk-inconclusive.json",
+        "path:data/results/dq-bone-ctx-20wk-null.json",
+        "path:data/results/dq-bone-headache-20wk-descriptive.json",
+        "path:ops/triage-state.v1.json",
+        "triage_job:extraction-debt-dq-bone-bmd-20wk-inconclusive",
+        "triage_job:extraction-debt-dq-bone-ctx-20wk-null",
+        "triage_job:extraction-debt-dq-bone-headache-20wk-descriptive"
+      ],
+      "write_sets": [
+        "candidate_change:extraction-debt-dq-bone-bmd-20wk-inconclusive-repair",
+        "candidate_change:extraction-debt-dq-bone-ctx-20wk-null-repair",
+        "candidate_change:extraction-debt-dq-bone-headache-20wk-descriptive-repair",
+        "path:data/candidate-changes/extraction-debt-dq-bone-bmd-20wk-inconclusive-repair.json",
+        "path:data/candidate-changes/extraction-debt-dq-bone-ctx-20wk-null-repair.json",
+        "path:data/candidate-changes/extraction-debt-dq-bone-headache-20wk-descriptive-repair.json",
+        "path:data/results/dq-bone-bmd-20wk-inconclusive.json",
+        "path:data/results/dq-bone-ctx-20wk-null.json",
+        "path:data/results/dq-bone-headache-20wk-descriptive.json",
+        "target_record:result/dq-bone-bmd-20wk-inconclusive",
+        "target_record:result/dq-bone-ctx-20wk-null",
+        "target_record:result/dq-bone-headache-20wk-descriptive"
+      ],
+      "conflict_keys": [
+        "candidate_change:extraction-debt-dq-bone-bmd-20wk-inconclusive-repair",
+        "candidate_change:extraction-debt-dq-bone-ctx-20wk-null-repair",
+        "candidate_change:extraction-debt-dq-bone-headache-20wk-descriptive-repair",
+        "target_record:result/dq-bone-bmd-20wk-inconclusive",
+        "target_record:result/dq-bone-ctx-20wk-null",
+        "target_record:result/dq-bone-headache-20wk-descriptive",
+        "triage_job:extraction-debt-dq-bone-bmd-20wk-inconclusive",
+        "triage_job:extraction-debt-dq-bone-ctx-20wk-null",
+        "triage_job:extraction-debt-dq-bone-headache-20wk-descriptive"
+      ],
+      "overlapping_execution_keys": [],
+      "expected_cost": {
+        "cost_class": "high",
+        "expected_wall_time_ms": 3600000,
+        "expected_token_budget": 300000,
+        "io_intensity": "high"
+      },
+      "commands": [
+        [
+          "npm",
+          "run",
+          "agent:codex:worktree",
+          "--",
+          "--job-file",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-bmd-20wk-inconclusive.json",
+          "--execute"
+        ],
+        [
+          "npm",
+          "run",
+          "agent:codex:worktree",
+          "--",
+          "--job-file",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-ctx-20wk-null.json",
+          "--execute"
+        ],
+        [
+          "npm",
+          "run",
+          "agent:codex:worktree",
+          "--",
+          "--job-file",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-headache-20wk-descriptive.json",
           "--execute"
         ]
       ]

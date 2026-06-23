@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary-repair",
+  "name": "Synthesis-boundary review repair for candidate-revision senolytics coverage repair",
+  "summary": "Creates the missing synthesis_boundary supervisor review for candidate-revision-senolytics-coverage-repair-2026-06-21-repair. The review accepts only the lifecycle repair's synthesis boundary and keeps the underlying broad senolytics coverage candidate's synthesis-compatibility gaps unresolved.",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-23T15:51:25Z",
+  "scope": {
+    "question": "Repair the missing synthesis_boundary review lane for the candidate-revision senolytics coverage-repair lifecycle candidate.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "chronic_inflammation"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary-repair",
+      "path": "data/candidate-changes/candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary-repair.json",
+      "change_type": "create",
+      "rationale": "Tracks this bounded repair candidate for the missing synthesis_boundary review lane."
+    },
+    {
+      "record_type": "evidence_review",
+      "record_id": "candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary-2026-06-23",
+      "path": "data/evidence-reviews/candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary-2026-06-23.json",
+      "change_type": "create",
+      "rationale": "Records the completed synthesis-boundary supervisor review for the candidate-revision senolytics coverage repair."
+    }
+  ],
+  "required_review_lanes": [
+    "synthesis_boundary"
+  ]
+}

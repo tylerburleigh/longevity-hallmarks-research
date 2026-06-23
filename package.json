@@ -34,6 +34,7 @@
     "audit:reconciliation": "node scripts/audit-reconciliation.mjs",
     "audit:orchestration-metrics": "node scripts/audit-orchestration-metrics.mjs",
     "audit:extraction-context-packs": "node scripts/audit-extraction-context-packs.mjs",
+    "audit:supervisor-review-context-packs": "node scripts/audit-supervisor-review-context-packs.mjs",
     "audit:exports": "node scripts/audit-exports.mjs",
     "audit:read-model": "node scripts/audit-read-model.mjs",
     "audit:agent-schemas": "node scripts/audit-agent-schemas.mjs",
@@ -45,8 +46,8 @@
     "test:audit-regressions": "node scripts/test-audit-regressions.mjs",
     "test:parallel-batch-runner": "node scripts/test-parallel-batch-runner.mjs",
     "test:scheduler-fixtures": "node scripts/test-scheduler-fixtures.mjs",
-    "verify:knowledge-base:post-run": "npm run validate:records && npm run audit:references && npm run audit:exports && npm run audit:read-model && npm run audit:triage-state && npm run audit:release-readiness && npm run audit:reconciliation && npm run audit:orchestration-metrics && npm run audit:extraction-context-packs && npm run audit:agent-schemas && npm run audit:orchestration-smoke-contract && npm run audit:agentic-process",
-    "verify:knowledge-base": "npm run validate:records && npm run audit:references && npm run audit:exports && npm run audit:read-model && npm run audit:triage-state && npm run audit:release-readiness && npm run audit:self-healing-jobs && npm run audit:worktree-helper && npm run audit:parallel-batches && npm run audit:parallel-batch-runs && npm run audit:reconciliation && npm run audit:orchestration-metrics && npm run audit:extraction-context-packs && npm run audit:agent-schemas && npm run audit:codex-jobs && npm run audit:orchestration-smoke-contract && npm run audit:extraction-pilot-readiness && npm run audit:agentic-process && npm run test:scheduler-fixtures && npm run test:parallel-batch-runner && npm run test:audit-regressions"
+    "verify:knowledge-base:post-run": "npm run validate:records && npm run audit:references && npm run audit:exports && npm run audit:read-model && npm run audit:triage-state && npm run audit:release-readiness && npm run audit:reconciliation && npm run audit:orchestration-metrics && npm run audit:extraction-context-packs && npm run audit:supervisor-review-context-packs && npm run audit:agent-schemas && npm run audit:orchestration-smoke-contract && npm run audit:agentic-process",
+    "verify:knowledge-base": "npm run validate:records && npm run audit:references && npm run audit:exports && npm run audit:read-model && npm run audit:triage-state && npm run audit:release-readiness && npm run audit:self-healing-jobs && npm run audit:worktree-helper && npm run audit:parallel-batches && npm run audit:parallel-batch-runs && npm run audit:reconciliation && npm run audit:orchestration-metrics && npm run audit:extraction-context-packs && npm run audit:supervisor-review-context-packs && npm run audit:agent-schemas && npm run audit:codex-jobs && npm run audit:orchestration-smoke-contract && npm run audit:extraction-pilot-readiness && npm run audit:agentic-process && npm run test:scheduler-fixtures && npm run test:parallel-batch-runner && npm run test:audit-regressions"
   },
   "devDependencies": {
     "ajv": "^8.20.0",

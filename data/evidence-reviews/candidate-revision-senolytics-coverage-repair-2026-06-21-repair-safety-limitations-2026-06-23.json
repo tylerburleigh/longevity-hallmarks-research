@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "candidate-revision-senolytics-coverage-repair-2026-06-21-repair-safety-limitations-2026-06-23",
+  "candidate_change_id": "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
+  "review_lane": "safety_limitations",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex-cli-worker",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "The safety-limitations lane is acceptable for this lifecycle repair. The candidate does not alter safety evidence records or promote safety conclusions; it preserves that the broad senolytics coverage-repair candidate remains in needs_revision because safety extraction and event-level adverse-event limitations are still unresolved there.",
+  "findings": [
+    {
+      "finding_id": "target-safety-gap-preserved",
+      "severity": "note",
+      "category": "safety_limitation",
+      "claim_or_issue": "The repaired summary for senolytics-coverage-repair-2026-06-21 explicitly keeps safety-limitations gaps among the reasons that broad candidate remains in needs_revision.",
+      "why_it_matters": "Accepting this review lane should not be misread as clearing the underlying broad senolytics safety evidence for promotion.",
+      "recommended_action": "Keep the underlying senolytics-coverage-repair-2026-06-21 safety review finding open until a narrower safety extraction repair closes the event-level adverse-event limitations.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "no-safety-evidence-mutation",
+      "severity": "note",
+      "category": "safety_limitation",
+      "claim_or_issue": "The candidate-revision repair proposes only candidate_change record updates and does not create, update, accept, or release any safety outcome, result, finding, or synthesis record.",
+      "why_it_matters": "The safety review lane can be complete without independently rechecking source-level adverse-event extraction because no safety evidence record is being changed by this candidate.",
+      "recommended_action": "Limit this acceptance to the lifecycle repair scope and require separate supervisor review for any future safety evidence extraction candidate.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "promotion-boundary-clear",
+      "severity": "minor",
+      "category": "missing_caveat",
+      "claim_or_issue": "The target repair candidate itself still needs the other required supervisor lanes before it could become promotion-ready.",
+      "why_it_matters": "A single accepting safety-limitations lane must not imply that source, extraction, taxonomy, or synthesis-boundary checks have been completed for this repair candidate.",
+      "recommended_action": "Leave candidate-revision-senolytics-coverage-repair-2026-06-21-repair unpromoted until all required active review lanes are complete and accepting.",
+      "resolution_status": "closed"
+    }
+  ]
+}

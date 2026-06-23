@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "candidate-revision-senolytics-coverage-repair-2026-06-21-repair-extraction-fidelity-2026-06-23",
+  "candidate_change_id": "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
+  "review_lane": "extraction_fidelity",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex-cli-worker",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "The extraction-fidelity lane is acceptable for this lifecycle repair. The candidate does not alter finding, outcome, result, study, or source extraction content; it records a repair candidate and keeps the broad senolytics coverage-repair candidate in needs_revision because source-located extraction gaps remain unresolved there.",
+  "findings": [
+    {
+      "finding_id": "target-extraction-gap-preserved",
+      "severity": "note",
+      "category": "extraction_error",
+      "claim_or_issue": "The repaired summary for senolytics-coverage-repair-2026-06-21 explicitly keeps extraction-fidelity gaps among the reasons that broad candidate remains in needs_revision.",
+      "why_it_matters": "Accepting this review lane should not be interpreted as clearing the underlying broad senolytics extraction records for promotion or synthesis.",
+      "recommended_action": "Keep the underlying senolytics-coverage-repair-2026-06-21 extraction-fidelity finding open until narrower extraction-refresh repairs address the source-located endpoint and quantitative extraction debt.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "no-extraction-record-mutation",
+      "severity": "note",
+      "category": "extraction_error",
+      "claim_or_issue": "The candidate-revision repair proposes only candidate_change record creation/update and does not create, update, accept, or release finding, outcome, result, study, source, or synthesis extraction records.",
+      "why_it_matters": "The extraction-fidelity lane can be complete for this lifecycle repair without re-extracting primary study data because no extracted evidence content is being changed by this candidate.",
+      "recommended_action": "Limit this acceptance to the lifecycle repair scope and require separate supervisor review for any future extraction-refresh candidate that changes extracted evidence records.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "promotion-boundary-clear",
+      "severity": "minor",
+      "category": "missing_caveat",
+      "claim_or_issue": "The target repair candidate itself still needs the other required supervisor lanes before it could become promotion-ready.",
+      "why_it_matters": "A single accepting extraction-fidelity lane must not imply that source, taxonomy, synthesis-boundary, or safety checks have been completed for this repair candidate.",
+      "recommended_action": "Leave candidate-revision-senolytics-coverage-repair-2026-06-21-repair unpromoted until all required active review lanes are complete and accepting.",
+      "resolution_status": "closed"
+    }
+  ]
+}

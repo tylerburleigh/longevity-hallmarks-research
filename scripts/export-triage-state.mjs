@@ -228,9 +228,20 @@ function buildReviewsByCandidate(reviewEntries) {
   return reviewsByCandidate;
 }
 
-function getReadinessStatus({ candidate, missingReviewLanes, revisionReviewLanes, blockingReviewIds, openMajorOrCriticalReviewIds }) {
+function getReadinessStatus({
+  candidate,
+  missingReviewLanes,
+  revisionReviewLanes,
+  blockingReviewIds,
+  openMajorOrCriticalReviewIds,
+  reviewGateRequired = true
+}) {
   if (["accepted", "applied", "rejected"].includes(candidate.lifecycle_status)) {
     return candidate.lifecycle_status;
+  }
+
+  if (!reviewGateRequired) {
+    return "submitted";
   }
 
   if (blockingReviewIds.length > 0) {
@@ -260,7 +271,26 @@ function getReadinessStatus({ candidate, missingReviewLanes, revisionReviewLanes
   return "blocked";
 }
 
-function getCandidateNextActions({ candidate, readinessStatus, missingReviewLanes, revisionReviewLanes, openMajorOrCriticalReviewIds }) {
+function isReviewRecordOnlyCandidate(candidate) {
+  const proposedRecords = candidate.proposed_records ?? [];
+  return (
+    proposedRecords.some((proposedRecord) => proposedRecord.record_type === "evidence_review") &&
+    proposedRecords.every((proposedRecord) => ["candidate_change", "evidence_review"].includes(proposedRecord.record_type))
+  );
+}
+
+function getCandidateNextActions({
+  candidate,
+  readinessStatus,
+  missingReviewLanes,
+  revisionReviewLanes,
+  openMajorOrCriticalReviewIds,
+  reviewGateRequired
+}) {
+  if (!reviewGateRequired) {
+    return ["No recursive supervisor review required; this candidate only ledgers evidence_review records."];
+  }
+
   if (readinessStatus === "promotion_ready") {
     return [`Promote candidate with npm run promote:candidate -- ${candidate.id} --status accepted after coordinator selection.`];
   }
@@ -300,6 +330,8 @@ function buildCandidateReadiness({ candidateEntries, reviewEntries }) {
   for (const entry of candidateEntries) {
     const candidate = entry.record;
     const requiredReviewLanes = sortStrings(candidate.required_review_lanes ?? []);
+    const reviewGateRequired = !isReviewRecordOnlyCandidate(candidate);
+    const activeRequiredReviewLanes = reviewGateRequired ? requiredReviewLanes : [];
     const activeReviewEntries = reviewsByCandidate.get(candidate.id) ?? [];
     const activeReviews = activeReviewEntries.map((reviewEntry) => reviewEntry.record);
     const reviewsByLane = new Map();
@@ -310,9 +342,9 @@ function buildCandidateReadiness({ candidateEntries, reviewEntries }) {
       reviewsByLane.set(review.review_lane, laneReviews);
     }
 
-    const completeAcceptingReviewLanes = requiredReviewLanes.filter((lane) => (reviewsByLane.get(lane) ?? []).some(isAcceptingReview));
-    const missingReviewLanes = requiredReviewLanes.filter((lane) => !(reviewsByLane.get(lane) ?? []).length);
-    const revisionReviewLanes = requiredReviewLanes.filter((lane) =>
+    const completeAcceptingReviewLanes = activeRequiredReviewLanes.filter((lane) => (reviewsByLane.get(lane) ?? []).some(isAcceptingReview));
+    const missingReviewLanes = activeRequiredReviewLanes.filter((lane) => !(reviewsByLane.get(lane) ?? []).length);
+    const revisionReviewLanes = activeRequiredReviewLanes.filter((lane) =>
       (reviewsByLane.get(lane) ?? []).some((review) => !isAcceptingReview(review) || hasOpenMajorOrCriticalFinding(review))
     );
     const blockingReviewIds = sortStrings(activeReviews.filter((review) => review.blocking).map((review) => review.id));
@@ -323,7 +355,8 @@ function buildCandidateReadiness({ candidateEntries, reviewEntries }) {
       missingReviewLanes,
       revisionReviewLanes,
       blockingReviewIds,
-      openMajorOrCriticalReviewIds
+      openMajorOrCriticalReviewIds,
+      reviewGateRequired
     });
 
     for (const reviewLane of missingReviewLanes) {
@@ -354,7 +387,8 @@ function buildCandidateReadiness({ candidateEntries, reviewEntries }) {
         readinessStatus,
         missingReviewLanes,
         revisionReviewLanes,
-        openMajorOrCriticalReviewIds
+        openMajorOrCriticalReviewIds,
+        reviewGateRequired
       })
     });
   }

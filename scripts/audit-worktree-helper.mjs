@@ -3,6 +3,8 @@
 import { promises as fs } from "node:fs";
 import os from "node:os";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
+import { spawnSync } from "node:child_process";
 import { buildExecutionPlan, workspaceRoot } from "./run-codex-worktree.mjs";
 
 const liveJobRoot = "ops/codex-jobs/live";
@@ -19,6 +21,19 @@ async function exists(filePath) {
 
 function toPosixRelative(filePath) {
   return path.relative(workspaceRoot, filePath).split(path.sep).join("/");
+}
+
+function runCommand(command, args, { cwd }) {
+  const result = spawnSync(command, args, {
+    cwd,
+    encoding: "utf8"
+  });
+
+  if (result.status !== 0) {
+    throw new Error(`${command} ${args.join(" ")} failed: ${(result.stderr || result.stdout).trim()}`);
+  }
+
+  return result.stdout.trim();
 }
 
 async function walkJsonFiles(rootPath) {
@@ -39,6 +54,70 @@ async function walkJsonFiles(rootPath) {
   }
 
   return files.sort((left, right) => toPosixRelative(left).localeCompare(toPosixRelative(right)));
+}
+
+async function auditBinaryDirtyOverlay(issues) {
+  const tempParent = await fs.mkdtemp(path.join(os.tmpdir(), "lhr-worktree-binary-overlay-"));
+  const tempRoot = path.join(tempParent, "repo");
+  const worktreePath = path.join(tempParent, "worktree");
+  const jobPath = "ops/codex-jobs/live/binary-overlay-job.json";
+  try {
+    await fs.mkdir(tempRoot, { recursive: true });
+    runCommand("git", ["init", "-q"], { cwd: tempRoot });
+    await fs.mkdir(path.join(tempRoot, "ops/codex-jobs/live"), { recursive: true });
+    await fs.writeFile(path.join(tempRoot, "binary.dat"), Buffer.from([0, 1, 2, 3, 255, 254, 253, 252]));
+    await fs.writeFile(
+      path.join(tempRoot, jobPath),
+      `${JSON.stringify(
+        {
+          schema_version: "1.0.0",
+          record_type: "codex_job",
+          id: "binary-overlay-job",
+          lifecycle_status: "ready",
+          agent_role: "self_healing_agent",
+          mode: "agent_directed",
+          prompt_file: "docs/prompts/codex-agents/parallel-synthetic-candidate.md",
+          output_path: "research/agent-runs/binary-overlay-job.json",
+          jsonl_log_path: "research/agent-runs/logs/binary-overlay-job.jsonl"
+        },
+        null,
+        2
+      )}\n`
+    );
+    runCommand("git", ["add", "."], { cwd: tempRoot });
+    runCommand(
+      "git",
+      ["-c", "user.name=fixture", "-c", "user.email=fixture@example.test", "commit", "-q", "-m", "initial fixture"],
+      { cwd: tempRoot }
+    );
+
+    const updatedBinary = Buffer.from([252, 253, 254, 255, 3, 2, 1, 0]);
+    await fs.writeFile(path.join(tempRoot, "binary.dat"), updatedBinary);
+    await fs.writeFile(path.join(tempRoot, "untracked-note.txt"), "copied through dirty overlay\n");
+
+    const helperUrl = pathToFileURL(path.join(workspaceRoot, "scripts/run-codex-worktree.mjs")).href;
+    const script = `
+      import { buildExecutionPlan, prepareWorktree } from ${JSON.stringify(helperUrl)};
+      const plan = await buildExecutionPlan({
+        jobFile: ${JSON.stringify(jobPath)},
+        worktreePath: ${JSON.stringify(worktreePath)},
+        baseRef: "HEAD",
+        allowDirty: true
+      });
+      await prepareWorktree(plan, { baseRef: "HEAD", allowDirty: true });
+    `;
+    runCommand(process.execPath, ["--input-type=module", "-e", script], { cwd: tempRoot });
+
+    const worktreeBinary = await fs.readFile(path.join(worktreePath, "binary.dat"));
+    if (!worktreeBinary.equals(updatedBinary)) {
+      issues.push("binary dirty-overlay fixture: tracked binary diff was not reproduced in the worktree.");
+    }
+    if (!(await exists(path.join(worktreePath, "untracked-note.txt")))) {
+      issues.push("binary dirty-overlay fixture: untracked file was not copied into the worktree.");
+    }
+  } finally {
+    await fs.rm(tempParent, { recursive: true, force: true });
+  }
 }
 
 async function main() {
@@ -79,6 +158,8 @@ async function main() {
       issues.push(`${relativePath}: mutable jobs should declare git_worktree or codex_managed_worktree isolation.`);
     }
   }
+
+  await auditBinaryDirtyOverlay(issues);
 
   if (issues.length > 0) {
     console.error(`Worktree-helper audit failed with ${issues.length} issue(s):`);

@@ -416,35 +416,11 @@ function checkActiveCommandBudget({ issues, job, ownerPath }) {
   }
 }
 
-async function checkContextPack({ issues, job, ownerPath }) {
-  const isRunnableLiveJob = ownerPath.startsWith(liveJobPathPrefix) && activeJobStatuses.has(job.lifecycle_status);
-  const isExtractionPilot = job.mode === "extraction_refresh" && job.orchestration?.parallel_group === "extraction-pilot";
+function isCandidateReviewLaneJob(job) {
+  return job.agent_role === "supervisor_agent" && job.orchestration?.parallel_group === "candidate-review";
+}
 
-  if (isRunnableLiveJob && isExtractionPilot && !job.context_pack_path) {
-    issues.push(`${ownerPath}: live extraction-pilot jobs must declare context_pack_path.`);
-    return;
-  }
-
-  if (!job.context_pack_path) {
-    return;
-  }
-
-  const contextPack = await readOptionalJson({
-    issues,
-    ownerPath,
-    field: "context_pack_path",
-    relativePath: job.context_pack_path
-  });
-
-  if (!contextPack) {
-    return;
-  }
-
-  if (contextPack.record_type !== "extraction_context_pack") {
-    issues.push(`${ownerPath}: context_pack_path must reference record_type "extraction_context_pack".`);
-    return;
-  }
-
+function checkContextPackCommon({ issues, job, ownerPath, contextPack }) {
   const readSets = job.orchestration?.read_sets ?? [];
   if (!readSets.includes(`context_pack:${contextPack.id}`)) {
     issues.push(`${ownerPath}: orchestration.read_sets missing context pack key "context_pack:${contextPack.id}".`);
@@ -495,6 +471,73 @@ async function checkContextPack({ issues, job, ownerPath }) {
     expected: contextPack.expected_outputs?.required_review_lanes,
     actual: job.expected_outputs?.required_review_lanes
   });
+}
+
+function checkExtractionContextPack({ issues, job, ownerPath, contextPack }) {
+  checkContextPackCommon({ issues, job, ownerPath, contextPack });
+}
+
+function checkSupervisorReviewContextPack({ issues, job, ownerPath, contextPack }) {
+  if (!isCandidateReviewLaneJob(job)) {
+    issues.push(`${ownerPath}: supervisor_review_context_pack can only be used by candidate-review supervisor lane jobs.`);
+    return;
+  }
+
+  checkContextPackCommon({ issues, job, ownerPath, contextPack });
+
+  const readSets = job.orchestration?.read_sets ?? [];
+  const targetCandidatePath = contextPack.target_candidate?.path;
+  if (targetCandidatePath && !readSets.includes(`path:${targetCandidatePath}`)) {
+    issues.push(`${ownerPath}: orchestration.read_sets missing target candidate path key "path:${targetCandidatePath}".`);
+  }
+
+  const expectedLanes = job.expected_outputs?.required_review_lanes ?? [];
+  if (expectedLanes.length !== 1 || expectedLanes[0] !== contextPack.review_lane) {
+    issues.push(`${ownerPath}: context_pack.review_lane must match the job's single expected review lane.`);
+  }
+}
+
+async function checkContextPack({ issues, job, ownerPath }) {
+  const isRunnableLiveJob = ownerPath.startsWith(liveJobPathPrefix) && activeJobStatuses.has(job.lifecycle_status);
+  const isExtractionPilot = job.mode === "extraction_refresh" && job.orchestration?.parallel_group === "extraction-pilot";
+  const isSupervisorCandidateReview = isCandidateReviewLaneJob(job);
+
+  if (isRunnableLiveJob && isExtractionPilot && !job.context_pack_path) {
+    issues.push(`${ownerPath}: live extraction-pilot jobs must declare context_pack_path.`);
+    return;
+  }
+
+  if (isRunnableLiveJob && isSupervisorCandidateReview && !job.context_pack_path) {
+    issues.push(`${ownerPath}: live candidate-review supervisor lane jobs must declare context_pack_path.`);
+    return;
+  }
+
+  if (!job.context_pack_path) {
+    return;
+  }
+
+  const contextPack = await readOptionalJson({
+    issues,
+    ownerPath,
+    field: "context_pack_path",
+    relativePath: job.context_pack_path
+  });
+
+  if (!contextPack) {
+    return;
+  }
+
+  if (contextPack.record_type === "extraction_context_pack") {
+    checkExtractionContextPack({ issues, job, ownerPath, contextPack });
+    return;
+  }
+
+  if (contextPack.record_type === "supervisor_review_context_pack") {
+    checkSupervisorReviewContextPack({ issues, job, ownerPath, contextPack });
+    return;
+  }
+
+  issues.push(`${ownerPath}: context_pack_path references unsupported record_type "${contextPack.record_type}".`);
 }
 
 async function checkCodexJob({ issues, job, ownerPath }) {

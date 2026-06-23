@@ -132,6 +132,31 @@ function runGit(args, { cwd = workspaceRoot } = {}) {
   return result.stdout.trim();
 }
 
+function runGitBuffer(args, { cwd = workspaceRoot } = {}) {
+  const result = spawnSync("git", args, {
+    cwd
+  });
+
+  if (result.status !== 0) {
+    throw new Error(`git ${args.join(" ")} failed: ${(result.stderr || result.stdout).toString("utf8").trim()}`);
+  }
+
+  return result.stdout;
+}
+
+function runGitInput(args, input, { cwd = workspaceRoot } = {}) {
+  const result = spawnSync("git", args, {
+    cwd,
+    input
+  });
+
+  if (result.status !== 0) {
+    throw new Error(`git ${args.join(" ")} failed: ${(result.stderr || result.stdout).toString("utf8").trim()}`);
+  }
+
+  return result.stdout.toString("utf8").trim();
+}
+
 async function exists(filePath) {
   try {
     await fs.access(filePath);
@@ -162,7 +187,7 @@ async function readJob(jobFile) {
 function assertForegroundReady({ allowDirty }) {
   const status = runGit(["status", "--porcelain", "--untracked-files=all"]);
   if (status && !allowDirty) {
-    throw new Error("Foreground checkout has changes; commit, stash, or rerun with --allow-dirty if the worktree should be based on HEAD.");
+    throw new Error("Foreground checkout has changes; commit, stash, or rerun with --allow-dirty to overlay those changes into the worktree.");
   }
 }
 
@@ -170,9 +195,23 @@ function defaultWorktreePath({ job, worktreeRoot }) {
   return path.join(path.resolve(worktreeRoot), `${slug(job.id)}-${timestamp()}`);
 }
 
+function isInsideDirectory(candidatePath, directoryPath) {
+  const relativePath = path.relative(directoryPath, candidatePath);
+  return Boolean(relativePath) && !relativePath.startsWith("..") && !path.isAbsolute(relativePath);
+}
+
+function assertWorktreePathOutsideWorkspace(worktreePath) {
+  const resolvedWorktreePath = path.resolve(worktreePath);
+  const resolvedWorkspaceRoot = path.resolve(workspaceRoot);
+  if (resolvedWorktreePath === resolvedWorkspaceRoot || isInsideDirectory(resolvedWorktreePath, resolvedWorkspaceRoot)) {
+    throw new Error(`Worktree path must be outside the foreground repository: ${worktreePath}`);
+  }
+}
+
 export async function buildExecutionPlan(options) {
   const { job, relativePath } = await readJob(options.jobFile);
   const worktreePath = path.resolve(options.worktreePath ?? defaultWorktreePath({ job, worktreeRoot: options.worktreeRoot ?? defaultWorktreeRoot }));
+  assertWorktreePathOutsideWorkspace(worktreePath);
   const command = [
     "npm",
     "run",
@@ -204,13 +243,54 @@ export async function buildExecutionPlan(options) {
     execute: Boolean(options.execute),
     plan_only: Boolean(options.planOnly),
     base_ref: options.baseRef ?? "HEAD",
+    dirty_overlay: Boolean(options.allowDirty),
     worktree_path: worktreePath,
     wrapper_cwd: worktreePath,
     command
   };
 }
 
-async function prepareWorktree(plan, options) {
+async function copyUntrackedFileToWorktree(relativePath, worktreePath) {
+  const sourcePath = path.join(workspaceRoot, relativePath);
+  const targetPath = path.join(worktreePath, relativePath);
+  if (!(await exists(sourcePath))) {
+    return;
+  }
+
+  await fs.mkdir(path.dirname(targetPath), { recursive: true });
+  await fs.cp(sourcePath, targetPath, {
+    recursive: true,
+    dereference: false,
+    preserveTimestamps: true
+  });
+}
+
+async function applyDirtyOverlay(plan, options) {
+  if (!options.allowDirty) {
+    return;
+  }
+
+  const diff = runGitBuffer(["diff", "--binary", options.baseRef ?? "HEAD"]);
+  if (diff.length > 0) {
+    runGitInput(["apply", "--binary"], diff, { cwd: plan.worktree_path });
+  }
+
+  const status = runGitBuffer(["status", "--porcelain=v1", "-z", "--untracked-files=all"]);
+  const untrackedPaths = status
+    .toString("utf8")
+    .split("\0")
+    .filter(Boolean)
+    .filter((entry) => entry.startsWith("?? "))
+    .map((entry) => entry.slice(3));
+
+  for (const relativePath of untrackedPaths) {
+    await copyUntrackedFileToWorktree(relativePath, plan.worktree_path);
+  }
+
+  plan.dirty_overlay_paths = untrackedPaths.length;
+}
+
+export async function prepareWorktree(plan, options) {
   assertForegroundReady({ allowDirty: options.allowDirty });
   if (await exists(plan.worktree_path)) {
     throw new Error(`Worktree path already exists: ${plan.worktree_path}`);
@@ -218,6 +298,7 @@ async function prepareWorktree(plan, options) {
 
   await fs.mkdir(path.dirname(plan.worktree_path), { recursive: true });
   runGit(["worktree", "add", "--detach", plan.worktree_path, options.baseRef ?? "HEAD"]);
+  await applyDirtyOverlay(plan, options);
 
   const sourceNodeModules = path.join(workspaceRoot, "node_modules");
   const targetNodeModules = path.join(plan.worktree_path, "node_modules");

@@ -45,6 +45,8 @@ Job execution guards may include `timeout_ms`, `no_output_timeout_ms`, and `max_
 
 Extraction-refresh jobs may declare `context_pack_path` pointing at an `extraction_context_pack` record under `ops/extraction-context-packs/`. Live jobs in the `extraction-pilot` parallel group must declare one. The worker reads the pack first and uses its retained artifact locators, target records, schema slices, exemplar records, expected outputs, and verification commands as the bounded task contract.
 
+Candidate-review supervisor jobs may declare `context_pack_path` pointing at a `supervisor_review_context_pack` record under `ops/supervisor-review-context-packs/`. Runnable generated candidate-review lane jobs must declare one. The worker reads the pack first and uses its target candidate, single review lane, prior review state, proposed record pointers, expected evidence-review path, and verification commands as the bounded review contract.
+
 By default, the wrapper writes a dry-run command plan under `research/agent-runs/logs/`. Add `--execute` only when the worktree is ready for the worker to run.
 
 Job specs must declare `orchestration` metadata before they are runnable:
@@ -58,7 +60,7 @@ Job specs must declare `orchestration` metadata before they are runnable:
 
 Use stable keys such as `source:nct-04313634`, `study:dq-postmenopausal-bone-rct`, `candidate_change:<id>`, `path:data/results/<id>.json`, and `parallel_group:extraction-refresh`. `audit:codex-jobs` requires every expected proposed record path to appear in `write_sets`, supervisor jobs to conflict on their review lanes, and active live jobs in the same `parallel_group` to avoid overlapping `conflict_keys` unless both jobs require reconciliation.
 
-Jobs that declare a context pack should include `context_pack:<id>` in `read_sets`. `audit:codex-jobs` checks that the pack scope and expected outputs match the job, while `audit:extraction-context-packs` checks retained artifact paths, locators, target paths, schemas, exemplars, and output alignment.
+Jobs that declare a context pack should include `context_pack:<id>` in `read_sets`. `audit:codex-jobs` checks that the pack scope and expected outputs match the job. `audit:extraction-context-packs` checks retained artifact paths, locators, target paths, schemas, exemplars, and output alignment. `audit:supervisor-review-context-packs` checks supervisor-review pack paths, target candidates, review lanes, active review records, relevant inputs, schemas, and expected output alignment.
 
 The wrapper builds a `codex exec` command with:
 

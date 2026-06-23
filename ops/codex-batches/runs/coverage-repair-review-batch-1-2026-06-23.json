@@ -1,0 +1,125 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "parallel_batch_run",
+  "id": "coverage-repair-review-batch-1-2026-06-23",
+  "batch_plan_id": "parallel-batch-plan-v1",
+  "batch_plan_path": "ops/codex-batches/parallel-batch-plan.v1.json",
+  "batch_id": "parallel-batch-001-candidate-review",
+  "batch_sequence": 1,
+  "parallel_group": "candidate-review",
+  "execution_class": "independent",
+  "reconciliation_required": false,
+  "started_at": "2026-06-23T15:25:20.949Z",
+  "status": "failed",
+  "log_path": "ops/codex-batches/logs/coverage-repair-review-batch-1-2026-06-23.jsonl",
+  "worker_states": [
+    {
+      "job_id": "self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-extraction-fidelity",
+      "job_path": "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-extraction-fidelity.json",
+      "command": [
+        "npm",
+        "run",
+        "agent:codex:worktree",
+        "--",
+        "--job-file",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-extraction-fidelity.json",
+        "--execute",
+        "--post-export-verify"
+      ],
+      "status": "failed",
+      "started_at": "2026-06-23T15:25:20.950Z",
+      "completed_at": "2026-06-23T15:25:21.049Z",
+      "exit_code": 1,
+      "output_path": "research/agent-runs/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-extraction-fidelity.json",
+      "worker_log_path": "research/agent-runs/logs/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-extraction-fidelity.jsonl",
+      "issues": [
+        "Worker exited with code 1."
+      ],
+      "archive_path": "ops/codex-jobs/archive/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-extraction-fidelity.json"
+    },
+    {
+      "job_id": "self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-safety-limitations",
+      "job_path": "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-safety-limitations.json",
+      "command": [
+        "npm",
+        "run",
+        "agent:codex:worktree",
+        "--",
+        "--job-file",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-safety-limitations.json",
+        "--execute",
+        "--post-export-verify"
+      ],
+      "status": "failed",
+      "started_at": "2026-06-23T15:25:20.950Z",
+      "completed_at": "2026-06-23T15:25:21.044Z",
+      "exit_code": 1,
+      "output_path": "research/agent-runs/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-safety-limitations.json",
+      "worker_log_path": "research/agent-runs/logs/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-safety-limitations.jsonl",
+      "issues": [
+        "Worker exited with code 1."
+      ],
+      "archive_path": "ops/codex-jobs/archive/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-safety-limitations.json"
+    },
+    {
+      "job_id": "self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-source-fidelity",
+      "job_path": "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-source-fidelity.json",
+      "command": [
+        "npm",
+        "run",
+        "agent:codex:worktree",
+        "--",
+        "--job-file",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-source-fidelity.json",
+        "--execute",
+        "--post-export-verify"
+      ],
+      "status": "failed",
+      "started_at": "2026-06-23T15:25:20.950Z",
+      "completed_at": "2026-06-23T15:25:21.044Z",
+      "exit_code": 1,
+      "output_path": "research/agent-runs/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-source-fidelity.json",
+      "worker_log_path": "research/agent-runs/logs/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-source-fidelity.jsonl",
+      "issues": [
+        "Worker exited with code 1."
+      ],
+      "archive_path": "ops/codex-jobs/archive/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-source-fidelity.json"
+    },
+    {
+      "job_id": "self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary",
+      "job_path": "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary.json",
+      "command": [
+        "npm",
+        "run",
+        "agent:codex:worktree",
+        "--",
+        "--job-file",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary.json",
+        "--execute",
+        "--post-export-verify"
+      ],
+      "status": "failed",
+      "started_at": "2026-06-23T15:25:20.950Z",
+      "completed_at": "2026-06-23T15:25:21.044Z",
+      "exit_code": 1,
+      "output_path": "research/agent-runs/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary.json",
+      "worker_log_path": "research/agent-runs/logs/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary.jsonl",
+      "issues": [
+        "Worker exited with code 1."
+      ],
+      "archive_path": "ops/codex-jobs/archive/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary.json"
+    }
+  ],
+  "summary": {
+    "planned_count": 0,
+    "running_count": 0,
+    "succeeded_count": 0,
+    "pending_reconciliation_count": 0,
+    "failed_count": 4,
+    "archived_count": 4
+  },
+  "next_actions": [
+    "Inspect batch log events and failed worker logs before rerunning failed jobs."
+  ],
+  "completed_at": "2026-06-23T15:25:21.049Z"
+}

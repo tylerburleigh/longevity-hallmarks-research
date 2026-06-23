@@ -8,6 +8,7 @@
   "agent_role": "supervisor_agent",
   "mode": "agent_directed",
   "prompt_file": "docs/prompts/codex-agents/supervisor-review.md",
+  "context_pack_path": "ops/supervisor-review-context-packs/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations.json",
   "output_path": "research/agent-runs/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations.json",
   "jsonl_log_path": "research/agent-runs/logs/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations.jsonl",
   "scope": {
@@ -28,17 +29,27 @@
     "output_schema_path": "schemas/agent-run.codex-output.schema.json",
     "timeout_ms": 3600000,
     "no_output_timeout_ms": 300000,
-    "max_command_events": 70
+    "max_command_events": 90
   },
   "expected_outputs": {
     "canonical_write_policy": "candidate_change_required",
     "candidate_change_id": "candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations-repair",
     "required_review_lanes": [
       "safety_limitations"
-    ]
+    ],
+    "proposed_record_paths": [
+      "data/candidate-changes/candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations-repair.json",
+      "data/evidence-reviews/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations.json"
+    ],
+    "generated_file_paths": [
+      "data/candidate-changes/candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations-repair.json",
+      "data/evidence-reviews/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations.json"
+    ],
+    "export_paths": []
   },
   "orchestration": {
     "read_sets": [
+      "context_pack:self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations",
       "path:data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json",
       "path:ops/triage-state.v1.json",
       "triage_job:candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
@@ -46,7 +57,8 @@
     "write_sets": [
       "candidate_change:candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations-repair",
       "candidate_review:senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22/safety_limitations",
-      "path:data/candidate-changes/candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations-repair.json"
+      "path:data/candidate-changes/candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations-repair.json",
+      "path:data/evidence-reviews/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations.json"
     ],
     "conflict_keys": [
       "candidate_change:candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations-repair",

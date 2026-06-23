@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "release_readiness",
   "id": "release-readiness-v1",
-  "generated_at": "2026-06-23T14:55:02.747Z",
+  "generated_at": "2026-06-23T16:08:52.175Z",
   "source_roots": [
     "data",
     "research"
@@ -17,9 +17,9 @@
     "canonical_source_of_truth": "data/ and research/ JSON records"
   },
   "summary": {
-    "candidate_count": 15,
-    "not_ready_candidate_count": 9,
-    "promotion_ready_candidate_count": 0,
+    "candidate_count": 20,
+    "not_ready_candidate_count": 13,
+    "promotion_ready_candidate_count": 1,
     "release_ready_candidate_count": 1,
     "partial_release_ready_candidate_count": 5,
     "release_blocked_candidate_count": 5,
@@ -27,7 +27,9 @@
     "accepted_record_count": 13,
     "blocked_accepted_record_count": 39
   },
-  "promotion_ready_candidate_ids": [],
+  "promotion_ready_candidate_ids": [
+    "candidate-revision-senolytics-coverage-repair-2026-06-21-repair"
+  ],
   "release_ready_candidate_ids": [
     "senolytics-dq-bone-registry-text-snapshot-2026-06-22"
   ],
@@ -40,16 +42,88 @@
   ],
   "candidate_release_statuses": [
     {
-      "candidate_change_id": "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
-      "path": "data/candidate-changes/candidate-revision-senolytics-coverage-repair-2026-06-21-repair.json",
+      "candidate_change_id": "candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-extraction-fidelity-repair",
+      "path": "data/candidate-changes/candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-extraction-fidelity-repair.json",
       "lifecycle_status": "submitted",
-      "readiness_status": "needs_review",
+      "readiness_status": "submitted",
       "release_status": "not_ready",
       "required_review_lanes": [
-        "extraction_fidelity",
-        "safety_limitations",
-        "source_fidelity",
-        "synthesis_boundary",
+        "extraction_fidelity"
+      ],
+      "active_review_ids": [],
+      "proposed_record_count": 2,
+      "release_ready_record_count": 0,
+      "blocked_record_count": 0,
+      "release_ready_record_ids": [],
+      "blocked_record_ids": [],
+      "next_actions": [
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
+    {
+      "candidate_change_id": "candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-safety-limitations-repair",
+      "path": "data/candidate-changes/candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-safety-limitations-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "release_status": "not_ready",
+      "required_review_lanes": [
+        "safety_limitations"
+      ],
+      "active_review_ids": [],
+      "proposed_record_count": 2,
+      "release_ready_record_count": 0,
+      "blocked_record_count": 0,
+      "release_ready_record_ids": [],
+      "blocked_record_ids": [],
+      "next_actions": [
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
+    {
+      "candidate_change_id": "candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-source-fidelity-repair",
+      "path": "data/candidate-changes/candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-source-fidelity-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "release_status": "not_ready",
+      "required_review_lanes": [
+        "source_fidelity"
+      ],
+      "active_review_ids": [],
+      "proposed_record_count": 2,
+      "release_ready_record_count": 0,
+      "blocked_record_count": 0,
+      "release_ready_record_ids": [],
+      "blocked_record_ids": [],
+      "next_actions": [
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
+    {
+      "candidate_change_id": "candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary-repair",
+      "path": "data/candidate-changes/candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "release_status": "not_ready",
+      "required_review_lanes": [
+        "synthesis_boundary"
+      ],
+      "active_review_ids": [],
+      "proposed_record_count": 2,
+      "release_ready_record_count": 0,
+      "blocked_record_count": 0,
+      "release_ready_record_ids": [],
+      "blocked_record_ids": [],
+      "next_actions": [
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
+    {
+      "candidate_change_id": "candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-taxonomy-mapping-repair",
+      "path": "data/candidate-changes/candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-taxonomy-mapping-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "release_status": "not_ready",
+      "required_review_lanes": [
         "taxonomy_mapping"
       ],
       "active_review_ids": [],
@@ -59,7 +133,36 @@
       "release_ready_record_ids": [],
       "blocked_record_ids": [],
       "next_actions": [
-        "Run supervisor review lanes: extraction_fidelity, safety_limitations, source_fidelity, synthesis_boundary, taxonomy_mapping."
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
+    {
+      "candidate_change_id": "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
+      "path": "data/candidate-changes/candidate-revision-senolytics-coverage-repair-2026-06-21-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "promotion_ready",
+      "release_status": "promotion_ready",
+      "required_review_lanes": [
+        "extraction_fidelity",
+        "safety_limitations",
+        "source_fidelity",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "active_review_ids": [
+        "candidate-revision-senolytics-coverage-repair-2026-06-21-repair-extraction-fidelity-2026-06-23",
+        "candidate-revision-senolytics-coverage-repair-2026-06-21-repair-safety-limitations-2026-06-23",
+        "candidate-revision-senolytics-coverage-repair-2026-06-21-repair-source-fidelity-2026-06-23",
+        "candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary-2026-06-23",
+        "candidate-revision-senolytics-coverage-repair-2026-06-21-repair-taxonomy-mapping-2026-06-23"
+      ],
+      "proposed_record_count": 2,
+      "release_ready_record_count": 0,
+      "blocked_record_count": 0,
+      "release_ready_record_ids": [],
+      "blocked_record_ids": [],
+      "next_actions": [
+        "Promote candidate candidate-revision-senolytics-coverage-repair-2026-06-21-repair before release artifacts include its proposed records."
       ]
     },
     {

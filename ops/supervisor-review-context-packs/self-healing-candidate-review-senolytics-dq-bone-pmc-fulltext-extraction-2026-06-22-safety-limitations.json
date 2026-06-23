@@ -1,0 +1,365 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "supervisor_review_context_pack",
+  "id": "self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations",
+  "pack_type": "candidate_review_lane",
+  "created_at": "2026-06-22T21:20:00Z",
+  "purpose": "Bounded supervisor review for senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22 lane safety_limitations.",
+  "scope": {
+    "question": "candidate_review: Required review lane is missing: safety_limitations.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "target_candidate": {
+    "candidate_change_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
+    "path": "data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json",
+    "lifecycle_status": "submitted",
+    "summary": "Retains a PMC author-manuscript text snapshot for the D+Q postmenopausal bone RCT and adds full-text subgroup, adverse-event term, and synthesis-compatibility records while keeping safety and exploratory subgroup pooling blocked.",
+    "required_review_lanes": [
+      "extraction_fidelity",
+      "safety_limitations",
+      "source_fidelity",
+      "synthesis_boundary",
+      "taxonomy_mapping"
+    ],
+    "proposed_record_count": 19,
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
+        "path": "data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json",
+        "change_type": "create",
+        "rationale": "Tracks the PMC author-manuscript full-text extraction upgrade and required review lanes."
+      },
+      {
+        "record_type": "source",
+        "record_id": "pmid-38956196",
+        "path": "data/sources/pmid-38956196.json",
+        "change_type": "update",
+        "rationale": "Adds the PMC author-manuscript URL as a retained source-text access point."
+      },
+      {
+        "record_type": "source_rights",
+        "record_id": "source-rights-pmid-38956196-2026-06-22",
+        "path": "data/source-rights/source-rights-pmid-38956196-2026-06-22.json",
+        "change_type": "update",
+        "rationale": "Classifies the PMC author-manuscript copy for retained raw/markdown artifacts and metadata/structured-fact public export."
+      },
+      {
+        "record_type": "source_snapshot",
+        "record_id": "snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+        "path": "data/source-snapshots/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
+        "change_type": "create",
+        "rationale": "Captures the fetched PMC author-manuscript article-content HTML with hashes and source metadata."
+      },
+      {
+        "record_type": "text_snapshot",
+        "record_id": "text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+        "path": "data/text-snapshots/text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
+        "change_type": "create",
+        "rationale": "Adds retained normalized markdown, raw HTML, section index, and artifact hashes for full-text extraction."
+      },
+      {
+        "record_type": "finding",
+        "record_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+        "path": "data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json",
+        "change_type": "update",
+        "rationale": "Adds full-text provenance and caveats separating primary-null, exploratory subgroup, and safety table evidence."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-bone-p16-t3-p1np-2wk",
+        "path": "data/outcomes/dq-bone-p16-t3-p1np-2wk.json",
+        "change_type": "create",
+        "rationale": "Adds an exploratory high-p16 T3 2-week P1NP subgroup outcome."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-bone-p16-t3-p1np-4wk",
+        "path": "data/outcomes/dq-bone-p16-t3-p1np-4wk.json",
+        "change_type": "create",
+        "rationale": "Adds an exploratory high-p16 T3 4-week P1NP subgroup outcome."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-bone-p16-t3-ctx-2wk",
+        "path": "data/outcomes/dq-bone-p16-t3-ctx-2wk.json",
+        "change_type": "create",
+        "rationale": "Adds an exploratory high-p16 T3 2-week CTx subgroup outcome."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-bone-p16-t3-ctx-4wk",
+        "path": "data/outcomes/dq-bone-p16-t3-ctx-4wk.json",
+        "change_type": "create",
+        "rationale": "Adds an exploratory high-p16 T3 4-week CTx subgroup outcome."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-bone-p16-t3-radius-bmd-20wk",
+        "path": "data/outcomes/dq-bone-p16-t3-radius-bmd-20wk.json",
+        "change_type": "create",
+        "rationale": "Adds an exploratory high-p16 T3 20-week distal-radius BMD subgroup outcome."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-p16-t3-p1np-2wk-positive",
+        "path": "data/results/dq-bone-p16-t3-p1np-2wk-positive.json",
+        "change_type": "create",
+        "rationale": "Extracts the full-text high-p16 T3 2-week P1NP effect and p-value."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-p16-t3-p1np-4wk-inconclusive",
+        "path": "data/results/dq-bone-p16-t3-p1np-4wk-inconclusive.json",
+        "change_type": "create",
+        "rationale": "Extracts the full-text high-p16 T3 4-week P1NP effect and p-value."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-p16-t3-ctx-2wk-positive",
+        "path": "data/results/dq-bone-p16-t3-ctx-2wk-positive.json",
+        "change_type": "create",
+        "rationale": "Extracts the full-text high-p16 T3 2-week CTx effect and p-value."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-p16-t3-ctx-4wk-inconclusive",
+        "path": "data/results/dq-bone-p16-t3-ctx-4wk-inconclusive.json",
+        "change_type": "create",
+        "rationale": "Extracts the full-text high-p16 T3 4-week CTx effect and p-value."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-p16-t3-radius-bmd-20wk-positive",
+        "path": "data/results/dq-bone-p16-t3-radius-bmd-20wk-positive.json",
+        "change_type": "create",
+        "rationale": "Extracts the full-text high-p16 T3 20-week distal-radius BMD effect and p-value."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-adverse-event-terms-20wk-mixed",
+        "path": "data/results/dq-bone-adverse-event-terms-20wk-mixed.json",
+        "change_type": "create",
+        "rationale": "Extracts descriptive adverse-event term counts from the publication table with zero/not-reported caveats."
+      },
+      {
+        "record_type": "synthesis_group",
+        "record_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+        "path": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+        "change_type": "update",
+        "rationale": "Adds publication adverse-event table provenance and keeps safety pooling blocked until effect and uncertainty fields are supported."
+      },
+      {
+        "record_type": "synthesis_group",
+        "record_id": "senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22",
+        "path": "data/synthesis-groups/senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22.json",
+        "change_type": "create",
+        "rationale": "Creates a subgroup compatibility boundary that prevents exploratory high-p16 T3 effects from being pooled as overall endpoints."
+      }
+    ]
+  },
+  "review_lane": "safety_limitations",
+  "review_context": {
+    "active_review_records": [],
+    "complete_accepting_review_lanes": [],
+    "missing_review_lanes": [
+      "extraction_fidelity",
+      "safety_limitations",
+      "source_fidelity",
+      "synthesis_boundary",
+      "taxonomy_mapping"
+    ],
+    "open_major_or_critical_review_ids": [],
+    "lane_acceptance_criteria": [
+      "Review only the target candidate and the single review lane named by review_lane.",
+      "Use verdict accept only when the lane is complete, non-blocking, and has no open major or critical findings.",
+      "Use needs_revision or reject when the proposed records fail this lane's source, extraction, taxonomy, synthesis, or safety boundary."
+    ],
+    "relevant_input_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
+        "path": "data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json",
+        "role": "target_candidate"
+      },
+      {
+        "record_type": "finding",
+        "record_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+        "path": "data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-bone-p16-t3-ctx-2wk",
+        "path": "data/outcomes/dq-bone-p16-t3-ctx-2wk.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-bone-p16-t3-ctx-4wk",
+        "path": "data/outcomes/dq-bone-p16-t3-ctx-4wk.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-bone-p16-t3-p1np-2wk",
+        "path": "data/outcomes/dq-bone-p16-t3-p1np-2wk.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-bone-p16-t3-p1np-4wk",
+        "path": "data/outcomes/dq-bone-p16-t3-p1np-4wk.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-bone-p16-t3-radius-bmd-20wk",
+        "path": "data/outcomes/dq-bone-p16-t3-radius-bmd-20wk.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-adverse-event-terms-20wk-mixed",
+        "path": "data/results/dq-bone-adverse-event-terms-20wk-mixed.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-p16-t3-ctx-2wk-positive",
+        "path": "data/results/dq-bone-p16-t3-ctx-2wk-positive.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-p16-t3-ctx-4wk-inconclusive",
+        "path": "data/results/dq-bone-p16-t3-ctx-4wk-inconclusive.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-p16-t3-p1np-2wk-positive",
+        "path": "data/results/dq-bone-p16-t3-p1np-2wk-positive.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-p16-t3-p1np-4wk-inconclusive",
+        "path": "data/results/dq-bone-p16-t3-p1np-4wk-inconclusive.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-p16-t3-radius-bmd-20wk-positive",
+        "path": "data/results/dq-bone-p16-t3-radius-bmd-20wk-positive.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "source_rights",
+        "record_id": "source-rights-pmid-38956196-2026-06-22",
+        "path": "data/source-rights/source-rights-pmid-38956196-2026-06-22.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "source_snapshot",
+        "record_id": "snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+        "path": "data/source-snapshots/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "source",
+        "record_id": "pmid-38956196",
+        "path": "data/sources/pmid-38956196.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "synthesis_group",
+        "record_id": "senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22",
+        "path": "data/synthesis-groups/senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "synthesis_group",
+        "record_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+        "path": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "text_snapshot",
+        "record_id": "text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+        "path": "data/text-snapshots/text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
+        "role": "proposed_record"
+      }
+    ]
+  },
+  "schema_context": {
+    "schema_paths": [
+      "schemas/agent-run.codex-output.schema.json",
+      "schemas/agent-run.schema.json",
+      "schemas/evidence-review.schema.json",
+      "schemas/candidate-change.schema.json"
+    ],
+    "required_fields": [
+      "agent_run.outputs.candidate_change_id",
+      "agent_run.outputs.proposed_records[]",
+      "agent_run.outputs.generated_files[]",
+      "agent_run.quality_checks[]",
+      "candidate_change.proposed_records[]",
+      "evidence_review.review_lane",
+      "evidence_review.verdict",
+      "evidence_review.findings[]"
+    ],
+    "known_schema_limitations": [
+      "codex_job.expected_outputs records expected file paths, while this context pack additionally names the evidence_review_id for the lane."
+    ]
+  },
+  "expected_outputs": {
+    "candidate_change_id": "candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations-repair",
+    "evidence_review_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations",
+    "proposed_record_paths": [
+      "data/candidate-changes/candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations-repair.json",
+      "data/evidence-reviews/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations.json"
+    ],
+    "generated_file_paths": [
+      "data/candidate-changes/candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations-repair.json",
+      "data/evidence-reviews/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations.json"
+    ],
+    "export_paths": [],
+    "required_review_lanes": [
+      "safety_limitations"
+    ]
+  },
+  "verification": {
+    "worker_commands": [
+      "npm run validate:records",
+      "npm run audit:references",
+      "npm run audit:agent-schemas",
+      "npm run audit:agentic-process"
+    ],
+    "coordinator_post_run": [
+      "npm run export:triage-state",
+      "npm run reconcile:parallel",
+      "npm run metrics:orchestration",
+      "npm run export:release-readiness",
+      "npm run export:latest",
+      "npm run verify:knowledge-base"
+    ]
+  },
+  "constraints": [
+    "Create only the repair candidate and evidence_review paths declared in expected_outputs.",
+    "Do not promote, apply, or directly mutate the target candidate during a lane review.",
+    "Do not add open-ended human-judgment escape hatches; make an agentic supervisor verdict from the available records.",
+    "Inspect additional files only when the pack points to them or validation reveals a pack inconsistency."
+  ],
+  "known_limitations": [
+    "The pack is a compact routing contract, not a replacement for inspecting the target candidate's proposed records.",
+    "Prior review state is summarized from evidence_review_ids already attached to the target candidate."
+  ]
+}

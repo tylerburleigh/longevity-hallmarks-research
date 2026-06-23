@@ -105,6 +105,7 @@ As of 2026-06-22, the repository has an initial JSON-file-backed scaffold:
 - Ran the D+Q bone endpoint synthesis supervisor-review worker from a durable `codex_job`; imported complete accepting taxonomy-mapping, synthesis-boundary, and safety-limitations review records and moved the candidate to `in_review`.
 - Hardened Codex orchestration for pending-job ledgers, wrapper-owned post-run verification, and existing-output recovery after post-step failures.
 - Added a synthetic orchestration smoke job and fixture contract for proving isolated Codex execution before broader extraction refreshes.
+- Added an extraction-pilot readiness audit that requires the successful single-worker smoke proof, successful parallel smoke proof, fresh orchestration metrics, clear reconciliation state for the proof run, verification wiring, and regression fixture coverage before broader extraction pilots.
 - Added an explicit source access policy and `text_snapshot` contract so retained raw text, normalized markdown, section indexes, hashes, and full-text provenance can be audited.
 - Added a `source_rights` contract so attribution, terms/license source, artifact-retention classes, public-export policy, and remediation state are machine-readable.
 - Added the first retained public-registry text snapshot for the D+Q bone ClinicalTrials.gov source, including raw JSON, normalized markdown, section index, artifact hashes, and source-snapshot raw-storage state.
@@ -134,7 +135,7 @@ Current weaknesses and hardening priorities:
 - Endpoint and effect normalization are underdeveloped, limiting cross-study comparability and formal synthesis.
 - The query surface is improving through generated SQLite read models, but agents and downstream consumers still need broader query examples and contract tests over common meta-analysis questions.
 - Self-healing is generated and schedulable, but repair workers still need more end-to-end execution runs before we trust the loop under load.
-- Orchestration is static-testable and parallel-aware, and now has executed single-worker and parallel-worker synthetic proof runs, but it is not yet battle-tested enough for broader research extraction: we still need failure injection, recovery drills, and regression fixtures for the weaknesses found during the synthetic runs.
+- Orchestration is static-testable, parallel-aware, and gated for one bounded extraction-refresh pilot after the clean readiness command passes, but it is not yet proven under enough real research load for broad concurrent extraction campaigns.
 - The release boundary needs tightening: accepted canonical records, submitted candidates, in-review state, promotion-ready state, and released consumer artifacts should be clearly separated.
 - Statistical readiness is early: the system records why pooling is blocked, but it does not yet provide enough normalized effect data to produce many quantitative estimates.
 
@@ -664,7 +665,7 @@ Tasks:
 - [x] Inject known failure modes: failed worker, missing output, overlapping writes, stale generated job, pending reconciliation, broken candidate ledger, post-step failure, and rerun/recovery after existing output.
 - [x] Add regression coverage for battle-test weaknesses discovered so far: forwarded runner options, placeholder output references, stale pending reconciliation, missing imported output, batch-run summary drift, and failed-worker issue loss.
 - [x] Add or extend audits and regression fixtures for remaining injected failure modes as they are exercised.
-- [ ] Add a readiness gate for real extraction-refresh pilots: smoke job passes, parallel batch passes, failure fixtures pass, metrics refresh passes, reconciliation state has no unresolved orchestration blocker caused by the test run, and the worktree is clean.
+- [x] Add a readiness gate for real extraction-refresh pilots: smoke job passes, parallel batch passes, failure fixtures pass, metrics refresh passes, reconciliation state has no unresolved orchestration blocker caused by the test run, and the clean pre-pilot command confirms no pending file changes.
 
 Exit criteria:
 
@@ -685,8 +686,8 @@ Exit criteria:
 
 ## Immediate Next Actions
 
-1. Add the battle-test readiness gate for real extraction-refresh pilots.
-2. After the battle-test readiness gate passes, run one bounded extraction-refresh pilot for a remaining human D+Q paper instead of launching DKD, IPF, and AD-risk cognition/mobility together.
+1. Run `npm run audit:extraction-pilot-readiness:clean` from a clean checkout; this executes full verification, then enforces the clean pre-pilot guard.
+2. If the clean readiness gate passes, run one bounded extraction-refresh pilot for a remaining D+Q paper instead of launching DKD, IPF, and AD-risk cognition/mobility together.
 3. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
 4. Run supervisor-review lanes for `senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22`: source fidelity, extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
 5. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry or article text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
@@ -708,6 +709,7 @@ Exit criteria:
 - 2026-06-23: Completed a guard-level parallel synthetic proof run with two independent Codex workers, imported the worker candidate records, agent runs, prompt snapshots, and logs, archived both live job specs, refreshed the batch plan, reconciliation state, orchestration metrics, triage state, release readiness, and consumer exports, and kept failed attempts as structured batch-run evidence.
 - 2026-06-23: Added battle-test regression coverage for runner option forwarding, placeholder agent-run references, stale pending reconciliation after import, succeeded workers with missing outputs, batch-run summary drift, and failed workers without structured issues; tightened the batch-run audit to validate state-machine consistency.
 - 2026-06-23: Added controlled failure-mode fixtures for unsafe overlapping writes, stale generated self-healing jobs, Codex post-step verification failure, and rerun/archive-collision recovery; extended scheduler, audit-regression, and parallel-batch-runner tests so the remaining Phase 8 failure matrix is covered before adding the extraction-pilot readiness gate.
+- 2026-06-23: Added an extraction-pilot readiness gate with a clean pre-pilot variant, verification wiring, and a regression fixture that blocks a partial parallel proof from authorizing real extraction-refresh work.
 - 2026-06-22: Added promotion-blocking reconciliation decisions so `promote:candidate` rejects overlapping candidate outputs, duplicate source/study conflicts, source-rights conflicts, incomplete ledgers, and pending isolated-worker outputs unless resolved by explicit reconciliation-decision records.
 - 2026-06-22: Added a Codex orchestration battle-test phase and moved broad extraction-refresh work behind synthetic smoke jobs, parallel execution drills, failure injection, recovery checks, metrics refresh, reconciliation checks, and a clean-worktree readiness gate.
 - 2026-06-22: Added generated orchestration metrics with schema, freshness audit, post-run refresh wiring, docs, and verification coverage for planned wall-clock savings, worker outcomes, duplicate-work pressure, conflict rate, accepted outputs, extraction-debt pressure, and release artifacts.

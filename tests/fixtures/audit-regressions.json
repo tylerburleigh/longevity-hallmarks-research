@@ -469,6 +469,27 @@
       ]
     },
     {
+      "id": "extraction-pilot-readiness-blocks-partial-proof",
+      "description": "Extraction-pilot readiness must require the final parallel smoke proof to have succeeded.",
+      "command": [
+        "npm",
+        "run",
+        "audit:extraction-pilot-readiness"
+      ],
+      "operations": [
+        {
+          "type": "set_json",
+          "path": "ops/codex-batches/runs/parallel-synthetic-smoke-guard-level-2026-06-23.json",
+          "pointer": "/status",
+          "value": "partial"
+        }
+      ],
+      "expected_failure_substrings": [
+        "parallel readiness proof run.status",
+        "partial"
+      ]
+    },
+    {
       "id": "deprecated-non-agentic-process-vocabulary",
       "description": "Agentic process audit must reject deprecated process vocabulary.",
       "command": [

@@ -558,6 +558,49 @@
       ]
     },
     {
+      "id": "pack-backed-worker-broad-context-read",
+      "description": "Post-policy pack-backed supervisor jobs must not read broad runbooks after the context pack.",
+      "command": [
+        "npm",
+        "run",
+        "audit:worker-context-discipline"
+      ],
+      "operations": [
+        {
+          "type": "copy_json",
+          "from": "ops/codex-jobs/archive/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping.json",
+          "to": "ops/codex-jobs/archive/fixture-pack-backed-worker-broad-context-read.json",
+          "mutations": [
+            {
+              "type": "set_json",
+              "pointer": "/id",
+              "value": "fixture-pack-backed-worker-broad-context-read"
+            },
+            {
+              "type": "set_json",
+              "pointer": "/archived_at",
+              "value": "2026-06-23T18:30:00.000Z"
+            },
+            {
+              "type": "set_json",
+              "pointer": "/jsonl_log_path",
+              "value": "research/agent-runs/logs/fixture-pack-backed-worker-broad-context-read.jsonl"
+            }
+          ]
+        },
+        {
+          "type": "write_text",
+          "path": "research/agent-runs/logs/fixture-pack-backed-worker-broad-context-read.jsonl",
+          "content": "{\"type\":\"item.started\",\"item\":{\"id\":\"item_0\",\"type\":\"command_execution\",\"command\":\"/usr/bin/zsh -lc \\\"sed -n '1,220p' ops/supervisor-review-context-packs/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping.json\\\"\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"command_execution\",\"command\":\"/usr/bin/zsh -lc \\\"sed -n '1,220p' ops/supervisor-review-context-packs/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping.json\\\"\",\"aggregated_output\":\"{}\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_1\",\"type\":\"command_execution\",\"command\":\"/usr/bin/zsh -lc 'cat docs/research-runbook.md'\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_1\",\"type\":\"command_execution\",\"command\":\"/usr/bin/zsh -lc 'cat docs/research-runbook.md'\",\"aggregated_output\":\"broad runbook output\",\"exit_code\":0,\"status\":\"completed\"}}\n"
+        }
+      ],
+      "expected_failure_substrings": [
+        "Worker context-discipline audit failed",
+        "broad_command",
+        "docs/research-runbook.md"
+      ]
+    },
+    {
       "id": "deprecated-non-agentic-process-vocabulary",
       "description": "Agentic process audit must reject deprecated process vocabulary.",
       "command": [

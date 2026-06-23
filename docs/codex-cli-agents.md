@@ -139,6 +139,7 @@ Every worker final output must pass two schema gates:
 - The Codex-specific schema is response-format strict: every declared object property is required. Fields that are optional in canonical records are nullable in the Codex schema, and the wrapper removes null object properties before persisting the canonical `agent_run`.
 - `npm run audit:release-readiness` checks that the generated release-boundary queue still matches candidate lifecycle state and accepted-record export eligibility.
 - `npm run audit:codex-jobs` checks that persisted `codex_job` specs match their final `agent_run` records, candidate records, expected paths, required review lanes, quality gates, orchestration metadata, logs, and post-run checks.
+- `npm run audit:worker-context-discipline` checks pack-backed supervisor-review worker logs. It measures legacy broad-context reads and, for post-policy archived runs, fails broad runbook reads, broad repository searches/listings, missing first context-pack reads, and oversized non-context command output.
 - `worker_output_contract` checks the JSONL worker stream for a single final JSON `agent_run` and rejects ad hoc schema-validation snippets.
 
 When `canonical_write_policy` is `candidate_change_required`, the output must include:

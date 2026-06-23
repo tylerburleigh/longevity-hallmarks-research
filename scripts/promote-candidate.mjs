@@ -113,6 +113,29 @@ function getRecord(index, recordType, recordId) {
   return index.byType.get(recordType)?.get(recordId);
 }
 
+function sortStrings(values) {
+  return [...new Set((values ?? []).filter(Boolean))].sort((left, right) => left.localeCompare(right));
+}
+
+function evidenceReviewEntriesForCandidate(index, candidate) {
+  const entriesById = new Map();
+
+  for (const reviewId of candidate.evidence_review_ids ?? []) {
+    const entry = getRecord(index, "evidence_review", reviewId);
+    if (entry) {
+      entriesById.set(reviewId, entry);
+    }
+  }
+
+  for (const entry of index.byType.get("evidence_review")?.values() ?? []) {
+    if (entry.record.candidate_change_id === candidate.id) {
+      entriesById.set(entry.record.id, entry);
+    }
+  }
+
+  return [...entriesById.values()].sort((left, right) => left.record.id.localeCompare(right.record.id));
+}
+
 async function checkProposedRecord({ issues, proposedRecord }) {
   if (!proposedRecord.path) {
     issues.push(`proposed_records[] for ${proposedRecord.record_type}:${proposedRecord.record_id} lacks a path.`);
@@ -147,8 +170,8 @@ async function collectPromotionChecks({ index, candidate, targetStatus }) {
   const issues = [];
   const reconciliationDecisionIds = [];
 
-  if (targetStatus === "accepted" && candidate.lifecycle_status !== "in_review") {
-    issues.push(`candidate must be in_review before promotion to accepted; current status is "${candidate.lifecycle_status}".`);
+  if (targetStatus === "accepted" && !["submitted", "in_review"].includes(candidate.lifecycle_status)) {
+    issues.push(`candidate must be submitted or in_review before promotion to accepted; current status is "${candidate.lifecycle_status}".`);
   }
 
   if (targetStatus === "applied" && candidate.lifecycle_status !== "accepted") {
@@ -162,15 +185,15 @@ async function collectPromotionChecks({ index, candidate, targetStatus }) {
   const activeReviews = [];
   const reviewByLane = new Map();
   for (const reviewId of candidate.evidence_review_ids ?? []) {
-    const entry = getRecord(index, "evidence_review", reviewId);
-    if (!entry) {
+    if (!getRecord(index, "evidence_review", reviewId)) {
       issues.push(`linked evidence_review "${reviewId}" is missing.`);
-      continue;
     }
+  }
 
+  for (const entry of evidenceReviewEntriesForCandidate(index, candidate)) {
     const review = entry.record;
-    if (review.candidate_change_id !== candidate.id) {
-      issues.push(`evidence_review "${reviewId}" points to candidate "${review.candidate_change_id}".`);
+    if ((candidate.evidence_review_ids ?? []).includes(review.id) && review.candidate_change_id !== candidate.id) {
+      issues.push(`evidence_review "${review.id}" points to candidate "${review.candidate_change_id}".`);
     }
 
     if (review.status === "superseded") {
@@ -246,6 +269,7 @@ async function collectPromotionChecks({ index, candidate, targetStatus }) {
 
   return {
     issues,
+    reviewedReviewIds: sortStrings(activeReviews.map((review) => review.id)),
     reconciliationDecisionIds: [...new Set(reconciliationDecisionIds)].sort((left, right) => left.localeCompare(right))
   };
 }
@@ -261,7 +285,7 @@ async function main() {
   }
 
   const candidate = candidateEntry.record;
-  const { issues, reconciliationDecisionIds } = await collectPromotionChecks({
+  const { issues, reviewedReviewIds, reconciliationDecisionIds } = await collectPromotionChecks({
     index,
     candidate,
     targetStatus: options.targetStatus
@@ -278,11 +302,12 @@ async function main() {
   const promotedCandidate = {
     ...candidate,
     lifecycle_status: options.targetStatus,
+    evidence_review_ids: sortStrings([...(candidate.evidence_review_ids ?? []), ...reviewedReviewIds]),
     promotion: {
       target_status: options.targetStatus,
       promoted_at: new Date().toISOString(),
       promoted_by_agent: "promote-candidate",
-      reviewed_review_ids: candidate.evidence_review_ids ?? [],
+      reviewed_review_ids: reviewedReviewIds,
       ...(reconciliationDecisionIds.length > 0 ? { reconciliation_decision_ids: reconciliationDecisionIds } : {}),
       summary: `Promoted to ${options.targetStatus} after all required active review lanes passed.`
     }

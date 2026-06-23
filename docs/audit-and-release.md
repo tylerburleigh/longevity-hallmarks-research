@@ -14,7 +14,7 @@ npm run verify:knowledge-base
 
 `verify:knowledge-base` runs schema validation, reference-integrity checks, export checks, read-model checks, triage-state freshness checks, release-readiness freshness checks, agent schema checks, Codex job conformance checks, and the agentic process vocabulary audit.
 
-`promote:candidate` advances a candidate to `accepted` or `applied` only after required supervisor-agent review gates pass and blocker-severity reconciliation findings affecting that candidate have resolved `reconciliation_decision` records.
+`promote:candidate` advances a candidate to `accepted` or `applied` only after required supervisor-agent review gates pass and blocker-severity reconciliation findings affecting that candidate have resolved `reconciliation_decision` records. For accepted promotion, the command uses active `evidence_review` records that point at the candidate even when the candidate has not yet linked `evidence_review_ids[]`; on successful promotion it writes the reviewed review IDs back into the candidate so accepted records remain auditable.
 
 `export:latest` regenerates the consumer-facing files in `exports/latest/`, including JSONL record exports, synthesis-group exports, coverage status, evidence-map view, SQLite read model, consumer contract, and audit manifest.
 

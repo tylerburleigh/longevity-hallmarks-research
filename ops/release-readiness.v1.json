@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "release_readiness",
   "id": "release-readiness-v1",
-  "generated_at": "2026-06-23T19:33:50.600Z",
+  "generated_at": "2026-06-23T19:41:13.848Z",
   "source_roots": [
     "data",
     "research"
@@ -19,17 +19,15 @@
   "summary": {
     "candidate_count": 31,
     "not_ready_candidate_count": 22,
-    "promotion_ready_candidate_count": 1,
+    "promotion_ready_candidate_count": 0,
     "release_ready_candidate_count": 7,
-    "partial_release_ready_candidate_count": 1,
-    "release_blocked_candidate_count": 1,
-    "accepted_or_applied_candidate_count": 8,
-    "accepted_record_count": 52,
-    "blocked_accepted_record_count": 1
+    "partial_release_ready_candidate_count": 2,
+    "release_blocked_candidate_count": 2,
+    "accepted_or_applied_candidate_count": 9,
+    "accepted_record_count": 53,
+    "blocked_accepted_record_count": 2
   },
-  "promotion_ready_candidate_ids": [
-    "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair"
-  ],
+  "promotion_ready_candidate_ids": [],
   "release_ready_candidate_ids": [
     "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
     "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
@@ -40,6 +38,7 @@
     "senolytics-dq-bone-source-rights-seed-2026-06-22"
   ],
   "release_blocked_candidate_ids": [
+    "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
     "candidate-revision-senolytics-coverage-repair-2026-06-21-repair"
   ],
   "candidate_release_statuses": [
@@ -331,9 +330,9 @@
     {
       "candidate_change_id": "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
       "path": "data/candidate-changes/candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair.json",
-      "lifecycle_status": "submitted",
-      "readiness_status": "promotion_ready",
-      "release_status": "promotion_ready",
+      "lifecycle_status": "accepted",
+      "readiness_status": "accepted",
+      "release_status": "partial_release_ready",
       "required_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
@@ -349,12 +348,17 @@
         "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-taxonomy-mapping"
       ],
       "proposed_record_count": 2,
-      "release_ready_record_count": 0,
-      "blocked_record_count": 0,
-      "release_ready_record_ids": [],
-      "blocked_record_ids": [],
+      "release_ready_record_count": 1,
+      "blocked_record_count": 1,
+      "release_ready_record_ids": [
+        "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair"
+      ],
+      "blocked_record_ids": [
+        "senolytics-bone-rct-extraction-refresh-2026-06-21"
+      ],
       "next_actions": [
-        "Promote candidate candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair before release artifacts include its proposed records."
+        "Included records without blockers are eligible for accepted-record export.",
+        "Resolve blocked records before treating the whole candidate as fully released: candidate_change:senolytics-bone-rct-extraction-refresh-2026-06-21."
       ]
     },
     {
@@ -805,6 +809,21 @@
     }
   ],
   "release_ready_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
+      "path": "data/candidate-changes/candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
+    },
     {
       "record_type": "candidate_change",
       "record_id": "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
@@ -1627,6 +1646,20 @@
     }
   ],
   "blocked_accepted_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "senolytics-bone-rct-extraction-refresh-2026-06-21",
+      "path": "data/candidate-changes/senolytics-bone-rct-extraction-refresh-2026-06-21.json",
+      "change_type": "update",
+      "candidate_change_id": "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
+      "candidate_lifecycle_status": "accepted",
+      "blockers": [
+        {
+          "blocker_type": "unaccepted_create_dependency",
+          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-bone-rct-extraction-refresh-2026-06-21."
+        }
+      ]
+    },
     {
       "record_type": "candidate_change",
       "record_id": "senolytics-coverage-repair-2026-06-21",

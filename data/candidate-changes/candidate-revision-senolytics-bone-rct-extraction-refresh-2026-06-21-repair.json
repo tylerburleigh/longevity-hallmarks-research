@@ -4,7 +4,7 @@
   "id": "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
   "name": "Senolytics bone RCT extraction-refresh revision-state repair",
   "summary": "Marks the D+Q bone RCT extraction-refresh candidate as needs_revision and records that its extraction-fidelity and safety-limitations findings remain open until publication-table, supplement/subgroup, and event-specific adverse-event extraction repairs are completed.",
-  "lifecycle_status": "submitted",
+  "lifecycle_status": "accepted",
   "submitted_at": "2026-06-23T18:38:30Z",
   "scope": {
     "question": "Repair the lifecycle and audit state for the D+Q bone RCT extraction-refresh candidate after linked review lanes returned needs_revision findings.",
@@ -39,5 +39,28 @@
     "taxonomy_mapping",
     "synthesis_boundary",
     "safety_limitations"
-  ]
+  ],
+  "evidence_review_ids": [
+    "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-extraction-fidelity",
+    "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-safety-limitations",
+    "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-source-fidelity",
+    "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-synthesis-boundary",
+    "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-taxonomy-mapping"
+  ],
+  "promotion": {
+    "target_status": "accepted",
+    "promoted_at": "2026-06-23T19:41:00.084Z",
+    "promoted_by_agent": "promote-candidate",
+    "reviewed_review_ids": [
+      "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-extraction-fidelity",
+      "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-safety-limitations",
+      "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-source-fidelity",
+      "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-synthesis-boundary",
+      "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-taxonomy-mapping"
+    ],
+    "reconciliation_decision_ids": [
+      "resolve-bone-rct-repair-lifecycle-overlap-2026-06-23"
+    ],
+    "summary": "Promoted to accepted after all required active review lanes passed."
+  }
 }

@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "parallel_reconciliation",
   "id": "parallel-reconciliation-v1",
-  "generated_at": "2026-06-23T19:36:16.298Z",
+  "generated_at": "2026-06-23T19:41:32.919Z",
   "source_roots": [
     "data",
     "research",
@@ -49,8 +49,8 @@
     "study_count": 9,
     "duplicate_study_group_count": 0,
     "candidate_count": 31,
-    "active_candidate_count": 23,
-    "overlapping_candidate_group_count": 8,
+    "active_candidate_count": 22,
+    "overlapping_candidate_group_count": 7,
     "source_rights_count": 2,
     "source_rights_conflict_count": 0,
     "agent_run_count": 35,
@@ -60,8 +60,8 @@
     "pending_parallel_worker_count": 0,
     "reconciliation_decision_count": 4,
     "incomplete_ledger_count": 2,
-    "open_finding_count": 10,
-    "blocking_finding_count": 10,
+    "open_finding_count": 9,
+    "blocking_finding_count": 9,
     "warning_finding_count": 0
   },
   "parallel_batches": [
@@ -82,7 +82,6 @@
         "overlapping-candidate-14fca4c24b17",
         "overlapping-candidate-3a06e6340cfa",
         "overlapping-candidate-8be7ee3308f9",
-        "overlapping-candidate-97fe7f8de6dc",
         "overlapping-candidate-b3857906563f",
         "overlapping-candidate-b443e4e5da78",
         "overlapping-candidate-b633096216bd"
@@ -111,7 +110,6 @@
         "overlapping-candidate-14fca4c24b17",
         "overlapping-candidate-3a06e6340cfa",
         "overlapping-candidate-8be7ee3308f9",
-        "overlapping-candidate-97fe7f8de6dc",
         "overlapping-candidate-b3857906563f",
         "overlapping-candidate-b443e4e5da78",
         "overlapping-candidate-b633096216bd"
@@ -137,7 +135,6 @@
         "overlapping-candidate-14fca4c24b17",
         "overlapping-candidate-3a06e6340cfa",
         "overlapping-candidate-8be7ee3308f9",
-        "overlapping-candidate-97fe7f8de6dc",
         "overlapping-candidate-b3857906563f",
         "overlapping-candidate-b443e4e5da78",
         "overlapping-candidate-b633096216bd"
@@ -163,7 +160,6 @@
         "overlapping-candidate-14fca4c24b17",
         "overlapping-candidate-3a06e6340cfa",
         "overlapping-candidate-8be7ee3308f9",
-        "overlapping-candidate-97fe7f8de6dc",
         "overlapping-candidate-b3857906563f",
         "overlapping-candidate-b443e4e5da78",
         "overlapping-candidate-b633096216bd"
@@ -173,36 +169,6 @@
   "duplicate_sources": [],
   "duplicate_studies": [],
   "overlapping_candidate_proposals": [
-    {
-      "issue_id": "overlapping-candidate-97fe7f8de6dc",
-      "category": "overlapping_candidate_proposal",
-      "severity": "blocker",
-      "status": "open",
-      "proposal_key": "data/candidate-changes/senolytics-bone-rct-extraction-refresh-2026-06-21.json",
-      "candidate_change_ids": [
-        "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
-        "senolytics-bone-rct-extraction-refresh-2026-06-21"
-      ],
-      "proposed_records": [
-        {
-          "candidate_change_id": "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
-          "lifecycle_status": "submitted",
-          "record_type": "candidate_change",
-          "record_id": "senolytics-bone-rct-extraction-refresh-2026-06-21",
-          "path": "data/candidate-changes/senolytics-bone-rct-extraction-refresh-2026-06-21.json",
-          "change_type": "update"
-        },
-        {
-          "candidate_change_id": "senolytics-bone-rct-extraction-refresh-2026-06-21",
-          "lifecycle_status": "needs_revision",
-          "record_type": "candidate_change",
-          "record_id": "senolytics-bone-rct-extraction-refresh-2026-06-21",
-          "path": "data/candidate-changes/senolytics-bone-rct-extraction-refresh-2026-06-21.json",
-          "change_type": "create"
-        }
-      ],
-      "summary": "Active candidates propose changes to the same record path: data/candidate-changes/senolytics-bone-rct-extraction-refresh-2026-06-21.json."
-    },
     {
       "issue_id": "overlapping-candidate-0bae350639c4",
       "category": "overlapping_candidate_proposal",
@@ -557,13 +523,6 @@
       "severity": "blocker",
       "status": "open",
       "summary": "Active candidates propose changes to the same record path: data/sources/pmid-25754370.json."
-    },
-    {
-      "issue_id": "overlapping-candidate-97fe7f8de6dc",
-      "category": "overlapping_candidate_proposal",
-      "severity": "blocker",
-      "status": "open",
-      "summary": "Active candidates propose changes to the same record path: data/candidate-changes/senolytics-bone-rct-extraction-refresh-2026-06-21.json."
     },
     {
       "issue_id": "overlapping-candidate-b3857906563f",

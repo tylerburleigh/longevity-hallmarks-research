@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "triage_state",
   "id": "triage-state-v1",
-  "generated_at": "2026-06-23T19:33:47.389Z",
+  "generated_at": "2026-06-23T19:41:04.821Z",
   "source_roots": [
     "data",
     "research"
@@ -67,11 +67,11 @@
   ],
   "summary": {
     "candidate_count": 31,
-    "promotion_ready_count": 1,
+    "promotion_ready_count": 0,
     "needs_review_count": 0,
     "needs_revision_count": 3,
     "blocked_count": 0,
-    "accepted_count": 8,
+    "accepted_count": 9,
     "applied_count": 0,
     "rejected_count": 0,
     "coverage_gap_count": 4,
@@ -80,7 +80,7 @@
     "stale_snapshot_count": 0,
     "watch_snapshot_count": 0,
     "partial_or_failed_agent_run_count": 4,
-    "recommended_job_count": 31
+    "recommended_job_count": 30
   },
   "candidate_readiness": [
     {
@@ -386,8 +386,8 @@
     {
       "candidate_change_id": "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
       "path": "data/candidate-changes/candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair.json",
-      "lifecycle_status": "submitted",
-      "readiness_status": "promotion_ready",
+      "lifecycle_status": "accepted",
+      "readiness_status": "accepted",
       "required_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
@@ -421,9 +421,7 @@
       "blocking_review_ids": [],
       "open_major_or_critical_review_ids": [],
       "proposed_record_count": 2,
-      "next_actions": [
-        "Promote candidate with npm run promote:candidate -- candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair --status accepted after coordinator selection."
-      ]
+      "next_actions": []
     },
     {
       "candidate_change_id": "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
@@ -902,9 +900,7 @@
       ]
     }
   ],
-  "promotion_ready_candidate_ids": [
-    "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair"
-  ],
+  "promotion_ready_candidate_ids": [],
   "missing_review_lane_queue": [
     {
       "candidate_change_id": "senolytics-scaffold-bootstrap-2026-06-21",
@@ -1670,19 +1666,6 @@
     }
   ],
   "recommended_jobs": [
-    {
-      "job_id": "candidate-promotion-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
-      "job_type": "candidate_promotion",
-      "priority": "high",
-      "source": "candidate_readiness",
-      "target_record_type": "candidate_change",
-      "target_record_id": "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
-      "rationale": "All required active review lanes are complete, accepting, non-blocking, and free of open major or critical findings.",
-      "suggested_command": "npm run promote:candidate -- candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair --status accepted --dry-run",
-      "inputs": [
-        "data/candidate-changes/candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair.json"
-      ]
-    },
     {
       "job_id": "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21",
       "job_type": "candidate_revision",

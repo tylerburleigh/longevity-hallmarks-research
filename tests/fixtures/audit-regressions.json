@@ -223,6 +223,27 @@
       ]
     },
     {
+      "id": "stale-generated-self-healing-job",
+      "description": "Generated self-healing jobs must stay synchronized with triage-state recommended jobs.",
+      "command": [
+        "npm",
+        "run",
+        "audit:self-healing-jobs"
+      ],
+      "operations": [
+        {
+          "type": "set_json",
+          "path": "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity.json",
+          "pointer": "/orchestration/expected_cost/expected_token_budget",
+          "value": 999
+        }
+      ],
+      "expected_failure_substrings": [
+        "generated self-healing job is stale",
+        "jobs:self-healing"
+      ]
+    },
+    {
       "id": "bad-worker-output-ledger",
       "description": "A completed Codex job must match the final agent_run proposed-record ledger.",
       "command": [
@@ -415,6 +436,36 @@
       ],
       "expected_failure_substrings": [
         "failed worker orchestration-parallel-smoke-a-2026-06-23 should include issues"
+      ]
+    },
+    {
+      "id": "post-step-failure-is-observable",
+      "description": "Codex post-run verification failures must surface as nonzero coordinator command failures.",
+      "command": [
+        "npm",
+        "run",
+        "agent:codex",
+        "--",
+        "--id",
+        "orchestration-parallel-smoke-a-2026-06-23",
+        "--prompt-file",
+        "research/agent-runs/prompts/orchestration-parallel-smoke-a-2026-06-23.md",
+        "--output",
+        "research/agent-runs/orchestration-parallel-smoke-a-2026-06-23.json",
+        "--post-process-existing",
+        "--post-verify"
+      ],
+      "operations": [
+        {
+          "type": "set_json",
+          "path": "ops/triage-state.v1.json",
+          "pointer": "/summary/recommended_job_count",
+          "value": 999
+        }
+      ],
+      "expected_failure_substrings": [
+        "post_verify exited with code 1",
+        "Triage-state audit failed"
       ]
     },
     {

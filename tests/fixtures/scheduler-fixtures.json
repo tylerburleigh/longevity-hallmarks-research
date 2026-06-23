@@ -374,6 +374,75 @@
           }
         ]
       }
+    },
+    {
+      "id": "overlap-without-reconciliation-serializes",
+      "description": "Overlapping writes without reconciliation opt-in are serialized into separate batches.",
+      "max_workers": 4,
+      "parallel_group": "overlap-without-reconciliation",
+      "jobs": [
+        {
+          "id": "fixture-overlap-alpha",
+          "agent_role": "extraction_agent",
+          "mode": "extraction_refresh",
+          "read_sets": [
+            "path:data/results/fixture-overlap-result.json"
+          ],
+          "write_sets": [
+            "path:data/results/fixture-overlap-result.json",
+            "target_record:result/fixture-overlap-result"
+          ],
+          "conflict_keys": [
+            "target_record:result/fixture-overlap-result"
+          ]
+        },
+        {
+          "id": "fixture-overlap-beta",
+          "agent_role": "extraction_agent",
+          "mode": "extraction_refresh",
+          "read_sets": [
+            "path:data/results/fixture-overlap-result.json"
+          ],
+          "write_sets": [
+            "path:data/results/fixture-overlap-result.json",
+            "target_record:result/fixture-overlap-result"
+          ],
+          "conflict_keys": [
+            "target_record:result/fixture-overlap-result"
+          ]
+        }
+      ],
+      "expected": {
+        "summary": {
+          "live_job_count": 2,
+          "schedulable_job_count": 2,
+          "deferred_job_count": 0,
+          "batch_count": 2,
+          "max_batch_width": 1,
+          "independent_batch_count": 2,
+          "reconciliation_batch_count": 0
+        },
+        "batches": [
+          {
+            "parallel_group": "overlap-without-reconciliation",
+            "execution_class": "independent",
+            "reconciliation_required": false,
+            "job_ids": [
+              "fixture-overlap-alpha"
+            ],
+            "overlapping_execution_keys": []
+          },
+          {
+            "parallel_group": "overlap-without-reconciliation",
+            "execution_class": "independent",
+            "reconciliation_required": false,
+            "job_ids": [
+              "fixture-overlap-beta"
+            ],
+            "overlapping_execution_keys": []
+          }
+        ]
+      }
     }
   ]
 }

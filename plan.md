@@ -661,9 +661,9 @@ Tasks:
 - [x] Execute one isolated-worktree smoke job with `agent:codex:worktree --execute`, then inspect the final `agent_run`, command log, JSONL log, candidate ledger, archived job snapshot, reconciliation report, metrics report, and clean coordinator checkout.
 - [x] Tighten synthetic smoke prompts or job budgets so tiny orchestration fixtures do not over-read broad repository context before writing expected outputs.
 - [x] Execute a small parallel synthetic batch with independent jobs, then inspect batch-run state, worker worktrees, logs, outputs, reconciliation state, metrics state, and archive behavior.
-- [ ] Inject known failure modes: failed worker, missing output, overlapping writes, stale generated job, pending reconciliation, broken candidate ledger, post-step failure, and rerun/recovery after existing output.
+- [x] Inject known failure modes: failed worker, missing output, overlapping writes, stale generated job, pending reconciliation, broken candidate ledger, post-step failure, and rerun/recovery after existing output.
 - [x] Add regression coverage for battle-test weaknesses discovered so far: forwarded runner options, placeholder output references, stale pending reconciliation, missing imported output, batch-run summary drift, and failed-worker issue loss.
-- [ ] Add or extend audits and regression fixtures for remaining injected failure modes as they are exercised.
+- [x] Add or extend audits and regression fixtures for remaining injected failure modes as they are exercised.
 - [ ] Add a readiness gate for real extraction-refresh pilots: smoke job passes, parallel batch passes, failure fixtures pass, metrics refresh passes, reconciliation state has no unresolved orchestration blocker caused by the test run, and the worktree is clean.
 
 Exit criteria:
@@ -685,13 +685,12 @@ Exit criteria:
 
 ## Immediate Next Actions
 
-1. Inject remaining failure-mode runs: overlapping writes, stale generated job, post-step failure, and rerun/recovery after existing output.
-2. Add the battle-test readiness gate once the remaining failure-mode runs have durable fixtures.
-3. After the battle-test readiness gate passes, run one bounded extraction-refresh pilot for a remaining human D+Q paper instead of launching DKD, IPF, and AD-risk cognition/mobility together.
-4. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
-5. Run supervisor-review lanes for `senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22`: source fidelity, extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
-6. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry or article text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
-7. Decide whether to install repo-local skills into the active Codex skills directory.
+1. Add the battle-test readiness gate for real extraction-refresh pilots.
+2. After the battle-test readiness gate passes, run one bounded extraction-refresh pilot for a remaining human D+Q paper instead of launching DKD, IPF, and AD-risk cognition/mobility together.
+3. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
+4. Run supervisor-review lanes for `senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22`: source fidelity, extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
+5. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry or article text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
+6. Decide whether to install repo-local skills into the active Codex skills directory.
 
 ## Change Log
 
@@ -708,6 +707,7 @@ Exit criteria:
 - 2026-06-23: Ran the parallel synthetic Codex batch through repeated isolated-worktree attempts; the runs exposed missing `--allow-dirty` forwarding, sentinel reference IDs in agent outputs, worker predeclaration of coordinator-owned quality checks, and brittle command budgets. Fixed the batch runner, reference audit, generated Codex prompt instructions, synthetic prompt, and job budgets.
 - 2026-06-23: Completed a guard-level parallel synthetic proof run with two independent Codex workers, imported the worker candidate records, agent runs, prompt snapshots, and logs, archived both live job specs, refreshed the batch plan, reconciliation state, orchestration metrics, triage state, release readiness, and consumer exports, and kept failed attempts as structured batch-run evidence.
 - 2026-06-23: Added battle-test regression coverage for runner option forwarding, placeholder agent-run references, stale pending reconciliation after import, succeeded workers with missing outputs, batch-run summary drift, and failed workers without structured issues; tightened the batch-run audit to validate state-machine consistency.
+- 2026-06-23: Added controlled failure-mode fixtures for unsafe overlapping writes, stale generated self-healing jobs, Codex post-step verification failure, and rerun/archive-collision recovery; extended scheduler, audit-regression, and parallel-batch-runner tests so the remaining Phase 8 failure matrix is covered before adding the extraction-pilot readiness gate.
 - 2026-06-22: Added promotion-blocking reconciliation decisions so `promote:candidate` rejects overlapping candidate outputs, duplicate source/study conflicts, source-rights conflicts, incomplete ledgers, and pending isolated-worker outputs unless resolved by explicit reconciliation-decision records.
 - 2026-06-22: Added a Codex orchestration battle-test phase and moved broad extraction-refresh work behind synthetic smoke jobs, parallel execution drills, failure injection, recovery checks, metrics refresh, reconciliation checks, and a clean-worktree readiness gate.
 - 2026-06-22: Added generated orchestration metrics with schema, freshness audit, post-run refresh wiring, docs, and verification coverage for planned wall-clock savings, worker outcomes, duplicate-work pressure, conflict rate, accepted outputs, extraction-debt pressure, and release artifacts.

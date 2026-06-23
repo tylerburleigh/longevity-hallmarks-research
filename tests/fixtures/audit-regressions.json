@@ -290,6 +290,134 @@
       ]
     },
     {
+      "id": "placeholder-agent-run-reference",
+      "description": "Agent-run output references must use null rather than placeholder strings when no referenced record exists.",
+      "command": [
+        "npm",
+        "run",
+        "audit:references"
+      ],
+      "operations": [
+        {
+          "type": "set_json",
+          "path": "research/agent-runs/orchestration-parallel-smoke-a-2026-06-23.json",
+          "pointer": "/outputs/research_session_id",
+          "value": "none"
+        }
+      ],
+      "expected_failure_substrings": [
+        "outputs.research_session_id must be null",
+        "placeholder \"none\""
+      ]
+    },
+    {
+      "id": "stale-batch-pending-reconciliation-after-import",
+      "description": "Batch-run workers cannot remain pending reconciliation after their output exists in the coordinator checkout.",
+      "command": [
+        "npm",
+        "run",
+        "audit:parallel-batch-runs"
+      ],
+      "operations": [
+        {
+          "type": "set_json",
+          "path": "ops/codex-batches/runs/parallel-synthetic-smoke-guard-level-2026-06-23.json",
+          "pointer": "/status",
+          "value": "partial"
+        },
+        {
+          "type": "set_json",
+          "path": "ops/codex-batches/runs/parallel-synthetic-smoke-guard-level-2026-06-23.json",
+          "pointer": "/summary/succeeded_count",
+          "value": 1
+        },
+        {
+          "type": "set_json",
+          "path": "ops/codex-batches/runs/parallel-synthetic-smoke-guard-level-2026-06-23.json",
+          "pointer": "/summary/pending_reconciliation_count",
+          "value": 1
+        },
+        {
+          "type": "set_json",
+          "path": "ops/codex-batches/runs/parallel-synthetic-smoke-guard-level-2026-06-23.json",
+          "pointer": "/worker_states/0/status",
+          "value": "succeeded_pending_reconciliation"
+        },
+        {
+          "type": "set_json",
+          "path": "ops/codex-batches/runs/parallel-synthetic-smoke-guard-level-2026-06-23.json",
+          "pointer": "/worker_states/0/issues",
+          "value": [
+            "research/agent-runs/orchestration-parallel-smoke-a-2026-06-23.json is not present in the coordinator checkout."
+          ]
+        }
+      ],
+      "expected_failure_substrings": [
+        "is succeeded_pending_reconciliation but output_path exists",
+        "orchestration-parallel-smoke-a-2026-06-23"
+      ]
+    },
+    {
+      "id": "succeeded-batch-worker-missing-output",
+      "description": "Succeeded batch-run workers must point at an imported output artifact.",
+      "command": [
+        "npm",
+        "run",
+        "audit:parallel-batch-runs"
+      ],
+      "operations": [
+        {
+          "type": "set_json",
+          "path": "ops/codex-batches/runs/parallel-synthetic-smoke-guard-level-2026-06-23.json",
+          "pointer": "/worker_states/0/output_path",
+          "value": "research/agent-runs/missing-parallel-smoke-output-fixture.json"
+        }
+      ],
+      "expected_failure_substrings": [
+        "succeeded worker orchestration-parallel-smoke-a-2026-06-23 output_path does not exist"
+      ]
+    },
+    {
+      "id": "batch-run-summary-mismatch",
+      "description": "Batch-run summary counts must match worker states.",
+      "command": [
+        "npm",
+        "run",
+        "audit:parallel-batch-runs"
+      ],
+      "operations": [
+        {
+          "type": "set_json",
+          "path": "ops/codex-batches/runs/parallel-synthetic-smoke-guard-level-2026-06-23.json",
+          "pointer": "/summary/succeeded_count",
+          "value": 999
+        }
+      ],
+      "expected_failure_substrings": [
+        "summary.succeeded_count",
+        "found 999"
+      ]
+    },
+    {
+      "id": "failed-batch-worker-without-issues",
+      "description": "Failed batch-run workers must retain structured issue details for recovery.",
+      "command": [
+        "npm",
+        "run",
+        "audit:parallel-batch-runs"
+      ],
+      "operations": [
+        {
+          "type": "delete_json",
+          "path": "ops/codex-batches/runs/parallel-synthetic-smoke-proof-2026-06-23.json",
+          "pointer": "/worker_states/0/issues"
+        }
+      ],
+      "expected_failure_substrings": [
+        "failed worker orchestration-parallel-smoke-a-2026-06-23 should include issues"
+      ]
+    },
+    {
       "id": "deprecated-non-agentic-process-vocabulary",
       "description": "Agentic process audit must reject deprecated process vocabulary.",
       "command": [

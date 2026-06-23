@@ -43,6 +43,38 @@ async function readJson(relativePath) {
   return JSON.parse(await fs.readFile(path.join(workspaceRoot, relativePath), "utf8"));
 }
 
+function summarizeWorkers(workerStates) {
+  return {
+    planned_count: workerStates.filter((worker) => worker.status === "planned").length,
+    running_count: workerStates.filter((worker) => worker.status === "running").length,
+    succeeded_count: workerStates.filter((worker) => worker.status === "succeeded").length,
+    pending_reconciliation_count: workerStates.filter((worker) => worker.status === "succeeded_pending_reconciliation").length,
+    failed_count: workerStates.filter((worker) => worker.status === "failed").length,
+    archived_count: workerStates.filter((worker) => worker.archive_path).length
+  };
+}
+
+function summarizeRunStatus(workerStates) {
+  if (workerStates.some((worker) => worker.status === "running")) {
+    return "running";
+  }
+  if (workerStates.some((worker) => worker.status === "failed")) {
+    return workerStates.some((worker) => worker.status === "succeeded" || worker.status === "succeeded_pending_reconciliation")
+      ? "partial"
+      : "failed";
+  }
+  if (workerStates.some((worker) => worker.status === "succeeded_pending_reconciliation")) {
+    return "partial";
+  }
+  return "succeeded";
+}
+
+function checkEqual({ issues, ownerPath, field, expected, actual }) {
+  if (expected !== actual) {
+    issues.push(`${ownerPath}: expected ${field} ${JSON.stringify(expected)}, found ${JSON.stringify(actual)}.`);
+  }
+}
+
 async function main() {
   const issues = [];
   const runFiles = await walkJsonFiles(path.join(workspaceRoot, runRoot));
@@ -62,16 +94,44 @@ async function main() {
       issues.push(`${relativePath}: log_path does not exist: ${run.log_path}.`);
     }
 
+    const expectedStatus = summarizeRunStatus(run.worker_states ?? []);
+    checkEqual({ issues, ownerPath: relativePath, field: "status", expected: expectedStatus, actual: run.status });
+
+    const expectedSummary = summarizeWorkers(run.worker_states ?? []);
+    for (const [field, expectedValue] of Object.entries(expectedSummary)) {
+      checkEqual({
+        issues,
+        ownerPath: relativePath,
+        field: `summary.${field}`,
+        expected: expectedValue,
+        actual: run.summary?.[field]
+      });
+    }
+
     for (const worker of run.worker_states ?? []) {
       const jobPathExists = await exists(path.join(workspaceRoot, worker.job_path));
       const archivePathExists = worker.archive_path
         ? await exists(path.join(workspaceRoot, worker.archive_path))
+        : false;
+      const outputPathExists = worker.output_path
+        ? await exists(path.join(workspaceRoot, worker.output_path))
         : false;
       if (!jobPathExists && !archivePathExists) {
         issues.push(`${relativePath}: worker ${worker.job_id} has neither live job_path nor archive_path.`);
       }
       if (worker.status === "succeeded" && worker.archive_path && !archivePathExists) {
         issues.push(`${relativePath}: worker ${worker.job_id} archive_path does not exist: ${worker.archive_path}.`);
+      }
+      if (worker.status === "succeeded" && !outputPathExists) {
+        issues.push(`${relativePath}: succeeded worker ${worker.job_id} output_path does not exist: ${worker.output_path}.`);
+      }
+      if (worker.status === "succeeded_pending_reconciliation") {
+        if ((worker.issues ?? []).length === 0) {
+          issues.push(`${relativePath}: pending-reconciliation worker ${worker.job_id} should include issues[].`);
+        }
+        if (outputPathExists && worker.issues?.some((issue) => issue.includes("is not present in the coordinator checkout"))) {
+          issues.push(`${relativePath}: worker ${worker.job_id} is succeeded_pending_reconciliation but output_path exists: ${worker.output_path}.`);
+        }
       }
       if (worker.status === "failed" && (worker.issues ?? []).length === 0) {
         issues.push(`${relativePath}: failed worker ${worker.job_id} should include issues[].`);

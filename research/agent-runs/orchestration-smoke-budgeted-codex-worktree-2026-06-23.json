@@ -1,0 +1,122 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "orchestration-smoke-budgeted-codex-worktree-2026-06-23",
+  "agent_role": "self_healing_agent",
+  "agent_id": "codex-cli-worker",
+  "mode": "agent_directed",
+  "started_at": "2026-06-23T00:29:47Z",
+  "completed_at": "2026-06-23T00:29:48Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "Battle-test isolated Codex orchestration with a harmless budgeted synthetic candidate output.",
+    "hallmark_ids": [],
+    "track_ids": [],
+    "intervention_ids": []
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "codex_exec",
+    "isolation": "git_worktree",
+    "workspace_path": "/tmp/lhr-codex-worktrees/orchestration-smoke-budgeted-codex-worktree-2026-06-23-20260623T002947z",
+    "prompt_file": "research/agent-runs/prompts/orchestration-smoke-budgeted-codex-worktree-2026-06-23.md",
+    "prompt_template_file": "docs/prompts/codex-agents/orchestration-smoke.md",
+    "job_file": "ops/codex-jobs/archive/orchestration-smoke-budgeted-codex-worktree-2026-06-23.json",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "output_path": "research/agent-runs/orchestration-smoke-budgeted-codex-worktree-2026-06-23.json",
+    "jsonl_log_path": "research/agent-runs/logs/orchestration-smoke-budgeted-codex-worktree-2026-06-23.jsonl",
+    "sandbox": "workspace-write",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "other",
+      "reference": "tests/fixtures/orchestration-smoke-output-contract.json",
+      "summary": "Read the bounded orchestration smoke output contract for the required candidate id, path, lifecycle status, and self-referential proposed record."
+    },
+    {
+      "input_type": "other",
+      "reference": "schemas/candidate-change.schema.json",
+      "summary": "Checked required candidate_change fields before creating the bounded synthetic candidate."
+    }
+  ],
+  "outputs": {
+    "summary": "Created one harmless submitted candidate_change that proposes only itself and does not promote or modify scientific evidence records.",
+    "candidate_change_id": "orchestration-smoke-budgeted-candidate-2026-06-23",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "orchestration-smoke-budgeted-candidate-2026-06-23",
+        "path": "data/candidate-changes/orchestration-smoke-budgeted-candidate-2026-06-23.json",
+        "change_type": "create",
+        "rationale": "Synthetic self-referential candidate used only to exercise orchestration output handling without modifying evidence records."
+      }
+    ],
+    "generated_files": [],
+    "export_paths": []
+  },
+  "quality_checks": [
+    {
+      "check_name": "validate_records",
+      "status": "passed",
+      "summary": "npm run validate:records completed successfully and validated 174 JSON files."
+    },
+    {
+      "check_name": "audit_references",
+      "status": "passed",
+      "summary": "npm run audit:references completed successfully for 147 record files."
+    },
+    {
+      "check_name": "audit_agent_schemas",
+      "status": "passed",
+      "summary": "npm run audit:agent-schemas completed successfully."
+    },
+    {
+      "check_name": "audit_orchestration_smoke_contract",
+      "status": "passed",
+      "summary": "npm run audit:orchestration-smoke-contract completed successfully for this smoke job."
+    },
+    {
+      "check_name": "audit_agentic_process",
+      "status": "passed",
+      "summary": "npm run audit:agentic-process completed successfully for 291 files."
+    },
+    {
+      "check_name": "worker_output_contract",
+      "status": "passed",
+      "summary": "Worker emitted exactly one final JSON agent_run message, matched output_path, and avoided ad hoc schema-validation snippets."
+    },
+    {
+      "check_name": "post_triage_state_export",
+      "status": "passed",
+      "summary": "post_triage_state_export exited 0: > longevity-hallmarks-research@0.1.0 export:triage-state > node scripts/export-triage-state.mjs Wrote ops/triage-state.v1.json."
+    },
+    {
+      "check_name": "post_release_readiness_export",
+      "status": "passed",
+      "summary": "post_release_readiness_export exited 0: > longevity-hallmarks-research@0.1.0 export:release-readiness > node scripts/export-release-readiness.mjs Wrote ops/release-readiness.v1.json."
+    },
+    {
+      "check_name": "post_reconciliation_export",
+      "status": "passed",
+      "summary": "post_reconciliation_export exited 0: > longevity-hallmarks-research@0.1.0 reconcile:parallel > node scripts/reconcile-parallel-outputs.mjs Wrote ops/reconciliation/parallel-reconciliation.v1.json."
+    },
+    {
+      "check_name": "post_orchestration_metrics_export",
+      "status": "passed",
+      "summary": "post_orchestration_metrics_export exited 0: > longevity-hallmarks-research@0.1.0 metrics:orchestration > node scripts/export-orchestration-metrics.mjs Wrote ops/codex-batches/orchestration-metrics.v1.json."
+    },
+    {
+      "check_name": "post_export",
+      "status": "passed",
+      "summary": "post_export exited 0: > longevity-hallmarks-research@0.1.0 export:latest > node scripts/export-latest.mjs Wrote 16 export file(s) to exports/latest."
+    },
+    {
+      "check_name": "post_verify",
+      "status": "passed",
+      "summary": "post_verify exited 0: > longevity-hallmarks-research@0.1.0 audit:orchestration-smoke-contract > node scripts/audit-orchestration-smoke-contract.mjs Orchestration smoke contract audit passed for orchestration-smoke-budgeted-codex-worktree-2026-06-23. > longevity-hallmarks-research@0.1.0 audit:agentic-process > node scripts/audit-agentic-process.mjs Agentic process audit passed for 292 file(s)."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": []
+}

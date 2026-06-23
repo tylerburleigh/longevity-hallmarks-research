@@ -200,9 +200,9 @@ function checkCandidateAgentRunLedgerMatch({ issues, ownerPath, candidate, agent
 
   if (candidatePaths.length !== agentRunPaths.length) {
     issues.push(
-      `${ownerPath}: candidate_agent_run_ledger_match expected ${candidatePaths.length} candidate path(s), found ${agentRunPaths.length} agent-run path(s).`
+        `${ownerPath}: candidate_agent_run_ledger_match expected ${candidatePaths.length} candidate path(s), found ${agentRunPaths.length} agent-run path(s).`
     );
-    return;
+    return false;
   }
 
   for (const [index, candidatePath] of candidatePaths.entries()) {
@@ -210,9 +210,11 @@ function checkCandidateAgentRunLedgerMatch({ issues, ownerPath, candidate, agent
       issues.push(
         `${ownerPath}: candidate_agent_run_ledger_match expected candidate paths [${stableArrayLabel(candidatePaths)}], found agent-run paths [${stableArrayLabel(agentRunPaths)}].`
       );
-      return;
+      return false;
     }
   }
+
+  return true;
 }
 
 function checkJobLifecycle({ issues, job, ownerPath, outputExists }) {
@@ -325,6 +327,7 @@ async function checkCodexJob({ issues, job, ownerPath }) {
 
   const agentRun = await readJson(job.output_path);
   const checks = qualityChecksByName(agentRun);
+  const auditSatisfiedQualityGates = new Set();
 
   checkEqual({ issues, ownerPath, field: "agent_run.id", expected: job.id, actual: agentRun.id });
   checkEqual({ issues, ownerPath, field: "agent_run.id", expected: job.final_agent_run_id, actual: agentRun.id });
@@ -419,12 +422,17 @@ async function checkCodexJob({ issues, job, ownerPath }) {
         actual: candidate.required_review_lanes
       });
       if ((job.quality_gates ?? []).includes("candidate_agent_run_ledger_match")) {
-        checkCandidateAgentRunLedgerMatch({ issues, ownerPath, candidate, agentRun });
+        if (checkCandidateAgentRunLedgerMatch({ issues, ownerPath, candidate, agentRun })) {
+          auditSatisfiedQualityGates.add("candidate_agent_run_ledger_match");
+        }
       }
     }
   }
 
   for (const qualityGate of job.quality_gates ?? []) {
+    if (auditSatisfiedQualityGates.has(qualityGate)) {
+      continue;
+    }
     checkQualityGate({ issues, ownerPath, checks, gate: qualityGate });
   }
 

@@ -164,7 +164,7 @@ Durable search and screening records are not temporary notes. `research/search-l
 
 The reference audit also infers required review lanes from proposed record types. Result, outcome, snapshot, synthesis, and safety/adverse-event records must declare the matching source-fidelity, extraction-fidelity, taxonomy-mapping, synthesis-boundary, or safety-limitation lanes before promotion can proceed.
 
-When a job file declares `quality_gates[]`, each gate must be satisfied by a passed `agent_run.quality_checks[]` entry or by a passed aggregate verification check recognized by the job audit. Jobs with `post_run.export_latest` or `post_run.verify_knowledge_base` must also have passed wrapper-owned `post_export` or `post_verify` quality checks. Workers must not predeclare wrapper-owned checks such as `worker_output_contract`, `post_export`, `post_triage_state_export`, `post_release_readiness_export`, `post_reconciliation_export`, `post_orchestration_metrics_export`, or `post_verify` in their final response.
+When a job file declares `quality_gates[]`, each gate must be satisfied by a passed `agent_run.quality_checks[]` entry, a passed aggregate verification check recognized by the job audit, or a deterministic audit-computed check such as `candidate_agent_run_ledger_match`. Jobs with `post_run.export_latest` or `post_run.verify_knowledge_base` must also have passed wrapper-owned `post_export` or `post_verify` quality checks. Workers must not predeclare wrapper-owned checks such as `worker_output_contract`, `post_export`, `post_triage_state_export`, `post_release_readiness_export`, `post_reconciliation_export`, `post_orchestration_metrics_export`, or `post_verify` in their final response.
 
 ## Logs And Replay
 

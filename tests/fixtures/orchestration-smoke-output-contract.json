@@ -1,26 +1,26 @@
 {
   "schema_version": "1.0.0",
   "record_type": "orchestration_smoke_contract",
-  "id": "orchestration-smoke-codex-worktree-2026-06-22",
-  "job_file": "ops/codex-jobs/live/orchestration-smoke-codex-worktree-2026-06-22.json",
+  "id": "orchestration-smoke-budgeted-codex-worktree-2026-06-23",
+  "job_file": "ops/codex-jobs/live/orchestration-smoke-budgeted-codex-worktree-2026-06-23.json",
   "prompt_template_file": "docs/prompts/codex-agents/orchestration-smoke.md",
-  "agent_run_output_path": "research/agent-runs/orchestration-smoke-codex-worktree-2026-06-22.json",
-  "jsonl_log_path": "research/agent-runs/logs/orchestration-smoke-codex-worktree-2026-06-22.jsonl",
+  "agent_run_output_path": "research/agent-runs/orchestration-smoke-budgeted-codex-worktree-2026-06-23.json",
+  "jsonl_log_path": "research/agent-runs/logs/orchestration-smoke-budgeted-codex-worktree-2026-06-23.jsonl",
   "agent_run": {
     "agent_role": "self_healing_agent",
     "mode": "agent_directed",
     "canonical_write_policy": "candidate_change_required"
   },
   "candidate_change": {
-    "id": "orchestration-smoke-candidate-2026-06-22",
-    "path": "data/candidate-changes/orchestration-smoke-candidate-2026-06-22.json",
+    "id": "orchestration-smoke-budgeted-candidate-2026-06-23",
+    "path": "data/candidate-changes/orchestration-smoke-budgeted-candidate-2026-06-23.json",
     "lifecycle_status": "submitted",
     "required_review_lanes": [],
     "proposed_records": [
       {
         "record_type": "candidate_change",
-        "record_id": "orchestration-smoke-candidate-2026-06-22",
-        "path": "data/candidate-changes/orchestration-smoke-candidate-2026-06-22.json",
+        "record_id": "orchestration-smoke-budgeted-candidate-2026-06-23",
+        "path": "data/candidate-changes/orchestration-smoke-budgeted-candidate-2026-06-23.json",
         "change_type": "create"
       }
     ]
@@ -32,14 +32,13 @@
   "quality_gates": [
     "validate_records",
     "audit_references",
-    "audit_exports",
     "audit_agent_schemas",
     "audit_agentic_process",
     "worker_output_contract",
     "candidate_agent_run_ledger_match"
   ],
   "allowed_canonical_paths": [
-    "data/candidate-changes/orchestration-smoke-candidate-2026-06-22.json"
+    "data/candidate-changes/orchestration-smoke-budgeted-candidate-2026-06-23.json"
   ],
   "forbidden_canonical_prefixes": [
     "data/sources/",

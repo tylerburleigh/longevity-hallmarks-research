@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "triage_state",
   "id": "triage-state-v1",
-  "generated_at": "2026-06-23T00:05:13.156Z",
+  "generated_at": "2026-06-23T00:32:20.539Z",
   "source_roots": [
     "data",
     "research"
@@ -66,7 +66,7 @@
     }
   ],
   "summary": {
-    "candidate_count": 10,
+    "candidate_count": 11,
     "promotion_ready_count": 0,
     "needs_review_count": 1,
     "needs_revision_count": 3,
@@ -83,6 +83,23 @@
     "recommended_job_count": 27
   },
   "candidate_readiness": [
+    {
+      "candidate_change_id": "orchestration-smoke-budgeted-candidate-2026-06-23",
+      "path": "data/candidate-changes/orchestration-smoke-budgeted-candidate-2026-06-23.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "required_review_lanes": [],
+      "active_review_ids": [],
+      "complete_accepting_review_lanes": [],
+      "missing_review_lanes": [],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 1,
+      "next_actions": [
+        "Move the candidate into review by creating the required supervisor review jobs."
+      ]
+    },
     {
       "candidate_change_id": "orchestration-smoke-candidate-2026-06-22",
       "path": "data/candidate-changes/orchestration-smoke-candidate-2026-06-22.json",

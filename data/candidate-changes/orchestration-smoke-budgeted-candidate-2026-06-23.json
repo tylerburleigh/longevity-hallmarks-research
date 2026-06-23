@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "orchestration-smoke-budgeted-candidate-2026-06-23",
+  "name": "Orchestration smoke budgeted candidate 2026-06-23",
+  "summary": "Harmless synthetic candidate change for validating isolated Codex orchestration plumbing.",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-23T00:29:47Z",
+  "scope": {
+    "question": "Battle-test isolated Codex orchestration with a harmless budgeted synthetic candidate output.",
+    "hallmark_ids": [],
+    "track_ids": []
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "orchestration-smoke-budgeted-candidate-2026-06-23",
+      "path": "data/candidate-changes/orchestration-smoke-budgeted-candidate-2026-06-23.json",
+      "change_type": "create",
+      "rationale": "Synthetic self-referential candidate used only to exercise orchestration output handling without modifying evidence records."
+    }
+  ],
+  "required_review_lanes": []
+}

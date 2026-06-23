@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "orchestration_metrics",
   "id": "orchestration-metrics-v1",
-  "generated_at": "2026-06-23T00:05:13.045Z",
+  "generated_at": "2026-06-23T00:32:20.430Z",
   "source_roots": [
     "data",
     "exports/latest",
@@ -43,7 +43,7 @@
   },
   "summary": {
     "planned_live_job_count": 10,
-    "archived_job_count": 5,
+    "archived_job_count": 6,
     "planned_parallel_batch_count": 4,
     "planned_parallel_worker_count": 10,
     "planned_independent_batch_count": 3,
@@ -60,16 +60,16 @@
     "succeeded_worker_count": 0,
     "actual_worker_wall_time_ms": 0,
     "actual_batch_wall_time_ms": 0,
-    "agent_run_count": 12,
-    "succeeded_agent_run_count": 11,
+    "agent_run_count": 13,
+    "succeeded_agent_run_count": 12,
     "partial_agent_run_count": 1,
     "failed_agent_run_count": 0,
-    "agent_run_wall_time_ms": 9657000,
+    "agent_run_wall_time_ms": 9658000,
     "duplicate_work_group_count": 8,
     "duplicate_work_record_count": 17,
     "conflict_finding_count": 10,
     "conflict_rate": 0.25,
-    "open_finding_rate": 2,
+    "open_finding_rate": 1.6667,
     "accepted_candidate_count": 5,
     "accepted_records_produced_count": 45,
     "extraction_debt_open_count": 47,
@@ -170,7 +170,7 @@
       },
       {
         "key": "succeeded",
-        "count": 11
+        "count": 12
       }
     ],
     "agent_run_role_counts": [
@@ -184,7 +184,7 @@
       },
       {
         "key": "self_healing_agent",
-        "count": 1
+        "count": 2
       },
       {
         "key": "supervisor_agent",
@@ -368,7 +368,7 @@
       "blocking_finding_count": 10,
       "warning_finding_count": 0,
       "conflict_rate": 0.25,
-      "open_finding_rate": 2,
+      "open_finding_rate": 1.6667,
       "reconciliation_batch_rate": 0.25
     },
     "worker_failures": {

@@ -1,0 +1,190 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "dq-bone-headache-ae-extraction-pilot-2026-06-23",
+  "agent_role": "extraction_agent",
+  "agent_id": "codex-cli-worker",
+  "mode": "extraction_refresh",
+  "started_at": "2026-06-23T12:00:01Z",
+  "completed_at": "2026-06-23T12:07:58Z",
+  "status": "partial",
+  "scope": {
+    "question": "Use the retained PMC author-manuscript text snapshot for PMID 38956196 to propose a term-specific headache adverse-event result for the D+Q postmenopausal bone RCT. Keep the change bounded to the headache row in Extended Data Table 1, preserve blank-cell zero/not-reported ambiguity, and keep safety pooling blocked unless the existing schemas can support a defensible comparative effect.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": [
+      "dasatinib-quercetin"
+    ]
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "codex_exec",
+    "isolation": "git_worktree",
+    "workspace_path": "/tmp/lhr-codex-worktrees/dq-bone-headache-ae-extraction-pilot-2026-06-23-20260623T120001z",
+    "prompt_file": "research/agent-runs/prompts/dq-bone-headache-ae-extraction-pilot-2026-06-23.md",
+    "prompt_template_file": "docs/prompts/codex-agents/extraction-refresh.md",
+    "job_file": "ops/codex-jobs/archive/dq-bone-headache-ae-extraction-pilot-2026-06-23.json",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "output_path": "research/agent-runs/dq-bone-headache-ae-extraction-pilot-2026-06-23.json",
+    "jsonl_log_path": "research/agent-runs/logs/dq-bone-headache-ae-extraction-pilot-2026-06-23.jsonl",
+    "sandbox": "workspace-write",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "user_request",
+      "reference": "ops/codex-jobs/live/dq-bone-headache-ae-extraction-pilot-2026-06-23.json",
+      "summary": "Coordinator job specification for the bounded D+Q bone headache adverse-event extraction pilot."
+    },
+    {
+      "input_type": "other",
+      "reference": "plan.md; docs/research-runbook.md; docs/agent-run-outputs.md; docs/extraction-rules.md; docs/source-snapshot-importers.md",
+      "summary": "Repository operating rules for bounded extraction, source-snapshot provenance, candidate ledgers, review gates, and validation."
+    },
+    {
+      "input_type": "other",
+      "reference": "schemas/agent-run.codex-output.schema.json; schemas/agent-run.schema.json; schemas/result.schema.json; schemas/candidate-change.schema.json; schemas/synthesis-group.schema.json; schemas/evidence-review.schema.json",
+      "summary": "Schemas used to shape the final agent run, candidate change, result, synthesis group, and review-lane decisions."
+    },
+    {
+      "input_type": "source_snapshot",
+      "reference": "data/source-snapshots/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
+      "summary": "Retained PMC author-manuscript source snapshot for PMID 38956196."
+    },
+    {
+      "input_type": "text_snapshot",
+      "reference": "data/text-snapshots/text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
+      "summary": "Full-text snapshot with normalized markdown and section index for the PMC author manuscript."
+    },
+    {
+      "input_type": "other",
+      "reference": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md; artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/sections.json",
+      "summary": "Retained article text and section index used to extract the Extended Data Table 1 headache row and safety-section context."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/outcomes/dq-bone-adverse-events-20wk.json; data/results/dq-bone-adverse-event-terms-20wk-mixed.json; data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+      "summary": "Scoped adverse-event outcome, existing mixed adverse-event term result, and safety synthesis boundary updated by this extraction refresh."
+    }
+  ],
+  "outputs": {
+    "summary": "Created the submitted headache adverse-event extraction candidate, added a full-text-extracted term-specific headache safety_event result with the D+Q 16/30 count, preserved the blank control-cell ambiguity, and updated the 20-week safety synthesis group to include the new result while keeping pooling blocked.",
+    "candidate_change_id": "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
+        "path": "data/candidate-changes/senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23.json",
+        "change_type": "create",
+        "rationale": "Tracks the bounded headache adverse-event extraction pilot and required review lanes."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-headache-20wk-descriptive",
+        "path": "data/results/dq-bone-headache-20wk-descriptive.json",
+        "change_type": "create",
+        "rationale": "Extracts the headache preferred-term row from Extended Data Table 1 as a descriptive safety_event result without converting the blank control cell to zero."
+      },
+      {
+        "record_type": "synthesis_group",
+        "record_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+        "path": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+        "change_type": "update",
+        "rationale": "Adds the headache term-specific result to the safety synthesis boundary and records schema and zero/not-reported blockers that keep pooling blocked."
+      }
+    ],
+    "generated_files": [],
+    "export_paths": [
+      "exports/latest/results.jsonl",
+      "exports/latest/synthesis-groups.jsonl",
+      "exports/latest/evidence-map.json",
+      "exports/latest/coverage-status.json",
+      "exports/latest/audit-manifest.json",
+      "exports/latest/read-model.sqlite",
+      "ops/triage-state.v1.json",
+      "ops/release-readiness.v1.json",
+      "ops/reconciliation/parallel-reconciliation.v1.json",
+      "ops/codex-batches/orchestration-metrics.v1.json"
+    ]
+  },
+  "quality_checks": [
+    {
+      "check_name": "validate_records",
+      "status": "passed",
+      "summary": "npm run validate:records passed and validated 190 JSON file(s)."
+    },
+    {
+      "check_name": "audit_references",
+      "status": "passed",
+      "summary": "npm run audit:references passed for 154 record file(s)."
+    },
+    {
+      "check_name": "audit_agent_schemas",
+      "status": "passed",
+      "summary": "npm run audit:agent-schemas passed."
+    },
+    {
+      "check_name": "audit_agentic_process",
+      "status": "passed",
+      "summary": "npm run audit:agentic-process passed for 304 file(s)."
+    },
+    {
+      "check_name": "audit_exports",
+      "status": "not_run",
+      "summary": "Deferred because coordinator post_run.export_latest will refresh exports after the final agent_run is written."
+    },
+    {
+      "check_name": "verify_knowledge_base",
+      "status": "not_run",
+      "summary": "Not run inside the worker per job note; coordinator post_verify will run repository verification after output is written."
+    },
+    {
+      "check_name": "worker_output_contract",
+      "status": "passed",
+      "summary": "Worker emitted exactly one final JSON agent_run message, matched output_path, and avoided ad hoc schema-validation snippets."
+    },
+    {
+      "check_name": "post_triage_state_export",
+      "status": "passed",
+      "summary": "post_triage_state_export exited 0: > longevity-hallmarks-research@0.1.0 export:triage-state > node scripts/export-triage-state.mjs Wrote ops/triage-state.v1.json."
+    },
+    {
+      "check_name": "post_release_readiness_export",
+      "status": "passed",
+      "summary": "post_release_readiness_export exited 0: > longevity-hallmarks-research@0.1.0 export:release-readiness > node scripts/export-release-readiness.mjs Wrote ops/release-readiness.v1.json."
+    },
+    {
+      "check_name": "post_reconciliation_export",
+      "status": "passed",
+      "summary": "post_reconciliation_export exited 0: > longevity-hallmarks-research@0.1.0 reconcile:parallel > node scripts/reconcile-parallel-outputs.mjs Wrote ops/reconciliation/parallel-reconciliation.v1.json."
+    },
+    {
+      "check_name": "post_orchestration_metrics_export",
+      "status": "passed",
+      "summary": "post_orchestration_metrics_export exited 0: > longevity-hallmarks-research@0.1.0 metrics:orchestration > node scripts/export-orchestration-metrics.mjs Wrote ops/codex-batches/orchestration-metrics.v1.json."
+    },
+    {
+      "check_name": "post_export",
+      "status": "passed",
+      "summary": "post_export exited 0: > longevity-hallmarks-research@0.1.0 export:latest > node scripts/export-latest.mjs Wrote 16 export file(s) to exports/latest."
+    },
+    {
+      "check_name": "post_verify",
+      "status": "passed",
+      "summary": "post_verify exited 0: > longevity-hallmarks-research@0.1.0 audit:orchestration-smoke-contract > node scripts/audit-orchestration-smoke-contract.mjs Orchestration smoke contract audit passed for orchestration-smoke-budgeted-codex-worktree-2026-06-23. > longevity-hallmarks-research@0.1.0 audit:agentic-process > node scripts/audit-agentic-process.mjs Agentic process audit passed for 305 file(s)."
+    }
+  ],
+  "blocking_issues": [
+    "The current result schema cannot directly encode adverse_event.preferred_term or adverse_event.event_specific_counts; the headache term and D+Q count are represented through valid result fields while the synthesis group records these structured-field blockers.",
+    "The Extended Data Table 1 control headache cell is blank under a table threshold for events reported in more than one participant, so no defensible control count, risk ratio, risk difference, or uncertainty was extracted."
+  ],
+  "next_actions": [
+    "Move the submitted candidate into in_review only when review begins, then create active evidence_review records for extraction_fidelity, taxonomy_mapping, safety_limitations, and synthesis_boundary.",
+    "Extend the result schema for structured adverse-event preferred terms and event-specific arm counts before any comparative safety pooling attempt."
+  ]
+}

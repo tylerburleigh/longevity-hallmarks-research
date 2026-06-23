@@ -58,3 +58,5 @@ npm run audit:worktree-helper
 ```
 
 The audit checks that mutable live jobs can be planned through an isolated worktree command and that the wrapper receives the isolated `--workdir`.
+
+Use `jobs:run-batch` for real runnable jobs when practical, even when a batch has one worker. The batch runner keeps a durable failed-worker record if `codex exec` exits early or reaches `execution.max_command_events`, while the single worktree helper is best for previews and targeted diagnostics.

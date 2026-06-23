@@ -62,6 +62,19 @@ ops/codex-batches/logs/<run-id>.jsonl
 
 Use `--max-workers <n>` to bound concurrency, `--post-export-verify` to forward the worker post-run verification flag, and `--archive-completed` when the coordinator checkout already contains the final worker output. If a worker succeeds in its isolated worktree but the final output is not present in the coordinator checkout, the run records `succeeded_pending_reconciliation` so a later reconciliation pass can import, verify, and archive the job snapshot. After the coordinator imports a completed worker output, `npm run jobs:archive -- --job-file <job>` updates matching batch-run workers with the archive path and clears their pending reconciliation state.
 
+Runnable live jobs must declare `execution.max_command_events`. The cap is a runaway guard and audit signal, not a measure of research quality. Current audit ranges are:
+
+- smoke: 3-15
+- discovery: 30-90
+- supervisor-review: 45-100
+- extraction: 60-140
+- high-IO extraction: 80-160
+- self-healing: 60-140
+- synthesis: 45-110
+- default: 25-120
+
+If a real worker reaches its cap before producing a final `agent_run`, keep the failed batch-run record, inspect the worker log, and either tighten the job context or adjust the job-class budget before rerunning.
+
 Run the batch-run audit:
 
 ```bash

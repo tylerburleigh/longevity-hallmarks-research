@@ -203,6 +203,26 @@
       ]
     },
     {
+      "id": "live-job-command-budget-too-low",
+      "description": "Runnable live Codex jobs must use a command budget range that fits the job class.",
+      "command": [
+        "npm",
+        "run",
+        "audit:codex-jobs"
+      ],
+      "operations": [
+        {
+          "type": "write_text",
+          "path": "ops/codex-jobs/live/fixture-low-command-budget.json",
+          "content": "{\n  \"schema_version\": \"1.0.0\",\n  \"record_type\": \"codex_job\",\n  \"id\": \"fixture-low-command-budget\",\n  \"name\": \"Fixture low command budget\",\n  \"lifecycle_status\": \"ready\",\n  \"agent_role\": \"extraction_agent\",\n  \"mode\": \"extraction_refresh\",\n  \"prompt_file\": \"docs/prompts/codex-agents/extraction-refresh.md\",\n  \"output_path\": \"research/agent-runs/fixture-low-command-budget.json\",\n  \"jsonl_log_path\": \"research/agent-runs/logs/fixture-low-command-budget.jsonl\",\n  \"scope\": {\n    \"question\": \"Fixture extraction job with an intentionally undersized command-event cap.\"\n  },\n  \"execution\": {\n    \"isolation\": \"git_worktree\",\n    \"sandbox\": \"read-only\",\n    \"approval_policy\": \"never\",\n    \"output_schema_path\": \"schemas/agent-run.codex-output.schema.json\",\n    \"max_command_events\": 10\n  },\n  \"expected_outputs\": {\n    \"canonical_write_policy\": \"no_canonical_writes\"\n  },\n  \"orchestration\": {\n    \"read_sets\": [\n      \"source:fixture\"\n    ],\n    \"write_sets\": [],\n    \"conflict_keys\": [],\n    \"parallel_group\": \"extraction-refresh\",\n    \"reconciliation_required\": false,\n    \"expected_cost\": {\n      \"cost_class\": \"medium\",\n      \"expected_wall_time_ms\": 600000,\n      \"expected_token_budget\": 25000,\n      \"io_intensity\": \"medium\"\n    }\n  },\n  \"quality_gates\": []\n}\n"
+        }
+      ],
+      "expected_failure_substrings": [
+        "execution.max_command_events 10",
+        "extraction command-budget profile range 60-140"
+      ]
+    },
+    {
       "id": "archived-job-in-live-queue",
       "description": "Final job snapshots must not remain in the live runnable queue.",
       "command": [

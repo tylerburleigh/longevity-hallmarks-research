@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "orchestration_metrics",
   "id": "orchestration-metrics-v1",
-  "generated_at": "2026-06-23T10:24:35.262Z",
+  "generated_at": "2026-06-23T12:10:43.406Z",
   "source_roots": [
     "data",
     "exports/latest",
@@ -43,7 +43,7 @@
   },
   "summary": {
     "planned_live_job_count": 10,
-    "archived_job_count": 8,
+    "archived_job_count": 9,
     "planned_parallel_batch_count": 4,
     "planned_parallel_worker_count": 10,
     "planned_independent_batch_count": 3,
@@ -53,27 +53,27 @@
     "planned_parallel_wall_time_ms": 14400000,
     "planned_wall_time_savings_ms": 21600000,
     "planned_speedup_ratio": 2.5,
-    "executed_parallel_batch_run_count": 6,
-    "executed_worker_count": 12,
+    "executed_parallel_batch_run_count": 7,
+    "executed_worker_count": 13,
     "failed_worker_count": 6,
     "pending_reconciliation_worker_count": 0,
-    "succeeded_worker_count": 6,
-    "actual_worker_wall_time_ms": 891932,
-    "actual_batch_wall_time_ms": 516802,
-    "agent_run_count": 15,
+    "succeeded_worker_count": 7,
+    "actual_worker_wall_time_ms": 1415555,
+    "actual_batch_wall_time_ms": 1040427,
+    "agent_run_count": 16,
     "succeeded_agent_run_count": 14,
-    "partial_agent_run_count": 1,
+    "partial_agent_run_count": 2,
     "failed_agent_run_count": 0,
-    "agent_run_wall_time_ms": 9728000,
-    "duplicate_work_group_count": 8,
-    "duplicate_work_record_count": 17,
-    "conflict_finding_count": 10,
+    "agent_run_wall_time_ms": 10205000,
+    "duplicate_work_group_count": 9,
+    "duplicate_work_record_count": 19,
+    "conflict_finding_count": 11,
     "conflict_rate": 0.25,
-    "open_finding_rate": 1.25,
+    "open_finding_rate": 1.2222,
     "accepted_candidate_count": 5,
     "accepted_records_produced_count": 45,
-    "extraction_debt_open_count": 47,
-    "extraction_debt_high_priority_open_count": 42,
+    "extraction_debt_open_count": 51,
+    "extraction_debt_high_priority_open_count": 46,
     "extraction_debt_resolved_candidate_count": 2,
     "extraction_debt_resolved_record_count": 17,
     "release_ready_candidate_count": 1,
@@ -162,6 +162,20 @@
   },
   "worker_outcomes": {
     "batch_runs": [
+      {
+        "batch_run_id": "dq-bone-headache-ae-extraction-pilot-2026-06-23-real-run-1",
+        "path": "ops/codex-batches/runs/dq-bone-headache-ae-extraction-pilot-2026-06-23-real-run-1.json",
+        "batch_id": "parallel-batch-004-extraction-pilot",
+        "parallel_group": "extraction-pilot",
+        "status": "succeeded",
+        "started_at": "2026-06-23T12:00:01.465Z",
+        "completed_at": "2026-06-23T12:08:45.090Z",
+        "wall_time_ms": 523625,
+        "worker_count": 1,
+        "failed_worker_count": 0,
+        "pending_reconciliation_worker_count": 0,
+        "succeeded_worker_count": 1
+      },
       {
         "batch_run_id": "parallel-synthetic-smoke-2026-06-23",
         "path": "ops/codex-batches/runs/parallel-synthetic-smoke-2026-06-23.json",
@@ -254,13 +268,13 @@
       },
       {
         "key": "succeeded",
-        "count": 6
+        "count": 7
       }
     ],
     "agent_run_status_counts": [
       {
         "key": "partial",
-        "count": 1
+        "count": 2
       },
       {
         "key": "succeeded",
@@ -274,7 +288,7 @@
       },
       {
         "key": "extraction_agent",
-        "count": 4
+        "count": 5
       },
       {
         "key": "self_healing_agent",
@@ -396,8 +410,8 @@
       }
     ],
     "extraction_debt": {
-      "open_count": 47,
-      "high_priority_open_count": 42,
+      "open_count": 51,
+      "high_priority_open_count": 46,
       "resolved_candidate_count": 2,
       "resolved_record_count": 17,
       "resolved_records_by_type": [
@@ -451,23 +465,23 @@
   },
   "quality_pressure": {
     "duplicate_work": {
-      "group_count": 8,
-      "record_count": 17,
+      "group_count": 9,
+      "record_count": 19,
       "duplicate_source_group_count": 0,
       "duplicate_study_group_count": 0,
-      "overlapping_candidate_group_count": 8
+      "overlapping_candidate_group_count": 9
     },
     "conflicts": {
-      "open_finding_count": 10,
-      "blocking_finding_count": 10,
+      "open_finding_count": 11,
+      "blocking_finding_count": 11,
       "warning_finding_count": 0,
       "conflict_rate": 0.25,
-      "open_finding_rate": 1.25,
+      "open_finding_rate": 1.2222,
       "reconciliation_batch_rate": 0.25
     },
     "worker_failures": {
       "failed_worker_count": 6,
-      "partial_or_failed_agent_run_count": 1
+      "partial_or_failed_agent_run_count": 2
     }
   }
 }

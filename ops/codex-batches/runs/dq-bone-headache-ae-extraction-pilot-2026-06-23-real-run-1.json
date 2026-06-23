@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "parallel_batch_run",
+  "id": "dq-bone-headache-ae-extraction-pilot-2026-06-23-real-run-1",
+  "batch_plan_id": "parallel-batch-plan-v1",
+  "batch_plan_path": "ops/codex-batches/parallel-batch-plan.v1.json",
+  "batch_id": "parallel-batch-004-extraction-pilot",
+  "batch_sequence": 4,
+  "parallel_group": "extraction-pilot",
+  "execution_class": "independent",
+  "reconciliation_required": false,
+  "started_at": "2026-06-23T12:00:01.465Z",
+  "status": "succeeded",
+  "log_path": "ops/codex-batches/logs/dq-bone-headache-ae-extraction-pilot-2026-06-23-real-run-1.jsonl",
+  "worker_states": [
+    {
+      "job_id": "dq-bone-headache-ae-extraction-pilot-2026-06-23",
+      "job_path": "ops/codex-jobs/live/dq-bone-headache-ae-extraction-pilot-2026-06-23.json",
+      "command": [
+        "npm",
+        "run",
+        "agent:codex:worktree",
+        "--",
+        "--job-file",
+        "ops/codex-jobs/live/dq-bone-headache-ae-extraction-pilot-2026-06-23.json",
+        "--execute",
+        "--base-ref",
+        "017618177b26417f4967393d75974e672d1dc142",
+        "--allow-dirty",
+        "--post-export-verify"
+      ],
+      "status": "succeeded",
+      "started_at": "2026-06-23T12:00:01.466Z",
+      "worktree_path": "/tmp/lhr-codex-worktrees/dq-bone-headache-ae-extraction-pilot-2026-06-23-20260623T120001z",
+      "completed_at": "2026-06-23T12:08:45.089Z",
+      "exit_code": 0,
+      "output_path": "research/agent-runs/dq-bone-headache-ae-extraction-pilot-2026-06-23.json",
+      "worker_log_path": "research/agent-runs/logs/dq-bone-headache-ae-extraction-pilot-2026-06-23.jsonl",
+      "archive_path": "ops/codex-jobs/archive/dq-bone-headache-ae-extraction-pilot-2026-06-23.json"
+    }
+  ],
+  "summary": {
+    "planned_count": 0,
+    "running_count": 0,
+    "succeeded_count": 1,
+    "pending_reconciliation_count": 0,
+    "failed_count": 0,
+    "archived_count": 1
+  },
+  "next_actions": [
+    "Run npm run verify:knowledge-base after reviewing resulting candidate changes."
+  ],
+  "completed_at": "2026-06-23T12:08:45.090Z"
+}

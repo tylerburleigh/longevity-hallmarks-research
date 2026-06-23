@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "release_readiness",
   "id": "release-readiness-v1",
-  "generated_at": "2026-06-23T10:24:35.264Z",
+  "generated_at": "2026-06-23T12:10:11.560Z",
   "source_roots": [
     "data",
     "research"
@@ -17,8 +17,8 @@
     "canonical_source_of_truth": "data/ and research/ JSON records"
   },
   "summary": {
-    "candidate_count": 13,
-    "not_ready_candidate_count": 8,
+    "candidate_count": 14,
+    "not_ready_candidate_count": 9,
     "promotion_ready_candidate_count": 0,
     "release_ready_candidate_count": 1,
     "partial_release_ready_candidate_count": 4,
@@ -199,6 +199,28 @@
       "next_actions": [
         "Included records without blockers are eligible for accepted-record export.",
         "Resolve blocked records before treating the whole candidate as fully released: synthesis_group:senolytics-dq-bone-ctx-20wk-synthesis-compatibility-2026-06-21, synthesis_group:senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21, synthesis_group:senolytics-dq-bone-p1np-20wk-synthesis-compatibility-2026-06-21, synthesis_group:senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21, synthesis_group:senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21, synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21."
+      ]
+    },
+    {
+      "candidate_change_id": "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
+      "path": "data/candidate-changes/senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "needs_review",
+      "release_status": "not_ready",
+      "required_review_lanes": [
+        "extraction_fidelity",
+        "safety_limitations",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "active_review_ids": [],
+      "proposed_record_count": 3,
+      "release_ready_record_count": 0,
+      "blocked_record_count": 0,
+      "release_ready_record_ids": [],
+      "blocked_record_ids": [],
+      "next_actions": [
+        "Run supervisor review lanes: extraction_fidelity, safety_limitations, synthesis_boundary, taxonomy_mapping."
       ]
     },
     {
@@ -678,6 +700,10 @@
         {
           "blocker_type": "unaccepted_dependency",
           "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-adverse-event-terms-20wk-mixed through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-headache-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
         },
         {
           "blocker_type": "unaccepted_dependency",

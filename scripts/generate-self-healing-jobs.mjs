@@ -309,6 +309,19 @@ function jobCost(recommendedJob) {
   };
 }
 
+function commandBudgetForJob(recommendedJob) {
+  if (recommendedJob.job_type === "candidate_review") {
+    return 70;
+  }
+  if (recommendedJob.job_type === "extraction_refresh") {
+    return 120;
+  }
+  if (highCostJobTypes.has(recommendedJob.job_type)) {
+    return 100;
+  }
+  return 80;
+}
+
 function agentRoleForJob(recommendedJob) {
   return agentRoleByJobType[recommendedJob.job_type] ?? "self_healing_agent";
 }
@@ -429,7 +442,8 @@ function buildJob(recordIndex, recommendedJob) {
       approval_policy: "never",
       output_schema_path: "schemas/agent-run.codex-output.schema.json",
       timeout_ms: jobCost(recommendedJob).expected_wall_time_ms,
-      no_output_timeout_ms: 300000
+      no_output_timeout_ms: 300000,
+      max_command_events: commandBudgetForJob(recommendedJob)
     },
     expected_outputs: {
       canonical_write_policy: "candidate_change_required",

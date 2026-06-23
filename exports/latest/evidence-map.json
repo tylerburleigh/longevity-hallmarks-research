@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "evidence_map",
   "id": "latest-consumer-evidence-map",
-  "generated_at": "2026-06-23T10:24:35.290Z",
+  "generated_at": "2026-06-23T12:10:48.783Z",
   "scope": {
     "description": "Generated consumer evidence graph over canonical source, study, finding, outcome, result, coverage-assessment, and synthesis-group records.",
     "record_types": [
@@ -19,14 +19,14 @@
     "coverage_assessment": 2,
     "finding": 9,
     "outcome": 19,
-    "result": 20,
+    "result": 21,
     "source": 10,
     "study": 9,
     "synthesis_group": 8
   },
   "maturity_counts": {
     "agent_reviewed": 7,
-    "full_text_extracted": 12,
+    "full_text_extracted": 13,
     "metadata_imported": 18,
     "registry_extracted": 15,
     "screened": 6,
@@ -464,6 +464,14 @@
       "maturity_status": "registry_extracted",
       "evidence_tier": "human_biomarker",
       "direction": "null"
+    },
+    {
+      "record_type": "result",
+      "id": "dq-bone-headache-20wk-descriptive",
+      "name": "D+Q 20-week headache adverse-event result",
+      "maturity_status": "full_text_extracted",
+      "evidence_tier": "clinical_or_mortality",
+      "direction": "inconclusive"
     },
     {
       "record_type": "result",
@@ -1692,6 +1700,34 @@
     },
     {
       "from_type": "result",
+      "from_id": "dq-bone-headache-20wk-descriptive",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-headache-20wk-descriptive",
+      "to_type": "source",
+      "to_id": "pmid-38956196",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-headache-20wk-descriptive",
+      "to_type": "outcome",
+      "to_id": "dq-bone-adverse-events-20wk",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-headache-20wk-descriptive",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
       "from_id": "dq-bone-p16-t3-ctx-2wk-positive",
       "to_type": "study",
       "to_id": "dq-postmenopausal-bone-rct",
@@ -2430,6 +2466,13 @@
       "from_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
       "to_type": "result",
       "to_id": "dq-bone-adverse-events-20wk-mixed",
+      "relationship": "assesses_pooling_compatibility"
+    },
+    {
+      "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "to_type": "result",
+      "to_id": "dq-bone-headache-20wk-descriptive",
       "relationship": "assesses_pooling_compatibility"
     },
     {

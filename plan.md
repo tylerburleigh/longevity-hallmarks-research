@@ -666,6 +666,10 @@ Tasks:
 - [x] Add regression coverage for battle-test weaknesses discovered so far: forwarded runner options, placeholder output references, stale pending reconciliation, missing imported output, batch-run summary drift, and failed-worker issue loss.
 - [x] Add or extend audits and regression fixtures for remaining injected failure modes as they are exercised.
 - [x] Add a readiness gate for real extraction-refresh pilots: smoke job passes, parallel batch passes, failure fixtures pass, metrics refresh passes, reconciliation state has no unresolved orchestration blocker caused by the test run, and the clean pre-pilot command confirms no pending file changes.
+- [x] Add command-event budget policy for runnable live Codex jobs, with audited budget ranges by job class and generator defaults for self-healing jobs.
+- [x] Execute the first bounded real extraction-refresh pilot through `jobs:run-batch`, import the declared outputs, archive the completed job, refresh generated state, and pass full verification.
+- [ ] Add compact extraction context packs so bounded workers receive the exact source rows, schema slices, expected exemplars, and verification commands needed for the job class.
+- [ ] Extend safety-result structure for adverse-event preferred terms, event-specific arm counts, and zero/not-reported semantics before attempting comparative safety pooling.
 
 Exit criteria:
 
@@ -686,12 +690,13 @@ Exit criteria:
 
 ## Immediate Next Actions
 
-1. Run `npm run audit:extraction-pilot-readiness:clean` from a clean checkout; this executes full verification, then enforces the clean pre-pilot guard.
-2. If the clean readiness gate passes, run one bounded extraction-refresh pilot for a remaining D+Q paper instead of launching DKD, IPF, and AD-risk cognition/mobility together.
-3. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
-4. Run supervisor-review lanes for `senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22`: source fidelity, extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
-5. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry or article text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
-6. Decide whether to install repo-local skills into the active Codex skills directory.
+1. Create a compact extraction context-pack format for table-row extraction jobs, then update the extraction-refresh prompt to prefer the pack over broad repository discovery.
+2. Add structured adverse-event fields to the result schema or a linked safety-event detail record, then migrate the D+Q headache pilot from prose/tag encoding to structured preferred-term/count encoding.
+3. Run supervisor-review lanes for `senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
+4. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
+5. Run supervisor-review lanes for `senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22`: source fidelity, extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
+6. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry or article text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
+7. Decide whether to install repo-local skills into the active Codex skills directory.
 
 ## Change Log
 
@@ -710,6 +715,8 @@ Exit criteria:
 - 2026-06-23: Added battle-test regression coverage for runner option forwarding, placeholder agent-run references, stale pending reconciliation after import, succeeded workers with missing outputs, batch-run summary drift, and failed workers without structured issues; tightened the batch-run audit to validate state-machine consistency.
 - 2026-06-23: Added controlled failure-mode fixtures for unsafe overlapping writes, stale generated self-healing jobs, Codex post-step verification failure, and rerun/archive-collision recovery; extended scheduler, audit-regression, and parallel-batch-runner tests so the remaining Phase 8 failure matrix is covered before adding the extraction-pilot readiness gate.
 - 2026-06-23: Added an extraction-pilot readiness gate with a clean pre-pilot variant, verification wiring, and a regression fixture that blocks a partial parallel proof from authorizing real extraction-refresh work.
+- 2026-06-23: First bounded D+Q headache extraction-pilot attempts reached low command-event caps before final `agent_run` output. Added audited live-job command-budget ranges, self-healing generator defaults, a regression fixture for undersized live-job budgets, and docs recommending `jobs:run-batch` for real pilots so failures remain durable.
+- 2026-06-23: Completed the first bounded real extraction-refresh pilot through the batch runner. The worker created a submitted headache adverse-event candidate, a full-text-extracted headache result, and a safety synthesis-boundary update; post-run verification passed after import/archive/export refresh. The run exposed remaining system work: compact extraction context packs, structured adverse-event result fields, and a settled refresh order for orchestration metrics after import and archive.
 - 2026-06-22: Added promotion-blocking reconciliation decisions so `promote:candidate` rejects overlapping candidate outputs, duplicate source/study conflicts, source-rights conflicts, incomplete ledgers, and pending isolated-worker outputs unless resolved by explicit reconciliation-decision records.
 - 2026-06-22: Added a Codex orchestration battle-test phase and moved broad extraction-refresh work behind synthetic smoke jobs, parallel execution drills, failure injection, recovery checks, metrics refresh, reconciliation checks, and a clean-worktree readiness gate.
 - 2026-06-22: Added generated orchestration metrics with schema, freshness audit, post-run refresh wiring, docs, and verification coverage for planned wall-clock savings, worker outcomes, duplicate-work pressure, conflict rate, accepted outputs, extraction-debt pressure, and release artifacts.

@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "parallel_batch_run",
+  "id": "parallel-batch-001-candidate-revision-20260623t194330z",
+  "batch_plan_id": "parallel-batch-plan-v1",
+  "batch_plan_path": "ops/codex-batches/parallel-batch-plan.v1.json",
+  "batch_id": "parallel-batch-001-candidate-revision",
+  "batch_sequence": 1,
+  "parallel_group": "candidate-revision",
+  "execution_class": "independent",
+  "reconciliation_required": true,
+  "started_at": "2026-06-23T19:43:30.654Z",
+  "status": "failed",
+  "log_path": "ops/codex-batches/logs/parallel-batch-001-candidate-revision-20260623t194330z.jsonl",
+  "worker_states": [
+    {
+      "job_id": "self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21",
+      "job_path": "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21.json",
+      "command": [
+        "npm",
+        "run",
+        "agent:codex:worktree",
+        "--",
+        "--job-file",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21.json",
+        "--execute",
+        "--allow-dirty"
+      ],
+      "status": "failed",
+      "started_at": "2026-06-23T19:43:30.656Z",
+      "worktree_path": "/tmp/lhr-codex-worktrees/self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-20260623T194330z",
+      "issues": [
+        "{\"type\":\"error\",\"message\":\"You've hit your usage limit. Visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at 4:18 PM.\"}",
+        "Error: isolated Codex wrapper exited with code 1",
+        "Worker exited with code 1."
+      ],
+      "completed_at": "2026-06-23T19:43:33.643Z",
+      "exit_code": 1,
+      "output_path": "research/agent-runs/self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21.json",
+      "worker_log_path": "research/agent-runs/logs/self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21.jsonl"
+    }
+  ],
+  "summary": {
+    "planned_count": 0,
+    "running_count": 0,
+    "succeeded_count": 0,
+    "pending_reconciliation_count": 0,
+    "failed_count": 1,
+    "archived_count": 0
+  },
+  "next_actions": [
+    "Inspect batch log events and failed worker logs before rerunning failed jobs."
+  ],
+  "completed_at": "2026-06-23T19:43:33.644Z"
+}

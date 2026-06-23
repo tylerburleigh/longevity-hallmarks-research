@@ -230,6 +230,56 @@ async function writeFailureDiagnosticFixture(tempRoot) {
   return planPath;
 }
 
+async function writeUsageLimitDiagnosticFixture(tempRoot) {
+  await writeJson(tempRoot, "ops/codex-jobs/live/usage-limit-job.json", {
+    schema_version: "1.0.0",
+    record_type: "codex_job",
+    id: "usage-limit-job",
+    lifecycle_status: "ready",
+    agent_role: "self_healing_agent",
+    mode: "agent_directed",
+    prompt_file: "docs/prompts/codex-agents/self-healing-repair.md",
+    output_path: "research/agent-runs/usage-limit-job.json",
+    jsonl_log_path: "research/agent-runs/logs/usage-limit-job.jsonl"
+  });
+  const planPath = path.join(tempRoot, "usage-limit-plan.json");
+  await fs.writeFile(
+    planPath,
+    `${JSON.stringify(
+      {
+        schema_version: "1.0.0",
+        record_type: "parallel_batch_plan",
+        id: "usage-limit-plan",
+        generated_at: "2026-06-23T00:00:00.000Z",
+        source_job_root: "ops/codex-jobs/live",
+        batches: [
+          {
+            sequence: 1,
+            batch_id: "usage-limit-batch",
+            parallel_group: "runner-fixture",
+            execution_class: "independent",
+            reconciliation_required: false,
+            job_ids: ["usage-limit-job"],
+            job_paths: ["ops/codex-jobs/live/usage-limit-job.json"],
+            commands: [
+              [
+                "sh",
+                "-c",
+                "echo '{\"type\":\"error\",\"message\":\"You have hit your usage limit. Visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again later.\"}'; exit 1"
+              ]
+            ],
+            overlapping_execution_keys: []
+          }
+        ],
+        deferred_jobs: []
+      },
+      null,
+      2
+    )}\n`
+  );
+  return planPath;
+}
+
 async function writeInterruptionFixture(tempRoot) {
   await writeJson(tempRoot, "ops/codex-jobs/live/interruption-running-job.json", {
     schema_version: "1.0.0",
@@ -644,6 +694,60 @@ async function runFailureDiagnosticCase(tempRoot) {
   return [];
 }
 
+async function runUsageLimitDiagnosticCase(tempRoot) {
+  const planPath = await writeUsageLimitDiagnosticFixture(tempRoot);
+  const result = spawnSync(
+    "node",
+    [
+      runnerScriptPath,
+      "--plan",
+      planPath,
+      "--batch-id",
+      "usage-limit-batch",
+      "--run-id",
+      "usage-limit-run",
+      "--execute"
+    ],
+    {
+      cwd: tempRoot,
+      encoding: "utf8",
+      env: {
+        ...process.env,
+        npm_config_update_notifier: "false"
+      }
+    }
+  );
+
+  const issues = [];
+  if (result.error) {
+    issues.push(`usage limit diagnostic run failed to start: ${result.error.message}`);
+  }
+  if (result.status !== 1) {
+    issues.push(`usage limit diagnostic run should exit 1, found ${result.status}.`);
+  }
+
+  let runRecord;
+  try {
+    runRecord = JSON.parse(await fs.readFile(path.join(tempRoot, "ops/codex-batches/runs/usage-limit-run.json"), "utf8"));
+  } catch (error) {
+    issues.push(`usage limit run record missing or invalid: ${error.message}`);
+  }
+
+  const worker = runRecord?.worker_states?.[0];
+  assertEqual(runRecord?.status, "failed", "usage limit run status", issues);
+  assertEqual(worker?.status, "failed", "usage limit worker status", issues);
+  if (!worker?.issues?.some((issue) => issue.includes("usage limit"))) {
+    issues.push("usage limit worker should preserve the Codex usage-limit stdout event.");
+  }
+
+  if (issues.length > 0) {
+    return issues;
+  }
+
+  console.log("PASS parallel-batch-runner-usage-limit-diagnostics");
+  return [];
+}
+
 async function main() {
   const tempRoot = await fs.mkdtemp(path.join(os.tmpdir(), "lhr-parallel-batch-runner-"));
   try {
@@ -651,6 +755,7 @@ async function main() {
       ...(await runForwardedOptionsCase(tempRoot)),
       ...(await runAutoAllowDirtyCase(tempRoot)),
       ...(await runFailureDiagnosticCase(tempRoot)),
+      ...(await runUsageLimitDiagnosticCase(tempRoot)),
       ...(await runInterruptionCase(tempRoot)),
       ...(await runArchiveCollisionCase(tempRoot))
     ];

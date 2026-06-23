@@ -276,18 +276,21 @@ function nextActionsForRun(workerStates) {
 }
 
 function recordWorkerDiagnostic({ worker, streamName, line }) {
-  if (streamName !== "stderr") {
-    return;
-  }
-
   const diagnosticPatterns = [
     /codex exec exceeded max_command_events/i,
     /Foreground checkout has changes/i,
     /git apply --binary failed/i,
-    /isolated Codex wrapper exited with code/i
+    /isolated Codex wrapper exited with code/i,
+    /hit your usage limit/i,
+    /purchase more credits/i
   ];
 
-  if (!diagnosticPatterns.some((pattern) => pattern.test(line))) {
+  const isKnownDiagnostic = diagnosticPatterns.some((pattern) => pattern.test(line));
+  if (streamName !== "stderr" && !isKnownDiagnostic) {
+    return;
+  }
+
+  if (!isKnownDiagnostic) {
     return;
   }
 

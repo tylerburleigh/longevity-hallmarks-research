@@ -654,7 +654,12 @@ Tasks:
 
 - [x] Add a tiny synthetic Codex smoke job that writes a harmless candidate/output fixture through the normal wrapper, schema, log, prompt-snapshot, post-export, post-verify, and archive path.
 - [x] Add a single-job archive command that rewrites the final `agent_run.execution.job_file` to the archived job snapshot.
-- [ ] Execute one isolated-worktree smoke job with `agent:codex:worktree --execute`, then inspect the final `agent_run`, command log, JSONL log, candidate ledger, archived job snapshot, reconciliation report, metrics report, and clean coordinator checkout.
+- [x] Add strict response-schema auditing and wrapper null-pruning after the first smoke execution attempt exposed a Codex response-format rejection before worker execution.
+- [x] Add captured-stdout worker contract auditing and protected-artifact mutation checks after the smoke worker edited its own JSONL log.
+- [x] Add export refresh sequencing and exclude raw agent-run logs from the process-language audit after smoke post-verify exposed stale generated artifacts and raw-log scan failures.
+- [x] Let the smoke-contract audit resolve either the live job spec or its archived completed snapshot after the smoke job is archived.
+- [x] Execute one isolated-worktree smoke job with `agent:codex:worktree --execute`, then inspect the final `agent_run`, command log, JSONL log, candidate ledger, archived job snapshot, reconciliation report, metrics report, and clean coordinator checkout.
+- [ ] Tighten synthetic smoke prompts or job budgets so tiny orchestration fixtures do not over-read broad repository context before writing expected outputs.
 - [ ] Execute a small parallel synthetic batch with independent jobs, then inspect batch-run state, worker worktrees, logs, outputs, reconciliation state, metrics state, and archive behavior.
 - [ ] Inject known failure modes: failed worker, missing output, overlapping writes, stale generated job, pending reconciliation, broken candidate ledger, post-step failure, and rerun/recovery after existing output.
 - [ ] Add or extend audits and regression fixtures for every weakness discovered during battle tests.
@@ -679,7 +684,7 @@ Exit criteria:
 
 ## Immediate Next Actions
 
-1. Execute one isolated-worktree smoke job through `agent:codex:worktree --execute` from a committed coordinator checkout, import the worker output, archive it with `npm run jobs:archive`, and inspect logs, output, reconciliation, metrics, and worktree cleanliness.
+1. Tighten synthetic smoke prompts or job budgets so tiny orchestration fixtures stay bounded and fast.
 2. Execute a small parallel synthetic batch and inspect batch-run state, worker outputs, reconciliation, metrics, and archive behavior.
 3. Inject failure-mode runs and add audits or regression fixtures for every weakness discovered.
 4. After the battle-test readiness gate passes, run one bounded extraction-refresh pilot for a remaining human D+Q paper instead of launching DKD, IPF, and AD-risk cognition/mobility together.
@@ -691,6 +696,12 @@ Exit criteria:
 ## Change Log
 
 - 2026-06-22: Added an orchestration smoke Codex job, reusable smoke prompt, fixture contract audit, live-job post-audit deferral, single-job archival command, and archive-time agent-run job-file relinking so isolated execution can be battle-tested before production extraction-refresh jobs.
+- 2026-06-22: First orchestration smoke execution attempt exposed Codex response-format strictness for optional schema properties; updated the Codex output schema to require nullable optional fields, added wrapper null-pruning before persistence, and extended agent-schema auditing to enforce strict response object shape.
+- 2026-06-22: Second orchestration smoke attempt exposed worker mutability over file-backed JSONL logs; changed the wrapper to audit captured stdout, restore the JSONL log from captured events, reject protected artifact mutation, and forbid progress messages under strict output-schema runs.
+- 2026-06-22: Third orchestration smoke attempt reached wrapper post-export but failed post-verify on stale generated artifacts and raw-log process-language scanning; excluded raw agent-run logs from process-language scanning and moved wrapper post-export refreshes so `export:latest` remains the owner of SQLite read-model generation and audit-manifest hashes.
+- 2026-06-22: Fourth orchestration smoke attempt produced the expected worker candidate and passed the worker-output contract, but post-verify caught a stale manifest hash after a standalone read-model refresh; removed the redundant read-model post-step and added final `export:latest` refreshes after wrapper annotations.
+- 2026-06-22: Fifth orchestration smoke attempt passed worker contract and post-verify, then coordinator archival exposed that the smoke-contract audit still expected the live job path; updated the audit to accept the archived completed job snapshot after archival.
+- 2026-06-22: Completed the isolated-worktree smoke job, imported the candidate, agent run, prompt snapshot, logs, archived job snapshot, reconciliation, metrics, triage, release-readiness, and consumer exports; full verification passed, with remaining efficiency debt around over-broad worker inspection.
 - 2026-06-22: Added promotion-blocking reconciliation decisions so `promote:candidate` rejects overlapping candidate outputs, duplicate source/study conflicts, source-rights conflicts, incomplete ledgers, and pending isolated-worker outputs unless resolved by explicit reconciliation-decision records.
 - 2026-06-22: Added a Codex orchestration battle-test phase and moved broad extraction-refresh work behind synthetic smoke jobs, parallel execution drills, failure injection, recovery checks, metrics refresh, reconciliation checks, and a clean-worktree readiness gate.
 - 2026-06-22: Added generated orchestration metrics with schema, freshness audit, post-run refresh wiring, docs, and verification coverage for planned wall-clock savings, worker outcomes, duplicate-work pressure, conflict rate, accepted outputs, extraction-debt pressure, and release artifacts.

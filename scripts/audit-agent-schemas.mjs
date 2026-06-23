@@ -37,6 +37,49 @@ function compareEnum({ label, canonical, codex, canonicalPath, codexPath, issues
   compareArrays(label, getPath(canonical, canonicalPath), getPath(codex, codexPath), issues);
 }
 
+function strictSchemaPath(pathParts) {
+  return pathParts.length === 0 ? "/" : pathParts.join(".");
+}
+
+function checkStrictObjectRequired(schema, pathParts, issues) {
+  if (!schema || typeof schema !== "object") {
+    return;
+  }
+
+  if (schema.properties) {
+    const propertyKeys = Object.keys(schema.properties).sort();
+    const requiredKeys = sortedArray(schema.required);
+    if (propertyKeys.length !== requiredKeys.length) {
+      issues.push(
+        `schemas/agent-run.codex-output.schema.json ${strictSchemaPath(pathParts)}: strict response objects must require every declared property.`
+      );
+    } else {
+      for (const [index, propertyKey] of propertyKeys.entries()) {
+        if (requiredKeys[index] !== propertyKey) {
+          issues.push(
+            `schemas/agent-run.codex-output.schema.json ${strictSchemaPath(pathParts)}: strict response required[] does not match properties[].`
+          );
+          break;
+        }
+      }
+    }
+  }
+
+  for (const [key, child] of Object.entries(schema.properties ?? {})) {
+    checkStrictObjectRequired(child, [...pathParts, "properties", key], issues);
+  }
+
+  if (schema.items) {
+    checkStrictObjectRequired(schema.items, [...pathParts, "items"], issues);
+  }
+
+  for (const keyword of ["anyOf", "oneOf", "allOf"]) {
+    for (const [index, child] of (schema[keyword] ?? []).entries()) {
+      checkStrictObjectRequired(child, [...pathParts, keyword, String(index)], issues);
+    }
+  }
+}
+
 async function main() {
   const canonical = await readJson("schemas/agent-run.schema.json");
   const codex = await readJson("schemas/agent-run.codex-output.schema.json");
@@ -94,6 +137,7 @@ async function main() {
     codexPath: ["properties", "quality_checks", "items", "properties", "status", "enum"],
     issues
   });
+  checkStrictObjectRequired(codex, [], issues);
 
   const codexCandidateOutputs = codex.properties.outputs.anyOf.find((variant) =>
     (variant.required ?? []).includes("candidate_change_id")

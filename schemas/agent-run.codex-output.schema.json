@@ -134,6 +134,8 @@
         "isolation",
         "workspace_path",
         "prompt_file",
+        "prompt_template_file",
+        "job_file",
         "output_schema_path",
         "output_path",
         "jsonl_log_path",
@@ -169,10 +171,16 @@
           "type": "string"
         },
         "prompt_template_file": {
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "job_file": {
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "output_schema_path": {
           "type": "string"
@@ -244,6 +252,9 @@
           "additionalProperties": false,
           "required": [
             "summary",
+            "research_session_id",
+            "search_log_id",
+            "screening_run_id",
             "generated_files",
             "export_paths"
           ],
@@ -252,15 +263,24 @@
               "type": "string"
             },
             "research_session_id": {
-              "type": "string",
+              "type": [
+                "string",
+                "null"
+              ],
               "pattern": "^[a-z0-9]+[a-z0-9._-]*$"
             },
             "search_log_id": {
-              "type": "string",
+              "type": [
+                "string",
+                "null"
+              ],
               "pattern": "^[a-z0-9]+[a-z0-9._-]*$"
             },
             "screening_run_id": {
-              "type": "string",
+              "type": [
+                "string",
+                "null"
+              ],
               "pattern": "^[a-z0-9]+[a-z0-9._-]*$"
             },
             "generated_files": {
@@ -282,6 +302,9 @@
           "additionalProperties": false,
           "required": [
             "summary",
+            "research_session_id",
+            "search_log_id",
+            "screening_run_id",
             "candidate_change_id",
             "proposed_records",
             "generated_files",
@@ -292,15 +315,24 @@
               "type": "string"
             },
             "research_session_id": {
-              "type": "string",
+              "type": [
+                "string",
+                "null"
+              ],
               "pattern": "^[a-z0-9]+[a-z0-9._-]*$"
             },
             "search_log_id": {
-              "type": "string",
+              "type": [
+                "string",
+                "null"
+              ],
               "pattern": "^[a-z0-9]+[a-z0-9._-]*$"
             },
             "screening_run_id": {
-              "type": "string",
+              "type": [
+                "string",
+                "null"
+              ],
               "pattern": "^[a-z0-9]+[a-z0-9._-]*$"
             },
             "candidate_change_id": {

@@ -84,6 +84,9 @@ The wrapper enforces the worker output contract after `codex exec` exits and bef
 - that JSON `agent_run` must be the final worker `agent_message`
 - that final message must match the wrapper-written `-o` output file before coordinator post-run annotations
 - inline Node/AJV/schema-validation snippets for the final `agent_run` are rejected; workers must use repository scripts instead
+- worker attempts to mutate wrapper-owned agent-run logs, command logs, prompt snapshots, or final output files are rejected
+
+The wrapper audits the captured `codex exec` stdout event stream and restores the JSONL log from that captured stream before checking it. The file-backed JSONL log is an audit artifact, not the audit source of truth while the worker is still running.
 
 On success, the wrapper appends a `worker_output_contract` quality check to the persisted `agent_run`.
 
@@ -95,7 +98,7 @@ For release/export runs or any run whose persisted `agent_run` should be include
 --post-export-verify
 ```
 
-This runs `npm run export:latest`, `npm run export:triage-state`, `npm run export:release-readiness`, `npm run reconcile:parallel`, and `npm run verify:knowledge-base` after `codex exec` has written the final `agent_run` JSON. The post-step results are appended to the worker JSONL log as coordinator events and summarized back into the `agent_run.quality_checks[]` array. The wrapper then runs `npm run validate:records` so the persisted output record is schema-checked after coordinator annotations.
+This runs `npm run export:triage-state`, `npm run export:release-readiness`, `npm run reconcile:parallel`, `npm run metrics:orchestration`, `npm run export:latest`, and `npm run verify:knowledge-base` after `codex exec` has written the final `agent_run` JSON. `export:latest` owns the generated SQLite read model and audit-manifest hashes, so the wrapper refreshes `export:latest` again after coordinator annotations that mutate the persisted `agent_run`. The post-step results are appended to the worker JSONL log as coordinator events and summarized back into the `agent_run.quality_checks[]` array. The wrapper then runs `npm run validate:records` so the persisted output record is schema-checked after coordinator annotations.
 
 The wrapper runs post-run verification in two parts to avoid a self-referential `post_verify` audit loop: core repository verification first, then `audit:codex-jobs` after the wrapper appends the `post_verify` quality check. If the job file is still a live `ops/codex-jobs/live/` spec with a completed output, the wrapper defers `post_job_audit` until the coordinator archives the job snapshot and the final `agent_run.execution.job_file` points at the archive path.
 
@@ -124,6 +127,7 @@ Every worker final output must pass two schema gates:
 - `schemas/agent-run.codex-output.schema.json` constrains `codex exec --output-schema`.
 - `schemas/agent-run.schema.json` is the canonical repository validator used by `npm run validate:records`.
 - `npm run audit:agent-schemas` checks the shared enum contract between the two schemas.
+- The Codex-specific schema is response-format strict: every declared object property is required. Fields that are optional in canonical records are nullable in the Codex schema, and the wrapper removes null object properties before persisting the canonical `agent_run`.
 - `npm run audit:release-readiness` checks that the generated release-boundary queue still matches candidate lifecycle state and accepted-record export eligibility.
 - `npm run audit:codex-jobs` checks that persisted `codex_job` specs match their final `agent_run` records, candidate records, expected paths, required review lanes, quality gates, orchestration metadata, logs, and post-run checks.
 - `worker_output_contract` checks the JSONL worker stream for a single final JSON `agent_run` and rejects ad hoc schema-validation snippets.
@@ -157,7 +161,7 @@ Durable search and screening records are not temporary notes. `research/search-l
 
 The reference audit also infers required review lanes from proposed record types. Result, outcome, snapshot, synthesis, and safety/adverse-event records must declare the matching source-fidelity, extraction-fidelity, taxonomy-mapping, synthesis-boundary, or safety-limitation lanes before promotion can proceed.
 
-When a job file declares `quality_gates[]`, each gate must be satisfied by a passed `agent_run.quality_checks[]` entry or by a passed aggregate verification check recognized by the job audit. Jobs with `post_run.export_latest` or `post_run.verify_knowledge_base` must also have passed wrapper-owned `post_export` or `post_verify` quality checks. Workers must not predeclare wrapper-owned checks such as `worker_output_contract`, `post_export`, `post_triage_state_export`, `post_release_readiness_export`, `post_reconciliation_export`, or `post_verify` in their final response.
+When a job file declares `quality_gates[]`, each gate must be satisfied by a passed `agent_run.quality_checks[]` entry or by a passed aggregate verification check recognized by the job audit. Jobs with `post_run.export_latest` or `post_run.verify_knowledge_base` must also have passed wrapper-owned `post_export` or `post_verify` quality checks. Workers must not predeclare wrapper-owned checks such as `worker_output_contract`, `post_export`, `post_triage_state_export`, `post_release_readiness_export`, `post_reconciliation_export`, `post_orchestration_metrics_export`, or `post_verify` in their final response.
 
 ## Logs And Replay
 
@@ -222,6 +226,8 @@ Use `ops/codex-jobs/live/orchestration-smoke-codex-worktree-2026-06-22.json` as 
 ```bash
 npm run audit:orchestration-smoke-contract
 ```
+
+The smoke-contract audit resolves the live job before execution and the archived completed job snapshot after archival.
 
 Run it only from a committed coordinator checkout. The expected sequence is isolated execution, candidate/output import, post-run export and verification, completed-job archival, then a full `npm run verify:knowledge-base`.
 

@@ -25,6 +25,23 @@ async function readJson(relativePath) {
   return JSON.parse(await fs.readFile(resolveRepoPath(relativePath), "utf8"));
 }
 
+function archivePathForJobFile(jobFile) {
+  return jobFile.replace(/^ops\/codex-jobs\/live\//, "ops/codex-jobs/archive/");
+}
+
+async function resolveContractJobFile(contract) {
+  if (await exists(contract.job_file)) {
+    return contract.job_file;
+  }
+
+  const archivePath = archivePathForJobFile(contract.job_file);
+  if (archivePath !== contract.job_file && (await exists(archivePath))) {
+    return archivePath;
+  }
+
+  return contract.job_file;
+}
+
 function stableJson(value) {
   return JSON.stringify(value, null, 2);
 }
@@ -192,10 +209,19 @@ async function checkAgentRunIfPresent({ issues, contract }) {
 async function main() {
   const issues = [];
   const contract = await readJson(contractPath);
-  const job = await readJson(contract.job_file);
+  const resolvedJobFile = await resolveContractJobFile(contract);
 
-  await checkPathExists({ issues, field: "contract.job_file", relativePath: contract.job_file });
+  await checkPathExists({ issues, field: "contract.job_file", relativePath: resolvedJobFile });
   await checkPathExists({ issues, field: "contract.prompt_template_file", relativePath: contract.prompt_template_file });
+  if (issues.length > 0) {
+    console.error(`Orchestration smoke contract audit failed with ${issues.length} issue(s):`);
+    for (const issue of issues) {
+      console.error(`- ${issue}`);
+    }
+    process.exit(1);
+  }
+
+  const job = await readJson(resolvedJobFile);
   checkJobAgainstContract({ issues, contract, job });
   await checkCandidateIfPresent({ issues, contract });
   await checkAgentRunIfPresent({ issues, contract });

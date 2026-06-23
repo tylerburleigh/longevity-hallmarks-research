@@ -7,6 +7,7 @@ const workspaceRoot = process.cwd();
 const scanTargets = ["schemas", "scripts", "docs", "codex-skills", "data", "research", "exports", "plan.md", "package.json"];
 const fileExtensions = new Set([".json", ".jsonl", ".md", ".mjs", ".js"]);
 const skippedRelativePaths = new Set(["scripts/audit-agentic-process.mjs"]);
+const skippedRelativePrefixes = ["research/agent-runs/logs/"];
 
 const bannedPatterns = [
   { label: "needs_human_judgment", pattern: /needs_human_judgment/i },
@@ -41,7 +42,11 @@ async function walkFiles(filePath) {
   const stat = await fs.stat(filePath);
   if (stat.isFile()) {
     const relativePath = toPosixRelative(filePath);
-    if (skippedRelativePaths.has(relativePath) || !fileExtensions.has(path.extname(filePath))) {
+    if (
+      skippedRelativePaths.has(relativePath) ||
+      skippedRelativePrefixes.some((prefix) => relativePath.startsWith(prefix)) ||
+      !fileExtensions.has(path.extname(filePath))
+    ) {
       return [];
     }
     return [filePath];

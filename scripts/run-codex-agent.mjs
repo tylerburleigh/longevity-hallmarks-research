@@ -237,6 +237,22 @@ function stableStringify(value) {
   return JSON.stringify(value);
 }
 
+function omitNullObjectProperties(value) {
+  if (Array.isArray(value)) {
+    return value.map((item) => omitNullObjectProperties(item));
+  }
+
+  if (value && typeof value === "object") {
+    return Object.fromEntries(
+      Object.entries(value)
+        .filter(([, child]) => child !== null)
+        .map(([key, child]) => [key, omitNullObjectProperties(child)])
+    );
+  }
+
+  return value;
+}
+
 async function exists(filePath) {
   try {
     await fs.access(filePath);
@@ -272,7 +288,7 @@ In the final JSON object, set execution.surface to "codex_exec", execution.isola
   const jobInstruction = options.job
     ? `\n\nCodex job specification:\n${JSON.stringify(options.job, null, 2)}`
     : "";
-  const outputInstruction = `Do not write the agent_run output path directly. Return the final JSON object as your final message; the wrapper writes output_path from that final message. Do not emit interim JSON objects, placeholder agent_run records, or JSON-shaped progress messages before the final response. Use plain progress text only when needed. Do not run ad hoc Node/AJV/schema-validation snippets for the final agent_run; use repository scripts such as npm run validate:records, npm run audit:references, npm run audit:agent-schemas, and npm run verify:knowledge-base. Coordinator post-run export or verification steps run after codex exec exits when requested.`;
+  const outputInstruction = `Do not write the agent_run output path directly. Return the final JSON object as your final message; the wrapper writes output_path from that final message. Do not emit progress messages, interim JSON objects, placeholder agent_run records, or JSON-shaped messages before the final response. Use tool calls only until the final response. Do not read, edit, truncate, rewrite, remove, or repair wrapper-owned agent-run logs, command logs, prompt snapshots, or output files. Do not run ad hoc Node/AJV/schema-validation snippets for the final agent_run; use repository scripts such as npm run validate:records, npm run audit:references, npm run audit:agent-schemas, and npm run verify:knowledge-base. Coordinator post-run export or verification steps run after codex exec exits when requested.`;
   const fullPrompt = `${prompt}${jobInstruction}
 
 ${outputInstruction}`;
@@ -349,6 +365,7 @@ async function writeCommandPlan(options, command) {
 
 async function executeCommand(options, command) {
   const logHandle = await fs.open(resolveRepoPath(options.log), "w");
+  const stdoutChunks = [];
 
   return new Promise((resolve, reject) => {
     let settled = false;
@@ -374,6 +391,7 @@ async function executeCommand(options, command) {
       }
       settled = true;
       clearTimers();
+      options.workerStdout = Buffer.concat(stdoutChunks).toString("utf8");
       logHandle.close().finally(() => {
         if (error) {
           reject(error);
@@ -413,6 +431,7 @@ async function executeCommand(options, command) {
         return;
       }
       resetIdleTimer();
+      stdoutChunks.push(chunk);
       process.stdout.write(chunk);
       logHandle.write(chunk).catch((error) => {
         child.kill();
@@ -441,6 +460,10 @@ function isCommandExecution(event) {
   return event?.item?.type === "command_execution" && typeof event.item.command === "string";
 }
 
+function isFileChange(event) {
+  return event?.item?.type === "file_change" && Array.isArray(event.item.changes);
+}
+
 function tryParseJsonObject(text) {
   try {
     const parsed = JSON.parse(text);
@@ -464,12 +487,62 @@ function shortCommand(command) {
   return command.length > 220 ? `${command.slice(0, 217)}...` : command;
 }
 
+function commandLooksMutating(command) {
+  return /\b(?:rm|mv|cp|truncate|tee)\b|\b(?:perl|sed)\s+-i\b|(?:^|[;&|]\s*)>\s*[^&]/.test(command);
+}
+
+function protectedArtifactPaths(options) {
+  return [
+    options.log,
+    options.output,
+    `research/agent-runs/logs/${options.id}.command.jsonl`,
+    options.promptSnapshot
+  ]
+    .filter(Boolean)
+    .map((artifactPath) => path.resolve(resolveRepoPath(artifactPath)));
+}
+
+function commandReferencesPath(command, absolutePath) {
+  const relativePath = path.relative(workspaceRoot, absolutePath).split(path.sep).join("/");
+  return command.includes(relativePath) || command.includes(absolutePath);
+}
+
+function protectedArtifactMutationIssues({ events, options }) {
+  const protectedPaths = protectedArtifactPaths(options);
+  const issues = [];
+
+  for (const [eventIndex, event] of events.entries()) {
+    if (isCommandExecution(event) && commandLooksMutating(event.item.command)) {
+      const touchedPath = protectedPaths.find((artifactPath) => commandReferencesPath(event.item.command, artifactPath));
+      if (touchedPath) {
+        issues.push(
+          `${options.log}: command event ${eventIndex} mutates wrapper-owned artifact ${path.relative(workspaceRoot, touchedPath).split(path.sep).join("/")}.`
+        );
+      }
+    }
+
+    if (isFileChange(event)) {
+      for (const change of event.item.changes) {
+        const changePath = path.resolve(change.path);
+        if (protectedPaths.includes(changePath)) {
+          issues.push(
+            `${options.log}: file_change event ${eventIndex} mutates wrapper-owned artifact ${path.relative(workspaceRoot, changePath).split(path.sep).join("/")}.`
+          );
+        }
+      }
+    }
+  }
+
+  return issues;
+}
+
 const wrapperOwnedQualityChecks = new Set([
   "worker_output_contract",
   "post_export",
   "post_triage_state_export",
   "post_release_readiness_export",
   "post_reconciliation_export",
+  "post_orchestration_metrics_export",
   "post_verify",
   "post_job_audit",
   "post_output_validate"
@@ -493,7 +566,11 @@ async function appendCoordinatorAuditEvent(options, { name, exitCode, summary, i
 async function auditWorkerOutputContract(options) {
   const logPath = resolveRepoPath(options.log);
   const outputPath = resolveRepoPath(options.output);
-  const lines = (await fs.readFile(logPath, "utf8")).split("\n").filter(Boolean);
+  const logText = options.workerStdout ?? (await fs.readFile(logPath, "utf8"));
+  if (options.workerStdout !== undefined) {
+    await fs.writeFile(logPath, options.workerStdout);
+  }
+  const lines = logText.split("\n").filter(Boolean);
   const issues = [];
   const events = [];
 
@@ -523,10 +600,12 @@ async function auditWorkerOutputContract(options) {
       adHocSchemaCommands.push(event.item.command);
     }
   }
+  issues.push(...protectedArtifactMutationIssues({ events, options }));
 
   if (agentRunMessages.length !== 1) {
     issues.push(`${options.log}: expected exactly one JSON agent_run message, found ${agentRunMessages.length}.`);
   } else {
+    const normalizedWorkerRecord = omitNullObjectProperties(agentRunMessages[0].parsed);
     const workerDeclaredWrapperChecks = (agentRunMessages[0].parsed.quality_checks ?? [])
       .map((check) => check.check_name)
       .filter((checkName) => wrapperOwnedQualityChecks.has(checkName));
@@ -543,8 +622,12 @@ async function auditWorkerOutputContract(options) {
 
     if (await exists(outputPath)) {
       const outputRecord = JSON.parse(await fs.readFile(outputPath, "utf8"));
-      if (stableStringify(outputRecord) !== stableStringify(agentRunMessages[0].parsed)) {
+      const normalizedOutputRecord = omitNullObjectProperties(outputRecord);
+      if (stableStringify(normalizedOutputRecord) !== stableStringify(normalizedWorkerRecord)) {
         issues.push(`${options.output}: final agent_run message does not match the wrapper-written output file before post-run annotations.`);
+      }
+      if (issues.length === 0) {
+        await fs.writeFile(outputPath, `${JSON.stringify(normalizedWorkerRecord, null, 2)}\n`);
       }
     } else {
       issues.push(`${options.output}: wrapper output file was not written.`);
@@ -703,8 +786,6 @@ async function appendOutputQualityCheck(options, event) {
 
 async function runPostSteps(options) {
   if (options.postExport) {
-    const event = await runCoordinatorCommand(options, "post_export", "npm", ["run", "export:latest"]);
-    await appendOutputQualityCheck(options, event);
     const triageStateEvent = await runCoordinatorCommand(options, "post_triage_state_export", "npm", ["run", "export:triage-state"]);
     await appendOutputQualityCheck(options, triageStateEvent);
     const releaseReadinessEvent = await runCoordinatorCommand(options, "post_release_readiness_export", "npm", [
@@ -719,6 +800,9 @@ async function runPostSteps(options) {
       "metrics:orchestration"
     ]);
     await appendOutputQualityCheck(options, orchestrationMetricsEvent);
+    const exportEvent = await runCoordinatorCommand(options, "post_export", "npm", ["run", "export:latest"]);
+    await appendOutputQualityCheck(options, exportEvent);
+    await runCoordinatorCommand(options, "post_export_refresh", "npm", ["run", "export:latest"]);
   }
   if (options.postVerify) {
     const event = await runCoordinatorCommand(options, "post_verify", "npm", ["run", "verify:knowledge-base:post-run"]);
@@ -728,6 +812,9 @@ async function runPostSteps(options) {
     } else {
       const jobAuditEvent = await runCoordinatorCommand(options, "post_job_audit", "npm", ["run", "audit:codex-jobs"]);
       await appendOutputQualityCheck(options, jobAuditEvent);
+    }
+    if (options.postExport) {
+      await runCoordinatorCommand(options, "post_verify_export_refresh", "npm", ["run", "export:latest"]);
     }
   }
   if (options.postExport || options.postVerify) {

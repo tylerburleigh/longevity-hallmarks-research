@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "parallel_reconciliation",
   "id": "parallel-reconciliation-v1",
-  "generated_at": "2026-06-22T23:23:12.010Z",
+  "generated_at": "2026-06-23T00:05:12.938Z",
   "source_roots": [
     "data",
     "research",
@@ -48,14 +48,14 @@
     "duplicate_source_group_count": 0,
     "study_count": 9,
     "duplicate_study_group_count": 0,
-    "candidate_count": 9,
-    "active_candidate_count": 4,
+    "candidate_count": 10,
+    "active_candidate_count": 5,
     "overlapping_candidate_group_count": 8,
     "source_rights_count": 2,
     "source_rights_conflict_count": 0,
-    "agent_run_count": 11,
-    "parallel_batch_count": 5,
-    "reconciliation_batch_count": 3,
+    "agent_run_count": 12,
+    "parallel_batch_count": 4,
+    "reconciliation_batch_count": 2,
     "parallel_batch_run_count": 0,
     "pending_parallel_worker_count": 0,
     "reconciliation_decision_count": 0,
@@ -130,29 +130,6 @@
         "path:data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
         "target_record:coverage_assessment/senolytics-coverage-repair-2026-06-21"
       ],
-      "status": "reconciliation_open",
-      "finding_ids": [
-        "missing-candidate-agent-run-bc8e426686e2",
-        "missing-candidate-agent-run-de30675addbc",
-        "overlapping-candidate-14fca4c24b17",
-        "overlapping-candidate-3a06e6340cfa",
-        "overlapping-candidate-8be7ee3308f9",
-        "overlapping-candidate-a47143957992",
-        "overlapping-candidate-b3857906563f",
-        "overlapping-candidate-b443e4e5da78",
-        "overlapping-candidate-b633096216bd",
-        "overlapping-candidate-f1249c68d429"
-      ]
-    },
-    {
-      "batch_id": "parallel-batch-005-orchestration-smoke",
-      "parallel_group": "orchestration-smoke",
-      "execution_class": "independent",
-      "reconciliation_required": true,
-      "job_ids": [
-        "orchestration-smoke-codex-worktree-2026-06-22"
-      ],
-      "overlapping_execution_keys": [],
       "status": "reconciliation_open",
       "finding_ids": [
         "missing-candidate-agent-run-bc8e426686e2",

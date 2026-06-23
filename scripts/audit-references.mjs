@@ -92,6 +92,7 @@ const artifactRetentionAccessTiers = new Set([
   "author_manuscript_or_preprint_repository"
 ]);
 const retainedSourceArtifactClasses = new Set(["raw_payload", "normalized_markdown", "section_index"]);
+const placeholderReferenceIds = new Set(["none", "n/a", "na", "null", "unknown", "not_applicable", "not-applicable"]);
 
 async function exists(filePath) {
   try {
@@ -170,6 +171,11 @@ function getRecord(index, recordType, recordId) {
 
 function checkRef({ index, issues, ownerPath, field, recordType, recordId }) {
   if (!recordId) {
+    return;
+  }
+
+  if (placeholderReferenceIds.has(String(recordId).toLowerCase())) {
+    issues.push(`${ownerPath}: ${field} must be null when no ${recordType} record was produced, found placeholder "${recordId}".`);
     return;
   }
 

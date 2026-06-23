@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "parallel_batch_run",
+  "id": "parallel-synthetic-smoke-reserved-checks-2026-06-23",
+  "batch_plan_id": "parallel-batch-plan-v1",
+  "batch_plan_path": "ops/codex-batches/parallel-batch-plan.v1.json",
+  "batch_id": "parallel-batch-005-orchestration-synthetic-batch",
+  "batch_sequence": 5,
+  "parallel_group": "orchestration-synthetic-batch",
+  "execution_class": "independent",
+  "reconciliation_required": true,
+  "started_at": "2026-06-23T10:16:22.148Z",
+  "status": "partial",
+  "log_path": "ops/codex-batches/logs/parallel-synthetic-smoke-reserved-checks-2026-06-23.jsonl",
+  "worker_states": [
+    {
+      "job_id": "orchestration-parallel-smoke-a-2026-06-23",
+      "job_path": "ops/codex-jobs/live/orchestration-parallel-smoke-a-2026-06-23.json",
+      "command": [
+        "npm",
+        "run",
+        "agent:codex:worktree",
+        "--",
+        "--job-file",
+        "ops/codex-jobs/live/orchestration-parallel-smoke-a-2026-06-23.json",
+        "--execute",
+        "--base-ref",
+        "02236284139c00c94cb06895b92a924ddd8f90ec",
+        "--allow-dirty"
+      ],
+      "status": "succeeded",
+      "started_at": "2026-06-23T10:16:22.149Z",
+      "worktree_path": "/tmp/lhr-codex-worktrees/orchestration-parallel-smoke-a-2026-06-23-20260623T101622z",
+      "completed_at": "2026-06-23T10:17:52.788Z",
+      "exit_code": 0,
+      "output_path": "research/agent-runs/orchestration-parallel-smoke-a-2026-06-23.json",
+      "worker_log_path": "research/agent-runs/logs/orchestration-parallel-smoke-a-2026-06-23.jsonl",
+      "archive_path": "ops/codex-jobs/archive/orchestration-parallel-smoke-a-2026-06-23.json"
+    },
+    {
+      "job_id": "orchestration-parallel-smoke-b-2026-06-23",
+      "job_path": "ops/codex-jobs/live/orchestration-parallel-smoke-b-2026-06-23.json",
+      "command": [
+        "npm",
+        "run",
+        "agent:codex:worktree",
+        "--",
+        "--job-file",
+        "ops/codex-jobs/live/orchestration-parallel-smoke-b-2026-06-23.json",
+        "--execute",
+        "--base-ref",
+        "02236284139c00c94cb06895b92a924ddd8f90ec",
+        "--allow-dirty"
+      ],
+      "status": "failed",
+      "started_at": "2026-06-23T10:16:22.149Z",
+      "worktree_path": "/tmp/lhr-codex-worktrees/orchestration-parallel-smoke-b-2026-06-23-20260623T101622z",
+      "completed_at": "2026-06-23T10:16:57.373Z",
+      "exit_code": 1,
+      "output_path": "research/agent-runs/orchestration-parallel-smoke-b-2026-06-23.json",
+      "worker_log_path": "research/agent-runs/logs/orchestration-parallel-smoke-b-2026-06-23.jsonl",
+      "issues": [
+        "Worker exited with code 1."
+      ],
+      "archive_path": "ops/codex-jobs/archive/orchestration-parallel-smoke-b-2026-06-23.json"
+    }
+  ],
+  "summary": {
+    "planned_count": 0,
+    "running_count": 0,
+    "succeeded_count": 1,
+    "pending_reconciliation_count": 0,
+    "failed_count": 1,
+    "archived_count": 2
+  },
+  "next_actions": [
+    "Inspect batch log events and failed worker logs before rerunning failed jobs."
+  ],
+  "completed_at": "2026-06-23T10:17:52.789Z"
+}

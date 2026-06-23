@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "parallel_batch_run",
+  "id": "parallel-synthetic-smoke-guard-level-2026-06-23",
+  "batch_plan_id": "parallel-batch-plan-v1",
+  "batch_plan_path": "ops/codex-batches/parallel-batch-plan.v1.json",
+  "batch_id": "parallel-batch-005-orchestration-synthetic-batch",
+  "batch_sequence": 5,
+  "parallel_group": "orchestration-synthetic-batch",
+  "execution_class": "independent",
+  "reconciliation_required": true,
+  "started_at": "2026-06-23T10:21:10.692Z",
+  "status": "succeeded",
+  "log_path": "ops/codex-batches/logs/parallel-synthetic-smoke-guard-level-2026-06-23.jsonl",
+  "worker_states": [
+    {
+      "job_id": "orchestration-parallel-smoke-a-2026-06-23",
+      "job_path": "ops/codex-jobs/live/orchestration-parallel-smoke-a-2026-06-23.json",
+      "command": [
+        "npm",
+        "run",
+        "agent:codex:worktree",
+        "--",
+        "--job-file",
+        "ops/codex-jobs/live/orchestration-parallel-smoke-a-2026-06-23.json",
+        "--execute",
+        "--base-ref",
+        "a38db0d031412b5182030ade7f212eab08b715ce",
+        "--allow-dirty"
+      ],
+      "status": "succeeded",
+      "started_at": "2026-06-23T10:21:10.693Z",
+      "worktree_path": "/tmp/lhr-codex-worktrees/orchestration-parallel-smoke-a-2026-06-23-20260623T102110z",
+      "completed_at": "2026-06-23T10:22:59.880Z",
+      "exit_code": 0,
+      "output_path": "research/agent-runs/orchestration-parallel-smoke-a-2026-06-23.json",
+      "worker_log_path": "research/agent-runs/logs/orchestration-parallel-smoke-a-2026-06-23.jsonl",
+      "archive_path": "ops/codex-jobs/archive/orchestration-parallel-smoke-a-2026-06-23.json"
+    },
+    {
+      "job_id": "orchestration-parallel-smoke-b-2026-06-23",
+      "job_path": "ops/codex-jobs/live/orchestration-parallel-smoke-b-2026-06-23.json",
+      "command": [
+        "npm",
+        "run",
+        "agent:codex:worktree",
+        "--",
+        "--job-file",
+        "ops/codex-jobs/live/orchestration-parallel-smoke-b-2026-06-23.json",
+        "--execute",
+        "--base-ref",
+        "a38db0d031412b5182030ade7f212eab08b715ce",
+        "--allow-dirty"
+      ],
+      "status": "succeeded",
+      "started_at": "2026-06-23T10:21:10.693Z",
+      "worktree_path": "/tmp/lhr-codex-worktrees/orchestration-parallel-smoke-b-2026-06-23-20260623T102110z",
+      "completed_at": "2026-06-23T10:22:50.549Z",
+      "exit_code": 0,
+      "output_path": "research/agent-runs/orchestration-parallel-smoke-b-2026-06-23.json",
+      "worker_log_path": "research/agent-runs/logs/orchestration-parallel-smoke-b-2026-06-23.jsonl",
+      "archive_path": "ops/codex-jobs/archive/orchestration-parallel-smoke-b-2026-06-23.json"
+    }
+  ],
+  "summary": {
+    "planned_count": 0,
+    "running_count": 0,
+    "succeeded_count": 2,
+    "pending_reconciliation_count": 0,
+    "failed_count": 0,
+    "archived_count": 2
+  },
+  "next_actions": [
+    "Run npm run verify:knowledge-base after reviewing resulting candidate changes."
+  ],
+  "completed_at": "2026-06-23T10:22:59.881Z"
+}

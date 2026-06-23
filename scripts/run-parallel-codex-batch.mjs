@@ -20,6 +20,7 @@ Options:
   --max-workers <number>   Maximum worker processes. Default: batch size.
   --run-id <id>            Stable run id. Default: <batch-id>-<timestamp>.
   --base-ref <ref>         Forwarded to agent:codex:worktree.
+  --allow-dirty            Forwarded to agent:codex:worktree for deliberate uncommitted test bases.
   --worktree-root <path>   Forwarded to agent:codex:worktree.
   --post-export-verify     Forwarded to agent:codex:worktree.
   --archive-completed      Archive live job specs whose final output exists in this checkout.
@@ -58,6 +59,8 @@ function parseArgs(argv) {
       options.runId = argv[++index];
     } else if (arg === "--base-ref") {
       options.baseRef = argv[++index];
+    } else if (arg === "--allow-dirty") {
+      options.allowDirty = true;
     } else if (arg === "--worktree-root") {
       options.worktreeRoot = argv[++index];
     } else if (arg === "--post-export-verify") {
@@ -162,6 +165,9 @@ function commandWithOptions(command, options) {
   }
   if (options.baseRef) {
     next.push("--base-ref", options.baseRef);
+  }
+  if (options.allowDirty) {
+    next.push("--allow-dirty");
   }
   if (options.worktreeRoot) {
     next.push("--worktree-root", options.worktreeRoot);

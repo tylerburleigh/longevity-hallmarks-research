@@ -1,0 +1,112 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "orchestration-parallel-smoke-a-2026-06-23",
+  "agent_role": "self_healing_agent",
+  "agent_id": "codex-cli-worker",
+  "mode": "agent_directed",
+  "started_at": "2026-06-23T10:21:54Z",
+  "completed_at": "2026-06-23T10:22:33Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "Run synthetic parallel orchestration candidate A without touching evidence records.",
+    "hallmark_ids": [],
+    "track_ids": [],
+    "intervention_ids": []
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "codex_exec",
+    "isolation": "git_worktree",
+    "workspace_path": "/tmp/lhr-codex-worktrees/orchestration-parallel-smoke-a-2026-06-23-20260623T102110z",
+    "prompt_file": "research/agent-runs/prompts/orchestration-parallel-smoke-a-2026-06-23.md",
+    "prompt_template_file": "docs/prompts/codex-agents/parallel-synthetic-candidate.md",
+    "job_file": "ops/codex-jobs/archive/orchestration-parallel-smoke-a-2026-06-23.json",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "output_path": "research/agent-runs/orchestration-parallel-smoke-a-2026-06-23.json",
+    "jsonl_log_path": "research/agent-runs/logs/orchestration-parallel-smoke-a-2026-06-23.jsonl",
+    "sandbox": "workspace-write",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "user_request",
+      "reference": "ops/codex-jobs/live/orchestration-parallel-smoke-a-2026-06-23.json",
+      "summary": "Coordinator-injected synthetic parallel orchestration job specification."
+    }
+  ],
+  "outputs": {
+    "summary": "Created one harmless self-contained synthetic candidate_change without proposing scientific evidence record changes.",
+    "candidate_change_id": "orchestration-parallel-smoke-a-candidate-2026-06-23",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "orchestration-parallel-smoke-a-candidate-2026-06-23",
+        "path": "data/candidate-changes/orchestration-parallel-smoke-a-candidate-2026-06-23.json",
+        "change_type": "create",
+        "rationale": "Adds only this harmless synthetic candidate change for orchestration smoke testing."
+      }
+    ],
+    "generated_files": [],
+    "export_paths": []
+  },
+  "quality_checks": [
+    {
+      "check_name": "npm run validate:records",
+      "status": "passed",
+      "summary": "Validated 178 JSON file(s)."
+    },
+    {
+      "check_name": "npm run audit:references",
+      "status": "passed",
+      "summary": "Reference audit passed for 149 record file(s)."
+    },
+    {
+      "check_name": "npm run audit:agent-schemas",
+      "status": "passed",
+      "summary": "Agent schema audit passed."
+    },
+    {
+      "check_name": "npm run audit:agentic-process",
+      "status": "passed",
+      "summary": "Agentic process audit passed for 295 file(s)."
+    },
+    {
+      "check_name": "worker_output_contract",
+      "status": "passed",
+      "summary": "Worker emitted exactly one final JSON agent_run message, matched output_path, and avoided ad hoc schema-validation snippets."
+    },
+    {
+      "check_name": "post_triage_state_export",
+      "status": "passed",
+      "summary": "post_triage_state_export exited 0: > longevity-hallmarks-research@0.1.0 export:triage-state > node scripts/export-triage-state.mjs Wrote ops/triage-state.v1.json."
+    },
+    {
+      "check_name": "post_release_readiness_export",
+      "status": "passed",
+      "summary": "post_release_readiness_export exited 0: > longevity-hallmarks-research@0.1.0 export:release-readiness > node scripts/export-release-readiness.mjs Wrote ops/release-readiness.v1.json."
+    },
+    {
+      "check_name": "post_reconciliation_export",
+      "status": "passed",
+      "summary": "post_reconciliation_export exited 0: > longevity-hallmarks-research@0.1.0 reconcile:parallel > node scripts/reconcile-parallel-outputs.mjs Wrote ops/reconciliation/parallel-reconciliation.v1.json."
+    },
+    {
+      "check_name": "post_orchestration_metrics_export",
+      "status": "passed",
+      "summary": "post_orchestration_metrics_export exited 0: > longevity-hallmarks-research@0.1.0 metrics:orchestration > node scripts/export-orchestration-metrics.mjs Wrote ops/codex-batches/orchestration-metrics.v1.json."
+    },
+    {
+      "check_name": "post_export",
+      "status": "passed",
+      "summary": "post_export exited 0: > longevity-hallmarks-research@0.1.0 export:latest > node scripts/export-latest.mjs Wrote 16 export file(s) to exports/latest."
+    },
+    {
+      "check_name": "post_verify",
+      "status": "passed",
+      "summary": "post_verify exited 0: > longevity-hallmarks-research@0.1.0 audit:orchestration-smoke-contract > node scripts/audit-orchestration-smoke-contract.mjs Orchestration smoke contract audit passed for orchestration-smoke-budgeted-codex-worktree-2026-06-23. > longevity-hallmarks-research@0.1.0 audit:agentic-process > node scripts/audit-agentic-process.mjs Agentic process audit passed for 296 file(s)."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": []
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "orchestration-parallel-smoke-a-candidate-2026-06-23",
+  "name": "Parallel orchestration smoke A candidate",
+  "summary": "Synthetic self-contained candidate for parallel orchestration smoke testing. No evidence records are proposed.",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-23T10:21:54Z",
+  "scope": {
+    "question": "Run synthetic parallel orchestration candidate A without touching evidence records.",
+    "hallmark_ids": [],
+    "track_ids": []
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "orchestration-parallel-smoke-a-candidate-2026-06-23",
+      "path": "data/candidate-changes/orchestration-parallel-smoke-a-candidate-2026-06-23.json",
+      "change_type": "create",
+      "rationale": "Adds only this harmless synthetic candidate change for orchestration smoke testing."
+    }
+  ],
+  "required_review_lanes": []
+}

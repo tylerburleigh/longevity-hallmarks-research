@@ -60,7 +60,7 @@ ops/codex-batches/runs/<run-id>.json
 ops/codex-batches/logs/<run-id>.jsonl
 ```
 
-Use `--max-workers <n>` to bound concurrency, `--post-export-verify` to forward the worker post-run verification flag, and `--archive-completed` when the coordinator checkout already contains the final worker output. If a worker succeeds in its isolated worktree but the final output is not present in the coordinator checkout, the run records `succeeded_pending_reconciliation` so a later reconciliation pass can import, verify, and archive the job snapshot.
+Use `--max-workers <n>` to bound concurrency, `--post-export-verify` to forward the worker post-run verification flag, and `--archive-completed` when the coordinator checkout already contains the final worker output. If a worker succeeds in its isolated worktree but the final output is not present in the coordinator checkout, the run records `succeeded_pending_reconciliation` so a later reconciliation pass can import, verify, and archive the job snapshot. After the coordinator imports a completed worker output, `npm run jobs:archive -- --job-file <job>` updates matching batch-run workers with the archive path and clears their pending reconciliation state.
 
 Run the batch-run audit:
 

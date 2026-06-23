@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "orchestration_metrics",
   "id": "orchestration-metrics-v1",
-  "generated_at": "2026-06-23T00:32:20.430Z",
+  "generated_at": "2026-06-23T10:24:35.262Z",
   "source_roots": [
     "data",
     "exports/latest",
@@ -43,7 +43,7 @@
   },
   "summary": {
     "planned_live_job_count": 10,
-    "archived_job_count": 6,
+    "archived_job_count": 8,
     "planned_parallel_batch_count": 4,
     "planned_parallel_worker_count": 10,
     "planned_independent_batch_count": 3,
@@ -53,23 +53,23 @@
     "planned_parallel_wall_time_ms": 14400000,
     "planned_wall_time_savings_ms": 21600000,
     "planned_speedup_ratio": 2.5,
-    "executed_parallel_batch_run_count": 0,
-    "executed_worker_count": 0,
-    "failed_worker_count": 0,
+    "executed_parallel_batch_run_count": 6,
+    "executed_worker_count": 12,
+    "failed_worker_count": 6,
     "pending_reconciliation_worker_count": 0,
-    "succeeded_worker_count": 0,
-    "actual_worker_wall_time_ms": 0,
-    "actual_batch_wall_time_ms": 0,
-    "agent_run_count": 13,
-    "succeeded_agent_run_count": 12,
+    "succeeded_worker_count": 6,
+    "actual_worker_wall_time_ms": 891932,
+    "actual_batch_wall_time_ms": 516802,
+    "agent_run_count": 15,
+    "succeeded_agent_run_count": 14,
     "partial_agent_run_count": 1,
     "failed_agent_run_count": 0,
-    "agent_run_wall_time_ms": 9658000,
+    "agent_run_wall_time_ms": 9728000,
     "duplicate_work_group_count": 8,
     "duplicate_work_record_count": 17,
     "conflict_finding_count": 10,
     "conflict_rate": 0.25,
-    "open_finding_rate": 1.6667,
+    "open_finding_rate": 1.25,
     "accepted_candidate_count": 5,
     "accepted_records_produced_count": 45,
     "extraction_debt_open_count": 47,
@@ -161,8 +161,102 @@
     ]
   },
   "worker_outcomes": {
-    "batch_runs": [],
-    "worker_status_counts": [],
+    "batch_runs": [
+      {
+        "batch_run_id": "parallel-synthetic-smoke-2026-06-23",
+        "path": "ops/codex-batches/runs/parallel-synthetic-smoke-2026-06-23.json",
+        "batch_id": "parallel-batch-005-orchestration-synthetic-batch",
+        "parallel_group": "orchestration-synthetic-batch",
+        "status": "failed",
+        "started_at": "2026-06-23T10:08:40.153Z",
+        "completed_at": "2026-06-23T10:08:40.256Z",
+        "wall_time_ms": 103,
+        "worker_count": 2,
+        "failed_worker_count": 2,
+        "pending_reconciliation_worker_count": 0,
+        "succeeded_worker_count": 0
+      },
+      {
+        "batch_run_id": "parallel-synthetic-smoke-guard-level-2026-06-23",
+        "path": "ops/codex-batches/runs/parallel-synthetic-smoke-guard-level-2026-06-23.json",
+        "batch_id": "parallel-batch-005-orchestration-synthetic-batch",
+        "parallel_group": "orchestration-synthetic-batch",
+        "status": "succeeded",
+        "started_at": "2026-06-23T10:21:10.692Z",
+        "completed_at": "2026-06-23T10:22:59.881Z",
+        "wall_time_ms": 109189,
+        "worker_count": 2,
+        "failed_worker_count": 0,
+        "pending_reconciliation_worker_count": 0,
+        "succeeded_worker_count": 2
+      },
+      {
+        "batch_run_id": "parallel-synthetic-smoke-guarded-2026-06-23",
+        "path": "ops/codex-batches/runs/parallel-synthetic-smoke-guarded-2026-06-23.json",
+        "batch_id": "parallel-batch-005-orchestration-synthetic-batch",
+        "parallel_group": "orchestration-synthetic-batch",
+        "status": "partial",
+        "started_at": "2026-06-23T10:12:43.497Z",
+        "completed_at": "2026-06-23T10:14:47.624Z",
+        "wall_time_ms": 124127,
+        "worker_count": 2,
+        "failed_worker_count": 1,
+        "pending_reconciliation_worker_count": 0,
+        "succeeded_worker_count": 1
+      },
+      {
+        "batch_run_id": "parallel-synthetic-smoke-proof-2026-06-23",
+        "path": "ops/codex-batches/runs/parallel-synthetic-smoke-proof-2026-06-23.json",
+        "batch_id": "parallel-batch-005-orchestration-synthetic-batch",
+        "parallel_group": "orchestration-synthetic-batch",
+        "status": "partial",
+        "started_at": "2026-06-23T10:18:50.938Z",
+        "completed_at": "2026-06-23T10:20:27.898Z",
+        "wall_time_ms": 96960,
+        "worker_count": 2,
+        "failed_worker_count": 1,
+        "pending_reconciliation_worker_count": 0,
+        "succeeded_worker_count": 1
+      },
+      {
+        "batch_run_id": "parallel-synthetic-smoke-rerun-2026-06-23",
+        "path": "ops/codex-batches/runs/parallel-synthetic-smoke-rerun-2026-06-23.json",
+        "batch_id": "parallel-batch-005-orchestration-synthetic-batch",
+        "parallel_group": "orchestration-synthetic-batch",
+        "status": "partial",
+        "started_at": "2026-06-23T10:09:17.756Z",
+        "completed_at": "2026-06-23T10:10:53.538Z",
+        "wall_time_ms": 95782,
+        "worker_count": 2,
+        "failed_worker_count": 1,
+        "pending_reconciliation_worker_count": 0,
+        "succeeded_worker_count": 1
+      },
+      {
+        "batch_run_id": "parallel-synthetic-smoke-reserved-checks-2026-06-23",
+        "path": "ops/codex-batches/runs/parallel-synthetic-smoke-reserved-checks-2026-06-23.json",
+        "batch_id": "parallel-batch-005-orchestration-synthetic-batch",
+        "parallel_group": "orchestration-synthetic-batch",
+        "status": "partial",
+        "started_at": "2026-06-23T10:16:22.148Z",
+        "completed_at": "2026-06-23T10:17:52.789Z",
+        "wall_time_ms": 90641,
+        "worker_count": 2,
+        "failed_worker_count": 1,
+        "pending_reconciliation_worker_count": 0,
+        "succeeded_worker_count": 1
+      }
+    ],
+    "worker_status_counts": [
+      {
+        "key": "failed",
+        "count": 6
+      },
+      {
+        "key": "succeeded",
+        "count": 6
+      }
+    ],
     "agent_run_status_counts": [
       {
         "key": "partial",
@@ -170,7 +264,7 @@
       },
       {
         "key": "succeeded",
-        "count": 12
+        "count": 14
       }
     ],
     "agent_run_role_counts": [
@@ -184,7 +278,7 @@
       },
       {
         "key": "self_healing_agent",
-        "count": 2
+        "count": 4
       },
       {
         "key": "supervisor_agent",
@@ -368,11 +462,11 @@
       "blocking_finding_count": 10,
       "warning_finding_count": 0,
       "conflict_rate": 0.25,
-      "open_finding_rate": 1.6667,
+      "open_finding_rate": 1.25,
       "reconciliation_batch_rate": 0.25
     },
     "worker_failures": {
-      "failed_worker_count": 0,
+      "failed_worker_count": 6,
       "partial_or_failed_agent_run_count": 1
     }
   }

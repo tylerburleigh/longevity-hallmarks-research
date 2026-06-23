@@ -6,6 +6,18 @@ import path from "node:path";
 
 const workspaceRoot = process.cwd();
 const runnableJobStatuses = new Set(["planned", "ready", "running"]);
+const wrapperOwnedQualityCheckNames = [
+  "worker_output_contract",
+  "post_export",
+  "post_triage_state_export",
+  "post_release_readiness_export",
+  "post_reconciliation_export",
+  "post_orchestration_metrics_export",
+  "post_verify",
+  "post_job_audit",
+  "post_output_validate"
+];
+const wrapperOwnedQualityChecks = new Set(wrapperOwnedQualityCheckNames);
 
 function usage() {
   console.error(`Usage:
@@ -298,7 +310,7 @@ In the final JSON object, set execution.surface to "codex_exec", execution.isola
   const commandBudgetInstruction = options.maxCommandEvents
     ? ` This run has a max_command_events guard of ${options.maxCommandEvents}; keep repository inspection and validation within that command budget.`
     : "";
-  const outputInstruction = `Do not write the agent_run output path directly. Return the final JSON object as your final message; the wrapper writes output_path from that final message. Do not emit progress messages, interim JSON objects, placeholder agent_run records, or JSON-shaped messages before the final response. Use tool calls only until the final response.${commandBudgetInstruction} Do not read, edit, truncate, rewrite, remove, or repair wrapper-owned agent-run logs, command logs, prompt snapshots, or output files. Do not run ad hoc Node/AJV/schema-validation snippets for the final agent_run; use repository scripts such as npm run validate:records, npm run audit:references, npm run audit:agent-schemas, and npm run verify:knowledge-base. Coordinator post-run export or verification steps run after codex exec exits when requested.`;
+  const outputInstruction = `Do not write the agent_run output path directly. Return the final JSON object as your final message; the wrapper writes output_path from that final message. Do not emit progress messages, interim JSON objects, placeholder agent_run records, or JSON-shaped messages before the final response. Use tool calls only until the final response.${commandBudgetInstruction} Do not read, edit, truncate, rewrite, remove, or repair wrapper-owned agent-run logs, command logs, prompt snapshots, or output files. Do not run ad hoc Node/AJV/schema-validation snippets for the final agent_run; use repository scripts such as npm run validate:records, npm run audit:references, npm run audit:agent-schemas, and npm run verify:knowledge-base. Do not include wrapper-owned quality check names in the final agent_run. Reserved wrapper-owned check names are: ${wrapperOwnedQualityCheckNames.join(", ")}. Coordinator post-run export or verification steps run after codex exec exits when requested.`;
   const fullPrompt = `${prompt}${jobInstruction}
 
 ${outputInstruction}`;
@@ -587,18 +599,6 @@ function protectedArtifactMutationIssues({ events, options }) {
 
   return issues;
 }
-
-const wrapperOwnedQualityChecks = new Set([
-  "worker_output_contract",
-  "post_export",
-  "post_triage_state_export",
-  "post_release_readiness_export",
-  "post_reconciliation_export",
-  "post_orchestration_metrics_export",
-  "post_verify",
-  "post_job_audit",
-  "post_output_validate"
-]);
 
 async function appendCoordinatorAuditEvent(options, { name, exitCode, summary, issues = [] }) {
   const event = {

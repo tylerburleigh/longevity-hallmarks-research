@@ -6,6 +6,7 @@ import path from "node:path";
 const workspaceRoot = process.cwd();
 const livePrefix = "ops/codex-jobs/live/";
 const archivePrefix = "ops/codex-jobs/archive/";
+const batchRunRoot = "ops/codex-batches/runs";
 const finalStatuses = new Set(["succeeded", "failed", "archived"]);
 
 function usage() {
@@ -79,6 +80,26 @@ async function readJson(relativeOrAbsolutePath) {
   return JSON.parse(await fs.readFile(resolveRepoPath(relativeOrAbsolutePath), "utf8"));
 }
 
+async function walkJsonFiles(rootPath) {
+  if (!(await exists(rootPath))) {
+    return [];
+  }
+
+  const entries = await fs.readdir(resolveRepoPath(rootPath), { withFileTypes: true });
+  const files = [];
+
+  for (const entry of entries) {
+    const entryPath = path.join(rootPath, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...(await walkJsonFiles(entryPath)));
+    } else if (entry.isFile() && entry.name.endsWith(".json")) {
+      files.push(entryPath);
+    }
+  }
+
+  return files.sort((left, right) => left.localeCompare(right));
+}
+
 async function writeJson(relativeOrAbsolutePath, value) {
   const filePath = resolveRepoPath(relativeOrAbsolutePath);
   await fs.mkdir(path.dirname(filePath), { recursive: true });
@@ -108,6 +129,90 @@ async function updateAgentRunJobFile({ outputPath, archivePath }) {
     job_file: archivePath
   };
   await writeJson(outputPath, agentRun);
+}
+
+function summarizeWorkers(workerStates) {
+  return {
+    planned_count: workerStates.filter((worker) => worker.status === "planned").length,
+    running_count: workerStates.filter((worker) => worker.status === "running").length,
+    succeeded_count: workerStates.filter((worker) => worker.status === "succeeded").length,
+    pending_reconciliation_count: workerStates.filter((worker) => worker.status === "succeeded_pending_reconciliation").length,
+    failed_count: workerStates.filter((worker) => worker.status === "failed").length,
+    archived_count: workerStates.filter((worker) => worker.archive_path).length
+  };
+}
+
+function summarizeRunStatus(workerStates) {
+  if (workerStates.some((worker) => worker.status === "running")) {
+    return "running";
+  }
+  if (workerStates.some((worker) => worker.status === "failed")) {
+    return workerStates.some((worker) => worker.status === "succeeded" || worker.status === "succeeded_pending_reconciliation")
+      ? "partial"
+      : "failed";
+  }
+  if (workerStates.some((worker) => worker.status === "succeeded_pending_reconciliation")) {
+    return "partial";
+  }
+  return "succeeded";
+}
+
+function nextActionsForRun(workerStates) {
+  const actions = [];
+  if (workerStates.some((worker) => worker.status === "succeeded_pending_reconciliation")) {
+    actions.push("Reconcile successful worker worktrees into the coordinator checkout, then rerun audits and archive completed job specs.");
+  }
+  if (workerStates.some((worker) => worker.status === "failed")) {
+    actions.push("Inspect batch log events and failed worker logs before rerunning failed jobs.");
+  }
+  if (actions.length === 0 && workerStates.every((worker) => worker.status === "succeeded")) {
+    actions.push("Run npm run verify:knowledge-base after reviewing resulting candidate changes.");
+  }
+  return actions;
+}
+
+async function updateBatchRunsForArchivedJob({ jobFile, archivePath, outputPath }) {
+  const updatedRunPaths = [];
+  const runFiles = await walkJsonFiles(batchRunRoot);
+
+  for (const runPath of runFiles) {
+    const run = await readJson(runPath);
+    if (run.record_type !== "parallel_batch_run") {
+      continue;
+    }
+
+    let changed = false;
+    for (const worker of run.worker_states ?? []) {
+      if (worker.job_path !== jobFile) {
+        continue;
+      }
+
+      worker.archive_path = archivePath;
+      worker.output_path = outputPath;
+      if (worker.status === "succeeded_pending_reconciliation" || worker.status === "succeeded") {
+        worker.status = "succeeded";
+      }
+      if (worker.issues) {
+        worker.issues = worker.issues.filter((issue) => !issue.includes(`${outputPath} is not present in the coordinator checkout.`));
+        if (worker.issues.length === 0) {
+          delete worker.issues;
+        }
+      }
+      changed = true;
+    }
+
+    if (!changed) {
+      continue;
+    }
+
+    run.status = summarizeRunStatus(run.worker_states ?? []);
+    run.summary = summarizeWorkers(run.worker_states ?? []);
+    run.next_actions = nextActionsForRun(run.worker_states ?? []);
+    await writeJson(runPath, run);
+    updatedRunPaths.push(runPath);
+  }
+
+  return updatedRunPaths;
 }
 
 async function buildArchivePlan(options) {
@@ -153,8 +258,13 @@ async function archiveJob(options) {
     archived_at: plan.archived_at
   });
   await fs.rm(resolveRepoPath(plan.job_file));
+  const updatedBatchRunPaths = await updateBatchRunsForArchivedJob({
+    jobFile: plan.job_file,
+    archivePath: plan.archive_path,
+    outputPath: plan.output_path
+  });
 
-  console.log(JSON.stringify({ type: "codex_job.archived", ...plan }));
+  console.log(JSON.stringify({ type: "codex_job.archived", ...plan, updated_batch_run_paths: updatedBatchRunPaths }));
 }
 
 archiveJob(parseArgs(process.argv.slice(2))).catch((error) => {

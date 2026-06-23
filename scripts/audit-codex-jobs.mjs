@@ -167,16 +167,27 @@ function checkCandidateReviewLaneOrchestration({ issues, ownerPath, job, readSet
   }
 }
 
+function normalizeQualityCheckName(checkName) {
+  return String(checkName ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/^npm\s+run\s+/, "")
+    .replace(/[:\s-]+/g, "_")
+    .replace(/_+/g, "_")
+    .replace(/^_|_$/g, "");
+}
+
 function qualityChecksByName(agentRun) {
   const checks = new Map();
   for (const check of agentRun.quality_checks ?? []) {
     checks.set(check.check_name, check);
+    checks.set(normalizeQualityCheckName(check.check_name), check);
   }
   return checks;
 }
 
 function hasPassedQualityCheck(checks, checkName) {
-  return checks.get(checkName)?.status === "passed";
+  return checks.get(checkName)?.status === "passed" || checks.get(normalizeQualityCheckName(checkName))?.status === "passed";
 }
 
 function checkQualityGate({ issues, ownerPath, checks, gate }) {

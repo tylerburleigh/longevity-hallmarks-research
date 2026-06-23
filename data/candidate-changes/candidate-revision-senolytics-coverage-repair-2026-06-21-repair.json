@@ -4,7 +4,7 @@
   "id": "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
   "name": "Senolytics coverage candidate revision-state repair",
   "summary": "Marks the broad senolytics coverage-repair candidate as needs_revision and records that its five linked review lanes remain open until narrower source, extraction, taxonomy, synthesis-boundary, and safety repair work is completed.",
-  "lifecycle_status": "submitted",
+  "lifecycle_status": "accepted",
   "submitted_at": "2026-06-23T14:45:28Z",
   "scope": {
     "question": "Repair the lifecycle and audit state for the senolytics coverage-repair candidate after all required review lanes returned needs_revision findings.",
@@ -38,5 +38,28 @@
     "source_fidelity",
     "synthesis_boundary",
     "taxonomy_mapping"
-  ]
+  ],
+  "evidence_review_ids": [
+    "candidate-revision-senolytics-coverage-repair-2026-06-21-repair-extraction-fidelity-2026-06-23",
+    "candidate-revision-senolytics-coverage-repair-2026-06-21-repair-safety-limitations-2026-06-23",
+    "candidate-revision-senolytics-coverage-repair-2026-06-21-repair-source-fidelity-2026-06-23",
+    "candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary-2026-06-23",
+    "candidate-revision-senolytics-coverage-repair-2026-06-21-repair-taxonomy-mapping-2026-06-23"
+  ],
+  "promotion": {
+    "target_status": "accepted",
+    "promoted_at": "2026-06-23T18:20:03.939Z",
+    "promoted_by_agent": "promote-candidate",
+    "reviewed_review_ids": [
+      "candidate-revision-senolytics-coverage-repair-2026-06-21-repair-extraction-fidelity-2026-06-23",
+      "candidate-revision-senolytics-coverage-repair-2026-06-21-repair-safety-limitations-2026-06-23",
+      "candidate-revision-senolytics-coverage-repair-2026-06-21-repair-source-fidelity-2026-06-23",
+      "candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary-2026-06-23",
+      "candidate-revision-senolytics-coverage-repair-2026-06-21-repair-taxonomy-mapping-2026-06-23"
+    ],
+    "reconciliation_decision_ids": [
+      "resolve-coverage-repair-lifecycle-overlap-2026-06-23"
+    ],
+    "summary": "Promoted to accepted after all required active review lanes passed."
+  }
 }

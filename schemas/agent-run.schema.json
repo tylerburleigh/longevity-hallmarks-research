@@ -253,13 +253,64 @@
           "type": "string"
         },
         "research_session_id": {
-          "$ref": "./common.schema.json#/$defs/identifier"
+          "allOf": [
+            {
+              "$ref": "./common.schema.json#/$defs/identifier"
+            },
+            {
+              "not": {
+                "enum": [
+                  "none",
+                  "n/a",
+                  "na",
+                  "null",
+                  "unknown",
+                  "not_applicable",
+                  "not-applicable"
+                ]
+              }
+            }
+          ]
         },
         "search_log_id": {
-          "$ref": "./common.schema.json#/$defs/identifier"
+          "allOf": [
+            {
+              "$ref": "./common.schema.json#/$defs/identifier"
+            },
+            {
+              "not": {
+                "enum": [
+                  "none",
+                  "n/a",
+                  "na",
+                  "null",
+                  "unknown",
+                  "not_applicable",
+                  "not-applicable"
+                ]
+              }
+            }
+          ]
         },
         "screening_run_id": {
-          "$ref": "./common.schema.json#/$defs/identifier"
+          "allOf": [
+            {
+              "$ref": "./common.schema.json#/$defs/identifier"
+            },
+            {
+              "not": {
+                "enum": [
+                  "none",
+                  "n/a",
+                  "na",
+                  "null",
+                  "unknown",
+                  "not_applicable",
+                  "not-applicable"
+                ]
+              }
+            }
+          ]
         },
         "candidate_change_id": {
           "$ref": "./common.schema.json#/$defs/candidateChangeRef"

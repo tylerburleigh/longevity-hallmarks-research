@@ -1,0 +1,175 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "self-healing-candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-source-fidelity",
+  "agent_role": "supervisor_agent",
+  "agent_id": "codex",
+  "mode": "agent_directed",
+  "started_at": "2026-06-23T18:52:21Z",
+  "completed_at": "2026-06-23T18:55:29Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "candidate_review: Required review lane is missing: source_fidelity.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "chronic_inflammation",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "codex_exec",
+    "isolation": "git_worktree",
+    "workspace_path": "/tmp/lhr-codex-worktrees/self-healing-candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-source-fidelity-20260623T185221z",
+    "prompt_file": "research/agent-runs/prompts/self-healing-candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-source-fidelity.md",
+    "prompt_template_file": "docs/prompts/codex-agents/supervisor-review.md",
+    "job_file": "ops/codex-jobs/archive/self-healing-candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-source-fidelity.json",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "output_path": "research/agent-runs/self-healing-candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-source-fidelity.json",
+    "jsonl_log_path": "research/agent-runs/logs/self-healing-candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-source-fidelity.jsonl",
+    "sandbox": "workspace-write",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "other",
+      "reference": "ops/supervisor-review-context-packs/self-healing-candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-source-fidelity.json",
+      "summary": "Bounded context pack for the source_fidelity lane review."
+    },
+    {
+      "input_type": "candidate_change",
+      "reference": "data/candidate-changes/candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair.json",
+      "summary": "Target repair candidate whose missing source_fidelity lane was reviewed."
+    },
+    {
+      "input_type": "candidate_change",
+      "reference": "data/candidate-changes/senolytics-bone-rct-extraction-refresh-2026-06-21.json",
+      "summary": "Proposed target candidate update showing needs_revision lifecycle and linked review state."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/evidence-reviews/senolytics-bone-rct-source-fidelity-2026-06-21.json",
+      "summary": "Existing source_fidelity review for the original extraction-refresh candidate; verdict accept."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/evidence-reviews/senolytics-bone-rct-extraction-fidelity-2026-06-21.json",
+      "summary": "Existing extraction_fidelity review with an open major finding supporting needs_revision."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/evidence-reviews/senolytics-bone-rct-safety-limitations-2026-06-21.json",
+      "summary": "Existing safety_limitations review with an open major finding supporting needs_revision."
+    }
+  ],
+  "outputs": {
+    "summary": "Created the bounded repair candidate and the missing complete source_fidelity evidence_review for candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair. The lane verdict is accept, non-blocking, with only closed note findings; no candidate was promoted.",
+    "candidate_change_id": "candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-source-fidelity-repair",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-source-fidelity-repair",
+        "path": "data/candidate-changes/candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-source-fidelity-repair.json",
+        "change_type": "create",
+        "rationale": "Tracks this bounded self-healing repair candidate for the missing source-fidelity review lane."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-source-fidelity",
+        "path": "data/evidence-reviews/candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-source-fidelity.json",
+        "change_type": "create",
+        "rationale": "Adds the complete source-fidelity supervisor review for the target revision-state repair candidate."
+      }
+    ],
+    "generated_files": [
+      "data/candidate-changes/candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-source-fidelity-repair.json",
+      "data/evidence-reviews/candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-source-fidelity.json"
+    ],
+    "export_paths": []
+  },
+  "quality_checks": [
+    {
+      "check_name": "supervisor_review_lanes",
+      "status": "passed",
+      "summary": "Reviewed the required source_fidelity lane; the evidence_review is complete, verdict accept, non-blocking, and has no open major or critical findings."
+    },
+    {
+      "check_name": "candidate_agent_run_ledger_match",
+      "status": "passed",
+      "summary": "Final outputs.proposed_records matches the repair candidate ledger exactly for the candidate_change and evidence_review records."
+    },
+    {
+      "check_name": "validate_records",
+      "status": "passed",
+      "summary": "npm run validate:records completed successfully and validated 275 JSON files."
+    },
+    {
+      "check_name": "audit_references",
+      "status": "passed",
+      "summary": "npm run audit:references completed successfully for 197 record files."
+    },
+    {
+      "check_name": "audit_agent_schemas",
+      "status": "passed",
+      "summary": "npm run audit:agent-schemas completed successfully."
+    },
+    {
+      "check_name": "audit_agentic_process",
+      "status": "passed",
+      "summary": "npm run audit:agentic-process completed successfully for 366 files."
+    },
+    {
+      "check_name": "audit_exports",
+      "status": "not_run",
+      "summary": "Repository exports are deferred to the coordinator post-run export phase declared by the job."
+    },
+    {
+      "check_name": "verify_knowledge_base",
+      "status": "not_run",
+      "summary": "Knowledge-base verification is deferred to the coordinator post-run phase declared by the job."
+    },
+    {
+      "check_name": "worker_output_contract",
+      "status": "passed",
+      "summary": "Worker emitted exactly one final JSON agent_run message, matched output_path, and avoided ad hoc schema-validation snippets."
+    },
+    {
+      "check_name": "post_triage_state_export",
+      "status": "passed",
+      "summary": "post_triage_state_export exited 0: > longevity-hallmarks-research@0.1.0 export:triage-state > node scripts/export-triage-state.mjs Wrote ops/triage-state.v1.json."
+    },
+    {
+      "check_name": "post_release_readiness_export",
+      "status": "passed",
+      "summary": "post_release_readiness_export exited 0: > longevity-hallmarks-research@0.1.0 export:release-readiness > node scripts/export-release-readiness.mjs Wrote ops/release-readiness.v1.json."
+    },
+    {
+      "check_name": "post_reconciliation_export",
+      "status": "passed",
+      "summary": "post_reconciliation_export exited 0: > longevity-hallmarks-research@0.1.0 reconcile:parallel > node scripts/reconcile-parallel-outputs.mjs Wrote ops/reconciliation/parallel-reconciliation.v1.json."
+    },
+    {
+      "check_name": "post_orchestration_metrics_export",
+      "status": "passed",
+      "summary": "post_orchestration_metrics_export exited 0: > longevity-hallmarks-research@0.1.0 metrics:orchestration > node scripts/export-orchestration-metrics.mjs Wrote ops/codex-batches/orchestration-metrics.v1.json."
+    },
+    {
+      "check_name": "post_export",
+      "status": "passed",
+      "summary": "post_export exited 0: > longevity-hallmarks-research@0.1.0 export:latest > node scripts/export-latest.mjs Wrote 16 export file(s) to exports/latest."
+    },
+    {
+      "check_name": "post_verify",
+      "status": "passed",
+      "summary": "post_verify exited 0: > longevity-hallmarks-research@0.1.0 audit:orchestration-smoke-contract > node scripts/audit-orchestration-smoke-contract.mjs Orchestration smoke contract audit passed for orchestration-smoke-budgeted-codex-worktree-2026-06-23. > longevity-hallmarks-research@0.1.0 audit:agentic-process > node scripts/audit-agentic-process.mjs Agentic process audit passed for 367 file(s)."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": [
+    "Coordinator post-run should run the declared export and knowledge-base verification steps."
+  ]
+}

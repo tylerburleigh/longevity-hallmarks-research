@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "reconciliation_decision",
+  "id": "resolve-coverage-repair-lifecycle-overlap-2026-06-23",
+  "created_at": "2026-06-23T18:19:14Z",
+  "reconciled_by_agent": "codex-coordinator",
+  "reconciliation_report_id": "parallel-reconciliation-v1",
+  "issue_ids": [
+    "overlapping-candidate-feabd894c098"
+  ],
+  "issue_categories": [
+    "overlapping_candidate_proposal"
+  ],
+  "candidate_change_ids": [
+    "candidate-revision-senolytics-coverage-repair-2026-06-21-repair"
+  ],
+  "compatible_candidate_change_ids": [
+    "candidate-revision-senolytics-coverage-repair-2026-06-21-repair"
+  ],
+  "resolution_status": "resolved",
+  "resolution_summary": "The overlap is compatible for the lifecycle-repair candidate only. The repair candidate updates the broad senolytics coverage candidate to remain in needs_revision and does not promote, accept, or release the broad coverage evidence slice. Its five accepting supervisor reviews explicitly limit acceptance to this lifecycle repair and preserve the broad candidate's open source, extraction, taxonomy, synthesis-boundary, and safety repair debt.",
+  "evidence": [
+    {
+      "path": "data/candidate-changes/candidate-revision-senolytics-coverage-repair-2026-06-21-repair.json",
+      "summary": "The repair candidate proposes only a repair candidate record and an update to senolytics-coverage-repair-2026-06-21 that records the target remains in needs_revision."
+    },
+    {
+      "path": "data/candidate-changes/senolytics-coverage-repair-2026-06-21.json",
+      "summary": "The target broad coverage candidate is already in needs_revision and states that narrower source, extraction, taxonomy, synthesis-boundary, and safety repair candidates are still required before promotion."
+    },
+    {
+      "path": "data/evidence-reviews/candidate-revision-senolytics-coverage-repair-2026-06-21-repair-source-fidelity-2026-06-23.json",
+      "summary": "The source-fidelity review accepts only the lifecycle repair and states that the broad candidate's source gap remains unresolved."
+    },
+    {
+      "path": "data/evidence-reviews/candidate-revision-senolytics-coverage-repair-2026-06-21-repair-extraction-fidelity-2026-06-23.json",
+      "summary": "The extraction-fidelity review accepts only the lifecycle repair and states that the broad candidate's extraction gap remains unresolved."
+    },
+    {
+      "path": "data/evidence-reviews/candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary-2026-06-23.json",
+      "summary": "The synthesis-boundary review accepts only the lifecycle repair and states that the broad candidate remains out of promotion and release."
+    }
+  ]
+}

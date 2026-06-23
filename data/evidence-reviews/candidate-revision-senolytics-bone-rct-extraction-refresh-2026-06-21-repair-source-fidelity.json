@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-source-fidelity",
+  "candidate_change_id": "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
+  "review_lane": "source_fidelity",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "The revision-state repair candidate is source-faithful for this lane. Its proposed update keeps the D+Q bone RCT extraction-refresh candidate in needs_revision and attributes that state to the existing open extraction-fidelity and safety-limitations findings without promoting or changing underlying evidence records.",
+  "findings": [
+    {
+      "finding_id": "revision-state-source-traceable",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "The repair candidate states that the extraction-refresh candidate should remain in needs_revision because linked extraction-fidelity and safety-limitations reviews still have open major findings.",
+      "why_it_matters": "The source-fidelity lane requires the lifecycle repair to be grounded in existing review records rather than introducing an unsupported status change.",
+      "recommended_action": "Keep the target candidate in needs_revision until the open major extraction-fidelity and safety-limitations findings are resolved.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "source-fidelity-no-promotion",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "The repair candidate proposes only review-state bookkeeping and does not promote, apply, or mutate underlying study, source, outcome, result, or finding records.",
+      "why_it_matters": "A missing-lane repair should not expand the scientific change set or bypass unresolved review findings.",
+      "recommended_action": "Accept the source-fidelity lane for this bounded repair and leave promotion decisions to a later fully reviewed candidate.",
+      "resolution_status": "closed"
+    }
+  ]
+}

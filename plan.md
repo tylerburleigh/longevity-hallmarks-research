@@ -114,6 +114,7 @@ As of 2026-06-22, the repository has an initial JSON-file-backed scaffold:
 - Ran a Codex CLI extraction-refresh job that used the retained ClinicalTrials.gov markdown to add text-snapshot provenance and section-stable registry locators to existing D+Q bone finding, outcome, and result records.
 - Added compact extraction and supervisor-review context packs so isolated workers receive bounded task contracts with target records, schema slices, expected outputs, and verification commands before broad repository inspection.
 - Completed the pack-backed parallel supervisor-review proof for the D+Q PMC full-text extraction candidate; all five required review lanes are accepting, the live jobs are archived, the candidate is `promotion_ready`, and full verification passes.
+- Completed the first post-policy pack-backed supervisor-review worker proof: a real source-fidelity review read its context pack first, stayed bounded under the context-discipline audit, produced accepting review output, archived the live job, refreshed generated state, and passed full verification.
 
 ## Current System Assessment
 
@@ -138,7 +139,7 @@ Current weaknesses and hardening priorities:
 - The query surface is improving through generated SQLite read models, but agents and downstream consumers still need broader query examples and contract tests over common meta-analysis questions.
 - Self-healing is generated and schedulable, but repair workers still need more end-to-end execution runs before we trust the loop under load.
 - Orchestration is static-testable, parallel-aware, and proven through synthetic, extraction-refresh, self-healing, promotion, and pack-backed supervisor-review runs, but it is not yet proven under enough real research load for broad concurrent extraction campaigns.
-- Context packs improve worker routing, but real Codex workers still sometimes perform broad searches or large record dumps; bounded-context discipline needs machine-checkable metrics or audits, not only prompt text.
+- Context packs and the context-discipline audit now catch broad supervisor-review drift, and one post-policy real worker has passed; this still needs repeated clean real runs before broad concurrent extraction campaigns.
 - The release boundary needs tightening: accepted canonical records, submitted candidates, in-review state, promotion-ready state, and released consumer artifacts should be clearly separated.
 - Statistical readiness is early: the system records why pooling is blocked, but it does not yet provide enough normalized effect data to produce many quantitative estimates.
 
@@ -680,7 +681,9 @@ Tasks:
 - [x] Run the pack-backed parallel supervisor-review batch for `senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22`; import and archive all five lane outputs, refresh generated state, and pass full verification.
 - [x] Harden supervisor-review orchestration after the proof run: preserve archived context packs during generated-job replacement, make context-pack jobs default to bounded reads, require exact supervisor quality-gate names, and refresh stale audit-regression fixtures.
 - [x] Add bounded-context telemetry/auditing for pack-backed supervisor jobs so future post-policy runs fail broad runbook reads, broad repository searches/listings, missing first context-pack reads, and oversized non-context command output.
-- [ ] Run at least two more real end-to-end readiness proofs without new infrastructure fixes before treating broad unattended research campaigns as ready.
+- [x] Run a reconciliation-plus-promotion proof for `candidate-revision-senolytics-coverage-repair-2026-06-21-repair`; resolve the lifecycle-repair overlap, promote to accepted, refresh generated state, and pass full verification.
+- [x] Run one additional real end-to-end readiness proof for `senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22`; resolve its source/finding overlaps, promote to accepted, refresh generated state, and pass full verification without schema, audit, ledger, runner, or generator code changes.
+- [x] Run a post-policy pack-backed supervisor-review worker to prove the context-discipline audit passes on a real worker, not only historical logs and fixtures.
 
 Exit criteria:
 
@@ -702,14 +705,16 @@ Exit criteria:
 
 ## Immediate Next Actions
 
-1. Promote or explicitly defer `senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22`, which is now `promotion_ready` after all five pack-backed review lanes completed.
-2. Promote or explicitly defer `candidate-revision-senolytics-coverage-repair-2026-06-21-repair`, which is still `promotion_ready` after all five review lanes completed.
-3. Resolve or defer the current reconciliation blockers for one `promotion_ready` candidate, then rerun its promotion dry-run and promote it as the next real end-to-end proof if the dry-run passes.
-4. Create narrower repair jobs for the original `senolytics-coverage-repair-2026-06-21` open findings: extraction fidelity, safety limitations, source fidelity, synthesis boundary, and taxonomy mapping.
-5. Run two additional real end-to-end readiness proofs without new infrastructure fixes before broad unattended research campaigns.
+1. Run the remaining pack-backed supervisor-review lanes for `candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair`, preferably as a bounded parallel batch, and require the context-discipline audit to pass again.
+2. Resolve any review findings or reconciliation blockers for the repaired bone RCT candidate, then dry-run promotion.
+3. Exercise the remaining generated self-healing repair job for `senolytics-scaffold-bootstrap-2026-06-21` to keep testing the autonomous repair loop.
+4. Continue broadening extraction only after repeated real worker runs complete without new schema, audit, reconciliation, ledger, fixture, runner, or generated-state process fixes.
 
 ## Change Log
 
+- 2026-06-23: Completed the first post-policy pack-backed supervisor-review worker proof on `candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair` source fidelity. The run first required a real precursor self-healing repair candidate, then generated lane-scoped supervisor jobs and context packs. The first source-fidelity attempt exposed two system issues: placeholder optional output references in final agent runs and an unsupported response-schema regex lookaround attempt. The wrapper, canonical agent-run schema, supervisor prompt, and regression fixtures now enforce/null-prune optional output references correctly. The successful rerun read its context pack first, stayed bounded under `audit:worker-context-discipline`, produced an accepting non-blocking review, archived the live job, refreshed generated state, made stale generated-job regression fixtures dynamic, and passed full `npm run verify:knowledge-base`.
+- 2026-06-23: Completed a second real reconciliation-plus-promotion proof for `senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22`. The initial dry-run blocked on source/finding overlaps with older D+Q bone candidates; a scoped reconciliation decision resolved the overlaps for the full-text candidate only, leaving the broad coverage candidate in `needs_revision` and the older bone RCT refresh in review debt. Promotion to accepted succeeded, generated state and exports were refreshed, the stale reconciliation-decision regression fixture was advanced for the new real decision count, and full verification passed. No schema, audit, ledger, runner, or generator code changes were needed.
+- 2026-06-23: Completed a reconciliation-plus-promotion proof for `candidate-revision-senolytics-coverage-repair-2026-06-21-repair`. Added a scoped reconciliation decision for the lifecycle-repair overlap with `senolytics-coverage-repair-2026-06-21`, reran the promotion dry-run, promoted the repair candidate to accepted, refreshed reconciliation, triage, release-readiness, orchestration metrics, and exports, updated stale regression fixture expectations for the new decision count, and passed full verification. This proof confirmed the promotion command writes inferred review IDs back into accepted candidates and preserves the broad coverage candidate as `needs_revision`.
 - 2026-06-23: Ran promotion dry-runs for the two `promotion_ready` candidates. The test exposed a mismatch where triage inferred active review records by `candidate_change_id`, while `promote:candidate` only trusted candidate-linked `evidence_review_ids[]`. Promotion now uses the same active-review inference and writes inferred review IDs back into the candidate on successful promotion. The dry-runs now block only on unresolved reconciliation findings, so the next proof is reconciliation resolution plus promotion, not more review generation.
 - 2026-06-23: Added worker context-discipline auditing for pack-backed supervisor-review jobs. The audit parses worker JSONL command streams, measures legacy broad-context findings, and enforces post-policy failures for missing first context-pack reads, broad runbook reads, broad repository searches/listings, and oversized non-context command output. A regression fixture proves a post-policy broad runbook read fails the audit.
 - 2026-06-23: Completed the pack-backed parallel supervisor-review proof for `senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22`. Four lanes ran concurrently and the taxonomy lane ran as a follow-up batch; all five workers succeeded, their declared repair candidates/reviews/agent runs/logs/prompts were imported, the live jobs were archived, generated state was refreshed, and full verification passes. The candidate is now `promotion_ready`. The proof still exposed process debt: workers read the context pack first but then drifted into broad repository search and large dumps, so bounded-context discipline now needs telemetry/auditing in addition to prompt text.

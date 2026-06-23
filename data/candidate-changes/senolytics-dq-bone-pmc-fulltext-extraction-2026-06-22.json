@@ -4,7 +4,7 @@
   "id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
   "name": "D+Q bone PMC full-text extraction upgrade",
   "summary": "Retains a PMC author-manuscript text snapshot for the D+Q postmenopausal bone RCT and adds full-text subgroup, adverse-event term, and synthesis-compatibility records while keeping safety and exploratory subgroup pooling blocked.",
-  "lifecycle_status": "submitted",
+  "lifecycle_status": "accepted",
   "submitted_at": "2026-06-22T21:20:00Z",
   "scope": {
     "question": "Retain the PMC author-manuscript source text and extract full-text subgroup and adverse-event table details for the D+Q postmenopausal bone RCT.",
@@ -157,5 +157,28 @@
     "taxonomy_mapping",
     "synthesis_boundary",
     "safety_limitations"
-  ]
+  ],
+  "evidence_review_ids": [
+    "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity",
+    "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations",
+    "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-source-fidelity",
+    "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-synthesis-boundary",
+    "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping"
+  ],
+  "promotion": {
+    "target_status": "accepted",
+    "promoted_at": "2026-06-23T18:30:37.850Z",
+    "promoted_by_agent": "promote-candidate",
+    "reviewed_review_ids": [
+      "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity",
+      "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations",
+      "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-source-fidelity",
+      "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-synthesis-boundary",
+      "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping"
+    ],
+    "reconciliation_decision_ids": [
+      "resolve-dq-bone-fulltext-overlap-2026-06-23"
+    ],
+    "summary": "Promoted to accepted after all required active review lanes passed."
+  }
 }

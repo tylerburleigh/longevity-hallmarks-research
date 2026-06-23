@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "parallel_batch_plan",
   "id": "parallel-batch-plan-v1",
-  "generated_at": "2026-06-23T17:50:50.673Z",
+  "generated_at": "2026-06-23T18:58:40.273Z",
   "source_job_root": "ops/codex-jobs/live",
   "planner_version": "1.0.0",
   "scheduler_policy": {
@@ -15,79 +15,83 @@
     "conflict_policy": "same_group_no_overlap_or_reconciliation"
   },
   "summary": {
-    "live_job_count": 14,
-    "schedulable_job_count": 14,
+    "live_job_count": 17,
+    "schedulable_job_count": 17,
     "deferred_job_count": 0,
-    "batch_count": 4,
+    "batch_count": 5,
     "max_batch_width": 4,
-    "independent_batch_count": 3,
+    "independent_batch_count": 4,
     "reconciliation_batch_count": 1,
-    "estimated_wall_time_ms": 14400000,
-    "estimated_token_budget": 1400000
+    "estimated_wall_time_ms": 18000000,
+    "estimated_token_budget": 1700000
   },
   "batches": [
     {
-      "batch_id": "parallel-batch-001-candidate-revision",
+      "batch_id": "parallel-batch-001-candidate-review",
       "sequence": 1,
-      "parallel_group": "candidate-revision",
+      "parallel_group": "candidate-review",
       "execution_class": "independent",
-      "reconciliation_required": true,
+      "reconciliation_required": false,
       "job_ids": [
-        "self-healing-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21",
-        "self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21"
+        "self-healing-candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-extraction-fidelity",
+        "self-healing-candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-safety-limitations",
+        "self-healing-candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-synthesis-boundary",
+        "self-healing-candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-taxonomy-mapping"
       ],
       "job_paths": [
-        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21.json",
-        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21.json"
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-extraction-fidelity.json",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-safety-limitations.json",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-synthesis-boundary.json",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-taxonomy-mapping.json"
       ],
       "agent_roles": [
-        "self_healing_agent"
+        "supervisor_agent"
       ],
       "modes": [
         "agent_directed"
       ],
       "read_sets": [
-        "path:data/candidate-changes/senolytics-bone-rct-extraction-refresh-2026-06-21.json",
-        "path:data/candidate-changes/senolytics-scaffold-bootstrap-2026-06-21.json",
-        "path:data/evidence-reviews/senolytics-bone-rct-extraction-fidelity-2026-06-21.json",
-        "path:data/evidence-reviews/senolytics-bone-rct-safety-limitations-2026-06-21.json",
-        "path:data/evidence-reviews/senolytics-bone-rct-source-fidelity-2026-06-21.json",
-        "path:data/evidence-reviews/senolytics-bone-rct-synthesis-boundary-2026-06-21.json",
-        "path:data/evidence-reviews/senolytics-bone-rct-taxonomy-mapping-2026-06-21.json",
-        "path:data/evidence-reviews/senolytics-scaffold-source-fidelity-2026-06-21.json",
+        "context_pack:self-healing-candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-extraction-fidelity",
+        "context_pack:self-healing-candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-safety-limitations",
+        "context_pack:self-healing-candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-synthesis-boundary",
+        "context_pack:self-healing-candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-taxonomy-mapping",
+        "path:data/candidate-changes/candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair.json",
         "path:ops/triage-state.v1.json",
-        "triage_job:candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21",
-        "triage_job:candidate-revision-senolytics-scaffold-bootstrap-2026-06-21"
+        "triage_job:candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair"
       ],
       "write_sets": [
-        "candidate_change:candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
-        "candidate_change:candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair",
-        "path:data/candidate-changes/candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair.json",
-        "path:data/candidate-changes/candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair.json",
-        "path:data/candidate-changes/senolytics-bone-rct-extraction-refresh-2026-06-21.json",
-        "path:data/candidate-changes/senolytics-scaffold-bootstrap-2026-06-21.json",
-        "path:data/evidence-reviews/senolytics-bone-rct-extraction-fidelity-2026-06-21.json",
-        "path:data/evidence-reviews/senolytics-bone-rct-safety-limitations-2026-06-21.json",
-        "path:data/evidence-reviews/senolytics-bone-rct-source-fidelity-2026-06-21.json",
-        "path:data/evidence-reviews/senolytics-bone-rct-synthesis-boundary-2026-06-21.json",
-        "path:data/evidence-reviews/senolytics-bone-rct-taxonomy-mapping-2026-06-21.json",
-        "path:data/evidence-reviews/senolytics-scaffold-source-fidelity-2026-06-21.json",
-        "target_record:candidate_change/senolytics-bone-rct-extraction-refresh-2026-06-21",
-        "target_record:candidate_change/senolytics-scaffold-bootstrap-2026-06-21"
+        "candidate_change:candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-extraction-fidelity-repair",
+        "candidate_change:candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-safety-limitations-repair",
+        "candidate_change:candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-synthesis-boundary-repair",
+        "candidate_change:candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-taxonomy-mapping-repair",
+        "candidate_review:candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair/extraction_fidelity",
+        "candidate_review:candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair/safety_limitations",
+        "candidate_review:candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair/synthesis_boundary",
+        "candidate_review:candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair/taxonomy_mapping",
+        "path:data/candidate-changes/candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-extraction-fidelity-repair.json",
+        "path:data/candidate-changes/candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-safety-limitations-repair.json",
+        "path:data/candidate-changes/candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-synthesis-boundary-repair.json",
+        "path:data/candidate-changes/candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-taxonomy-mapping-repair.json",
+        "path:data/evidence-reviews/candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-extraction-fidelity.json",
+        "path:data/evidence-reviews/candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-safety-limitations.json",
+        "path:data/evidence-reviews/candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-synthesis-boundary.json",
+        "path:data/evidence-reviews/candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-taxonomy-mapping.json"
       ],
       "conflict_keys": [
-        "candidate_change:candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
-        "candidate_change:candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair",
-        "target_record:candidate_change/senolytics-bone-rct-extraction-refresh-2026-06-21",
-        "target_record:candidate_change/senolytics-scaffold-bootstrap-2026-06-21",
-        "triage_job:candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21",
-        "triage_job:candidate-revision-senolytics-scaffold-bootstrap-2026-06-21"
+        "candidate_change:candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-extraction-fidelity-repair",
+        "candidate_change:candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-safety-limitations-repair",
+        "candidate_change:candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-synthesis-boundary-repair",
+        "candidate_change:candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-taxonomy-mapping-repair",
+        "candidate_review:candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair/extraction_fidelity",
+        "candidate_review:candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair/safety_limitations",
+        "candidate_review:candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair/synthesis_boundary",
+        "candidate_review:candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair/taxonomy_mapping"
       ],
       "overlapping_execution_keys": [],
       "expected_cost": {
         "cost_class": "high",
         "expected_wall_time_ms": 3600000,
-        "expected_token_budget": 200000,
+        "expected_token_budget": 400000,
         "io_intensity": "medium"
       },
       "commands": [
@@ -97,9 +101,82 @@
           "agent:codex:worktree",
           "--",
           "--job-file",
-          "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21.json",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-extraction-fidelity.json",
           "--execute"
         ],
+        [
+          "npm",
+          "run",
+          "agent:codex:worktree",
+          "--",
+          "--job-file",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-safety-limitations.json",
+          "--execute"
+        ],
+        [
+          "npm",
+          "run",
+          "agent:codex:worktree",
+          "--",
+          "--job-file",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-synthesis-boundary.json",
+          "--execute"
+        ],
+        [
+          "npm",
+          "run",
+          "agent:codex:worktree",
+          "--",
+          "--job-file",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-taxonomy-mapping.json",
+          "--execute"
+        ]
+      ]
+    },
+    {
+      "batch_id": "parallel-batch-002-candidate-revision",
+      "sequence": 2,
+      "parallel_group": "candidate-revision",
+      "execution_class": "independent",
+      "reconciliation_required": true,
+      "job_ids": [
+        "self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21"
+      ],
+      "job_paths": [
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21.json"
+      ],
+      "agent_roles": [
+        "self_healing_agent"
+      ],
+      "modes": [
+        "agent_directed"
+      ],
+      "read_sets": [
+        "path:data/candidate-changes/senolytics-scaffold-bootstrap-2026-06-21.json",
+        "path:data/evidence-reviews/senolytics-scaffold-source-fidelity-2026-06-21.json",
+        "path:ops/triage-state.v1.json",
+        "triage_job:candidate-revision-senolytics-scaffold-bootstrap-2026-06-21"
+      ],
+      "write_sets": [
+        "candidate_change:candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair",
+        "path:data/candidate-changes/candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair.json",
+        "path:data/candidate-changes/senolytics-scaffold-bootstrap-2026-06-21.json",
+        "path:data/evidence-reviews/senolytics-scaffold-source-fidelity-2026-06-21.json",
+        "target_record:candidate_change/senolytics-scaffold-bootstrap-2026-06-21"
+      ],
+      "conflict_keys": [
+        "candidate_change:candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair",
+        "target_record:candidate_change/senolytics-scaffold-bootstrap-2026-06-21",
+        "triage_job:candidate-revision-senolytics-scaffold-bootstrap-2026-06-21"
+      ],
+      "overlapping_execution_keys": [],
+      "expected_cost": {
+        "cost_class": "high",
+        "expected_wall_time_ms": 3600000,
+        "expected_token_budget": 100000,
+        "io_intensity": "medium"
+      },
+      "commands": [
         [
           "npm",
           "run",
@@ -112,8 +189,8 @@
       ]
     },
     {
-      "batch_id": "parallel-batch-002-extraction-refresh",
-      "sequence": 2,
+      "batch_id": "parallel-batch-003-extraction-refresh",
+      "sequence": 3,
       "parallel_group": "extraction-refresh",
       "execution_class": "reconciliation_required",
       "reconciliation_required": true,
@@ -224,8 +301,8 @@
       ]
     },
     {
-      "batch_id": "parallel-batch-003-extraction-refresh",
-      "sequence": 3,
+      "batch_id": "parallel-batch-004-extraction-refresh",
+      "sequence": 4,
       "parallel_group": "extraction-refresh",
       "execution_class": "independent",
       "reconciliation_required": true,
@@ -337,8 +414,8 @@
       ]
     },
     {
-      "batch_id": "parallel-batch-004-extraction-refresh",
-      "sequence": 4,
+      "batch_id": "parallel-batch-005-extraction-refresh",
+      "sequence": 5,
       "parallel_group": "extraction-refresh",
       "execution_class": "independent",
       "reconciliation_required": true,

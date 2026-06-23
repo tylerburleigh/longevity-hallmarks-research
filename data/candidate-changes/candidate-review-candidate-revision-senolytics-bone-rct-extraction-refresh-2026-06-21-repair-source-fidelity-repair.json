@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-source-fidelity-repair",
+  "name": "Source-fidelity review for D+Q bone RCT revision-state repair",
+  "summary": "Adds the missing source-fidelity supervisor review for the D+Q bone RCT revision-state repair candidate without promoting or mutating the target candidate.",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-23T18:53:46Z",
+  "scope": {
+    "question": "Review the source-fidelity lane for candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "chronic_inflammation",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-source-fidelity-repair",
+      "path": "data/candidate-changes/candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-source-fidelity-repair.json",
+      "change_type": "create",
+      "rationale": "Tracks this bounded self-healing repair candidate for the missing source-fidelity review lane."
+    },
+    {
+      "record_type": "evidence_review",
+      "record_id": "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-source-fidelity",
+      "path": "data/evidence-reviews/candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-source-fidelity.json",
+      "change_type": "create",
+      "rationale": "Adds the complete source-fidelity supervisor review for the target revision-state repair candidate."
+    }
+  ],
+  "required_review_lanes": [
+    "source_fidelity"
+  ]
+}

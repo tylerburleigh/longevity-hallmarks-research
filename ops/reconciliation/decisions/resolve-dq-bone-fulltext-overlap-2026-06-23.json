@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "reconciliation_decision",
+  "id": "resolve-dq-bone-fulltext-overlap-2026-06-23",
+  "created_at": "2026-06-23T18:29:56Z",
+  "reconciled_by_agent": "codex-coordinator",
+  "reconciliation_report_id": "parallel-reconciliation-v1",
+  "issue_ids": [
+    "overlapping-candidate-a47143957992",
+    "overlapping-candidate-f1249c68d429"
+  ],
+  "issue_categories": [
+    "overlapping_candidate_proposal"
+  ],
+  "candidate_change_ids": [
+    "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
+  ],
+  "superseded_candidate_change_ids": [
+    "senolytics-bone-rct-extraction-refresh-2026-06-21",
+    "senolytics-coverage-repair-2026-06-21"
+  ],
+  "compatible_candidate_change_ids": [
+    "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
+  ],
+  "resolution_status": "resolved",
+  "resolution_summary": "The D+Q PMC full-text extraction candidate supersedes the older source and finding proposals for promotion of this candidate only. The older broad coverage candidate remains in needs_revision across all review lanes, and the older bone RCT extraction refresh remains in_review with extraction-fidelity and safety-limitations revision debt. The full-text candidate has complete accepting reviews across all required lanes and adds retained PMC author-manuscript provenance, full-text locators, exploratory subgroup boundaries, adverse-event term caveats, and pooling blockers without accepting or releasing the older overlapping candidates.",
+  "evidence": [
+    {
+      "path": "data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json",
+      "summary": "The candidate updates data/sources/pmid-38956196.json and data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json while adding retained PMC source, rights, snapshot, text-snapshot, outcome, result, and synthesis-boundary records."
+    },
+    {
+      "path": "data/evidence-reviews/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-source-fidelity.json",
+      "summary": "The source-fidelity review accepts the PMC full-text candidate and confirms consistent PMID 38956196 / PMC11705617 source, source_rights, source_snapshot, text_snapshot, artifact hashes, and full-text provenance locators."
+    },
+    {
+      "path": "data/evidence-reviews/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity.json",
+      "summary": "The extraction-fidelity review accepts the candidate and confirms the subgroup effects, sample sizes, primary-null boundary, and adverse-event term counts match the retained PMC author-manuscript text snapshot."
+    },
+    {
+      "path": "data/evidence-reviews/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations.json",
+      "summary": "The safety-limitations review accepts the candidate because adverse-event term data remain descriptive, blank-cell ambiguity is preserved, and safety pooling remains blocked until comparative effects, uncertainty, and event-specific count semantics are available."
+    },
+    {
+      "path": "data/candidate-changes/senolytics-coverage-repair-2026-06-21.json",
+      "summary": "The broad coverage candidate remains needs_revision with unresolved source-fidelity, extraction-fidelity, taxonomy-mapping, synthesis-boundary, and safety-limitations gaps."
+    },
+    {
+      "path": "data/candidate-changes/senolytics-bone-rct-extraction-refresh-2026-06-21.json",
+      "summary": "The older bone RCT extraction refresh remains in_review and triage still marks extraction_fidelity and safety_limitations as needs_revision."
+    }
+  ]
+}

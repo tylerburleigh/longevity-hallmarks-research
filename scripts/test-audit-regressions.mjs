@@ -52,6 +52,55 @@ function resolveRepoPath(root, relativePath) {
   return path.join(root, relativePath);
 }
 
+function toPosixPath(filePath) {
+  return filePath.split(path.sep).join("/");
+}
+
+async function walkFiles(rootPath) {
+  const entries = await fs.readdir(rootPath, { withFileTypes: true });
+  const files = [];
+
+  for (const entry of entries) {
+    const entryPath = path.join(rootPath, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...(await walkFiles(entryPath)));
+    } else if (entry.isFile()) {
+      files.push(entryPath);
+    }
+  }
+
+  return files;
+}
+
+async function resolvePathSelector(root, selector) {
+  if (selector.type !== "first_json_file") {
+    throw new Error(`Unsupported path selector type: ${selector.type}`);
+  }
+
+  const selectorRoot = resolveRepoPath(root, selector.root);
+  const files = (await walkFiles(selectorRoot))
+    .filter((filePath) => filePath.endsWith(".json"))
+    .map((filePath) => toPosixPath(path.relative(root, filePath)))
+    .filter((relativePath) => !selector.path_includes || relativePath.includes(selector.path_includes))
+    .sort((left, right) => left.localeCompare(right));
+
+  if (files.length === 0) {
+    throw new Error(`No JSON files matched path selector under ${selector.root}.`);
+  }
+
+  return files[0];
+}
+
+async function resolveOperationPath(root, operation) {
+  if (operation.path) {
+    return operation.path;
+  }
+  if (operation.path_selector) {
+    return resolvePathSelector(root, operation.path_selector);
+  }
+  throw new Error(`Operation ${operation.type} must include path or path_selector.`);
+}
+
 async function readJson(root, relativePath) {
   return JSON.parse(await fs.readFile(resolveRepoPath(root, relativePath), "utf8"));
 }
@@ -167,9 +216,10 @@ function applyJsonMutation(value, mutation) {
 
 async function applyOperation(root, operation) {
   if (operation.type === "set_json" || operation.type === "delete_json" || operation.type === "append_json_array") {
-    const value = await readJson(root, operation.path);
+    const operationPath = await resolveOperationPath(root, operation);
+    const value = await readJson(root, operationPath);
     applyJsonMutation(value, operation);
-    await writeJson(root, operation.path, value);
+    await writeJson(root, operationPath, value);
     return;
   }
 

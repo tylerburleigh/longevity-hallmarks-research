@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "release_readiness",
   "id": "release-readiness-v1",
-  "generated_at": "2026-06-23T17:50:56.183Z",
+  "generated_at": "2026-06-23T18:58:24.285Z",
   "source_roots": [
     "data",
     "research"
@@ -17,31 +17,49 @@
     "canonical_source_of_truth": "data/ and research/ JSON records"
   },
   "summary": {
-    "candidate_count": 25,
-    "not_ready_candidate_count": 17,
-    "promotion_ready_candidate_count": 2,
-    "release_ready_candidate_count": 1,
-    "partial_release_ready_candidate_count": 5,
-    "release_blocked_candidate_count": 5,
-    "accepted_or_applied_candidate_count": 6,
-    "accepted_record_count": 13,
-    "blocked_accepted_record_count": 39
+    "candidate_count": 27,
+    "not_ready_candidate_count": 19,
+    "promotion_ready_candidate_count": 0,
+    "release_ready_candidate_count": 7,
+    "partial_release_ready_candidate_count": 1,
+    "release_blocked_candidate_count": 1,
+    "accepted_or_applied_candidate_count": 8,
+    "accepted_record_count": 52,
+    "blocked_accepted_record_count": 1
   },
-  "promotion_ready_candidate_ids": [
-    "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
-    "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
-  ],
+  "promotion_ready_candidate_ids": [],
   "release_ready_candidate_ids": [
-    "senolytics-dq-bone-registry-text-snapshot-2026-06-22"
-  ],
-  "release_blocked_candidate_ids": [
     "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
     "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
+    "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
     "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
+    "senolytics-dq-bone-registry-text-snapshot-2026-06-22",
     "senolytics-dq-bone-release-anchor-2026-06-22",
     "senolytics-dq-bone-source-rights-seed-2026-06-22"
   ],
+  "release_blocked_candidate_ids": [
+    "candidate-revision-senolytics-coverage-repair-2026-06-21-repair"
+  ],
   "candidate_release_statuses": [
+    {
+      "candidate_change_id": "candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-source-fidelity-repair",
+      "path": "data/candidate-changes/candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-source-fidelity-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "release_status": "not_ready",
+      "required_review_lanes": [
+        "source_fidelity"
+      ],
+      "active_review_ids": [],
+      "proposed_record_count": 2,
+      "release_ready_record_count": 0,
+      "blocked_record_count": 0,
+      "release_ready_record_ids": [],
+      "blocked_record_ids": [],
+      "next_actions": [
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
     {
       "candidate_change_id": "candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-extraction-fidelity-repair",
       "path": "data/candidate-changes/candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-extraction-fidelity-repair.json",
@@ -233,11 +251,36 @@
       ]
     },
     {
+      "candidate_change_id": "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
+      "path": "data/candidate-changes/candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "needs_review",
+      "release_status": "not_ready",
+      "required_review_lanes": [
+        "extraction_fidelity",
+        "safety_limitations",
+        "source_fidelity",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "active_review_ids": [
+        "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-source-fidelity"
+      ],
+      "proposed_record_count": 2,
+      "release_ready_record_count": 0,
+      "blocked_record_count": 0,
+      "release_ready_record_ids": [],
+      "blocked_record_ids": [],
+      "next_actions": [
+        "Run supervisor review lanes: extraction_fidelity, safety_limitations, synthesis_boundary, taxonomy_mapping."
+      ]
+    },
+    {
       "candidate_change_id": "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
       "path": "data/candidate-changes/candidate-revision-senolytics-coverage-repair-2026-06-21-repair.json",
-      "lifecycle_status": "submitted",
-      "readiness_status": "promotion_ready",
-      "release_status": "promotion_ready",
+      "lifecycle_status": "accepted",
+      "readiness_status": "accepted",
+      "release_status": "partial_release_ready",
       "required_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
@@ -253,12 +296,17 @@
         "candidate-revision-senolytics-coverage-repair-2026-06-21-repair-taxonomy-mapping-2026-06-23"
       ],
       "proposed_record_count": 2,
-      "release_ready_record_count": 0,
-      "blocked_record_count": 0,
-      "release_ready_record_ids": [],
-      "blocked_record_ids": [],
+      "release_ready_record_count": 1,
+      "blocked_record_count": 1,
+      "release_ready_record_ids": [
+        "candidate-revision-senolytics-coverage-repair-2026-06-21-repair"
+      ],
+      "blocked_record_ids": [
+        "senolytics-coverage-repair-2026-06-21"
+      ],
       "next_actions": [
-        "Promote candidate candidate-revision-senolytics-coverage-repair-2026-06-21-repair before release artifacts include its proposed records."
+        "Included records without blockers are eligible for accepted-record export.",
+        "Resolve blocked records before treating the whole candidate as fully released: candidate_change:senolytics-coverage-repair-2026-06-21."
       ]
     },
     {
@@ -332,7 +380,7 @@
     {
       "candidate_change_id": "senolytics-bone-rct-extraction-refresh-2026-06-21",
       "path": "data/candidate-changes/senolytics-bone-rct-extraction-refresh-2026-06-21.json",
-      "lifecycle_status": "in_review",
+      "lifecycle_status": "needs_revision",
       "readiness_status": "needs_revision",
       "release_status": "not_ready",
       "required_review_lanes": [
@@ -394,7 +442,7 @@
       "path": "data/candidate-changes/senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21.json",
       "lifecycle_status": "accepted",
       "readiness_status": "accepted",
-      "release_status": "partial_release_ready",
+      "release_status": "release_ready",
       "required_review_lanes": [
         "safety_limitations",
         "synthesis_boundary",
@@ -406,22 +454,20 @@
         "senolytics-dq-bone-endpoint-taxonomy-mapping-2026-06-21"
       ],
       "proposed_record_count": 7,
-      "release_ready_record_count": 1,
-      "blocked_record_count": 6,
+      "release_ready_record_count": 7,
+      "blocked_record_count": 0,
       "release_ready_record_ids": [
-        "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21"
-      ],
-      "blocked_record_ids": [
         "senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21",
         "senolytics-dq-bone-ctx-20wk-synthesis-compatibility-2026-06-21",
+        "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
         "senolytics-dq-bone-p1np-20wk-synthesis-compatibility-2026-06-21",
         "senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21",
         "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
         "senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21"
       ],
+      "blocked_record_ids": [],
       "next_actions": [
-        "Included records without blockers are eligible for accepted-record export.",
-        "Resolve blocked records before treating the whole candidate as fully released: synthesis_group:senolytics-dq-bone-ctx-20wk-synthesis-compatibility-2026-06-21, synthesis_group:senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21, synthesis_group:senolytics-dq-bone-p1np-20wk-synthesis-compatibility-2026-06-21, synthesis_group:senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21, synthesis_group:senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21, synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21."
+        "Included in accepted-record export."
       ]
     },
     {
@@ -429,7 +475,7 @@
       "path": "data/candidate-changes/senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23.json",
       "lifecycle_status": "accepted",
       "readiness_status": "accepted",
-      "release_status": "partial_release_ready",
+      "release_status": "release_ready",
       "required_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
@@ -443,26 +489,24 @@
         "senolytics-dq-bone-headache-ae-taxonomy-mapping-2026-06-23"
       ],
       "proposed_record_count": 3,
-      "release_ready_record_count": 1,
-      "blocked_record_count": 2,
+      "release_ready_record_count": 3,
+      "blocked_record_count": 0,
       "release_ready_record_ids": [
-        "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23"
-      ],
-      "blocked_record_ids": [
         "dq-bone-headache-20wk-descriptive",
+        "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
         "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21"
       ],
+      "blocked_record_ids": [],
       "next_actions": [
-        "Included records without blockers are eligible for accepted-record export.",
-        "Resolve blocked records before treating the whole candidate as fully released: result:dq-bone-headache-20wk-descriptive, synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21."
+        "Included in accepted-record export."
       ]
     },
     {
       "candidate_change_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
       "path": "data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json",
-      "lifecycle_status": "submitted",
-      "readiness_status": "promotion_ready",
-      "release_status": "promotion_ready",
+      "lifecycle_status": "accepted",
+      "readiness_status": "accepted",
+      "release_status": "release_ready",
       "required_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
@@ -478,12 +522,32 @@
         "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping"
       ],
       "proposed_record_count": 19,
-      "release_ready_record_count": 0,
+      "release_ready_record_count": 19,
       "blocked_record_count": 0,
-      "release_ready_record_ids": [],
+      "release_ready_record_ids": [
+        "dq-bone-adverse-event-terms-20wk-mixed",
+        "dq-bone-p16-t3-ctx-2wk",
+        "dq-bone-p16-t3-ctx-2wk-positive",
+        "dq-bone-p16-t3-ctx-4wk",
+        "dq-bone-p16-t3-ctx-4wk-inconclusive",
+        "dq-bone-p16-t3-p1np-2wk",
+        "dq-bone-p16-t3-p1np-2wk-positive",
+        "dq-bone-p16-t3-p1np-4wk",
+        "dq-bone-p16-t3-p1np-4wk-inconclusive",
+        "dq-bone-p16-t3-radius-bmd-20wk",
+        "dq-bone-p16-t3-radius-bmd-20wk-positive",
+        "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+        "pmid-38956196",
+        "senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22",
+        "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
+        "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+        "snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+        "source-rights-pmid-38956196-2026-06-22",
+        "text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22"
+      ],
       "blocked_record_ids": [],
       "next_actions": [
-        "Promote candidate senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22 before release artifacts include its proposed records."
+        "Included in accepted-record export."
       ]
     },
     {
@@ -491,7 +555,7 @@
       "path": "data/candidate-changes/senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22.json",
       "lifecycle_status": "accepted",
       "readiness_status": "accepted",
-      "release_status": "partial_release_ready",
+      "release_status": "release_ready",
       "required_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
@@ -505,12 +569,9 @@
         "senolytics-dq-bone-registry-markdown-provenance-taxonomy-mapping-2026-06-22"
       ],
       "proposed_record_count": 16,
-      "release_ready_record_count": 1,
-      "blocked_record_count": 15,
+      "release_ready_record_count": 16,
+      "blocked_record_count": 0,
       "release_ready_record_ids": [
-        "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22"
-      ],
-      "blocked_record_ids": [
         "dq-bone-adverse-events-20wk",
         "dq-bone-adverse-events-20wk-mixed",
         "dq-bone-bmd-20wk",
@@ -525,11 +586,12 @@
         "dq-bone-p1np-4wk-positive",
         "dq-bone-rct-primary-null-subgroup-biomarker-signal",
         "dq-bone-sasp-2wk",
-        "dq-bone-sasp-2wk-null"
+        "dq-bone-sasp-2wk-null",
+        "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22"
       ],
+      "blocked_record_ids": [],
       "next_actions": [
-        "Included records without blockers are eligible for accepted-record export.",
-        "Resolve blocked records before treating the whole candidate as fully released: finding:dq-bone-rct-primary-null-subgroup-biomarker-signal, outcome:dq-bone-adverse-events-20wk, outcome:dq-bone-bmd-20wk, outcome:dq-bone-ctx-20wk, outcome:dq-bone-p1np-20wk, outcome:dq-bone-p1np-2wk, outcome:dq-bone-p1np-4wk, outcome:dq-bone-sasp-2wk, result:dq-bone-adverse-events-20wk-mixed, result:dq-bone-bmd-20wk-inconclusive, result:dq-bone-ctx-20wk-null, result:dq-bone-p1np-20wk-null, result:dq-bone-p1np-2wk-positive, result:dq-bone-p1np-4wk-positive, result:dq-bone-sasp-2wk-null."
+        "Included in accepted-record export."
       ]
     },
     {
@@ -564,7 +626,7 @@
       "path": "data/candidate-changes/senolytics-dq-bone-release-anchor-2026-06-22.json",
       "lifecycle_status": "accepted",
       "readiness_status": "accepted",
-      "release_status": "partial_release_ready",
+      "release_status": "release_ready",
       "required_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
@@ -580,17 +642,9 @@
         "senolytics-dq-bone-release-anchor-taxonomy-mapping-2026-06-22"
       ],
       "proposed_record_count": 21,
-      "release_ready_record_count": 6,
-      "blocked_record_count": 15,
+      "release_ready_record_count": 21,
+      "blocked_record_count": 0,
       "release_ready_record_ids": [
-        "dq-postmenopausal-bone-rct",
-        "nct-04313634",
-        "pmid-38956196",
-        "senolytics-dq-bone-release-anchor-2026-06-22",
-        "snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
-        "snapshot-pmid-38956196-pubmed-efetch-2026-06-21"
-      ],
-      "blocked_record_ids": [
         "dq-bone-adverse-events-20wk",
         "dq-bone-adverse-events-20wk-mixed",
         "dq-bone-bmd-20wk",
@@ -605,11 +659,17 @@
         "dq-bone-p1np-4wk-positive",
         "dq-bone-rct-primary-null-subgroup-biomarker-signal",
         "dq-bone-sasp-2wk",
-        "dq-bone-sasp-2wk-null"
+        "dq-bone-sasp-2wk-null",
+        "dq-postmenopausal-bone-rct",
+        "nct-04313634",
+        "pmid-38956196",
+        "senolytics-dq-bone-release-anchor-2026-06-22",
+        "snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+        "snapshot-pmid-38956196-pubmed-efetch-2026-06-21"
       ],
+      "blocked_record_ids": [],
       "next_actions": [
-        "Included records without blockers are eligible for accepted-record export.",
-        "Resolve blocked records before treating the whole candidate as fully released: finding:dq-bone-rct-primary-null-subgroup-biomarker-signal, outcome:dq-bone-ctx-20wk, outcome:dq-bone-p1np-2wk, outcome:dq-bone-p1np-4wk, outcome:dq-bone-p1np-20wk, outcome:dq-bone-bmd-20wk, outcome:dq-bone-sasp-2wk, outcome:dq-bone-adverse-events-20wk, result:dq-bone-ctx-20wk-null, result:dq-bone-p1np-2wk-positive, result:dq-bone-p1np-4wk-positive, result:dq-bone-p1np-20wk-null, result:dq-bone-bmd-20wk-inconclusive, result:dq-bone-sasp-2wk-null, result:dq-bone-adverse-events-20wk-mixed."
+        "Included in accepted-record export."
       ]
     },
     {
@@ -617,7 +677,7 @@
       "path": "data/candidate-changes/senolytics-dq-bone-source-rights-seed-2026-06-22.json",
       "lifecycle_status": "accepted",
       "readiness_status": "accepted",
-      "release_status": "partial_release_ready",
+      "release_status": "release_ready",
       "required_review_lanes": [
         "source_fidelity"
       ],
@@ -625,18 +685,16 @@
         "senolytics-dq-bone-source-rights-source-fidelity-2026-06-22"
       ],
       "proposed_record_count": 3,
-      "release_ready_record_count": 2,
-      "blocked_record_count": 1,
+      "release_ready_record_count": 3,
+      "blocked_record_count": 0,
       "release_ready_record_ids": [
         "senolytics-dq-bone-source-rights-seed-2026-06-22",
-        "source-rights-nct-04313634-2026-06-22"
-      ],
-      "blocked_record_ids": [
+        "source-rights-nct-04313634-2026-06-22",
         "source-rights-pmid-38956196-2026-06-22"
       ],
+      "blocked_record_ids": [],
       "next_actions": [
-        "Included records without blockers are eligible for accepted-record export.",
-        "Resolve blocked records before treating the whole candidate as fully released: source_rights:source-rights-pmid-38956196-2026-06-22."
+        "Included in accepted-record export."
       ]
     },
     {
@@ -667,6 +725,21 @@
   "release_ready_records": [
     {
       "record_type": "candidate_change",
+      "record_id": "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
+      "path": "data/candidate-changes/candidate-revision-senolytics-coverage-repair-2026-06-21-repair.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "candidate-revision-senolytics-coverage-repair-2026-06-21-repair"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
+    },
+    {
+      "record_type": "candidate_change",
       "record_id": "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
       "path": "data/candidate-changes/senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21.json",
       "release_status": "accepted",
@@ -687,6 +760,21 @@
       "release_status": "accepted",
       "candidate_change_ids": [
         "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
+    },
+    {
+      "record_type": "candidate_change",
+      "record_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
+      "path": "data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
       ],
       "candidate_lifecycle_statuses": [
         "accepted"
@@ -756,6 +844,442 @@
       ]
     },
     {
+      "record_type": "finding",
+      "record_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "path": "data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
+        "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
+        "senolytics-dq-bone-release-anchor-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "release_accept",
+        "update"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-adverse-events-20wk",
+      "path": "data/outcomes/dq-bone-adverse-events-20wk.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
+        "senolytics-dq-bone-release-anchor-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "release_accept",
+        "update"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-bmd-20wk",
+      "path": "data/outcomes/dq-bone-bmd-20wk.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
+        "senolytics-dq-bone-release-anchor-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "release_accept",
+        "update"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-ctx-20wk",
+      "path": "data/outcomes/dq-bone-ctx-20wk.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
+        "senolytics-dq-bone-release-anchor-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "release_accept",
+        "update"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-p16-t3-ctx-2wk",
+      "path": "data/outcomes/dq-bone-p16-t3-ctx-2wk.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-p16-t3-ctx-4wk",
+      "path": "data/outcomes/dq-bone-p16-t3-ctx-4wk.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-p16-t3-p1np-2wk",
+      "path": "data/outcomes/dq-bone-p16-t3-p1np-2wk.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-p16-t3-p1np-4wk",
+      "path": "data/outcomes/dq-bone-p16-t3-p1np-4wk.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-p16-t3-radius-bmd-20wk",
+      "path": "data/outcomes/dq-bone-p16-t3-radius-bmd-20wk.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-p1np-20wk",
+      "path": "data/outcomes/dq-bone-p1np-20wk.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
+        "senolytics-dq-bone-release-anchor-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "release_accept",
+        "update"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-p1np-2wk",
+      "path": "data/outcomes/dq-bone-p1np-2wk.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
+        "senolytics-dq-bone-release-anchor-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "release_accept",
+        "update"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-p1np-4wk",
+      "path": "data/outcomes/dq-bone-p1np-4wk.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
+        "senolytics-dq-bone-release-anchor-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "release_accept",
+        "update"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-bone-sasp-2wk",
+      "path": "data/outcomes/dq-bone-sasp-2wk.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
+        "senolytics-dq-bone-release-anchor-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "release_accept",
+        "update"
+      ]
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-adverse-event-terms-20wk-mixed",
+      "path": "data/results/dq-bone-adverse-event-terms-20wk-mixed.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-adverse-events-20wk-mixed",
+      "path": "data/results/dq-bone-adverse-events-20wk-mixed.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
+        "senolytics-dq-bone-release-anchor-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "release_accept",
+        "update"
+      ]
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-bmd-20wk-inconclusive",
+      "path": "data/results/dq-bone-bmd-20wk-inconclusive.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
+        "senolytics-dq-bone-release-anchor-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "release_accept",
+        "update"
+      ]
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-ctx-20wk-null",
+      "path": "data/results/dq-bone-ctx-20wk-null.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
+        "senolytics-dq-bone-release-anchor-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "release_accept",
+        "update"
+      ]
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-headache-20wk-descriptive",
+      "path": "data/results/dq-bone-headache-20wk-descriptive.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-p16-t3-ctx-2wk-positive",
+      "path": "data/results/dq-bone-p16-t3-ctx-2wk-positive.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-p16-t3-ctx-4wk-inconclusive",
+      "path": "data/results/dq-bone-p16-t3-ctx-4wk-inconclusive.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-p16-t3-p1np-2wk-positive",
+      "path": "data/results/dq-bone-p16-t3-p1np-2wk-positive.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-p16-t3-p1np-4wk-inconclusive",
+      "path": "data/results/dq-bone-p16-t3-p1np-4wk-inconclusive.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-p16-t3-radius-bmd-20wk-positive",
+      "path": "data/results/dq-bone-p16-t3-radius-bmd-20wk-positive.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-p1np-20wk-null",
+      "path": "data/results/dq-bone-p1np-20wk-null.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
+        "senolytics-dq-bone-release-anchor-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "release_accept",
+        "update"
+      ]
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-p1np-2wk-positive",
+      "path": "data/results/dq-bone-p1np-2wk-positive.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
+        "senolytics-dq-bone-release-anchor-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "release_accept",
+        "update"
+      ]
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-p1np-4wk-positive",
+      "path": "data/results/dq-bone-p1np-4wk-positive.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
+        "senolytics-dq-bone-release-anchor-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "release_accept",
+        "update"
+      ]
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-sasp-2wk-null",
+      "path": "data/results/dq-bone-sasp-2wk-null.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
+        "senolytics-dq-bone-release-anchor-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "release_accept",
+        "update"
+      ]
+    },
+    {
       "record_type": "source",
       "record_id": "nct-04313634",
       "path": "data/sources/nct-04313634.json",
@@ -776,13 +1300,15 @@
       "path": "data/sources/pmid-38956196.json",
       "release_status": "accepted",
       "candidate_change_ids": [
+        "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
         "senolytics-dq-bone-release-anchor-2026-06-22"
       ],
       "candidate_lifecycle_statuses": [
         "accepted"
       ],
       "change_types": [
-        "release_accept"
+        "release_accept",
+        "update"
       ]
     },
     {
@@ -801,6 +1327,23 @@
       ]
     },
     {
+      "record_type": "source_rights",
+      "record_id": "source-rights-pmid-38956196-2026-06-22",
+      "path": "data/source-rights/source-rights-pmid-38956196-2026-06-22.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
+        "senolytics-dq-bone-source-rights-seed-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create",
+        "update"
+      ]
+    },
+    {
       "record_type": "source_snapshot",
       "record_id": "snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
       "path": "data/source-snapshots/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
@@ -815,6 +1358,21 @@
       "change_types": [
         "release_accept",
         "update"
+      ]
+    },
+    {
+      "record_type": "source_snapshot",
+      "record_id": "snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+      "path": "data/source-snapshots/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
       ]
     },
     {
@@ -848,6 +1406,114 @@
       ]
     },
     {
+      "record_type": "synthesis_group",
+      "record_id": "senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21",
+      "path": "data/synthesis-groups/senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
+    },
+    {
+      "record_type": "synthesis_group",
+      "record_id": "senolytics-dq-bone-ctx-20wk-synthesis-compatibility-2026-06-21",
+      "path": "data/synthesis-groups/senolytics-dq-bone-ctx-20wk-synthesis-compatibility-2026-06-21.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
+    },
+    {
+      "record_type": "synthesis_group",
+      "record_id": "senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22",
+      "path": "data/synthesis-groups/senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
+    },
+    {
+      "record_type": "synthesis_group",
+      "record_id": "senolytics-dq-bone-p1np-20wk-synthesis-compatibility-2026-06-21",
+      "path": "data/synthesis-groups/senolytics-dq-bone-p1np-20wk-synthesis-compatibility-2026-06-21.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
+    },
+    {
+      "record_type": "synthesis_group",
+      "record_id": "senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21",
+      "path": "data/synthesis-groups/senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
+    },
+    {
+      "record_type": "synthesis_group",
+      "record_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "path": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
+        "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
+        "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create",
+        "update"
+      ]
+    },
+    {
+      "record_type": "synthesis_group",
+      "record_id": "senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21",
+      "path": "data/synthesis-groups/senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
+    },
+    {
       "record_type": "text_snapshot",
       "record_id": "text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
       "path": "data/text-snapshots/text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
@@ -861,616 +1527,35 @@
       "change_types": [
         "create"
       ]
+    },
+    {
+      "record_type": "text_snapshot",
+      "record_id": "text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+      "path": "data/text-snapshots/text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
     }
   ],
   "blocked_accepted_records": [
     {
-      "record_type": "synthesis_group",
-      "record_id": "senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21",
-      "path": "data/synthesis-groups/senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21.json",
-      "change_type": "create",
-      "candidate_change_id": "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "synthesis_group:senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21 depends on outcome:dq-bone-bmd-20wk, which has release blockers."
-        },
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "synthesis_group:senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-bmd-20wk-inconclusive, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "synthesis_group",
-      "record_id": "senolytics-dq-bone-ctx-20wk-synthesis-compatibility-2026-06-21",
-      "path": "data/synthesis-groups/senolytics-dq-bone-ctx-20wk-synthesis-compatibility-2026-06-21.json",
-      "change_type": "create",
-      "candidate_change_id": "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "synthesis_group:senolytics-dq-bone-ctx-20wk-synthesis-compatibility-2026-06-21 depends on outcome:dq-bone-ctx-20wk, which has release blockers."
-        },
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "synthesis_group:senolytics-dq-bone-ctx-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-ctx-20wk-null, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "synthesis_group",
-      "record_id": "senolytics-dq-bone-p1np-20wk-synthesis-compatibility-2026-06-21",
-      "path": "data/synthesis-groups/senolytics-dq-bone-p1np-20wk-synthesis-compatibility-2026-06-21.json",
-      "change_type": "create",
-      "candidate_change_id": "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "synthesis_group:senolytics-dq-bone-p1np-20wk-synthesis-compatibility-2026-06-21 depends on outcome:dq-bone-p1np-20wk, which has release blockers."
-        },
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "synthesis_group:senolytics-dq-bone-p1np-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-p1np-20wk-null, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "synthesis_group",
-      "record_id": "senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21",
-      "path": "data/synthesis-groups/senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21.json",
-      "change_type": "create",
-      "candidate_change_id": "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "synthesis_group:senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21 depends on outcome:dq-bone-p1np-2wk, which has release blockers."
-        },
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "synthesis_group:senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21 depends on outcome:dq-bone-p1np-4wk, which has release blockers."
-        },
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "synthesis_group:senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21 depends on result:dq-bone-p1np-2wk-positive, which has release blockers."
-        },
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "synthesis_group:senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21 depends on result:dq-bone-p1np-4wk-positive, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "synthesis_group",
-      "record_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
-      "path": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
-      "change_type": "create",
-      "candidate_change_id": "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-adverse-event-terms-20wk-mixed through result_ids, but that record is not proposed by an accepted or applied candidate."
-        },
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on source_snapshot:snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22 through provenance[2].source_snapshot_id, but that record is not proposed by an accepted or applied candidate."
-        },
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on text_snapshot:text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22 through provenance[2].text_snapshot_id, but that record is not proposed by an accepted or applied candidate."
-        }
-      ]
-    },
-    {
-      "record_type": "synthesis_group",
-      "record_id": "senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21",
-      "path": "data/synthesis-groups/senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21.json",
-      "change_type": "create",
-      "candidate_change_id": "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "synthesis_group:senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21 depends on outcome:dq-bone-sasp-2wk, which has release blockers."
-        },
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "synthesis_group:senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-sasp-2wk-null, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "result",
-      "record_id": "dq-bone-headache-20wk-descriptive",
-      "path": "data/results/dq-bone-headache-20wk-descriptive.json",
-      "change_type": "create",
-      "candidate_change_id": "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "result:dq-bone-headache-20wk-descriptive depends on source_snapshot:snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22 through provenance[0].source_snapshot_id, but that record is not proposed by an accepted or applied candidate."
-        },
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "result:dq-bone-headache-20wk-descriptive depends on text_snapshot:text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22 through provenance[0].text_snapshot_id, but that record is not proposed by an accepted or applied candidate."
-        },
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "result:dq-bone-headache-20wk-descriptive depends on source_snapshot:snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22 through provenance[1].source_snapshot_id, but that record is not proposed by an accepted or applied candidate."
-        },
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "result:dq-bone-headache-20wk-descriptive depends on text_snapshot:text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22 through provenance[1].text_snapshot_id, but that record is not proposed by an accepted or applied candidate."
-        }
-      ]
-    },
-    {
-      "record_type": "synthesis_group",
-      "record_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
-      "path": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+      "record_type": "candidate_change",
+      "record_id": "senolytics-coverage-repair-2026-06-21",
+      "path": "data/candidate-changes/senolytics-coverage-repair-2026-06-21.json",
       "change_type": "update",
-      "candidate_change_id": "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
+      "candidate_change_id": "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
       "candidate_lifecycle_status": "accepted",
       "blockers": [
         {
-          "blocker_type": "unaccepted_dependency",
-          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-adverse-event-terms-20wk-mixed through result_ids, but that record is not proposed by an accepted or applied candidate."
-        },
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on source_snapshot:snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22 through provenance[2].source_snapshot_id, but that record is not proposed by an accepted or applied candidate."
-        },
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on text_snapshot:text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22 through provenance[2].text_snapshot_id, but that record is not proposed by an accepted or applied candidate."
-        }
-      ]
-    },
-    {
-      "record_type": "finding",
-      "record_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
-      "path": "data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "finding:dq-bone-rct-primary-null-subgroup-biomarker-signal depends on source_snapshot:snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22 through provenance[2].source_snapshot_id, but that record is not proposed by an accepted or applied candidate."
-        },
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "finding:dq-bone-rct-primary-null-subgroup-biomarker-signal depends on text_snapshot:text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22 through provenance[2].text_snapshot_id, but that record is not proposed by an accepted or applied candidate."
-        }
-      ]
-    },
-    {
-      "record_type": "outcome",
-      "record_id": "dq-bone-adverse-events-20wk",
-      "path": "data/outcomes/dq-bone-adverse-events-20wk.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "outcome:dq-bone-adverse-events-20wk depends on finding:dq-bone-rct-primary-null-subgroup-biomarker-signal, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "outcome",
-      "record_id": "dq-bone-bmd-20wk",
-      "path": "data/outcomes/dq-bone-bmd-20wk.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "outcome:dq-bone-bmd-20wk depends on finding:dq-bone-rct-primary-null-subgroup-biomarker-signal, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "outcome",
-      "record_id": "dq-bone-ctx-20wk",
-      "path": "data/outcomes/dq-bone-ctx-20wk.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "outcome:dq-bone-ctx-20wk depends on finding:dq-bone-rct-primary-null-subgroup-biomarker-signal, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "outcome",
-      "record_id": "dq-bone-p1np-20wk",
-      "path": "data/outcomes/dq-bone-p1np-20wk.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "outcome:dq-bone-p1np-20wk depends on finding:dq-bone-rct-primary-null-subgroup-biomarker-signal, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "outcome",
-      "record_id": "dq-bone-p1np-2wk",
-      "path": "data/outcomes/dq-bone-p1np-2wk.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "outcome:dq-bone-p1np-2wk depends on finding:dq-bone-rct-primary-null-subgroup-biomarker-signal, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "outcome",
-      "record_id": "dq-bone-p1np-4wk",
-      "path": "data/outcomes/dq-bone-p1np-4wk.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "outcome:dq-bone-p1np-4wk depends on finding:dq-bone-rct-primary-null-subgroup-biomarker-signal, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "outcome",
-      "record_id": "dq-bone-sasp-2wk",
-      "path": "data/outcomes/dq-bone-sasp-2wk.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "outcome:dq-bone-sasp-2wk depends on finding:dq-bone-rct-primary-null-subgroup-biomarker-signal, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "result",
-      "record_id": "dq-bone-adverse-events-20wk-mixed",
-      "path": "data/results/dq-bone-adverse-events-20wk-mixed.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "result:dq-bone-adverse-events-20wk-mixed depends on finding:dq-bone-rct-primary-null-subgroup-biomarker-signal, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "result",
-      "record_id": "dq-bone-bmd-20wk-inconclusive",
-      "path": "data/results/dq-bone-bmd-20wk-inconclusive.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "result:dq-bone-bmd-20wk-inconclusive depends on finding:dq-bone-rct-primary-null-subgroup-biomarker-signal, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "result",
-      "record_id": "dq-bone-ctx-20wk-null",
-      "path": "data/results/dq-bone-ctx-20wk-null.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "result:dq-bone-ctx-20wk-null depends on finding:dq-bone-rct-primary-null-subgroup-biomarker-signal, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "result",
-      "record_id": "dq-bone-p1np-20wk-null",
-      "path": "data/results/dq-bone-p1np-20wk-null.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "result:dq-bone-p1np-20wk-null depends on finding:dq-bone-rct-primary-null-subgroup-biomarker-signal, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "result",
-      "record_id": "dq-bone-p1np-2wk-positive",
-      "path": "data/results/dq-bone-p1np-2wk-positive.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "result:dq-bone-p1np-2wk-positive depends on finding:dq-bone-rct-primary-null-subgroup-biomarker-signal, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "result",
-      "record_id": "dq-bone-p1np-4wk-positive",
-      "path": "data/results/dq-bone-p1np-4wk-positive.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "result:dq-bone-p1np-4wk-positive depends on finding:dq-bone-rct-primary-null-subgroup-biomarker-signal, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "result",
-      "record_id": "dq-bone-sasp-2wk-null",
-      "path": "data/results/dq-bone-sasp-2wk-null.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "result:dq-bone-sasp-2wk-null depends on finding:dq-bone-rct-primary-null-subgroup-biomarker-signal, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "finding",
-      "record_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
-      "path": "data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json",
-      "change_type": "release_accept",
-      "candidate_change_id": "senolytics-dq-bone-release-anchor-2026-06-22",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "finding:dq-bone-rct-primary-null-subgroup-biomarker-signal depends on source_snapshot:snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22 through provenance[2].source_snapshot_id, but that record is not proposed by an accepted or applied candidate."
-        },
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "finding:dq-bone-rct-primary-null-subgroup-biomarker-signal depends on text_snapshot:text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22 through provenance[2].text_snapshot_id, but that record is not proposed by an accepted or applied candidate."
-        }
-      ]
-    },
-    {
-      "record_type": "outcome",
-      "record_id": "dq-bone-adverse-events-20wk",
-      "path": "data/outcomes/dq-bone-adverse-events-20wk.json",
-      "change_type": "release_accept",
-      "candidate_change_id": "senolytics-dq-bone-release-anchor-2026-06-22",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "outcome:dq-bone-adverse-events-20wk depends on finding:dq-bone-rct-primary-null-subgroup-biomarker-signal, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "outcome",
-      "record_id": "dq-bone-bmd-20wk",
-      "path": "data/outcomes/dq-bone-bmd-20wk.json",
-      "change_type": "release_accept",
-      "candidate_change_id": "senolytics-dq-bone-release-anchor-2026-06-22",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "outcome:dq-bone-bmd-20wk depends on finding:dq-bone-rct-primary-null-subgroup-biomarker-signal, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "outcome",
-      "record_id": "dq-bone-ctx-20wk",
-      "path": "data/outcomes/dq-bone-ctx-20wk.json",
-      "change_type": "release_accept",
-      "candidate_change_id": "senolytics-dq-bone-release-anchor-2026-06-22",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "outcome:dq-bone-ctx-20wk depends on finding:dq-bone-rct-primary-null-subgroup-biomarker-signal, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "outcome",
-      "record_id": "dq-bone-p1np-20wk",
-      "path": "data/outcomes/dq-bone-p1np-20wk.json",
-      "change_type": "release_accept",
-      "candidate_change_id": "senolytics-dq-bone-release-anchor-2026-06-22",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "outcome:dq-bone-p1np-20wk depends on finding:dq-bone-rct-primary-null-subgroup-biomarker-signal, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "outcome",
-      "record_id": "dq-bone-p1np-2wk",
-      "path": "data/outcomes/dq-bone-p1np-2wk.json",
-      "change_type": "release_accept",
-      "candidate_change_id": "senolytics-dq-bone-release-anchor-2026-06-22",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "outcome:dq-bone-p1np-2wk depends on finding:dq-bone-rct-primary-null-subgroup-biomarker-signal, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "outcome",
-      "record_id": "dq-bone-p1np-4wk",
-      "path": "data/outcomes/dq-bone-p1np-4wk.json",
-      "change_type": "release_accept",
-      "candidate_change_id": "senolytics-dq-bone-release-anchor-2026-06-22",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "outcome:dq-bone-p1np-4wk depends on finding:dq-bone-rct-primary-null-subgroup-biomarker-signal, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "outcome",
-      "record_id": "dq-bone-sasp-2wk",
-      "path": "data/outcomes/dq-bone-sasp-2wk.json",
-      "change_type": "release_accept",
-      "candidate_change_id": "senolytics-dq-bone-release-anchor-2026-06-22",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "outcome:dq-bone-sasp-2wk depends on finding:dq-bone-rct-primary-null-subgroup-biomarker-signal, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "result",
-      "record_id": "dq-bone-adverse-events-20wk-mixed",
-      "path": "data/results/dq-bone-adverse-events-20wk-mixed.json",
-      "change_type": "release_accept",
-      "candidate_change_id": "senolytics-dq-bone-release-anchor-2026-06-22",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "result:dq-bone-adverse-events-20wk-mixed depends on finding:dq-bone-rct-primary-null-subgroup-biomarker-signal, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "result",
-      "record_id": "dq-bone-bmd-20wk-inconclusive",
-      "path": "data/results/dq-bone-bmd-20wk-inconclusive.json",
-      "change_type": "release_accept",
-      "candidate_change_id": "senolytics-dq-bone-release-anchor-2026-06-22",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "result:dq-bone-bmd-20wk-inconclusive depends on finding:dq-bone-rct-primary-null-subgroup-biomarker-signal, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "result",
-      "record_id": "dq-bone-ctx-20wk-null",
-      "path": "data/results/dq-bone-ctx-20wk-null.json",
-      "change_type": "release_accept",
-      "candidate_change_id": "senolytics-dq-bone-release-anchor-2026-06-22",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "result:dq-bone-ctx-20wk-null depends on finding:dq-bone-rct-primary-null-subgroup-biomarker-signal, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "result",
-      "record_id": "dq-bone-p1np-20wk-null",
-      "path": "data/results/dq-bone-p1np-20wk-null.json",
-      "change_type": "release_accept",
-      "candidate_change_id": "senolytics-dq-bone-release-anchor-2026-06-22",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "result:dq-bone-p1np-20wk-null depends on finding:dq-bone-rct-primary-null-subgroup-biomarker-signal, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "result",
-      "record_id": "dq-bone-p1np-2wk-positive",
-      "path": "data/results/dq-bone-p1np-2wk-positive.json",
-      "change_type": "release_accept",
-      "candidate_change_id": "senolytics-dq-bone-release-anchor-2026-06-22",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "result:dq-bone-p1np-2wk-positive depends on finding:dq-bone-rct-primary-null-subgroup-biomarker-signal, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "result",
-      "record_id": "dq-bone-p1np-4wk-positive",
-      "path": "data/results/dq-bone-p1np-4wk-positive.json",
-      "change_type": "release_accept",
-      "candidate_change_id": "senolytics-dq-bone-release-anchor-2026-06-22",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "result:dq-bone-p1np-4wk-positive depends on finding:dq-bone-rct-primary-null-subgroup-biomarker-signal, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "result",
-      "record_id": "dq-bone-sasp-2wk-null",
-      "path": "data/results/dq-bone-sasp-2wk-null.json",
-      "change_type": "release_accept",
-      "candidate_change_id": "senolytics-dq-bone-release-anchor-2026-06-22",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "result:dq-bone-sasp-2wk-null depends on finding:dq-bone-rct-primary-null-subgroup-biomarker-signal, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "source_rights",
-      "record_id": "source-rights-pmid-38956196-2026-06-22",
-      "path": "data/source-rights/source-rights-pmid-38956196-2026-06-22.json",
-      "change_type": "create",
-      "candidate_change_id": "senolytics-dq-bone-source-rights-seed-2026-06-22",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "source_rights:source-rights-pmid-38956196-2026-06-22 depends on source_snapshot:snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22 through source_snapshot_ids, but that record is not proposed by an accepted or applied candidate."
+          "blocker_type": "unaccepted_create_dependency",
+          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
         }
       ]
     }

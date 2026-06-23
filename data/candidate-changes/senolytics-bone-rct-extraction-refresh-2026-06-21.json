@@ -3,8 +3,8 @@
   "record_type": "candidate_change",
   "id": "senolytics-bone-rct-extraction-refresh-2026-06-21",
   "name": "Extract source-located D+Q bone RCT outcomes and results",
-  "summary": "Upgrades the D+Q postmenopausal bone RCT from triage summary toward source-located registry-extracted records using PubMed EFetch and ClinicalTrials.gov API v2 snapshots.",
-  "lifecycle_status": "in_review",
+  "summary": "Upgrades the D+Q postmenopausal bone RCT from triage summary toward source-located registry-extracted records using PubMed EFetch and ClinicalTrials.gov API v2 snapshots. This extraction-refresh candidate remains in needs_revision because linked extraction-fidelity and safety-limitations reviews still have open major findings for full publication table/supplement reconciliation, exploratory subgroup detail extraction, and event-specific adverse-event structure.",
+  "lifecycle_status": "needs_revision",
   "submitted_at": "2026-06-21T16:10:00Z",
   "scope": {
     "question": "Upgrade the D+Q postmenopausal bone RCT into source-located outcome/result records suitable for evidence-map and later synthesis filtering.",

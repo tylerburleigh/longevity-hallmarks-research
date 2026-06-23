@@ -43,3 +43,4 @@ Inspection discipline:
 Final response:
 
 Return exactly one JSON object that validates against schemas/agent-run.codex-output.schema.json and schemas/agent-run.schema.json. Use execution.surface = "codex_exec". Include unresolved review blockers in blocking_issues.
+Use JSON `null` for `outputs.research_session_id`, `outputs.search_log_id`, and `outputs.screening_run_id` when this review does not create those durable records; do not use placeholder strings such as "none", "n/a", "unknown", or "not_applicable".

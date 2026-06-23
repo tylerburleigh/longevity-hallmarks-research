@@ -18,6 +18,8 @@ const wrapperOwnedQualityCheckNames = [
   "post_output_validate"
 ];
 const wrapperOwnedQualityChecks = new Set(wrapperOwnedQualityCheckNames);
+const placeholderOutputReferences = new Set(["none", "n/a", "na", "null", "unknown", "not_applicable", "not-applicable"]);
+const optionalOutputReferenceFields = ["research_session_id", "search_log_id", "screening_run_id"];
 
 function usage() {
   console.error(`Usage:
@@ -271,6 +273,22 @@ function omitNullObjectProperties(value) {
   return value;
 }
 
+function normalizeAgentRunOutputReferences(record) {
+  const normalized = omitNullObjectProperties(record);
+  if (!normalized?.outputs || typeof normalized.outputs !== "object" || Array.isArray(normalized.outputs)) {
+    return normalized;
+  }
+
+  for (const field of optionalOutputReferenceFields) {
+    const value = normalized.outputs[field];
+    if (typeof value === "string" && placeholderOutputReferences.has(value.toLowerCase())) {
+      delete normalized.outputs[field];
+    }
+  }
+
+  return normalized;
+}
+
 async function exists(filePath) {
   try {
     await fs.access(filePath);
@@ -310,7 +328,7 @@ In the final JSON object, set execution.surface to "codex_exec", execution.isola
   const commandBudgetInstruction = options.maxCommandEvents
     ? ` This run has a max_command_events guard of ${options.maxCommandEvents}; keep repository inspection and validation within that command budget.`
     : "";
-  const outputInstruction = `Do not write the agent_run output path directly. Return the final JSON object as your final message; the wrapper writes output_path from that final message. Do not emit progress messages, interim JSON objects, placeholder agent_run records, or JSON-shaped messages before the final response. Use tool calls only until the final response.${commandBudgetInstruction} Do not read, edit, truncate, rewrite, remove, or repair wrapper-owned agent-run logs, command logs, prompt snapshots, or output files. Do not run ad hoc Node/AJV/schema-validation snippets for the final agent_run; use repository scripts such as npm run validate:records, npm run audit:references, npm run audit:agent-schemas, and npm run verify:knowledge-base. Do not include wrapper-owned quality check names in the final agent_run. Reserved wrapper-owned check names are: ${wrapperOwnedQualityCheckNames.join(", ")}. Coordinator post-run export or verification steps run after codex exec exits when requested.`;
+  const outputInstruction = `Do not write the agent_run output path directly. Return the final JSON object as your final message; the wrapper writes output_path from that final message. Do not emit progress messages, interim JSON objects, placeholder agent_run records, or JSON-shaped messages before the final response. Use JSON null for outputs.research_session_id, outputs.search_log_id, and outputs.screening_run_id when no durable record of that type was created; do not use placeholder strings such as "none", "n/a", "unknown", or "not_applicable" for reference fields. Use tool calls only until the final response.${commandBudgetInstruction} Do not read, edit, truncate, rewrite, remove, or repair wrapper-owned agent-run logs, command logs, prompt snapshots, or output files. Do not run ad hoc Node/AJV/schema-validation snippets for the final agent_run; use repository scripts such as npm run validate:records, npm run audit:references, npm run audit:agent-schemas, and npm run verify:knowledge-base. Do not include wrapper-owned quality check names in the final agent_run. Reserved wrapper-owned check names are: ${wrapperOwnedQualityCheckNames.join(", ")}. Coordinator post-run export or verification steps run after codex exec exits when requested.`;
   const fullPrompt = `${prompt}${jobInstruction}
 
 ${outputInstruction}`;
@@ -657,7 +675,7 @@ async function auditWorkerOutputContract(options) {
   if (agentRunMessages.length !== 1) {
     issues.push(`${options.log}: expected exactly one JSON agent_run message, found ${agentRunMessages.length}.`);
   } else {
-    const normalizedWorkerRecord = omitNullObjectProperties(agentRunMessages[0].parsed);
+    const normalizedWorkerRecord = normalizeAgentRunOutputReferences(agentRunMessages[0].parsed);
     const workerDeclaredWrapperChecks = (agentRunMessages[0].parsed.quality_checks ?? [])
       .map((check) => check.check_name)
       .filter((checkName) => wrapperOwnedQualityChecks.has(checkName));
@@ -674,7 +692,7 @@ async function auditWorkerOutputContract(options) {
 
     if (await exists(outputPath)) {
       const outputRecord = JSON.parse(await fs.readFile(outputPath, "utf8"));
-      const normalizedOutputRecord = omitNullObjectProperties(outputRecord);
+      const normalizedOutputRecord = normalizeAgentRunOutputReferences(outputRecord);
       if (stableStringify(normalizedOutputRecord) !== stableStringify(normalizedWorkerRecord)) {
         issues.push(`${options.output}: final agent_run message does not match the wrapper-written output file before post-run annotations.`);
       }

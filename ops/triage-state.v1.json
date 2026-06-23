@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "triage_state",
   "id": "triage-state-v1",
-  "generated_at": "2026-06-23T17:50:35.626Z",
+  "generated_at": "2026-06-23T18:58:21.468Z",
   "source_roots": [
     "data",
     "research"
@@ -66,12 +66,12 @@
     }
   ],
   "summary": {
-    "candidate_count": 25,
-    "promotion_ready_count": 2,
-    "needs_review_count": 0,
+    "candidate_count": 27,
+    "promotion_ready_count": 0,
+    "needs_review_count": 1,
     "needs_revision_count": 3,
     "blocked_count": 0,
-    "accepted_count": 6,
+    "accepted_count": 8,
     "applied_count": 0,
     "rejected_count": 0,
     "coverage_gap_count": 4,
@@ -79,10 +79,30 @@
     "extraction_debt_count": 50,
     "stale_snapshot_count": 0,
     "watch_snapshot_count": 0,
-    "partial_or_failed_agent_run_count": 3,
+    "partial_or_failed_agent_run_count": 4,
     "recommended_job_count": 31
   },
   "candidate_readiness": [
+    {
+      "candidate_change_id": "candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-source-fidelity-repair",
+      "path": "data/candidate-changes/candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-source-fidelity-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "required_review_lanes": [
+        "source_fidelity"
+      ],
+      "active_review_ids": [],
+      "active_review_paths": [],
+      "complete_accepting_review_lanes": [],
+      "missing_review_lanes": [],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 2,
+      "next_actions": [
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
     {
       "candidate_change_id": "candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-extraction-fidelity-repair",
       "path": "data/candidate-changes/candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-extraction-fidelity-repair.json",
@@ -284,10 +304,45 @@
       ]
     },
     {
+      "candidate_change_id": "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
+      "path": "data/candidate-changes/candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "needs_review",
+      "required_review_lanes": [
+        "extraction_fidelity",
+        "safety_limitations",
+        "source_fidelity",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "active_review_ids": [
+        "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-source-fidelity"
+      ],
+      "active_review_paths": [
+        "data/evidence-reviews/candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-source-fidelity.json"
+      ],
+      "complete_accepting_review_lanes": [
+        "source_fidelity"
+      ],
+      "missing_review_lanes": [
+        "extraction_fidelity",
+        "safety_limitations",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 2,
+      "next_actions": [
+        "Run supervisor review lanes: extraction_fidelity, safety_limitations, synthesis_boundary, taxonomy_mapping."
+      ]
+    },
+    {
       "candidate_change_id": "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
       "path": "data/candidate-changes/candidate-revision-senolytics-coverage-repair-2026-06-21-repair.json",
-      "lifecycle_status": "submitted",
-      "readiness_status": "promotion_ready",
+      "lifecycle_status": "accepted",
+      "readiness_status": "accepted",
       "required_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
@@ -321,9 +376,7 @@
       "blocking_review_ids": [],
       "open_major_or_critical_review_ids": [],
       "proposed_record_count": 2,
-      "next_actions": [
-        "Promote candidate with npm run promote:candidate -- candidate-revision-senolytics-coverage-repair-2026-06-21-repair --status accepted after coordinator selection."
-      ]
+      "next_actions": []
     },
     {
       "candidate_change_id": "orchestration-parallel-smoke-a-candidate-2026-06-23",
@@ -400,7 +453,7 @@
     {
       "candidate_change_id": "senolytics-bone-rct-extraction-refresh-2026-06-21",
       "path": "data/candidate-changes/senolytics-bone-rct-extraction-refresh-2026-06-21.json",
-      "lifecycle_status": "in_review",
+      "lifecycle_status": "needs_revision",
       "readiness_status": "needs_revision",
       "required_review_lanes": [
         "extraction_fidelity",
@@ -564,8 +617,8 @@
     {
       "candidate_change_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
       "path": "data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json",
-      "lifecycle_status": "submitted",
-      "readiness_status": "promotion_ready",
+      "lifecycle_status": "accepted",
+      "readiness_status": "accepted",
       "required_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
@@ -599,9 +652,7 @@
       "blocking_review_ids": [],
       "open_major_or_critical_review_ids": [],
       "proposed_record_count": 19,
-      "next_actions": [
-        "Promote candidate with npm run promote:candidate -- senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22 --status accepted after coordinator selection."
-      ]
+      "next_actions": []
     },
     {
       "candidate_change_id": "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
@@ -764,11 +815,32 @@
       ]
     }
   ],
-  "promotion_ready_candidate_ids": [
-    "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
-    "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
-  ],
+  "promotion_ready_candidate_ids": [],
   "missing_review_lane_queue": [
+    {
+      "candidate_change_id": "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
+      "path": "data/candidate-changes/candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair.json",
+      "review_lane": "extraction_fidelity",
+      "next_action": "Run extraction_fidelity supervisor review for candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair."
+    },
+    {
+      "candidate_change_id": "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
+      "path": "data/candidate-changes/candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair.json",
+      "review_lane": "safety_limitations",
+      "next_action": "Run safety_limitations supervisor review for candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair."
+    },
+    {
+      "candidate_change_id": "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
+      "path": "data/candidate-changes/candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair.json",
+      "review_lane": "synthesis_boundary",
+      "next_action": "Run synthesis_boundary supervisor review for candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair."
+    },
+    {
+      "candidate_change_id": "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
+      "path": "data/candidate-changes/candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair.json",
+      "review_lane": "taxonomy_mapping",
+      "next_action": "Run taxonomy_mapping supervisor review for candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair."
+    },
     {
       "candidate_change_id": "senolytics-scaffold-bootstrap-2026-06-21",
       "path": "data/candidate-changes/senolytics-scaffold-bootstrap-2026-06-21.json",
@@ -1488,6 +1560,20 @@
       "mode": "extraction_refresh"
     },
     {
+      "agent_run_id": "self-healing-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21",
+      "path": "research/agent-runs/self-healing-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21.json",
+      "status": "partial",
+      "agent_role": "self_healing_agent",
+      "blocking_issues": [
+        "The target senolytics-bone-rct-extraction-refresh-2026-06-21 candidate still has open major review findings in extraction_fidelity and safety_limitations; this bounded repair only aligns lifecycle state and creates a repair candidate."
+      ],
+      "next_actions": [
+        "Supervisor-review candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair across its five required lanes.",
+        "Do not promote senolytics-bone-rct-extraction-refresh-2026-06-21 until full publication table/supplement reconciliation, exploratory subgroup extraction, and event-specific adverse-event extraction are completed or separately reviewed."
+      ],
+      "mode": "agent_directed"
+    },
+    {
       "agent_run_id": "self-healing-candidate-revision-senolytics-coverage-repair-2026-06-21",
       "path": "research/agent-runs/self-healing-candidate-revision-senolytics-coverage-repair-2026-06-21.json",
       "status": "partial",
@@ -1520,29 +1606,15 @@
   ],
   "recommended_jobs": [
     {
-      "job_id": "candidate-promotion-candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
-      "job_type": "candidate_promotion",
+      "job_id": "candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
+      "job_type": "candidate_review",
       "priority": "high",
       "source": "candidate_readiness",
       "target_record_type": "candidate_change",
-      "target_record_id": "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
-      "rationale": "All required active review lanes are complete, accepting, non-blocking, and free of open major or critical findings.",
-      "suggested_command": "npm run promote:candidate -- candidate-revision-senolytics-coverage-repair-2026-06-21-repair --status accepted --dry-run",
+      "target_record_id": "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
+      "rationale": "Required review lanes are missing: extraction_fidelity, safety_limitations, synthesis_boundary, taxonomy_mapping.",
       "inputs": [
-        "data/candidate-changes/candidate-revision-senolytics-coverage-repair-2026-06-21-repair.json"
-      ]
-    },
-    {
-      "job_id": "candidate-promotion-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
-      "job_type": "candidate_promotion",
-      "priority": "high",
-      "source": "candidate_readiness",
-      "target_record_type": "candidate_change",
-      "target_record_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
-      "rationale": "All required active review lanes are complete, accepting, non-blocking, and free of open major or critical findings.",
-      "suggested_command": "npm run promote:candidate -- senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22 --status accepted --dry-run",
-      "inputs": [
-        "data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json"
+        "data/candidate-changes/candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair.json"
       ]
     },
     {
@@ -1794,6 +1866,18 @@
       "rationale": "The current result schema cannot directly encode adverse_event.preferred_term or adverse_event.event_specific_counts; the headache term and D+Q count are represented through valid result fields while the synthesis group records these structured-field blockers. The Extended Data Table 1 control headache cell is blank under a table threshold for events reported in more than one participant, so no defensible control count, risk ratio, risk difference, or uncertainty was extracted.",
       "inputs": [
         "research/agent-runs/dq-bone-headache-ae-extraction-pilot-2026-06-23.json"
+      ]
+    },
+    {
+      "job_id": "agent-run-recovery-self-healing-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21",
+      "job_type": "agent_run_recovery",
+      "priority": "medium",
+      "source": "agent_run_status",
+      "target_record_type": "agent_run",
+      "target_record_id": "self-healing-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21",
+      "rationale": "The target senolytics-bone-rct-extraction-refresh-2026-06-21 candidate still has open major review findings in extraction_fidelity and safety_limitations; this bounded repair only aligns lifecycle state and creates a repair candidate.",
+      "inputs": [
+        "research/agent-runs/self-healing-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21.json"
       ]
     },
     {

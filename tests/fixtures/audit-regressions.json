@@ -194,7 +194,7 @@
           "type": "set_json",
           "path": "ops/reconciliation/parallel-reconciliation.v1.json",
           "pointer": "/summary/reconciliation_decision_count",
-          "value": 2
+          "value": 4
         }
       ],
       "expected_failure_substrings": [
@@ -253,7 +253,10 @@
       "operations": [
         {
           "type": "set_json",
-          "path": "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21.json",
+          "path_selector": {
+            "type": "first_json_file",
+            "root": "ops/codex-jobs/live/generated-self-healing"
+          },
           "pointer": "/orchestration/expected_cost/expected_token_budget",
           "value": 999
         }

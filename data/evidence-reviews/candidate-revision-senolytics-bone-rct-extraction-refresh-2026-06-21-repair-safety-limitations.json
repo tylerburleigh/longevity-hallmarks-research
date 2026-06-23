@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-safety-limitations",
+  "candidate_change_id": "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
+  "review_lane": "safety_limitations",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "The repair candidate preserves the underlying D+Q bone RCT safety limitation: the original extraction-refresh candidate remains in needs_revision and explicitly states that event-specific adverse-event extraction must be repaired before safety synthesis.",
+  "findings": [
+    {
+      "finding_id": "safety-limitation-preserved",
+      "severity": "note",
+      "category": "safety_limitation",
+      "claim_or_issue": "The proposed update to senolytics-bone-rct-extraction-refresh-2026-06-21 keeps lifecycle_status as needs_revision and states that safety-limitations findings remain open until event-specific adverse-event extraction repairs are completed.",
+      "why_it_matters": "The supervisor lane would be unsafe if the repair hid or downgraded the open event-specific adverse-event gap from the original safety-limitations review.",
+      "recommended_action": "Accept this review lane while keeping the underlying event-specific adverse-event extraction work open for a later evidence repair.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "no-safety-promotion",
+      "severity": "note",
+      "category": "interpretation_overreach",
+      "claim_or_issue": "The revision-state repair candidate only tracks the repair candidate and updates candidate lifecycle/summary state; it does not promote the D+Q bone RCT candidate or claim complete safety synthesis.",
+      "why_it_matters": "Safety limitations remain bounded to candidate readiness and are not converted into an accepted evidence synthesis claim.",
+      "recommended_action": "No additional safety-limitations repair is required for this supervisor-review lane.",
+      "resolution_status": "closed"
+    }
+  ]
+}

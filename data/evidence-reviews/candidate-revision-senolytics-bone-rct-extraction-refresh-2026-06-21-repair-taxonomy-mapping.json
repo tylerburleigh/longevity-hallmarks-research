@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-taxonomy-mapping",
+  "candidate_change_id": "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
+  "review_lane": "taxonomy_mapping",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-taxonomy-mapping",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Taxonomy-mapping review is complete for the target repair candidate. The proposal is limited to candidate-change bookkeeping for a D+Q senolytics bone RCT repair, preserves the cellular_senescence, chronic_inflammation, stem_cell_exhaustion, and senolytics scope, and introduces no evidence-record taxonomy remapping.",
+  "findings": [
+    {
+      "finding_id": "taxonomy-mapping-scope-preserved",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The target repair candidate proposes one candidate_change creation for its own review-lane tracking and one candidate_change update to keep the D+Q bone RCT extraction-refresh candidate in needs_revision.",
+      "why_it_matters": "Both proposed records remain within candidate-change metadata and preserve the same hallmarks and senolytics track, so the taxonomy labels are consistent with the bounded repair scope.",
+      "recommended_action": "No taxonomy-mapping revision is required for this lane.",
+      "resolution_status": "closed"
+    }
+  ]
+}

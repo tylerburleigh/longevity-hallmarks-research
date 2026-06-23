@@ -194,7 +194,7 @@
           "type": "set_json",
           "path": "ops/reconciliation/parallel-reconciliation.v1.json",
           "pointer": "/summary/reconciliation_decision_count",
-          "value": 4
+          "value": 5
         }
       ],
       "expected_failure_substrings": [

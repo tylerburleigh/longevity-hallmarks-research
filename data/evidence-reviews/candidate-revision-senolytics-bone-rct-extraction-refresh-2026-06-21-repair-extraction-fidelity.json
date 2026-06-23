@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-extraction-fidelity",
+  "candidate_change_id": "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
+  "review_lane": "extraction_fidelity",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-extraction-fidelity",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "The extraction_fidelity lane is complete for the bounded repair candidate. The candidate accurately records that the underlying D+Q extraction-refresh candidate remains in needs_revision because extraction-fidelity gaps are still open, and it does not promote the source candidate or mutate underlying source, outcome, result, study, or finding records.",
+  "findings": [
+    {
+      "finding_id": "candidate-state-retains-open-extraction-gaps",
+      "severity": "note",
+      "category": "extraction_error",
+      "claim_or_issue": "The target repair candidate keeps senolytics-bone-rct-extraction-refresh-2026-06-21 in needs_revision and explicitly states that extraction-fidelity gaps remain open until publication-table, supplement/subgroup, and event-specific adverse-event extraction repairs are completed.",
+      "why_it_matters": "This prevents the repair from representing unresolved extracted outcome or result content as corrected.",
+      "recommended_action": "No revision is needed for this lane; keep the original extraction-refresh candidate in needs_revision until a separate extraction repair updates the underlying records.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "no-underlying-extraction-mutation",
+      "severity": "note",
+      "category": "endpoint_boundary",
+      "claim_or_issue": "The target repair candidate proposes only the bounded repair ledger and the lifecycle/summary alignment for the original candidate; it does not change source, outcome, result, study, or finding records.",
+      "why_it_matters": "The extraction_fidelity review for this self-healing lane should confirm accurate handling of previously identified extraction deficiencies rather than silently adjudicating new extraction values.",
+      "recommended_action": "Accept the extraction_fidelity lane for this repair candidate; handle any underlying outcome/result extraction corrections in a separate extraction-refresh candidate.",
+      "resolution_status": "closed"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "reconciliation_decision",
+  "id": "resolve-bone-rct-repair-lifecycle-overlap-2026-06-23",
+  "created_at": "2026-06-23T19:36:00Z",
+  "reconciled_by_agent": "codex-coordinator",
+  "reconciliation_report_id": "parallel-reconciliation-v1",
+  "issue_ids": [
+    "overlapping-candidate-97fe7f8de6dc"
+  ],
+  "issue_categories": [
+    "overlapping_candidate_proposal"
+  ],
+  "candidate_change_ids": [
+    "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair"
+  ],
+  "compatible_candidate_change_ids": [
+    "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair"
+  ],
+  "resolution_status": "resolved",
+  "resolution_summary": "The overlap is compatible for the lifecycle-repair candidate only. The repair candidate updates the original D+Q bone RCT extraction-refresh candidate so it remains in needs_revision and does not promote, accept, or release the broader extraction-refresh candidate. Its five accepting supervisor reviews are bounded to this lifecycle repair and preserve the original candidate's unresolved extraction and safety repair debt.",
+  "evidence": [
+    {
+      "path": "data/candidate-changes/candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair.json",
+      "summary": "The repair candidate proposes only a repair candidate record and an update to senolytics-bone-rct-extraction-refresh-2026-06-21 that records the target remains in needs_revision."
+    },
+    {
+      "path": "data/candidate-changes/senolytics-bone-rct-extraction-refresh-2026-06-21.json",
+      "summary": "The original extraction-refresh candidate is in needs_revision and states that publication-table, supplement/subgroup, and event-specific adverse-event extraction repairs remain required before promotion."
+    },
+    {
+      "path": "data/evidence-reviews/candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-source-fidelity.json",
+      "summary": "The source-fidelity review accepts only the lifecycle repair and does not promote the original extraction-refresh candidate."
+    },
+    {
+      "path": "data/evidence-reviews/candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-extraction-fidelity.json",
+      "summary": "The extraction-fidelity review accepts the repair because it preserves the open extraction gaps instead of claiming they are corrected."
+    },
+    {
+      "path": "data/evidence-reviews/candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-safety-limitations.json",
+      "summary": "The safety-limitations review accepts the lifecycle repair while keeping the original event-specific adverse-event extraction gap open for later repair."
+    }
+  ]
+}

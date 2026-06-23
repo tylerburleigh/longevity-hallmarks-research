@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-synthesis-boundary",
+  "candidate_change_id": "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
+  "review_lane": "synthesis_boundary",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-synthesis-boundary",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Accepted for synthesis-boundary review. The target repair candidate is limited to recording the repair candidate itself and updating the original D+Q bone RCT extraction-refresh candidate lifecycle and summary to reflect already linked needs-revision findings; it does not promote the candidate or add new synthesis claims.",
+  "findings": [
+    {
+      "finding_id": "synthesis-boundary-bounded-repair",
+      "severity": "note",
+      "category": "interpretation_overreach",
+      "claim_or_issue": "The target repair candidate proposes only repair bookkeeping and a lifecycle/summary update for senolytics-bone-rct-extraction-refresh-2026-06-21, with no mutation of source, study, finding, outcome, result, or synthesis records.",
+      "why_it_matters": "A synthesis-boundary review should prevent an administrative repair from changing the evidentiary interpretation or promoting the extraction-refresh candidate while extraction-fidelity and safety-limitations issues remain open.",
+      "recommended_action": "Accept this review lane and keep any extraction, safety, or synthesis-content changes in separate bounded repair candidates before promotion is considered.",
+      "resolution_status": "closed"
+    }
+  ]
+}

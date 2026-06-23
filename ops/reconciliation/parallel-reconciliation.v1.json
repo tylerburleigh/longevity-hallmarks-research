@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "parallel_reconciliation",
   "id": "parallel-reconciliation-v1",
-  "generated_at": "2026-06-23T18:59:07.787Z",
+  "generated_at": "2026-06-23T19:36:16.298Z",
   "source_roots": [
     "data",
     "research",
@@ -48,17 +48,17 @@
     "duplicate_source_group_count": 0,
     "study_count": 9,
     "duplicate_study_group_count": 0,
-    "candidate_count": 27,
-    "active_candidate_count": 19,
+    "candidate_count": 31,
+    "active_candidate_count": 23,
     "overlapping_candidate_group_count": 8,
     "source_rights_count": 2,
     "source_rights_conflict_count": 0,
-    "agent_run_count": 31,
-    "parallel_batch_count": 5,
+    "agent_run_count": 35,
+    "parallel_batch_count": 4,
     "reconciliation_batch_count": 4,
-    "parallel_batch_run_count": 14,
+    "parallel_batch_run_count": 15,
     "pending_parallel_worker_count": 0,
-    "reconciliation_decision_count": 3,
+    "reconciliation_decision_count": 4,
     "incomplete_ledger_count": 2,
     "open_finding_count": 10,
     "blocking_finding_count": 10,
@@ -66,22 +66,7 @@
   },
   "parallel_batches": [
     {
-      "batch_id": "parallel-batch-001-candidate-review",
-      "parallel_group": "candidate-review",
-      "execution_class": "independent",
-      "reconciliation_required": false,
-      "job_ids": [
-        "self-healing-candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-extraction-fidelity",
-        "self-healing-candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-safety-limitations",
-        "self-healing-candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-synthesis-boundary",
-        "self-healing-candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-taxonomy-mapping"
-      ],
-      "overlapping_execution_keys": [],
-      "status": "no_reconciliation_needed",
-      "finding_ids": []
-    },
-    {
-      "batch_id": "parallel-batch-002-candidate-revision",
+      "batch_id": "parallel-batch-001-candidate-revision",
       "parallel_group": "candidate-revision",
       "execution_class": "independent",
       "reconciliation_required": true,
@@ -104,7 +89,7 @@
       ]
     },
     {
-      "batch_id": "parallel-batch-003-extraction-refresh",
+      "batch_id": "parallel-batch-002-extraction-refresh",
       "parallel_group": "extraction-refresh",
       "execution_class": "reconciliation_required",
       "reconciliation_required": true,
@@ -133,7 +118,7 @@
       ]
     },
     {
-      "batch_id": "parallel-batch-004-extraction-refresh",
+      "batch_id": "parallel-batch-003-extraction-refresh",
       "parallel_group": "extraction-refresh",
       "execution_class": "independent",
       "reconciliation_required": true,
@@ -159,7 +144,7 @@
       ]
     },
     {
-      "batch_id": "parallel-batch-005-extraction-refresh",
+      "batch_id": "parallel-batch-004-extraction-refresh",
       "parallel_group": "extraction-refresh",
       "execution_class": "independent",
       "reconciliation_required": true,

@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "codex_job",
+  "id": "self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-source-fidelity",
+  "name": "Self-healing repair: candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-source-fidelity",
+  "summary": "Required review lane is missing: source_fidelity.",
+  "lifecycle_status": "ready",
+  "agent_role": "supervisor_agent",
+  "mode": "agent_directed",
+  "prompt_file": "docs/prompts/codex-agents/supervisor-review.md",
+  "output_path": "research/agent-runs/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-source-fidelity.json",
+  "jsonl_log_path": "research/agent-runs/logs/self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-source-fidelity.jsonl",
+  "scope": {
+    "question": "candidate_review: Required review lane is missing: source_fidelity.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "chronic_inflammation"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "execution": {
+    "isolation": "git_worktree",
+    "sandbox": "workspace-write",
+    "approval_policy": "never",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "timeout_ms": 3600000,
+    "no_output_timeout_ms": 300000,
+    "max_command_events": 70
+  },
+  "expected_outputs": {
+    "canonical_write_policy": "candidate_change_required",
+    "candidate_change_id": "candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-source-fidelity-repair",
+    "required_review_lanes": [
+      "source_fidelity"
+    ]
+  },
+  "orchestration": {
+    "read_sets": [
+      "path:data/candidate-changes/candidate-revision-senolytics-coverage-repair-2026-06-21-repair.json",
+      "path:ops/triage-state.v1.json",
+      "triage_job:candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair"
+    ],
+    "write_sets": [
+      "candidate_change:candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-source-fidelity-repair",
+      "candidate_review:candidate-revision-senolytics-coverage-repair-2026-06-21-repair/source_fidelity",
+      "path:data/candidate-changes/candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-source-fidelity-repair.json"
+    ],
+    "conflict_keys": [
+      "candidate_change:candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-source-fidelity-repair",
+      "candidate_review:candidate-revision-senolytics-coverage-repair-2026-06-21-repair/source_fidelity"
+    ],
+    "parallel_group": "candidate-review",
+    "reconciliation_required": false,
+    "expected_cost": {
+      "cost_class": "high",
+      "expected_wall_time_ms": 3600000,
+      "expected_token_budget": 100000,
+      "io_intensity": "medium"
+    }
+  },
+  "post_run": {
+    "export_latest": true,
+    "verify_knowledge_base": true
+  },
+  "quality_gates": [
+    "validate_records",
+    "audit_references",
+    "audit_exports",
+    "audit_agent_schemas",
+    "audit_agentic_process",
+    "worker_output_contract",
+    "candidate_agent_run_ledger_match",
+    "supervisor_review_lanes"
+  ],
+  "notes": [
+    "Generated from ops/triage-state.v1.json recommended_jobs[] item candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair.",
+    "Source queue: candidate_readiness.",
+    "Supervisor review lane: source_fidelity.",
+    "The worker should keep edits bounded to the target record, listed inputs, and the candidate repair ledger."
+  ]
+}

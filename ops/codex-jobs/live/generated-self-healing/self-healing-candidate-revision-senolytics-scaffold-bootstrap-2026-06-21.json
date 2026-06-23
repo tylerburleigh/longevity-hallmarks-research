@@ -41,6 +41,7 @@
   "orchestration": {
     "read_sets": [
       "path:data/candidate-changes/senolytics-scaffold-bootstrap-2026-06-21.json",
+      "path:data/evidence-reviews/senolytics-scaffold-source-fidelity-2026-06-21.json",
       "path:ops/triage-state.v1.json",
       "triage_job:candidate-revision-senolytics-scaffold-bootstrap-2026-06-21"
     ],
@@ -48,6 +49,7 @@
       "candidate_change:candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair",
       "path:data/candidate-changes/candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair.json",
       "path:data/candidate-changes/senolytics-scaffold-bootstrap-2026-06-21.json",
+      "path:data/evidence-reviews/senolytics-scaffold-source-fidelity-2026-06-21.json",
       "target_record:candidate_change/senolytics-scaffold-bootstrap-2026-06-21"
     ],
     "conflict_keys": [

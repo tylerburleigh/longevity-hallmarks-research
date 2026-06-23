@@ -342,6 +342,7 @@ function buildCandidateReadiness({ candidateEntries, reviewEntries }) {
       readiness_status: readinessStatus,
       required_review_lanes: requiredReviewLanes,
       active_review_ids: sortStrings(activeReviews.map((review) => review.id)),
+      active_review_paths: sortStrings(activeReviewEntries.map((reviewEntry) => reviewEntry.path)),
       complete_accepting_review_lanes: sortStrings(completeAcceptingReviewLanes),
       missing_review_lanes: missingReviewLanes,
       revision_review_lanes: revisionReviewLanes,
@@ -640,7 +641,7 @@ function buildRecommendedJobs({
         target_record_type: "candidate_change",
         target_record_id: candidate.candidate_change_id,
         rationale: `Candidate has revision lanes or open findings: ${candidate.revision_review_lanes.join(", ") || "linked review findings"}.`,
-        inputs: [candidate.path]
+        inputs: sortStrings([candidate.path, ...(candidate.active_review_paths ?? [])])
       });
     } else if (candidate.readiness_status === "blocked") {
       addRecommendedJob(jobsById, {

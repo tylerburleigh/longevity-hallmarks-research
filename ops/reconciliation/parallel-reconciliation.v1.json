@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "parallel_reconciliation",
   "id": "parallel-reconciliation-v1",
-  "generated_at": "2026-06-23T14:36:28.740Z",
+  "generated_at": "2026-06-23T14:55:02.870Z",
   "source_roots": [
     "data",
     "research",
@@ -48,20 +48,20 @@
     "duplicate_source_group_count": 0,
     "study_count": 9,
     "duplicate_study_group_count": 0,
-    "candidate_count": 14,
-    "active_candidate_count": 8,
-    "overlapping_candidate_group_count": 8,
+    "candidate_count": 15,
+    "active_candidate_count": 9,
+    "overlapping_candidate_group_count": 9,
     "source_rights_count": 2,
     "source_rights_conflict_count": 0,
-    "agent_run_count": 18,
-    "parallel_batch_count": 4,
+    "agent_run_count": 19,
+    "parallel_batch_count": 5,
     "reconciliation_batch_count": 2,
     "parallel_batch_run_count": 7,
     "pending_parallel_worker_count": 0,
     "reconciliation_decision_count": 1,
     "incomplete_ledger_count": 2,
-    "open_finding_count": 10,
-    "blocking_finding_count": 10,
+    "open_finding_count": 11,
+    "blocking_finding_count": 11,
     "warning_finding_count": 0
   },
   "parallel_batches": [
@@ -71,10 +71,10 @@
       "execution_class": "independent",
       "reconciliation_required": false,
       "job_ids": [
-        "self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity",
-        "self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations",
-        "self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-source-fidelity",
-        "self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-synthesis-boundary"
+        "self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-extraction-fidelity",
+        "self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-safety-limitations",
+        "self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-source-fidelity",
+        "self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary"
       ],
       "overlapping_execution_keys": [],
       "status": "no_reconciliation_needed",
@@ -86,6 +86,22 @@
       "execution_class": "independent",
       "reconciliation_required": false,
       "job_ids": [
+        "self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-taxonomy-mapping",
+        "self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity",
+        "self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations",
+        "self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-source-fidelity"
+      ],
+      "overlapping_execution_keys": [],
+      "status": "no_reconciliation_needed",
+      "finding_ids": []
+    },
+    {
+      "batch_id": "parallel-batch-003-candidate-review",
+      "parallel_group": "candidate-review",
+      "execution_class": "independent",
+      "reconciliation_required": false,
+      "job_ids": [
+        "self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-synthesis-boundary",
         "self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping"
       ],
       "overlapping_execution_keys": [],
@@ -93,13 +109,12 @@
       "finding_ids": []
     },
     {
-      "batch_id": "parallel-batch-003-candidate-revision",
+      "batch_id": "parallel-batch-004-candidate-revision",
       "parallel_group": "candidate-revision",
       "execution_class": "independent",
       "reconciliation_required": true,
       "job_ids": [
         "self-healing-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21",
-        "self-healing-candidate-revision-senolytics-coverage-repair-2026-06-21",
         "self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21"
       ],
       "overlapping_execution_keys": [],
@@ -114,11 +129,12 @@
         "overlapping-candidate-b3857906563f",
         "overlapping-candidate-b443e4e5da78",
         "overlapping-candidate-b633096216bd",
-        "overlapping-candidate-f1249c68d429"
+        "overlapping-candidate-f1249c68d429",
+        "overlapping-candidate-feabd894c098"
       ]
     },
     {
-      "batch_id": "parallel-batch-004-extraction-refresh",
+      "batch_id": "parallel-batch-005-extraction-refresh",
       "parallel_group": "extraction-refresh",
       "execution_class": "reconciliation_required",
       "reconciliation_required": true,
@@ -141,13 +157,44 @@
         "overlapping-candidate-b3857906563f",
         "overlapping-candidate-b443e4e5da78",
         "overlapping-candidate-b633096216bd",
-        "overlapping-candidate-f1249c68d429"
+        "overlapping-candidate-f1249c68d429",
+        "overlapping-candidate-feabd894c098"
       ]
     }
   ],
   "duplicate_sources": [],
   "duplicate_studies": [],
   "overlapping_candidate_proposals": [
+    {
+      "issue_id": "overlapping-candidate-feabd894c098",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "proposal_key": "data/candidate-changes/senolytics-coverage-repair-2026-06-21.json",
+      "candidate_change_ids": [
+        "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
+        "senolytics-coverage-repair-2026-06-21"
+      ],
+      "proposed_records": [
+        {
+          "candidate_change_id": "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
+          "lifecycle_status": "submitted",
+          "record_type": "candidate_change",
+          "record_id": "senolytics-coverage-repair-2026-06-21",
+          "path": "data/candidate-changes/senolytics-coverage-repair-2026-06-21.json",
+          "change_type": "update"
+        },
+        {
+          "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
+          "lifecycle_status": "needs_revision",
+          "record_type": "candidate_change",
+          "record_id": "senolytics-coverage-repair-2026-06-21",
+          "path": "data/candidate-changes/senolytics-coverage-repair-2026-06-21.json",
+          "change_type": "create"
+        }
+      ],
+      "summary": "Active candidates propose changes to the same record path: data/candidate-changes/senolytics-coverage-repair-2026-06-21.json."
+    },
     {
       "issue_id": "overlapping-candidate-a47143957992",
       "category": "overlapping_candidate_proposal",
@@ -170,7 +217,7 @@
         },
         {
           "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
-          "lifecycle_status": "in_review",
+          "lifecycle_status": "needs_revision",
           "record_type": "finding",
           "record_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
           "path": "data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json",
@@ -200,7 +247,7 @@
       "proposed_records": [
         {
           "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
-          "lifecycle_status": "in_review",
+          "lifecycle_status": "needs_revision",
           "record_type": "finding",
           "record_id": "dq-senolytic-drug-discovery-preclinical",
           "path": "data/findings/dq-senolytic-drug-discovery-preclinical.json",
@@ -238,7 +285,7 @@
         },
         {
           "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
-          "lifecycle_status": "in_review",
+          "lifecycle_status": "needs_revision",
           "record_type": "outcome",
           "record_id": "dq-bone-turnover-marker",
           "path": "data/outcomes/dq-bone-turnover-marker.json",
@@ -268,7 +315,7 @@
         },
         {
           "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
-          "lifecycle_status": "in_review",
+          "lifecycle_status": "needs_revision",
           "record_type": "result",
           "record_id": "dq-bone-turnover-mixed",
           "path": "data/results/dq-bone-turnover-mixed.json",
@@ -290,7 +337,7 @@
       "proposed_records": [
         {
           "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
-          "lifecycle_status": "in_review",
+          "lifecycle_status": "needs_revision",
           "record_type": "source",
           "record_id": "pmid-25754370",
           "path": "data/sources/pmid-25754370.json",
@@ -320,7 +367,7 @@
       "proposed_records": [
         {
           "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
-          "lifecycle_status": "in_review",
+          "lifecycle_status": "needs_revision",
           "record_type": "source",
           "record_id": "pmid-38956196",
           "path": "data/sources/pmid-38956196.json",
@@ -358,7 +405,7 @@
         },
         {
           "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
-          "lifecycle_status": "in_review",
+          "lifecycle_status": "needs_revision",
           "record_type": "study",
           "record_id": "dq-postmenopausal-bone-rct",
           "path": "data/studies/dq-postmenopausal-bone-rct.json",
@@ -380,7 +427,7 @@
       "proposed_records": [
         {
           "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
-          "lifecycle_status": "in_review",
+          "lifecycle_status": "needs_revision",
           "record_type": "study",
           "record_id": "zhu-senolytic-drug-discovery",
           "path": "data/studies/zhu-senolytic-drug-discovery.json",
@@ -569,6 +616,13 @@
       "severity": "blocker",
       "status": "open",
       "summary": "Active candidates propose changes to the same record path: data/sources/pmid-38956196.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-feabd894c098",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "summary": "Active candidates propose changes to the same record path: data/candidate-changes/senolytics-coverage-repair-2026-06-21.json."
     }
   ]
 }

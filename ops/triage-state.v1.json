@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "triage_state",
   "id": "triage-state-v1",
-  "generated_at": "2026-06-23T14:36:28.508Z",
+  "generated_at": "2026-06-23T14:55:02.642Z",
   "source_roots": [
     "data",
     "research"
@@ -66,9 +66,9 @@
     }
   ],
   "summary": {
-    "candidate_count": 14,
+    "candidate_count": 15,
     "promotion_ready_count": 0,
-    "needs_review_count": 1,
+    "needs_review_count": 2,
     "needs_revision_count": 3,
     "blocked_count": 0,
     "accepted_count": 6,
@@ -79,10 +79,40 @@
     "extraction_debt_count": 50,
     "stale_snapshot_count": 0,
     "watch_snapshot_count": 0,
-    "partial_or_failed_agent_run_count": 2,
-    "recommended_job_count": 29
+    "partial_or_failed_agent_run_count": 3,
+    "recommended_job_count": 31
   },
   "candidate_readiness": [
+    {
+      "candidate_change_id": "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
+      "path": "data/candidate-changes/candidate-revision-senolytics-coverage-repair-2026-06-21-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "needs_review",
+      "required_review_lanes": [
+        "extraction_fidelity",
+        "safety_limitations",
+        "source_fidelity",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "active_review_ids": [],
+      "active_review_paths": [],
+      "complete_accepting_review_lanes": [],
+      "missing_review_lanes": [
+        "extraction_fidelity",
+        "safety_limitations",
+        "source_fidelity",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 2,
+      "next_actions": [
+        "Run supervisor review lanes: extraction_fidelity, safety_limitations, source_fidelity, synthesis_boundary, taxonomy_mapping."
+      ]
+    },
     {
       "candidate_change_id": "orchestration-parallel-smoke-a-candidate-2026-06-23",
       "path": "data/candidate-changes/orchestration-parallel-smoke-a-candidate-2026-06-23.json",
@@ -90,6 +120,7 @@
       "readiness_status": "submitted",
       "required_review_lanes": [],
       "active_review_ids": [],
+      "active_review_paths": [],
       "complete_accepting_review_lanes": [],
       "missing_review_lanes": [],
       "revision_review_lanes": [],
@@ -107,6 +138,7 @@
       "readiness_status": "submitted",
       "required_review_lanes": [],
       "active_review_ids": [],
+      "active_review_paths": [],
       "complete_accepting_review_lanes": [],
       "missing_review_lanes": [],
       "revision_review_lanes": [],
@@ -124,6 +156,7 @@
       "readiness_status": "submitted",
       "required_review_lanes": [],
       "active_review_ids": [],
+      "active_review_paths": [],
       "complete_accepting_review_lanes": [],
       "missing_review_lanes": [],
       "revision_review_lanes": [],
@@ -141,6 +174,7 @@
       "readiness_status": "submitted",
       "required_review_lanes": [],
       "active_review_ids": [],
+      "active_review_paths": [],
       "complete_accepting_review_lanes": [],
       "missing_review_lanes": [],
       "revision_review_lanes": [],
@@ -170,6 +204,13 @@
         "senolytics-bone-rct-synthesis-boundary-2026-06-21",
         "senolytics-bone-rct-taxonomy-mapping-2026-06-21"
       ],
+      "active_review_paths": [
+        "data/evidence-reviews/senolytics-bone-rct-extraction-fidelity-2026-06-21.json",
+        "data/evidence-reviews/senolytics-bone-rct-safety-limitations-2026-06-21.json",
+        "data/evidence-reviews/senolytics-bone-rct-source-fidelity-2026-06-21.json",
+        "data/evidence-reviews/senolytics-bone-rct-synthesis-boundary-2026-06-21.json",
+        "data/evidence-reviews/senolytics-bone-rct-taxonomy-mapping-2026-06-21.json"
+      ],
       "complete_accepting_review_lanes": [
         "source_fidelity",
         "synthesis_boundary",
@@ -194,7 +235,7 @@
     {
       "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
       "path": "data/candidate-changes/senolytics-coverage-repair-2026-06-21.json",
-      "lifecycle_status": "in_review",
+      "lifecycle_status": "needs_revision",
       "readiness_status": "needs_revision",
       "required_review_lanes": [
         "extraction_fidelity",
@@ -209,6 +250,13 @@
         "senolytics-coverage-repair-source-fidelity-2026-06-21",
         "senolytics-coverage-repair-synthesis-boundary-2026-06-21",
         "senolytics-coverage-repair-taxonomy-mapping-2026-06-21"
+      ],
+      "active_review_paths": [
+        "data/evidence-reviews/senolytics-coverage-repair-extraction-fidelity-2026-06-21.json",
+        "data/evidence-reviews/senolytics-coverage-repair-safety-limitations-2026-06-21.json",
+        "data/evidence-reviews/senolytics-coverage-repair-source-fidelity-2026-06-21.json",
+        "data/evidence-reviews/senolytics-coverage-repair-synthesis-boundary-2026-06-21.json",
+        "data/evidence-reviews/senolytics-coverage-repair-taxonomy-mapping-2026-06-21.json"
       ],
       "complete_accepting_review_lanes": [],
       "missing_review_lanes": [],
@@ -248,6 +296,11 @@
         "senolytics-dq-bone-endpoint-synthesis-boundary-2026-06-21",
         "senolytics-dq-bone-endpoint-taxonomy-mapping-2026-06-21"
       ],
+      "active_review_paths": [
+        "data/evidence-reviews/senolytics-dq-bone-endpoint-safety-limitations-2026-06-21.json",
+        "data/evidence-reviews/senolytics-dq-bone-endpoint-synthesis-boundary-2026-06-21.json",
+        "data/evidence-reviews/senolytics-dq-bone-endpoint-taxonomy-mapping-2026-06-21.json"
+      ],
       "complete_accepting_review_lanes": [
         "safety_limitations",
         "synthesis_boundary",
@@ -277,6 +330,12 @@
         "senolytics-dq-bone-headache-ae-synthesis-boundary-2026-06-23",
         "senolytics-dq-bone-headache-ae-taxonomy-mapping-2026-06-23"
       ],
+      "active_review_paths": [
+        "data/evidence-reviews/senolytics-dq-bone-headache-ae-extraction-fidelity-2026-06-23.json",
+        "data/evidence-reviews/senolytics-dq-bone-headache-ae-safety-limitations-2026-06-23.json",
+        "data/evidence-reviews/senolytics-dq-bone-headache-ae-synthesis-boundary-2026-06-23.json",
+        "data/evidence-reviews/senolytics-dq-bone-headache-ae-taxonomy-mapping-2026-06-23.json"
+      ],
       "complete_accepting_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
@@ -303,6 +362,7 @@
         "taxonomy_mapping"
       ],
       "active_review_ids": [],
+      "active_review_paths": [],
       "complete_accepting_review_lanes": [],
       "missing_review_lanes": [
         "extraction_fidelity",
@@ -336,6 +396,12 @@
         "senolytics-dq-bone-registry-markdown-provenance-source-fidelity-2026-06-22",
         "senolytics-dq-bone-registry-markdown-provenance-taxonomy-mapping-2026-06-22"
       ],
+      "active_review_paths": [
+        "data/evidence-reviews/senolytics-dq-bone-registry-markdown-provenance-extraction-fidelity-2026-06-22.json",
+        "data/evidence-reviews/senolytics-dq-bone-registry-markdown-provenance-safety-limitations-2026-06-22.json",
+        "data/evidence-reviews/senolytics-dq-bone-registry-markdown-provenance-source-fidelity-2026-06-22.json",
+        "data/evidence-reviews/senolytics-dq-bone-registry-markdown-provenance-taxonomy-mapping-2026-06-22.json"
+      ],
       "complete_accepting_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
@@ -361,6 +427,10 @@
       "active_review_ids": [
         "senolytics-dq-bone-registry-text-snapshot-extraction-fidelity-2026-06-22",
         "senolytics-dq-bone-registry-text-snapshot-source-fidelity-2026-06-22"
+      ],
+      "active_review_paths": [
+        "data/evidence-reviews/senolytics-dq-bone-registry-text-snapshot-extraction-fidelity-2026-06-22.json",
+        "data/evidence-reviews/senolytics-dq-bone-registry-text-snapshot-source-fidelity-2026-06-22.json"
       ],
       "complete_accepting_review_lanes": [
         "extraction_fidelity",
@@ -392,6 +462,13 @@
         "senolytics-dq-bone-release-anchor-synthesis-boundary-2026-06-22",
         "senolytics-dq-bone-release-anchor-taxonomy-mapping-2026-06-22"
       ],
+      "active_review_paths": [
+        "data/evidence-reviews/senolytics-dq-bone-release-anchor-extraction-fidelity-2026-06-22.json",
+        "data/evidence-reviews/senolytics-dq-bone-release-anchor-safety-limitations-2026-06-22.json",
+        "data/evidence-reviews/senolytics-dq-bone-release-anchor-source-fidelity-2026-06-22.json",
+        "data/evidence-reviews/senolytics-dq-bone-release-anchor-synthesis-boundary-2026-06-22.json",
+        "data/evidence-reviews/senolytics-dq-bone-release-anchor-taxonomy-mapping-2026-06-22.json"
+      ],
       "complete_accepting_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
@@ -417,6 +494,9 @@
       "active_review_ids": [
         "senolytics-dq-bone-source-rights-source-fidelity-2026-06-22"
       ],
+      "active_review_paths": [
+        "data/evidence-reviews/senolytics-dq-bone-source-rights-source-fidelity-2026-06-22.json"
+      ],
       "complete_accepting_review_lanes": [
         "source_fidelity"
       ],
@@ -440,6 +520,9 @@
       "active_review_ids": [
         "senolytics-scaffold-source-fidelity-2026-06-21"
       ],
+      "active_review_paths": [
+        "data/evidence-reviews/senolytics-scaffold-source-fidelity-2026-06-21.json"
+      ],
       "complete_accepting_review_lanes": [],
       "missing_review_lanes": [
         "synthesis_boundary",
@@ -459,6 +542,36 @@
   ],
   "promotion_ready_candidate_ids": [],
   "missing_review_lane_queue": [
+    {
+      "candidate_change_id": "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
+      "path": "data/candidate-changes/candidate-revision-senolytics-coverage-repair-2026-06-21-repair.json",
+      "review_lane": "extraction_fidelity",
+      "next_action": "Run extraction_fidelity supervisor review for candidate-revision-senolytics-coverage-repair-2026-06-21-repair."
+    },
+    {
+      "candidate_change_id": "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
+      "path": "data/candidate-changes/candidate-revision-senolytics-coverage-repair-2026-06-21-repair.json",
+      "review_lane": "safety_limitations",
+      "next_action": "Run safety_limitations supervisor review for candidate-revision-senolytics-coverage-repair-2026-06-21-repair."
+    },
+    {
+      "candidate_change_id": "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
+      "path": "data/candidate-changes/candidate-revision-senolytics-coverage-repair-2026-06-21-repair.json",
+      "review_lane": "source_fidelity",
+      "next_action": "Run source_fidelity supervisor review for candidate-revision-senolytics-coverage-repair-2026-06-21-repair."
+    },
+    {
+      "candidate_change_id": "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
+      "path": "data/candidate-changes/candidate-revision-senolytics-coverage-repair-2026-06-21-repair.json",
+      "review_lane": "synthesis_boundary",
+      "next_action": "Run synthesis_boundary supervisor review for candidate-revision-senolytics-coverage-repair-2026-06-21-repair."
+    },
+    {
+      "candidate_change_id": "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
+      "path": "data/candidate-changes/candidate-revision-senolytics-coverage-repair-2026-06-21-repair.json",
+      "review_lane": "taxonomy_mapping",
+      "next_action": "Run taxonomy_mapping supervisor review for candidate-revision-senolytics-coverage-repair-2026-06-21-repair."
+    },
     {
       "candidate_change_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
       "path": "data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json",
@@ -1208,6 +1321,20 @@
       "mode": "extraction_refresh"
     },
     {
+      "agent_run_id": "self-healing-candidate-revision-senolytics-coverage-repair-2026-06-21",
+      "path": "research/agent-runs/self-healing-candidate-revision-senolytics-coverage-repair-2026-06-21.json",
+      "status": "partial",
+      "agent_role": "self_healing_agent",
+      "blocking_issues": [
+        "The target senolytics-coverage-repair-2026-06-21 candidate still has open major review findings across extraction_fidelity, safety_limitations, source_fidelity, synthesis_boundary, and taxonomy_mapping; this bounded repair only aligns lifecycle state and creates a repair candidate."
+      ],
+      "next_actions": [
+        "Supervisor-review candidate-revision-senolytics-coverage-repair-2026-06-21-repair across its five required lanes.",
+        "Do not promote senolytics-coverage-repair-2026-06-21 until the underlying review findings are closed by narrower extraction, safety, taxonomy, source-fidelity, and synthesis-boundary repairs."
+      ],
+      "mode": "agent_directed"
+    },
+    {
       "agent_run_id": "senolytics-bone-rct-extraction-refresh-2026-06-21",
       "path": "research/agent-runs/senolytics-bone-rct-extraction-refresh-2026-06-21.json",
       "status": "partial",
@@ -1225,6 +1352,18 @@
     }
   ],
   "recommended_jobs": [
+    {
+      "job_id": "candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
+      "job_type": "candidate_review",
+      "priority": "high",
+      "source": "candidate_readiness",
+      "target_record_type": "candidate_change",
+      "target_record_id": "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
+      "rationale": "Required review lanes are missing: extraction_fidelity, safety_limitations, source_fidelity, synthesis_boundary, taxonomy_mapping.",
+      "inputs": [
+        "data/candidate-changes/candidate-revision-senolytics-coverage-repair-2026-06-21-repair.json"
+      ]
+    },
     {
       "job_id": "candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
       "job_type": "candidate_review",
@@ -1246,7 +1385,12 @@
       "target_record_id": "senolytics-bone-rct-extraction-refresh-2026-06-21",
       "rationale": "Candidate has revision lanes or open findings: extraction_fidelity, safety_limitations.",
       "inputs": [
-        "data/candidate-changes/senolytics-bone-rct-extraction-refresh-2026-06-21.json"
+        "data/candidate-changes/senolytics-bone-rct-extraction-refresh-2026-06-21.json",
+        "data/evidence-reviews/senolytics-bone-rct-extraction-fidelity-2026-06-21.json",
+        "data/evidence-reviews/senolytics-bone-rct-safety-limitations-2026-06-21.json",
+        "data/evidence-reviews/senolytics-bone-rct-source-fidelity-2026-06-21.json",
+        "data/evidence-reviews/senolytics-bone-rct-synthesis-boundary-2026-06-21.json",
+        "data/evidence-reviews/senolytics-bone-rct-taxonomy-mapping-2026-06-21.json"
       ]
     },
     {
@@ -1258,7 +1402,12 @@
       "target_record_id": "senolytics-coverage-repair-2026-06-21",
       "rationale": "Candidate has revision lanes or open findings: extraction_fidelity, safety_limitations, source_fidelity, synthesis_boundary, taxonomy_mapping.",
       "inputs": [
-        "data/candidate-changes/senolytics-coverage-repair-2026-06-21.json"
+        "data/candidate-changes/senolytics-coverage-repair-2026-06-21.json",
+        "data/evidence-reviews/senolytics-coverage-repair-extraction-fidelity-2026-06-21.json",
+        "data/evidence-reviews/senolytics-coverage-repair-safety-limitations-2026-06-21.json",
+        "data/evidence-reviews/senolytics-coverage-repair-source-fidelity-2026-06-21.json",
+        "data/evidence-reviews/senolytics-coverage-repair-synthesis-boundary-2026-06-21.json",
+        "data/evidence-reviews/senolytics-coverage-repair-taxonomy-mapping-2026-06-21.json"
       ]
     },
     {
@@ -1270,7 +1419,8 @@
       "target_record_id": "senolytics-scaffold-bootstrap-2026-06-21",
       "rationale": "Candidate has revision lanes or open findings: source_fidelity.",
       "inputs": [
-        "data/candidate-changes/senolytics-scaffold-bootstrap-2026-06-21.json"
+        "data/candidate-changes/senolytics-scaffold-bootstrap-2026-06-21.json",
+        "data/evidence-reviews/senolytics-scaffold-source-fidelity-2026-06-21.json"
       ]
     },
     {
@@ -1475,6 +1625,18 @@
       "rationale": "The current result schema cannot directly encode adverse_event.preferred_term or adverse_event.event_specific_counts; the headache term and D+Q count are represented through valid result fields while the synthesis group records these structured-field blockers. The Extended Data Table 1 control headache cell is blank under a table threshold for events reported in more than one participant, so no defensible control count, risk ratio, risk difference, or uncertainty was extracted.",
       "inputs": [
         "research/agent-runs/dq-bone-headache-ae-extraction-pilot-2026-06-23.json"
+      ]
+    },
+    {
+      "job_id": "agent-run-recovery-self-healing-candidate-revision-senolytics-coverage-repair-2026-06-21",
+      "job_type": "agent_run_recovery",
+      "priority": "medium",
+      "source": "agent_run_status",
+      "target_record_type": "agent_run",
+      "target_record_id": "self-healing-candidate-revision-senolytics-coverage-repair-2026-06-21",
+      "rationale": "The target senolytics-coverage-repair-2026-06-21 candidate still has open major review findings across extraction_fidelity, safety_limitations, source_fidelity, synthesis_boundary, and taxonomy_mapping; this bounded repair only aligns lifecycle state and creates a repair candidate.",
+      "inputs": [
+        "research/agent-runs/self-healing-candidate-revision-senolytics-coverage-repair-2026-06-21.json"
       ]
     },
     {

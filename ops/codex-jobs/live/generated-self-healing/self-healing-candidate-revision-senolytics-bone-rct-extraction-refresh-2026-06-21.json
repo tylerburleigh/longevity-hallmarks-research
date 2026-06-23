@@ -45,6 +45,11 @@
   "orchestration": {
     "read_sets": [
       "path:data/candidate-changes/senolytics-bone-rct-extraction-refresh-2026-06-21.json",
+      "path:data/evidence-reviews/senolytics-bone-rct-extraction-fidelity-2026-06-21.json",
+      "path:data/evidence-reviews/senolytics-bone-rct-safety-limitations-2026-06-21.json",
+      "path:data/evidence-reviews/senolytics-bone-rct-source-fidelity-2026-06-21.json",
+      "path:data/evidence-reviews/senolytics-bone-rct-synthesis-boundary-2026-06-21.json",
+      "path:data/evidence-reviews/senolytics-bone-rct-taxonomy-mapping-2026-06-21.json",
       "path:ops/triage-state.v1.json",
       "triage_job:candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21"
     ],
@@ -52,6 +57,11 @@
       "candidate_change:candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
       "path:data/candidate-changes/candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair.json",
       "path:data/candidate-changes/senolytics-bone-rct-extraction-refresh-2026-06-21.json",
+      "path:data/evidence-reviews/senolytics-bone-rct-extraction-fidelity-2026-06-21.json",
+      "path:data/evidence-reviews/senolytics-bone-rct-safety-limitations-2026-06-21.json",
+      "path:data/evidence-reviews/senolytics-bone-rct-source-fidelity-2026-06-21.json",
+      "path:data/evidence-reviews/senolytics-bone-rct-synthesis-boundary-2026-06-21.json",
+      "path:data/evidence-reviews/senolytics-bone-rct-taxonomy-mapping-2026-06-21.json",
       "target_record:candidate_change/senolytics-bone-rct-extraction-refresh-2026-06-21"
     ],
     "conflict_keys": [

@@ -3,8 +3,8 @@
   "record_type": "candidate_change",
   "id": "senolytics-coverage-repair-2026-06-21",
   "name": "Repair senolytics coverage into an auditable evidence slice",
-  "summary": "Adds and updates senolytics evidence records, then hardens the generated slice with maturity status, provenance locators, and a complete candidate ledger.",
-  "lifecycle_status": "in_review",
+  "summary": "Adds and updates senolytics evidence records, then hardens the generated slice with maturity status, provenance locators, and a complete candidate ledger. This broad coverage slice remains in needs_revision because linked review lanes found source-fidelity, extraction-fidelity, taxonomy-mapping, synthesis-boundary, and safety-limitations gaps that require narrower extraction and safety repair candidates before promotion.",
+  "lifecycle_status": "needs_revision",
   "submitted_at": "2026-06-21T18:55:00Z",
   "scope": {
     "question": "Expand senolytics from a scaffold into a sustainable, auditable evidence slice for cellular senescence interventions.",

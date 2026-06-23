@@ -512,7 +512,11 @@ export async function buildSelfHealingJobs(options = {}) {
       continue;
     }
     for (const expandedJob of expandedRecommendedJobs(recordIndex, recommendedJob)) {
-      jobs.push(buildJob(recordIndex, expandedJob));
+      const job = buildJob(recordIndex, expandedJob);
+      if (await exists(path.join(workspaceRoot, job.output_path))) {
+        continue;
+      }
+      jobs.push(job);
       if (jobs.length >= limit) {
         return jobs;
       }

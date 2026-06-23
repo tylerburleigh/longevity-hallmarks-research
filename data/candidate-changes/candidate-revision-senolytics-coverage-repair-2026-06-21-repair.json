@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
+  "name": "Senolytics coverage candidate revision-state repair",
+  "summary": "Marks the broad senolytics coverage-repair candidate as needs_revision and records that its five linked review lanes remain open until narrower source, extraction, taxonomy, synthesis-boundary, and safety repair work is completed.",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-23T14:45:28Z",
+  "scope": {
+    "question": "Repair the lifecycle and audit state for the senolytics coverage-repair candidate after all required review lanes returned needs_revision findings.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "chronic_inflammation"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
+      "path": "data/candidate-changes/candidate-revision-senolytics-coverage-repair-2026-06-21-repair.json",
+      "change_type": "create",
+      "rationale": "Tracks this bounded self-healing repair candidate and its required review lanes."
+    },
+    {
+      "record_type": "candidate_change",
+      "record_id": "senolytics-coverage-repair-2026-06-21",
+      "path": "data/candidate-changes/senolytics-coverage-repair-2026-06-21.json",
+      "change_type": "update",
+      "rationale": "Aligns the target candidate lifecycle and summary with linked needs_revision review findings without promoting or mutating the underlying evidence records."
+    }
+  ],
+  "required_review_lanes": [
+    "extraction_fidelity",
+    "safety_limitations",
+    "source_fidelity",
+    "synthesis_boundary",
+    "taxonomy_mapping"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations",
+  "candidate_change_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
+  "review_lane": "safety_limitations",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex-cli-worker",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Safety limitations are complete for the D+Q bone PMC full-text extraction candidate. The adverse-event table result is descriptive, preserves the publication table's blank-cell ambiguity, cites the open-label reporting limitation and withdrawals, and the safety synthesis boundary keeps pooling blocked until event-specific counts, valid comparative effects, and uncertainty are available.",
+  "findings": [
+    {
+      "finding_id": "publication-safety-caveats-retained",
+      "severity": "note",
+      "category": "safety_limitation",
+      "claim_or_issue": "The adverse-event table result and finding preserve the publication safety context: adverse events were more frequent in the D+Q group, headache and gastrointestinal complaints were prominent, no D+Q-related serious or severe adverse events were reported, and withdrawals are explicitly described.",
+      "why_it_matters": "A safety review must prevent the candidate from turning descriptive adverse-event reporting into a simple safety claim while still retaining the relevant tolerability signal.",
+      "recommended_action": "Keep the adverse-event statement descriptive and retain the withdrawal, no-related-serious/severe-event, and open-label caveats in downstream synthesis.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "blank-cells-not-zero",
+      "severity": "note",
+      "category": "safety_limitation",
+      "claim_or_issue": "The result dq-bone-adverse-event-terms-20wk-mixed states that blank publication-table cells are not converted to zero because the table reports events above a reporting threshold.",
+      "why_it_matters": "Unsupported zero handling would create false comparative adverse-event effects for preferred terms that lack explicit control counts.",
+      "recommended_action": "Do not compute term-level risk ratios or risk differences from the blank cells unless a future extraction supplies explicit control counts or an accepted zero-handling rule.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "safety-pooling-blocked",
+      "severity": "note",
+      "category": "safety_limitation",
+      "claim_or_issue": "The 20-week safety synthesis group remains pooling_blocked and lists missing effect value, uncertainty, preferred-term fields, and event-specific count fields for the descriptive adverse-event table result.",
+      "why_it_matters": "This keeps single-trial descriptive safety observations out of a formal comparative safety meta-analysis.",
+      "recommended_action": "Keep the synthesis group blocked until at least two compatible safety results have structured preferred terms, event-specific arm counts with explicit zero/not-reported semantics, comparative effects, and uncertainty.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "open-label-and-population-boundary",
+      "severity": "minor",
+      "category": "missing_caveat",
+      "claim_or_issue": "The candidate's safety records cite the open-label design and the early phase postmenopausal-women population rather than generalizing tolerability to all D+Q or senolytic uses.",
+      "why_it_matters": "Subjective adverse-event reporting and small phase 2 population boundaries affect how safety signals should be interpreted.",
+      "recommended_action": "Preserve the open-label, small-trial, and population-specific caveats when this candidate is reviewed by other lanes or considered for promotion.",
+      "resolution_status": "closed"
+    }
+  ]
+}

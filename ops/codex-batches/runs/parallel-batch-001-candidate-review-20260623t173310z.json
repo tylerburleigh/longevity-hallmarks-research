@@ -1,0 +1,121 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "parallel_batch_run",
+  "id": "parallel-batch-001-candidate-review-20260623t173310z",
+  "batch_plan_id": "parallel-batch-plan-v1",
+  "batch_plan_path": "ops/codex-batches/parallel-batch-plan.v1.json",
+  "batch_id": "parallel-batch-001-candidate-review",
+  "batch_sequence": 1,
+  "parallel_group": "candidate-review",
+  "execution_class": "independent",
+  "reconciliation_required": false,
+  "started_at": "2026-06-23T17:33:10.369Z",
+  "status": "succeeded",
+  "log_path": "ops/codex-batches/logs/parallel-batch-001-candidate-review-20260623t173310z.jsonl",
+  "worker_states": [
+    {
+      "job_id": "self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity",
+      "job_path": "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity.json",
+      "command": [
+        "npm",
+        "run",
+        "agent:codex:worktree",
+        "--",
+        "--job-file",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity.json",
+        "--execute",
+        "--allow-dirty",
+        "--post-export-verify"
+      ],
+      "status": "succeeded",
+      "started_at": "2026-06-23T17:33:10.371Z",
+      "worktree_path": "/tmp/lhr-codex-worktrees/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity-20260623T173310z",
+      "completed_at": "2026-06-23T17:39:28.976Z",
+      "exit_code": 0,
+      "output_path": "research/agent-runs/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity.json",
+      "worker_log_path": "research/agent-runs/logs/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity.jsonl",
+      "archive_path": "ops/codex-jobs/archive/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity.json"
+    },
+    {
+      "job_id": "self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations",
+      "job_path": "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations.json",
+      "command": [
+        "npm",
+        "run",
+        "agent:codex:worktree",
+        "--",
+        "--job-file",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations.json",
+        "--execute",
+        "--allow-dirty",
+        "--post-export-verify"
+      ],
+      "status": "succeeded",
+      "started_at": "2026-06-23T17:33:10.371Z",
+      "worktree_path": "/tmp/lhr-codex-worktrees/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations-20260623T173310z",
+      "completed_at": "2026-06-23T17:39:27.094Z",
+      "exit_code": 0,
+      "output_path": "research/agent-runs/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations.json",
+      "worker_log_path": "research/agent-runs/logs/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations.jsonl",
+      "archive_path": "ops/codex-jobs/archive/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations.json"
+    },
+    {
+      "job_id": "self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-source-fidelity",
+      "job_path": "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-source-fidelity.json",
+      "command": [
+        "npm",
+        "run",
+        "agent:codex:worktree",
+        "--",
+        "--job-file",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-source-fidelity.json",
+        "--execute",
+        "--allow-dirty",
+        "--post-export-verify"
+      ],
+      "status": "succeeded",
+      "started_at": "2026-06-23T17:33:10.371Z",
+      "worktree_path": "/tmp/lhr-codex-worktrees/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-source-fidelity-20260623T173310z",
+      "completed_at": "2026-06-23T17:38:07.787Z",
+      "exit_code": 0,
+      "output_path": "research/agent-runs/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-source-fidelity.json",
+      "worker_log_path": "research/agent-runs/logs/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-source-fidelity.jsonl",
+      "archive_path": "ops/codex-jobs/archive/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-source-fidelity.json"
+    },
+    {
+      "job_id": "self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-synthesis-boundary",
+      "job_path": "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-synthesis-boundary.json",
+      "command": [
+        "npm",
+        "run",
+        "agent:codex:worktree",
+        "--",
+        "--job-file",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-synthesis-boundary.json",
+        "--execute",
+        "--allow-dirty",
+        "--post-export-verify"
+      ],
+      "status": "succeeded",
+      "started_at": "2026-06-23T17:33:10.371Z",
+      "worktree_path": "/tmp/lhr-codex-worktrees/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-synthesis-boundary-20260623T173310z",
+      "completed_at": "2026-06-23T17:40:39.139Z",
+      "exit_code": 0,
+      "output_path": "research/agent-runs/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-synthesis-boundary.json",
+      "worker_log_path": "research/agent-runs/logs/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-synthesis-boundary.jsonl",
+      "archive_path": "ops/codex-jobs/archive/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-synthesis-boundary.json"
+    }
+  ],
+  "summary": {
+    "planned_count": 0,
+    "running_count": 0,
+    "succeeded_count": 4,
+    "pending_reconciliation_count": 0,
+    "failed_count": 0,
+    "archived_count": 4
+  },
+  "next_actions": [
+    "Run npm run verify:knowledge-base after reviewing resulting candidate changes."
+  ],
+  "completed_at": "2026-06-23T17:40:39.140Z"
+}

@@ -1,0 +1,190 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping",
+  "agent_role": "supervisor_agent",
+  "agent_id": "codex-cli-worker",
+  "mode": "agent_directed",
+  "started_at": "2026-06-23T17:43:26Z",
+  "completed_at": "2026-06-23T17:47:36Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "candidate_review: Required review lane is missing: taxonomy_mapping.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "codex_exec",
+    "isolation": "git_worktree",
+    "workspace_path": "/tmp/lhr-codex-worktrees/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping-20260623T174326z",
+    "prompt_file": "research/agent-runs/prompts/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping.md",
+    "prompt_template_file": "docs/prompts/codex-agents/supervisor-review.md",
+    "job_file": "ops/codex-jobs/archive/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping.json",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "output_path": "research/agent-runs/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping.json",
+    "jsonl_log_path": "research/agent-runs/logs/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping.jsonl",
+    "sandbox": "workspace-write",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "user_request",
+      "reference": "coordinator job self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping",
+      "summary": "Supervisor review task for the missing taxonomy_mapping lane on the D+Q bone PMC full-text extraction candidate."
+    },
+    {
+      "input_type": "other",
+      "reference": "ops/supervisor-review-context-packs/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping.json",
+      "summary": "Bounded context pack specifying the target candidate, required taxonomy_mapping lane, proposed records, expected repair candidate, expected evidence review, and verification commands."
+    },
+    {
+      "input_type": "plan_item",
+      "reference": "plan.md; docs/research-runbook.md; docs/agent-run-outputs.md; docs/audit-and-release.md",
+      "summary": "Repository plan, bounded review workflow, agent-run output contract, and audit/release rules used to constrain the supervisor review."
+    },
+    {
+      "input_type": "other",
+      "reference": "schemas/agent-run.codex-output.schema.json; schemas/agent-run.schema.json; schemas/evidence-review.schema.json; schemas/candidate-change.schema.json",
+      "summary": "Schemas used for the final structured output, evidence review record, and repair candidate ledger."
+    },
+    {
+      "input_type": "candidate_change",
+      "reference": "data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json",
+      "summary": "Target submitted candidate retaining a PMC author-manuscript text snapshot and proposing full-text subgroup, adverse-event term, and synthesis-compatibility records."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json; data/outcomes/dq-bone-p16-t3-p1np-2wk.json; data/outcomes/dq-bone-p16-t3-p1np-4wk.json; data/outcomes/dq-bone-p16-t3-ctx-2wk.json; data/outcomes/dq-bone-p16-t3-ctx-4wk.json; data/outcomes/dq-bone-p16-t3-radius-bmd-20wk.json",
+      "summary": "Reviewed proposed taxonomy-bearing finding and high-p16 T3 subgroup outcome records for hallmark, track, endpoint, source, and study alignment."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/results/dq-bone-p16-t3-p1np-2wk-positive.json; data/results/dq-bone-p16-t3-p1np-4wk-inconclusive.json; data/results/dq-bone-p16-t3-ctx-2wk-positive.json; data/results/dq-bone-p16-t3-ctx-4wk-inconclusive.json; data/results/dq-bone-p16-t3-radius-bmd-20wk-positive.json; data/results/dq-bone-adverse-event-terms-20wk-mixed.json",
+      "summary": "Reviewed proposed result records for intervention, outcome, endpoint, and safety-versus-efficacy taxonomy boundaries."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json; data/synthesis-groups/senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22.json; taxonomies/tracks.v1.json; taxonomies/hallmarks.v1.json",
+      "summary": "Reviewed synthesis-group scope and the relevant senolytics and hallmark taxonomy definitions for lane-specific mapping consistency."
+    }
+  ],
+  "outputs": {
+    "summary": "Created the bounded repair candidate and a complete accepting taxonomy_mapping evidence_review for the target PMC full-text extraction candidate. The lane is non-blocking and has no open major or critical findings; no candidate was promoted.",
+    "candidate_change_id": "candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping-repair",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping-repair",
+        "path": "data/candidate-changes/candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping-repair.json",
+        "change_type": "create",
+        "rationale": "Tracks this bounded repair candidate for the missing taxonomy_mapping review lane."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping",
+        "path": "data/evidence-reviews/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping.json",
+        "change_type": "create",
+        "rationale": "Records the completed taxonomy-mapping supervisor review for the D+Q bone PMC full-text extraction candidate."
+      }
+    ],
+    "generated_files": [
+      "data/candidate-changes/candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping-repair.json",
+      "data/evidence-reviews/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping.json"
+    ],
+    "export_paths": []
+  },
+  "quality_checks": [
+    {
+      "check_name": "supervisor_review_lanes",
+      "status": "passed",
+      "summary": "The taxonomy_mapping review is complete, accepting, non-blocking, and contains only closed note findings."
+    },
+    {
+      "check_name": "candidate_agent_run_ledger_match",
+      "status": "passed",
+      "summary": "Final outputs.proposed_records matches the repair candidate_change.proposed_records ledger for the created candidate_change and evidence_review records."
+    },
+    {
+      "check_name": "validate_records",
+      "status": "passed",
+      "summary": "npm run validate:records exited 0 and validated 253 JSON files."
+    },
+    {
+      "check_name": "audit_references",
+      "status": "passed",
+      "summary": "npm run audit:references exited 0; reference audit passed for 192 record files."
+    },
+    {
+      "check_name": "audit_agent_schemas",
+      "status": "passed",
+      "summary": "npm run audit:agent-schemas exited 0; agent schema audit passed."
+    },
+    {
+      "check_name": "audit_agentic_process",
+      "status": "passed",
+      "summary": "npm run audit:agentic-process exited 0; agentic process audit passed for 358 files."
+    },
+    {
+      "check_name": "diff_check",
+      "status": "passed",
+      "summary": "git diff --check exited 0."
+    },
+    {
+      "check_name": "audit_exports",
+      "status": "not_run",
+      "summary": "Deferred to coordinator post-run export because this worker created candidate-review records and the job has post_run.export_latest configured."
+    },
+    {
+      "check_name": "verify_knowledge_base",
+      "status": "not_run",
+      "summary": "Deferred to coordinator post-run verification after final agent_run persistence and export regeneration."
+    },
+    {
+      "check_name": "worker_output_contract",
+      "status": "passed",
+      "summary": "Worker emitted exactly one final JSON agent_run message, matched output_path, and avoided ad hoc schema-validation snippets."
+    },
+    {
+      "check_name": "post_triage_state_export",
+      "status": "passed",
+      "summary": "post_triage_state_export exited 0: > longevity-hallmarks-research@0.1.0 export:triage-state > node scripts/export-triage-state.mjs Wrote ops/triage-state.v1.json."
+    },
+    {
+      "check_name": "post_release_readiness_export",
+      "status": "passed",
+      "summary": "post_release_readiness_export exited 0: > longevity-hallmarks-research@0.1.0 export:release-readiness > node scripts/export-release-readiness.mjs Wrote ops/release-readiness.v1.json."
+    },
+    {
+      "check_name": "post_reconciliation_export",
+      "status": "passed",
+      "summary": "post_reconciliation_export exited 0: > longevity-hallmarks-research@0.1.0 reconcile:parallel > node scripts/reconcile-parallel-outputs.mjs Wrote ops/reconciliation/parallel-reconciliation.v1.json."
+    },
+    {
+      "check_name": "post_orchestration_metrics_export",
+      "status": "passed",
+      "summary": "post_orchestration_metrics_export exited 0: > longevity-hallmarks-research@0.1.0 metrics:orchestration > node scripts/export-orchestration-metrics.mjs Wrote ops/codex-batches/orchestration-metrics.v1.json."
+    },
+    {
+      "check_name": "post_export",
+      "status": "passed",
+      "summary": "post_export exited 0: > longevity-hallmarks-research@0.1.0 export:latest > node scripts/export-latest.mjs Wrote 16 export file(s) to exports/latest."
+    },
+    {
+      "check_name": "post_verify",
+      "status": "passed",
+      "summary": "post_verify exited 0: > longevity-hallmarks-research@0.1.0 audit:orchestration-smoke-contract > node scripts/audit-orchestration-smoke-contract.mjs Orchestration smoke contract audit passed for orchestration-smoke-budgeted-codex-worktree-2026-06-23. > longevity-hallmarks-research@0.1.0 audit:agentic-process > node scripts/audit-agentic-process.mjs Agentic process audit passed for 359 file(s)."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": [
+    "Coordinator post-run should import/archive this repair output, regenerate exports, and verify the knowledge base.",
+    "Do not promote senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22 from this worker; promotion requires the coordinator to confirm all required review lanes are active, accepting, non-blocking, and free of open major or critical findings."
+  ]
+}

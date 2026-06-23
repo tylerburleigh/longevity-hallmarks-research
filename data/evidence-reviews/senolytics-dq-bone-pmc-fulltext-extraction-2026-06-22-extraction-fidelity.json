@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity",
+  "candidate_change_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
+  "review_lane": "extraction_fidelity",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex-cli-worker",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Extraction fidelity is complete and non-blocking for the D+Q bone PMC full-text extraction candidate. The proposed exploratory high-p16 T3 subgroup effects, subgroup sample sizes, primary-null boundary, and adverse-event term counts match the retained PMC author-manuscript text snapshot and keep non-confirmatory limitations visible.",
+  "findings": [
+    {
+      "finding_id": "exploratory-subgroup-effects-source-matched",
+      "severity": "note",
+      "category": "extraction_error",
+      "claim_or_issue": "The proposed high-p16 T3 result records preserve the full-text exploratory subgroup values: P1NP +34% at 2 weeks with P=0.035, P1NP +38% at 4 weeks with P=0.160, CTx -11% at 2 weeks with P=0.049, CTx -18% at 4 weeks with P=0.053, and radius BMD +2.7% at 20 weeks with P=0.004.",
+      "why_it_matters": "These are the candidate's main new quantitative extractions, and they must remain tied to the exploratory T3 subgroup rather than the overall randomized comparison.",
+      "recommended_action": "Retain the result values, p-values, exploratory caveats, and section:pmc-s7-exploratory-and-post-hoc-analyses provenance on the subgroup outcome and result records.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "subgroup-sample-sizes-source-matched",
+      "severity": "note",
+      "category": "extraction_error",
+      "claim_or_issue": "The candidate records use T3 sample sizes of n=21 at 2 weeks, n=20 at 4 weeks, and n=19 for the radius BMD analysis, matching the Fig. 4 and Fig. 5 captions in the retained article markdown.",
+      "why_it_matters": "Subgroup denominators are small and endpoint-specific; preserving them prevents downstream users from treating the exploratory effects as full-arm n=30 results.",
+      "recommended_action": "Keep the result sample_size fields endpoint-specific and continue caveating limited T3 subgroup power.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "adverse-event-table-values-source-matched",
+      "severity": "note",
+      "category": "extraction_error",
+      "claim_or_issue": "The adverse-event term result preserves Extended Data Table 1 counts: overall adverse events 5/30 control and 23/30 D+Q; D+Q headache 16/30, diarrhea 7/30, nausea 5/30, constipation 3/30, gastrointestinal reflux 2/30, vertigo 2/30, fatigue 4/30, body pain 5/30; and control body pain 2/30.",
+      "why_it_matters": "The source table has blank cells for several control event terms, so extraction must not silently convert missing table cells into explicit zero-event counts.",
+      "recommended_action": "Retain the descriptive group_values extraction and the caveat that blank table cells are not encoded as zeros or used for pooled safety effects.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "primary-null-and-exploratory-boundary-preserved",
+      "severity": "minor",
+      "category": "missing_caveat",
+      "claim_or_issue": "The updated finding separates the overall null primary 20-week CTx endpoint from secondary P1NP signals and exploratory high-p16 T3 subgroup signals.",
+      "why_it_matters": "The extraction lane can accept the candidate only if the source-backed subgroup effects are not promoted into an overall efficacy claim.",
+      "recommended_action": "Keep the finding caveats and synthesis boundaries that prevent exploratory subgroup records from standing in for the overall randomized endpoint.",
+      "resolution_status": "closed"
+    }
+  ]
+}

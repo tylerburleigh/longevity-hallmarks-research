@@ -113,6 +113,7 @@ As of 2026-06-22, the repository has an initial JSON-file-backed scaffold:
 - Added reusable Codex CLI prompts/job templates for ClinicalTrials.gov text-snapshot ingestion and supervisor review.
 - Ran a Codex CLI extraction-refresh job that used the retained ClinicalTrials.gov markdown to add text-snapshot provenance and section-stable registry locators to existing D+Q bone finding, outcome, and result records.
 - Added compact extraction and supervisor-review context packs so isolated workers receive bounded task contracts with target records, schema slices, expected outputs, and verification commands before broad repository inspection.
+- Completed the pack-backed parallel supervisor-review proof for the D+Q PMC full-text extraction candidate; all five required review lanes are accepting, the live jobs are archived, the candidate is `promotion_ready`, and full verification passes.
 
 ## Current System Assessment
 
@@ -136,7 +137,8 @@ Current weaknesses and hardening priorities:
 - Endpoint and effect normalization are underdeveloped, limiting cross-study comparability and formal synthesis.
 - The query surface is improving through generated SQLite read models, but agents and downstream consumers still need broader query examples and contract tests over common meta-analysis questions.
 - Self-healing is generated and schedulable, but repair workers still need more end-to-end execution runs before we trust the loop under load.
-- Orchestration is static-testable, parallel-aware, and gated for one bounded extraction-refresh pilot after the clean readiness command passes, but it is not yet proven under enough real research load for broad concurrent extraction campaigns.
+- Orchestration is static-testable, parallel-aware, and proven through synthetic, extraction-refresh, self-healing, promotion, and pack-backed supervisor-review runs, but it is not yet proven under enough real research load for broad concurrent extraction campaigns.
+- Context packs improve worker routing, but real Codex workers still sometimes perform broad searches or large record dumps; bounded-context discipline needs machine-checkable metrics or audits, not only prompt text.
 - The release boundary needs tightening: accepted canonical records, submitted candidates, in-review state, promotion-ready state, and released consumer artifacts should be clearly separated.
 - Statistical readiness is early: the system records why pooling is blocked, but it does not yet provide enough normalized effect data to produce many quantitative estimates.
 
@@ -675,6 +677,8 @@ Tasks:
 - [x] Run the first real candidate-promotion readiness proof on the D+Q headache adverse-event candidate, including promotion dry-run, reconciliation-decision handling, accepted promotion, generated-state refresh, and verification.
 - [x] Run an isolated self-healing candidate-revision job for `senolytics-coverage-repair-2026-06-21`; import its repair candidate, archive the completed job, refresh generated state, and pass full verification.
 - [x] Harden generated `candidate_revision` jobs so they include active evidence-review paths as explicit inputs and skip recreated live specs when the final agent-run output already exists.
+- [x] Run the pack-backed parallel supervisor-review batch for `senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22`; import and archive all five lane outputs, refresh generated state, and pass full verification.
+- [x] Harden supervisor-review orchestration after the proof run: preserve archived context packs during generated-job replacement, make context-pack jobs default to bounded reads, require exact supervisor quality-gate names, and refresh stale audit-regression fixtures.
 - [ ] Run at least two more real end-to-end readiness proofs without new infrastructure fixes before treating broad unattended research campaigns as ready.
 
 Exit criteria:
@@ -697,14 +701,16 @@ Exit criteria:
 
 ## Immediate Next Actions
 
-1. Run the generated supervisor-review lane batch for `senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22` using the new context packs; inspect whether workers stay focused and produce the declared evidence-review paths.
-2. Promote or explicitly defer `candidate-revision-senolytics-coverage-repair-2026-06-21-repair`, which is now `promotion_ready` after all five review lanes completed.
-3. Create narrower repair jobs for the original `senolytics-coverage-repair-2026-06-21` open findings: extraction fidelity, safety limitations, source fidelity, synthesis boundary, and taxonomy mapping.
-4. Run two additional real end-to-end readiness proofs without new infrastructure fixes before broad unattended research campaigns.
-5. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry or article text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
+1. Promote or explicitly defer `senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22`, which is now `promotion_ready` after all five pack-backed review lanes completed.
+2. Promote or explicitly defer `candidate-revision-senolytics-coverage-repair-2026-06-21-repair`, which is still `promotion_ready` after all five review lanes completed.
+3. Add bounded-context telemetry or audits for Codex workers so broad `rg`/`jq` sweeps and oversized record dumps are measurable and can fail future pack-backed jobs.
+4. Create narrower repair jobs for the original `senolytics-coverage-repair-2026-06-21` open findings: extraction fidelity, safety limitations, source fidelity, synthesis boundary, and taxonomy mapping.
+5. Run two additional real end-to-end readiness proofs without new infrastructure fixes before broad unattended research campaigns.
 
 ## Change Log
 
+- 2026-06-23: Completed the pack-backed parallel supervisor-review proof for `senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22`. Four lanes ran concurrently and the taxonomy lane ran as a follow-up batch; all five workers succeeded, their declared repair candidates/reviews/agent runs/logs/prompts were imported, the live jobs were archived, generated state was refreshed, and full verification passes. The candidate is now `promotion_ready`. The proof still exposed process debt: workers read the context pack first but then drifted into broad repository search and large dumps, so bounded-context discipline now needs telemetry/auditing in addition to prompt text.
+- 2026-06-23: Hardened supervisor-review generation after the D+Q full-text proof. Generated-job replacement now preserves context packs referenced by archived/live job specs; the supervisor prompt and future context packs make pack-backed jobs default to bounded reads; final agent runs are instructed to emit exact `supervisor_review_lanes` and `candidate_agent_run_ledger_match` quality checks; stale audit-regression fixtures now target current generated jobs.
 - 2026-06-23: Added compact supervisor-review context packs for generated candidate-review lane jobs. The self-healing generator now writes `supervisor_review_context_pack` records with target candidate state, single-lane review scope, prior review summaries, proposed record pointers, deterministic evidence-review output paths, schema slices, and verification commands. Runnable live candidate-review jobs must declare those packs, audits check job/pack alignment, and generated orchestration/export state was refreshed.
 - 2026-06-23: Resumed real parallel candidate-review testing for `candidate-revision-senolytics-coverage-repair-2026-06-21-repair`. The first attempt exposed coordinator dirty-state handling; the runner now checks the foreground checkout before writing run state and automatically forwards `--allow-dirty` to isolated worktree commands after its own run record/log make the checkout dirty. The second attempt completed the safety-limitations lane but three lanes hit `max_command_events` at 71/70 after drafting records, so generated candidate-review budgets moved to 90, supervisor-review prompt scope was tightened, and batch-run diagnostics now preserve budget-exceeded stderr lines.
 - 2026-06-23: Imported and archived the successful safety-limitations lane from the partial candidate-review batch, then fixed a recursive queue issue where review-record-only repair candidates generated another supervisor-review job for themselves. Triage now treats candidates that only ledger `evidence_review` records as review artifacts rather than new review debt.

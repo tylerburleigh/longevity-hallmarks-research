@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "parallel_batch_run",
+  "id": "parallel-batch-002-candidate-review-20260623t174326z",
+  "batch_plan_id": "parallel-batch-plan-v1",
+  "batch_plan_path": "ops/codex-batches/parallel-batch-plan.v1.json",
+  "batch_id": "parallel-batch-002-candidate-review",
+  "batch_sequence": 2,
+  "parallel_group": "candidate-review",
+  "execution_class": "independent",
+  "reconciliation_required": false,
+  "started_at": "2026-06-23T17:43:26.895Z",
+  "status": "succeeded",
+  "log_path": "ops/codex-batches/logs/parallel-batch-002-candidate-review-20260623t174326z.jsonl",
+  "worker_states": [
+    {
+      "job_id": "self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping",
+      "job_path": "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping.json",
+      "command": [
+        "npm",
+        "run",
+        "agent:codex:worktree",
+        "--",
+        "--job-file",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping.json",
+        "--execute",
+        "--allow-dirty",
+        "--post-export-verify"
+      ],
+      "status": "succeeded",
+      "started_at": "2026-06-23T17:43:26.897Z",
+      "worktree_path": "/tmp/lhr-codex-worktrees/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping-20260623T174326z",
+      "completed_at": "2026-06-23T17:49:02.846Z",
+      "exit_code": 0,
+      "output_path": "research/agent-runs/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping.json",
+      "worker_log_path": "research/agent-runs/logs/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping.jsonl",
+      "archive_path": "ops/codex-jobs/archive/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping.json"
+    }
+  ],
+  "summary": {
+    "planned_count": 0,
+    "running_count": 0,
+    "succeeded_count": 1,
+    "pending_reconciliation_count": 0,
+    "failed_count": 0,
+    "archived_count": 1
+  },
+  "next_actions": [
+    "Run npm run verify:knowledge-base after reviewing resulting candidate changes."
+  ],
+  "completed_at": "2026-06-23T17:49:02.847Z"
+}

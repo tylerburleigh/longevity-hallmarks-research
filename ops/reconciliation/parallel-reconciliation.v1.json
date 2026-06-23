@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "parallel_reconciliation",
   "id": "parallel-reconciliation-v1",
-  "generated_at": "2026-06-23T16:08:52.165Z",
+  "generated_at": "2026-06-23T17:50:56.149Z",
   "source_roots": [
     "data",
     "research",
@@ -48,15 +48,15 @@
     "duplicate_source_group_count": 0,
     "study_count": 9,
     "duplicate_study_group_count": 0,
-    "candidate_count": 20,
-    "active_candidate_count": 14,
+    "candidate_count": 25,
+    "active_candidate_count": 19,
     "overlapping_candidate_group_count": 9,
     "source_rights_count": 2,
     "source_rights_conflict_count": 0,
-    "agent_run_count": 24,
-    "parallel_batch_count": 5,
-    "reconciliation_batch_count": 3,
-    "parallel_batch_run_count": 12,
+    "agent_run_count": 29,
+    "parallel_batch_count": 4,
+    "reconciliation_batch_count": 4,
+    "parallel_batch_run_count": 14,
     "pending_parallel_worker_count": 0,
     "reconciliation_decision_count": 1,
     "incomplete_ledger_count": 2,
@@ -66,34 +66,7 @@
   },
   "parallel_batches": [
     {
-      "batch_id": "parallel-batch-001-candidate-review",
-      "parallel_group": "candidate-review",
-      "execution_class": "independent",
-      "reconciliation_required": false,
-      "job_ids": [
-        "self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity",
-        "self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations",
-        "self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-source-fidelity",
-        "self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-synthesis-boundary"
-      ],
-      "overlapping_execution_keys": [],
-      "status": "no_reconciliation_needed",
-      "finding_ids": []
-    },
-    {
-      "batch_id": "parallel-batch-002-candidate-review",
-      "parallel_group": "candidate-review",
-      "execution_class": "independent",
-      "reconciliation_required": false,
-      "job_ids": [
-        "self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping"
-      ],
-      "overlapping_execution_keys": [],
-      "status": "no_reconciliation_needed",
-      "finding_ids": []
-    },
-    {
-      "batch_id": "parallel-batch-003-candidate-revision",
+      "batch_id": "parallel-batch-001-candidate-revision",
       "parallel_group": "candidate-revision",
       "execution_class": "independent",
       "reconciliation_required": true,
@@ -118,7 +91,7 @@
       ]
     },
     {
-      "batch_id": "parallel-batch-004-extraction-refresh",
+      "batch_id": "parallel-batch-002-extraction-refresh",
       "parallel_group": "extraction-refresh",
       "execution_class": "reconciliation_required",
       "reconciliation_required": true,
@@ -148,14 +121,42 @@
       ]
     },
     {
-      "batch_id": "parallel-batch-005-extraction-refresh",
+      "batch_id": "parallel-batch-003-extraction-refresh",
       "parallel_group": "extraction-refresh",
       "execution_class": "independent",
       "reconciliation_required": true,
       "job_ids": [
         "self-healing-extraction-debt-dq-bone-bmd-20wk-inconclusive",
         "self-healing-extraction-debt-dq-bone-ctx-20wk-null",
-        "self-healing-extraction-debt-dq-bone-headache-20wk-descriptive"
+        "self-healing-extraction-debt-dq-bone-headache-20wk-descriptive",
+        "self-healing-extraction-debt-dq-bone-p16-t3-ctx-2wk-positive"
+      ],
+      "overlapping_execution_keys": [],
+      "status": "reconciliation_open",
+      "finding_ids": [
+        "missing-candidate-agent-run-bc8e426686e2",
+        "missing-candidate-agent-run-de30675addbc",
+        "overlapping-candidate-14fca4c24b17",
+        "overlapping-candidate-3a06e6340cfa",
+        "overlapping-candidate-8be7ee3308f9",
+        "overlapping-candidate-a47143957992",
+        "overlapping-candidate-b3857906563f",
+        "overlapping-candidate-b443e4e5da78",
+        "overlapping-candidate-b633096216bd",
+        "overlapping-candidate-f1249c68d429",
+        "overlapping-candidate-feabd894c098"
+      ]
+    },
+    {
+      "batch_id": "parallel-batch-004-extraction-refresh",
+      "parallel_group": "extraction-refresh",
+      "execution_class": "independent",
+      "reconciliation_required": true,
+      "job_ids": [
+        "self-healing-extraction-debt-dq-bone-p16-t3-ctx-4wk-inconclusive",
+        "self-healing-extraction-debt-dq-bone-p16-t3-p1np-2wk-positive",
+        "self-healing-extraction-debt-dq-bone-p16-t3-p1np-4wk-inconclusive",
+        "self-healing-extraction-debt-dq-bone-p16-t3-radius-bmd-20wk-positive"
       ],
       "overlapping_execution_keys": [],
       "status": "reconciliation_open",

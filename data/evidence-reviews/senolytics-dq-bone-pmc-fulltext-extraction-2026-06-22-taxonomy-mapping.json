@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping",
+  "candidate_change_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
+  "review_lane": "taxonomy_mapping",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex-cli-worker",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Taxonomy mapping is complete and non-blocking for the D+Q bone PMC full-text extraction candidate. The proposed source, subgroup, adverse-event, and synthesis-boundary records remain within the senolytics track, dasatinib-quercetin intervention context, D+Q postmenopausal bone RCT study, and cellular_senescence plus stem_cell_exhaustion scope declared for the candidate; the retained chronic_inflammation label on the broader finding/study context is coherent with the senolytics track's secondary-hallmark boundary and is not expanded into the newly created subgroup outcome or synthesis-group records.",
+  "findings": [
+    {
+      "finding_id": "senolytics-dq-scope-aligned",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The candidate ledger and reviewed records stay under the senolytics track, the dasatinib-quercetin intervention, PMID 38956196, and the dq-postmenopausal-bone-rct study.",
+      "why_it_matters": "Stable track, intervention, source, and study identifiers keep the full-text subgroup and safety records attached to the existing D+Q bone evidence body rather than creating a separate evidence family.",
+      "recommended_action": "Keep the proposed records scoped to senolytics, dasatinib-quercetin, PMID 38956196, and dq-postmenopausal-bone-rct unless a future candidate introduces a narrower accepted taxonomy facet.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "subgroup-endpoints-use-narrow-hallmark-scope",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The five new high-p16 T3 subgroup outcomes and the subgroup synthesis group use cellular_senescence and stem_cell_exhaustion, with biomarker endpoints for P1NP/CTx and a clinical endpoint for radius BMD.",
+      "why_it_matters": "The high-p16 T cell subgroup and bone turnover/BMD endpoints are relevant to senescent-cell burden and regenerative bone context, but should not be mapped as broad chronic-inflammation outcomes or pooled as a single endpoint class.",
+      "recommended_action": "Keep the subgroup records under cellular_senescence and stem_cell_exhaustion, and preserve endpoint-specific outcome IDs for P1NP, CTx, and radius BMD.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "chronic-inflammation-boundary-not-expanded",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The updated finding and existing D+Q bone study include chronic_inflammation, which is a secondary hallmark for the provisional senolytics track, while the newly created subgroup outcomes and subgroup synthesis group do not add chronic_inflammation.",
+      "why_it_matters": "This keeps the broader inflammatory context available on the parent finding/study without overclassifying the new high-p16 subgroup endpoint records as inflammation-specific evidence.",
+      "recommended_action": "Do not propagate chronic_inflammation to the new subgroup outcome or synthesis-group records unless a future extraction adds source-located inflammatory endpoint data.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "adverse-events-remain-safety-scope",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The publication adverse-event term record is typed as a safety_event result linked to dq-bone-adverse-events-20wk, and the safety synthesis group remains under the D+Q senolytics safety scope rather than an efficacy or biomarker endpoint.",
+      "why_it_matters": "Adverse-event term counts should be filterable with D+Q safety evidence and should not be mixed with bone metabolism efficacy, p16 subgroup, or hallmark-response records.",
+      "recommended_action": "Continue routing adverse-event term extractions through safety outcomes and safety synthesis groups.",
+      "resolution_status": "closed"
+    }
+  ]
+}

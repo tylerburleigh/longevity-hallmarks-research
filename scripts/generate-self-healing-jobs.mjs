@@ -660,7 +660,9 @@ export function buildSupervisorReviewContextPack(recordIndex, job) {
       lane_acceptance_criteria: [
         "Review only the target candidate and the single review lane named by review_lane.",
         "Use verdict accept only when the lane is complete, non-blocking, and has no open major or critical findings.",
-        "Use needs_revision or reject when the proposed records fail this lane's source, extraction, taxonomy, synthesis, or safety boundary."
+        "Use needs_revision or reject when the proposed records fail this lane's source, extraction, taxonomy, synthesis, or safety boundary.",
+        "When the lane is acceptable, include a passed quality_checks[] entry named supervisor_review_lanes in the final agent_run.",
+        "When outputs.proposed_records[] matches the repair candidate ledger, include a passed quality_checks[] entry named candidate_agent_run_ledger_match in the final agent_run."
       ],
       relevant_input_records: relevantInputRecordsForCandidate(recordIndex, targetCandidate, target.path)
     },
@@ -713,7 +715,8 @@ export function buildSupervisorReviewContextPack(recordIndex, job) {
       "Create only the repair candidate and evidence_review paths declared in expected_outputs.",
       "Do not promote, apply, or directly mutate the target candidate during a lane review.",
       "Do not add open-ended human-judgment escape hatches; make an agentic supervisor verdict from the available records.",
-      "Inspect additional files only when the pack points to them or validation reveals a pack inconsistency."
+      "Inspect additional files only when the pack points to them or validation reveals a pack inconsistency.",
+      "Do not perform broad repository searches or full-record dumps for pack-backed reviews; query only the specific ids and paths required by this pack."
     ],
     known_limitations: [
       "The pack is a compact routing contract, not a replacement for inspecting the target candidate's proposed records.",
@@ -779,6 +782,20 @@ async function existingJobIds() {
   return ids;
 }
 
+async function referencedSupervisorContextPackPaths() {
+  const roots = ["ops/codex-jobs/live", "ops/codex-jobs/archive"];
+  const paths = new Set();
+  for (const root of roots) {
+    for (const filePath of await walkJsonFiles(path.join(workspaceRoot, root))) {
+      const job = JSON.parse(await fs.readFile(filePath, "utf8"));
+      if (job.record_type === "codex_job" && job.context_pack_path) {
+        paths.add(job.context_pack_path);
+      }
+    }
+  }
+  return paths;
+}
+
 async function pruneObsoleteGeneratedJobs({ outputDir, expectedJobs }) {
   const expectedPaths = new Set(expectedJobs.map((job) => generatedJobPath(job, outputDir)));
   const files = await walkJsonFiles(path.join(workspaceRoot, outputDir));
@@ -797,11 +814,14 @@ async function pruneObsoleteGeneratedJobs({ outputDir, expectedJobs }) {
   return removed;
 }
 
-async function pruneObsoleteSupervisorContextPacks({ expectedJobs }) {
+async function pruneObsoleteSupervisorContextPacks({ expectedJobs, preservePaths = new Set() }) {
   const expectedPaths = new Set(
-    expectedJobs
-      .map((job) => supervisorReviewContextPackPath(job))
-      .filter(Boolean)
+    [
+      ...expectedJobs
+        .map((job) => supervisorReviewContextPackPath(job))
+        .filter(Boolean),
+      ...preservePaths
+    ]
   );
   const files = await walkJsonFiles(path.join(workspaceRoot, supervisorReviewContextPackRoot));
   const removed = [];
@@ -851,6 +871,9 @@ async function main() {
   const expectedJobsForPrune = options.replace && !options.dryRun
     ? await buildSelfHealingJobs({ limit: Number.POSITIVE_INFINITY, recordIndex })
     : [];
+  const preservedContextPackPaths = options.replace && !options.dryRun
+    ? await referencedSupervisorContextPackPaths()
+    : new Set();
   const removedObsoletePaths = options.replace && !options.dryRun
     ? await pruneObsoleteGeneratedJobs({
         outputDir: options.outputDir,
@@ -858,7 +881,10 @@ async function main() {
       })
     : [];
   const removedObsoleteContextPackPaths = options.replace && !options.dryRun
-    ? await pruneObsoleteSupervisorContextPacks({ expectedJobs: expectedJobsForPrune })
+    ? await pruneObsoleteSupervisorContextPacks({
+        expectedJobs: expectedJobsForPrune,
+        preservePaths: preservedContextPackPaths
+      })
     : [];
 
   const summary = {

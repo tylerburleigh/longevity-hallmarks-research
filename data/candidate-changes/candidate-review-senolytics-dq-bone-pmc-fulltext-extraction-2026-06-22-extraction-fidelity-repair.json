@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity-repair",
+  "name": "Extraction-fidelity review repair for D+Q bone PMC full-text candidate",
+  "summary": "Creates the missing extraction_fidelity supervisor review for senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22. The review accepts the bounded full-text extraction lane for the candidate without promoting or mutating the target candidate.",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-23T17:36:00Z",
+  "scope": {
+    "question": "Repair the missing extraction_fidelity review lane for the D+Q bone PMC full-text extraction candidate.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity-repair",
+      "path": "data/candidate-changes/candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity-repair.json",
+      "change_type": "create",
+      "rationale": "Tracks this bounded repair candidate for the missing extraction_fidelity review lane."
+    },
+    {
+      "record_type": "evidence_review",
+      "record_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity",
+      "path": "data/evidence-reviews/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity.json",
+      "change_type": "create",
+      "rationale": "Records the completed extraction-fidelity supervisor review for the D+Q bone PMC full-text extraction candidate."
+    }
+  ],
+  "required_review_lanes": [
+    "extraction_fidelity"
+  ]
+}

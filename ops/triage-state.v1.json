@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "triage_state",
   "id": "triage-state-v1",
-  "generated_at": "2026-06-23T16:08:43.776Z",
+  "generated_at": "2026-06-23T17:50:35.626Z",
   "source_roots": [
     "data",
     "research"
@@ -66,9 +66,9 @@
     }
   ],
   "summary": {
-    "candidate_count": 20,
-    "promotion_ready_count": 1,
-    "needs_review_count": 1,
+    "candidate_count": 25,
+    "promotion_ready_count": 2,
+    "needs_review_count": 0,
     "needs_revision_count": 3,
     "blocked_count": 0,
     "accepted_count": 6,
@@ -166,6 +166,106 @@
     {
       "candidate_change_id": "candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-taxonomy-mapping-repair",
       "path": "data/candidate-changes/candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-taxonomy-mapping-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "required_review_lanes": [
+        "taxonomy_mapping"
+      ],
+      "active_review_ids": [],
+      "active_review_paths": [],
+      "complete_accepting_review_lanes": [],
+      "missing_review_lanes": [],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 2,
+      "next_actions": [
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
+    {
+      "candidate_change_id": "candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity-repair",
+      "path": "data/candidate-changes/candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "required_review_lanes": [
+        "extraction_fidelity"
+      ],
+      "active_review_ids": [],
+      "active_review_paths": [],
+      "complete_accepting_review_lanes": [],
+      "missing_review_lanes": [],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 2,
+      "next_actions": [
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
+    {
+      "candidate_change_id": "candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations-repair",
+      "path": "data/candidate-changes/candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "required_review_lanes": [
+        "safety_limitations"
+      ],
+      "active_review_ids": [],
+      "active_review_paths": [],
+      "complete_accepting_review_lanes": [],
+      "missing_review_lanes": [],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 2,
+      "next_actions": [
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
+    {
+      "candidate_change_id": "candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-source-fidelity-repair",
+      "path": "data/candidate-changes/candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-source-fidelity-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "required_review_lanes": [
+        "source_fidelity"
+      ],
+      "active_review_ids": [],
+      "active_review_paths": [],
+      "complete_accepting_review_lanes": [],
+      "missing_review_lanes": [],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 2,
+      "next_actions": [
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
+    {
+      "candidate_change_id": "candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-synthesis-boundary-repair",
+      "path": "data/candidate-changes/candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-synthesis-boundary-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "required_review_lanes": [
+        "synthesis_boundary"
+      ],
+      "active_review_ids": [],
+      "active_review_paths": [],
+      "complete_accepting_review_lanes": [],
+      "missing_review_lanes": [],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 2,
+      "next_actions": [
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
+    {
+      "candidate_change_id": "candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping-repair",
+      "path": "data/candidate-changes/candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping-repair.json",
       "lifecycle_status": "submitted",
       "readiness_status": "submitted",
       "required_review_lanes": [
@@ -465,7 +565,7 @@
       "candidate_change_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
       "path": "data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json",
       "lifecycle_status": "submitted",
-      "readiness_status": "needs_review",
+      "readiness_status": "promotion_ready",
       "required_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
@@ -473,22 +573,34 @@
         "synthesis_boundary",
         "taxonomy_mapping"
       ],
-      "active_review_ids": [],
-      "active_review_paths": [],
-      "complete_accepting_review_lanes": [],
-      "missing_review_lanes": [
+      "active_review_ids": [
+        "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity",
+        "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations",
+        "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-source-fidelity",
+        "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-synthesis-boundary",
+        "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping"
+      ],
+      "active_review_paths": [
+        "data/evidence-reviews/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity.json",
+        "data/evidence-reviews/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations.json",
+        "data/evidence-reviews/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-source-fidelity.json",
+        "data/evidence-reviews/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-synthesis-boundary.json",
+        "data/evidence-reviews/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping.json"
+      ],
+      "complete_accepting_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
         "source_fidelity",
         "synthesis_boundary",
         "taxonomy_mapping"
       ],
+      "missing_review_lanes": [],
       "revision_review_lanes": [],
       "blocking_review_ids": [],
       "open_major_or_critical_review_ids": [],
       "proposed_record_count": 19,
       "next_actions": [
-        "Run supervisor review lanes: extraction_fidelity, safety_limitations, source_fidelity, synthesis_boundary, taxonomy_mapping."
+        "Promote candidate with npm run promote:candidate -- senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22 --status accepted after coordinator selection."
       ]
     },
     {
@@ -653,39 +765,10 @@
     }
   ],
   "promotion_ready_candidate_ids": [
-    "candidate-revision-senolytics-coverage-repair-2026-06-21-repair"
+    "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
+    "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
   ],
   "missing_review_lane_queue": [
-    {
-      "candidate_change_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
-      "path": "data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json",
-      "review_lane": "extraction_fidelity",
-      "next_action": "Run extraction_fidelity supervisor review for senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22."
-    },
-    {
-      "candidate_change_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
-      "path": "data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json",
-      "review_lane": "safety_limitations",
-      "next_action": "Run safety_limitations supervisor review for senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22."
-    },
-    {
-      "candidate_change_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
-      "path": "data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json",
-      "review_lane": "source_fidelity",
-      "next_action": "Run source_fidelity supervisor review for senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22."
-    },
-    {
-      "candidate_change_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
-      "path": "data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json",
-      "review_lane": "synthesis_boundary",
-      "next_action": "Run synthesis_boundary supervisor review for senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22."
-    },
-    {
-      "candidate_change_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
-      "path": "data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json",
-      "review_lane": "taxonomy_mapping",
-      "next_action": "Run taxonomy_mapping supervisor review for senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22."
-    },
     {
       "candidate_change_id": "senolytics-scaffold-bootstrap-2026-06-21",
       "path": "data/candidate-changes/senolytics-scaffold-bootstrap-2026-06-21.json",
@@ -1450,13 +1533,14 @@
       ]
     },
     {
-      "job_id": "candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
-      "job_type": "candidate_review",
+      "job_id": "candidate-promotion-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
+      "job_type": "candidate_promotion",
       "priority": "high",
       "source": "candidate_readiness",
       "target_record_type": "candidate_change",
       "target_record_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
-      "rationale": "Required review lanes are missing: extraction_fidelity, safety_limitations, source_fidelity, synthesis_boundary, taxonomy_mapping.",
+      "rationale": "All required active review lanes are complete, accepting, non-blocking, and free of open major or critical findings.",
+      "suggested_command": "npm run promote:candidate -- senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22 --status accepted --dry-run",
       "inputs": [
         "data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json"
       ]

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-source-fidelity",
+  "candidate_change_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
+  "review_lane": "source_fidelity",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex-cli-worker",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Source fidelity is complete and non-blocking for the PMC full-text extraction candidate. The source, source_rights, source_snapshot, text_snapshot, retained artifact hashes, and proposed full-text provenance locators consistently point to PMID 38956196 / PMC11705617, and the cited PMC sections support the subgroup, safety, and adverse-event-table source locations reviewed in this lane.",
+  "findings": [
+    {
+      "finding_id": "pmc-author-manuscript-source-chain-consistent",
+      "severity": "note",
+      "category": "source_mismatch",
+      "claim_or_issue": "The proposed source chain uses source_id pmid-38956196, source_snapshot_id snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22, and text_snapshot_id text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22 for the PMC11705617 author-manuscript extraction records.",
+      "why_it_matters": "Full-text extraction records are source-faithful only if the retained normalized text was generated from the same source snapshot cited by the extracted outcomes, results, finding, and synthesis groups.",
+      "recommended_action": "Keep the PMID, PMCID, source_snapshot_id, and text_snapshot_id stable for this candidate unless a future PMC refresh creates a new paired source_snapshot and text_snapshot.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "artifact-hashes-and-section-index-match",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "The retained raw HTML, normalized markdown, and section-index artifact hashes match the hashes declared in the source_snapshot and text_snapshot records, and the section index includes the cited safety, exploratory/post hoc, and Extended Data Table 1 sections.",
+      "why_it_matters": "Hash and section-index consistency makes the full-text provenance auditable without relying on an untracked article copy.",
+      "recommended_action": "Continue citing section-stable locators such as pmc-s6-safety-and-adverse-events, pmc-s7-exploratory-and-post-hoc-analyses, and pmc-t2-extended-data-table-1 for downstream extraction-grade records.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "full-text-locators-support-reviewed-claims",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "The reviewed locators support the source locations for the high-p16 T3 subgroup P1NP, CTx, and radius BMD effects, the serious/severe adverse-event caveat, and the publication adverse-event term counts proposed by the candidate.",
+      "why_it_matters": "The source_fidelity lane must confirm that proposed extraction records are anchored to the retained article sections before extraction_fidelity evaluates the exact interpretation and synthesis readiness.",
+      "recommended_action": "Proceed with the remaining required review lanes while keeping exploratory subgroup pooling and safety pooling subject to the separate synthesis_boundary and safety_limitations reviews.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "rights-boundary-recorded-for-retained-text",
+      "severity": "note",
+      "category": "missing_caveat",
+      "claim_or_issue": "The source_rights record classifies the PMC copy as an author manuscript, permits retained raw and normalized artifacts for repository use, and limits public exports to metadata, structured facts, hashes, locators, rights metadata, and artifact manifests.",
+      "why_it_matters": "Retaining article text is acceptable for this candidate only with an explicit source-rights boundary that prevents full text or normalized markdown from leaking into public exports.",
+      "recommended_action": "Keep public exports limited to metadata and structured facts for this article unless a future rights record explicitly expands the reusable-content policy.",
+      "resolution_status": "closed"
+    }
+  ]
+}

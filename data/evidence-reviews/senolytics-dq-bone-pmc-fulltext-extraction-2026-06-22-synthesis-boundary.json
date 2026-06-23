@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-synthesis-boundary",
+  "candidate_change_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
+  "review_lane": "synthesis_boundary",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex-cli-worker",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "The synthesis-boundary lane is complete and acceptable. The candidate's exploratory high-p16 T3 subgroup records are labeled exploratory and low-confidence, the subgroup synthesis group blocks pooling across mixed endpoints and time horizons, and the safety synthesis group keeps adverse-event term data descriptive with pooling blocked until comparative effects, uncertainty, and explicit event-count semantics are available.",
+  "findings": [
+    {
+      "finding_id": "exploratory-subgroup-pooling-blocked",
+      "severity": "note",
+      "category": "endpoint_boundary",
+      "claim_or_issue": "The high-p16 T3 subgroup synthesis group includes P1NP, CTx, and radius BMD records across 2-week, 4-week, and 20-week horizons, but marks the group not_poolable with pooling_blocked.",
+      "why_it_matters": "Exploratory subgroup effects from one trial and mixed endpoint families should not be collapsed into a single meta-analytic estimate or treated as the overall randomized endpoint.",
+      "recommended_action": "Keep these records available for subgroup-aware evidence mapping only; require matching endpoint identity, time horizon, subgroup definition, effect metric, and uncertainty before reconsidering pooling.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "uncertainty-debt-made-explicit",
+      "severity": "note",
+      "category": "missing_caveat",
+      "claim_or_issue": "Each proposed high-p16 T3 result reports an effect value and p-value but no confidence interval, standard error, or variance, and the synthesis group lists effect.uncertainty as a pooling-blocking missing field for each result.",
+      "why_it_matters": "Without uncertainty fields, these results cannot support inverse-variance pooling or a defensible quantitative synthesis even when their point estimates are directionally favorable.",
+      "recommended_action": "Leave pooling blocked unless a lawful full-text or supplementary extraction source provides compatible uncertainty fields.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "primary-null-and-subgroup-boundary-preserved",
+      "severity": "note",
+      "category": "interpretation_overreach",
+      "claim_or_issue": "The updated finding separates the null overall primary CTx result, short-term P1NP secondary signals, exploratory high-p16 subgroup signals, and adverse-event table extraction.",
+      "why_it_matters": "This prevents a positive exploratory subgroup signal from being represented as a confirmed overall D+Q bone efficacy finding.",
+      "recommended_action": "Continue requiring primary, secondary, exploratory subgroup, and safety records to be synthesized separately.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "safety-table-remains-descriptive",
+      "severity": "note",
+      "category": "safety_limitation",
+      "claim_or_issue": "The adverse-event term result retains publication table counts and blank-cell caveats, while the safety synthesis group remains pooling_blocked and flags missing comparative effect, uncertainty, and event-specific count semantics.",
+      "why_it_matters": "Publication table counts can inform safety surveillance, but converting thresholded or blank table cells into pooled risk estimates would introduce unsupported assumptions.",
+      "recommended_action": "Keep safety pooling blocked until event-specific preferred terms, arm counts with explicit zero/not-reported handling, comparative effect estimates, and uncertainty are extracted.",
+      "resolution_status": "closed"
+    }
+  ]
+}

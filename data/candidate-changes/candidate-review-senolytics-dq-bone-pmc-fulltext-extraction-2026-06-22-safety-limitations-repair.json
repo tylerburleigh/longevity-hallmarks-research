@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations-repair",
+  "name": "Safety-limitations review repair for D+Q bone PMC full-text extraction",
+  "summary": "Creates the missing safety_limitations supervisor review for senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22. The review accepts the lane because the candidate keeps safety evidence descriptive, preserves adverse-event caveats, and blocks safety pooling.",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-23T17:36:40Z",
+  "scope": {
+    "question": "Repair the missing safety_limitations review lane for the D+Q bone PMC full-text extraction candidate.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations-repair",
+      "path": "data/candidate-changes/candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations-repair.json",
+      "change_type": "create",
+      "rationale": "Tracks this bounded repair candidate for the missing safety_limitations review lane."
+    },
+    {
+      "record_type": "evidence_review",
+      "record_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations",
+      "path": "data/evidence-reviews/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-safety-limitations.json",
+      "change_type": "create",
+      "rationale": "Records the completed safety-limitations supervisor review for the D+Q bone PMC full-text extraction candidate."
+    }
+  ],
+  "required_review_lanes": [
+    "safety_limitations"
+  ]
+}

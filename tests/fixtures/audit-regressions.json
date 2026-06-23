@@ -253,7 +253,7 @@
       "operations": [
         {
           "type": "set_json",
-          "path": "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity.json",
+          "path": "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21.json",
           "pointer": "/orchestration/expected_cost/expected_token_budget",
           "value": 999
         }

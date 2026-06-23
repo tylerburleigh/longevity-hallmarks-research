@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "parallel_reconciliation",
   "id": "parallel-reconciliation-v1",
-  "generated_at": "2026-06-23T14:07:50.948Z",
+  "generated_at": "2026-06-23T14:36:28.740Z",
   "source_roots": [
     "data",
     "research",
@@ -49,19 +49,19 @@
     "study_count": 9,
     "duplicate_study_group_count": 0,
     "candidate_count": 14,
-    "active_candidate_count": 9,
-    "overlapping_candidate_group_count": 9,
+    "active_candidate_count": 8,
+    "overlapping_candidate_group_count": 8,
     "source_rights_count": 2,
     "source_rights_conflict_count": 0,
-    "agent_run_count": 17,
+    "agent_run_count": 18,
     "parallel_batch_count": 4,
     "reconciliation_batch_count": 2,
     "parallel_batch_run_count": 7,
     "pending_parallel_worker_count": 0,
-    "reconciliation_decision_count": 0,
+    "reconciliation_decision_count": 1,
     "incomplete_ledger_count": 2,
-    "open_finding_count": 11,
-    "blocking_finding_count": 11,
+    "open_finding_count": 10,
+    "blocking_finding_count": 10,
     "warning_finding_count": 0
   },
   "parallel_batches": [
@@ -108,7 +108,6 @@
         "missing-candidate-agent-run-bc8e426686e2",
         "missing-candidate-agent-run-de30675addbc",
         "overlapping-candidate-14fca4c24b17",
-        "overlapping-candidate-3524dc80fd8b",
         "overlapping-candidate-3a06e6340cfa",
         "overlapping-candidate-8be7ee3308f9",
         "overlapping-candidate-a47143957992",
@@ -136,7 +135,6 @@
         "missing-candidate-agent-run-bc8e426686e2",
         "missing-candidate-agent-run-de30675addbc",
         "overlapping-candidate-14fca4c24b17",
-        "overlapping-candidate-3524dc80fd8b",
         "overlapping-candidate-3a06e6340cfa",
         "overlapping-candidate-8be7ee3308f9",
         "overlapping-candidate-a47143957992",
@@ -398,36 +396,6 @@
         }
       ],
       "summary": "Active candidates propose changes to the same record path: data/studies/zhu-senolytic-drug-discovery.json."
-    },
-    {
-      "issue_id": "overlapping-candidate-3524dc80fd8b",
-      "category": "overlapping_candidate_proposal",
-      "severity": "blocker",
-      "status": "open",
-      "proposal_key": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
-      "candidate_change_ids": [
-        "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
-        "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
-      ],
-      "proposed_records": [
-        {
-          "candidate_change_id": "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
-          "lifecycle_status": "in_review",
-          "record_type": "synthesis_group",
-          "record_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
-          "path": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
-          "change_type": "update"
-        },
-        {
-          "candidate_change_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
-          "lifecycle_status": "submitted",
-          "record_type": "synthesis_group",
-          "record_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
-          "path": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
-          "change_type": "update"
-        }
-      ],
-      "summary": "Active candidates propose changes to the same record path: data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json."
     }
   ],
   "source_rights_conflicts": [],
@@ -552,13 +520,6 @@
       "severity": "blocker",
       "status": "open",
       "summary": "Active candidates propose changes to the same record path: data/results/dq-bone-turnover-mixed.json."
-    },
-    {
-      "issue_id": "overlapping-candidate-3524dc80fd8b",
-      "category": "overlapping_candidate_proposal",
-      "severity": "blocker",
-      "status": "open",
-      "summary": "Active candidates propose changes to the same record path: data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json."
     },
     {
       "issue_id": "overlapping-candidate-3a06e6340cfa",

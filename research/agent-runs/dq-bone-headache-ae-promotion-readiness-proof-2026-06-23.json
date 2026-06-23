@@ -1,0 +1,122 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "dq-bone-headache-ae-promotion-readiness-proof-2026-06-23",
+  "agent_role": "supervisor_agent",
+  "agent_id": "codex-coordinator",
+  "mode": "agent_directed",
+  "started_at": "2026-06-23T14:20:00Z",
+  "completed_at": "2026-06-23T14:35:16Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "Run a readiness proof for promotion of the D+Q bone headache adverse-event extraction candidate.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": [
+      "dasatinib-quercetin"
+    ]
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "interactive_session",
+    "isolation": "foreground_checkout",
+    "workspace_path": "/home/tyler/Workspace/longevity-hallmarks-research",
+    "sandbox": "danger-full-access",
+    "approval_policy": "not_applicable",
+    "command": [
+      "npm",
+      "run",
+      "promote:candidate",
+      "--",
+      "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
+      "--status",
+      "accepted"
+    ]
+  },
+  "inputs": [
+    {
+      "input_type": "user_request",
+      "reference": "readiness-proof request",
+      "summary": "User asked whether the system had been tested sufficiently and approved a readiness proof before continuing broad feature work."
+    },
+    {
+      "input_type": "candidate_change",
+      "reference": "data/candidate-changes/senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23.json",
+      "summary": "Promotion-ready headache adverse-event extraction candidate with four complete accepting supervisor-review lanes."
+    },
+    {
+      "input_type": "export",
+      "reference": "ops/triage-state.v1.json",
+      "summary": "Triage recommended promotion dry-run for the headache candidate before accepted-record release."
+    },
+    {
+      "input_type": "other",
+      "reference": "ops/reconciliation/parallel-reconciliation.v1.json",
+      "summary": "Promotion dry-run exposed an unresolved overlapping-candidate proposal on the shared D+Q safety synthesis group."
+    }
+  ],
+  "outputs": {
+    "summary": "Promotion readiness proof completed. The initial dry-run correctly blocked promotion on an unresolved overlap with the broader PMC full-text candidate; a narrow reconciliation decision resolved the compatible safety-synthesis overlap; the second dry-run passed; the real promotion moved the headache candidate to accepted with reconciliation metadata.",
+    "candidate_change_id": "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
+        "path": "data/candidate-changes/senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23.json",
+        "change_type": "update",
+        "rationale": "Promotes the candidate to accepted after review gates and reconciliation gates passed."
+      }
+    ],
+    "generated_files": [
+      "ops/reconciliation/decisions/resolve-headache-pmc-safety-overlap-2026-06-23.json"
+    ],
+    "export_paths": [
+      "exports/latest/accepted-records.jsonl",
+      "exports/latest/audit-manifest.json",
+      "exports/latest/coverage-status.json",
+      "exports/latest/evidence-map.json",
+      "exports/latest/read-model.sqlite",
+      "ops/triage-state.v1.json",
+      "ops/release-readiness.v1.json",
+      "ops/reconciliation/parallel-reconciliation.v1.json",
+      "ops/codex-batches/orchestration-metrics.v1.json"
+    ]
+  },
+  "quality_checks": [
+    {
+      "check_name": "promotion_dry_run_initial_block",
+      "status": "passed",
+      "summary": "Initial dry-run correctly blocked promotion on unresolved reconciliation issue overlapping-candidate-3524dc80fd8b."
+    },
+    {
+      "check_name": "reconciliation_decision",
+      "status": "passed",
+      "summary": "Recorded resolve-headache-pmc-safety-overlap-2026-06-23 as a compatible-candidate reconciliation decision for the shared safety synthesis-group path."
+    },
+    {
+      "check_name": "promotion_dry_run_after_reconciliation",
+      "status": "passed",
+      "summary": "Promotion dry-run passed after the reconciliation decision was added."
+    },
+    {
+      "check_name": "promotion_gate",
+      "status": "passed",
+      "summary": "npm run promote:candidate -- senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23 --status accepted promoted the candidate to accepted."
+    },
+    {
+      "check_name": "validate_records",
+      "status": "passed",
+      "summary": "npm run validate:records passed after adding the reconciliation decision."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": [
+    "Refresh generated control-plane state and run full repository verification.",
+    "Treat the discovered reconciliation-gate block as expected process behavior rather than a schema or audit failure."
+  ]
+}

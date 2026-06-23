@@ -4,7 +4,7 @@
   "id": "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
   "name": "D+Q bone headache adverse-event extraction pilot",
   "summary": "Adds a structured term-specific headache adverse-event result from the retained PMC author-manuscript Extended Data Table 1 and updates the 20-week safety synthesis boundary while keeping safety pooling blocked.",
-  "lifecycle_status": "in_review",
+  "lifecycle_status": "accepted",
   "submitted_at": "2026-06-23T12:03:00Z",
   "scope": {
     "question": "Use the retained PMC author-manuscript text snapshot for PMID 38956196 to propose a term-specific headache adverse-event result for the D+Q postmenopausal bone RCT while preserving blank-cell zero/not-reported ambiguity.",
@@ -50,5 +50,20 @@
     "senolytics-dq-bone-headache-ae-taxonomy-mapping-2026-06-23",
     "senolytics-dq-bone-headache-ae-safety-limitations-2026-06-23",
     "senolytics-dq-bone-headache-ae-synthesis-boundary-2026-06-23"
-  ]
+  ],
+  "promotion": {
+    "target_status": "accepted",
+    "promoted_at": "2026-06-23T14:35:00.072Z",
+    "promoted_by_agent": "promote-candidate",
+    "reviewed_review_ids": [
+      "senolytics-dq-bone-headache-ae-extraction-fidelity-2026-06-23",
+      "senolytics-dq-bone-headache-ae-taxonomy-mapping-2026-06-23",
+      "senolytics-dq-bone-headache-ae-safety-limitations-2026-06-23",
+      "senolytics-dq-bone-headache-ae-synthesis-boundary-2026-06-23"
+    ],
+    "reconciliation_decision_ids": [
+      "resolve-headache-pmc-safety-overlap-2026-06-23"
+    ],
+    "summary": "Promoted to accepted after all required active review lanes passed."
+  }
 }

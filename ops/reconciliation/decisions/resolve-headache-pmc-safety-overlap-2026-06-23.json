@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "reconciliation_decision",
+  "id": "resolve-headache-pmc-safety-overlap-2026-06-23",
+  "created_at": "2026-06-23T14:25:00Z",
+  "reconciled_by_agent": "codex-coordinator",
+  "reconciliation_report_id": "parallel-reconciliation-v1",
+  "issue_ids": [
+    "overlapping-candidate-3524dc80fd8b"
+  ],
+  "issue_categories": [
+    "overlapping_candidate_proposal"
+  ],
+  "candidate_change_ids": [
+    "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
+    "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
+  ],
+  "compatible_candidate_change_ids": [
+    "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
+    "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
+  ],
+  "resolution_status": "resolved",
+  "resolution_summary": "The overlap is compatible. The PMC full-text candidate added publication-table adverse-event provenance and kept the D+Q bone safety synthesis boundary blocked; the headache candidate builds on that boundary by adding a term-specific structured headache result while preserving the same pooling_blocked safety constraints. The current synthesis_group record contains both updates without replacing or contradicting the broader PMC candidate.",
+  "evidence": [
+    {
+      "path": "data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json",
+      "summary": "The broader PMC full-text candidate proposes the same safety synthesis group path to add publication adverse-event table provenance and safety pooling blockers."
+    },
+    {
+      "path": "data/candidate-changes/senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23.json",
+      "summary": "The headache candidate proposes the same safety synthesis group path to add the headache term-specific result and preserve zero/not-reported blockers."
+    },
+    {
+      "path": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+      "summary": "The current synthesis group includes the aggregate safety result, adverse-event term table result, headache term-specific result, full-text provenance, and pooling_blocked rationale."
+    }
+  ]
+}

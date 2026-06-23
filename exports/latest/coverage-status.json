@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "coverage_status_export",
   "id": "latest-coverage-status",
-  "generated_at": "2026-06-23T14:07:51.174Z",
+  "generated_at": "2026-06-23T14:36:28.964Z",
   "record_counts": {
     "coverage_assessments": 2,
     "current_coverage_assessments": 1,

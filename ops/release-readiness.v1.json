@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "release_readiness",
   "id": "release-readiness-v1",
-  "generated_at": "2026-06-23T14:07:50.828Z",
+  "generated_at": "2026-06-23T14:36:28.616Z",
   "source_roots": [
     "data",
     "research"
@@ -19,22 +19,21 @@
   "summary": {
     "candidate_count": 14,
     "not_ready_candidate_count": 8,
-    "promotion_ready_candidate_count": 1,
+    "promotion_ready_candidate_count": 0,
     "release_ready_candidate_count": 1,
-    "partial_release_ready_candidate_count": 4,
-    "release_blocked_candidate_count": 4,
-    "accepted_or_applied_candidate_count": 5,
-    "accepted_record_count": 12,
-    "blocked_accepted_record_count": 37
+    "partial_release_ready_candidate_count": 5,
+    "release_blocked_candidate_count": 5,
+    "accepted_or_applied_candidate_count": 6,
+    "accepted_record_count": 13,
+    "blocked_accepted_record_count": 39
   },
-  "promotion_ready_candidate_ids": [
-    "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23"
-  ],
+  "promotion_ready_candidate_ids": [],
   "release_ready_candidate_ids": [
     "senolytics-dq-bone-registry-text-snapshot-2026-06-22"
   ],
   "release_blocked_candidate_ids": [
     "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
+    "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
     "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
     "senolytics-dq-bone-release-anchor-2026-06-22",
     "senolytics-dq-bone-source-rights-seed-2026-06-22"
@@ -206,9 +205,9 @@
     {
       "candidate_change_id": "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
       "path": "data/candidate-changes/senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23.json",
-      "lifecycle_status": "in_review",
-      "readiness_status": "promotion_ready",
-      "release_status": "promotion_ready",
+      "lifecycle_status": "accepted",
+      "readiness_status": "accepted",
+      "release_status": "partial_release_ready",
       "required_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
@@ -222,12 +221,18 @@
         "senolytics-dq-bone-headache-ae-taxonomy-mapping-2026-06-23"
       ],
       "proposed_record_count": 3,
-      "release_ready_record_count": 0,
-      "blocked_record_count": 0,
-      "release_ready_record_ids": [],
-      "blocked_record_ids": [],
+      "release_ready_record_count": 1,
+      "blocked_record_count": 2,
+      "release_ready_record_ids": [
+        "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23"
+      ],
+      "blocked_record_ids": [
+        "dq-bone-headache-20wk-descriptive",
+        "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21"
+      ],
       "next_actions": [
-        "Promote candidate senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23 before release artifacts include its proposed records."
+        "Included records without blockers are eligible for accepted-record export.",
+        "Resolve blocked records before treating the whole candidate as fully released: result:dq-bone-headache-20wk-descriptive, synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21."
       ]
     },
     {
@@ -439,6 +444,21 @@
       "release_status": "accepted",
       "candidate_change_ids": [
         "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
+    },
+    {
+      "record_type": "candidate_change",
+      "record_id": "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
+      "path": "data/candidate-changes/senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23"
       ],
       "candidate_lifecycle_statuses": [
         "accepted"
@@ -710,10 +730,6 @@
         },
         {
           "blocker_type": "unaccepted_dependency",
-          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-headache-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
-        },
-        {
-          "blocker_type": "unaccepted_dependency",
           "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on source_snapshot:snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22 through provenance[2].source_snapshot_id, but that record is not proposed by an accepted or applied candidate."
         },
         {
@@ -737,6 +753,54 @@
         {
           "blocker_type": "blocked_dependency",
           "message": "synthesis_group:senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-sasp-2wk-null, which has release blockers."
+        }
+      ]
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-headache-20wk-descriptive",
+      "path": "data/results/dq-bone-headache-20wk-descriptive.json",
+      "change_type": "create",
+      "candidate_change_id": "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
+      "candidate_lifecycle_status": "accepted",
+      "blockers": [
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "result:dq-bone-headache-20wk-descriptive depends on source_snapshot:snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22 through provenance[0].source_snapshot_id, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "result:dq-bone-headache-20wk-descriptive depends on text_snapshot:text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22 through provenance[0].text_snapshot_id, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "result:dq-bone-headache-20wk-descriptive depends on source_snapshot:snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22 through provenance[1].source_snapshot_id, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "result:dq-bone-headache-20wk-descriptive depends on text_snapshot:text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22 through provenance[1].text_snapshot_id, but that record is not proposed by an accepted or applied candidate."
+        }
+      ]
+    },
+    {
+      "record_type": "synthesis_group",
+      "record_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "path": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+      "change_type": "update",
+      "candidate_change_id": "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
+      "candidate_lifecycle_status": "accepted",
+      "blockers": [
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-adverse-event-terms-20wk-mixed through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on source_snapshot:snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22 through provenance[2].source_snapshot_id, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on text_snapshot:text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22 through provenance[2].text_snapshot_id, but that record is not proposed by an accepted or applied candidate."
         }
       ]
     },

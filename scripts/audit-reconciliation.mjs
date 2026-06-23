@@ -10,6 +10,7 @@ import {
 } from "./reconcile-parallel-outputs.mjs";
 
 const ignoredGeneratedValue = "<generated_at>";
+const candidateChangeRoot = "data/candidate-changes";
 
 async function exists(filePath) {
   try {
@@ -22,6 +23,30 @@ async function exists(filePath) {
 
 async function readJson(relativePath) {
   return JSON.parse(await fs.readFile(path.join(workspaceRoot, relativePath), "utf8"));
+}
+
+function toPosixRelative(filePath) {
+  return path.relative(workspaceRoot, filePath).split(path.sep).join("/");
+}
+
+async function walkJsonFiles(rootPath) {
+  if (!(await exists(rootPath))) {
+    return [];
+  }
+
+  const entries = await fs.readdir(rootPath, { withFileTypes: true });
+  const files = [];
+
+  for (const entry of entries) {
+    const entryPath = path.join(rootPath, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...(await walkJsonFiles(entryPath)));
+    } else if (entry.isFile() && entry.name.endsWith(".json")) {
+      files.push(entryPath);
+    }
+  }
+
+  return files.sort((left, right) => toPosixRelative(left).localeCompare(toPosixRelative(right)));
 }
 
 function stableJson(value) {
@@ -38,6 +63,26 @@ function normalizeReport(value) {
 function sectionDiffs(actual, expected) {
   const keys = [...new Set([...Object.keys(actual), ...Object.keys(expected)])].sort((left, right) => left.localeCompare(right));
   return keys.filter((key) => key !== "generated_at" && stableJson(actual[key]) !== stableJson(expected[key]));
+}
+
+async function promotionDecisionReferences() {
+  const files = await walkJsonFiles(path.join(workspaceRoot, candidateChangeRoot));
+  const decisionRefs = new Map();
+
+  for (const filePath of files) {
+    const candidate = await readJson(toPosixRelative(filePath));
+    if (candidate.record_type !== "candidate_change" || !["accepted", "applied"].includes(candidate.lifecycle_status)) {
+      continue;
+    }
+
+    for (const decisionId of candidate.promotion?.reconciliation_decision_ids ?? []) {
+      const candidateIds = decisionRefs.get(decisionId) ?? new Set();
+      candidateIds.add(candidate.id);
+      decisionRefs.set(decisionId, candidateIds);
+    }
+  }
+
+  return decisionRefs;
 }
 
 async function main() {
@@ -76,6 +121,7 @@ async function main() {
     ...(actual.incomplete_ledgers ?? [])
   ].map((finding) => [finding.issue_id, finding]));
   const decisionIssues = [];
+  const promotedDecisionRefs = await promotionDecisionReferences();
 
   for (const decisionEntry of await loadReconciliationDecisions()) {
     const decision = decisionEntry.record;
@@ -88,6 +134,13 @@ async function main() {
     for (const issueId of decision.issue_ids ?? []) {
       const finding = findingById.get(issueId);
       if (!finding) {
+        const promotedCandidateIds = promotedDecisionRefs.get(decision.id) ?? new Set();
+        const isPromotionEvidence = [...promotedCandidateIds].some((candidateId) =>
+          (decision.candidate_change_ids ?? []).includes(candidateId)
+        );
+        if (isPromotionEvidence) {
+          continue;
+        }
         decisionIssues.push(`${decisionEntry.path}: issue_ids[] references unknown current reconciliation issue "${issueId}".`);
         continue;
       }

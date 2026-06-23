@@ -670,6 +670,8 @@ Tasks:
 - [x] Execute the first bounded real extraction-refresh pilot through `jobs:run-batch`, import the declared outputs, archive the completed job, refresh generated state, and pass full verification.
 - [x] Add compact extraction context packs so bounded workers receive the exact source rows, schema slices, expected exemplars, and verification commands needed for the job class.
 - [x] Extend safety-result structure for adverse-event preferred terms, event-specific arm counts, and zero/not-reported semantics before attempting comparative safety pooling.
+- [x] Run the first real candidate-promotion readiness proof on the D+Q headache adverse-event candidate, including promotion dry-run, reconciliation-decision handling, accepted promotion, generated-state refresh, and verification.
+- [ ] Run at least two more real end-to-end readiness proofs without new infrastructure fixes before treating broad unattended research campaigns as ready.
 
 Exit criteria:
 
@@ -677,6 +679,7 @@ Exit criteria:
 - Failures are observable as structured job, batch-run, reconciliation, metrics, and audit signals.
 - Recovery and archiving paths work without hidden coordinator edits or stale live jobs.
 - The first real extraction-refresh pilot is allowed only after the battle-test readiness gate passes.
+- Broad unattended research campaigns wait until repeated real runs complete without new schema, audit, reconciliation, ledger, or generated-state process fixes.
 
 ## Initial Open Questions
 
@@ -690,13 +693,15 @@ Exit criteria:
 
 ## Immediate Next Actions
 
-1. Run the missing agent-supervisor review lanes for `senolytics-coverage-repair-2026-06-21`: extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
+1. Create a repair candidate for `senolytics-coverage-repair-2026-06-21` addressing its open extraction-fidelity, safety-limitations, source-fidelity, synthesis-boundary, and taxonomy-mapping findings.
 2. Run supervisor-review lanes for `senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22`: source fidelity, extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.
-3. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry or article text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
-4. Decide whether to install repo-local skills into the active Codex skills directory.
+3. Run two additional real end-to-end readiness proofs without new infrastructure fixes before broad unattended research campaigns.
+4. Turn reusable text-snapshot ingestion and supervisor-review templates into live `ops/codex-jobs/` specs for the next source that requires retained registry or article text; allow the wrapper to snapshot the concrete prompt under `research/agent-runs/prompts/`.
+5. Decide whether to install repo-local skills into the active Codex skills directory.
 
 ## Change Log
 
+- 2026-06-23: Ran the first real candidate-promotion readiness proof on the D+Q headache adverse-event candidate. The initial dry-run correctly blocked promotion on an unresolved overlapping-candidate reconciliation issue; a compatible-candidate reconciliation decision resolved the overlap; promotion to accepted succeeded. The proof exposed and fixed a reconciliation-decision audit lifecycle gap for decisions preserved as accepted-candidate promotion evidence.
 - 2026-06-23: Completed four supervisor-review lanes for the D+Q headache adverse-event extraction candidate. The extraction-fidelity, taxonomy-mapping, safety-limitations, and synthesis-boundary reviews are accepting and non-blocking; the candidate is now in_review with all required lanes linked, while promotion remains a separate coordinator action.
 - 2026-06-23: Added structured `result.adverse_event` fields for preferred terms, arm-level event counts, count-status semantics, and zero-handling; migrated the D+Q headache result and safety synthesis boundary; added adverse-event pooling audits, read-model `adverse_event_json`, consumer-contract text, and regression coverage for unsafe comparative safety effects.
 - 2026-06-23: Added extraction context packs as first-class records with schema validation, path/locator audits, Codex job conformance checks, a D+Q headache table-row pack, a reusable extraction-refresh table-row job template, prompt guidance to read packs before broad discovery, and regression coverage for broken retained-artifact paths.

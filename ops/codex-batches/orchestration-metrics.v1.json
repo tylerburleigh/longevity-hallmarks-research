@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "orchestration_metrics",
   "id": "orchestration-metrics-v1",
-  "generated_at": "2026-06-23T14:07:51.059Z",
+  "generated_at": "2026-06-23T14:36:28.852Z",
   "source_roots": [
     "data",
     "exports/latest",
@@ -60,26 +60,26 @@
     "succeeded_worker_count": 7,
     "actual_worker_wall_time_ms": 1415555,
     "actual_batch_wall_time_ms": 1040427,
-    "agent_run_count": 17,
-    "succeeded_agent_run_count": 15,
+    "agent_run_count": 18,
+    "succeeded_agent_run_count": 16,
     "partial_agent_run_count": 2,
     "failed_agent_run_count": 0,
-    "agent_run_wall_time_ms": 10605000,
-    "duplicate_work_group_count": 9,
-    "duplicate_work_record_count": 19,
-    "conflict_finding_count": 11,
+    "agent_run_wall_time_ms": 11521000,
+    "duplicate_work_group_count": 8,
+    "duplicate_work_record_count": 17,
+    "conflict_finding_count": 10,
     "conflict_rate": 0.25,
-    "open_finding_rate": 1.2222,
-    "accepted_candidate_count": 5,
-    "accepted_records_produced_count": 45,
+    "open_finding_rate": 1.25,
+    "accepted_candidate_count": 6,
+    "accepted_records_produced_count": 47,
     "extraction_debt_open_count": 50,
     "extraction_debt_high_priority_open_count": 45,
-    "extraction_debt_resolved_candidate_count": 2,
-    "extraction_debt_resolved_record_count": 17,
+    "extraction_debt_resolved_candidate_count": 3,
+    "extraction_debt_resolved_record_count": 18,
     "release_ready_candidate_count": 1,
-    "release_blocked_candidate_count": 4,
+    "release_blocked_candidate_count": 5,
     "release_artifact_count": 16,
-    "release_ready_record_count": 12
+    "release_ready_record_count": 13
   },
   "planned_parallelism": {
     "by_parallel_group": [
@@ -278,7 +278,7 @@
       },
       {
         "key": "succeeded",
-        "count": 15
+        "count": 16
       }
     ],
     "agent_run_role_counts": [
@@ -296,7 +296,7 @@
       },
       {
         "key": "supervisor_agent",
-        "count": 6
+        "count": 7
       },
       {
         "key": "synthesis_agent",
@@ -316,7 +316,7 @@
       },
       {
         "key": "result",
-        "count": 14
+        "count": 15
       },
       {
         "key": "source",
@@ -336,7 +336,7 @@
       },
       {
         "key": "synthesis_group",
-        "count": 6
+        "count": 7
       },
       {
         "key": "text_snapshot",
@@ -355,6 +355,20 @@
         "related_agent_run_ids": [
           "dq-bone-endpoint-synthesis-supervisor-review-2026-06-21",
           "dq-bone-synthesis-groups-codex-worker-rerun-2026-06-21"
+        ]
+      },
+      {
+        "candidate_change_id": "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
+        "lifecycle_status": "accepted",
+        "submitted_at": "2026-06-23T12:03:00Z",
+        "promoted_at": "2026-06-23T14:35:00.072Z",
+        "proposed_record_count": 3,
+        "accepted_record_count": 2,
+        "extraction_debt_record_count": 1,
+        "related_agent_run_ids": [
+          "dq-bone-headache-ae-extraction-pilot-2026-06-23",
+          "dq-bone-headache-ae-promotion-readiness-proof-2026-06-23",
+          "dq-bone-headache-ae-supervisor-review-2026-06-23"
         ]
       },
       {
@@ -412,8 +426,8 @@
     "extraction_debt": {
       "open_count": 50,
       "high_priority_open_count": 45,
-      "resolved_candidate_count": 2,
-      "resolved_record_count": 17,
+      "resolved_candidate_count": 3,
+      "resolved_record_count": 18,
       "resolved_records_by_type": [
         {
           "key": "finding",
@@ -425,7 +439,7 @@
         },
         {
           "key": "result",
-          "count": 7
+          "count": 8
         },
         {
           "key": "source_snapshot",
@@ -439,9 +453,9 @@
     },
     "release": {
       "release_ready_candidate_count": 1,
-      "release_blocked_candidate_count": 4,
-      "release_ready_record_count": 12,
-      "blocked_accepted_record_count": 37,
+      "release_blocked_candidate_count": 5,
+      "release_ready_record_count": 13,
+      "blocked_accepted_record_count": 39,
       "release_artifact_count": 16,
       "export_files": [
         "exports/latest/accepted-records.jsonl",
@@ -465,18 +479,18 @@
   },
   "quality_pressure": {
     "duplicate_work": {
-      "group_count": 9,
-      "record_count": 19,
+      "group_count": 8,
+      "record_count": 17,
       "duplicate_source_group_count": 0,
       "duplicate_study_group_count": 0,
-      "overlapping_candidate_group_count": 9
+      "overlapping_candidate_group_count": 8
     },
     "conflicts": {
-      "open_finding_count": 11,
-      "blocking_finding_count": 11,
+      "open_finding_count": 10,
+      "blocking_finding_count": 10,
       "warning_finding_count": 0,
       "conflict_rate": 0.25,
-      "open_finding_rate": 1.2222,
+      "open_finding_rate": 1.25,
       "reconciliation_batch_rate": 0.25
     },
     "worker_failures": {

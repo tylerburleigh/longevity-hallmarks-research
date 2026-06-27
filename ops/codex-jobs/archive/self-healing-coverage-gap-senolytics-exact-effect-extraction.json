@@ -4,7 +4,7 @@
   "id": "self-healing-coverage-gap-senolytics-exact-effect-extraction",
   "name": "Self-healing repair: coverage-gap-senolytics-exact-effect-extraction",
   "summary": "The D+Q bone RCT now has registry-extracted endpoint-level outcome/result records, but DKD, IPF, and AD-risk human studies remain triage-level; the bone RCT also still needs full publication table and supplement reconciliation.",
-  "lifecycle_status": "ready",
+  "lifecycle_status": "succeeded",
   "agent_role": "extraction_agent",
   "mode": "extraction_refresh",
   "prompt_file": "docs/prompts/codex-agents/extraction-refresh.md",
@@ -26,8 +26,7 @@
     "approval_policy": "never",
     "output_schema_path": "schemas/agent-run.codex-output.schema.json",
     "timeout_ms": 3600000,
-    "no_output_timeout_ms": 300000,
-    "max_command_events": 120
+    "no_output_timeout_ms": 300000
   },
   "expected_outputs": {
     "canonical_write_policy": "candidate_change_required",
@@ -81,5 +80,7 @@
     "Generated from ops/triage-state.v1.json recommended_jobs[] item coverage-gap-senolytics-exact-effect-extraction.",
     "Source queue: coverage_gap.",
     "The worker should keep edits bounded to the target record, listed inputs, and the candidate repair ledger."
-  ]
+  ],
+  "final_agent_run_id": "self-healing-coverage-gap-senolytics-exact-effect-extraction",
+  "archived_at": "2026-06-27T18:52:30.620Z"
 }

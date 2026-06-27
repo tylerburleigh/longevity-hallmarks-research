@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "codex_job",
+  "id": "self-healing-extraction-debt-dq-ad-risk-cognition-mobility-mixed",
+  "name": "Self-healing repair: extraction-debt-dq-ad-risk-cognition-mobility-mixed",
+  "summary": "Upgrade result maturity for synthesis readiness.",
+  "lifecycle_status": "ready",
+  "agent_role": "extraction_agent",
+  "mode": "extraction_refresh",
+  "prompt_file": "docs/prompts/codex-agents/extraction-refresh.md",
+  "output_path": "research/agent-runs/self-healing-extraction-debt-dq-ad-risk-cognition-mobility-mixed.json",
+  "jsonl_log_path": "research/agent-runs/logs/self-healing-extraction-debt-dq-ad-risk-cognition-mobility-mixed.jsonl",
+  "scope": {
+    "question": "extraction_refresh: Upgrade result maturity for synthesis readiness.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "chronic_inflammation"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": [
+      "dasatinib-quercetin"
+    ],
+    "source_ids": [
+      "pmid-40010154"
+    ],
+    "study_ids": [
+      "dq-ad-risk-cognition-mobility-pilot"
+    ],
+    "outcome_ids": [
+      "dq-ad-risk-cognition-mobility"
+    ],
+    "result_ids": [
+      "dq-ad-risk-cognition-mobility-mixed"
+    ]
+  },
+  "execution": {
+    "isolation": "git_worktree",
+    "sandbox": "workspace-write",
+    "approval_policy": "never",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "timeout_ms": 3600000,
+    "no_output_timeout_ms": 300000
+  },
+  "expected_outputs": {
+    "canonical_write_policy": "candidate_change_required",
+    "candidate_change_id": "extraction-debt-dq-ad-risk-cognition-mobility-mixed-repair",
+    "required_review_lanes": [
+      "extraction_fidelity",
+      "synthesis_boundary",
+      "taxonomy_mapping"
+    ]
+  },
+  "orchestration": {
+    "read_sets": [
+      "path:data/results/dq-ad-risk-cognition-mobility-mixed.json",
+      "path:ops/triage-state.v1.json",
+      "triage_job:extraction-debt-dq-ad-risk-cognition-mobility-mixed"
+    ],
+    "write_sets": [
+      "candidate_change:extraction-debt-dq-ad-risk-cognition-mobility-mixed-repair",
+      "path:data/candidate-changes/extraction-debt-dq-ad-risk-cognition-mobility-mixed-repair.json",
+      "path:data/results/dq-ad-risk-cognition-mobility-mixed.json",
+      "target_record:result/dq-ad-risk-cognition-mobility-mixed"
+    ],
+    "conflict_keys": [
+      "candidate_change:extraction-debt-dq-ad-risk-cognition-mobility-mixed-repair",
+      "target_record:result/dq-ad-risk-cognition-mobility-mixed",
+      "triage_job:extraction-debt-dq-ad-risk-cognition-mobility-mixed"
+    ],
+    "parallel_group": "extraction-refresh",
+    "reconciliation_required": true,
+    "expected_cost": {
+      "cost_class": "high",
+      "expected_wall_time_ms": 3600000,
+      "expected_token_budget": 100000,
+      "io_intensity": "high"
+    }
+  },
+  "post_run": {
+    "export_latest": true,
+    "verify_knowledge_base": true
+  },
+  "quality_gates": [
+    "validate_records",
+    "audit_references",
+    "audit_exports",
+    "audit_agent_schemas",
+    "audit_agentic_process",
+    "worker_output_contract",
+    "candidate_agent_run_ledger_match"
+  ],
+  "notes": [
+    "Generated from ops/triage-state.v1.json recommended_jobs[] item extraction-debt-dq-ad-risk-cognition-mobility-mixed.",
+    "Source queue: extraction_debt.",
+    "The worker should keep edits bounded to the target record, listed inputs, and the candidate repair ledger."
+  ]
+}

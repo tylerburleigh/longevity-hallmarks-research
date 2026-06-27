@@ -6,15 +6,15 @@
   "track_id": "senolytics",
   "hallmark_id": "cellular_senescence",
   "assessment_type": "coverage_repair",
-  "assessed_at": "2026-06-21T18:45:00Z",
+  "assessed_at": "2026-06-27T18:13:25Z",
   "coverage_verdict": "adequate",
   "coverage_confidence": "moderate",
-  "summary": "The senolytics track now has an auditable vertical slice across preclinical D+Q discovery/healthspan evidence, early human biomarker and feasibility studies, a phase 2 randomized bone trial, a 2025 cognition/mobility pilot, translation-review context, risk-of-bias records, and registry-only active trial-watch records. It is adequate as a maintainable knowledge-base slice, but not yet ready for quantitative synthesis.",
+  "summary": "The senolytics track has an auditable vertical slice across preclinical D+Q discovery/healthspan evidence, early human biomarker and pilot human studies, a phase 2 randomized bone trial, a 2025 cognition/mobility pilot, translation-review context, risk-of-bias records, and registry-only active trial-watch records. DKD and AD-risk human records now include PubMed abstract-located sample, dosing, timepoint, and effect details, and IPF has an abstract-located dosing-completion result plus corrected RCT sample size. These upgrades remain below source-snapshot-backed extraction grade, and the D+Q bone publication-table and supplement reconciliation remains incomplete.",
   "evidence_categories": [
     {
       "category": "human_interventional",
       "coverage_level": "adequate",
-      "rationale": "Includes early D+Q human biomarker, randomized IPF feasibility, phase 2 bone, and AD-risk cognition/mobility pilot records.",
+      "rationale": "Includes early D+Q human biomarker, randomized IPF pilot, phase 2 bone, and AD-risk cognition/mobility pilot records; DKD, IPF, and AD-risk now have at least abstract-located extraction for sample, dosing, timing, or effect details.",
       "source_ids": [
         "pmid-31542391",
         "pmid-36857968",
@@ -58,7 +58,7 @@
     {
       "category": "null_negative_or_limiting",
       "coverage_level": "adequate",
-      "rationale": "The IPF, bone, and AD-risk records explicitly encode mixed, pilot, primary/subgroup, and feasibility limitations instead of flattening them into positive claims.",
+      "rationale": "The IPF, bone, and AD-risk records explicitly encode mixed, pilot, primary/subgroup, and feasibility limitations instead of flattening them into positive claims; the AD-risk record now includes the abstract-level MoCA and TNF-alpha estimates.",
       "source_ids": [
         "pmid-36857968",
         "pmid-38956196",
@@ -73,18 +73,21 @@
     {
       "category": "safety_durability",
       "coverage_level": "thin",
-      "rationale": "Safety-oriented records exist, but adverse events, dosing cadence, durability, and discontinuation details still need explicit extraction.",
+      "rationale": "Safety-oriented records now include the D+Q bone registry aggregate counts, full-text adverse-event table extraction, an accepted structured headache preferred-term row, and retained locators for withdrawal, dosing cadence, and durability context. The remaining publication table rows, discontinuation details, and the DKD/IPF/AD-risk human safety slices still need row-level or source-specific extraction before safety synthesis.",
       "source_ids": [
+        "pmid-38956196",
+        "nct-04313634",
         "pmid-36857968",
         "pmid-40010154",
         "pmid-32686219"
       ],
       "finding_ids": [
+        "dq-bone-rct-primary-null-subgroup-biomarker-signal",
         "dq-ipf-randomized-feasibility-tolerability-mixed",
         "dq-ad-risk-pilot-cognition-mobility-signal",
         "senolytic-translation-review-boundary"
       ],
-      "gap_note": "Add adverse-event tables and dosing-duration fields before safety synthesis."
+      "gap_note": "Run bounded extraction for the remaining D+Q bone adverse-event rows and discontinuation counts, then ingest or retain source snapshots for DKD, IPF, and AD-risk safety extraction before attempting cross-human safety synthesis."
     },
     {
       "category": "active_trials_registries",
@@ -155,17 +158,17 @@
       "gap_id": "senolytics-exact-effect-extraction",
       "gap_type": "operational_gap",
       "category": "human_interventional",
-      "description": "The D+Q bone RCT now has registry-extracted endpoint-level outcome/result records, but DKD, IPF, and AD-risk human studies remain triage-level; the bone RCT also still needs full publication table and supplement reconciliation.",
+      "description": "DKD and AD-risk human studies now have PubMed abstract-located sample, dosing, timepoint, and effect details, and IPF has an abstract-located dosing-completion result plus corrected randomized-pilot sample size. However, durable source snapshots could not be created in this worker, the legacy IPF generic outcome/result still needs reconciliation, and the D+Q bone RCT still needs full publication table and supplement reconciliation.",
       "priority": "high",
-      "suggested_action": "Run extraction-refresh passes for DKD, IPF, and AD-risk, then reconcile the bone RCT registry extraction against full article tables and supplements."
+      "suggested_action": "Create or refresh durable PubMed/PMC source snapshots for DKD, IPF, and AD-risk, complete full-text/table extraction where needed, and reconcile the bone RCT registry extraction against full article tables and supplements."
     },
     {
       "gap_id": "senolytics-safety-tables",
       "gap_type": "coverage_gap",
       "category": "safety_durability",
-      "description": "Aggregate adverse-event counts were extracted for the D+Q bone RCT, but event-specific adverse-event terms, discontinuation details, dosing cadence, and durability details remain incomplete across the human evidence slice.",
+      "description": "Aggregate adverse-event counts and the D+Q bone headache preferred-term row have been extracted for the D+Q bone RCT, and retained full-text locators now identify the safety table, withdrawal narrative, dosing cadence, and durability discussion. Event-specific structured rows beyond headache, discontinuation count fields, and source-snapshot-backed safety extraction for the DKD, IPF, and AD-risk human studies remain incomplete.",
       "priority": "high",
-      "suggested_action": "Add event-specific safety outcomes/results or a dedicated adverse-event schema, then extend safety extraction across DKD, IPF, and AD-risk studies."
+      "suggested_action": "Run table-row extraction context packs for the remaining D+Q bone adverse-event terms and withdrawals, then ingest or retain appropriate source snapshots before extending safety extraction across DKD, IPF, and AD-risk studies."
     },
     {
       "gap_id": "senolytics-registry-surveillance-breadth",
@@ -184,7 +187,7 @@
       "suggested_action": "Search for recent systematic reviews, meta-analyses, and trial-landscape reviews."
     }
   ],
-  "next_coverage_action": "Run extraction_refresh on the human D+Q result-bearing studies, prioritizing exact outcome definitions, quantitative effects, adverse events, and prespecified versus exploratory analysis labels.",
+  "next_coverage_action": "Create source-snapshot-backed full-text extraction passes for DKD, IPF, and AD-risk, reconcile the legacy IPF generic outcome/result against article tables, and continue bounded D+Q bone publication-table and supplement reconciliation before any cross-human synthesis.",
   "next_recommended_mode": "extraction_refresh",
   "tags": [
     "senolytics",
@@ -199,7 +202,34 @@
       "locator_type": "derived_record",
       "locator": "coverage_assessment senolytics-coverage-repair-2026-06-21 derived from pmid-25754370",
       "status": "triage_summary",
-      "note": "Triage-level generated record pending source-located extraction."
+      "note": "Original triage-level coverage anchor for the senolytics vertical slice."
+    },
+    {
+      "source_id": "pmid-38956196",
+      "source_snapshot_id": "snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+      "text_snapshot_id": "text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+      "locator_type": "table",
+      "locator": "section:pmc-t2-extended-data-table-1",
+      "status": "full_text_extracted",
+      "note": "Retained full-text adverse-event table lists overall events and preferred-term rows for control and D+Q arms, with blank cells requiring zero/not-reported caution."
+    },
+    {
+      "source_id": "pmid-38956196",
+      "source_snapshot_id": "snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+      "text_snapshot_id": "text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+      "locator_type": "full_text_section",
+      "locator": "section:pmc-s6-safety-and-adverse-events; section:pmc-s12-study-design; section:pmc-s15-dosages-of-d-q; section:pmc-s9-discussion",
+      "status": "full_text_extracted",
+      "note": "Retained full text provides withdrawal/discontinuation details, D+Q dosing cadence over 20 weeks, and durability limitations for short-term versus 20-week bone-turnover effects."
+    },
+    {
+      "source_id": "nct-04313634",
+      "source_snapshot_id": "snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+      "text_snapshot_id": "text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+      "locator_type": "registry_record",
+      "locator": "section:adverse-events",
+      "status": "registry_extracted",
+      "note": "ClinicalTrials.gov retained registry snapshot provides aggregate serious adverse event, other adverse event, and death counts through approximately 20 weeks."
     }
   ],
   "coverage_scope": "vertical_slice"

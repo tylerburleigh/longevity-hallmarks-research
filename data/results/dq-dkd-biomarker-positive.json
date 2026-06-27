@@ -12,34 +12,36 @@
   "intervention_ids": [
     "dasatinib-quercetin"
   ],
-  "comparator": "Within-participant baseline or pilot-study comparator structure",
+  "comparator": "Within-participant before-versus-after pilot design",
+  "arm_details": "Oral dasatinib 100 mg plus quercetin 1000 mg for 3 days.",
+  "sample_size": 9,
   "result_type": "descriptive",
   "effect": {
     "measure": "descriptive",
-    "raw_text": "Reported decreases in senescent-cell and SASP-related biomarkers after intermittent dasatinib plus quercetin."
+    "raw_text": "Abstract reports reduced adipose tissue senescent-cell burden within 11 days, including p16INK4A- and p21CIP1-expressing cells, senescence-associated beta-galactosidase activity, adipocyte progenitors with limited replicative potential, adipose macrophage/crown-like structure markers, skin p16INK4A and p21CIP1 cells, and circulating IL-1alpha, IL-6, MMP-9, and MMP-12; numeric effect sizes are not provided in the abstract."
   },
   "direction": "positive",
   "evidence_tier": "human_biomarker",
   "confidence": "low",
-  "statement": "The result is an early human biomarker signal and should not be interpreted as a clinical benefit claim.",
-  "time_horizon": "Short-course intermittent treatment and post-treatment biomarker assessment",
+  "statement": "In an open-label N=9 diabetic kidney disease pilot, a 3-day D+Q course was followed by lower senescent-cell and SASP-related biomarker signals 11 days after treatment completion.",
+  "time_horizon": "Before treatment to 11 days after completing a 3-day D+Q course",
   "caveats": [
-    "Small preliminary study.",
-    "Needs full quantitative extraction and risk-of-bias review before synthesis."
+    "Open-label N=9 biomarker study; do not interpret as clinical efficacy.",
+    "Abstract-level extraction does not provide numeric effect sizes or p values for individual biomarkers."
   ],
   "tags": [
     "senolytics",
     "human",
     "biomarker"
   ],
-  "maturity_status": "triage_summary",
+  "maturity_status": "abstract_extracted",
   "provenance": [
     {
       "source_id": "pmid-31542391",
-      "locator_type": "derived_record",
-      "locator": "result dq-dkd-biomarker-positive derived from pmid-31542391",
-      "status": "triage_summary",
-      "note": "Triage-level generated record pending source-located extraction."
+      "locator_type": "abstract",
+      "locator": "PubMed PMID 31542391 abstract METHODS, FINDINGS, and INTERPRETATION",
+      "status": "abstract_extracted",
+      "note": "Abstract gives N=9, D+Q dose and timing, the 11-day post-treatment assessment, and directional biomarker decreases; it does not provide table-level numeric effects."
     }
   ]
 }

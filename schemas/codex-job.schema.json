@@ -158,10 +158,6 @@
         "no_output_timeout_ms": {
           "type": "integer",
           "minimum": 1
-        },
-        "max_command_events": {
-          "type": "integer",
-          "minimum": 1
         }
       }
     },

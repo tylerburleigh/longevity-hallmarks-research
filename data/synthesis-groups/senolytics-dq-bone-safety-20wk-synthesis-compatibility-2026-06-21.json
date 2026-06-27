@@ -3,8 +3,8 @@
   "record_type": "synthesis_group",
   "id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
   "name": "D+Q bone RCT 20-week safety synthesis compatibility",
-  "assessed_at": "2026-06-23T12:03:00Z",
-  "question": "Can the 20-week aggregate and headache preferred-term adverse-event results from the D+Q postmenopausal bone RCT be pooled for a safety meta-analysis estimate?",
+  "assessed_at": "2026-06-27T17:00:06Z",
+  "question": "Can the 20-week aggregate, overall table-row, and headache preferred-term adverse-event results from the D+Q postmenopausal bone RCT be pooled for a safety meta-analysis estimate?",
   "track_ids": [
     "senolytics"
   ],
@@ -19,10 +19,10 @@
     "population": "Postmenopausal women in the D+Q and untreated-control arms of one phase 2 randomized trial.",
     "intervention": "Intermittent dasatinib plus quercetin.",
     "comparator": "Untreated control.",
-    "endpoint_family": "Adverse events, headache preferred-term adverse event, serious adverse events, withdrawals, and deaths through approximately 20 weeks.",
+    "endpoint_family": "Overall adverse events, headache preferred-term adverse event, serious adverse events, withdrawals, and deaths through approximately 20 weeks.",
     "time_horizon": "Baseline to approximately 20 weeks.",
     "effect_metric": "Event-specific risk ratio or risk difference with preferred-term counts and explicit zero/not-reported handling.",
-    "variance_model": "No safety pooling model selected because the available records remain descriptive, single-trial, and lack comparative effect estimates with uncertainty."
+    "variance_model": "No safety pooling model selected because the available records are single-trial and still lack two compatible adverse-event results with defensible comparative effects and uncertainty."
   },
   "outcome_ids": [
     "dq-bone-adverse-events-20wk"
@@ -34,7 +34,7 @@
   ],
   "compatibility_status": "needs_extraction",
   "pooling_decision": "pooling_blocked",
-  "pooling_rationale": "Pooling remains blocked after adding structured headache adverse-event fields. The headache result now preserves the preferred term, D+Q headache count, and blank control-cell semantics, but it still does not provide an explicit control event count, defensible D+Q versus control risk ratio, risk difference, CI, standard error, or variance.",
+  "pooling_rationale": "Pooling remains blocked after adding structured overall adverse-event fields and a calculated overall table-row risk ratio to dq-bone-adverse-event-terms-20wk-mixed. The aggregate registry result still lacks preferred-term structure, and the headache preferred-term result still preserves a blank control cell that prevents a defensible headache-specific comparative effect.",
   "non_pooling_reason": "Do not pool safety until adverse events have structured preferred terms, event-specific arm counts with explicit zero/not-reported semantics, a valid comparison, and effect uncertainty from at least two compatible safety results.",
   "pooling_requirements": {
     "minimum_result_count": 2,
@@ -69,17 +69,6 @@
         "note": "The result is an aggregate safety_event record, not preferred-term event-specific extraction; it lacks comparative effect value, uncertainty, and explicit event-specific preferred-term counts."
       },
       {
-        "result_id": "dq-bone-adverse-event-terms-20wk-mixed",
-        "missing_fields": [
-          "effect.value",
-          "effect.uncertainty",
-          "adverse_event.preferred_term",
-          "adverse_event.event_specific_counts"
-        ],
-        "impact": "blocks_pooling",
-        "note": "The publication table extraction provides descriptive preferred-term counts for reported terms, but it lacks structured adverse-event term fields, comparative effect value, uncertainty, and explicit zero/not-reported semantics for blank cells."
-      },
-      {
         "result_id": "dq-bone-headache-20wk-descriptive",
         "missing_fields": [
           "effect.value",
@@ -96,6 +85,7 @@
     "supervisor_agent": "pending-supervisor-review",
     "audit_status": "passed",
     "self_healing_actions": [
+      "The dq-bone-adverse-event-terms-20wk-mixed result now has an Overall-row preferred term, arm-level counts, risk ratio, and uncertainty derived from reported table counts.",
       "Keep safety pooling blocked until adverse-event records have explicit event counts or explicit zero semantics for every compared arm.",
       "Use result.adverse_event preferred-term and event-specific count fields for future term-level safety extraction.",
       "Create comparative safety effect records only when the extraction process can derive or source risk ratios, risk differences, and uncertainty without unsupported assumptions."

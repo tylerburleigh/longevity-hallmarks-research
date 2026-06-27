@@ -1,17 +1,17 @@
 {
   "schema_version": "1.0.0",
   "record_type": "codex_job",
-  "id": "self-healing-coverage-gap-senolytics-safety-tables",
-  "name": "Self-healing repair: coverage-gap-senolytics-safety-tables",
-  "summary": "Aggregate adverse-event counts were extracted for the D+Q bone RCT, but event-specific adverse-event terms, discontinuation details, dosing cadence, and durability details remain incomplete across the human evidence slice.",
+  "id": "self-healing-coverage-gap-senolytics-registry-surveillance-breadth",
+  "name": "Self-healing repair: coverage-gap-senolytics-registry-surveillance-breadth",
+  "summary": "Only two active no-results registry records were added in this repair pass; broader fisetin and D+Q trial surveillance remains incomplete.",
   "lifecycle_status": "ready",
   "agent_role": "extraction_agent",
   "mode": "extraction_refresh",
   "prompt_file": "docs/prompts/codex-agents/extraction-refresh.md",
-  "output_path": "research/agent-runs/self-healing-coverage-gap-senolytics-safety-tables.json",
-  "jsonl_log_path": "research/agent-runs/logs/self-healing-coverage-gap-senolytics-safety-tables.jsonl",
+  "output_path": "research/agent-runs/self-healing-coverage-gap-senolytics-registry-surveillance-breadth.json",
+  "jsonl_log_path": "research/agent-runs/logs/self-healing-coverage-gap-senolytics-registry-surveillance-breadth.jsonl",
   "scope": {
-    "question": "extraction_refresh: Aggregate adverse-event counts were extracted for the D+Q bone RCT, but event-specific adverse-event terms, discontinuation details, dosing cadence, and durability details remain incomplete across the human evidence slice.",
+    "question": "extraction_refresh: Only two active no-results registry records were added in this repair pass; broader fisetin and D+Q trial surveillance remains incomplete.",
     "hallmark_ids": [
       "cellular_senescence"
     ],
@@ -26,15 +26,13 @@
     "approval_policy": "never",
     "output_schema_path": "schemas/agent-run.codex-output.schema.json",
     "timeout_ms": 3600000,
-    "no_output_timeout_ms": 300000,
-    "max_command_events": 120
+    "no_output_timeout_ms": 300000
   },
   "expected_outputs": {
     "canonical_write_policy": "candidate_change_required",
-    "candidate_change_id": "coverage-gap-senolytics-safety-tables-repair",
+    "candidate_change_id": "coverage-gap-senolytics-registry-surveillance-breadth-repair",
     "required_review_lanes": [
       "extraction_fidelity",
-      "safety_limitations",
       "synthesis_boundary",
       "taxonomy_mapping"
     ]
@@ -43,18 +41,18 @@
     "read_sets": [
       "path:data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
       "path:ops/triage-state.v1.json",
-      "triage_job:coverage-gap-senolytics-safety-tables"
+      "triage_job:coverage-gap-senolytics-registry-surveillance-breadth"
     ],
     "write_sets": [
-      "candidate_change:coverage-gap-senolytics-safety-tables-repair",
-      "path:data/candidate-changes/coverage-gap-senolytics-safety-tables-repair.json",
+      "candidate_change:coverage-gap-senolytics-registry-surveillance-breadth-repair",
+      "path:data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-repair.json",
       "path:data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
       "target_record:coverage_assessment/senolytics-coverage-repair-2026-06-21"
     ],
     "conflict_keys": [
-      "candidate_change:coverage-gap-senolytics-safety-tables-repair",
+      "candidate_change:coverage-gap-senolytics-registry-surveillance-breadth-repair",
       "target_record:coverage_assessment/senolytics-coverage-repair-2026-06-21",
-      "triage_job:coverage-gap-senolytics-safety-tables"
+      "triage_job:coverage-gap-senolytics-registry-surveillance-breadth"
     ],
     "parallel_group": "extraction-refresh",
     "reconciliation_required": true,
@@ -79,7 +77,7 @@
     "candidate_agent_run_ledger_match"
   ],
   "notes": [
-    "Generated from ops/triage-state.v1.json recommended_jobs[] item coverage-gap-senolytics-safety-tables.",
+    "Generated from ops/triage-state.v1.json recommended_jobs[] item coverage-gap-senolytics-registry-surveillance-breadth.",
     "Source queue: coverage_gap.",
     "The worker should keep edits bounded to the target record, listed inputs, and the candidate repair ledger."
   ]

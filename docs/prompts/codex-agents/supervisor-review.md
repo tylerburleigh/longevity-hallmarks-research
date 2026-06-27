@@ -37,7 +37,6 @@ Inspection discipline:
 - When a context pack is present, inspect additional files only when the pack points to them or validation reveals a pack inconsistency.
 - Do not perform broad `rg`/`jq` sweeps over unrelated records for pack-backed jobs; query only for specific ids or paths required by the pack or a validation failure.
 - Do not inspect broad orchestration, wrapper, export, or audit implementation files unless a concrete validation failure points there.
-- When `max_command_events` is provided, leave enough budget for final validation and the final JSON response.
 - If repository exports are stale before the wrapper post-run phase, record that as deferred to coordinator post-run export rather than chasing unrelated implementation files.
 
 Final response:

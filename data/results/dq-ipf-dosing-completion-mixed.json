@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "result",
+  "id": "dq-ipf-dosing-completion-mixed",
+  "name": "D+Q IPF randomized pilot dosing-completion and assessment-completion result",
+  "source_id": "pmid-36857968",
+  "study_id": "dq-ipf-randomized-pilot",
+  "outcome_id": "dq-ipf-dosing-completion-assessments",
+  "finding_ids": [
+    "dq-ipf-randomized-feasibility-tolerability-mixed"
+  ],
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "comparator": "Matching placebo in a 1:1 randomized pilot",
+  "arm_details": "Dasatinib 100 mg/day plus quercetin 1250 mg/day for 3 consecutive days per week over 3 weeks versus matching placebo.",
+  "sample_size": 12,
+  "result_type": "descriptive",
+  "effect": {
+    "measure": "descriptive",
+    "raw_text": "All participants completed scheduled dosing (108/108 doses) and planned assessments (60/60). The D+Q arm had more non-serious adverse events than placebo (65 vs 22), no serious adverse events related to D+Q, sleep disturbances and anxiety were 4/6 vs 0/6, and explored frailty, pulmonary, or physical-function measures did not appear to differ meaningfully between groups."
+  },
+  "analysis": {
+    "comparison": "D+Q versus matching placebo",
+    "method": "Abstract-level descriptive pilot comparison",
+    "effect_note": "Completion counts were exact; clinical measures were underpowered and described qualitatively in the abstract."
+  },
+  "direction": "mixed",
+  "evidence_tier": "human_functional",
+  "confidence": "low",
+  "maturity_status": "abstract_extracted",
+  "provenance": [
+    {
+      "source_id": "pmid-36857968",
+      "locator_type": "abstract",
+      "locator": "PubMed PMID 36857968 abstract FINDINGS and INTERPRETATION",
+      "status": "abstract_extracted",
+      "note": "Abstract supplies exact dose-completion and assessment-completion counts plus qualitative between-arm interpretation of explored clinical measures."
+    }
+  ],
+  "statement": "In the N=12 randomized IPF pilot, all scheduled doses and planned assessments were completed, while clinical measures were underpowered and did not appear to differ meaningfully between D+Q and placebo.",
+  "time_horizon": "3-week intervention period and planned pilot assessments",
+  "caveats": [
+    "Small pilot trial not powered for efficacy.",
+    "The legacy generic IPF outcome/result records still need full reconciliation against article tables.",
+    "Clinical measures should remain separate from general aging or healthspan claims."
+  ],
+  "tags": [
+    "senolytics",
+    "human",
+    "randomized-trial",
+    "idiopathic-pulmonary-fibrosis",
+    "pilot"
+  ]
+}

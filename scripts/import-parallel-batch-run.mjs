@@ -158,6 +158,9 @@ async function loadAgentRunFromWorktree({ worktreePath, outputPath }) {
 }
 
 function declaredArtifactPaths({ job, agentRun }) {
+  const proposedRecordPaths = (agentRun.outputs?.proposed_records ?? [])
+    .map((record) => record?.path);
+
   return unique([
     job.output_path,
     job.jsonl_log_path,
@@ -166,6 +169,7 @@ function declaredArtifactPaths({ job, agentRun }) {
     agentRun.execution?.jsonl_log_path,
     commandLogPathFor(agentRun.execution?.jsonl_log_path),
     ...(agentRun.outputs?.generated_files ?? []),
+    ...proposedRecordPaths,
     ...(agentRun.outputs?.export_paths ?? [])
   ]);
 }

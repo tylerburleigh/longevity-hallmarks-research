@@ -3,12 +3,12 @@
   "record_type": "study",
   "id": "dq-ipf-randomized-pilot",
   "name": "D+Q idiopathic pulmonary fibrosis randomized feasibility and tolerability pilot",
-  "summary": "Phase 1 randomized, single-blind, single-center pilot trial testing feasibility and tolerability of intermittent dasatinib plus quercetin in idiopathic pulmonary fibrosis.",
+  "summary": "Phase 1 randomized, single-blind, single-center pilot trial in which 12 participants with idiopathic pulmonary fibrosis were randomized 1:1 to dasatinib 100 mg/day plus quercetin 1250 mg/day for 3 consecutive days per week over 3 weeks or matching placebo.",
   "study_type": "randomized_trial",
   "status": "completed",
   "phase": "phase_1",
   "population": "Adults with idiopathic pulmonary fibrosis.",
-  "sample_size": 26,
+  "sample_size": 12,
   "intervention_ids": [
     "dasatinib-quercetin"
   ],
@@ -38,14 +38,14 @@
     "safety",
     "idiopathic-pulmonary-fibrosis"
   ],
-  "maturity_status": "triage_summary",
+  "maturity_status": "abstract_extracted",
   "provenance": [
     {
       "source_id": "pmid-36857968",
-      "locator_type": "derived_record",
-      "locator": "study dq-ipf-randomized-pilot derived from pmid-36857968",
-      "status": "triage_summary",
-      "note": "Triage-level generated record pending source-located extraction."
+      "locator_type": "abstract",
+      "locator": "PubMed PMID 36857968 abstract METHODS",
+      "status": "abstract_extracted",
+      "note": "Abstract reports 12 participants, 1:1 randomization, D+Q dose, schedule, and matching placebo comparator."
     }
   ]
 }

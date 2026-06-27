@@ -22,8 +22,7 @@
     "approval_policy": "never",
     "output_schema_path": "schemas/agent-run.codex-output.schema.json",
     "timeout_ms": 300000,
-    "no_output_timeout_ms": 60000,
-    "max_command_events": 8
+    "no_output_timeout_ms": 60000
   },
   "expected_outputs": {
     "canonical_write_policy": "candidate_change_required",
@@ -70,7 +69,7 @@
   ],
   "notes": [
     "This job is synthetic and should not modify source, study, finding, outcome, result, synthesis, taxonomy, or text-snapshot records.",
-    "The max_command_events guard should keep this fixture bounded and fail fast if the worker over-inspects the repository."
+    "The smoke fixture should stay narrow enough to avoid broad repository inspection."
   ],
   "final_agent_run_id": "orchestration-smoke-budgeted-codex-worktree-2026-06-23",
   "archived_at": "2026-06-23T00:32:12.600Z"

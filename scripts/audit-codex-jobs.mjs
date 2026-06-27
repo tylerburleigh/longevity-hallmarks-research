@@ -16,59 +16,6 @@ const aggregateQualityGateChecks = {
   audit_agent_schemas: new Set(["verify_knowledge_base", "post_verify"]),
   audit_agentic_process: new Set(["verify_knowledge_base", "post_verify"])
 };
-const commandBudgetProfiles = [
-  {
-    label: "smoke",
-    matches: (job) => job.prompt_file?.includes("orchestration-smoke") || job.orchestration?.parallel_group?.includes("smoke"),
-    min: 3,
-    max: 15
-  },
-  {
-    label: "high-io-extraction",
-    matches: (job) =>
-      job.mode === "extraction_refresh" &&
-      (job.orchestration?.expected_cost?.cost_class === "high" || job.orchestration?.expected_cost?.io_intensity === "high"),
-    min: 80,
-    max: 160
-  },
-  {
-    label: "extraction",
-    matches: (job) => job.mode === "extraction_refresh" || job.agent_role === "extraction_agent",
-    min: 60,
-    max: 140
-  },
-  {
-    label: "supervisor-review",
-    matches: (job) => job.agent_role === "supervisor_agent" || job.orchestration?.parallel_group === "candidate-review",
-    min: 45,
-    max: 100
-  },
-  {
-    label: "self-healing",
-    matches: (job) => job.agent_role === "self_healing_agent" || job.mode === "coverage_repair",
-    min: 60,
-    max: 140
-  },
-  {
-    label: "discovery",
-    matches: (job) => ["search_agent", "screening_agent"].includes(job.agent_role),
-    min: 30,
-    max: 90
-  },
-  {
-    label: "synthesis",
-    matches: (job) => job.agent_role === "synthesis_agent" || job.mode === "synthesis_refresh",
-    min: 45,
-    max: 110
-  },
-  {
-    label: "default",
-    matches: () => true,
-    min: 25,
-    max: 120
-  }
-];
-
 async function exists(filePath) {
   try {
     await fs.access(filePath);
@@ -391,31 +338,6 @@ function checkOrchestrationMetadata({ issues, job, ownerPath }) {
   }
 }
 
-function commandBudgetProfile(job) {
-  return commandBudgetProfiles.find((profile) => profile.matches(job));
-}
-
-function checkActiveCommandBudget({ issues, job, ownerPath }) {
-  if (!ownerPath.startsWith(liveJobPathPrefix) || !activeJobStatuses.has(job.lifecycle_status)) {
-    return;
-  }
-
-  const profile = commandBudgetProfile(job);
-  const budget = job.execution?.max_command_events;
-  if (budget === undefined) {
-    issues.push(
-      `${ownerPath}: runnable live job must declare execution.max_command_events for the ${profile.label} command-budget profile (${profile.min}-${profile.max}).`
-    );
-    return;
-  }
-
-  if (budget < profile.min || budget > profile.max) {
-    issues.push(
-      `${ownerPath}: execution.max_command_events ${budget} is outside the ${profile.label} command-budget profile range ${profile.min}-${profile.max}.`
-    );
-  }
-}
-
 function isCandidateReviewLaneJob(job) {
   return job.agent_role === "supervisor_agent" && job.orchestration?.parallel_group === "candidate-review";
 }
@@ -547,7 +469,6 @@ async function checkCodexJob({ issues, job, ownerPath }) {
 
   checkJobLifecycle({ issues, job, ownerPath, outputExists });
   checkOrchestrationMetadata({ issues, job, ownerPath });
-  checkActiveCommandBudget({ issues, job, ownerPath });
   await checkContextPack({ issues, job, ownerPath });
 
   if (job.post_run?.verify_knowledge_base && !job.post_run?.export_latest) {

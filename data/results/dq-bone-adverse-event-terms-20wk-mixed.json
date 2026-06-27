@@ -13,7 +13,7 @@
     "dasatinib-quercetin"
   ],
   "comparator": "Untreated control",
-  "arm_details": "Publication Extended Data Table 1 lists adverse events reported in more than one participant for each group; blank cells are retained as not reported in that table, not converted to zero.",
+  "arm_details": "Publication Extended Data Table 1 lists adverse events reported in more than one participant for each group. The Overall row reports 5/30 control and 23/30 D+Q participants with adverse events; blank preferred-term cells are retained as not reported or below the table threshold, not converted to zero.",
   "sample_size": 60,
   "group_values": [
     {
@@ -107,12 +107,52 @@
   ],
   "result_type": "safety_event",
   "effect": {
-    "measure": "descriptive",
-    "raw_text": "Publication Extended Data Table 1 reports overall adverse events in 5/30 control and 23/30 D+Q participants; D+Q event terms included headache 16/30, diarrhea 7/30, nausea 5/30, constipation 3/30, gastrointestinal reflux 2/30, vertigo 2/30, fatigue 4/30, and body pain 5/30, while control body pain was 2/30."
+    "measure": "risk_ratio",
+    "value": 4.6,
+    "ci_lower": 2.02,
+    "ci_upper": 10.49,
+    "standard_error": 0.42049,
+    "unit": "risk ratio",
+    "raw_text": "Publication Extended Data Table 1 Overall row reports 5/30 control and 23/30 D+Q participants with adverse events; risk ratio and approximate 95% CI were calculated from those arm counts using the log risk-ratio standard error."
   },
   "analysis": {
     "comparison": "D+Q versus untreated control",
-    "effect_note": "Event-term table is descriptive. Blank table cells are not encoded as zero because the table only lists events reported in more than one participant for each group."
+    "method": "Risk ratio calculated from the Overall row arm counts (23/30 divided by 5/30); standard error is on the log risk-ratio scale.",
+    "effect_note": "The comparative effect applies only to the Overall adverse-event row with reported counts in both arms. Preferred-term rows with blank control cells remain descriptive and are not converted to zero."
+  },
+  "adverse_event": {
+    "preferred_term": "Overall adverse events",
+    "term_source": "publication_table",
+    "seriousness": "not_reported",
+    "severity": "not_reported",
+    "relatedness": "not_reported",
+    "event_specific_counts": [
+      {
+        "arm_id": "control-overall",
+        "arm_label": "Untreated control overall adverse events",
+        "sample_size": 30,
+        "count_status": "reported_count",
+        "event_count": 5,
+        "percent": 17,
+        "raw_value": "5 (17%)",
+        "interpretation": "The Overall row reports adverse events in 5 untreated-control participants, 17% of the arm."
+      },
+      {
+        "arm_id": "dq-overall",
+        "arm_label": "D+Q overall adverse events",
+        "sample_size": 30,
+        "count_status": "reported_count",
+        "event_count": 23,
+        "percent": 77,
+        "raw_value": "23 (77%)",
+        "interpretation": "The Overall row reports adverse events in 23 D+Q participants, 77% of the arm."
+      }
+    ],
+    "zero_handling": {
+      "control_zero_status": "not_applicable",
+      "supports_comparative_effect": true,
+      "rationale": "The Overall row has reported nonzero counts in both arms, so no blank-cell zero assumption is needed for the overall comparative effect."
+    }
   },
   "direction": "mixed",
   "evidence_tier": "clinical_or_mortality",
@@ -147,10 +187,11 @@
       "note": "ClinicalTrials.gov posted aggregate serious adverse event, other adverse event, and death counts."
     }
   ],
-  "statement": "Publication table extraction shows adverse events were more frequently reported in the D+Q arm, especially headache and gastrointestinal complaints, with no D+Q-related serious or severe adverse events reported in the article.",
+  "statement": "Publication table extraction shows overall adverse events were more frequently reported in the D+Q arm (23/30) than untreated control (5/30), with a calculated risk ratio of 4.60; preferred-term rows remain descriptive where control cells are blank, and no D+Q-related serious or severe adverse events were reported in the article.",
   "time_horizon": "Baseline to approximately 20 weeks",
   "caveats": [
-    "Event-term table is descriptive and should not be converted into a pooled safety effect without event-specific denominators, explicit zero handling, and uncertainty.",
+    "The risk ratio and uncertainty apply only to the Overall row from Extended Data Table 1, not to preferred-term rows with blank control cells.",
+    "Blank preferred-term table cells should not be converted into zero counts without source support; those rows remain descriptive unless explicit arm counts are available.",
     "Open-label design may inflate subjective adverse-event reporting in the D+Q arm.",
     "Withdrawals included one D+Q participant with QTc interval prolongation after dasatinib, one D+Q participant with fatigue and nonspecific side effects, one D+Q participant with COVID concerns, and two control participants with early termination."
   ],

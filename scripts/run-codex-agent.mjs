@@ -36,7 +36,6 @@ Options:
   --job-file <path>                Optional codex_job JSON file. CLI flags override matching job fields.
   --timeout-ms <integer>           Optional wall-clock timeout for codex exec.
   --no-output-timeout-ms <integer> Optional stdout-idle timeout for codex exec.
-  --max-command-events <integer>   Optional cap for started worker command_execution events.
   --execute                        Run codex exec. Without this, print a dry-run plan.
   --post-process-existing          Skip codex exec and run configured post-run steps on an existing output file.
   --no-ephemeral                   Persist Codex session files instead of using --ephemeral.
@@ -116,10 +115,6 @@ function parseArgs(argv) {
         options.noOutputTimeoutMs = parsePositiveInteger(argv[++index], "--no-output-timeout-ms");
         options.provided.add("noOutputTimeoutMs");
         break;
-      case "--max-command-events":
-        options.maxCommandEvents = parsePositiveInteger(argv[++index], "--max-command-events");
-        options.provided.add("maxCommandEvents");
-        break;
       case "--execute":
         options.execute = true;
         options.provided.add("execute");
@@ -192,7 +187,6 @@ async function applyJobFile(options) {
     ["approvalPolicy", job.execution?.approval_policy],
     ["timeoutMs", job.execution?.timeout_ms],
     ["noOutputTimeoutMs", job.execution?.no_output_timeout_ms],
-    ["maxCommandEvents", job.execution?.max_command_events],
     ["postExport", job.post_run?.export_latest],
     ["postVerify", job.post_run?.verify_knowledge_base]
   ];
@@ -318,17 +312,13 @@ ${hasSeparatePromptTemplate ? `- prompt_template_file: ${options.promptFile}` : 
 - isolation: ${options.isolation}
 - sandbox: ${options.sandbox}
 - approval_policy: ${options.approvalPolicy}
-${options.maxCommandEvents ? `- max_command_events: ${options.maxCommandEvents}` : ""}
 ${options.jobFile ? `- job_file: ${options.jobFile}` : ""}
 
 In the final JSON object, set execution.surface to "codex_exec", execution.isolation to the isolation mode above, execution.prompt_file to the prompt file above, ${hasSeparatePromptTemplate ? "execution.prompt_template_file to the prompt_template_file above, " : ""}${options.jobFile ? "execution.job_file to the job_file above, " : ""}execution.output_schema_path to the output schema path above, execution.output_path to the output path above, execution.jsonl_log_path to the JSONL log path above, execution.sandbox to the sandbox above, and execution.approval_policy to the approval policy above.`;
   const jobInstruction = options.job
     ? `\n\nCodex job specification:\n${JSON.stringify(options.job, null, 2)}`
     : "";
-  const commandBudgetInstruction = options.maxCommandEvents
-    ? ` This run has a max_command_events guard of ${options.maxCommandEvents}; keep repository inspection and validation within that command budget.`
-    : "";
-  const outputInstruction = `Do not write the agent_run output path directly. Return the final JSON object as your final message; the wrapper writes output_path from that final message. Do not emit progress messages, interim JSON objects, placeholder agent_run records, or JSON-shaped messages before the final response. Use JSON null for outputs.research_session_id, outputs.search_log_id, and outputs.screening_run_id when no durable record of that type was created; do not use placeholder strings such as "none", "n/a", "unknown", or "not_applicable" for reference fields. Use tool calls only until the final response.${commandBudgetInstruction} Do not read, edit, truncate, rewrite, remove, or repair wrapper-owned agent-run logs, command logs, prompt snapshots, or output files. Do not run ad hoc Node/AJV/schema-validation snippets for the final agent_run; use repository scripts such as npm run validate:records, npm run audit:references, npm run audit:agent-schemas, and npm run verify:knowledge-base. Do not include wrapper-owned quality check names in the final agent_run. Reserved wrapper-owned check names are: ${wrapperOwnedQualityCheckNames.join(", ")}. Coordinator post-run export or verification steps run after codex exec exits when requested.`;
+  const outputInstruction = `Do not write the agent_run output path directly. Return the final JSON object as your final message; the wrapper writes output_path from that final message. Do not emit progress messages, interim JSON objects, placeholder agent_run records, or JSON-shaped messages before the final response. Use JSON null for outputs.research_session_id, outputs.search_log_id, and outputs.screening_run_id when no durable record of that type was created; do not use placeholder strings such as "none", "n/a", "unknown", or "not_applicable" for reference fields. Use tool calls only until the final response. Do not read, edit, truncate, rewrite, remove, or repair wrapper-owned agent-run logs, command logs, prompt snapshots, or output files. Do not run ad hoc Node/AJV/schema-validation snippets for the final agent_run; use repository scripts such as npm run validate:records, npm run audit:references, npm run audit:agent-schemas, and npm run verify:knowledge-base. Do not include wrapper-owned quality check names in the final agent_run. Reserved wrapper-owned check names are: ${wrapperOwnedQualityCheckNames.join(", ")}. Coordinator post-run export or verification steps run after codex exec exits when requested.`;
   const fullPrompt = `${prompt}${jobInstruction}
 
 ${outputInstruction}`;
@@ -391,7 +381,6 @@ async function writeCommandPlan(options, command) {
     workdir: options.workdir,
     timeout_ms: options.timeoutMs,
     no_output_timeout_ms: options.noOutputTimeoutMs,
-    max_command_events: options.maxCommandEvents,
     execute: options.execute,
     post_process_existing: options.postProcessExisting,
     post_export: options.postExport,
@@ -412,8 +401,6 @@ async function executeCommand(options, command) {
     let settled = false;
     let wallClockTimer;
     let idleTimer;
-    let stdoutLineBuffer = "";
-    let commandEventCount = 0;
     const child = spawn(command[0], command.slice(1), {
       cwd: options.workdir,
       stdio: ["ignore", "pipe", "inherit"]
@@ -450,40 +437,6 @@ async function executeCommand(options, command) {
       settleWith(error);
     }
 
-    function trackCommandEvents(chunkText) {
-      if (!options.maxCommandEvents) {
-        return undefined;
-      }
-
-      stdoutLineBuffer += chunkText;
-      const lines = stdoutLineBuffer.split("\n");
-      stdoutLineBuffer = lines.pop() ?? "";
-
-      for (const line of lines) {
-        if (!line.trim()) {
-          continue;
-        }
-
-        let event;
-        try {
-          event = JSON.parse(line);
-        } catch {
-          continue;
-        }
-
-        if (event?.type === "item.started" && isCommandExecution(event)) {
-          commandEventCount += 1;
-          if (commandEventCount > options.maxCommandEvents) {
-            return new Error(
-              `codex exec exceeded max_command_events of ${options.maxCommandEvents}; saw ${commandEventCount} started command_execution events`
-            );
-          }
-        }
-      }
-
-      return undefined;
-    }
-
     function resetIdleTimer() {
       if (!options.noOutputTimeoutMs) {
         return;
@@ -508,17 +461,12 @@ async function executeCommand(options, command) {
         return;
       }
       resetIdleTimer();
-      const commandBudgetError = trackCommandEvents(chunk.toString("utf8"));
       stdoutChunks.push(chunk);
       process.stdout.write(chunk);
-      const writePromise = logHandle.write(chunk).catch((error) => {
+      logHandle.write(chunk).catch((error) => {
         child.kill();
         settleWith(error);
       });
-      if (commandBudgetError) {
-        child.kill("SIGTERM");
-        writePromise.then(() => settleWith(commandBudgetError)).catch(() => {});
-      }
     });
 
     child.on("error", (error) => {

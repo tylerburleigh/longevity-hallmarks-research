@@ -1,0 +1,116 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "coverage-gap-senolytics-exact-effect-extraction-repair",
+  "name": "Senolytics exact-effect extraction repair",
+  "summary": "Updates DKD and AD-risk human records from triage summaries to PubMed abstract-located extraction and adds an IPF abstract-located dosing-completion outcome/result while correcting the IPF randomized-pilot sample size. This remains a partial repair because durable PubMed/PMC source snapshots could not be created by this worker and full article table reconciliation remains open.",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-27T18:13:25Z",
+  "scope": {
+    "question": "Repair senolytics exact-effect extraction coverage for DKD, IPF, AD-risk, and D+Q bone reconciliation gaps.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "coverage-gap-senolytics-exact-effect-extraction-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-repair.json",
+      "change_type": "create",
+      "rationale": "Tracks the bounded extraction repair candidate and review-lane contract."
+    },
+    {
+      "record_type": "coverage_assessment",
+      "record_id": "senolytics-coverage-repair-2026-06-21",
+      "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+      "change_type": "update",
+      "rationale": "Updates the exact-effect coverage gap state after abstract-located extraction progress."
+    },
+    {
+      "record_type": "study",
+      "record_id": "dq-diabetic-kidney-disease-pilot",
+      "path": "data/studies/dq-diabetic-kidney-disease-pilot.json",
+      "change_type": "update",
+      "rationale": "Adds abstract-located DKD sample, dosing, timing, and maturity details."
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-dkd-senescent-cell-biomarkers",
+      "path": "data/outcomes/dq-dkd-senescent-cell-biomarkers.json",
+      "change_type": "update",
+      "rationale": "Adds abstract-located DKD endpoint and timing details."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-dkd-biomarker-positive",
+      "path": "data/results/dq-dkd-biomarker-positive.json",
+      "change_type": "update",
+      "rationale": "Adds abstract-located DKD sample, dosing, timing, and directional effect details."
+    },
+    {
+      "record_type": "finding",
+      "record_id": "dq-dkd-human-senescent-cell-biomarker-signal",
+      "path": "data/findings/dq-dkd-human-senescent-cell-biomarker-signal.json",
+      "change_type": "update",
+      "rationale": "Upgrades the DKD finding from generated triage text to abstract-located evidence wording."
+    },
+    {
+      "record_type": "study",
+      "record_id": "dq-ad-risk-cognition-mobility-pilot",
+      "path": "data/studies/dq-ad-risk-cognition-mobility-pilot.json",
+      "change_type": "update",
+      "rationale": "Adds abstract-located AD-risk dose schedule and completion count."
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-ad-risk-cognition-mobility",
+      "path": "data/outcomes/dq-ad-risk-cognition-mobility.json",
+      "change_type": "update",
+      "rationale": "Adds abstract-located AD-risk MoCA and TNF-alpha endpoint details."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-ad-risk-cognition-mobility-mixed",
+      "path": "data/results/dq-ad-risk-cognition-mobility-mixed.json",
+      "change_type": "update",
+      "rationale": "Adds abstract-located AD-risk MoCA, TNF-alpha, and correlation effect values."
+    },
+    {
+      "record_type": "finding",
+      "record_id": "dq-ad-risk-pilot-cognition-mobility-signal",
+      "path": "data/findings/dq-ad-risk-pilot-cognition-mobility-signal.json",
+      "change_type": "update",
+      "rationale": "Upgrades the AD-risk finding from generated triage text to abstract-located evidence wording."
+    },
+    {
+      "record_type": "study",
+      "record_id": "dq-ipf-randomized-pilot",
+      "path": "data/studies/dq-ipf-randomized-pilot.json",
+      "change_type": "update",
+      "rationale": "Corrects the IPF randomized-pilot sample size and adds abstract-located dose schedule details."
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-ipf-dosing-completion-assessments",
+      "path": "data/outcomes/dq-ipf-dosing-completion-assessments.json",
+      "change_type": "create",
+      "rationale": "Adds an abstract-located IPF scheduled-dose and planned-assessment completion endpoint."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-ipf-dosing-completion-mixed",
+      "path": "data/results/dq-ipf-dosing-completion-mixed.json",
+      "change_type": "create",
+      "rationale": "Adds an abstract-located IPF scheduled-dose and planned-assessment completion result."
+    }
+  ],
+  "required_review_lanes": [
+    "extraction_fidelity",
+    "synthesis_boundary",
+    "taxonomy_mapping"
+  ]
+}

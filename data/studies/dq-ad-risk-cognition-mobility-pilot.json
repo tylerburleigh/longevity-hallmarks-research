@@ -3,12 +3,12 @@
   "record_type": "study",
   "id": "dq-ad-risk-cognition-mobility-pilot",
   "name": "D+Q cognition and mobility pilot in older adults at risk for Alzheimer's disease",
-  "summary": "Pilot phase 1/2 study testing feasibility, safety, cognition, mobility, and biomarker outcomes after intermittent dasatinib plus quercetin in older adults at risk for Alzheimer's disease.",
+  "summary": "Single-arm pilot phase 1/2 study in older adults at risk for Alzheimer's disease that administered dasatinib 100 mg plus quercetin 1250 mg for 2 days every 2 weeks over 12 weeks and assessed feasibility, cognition, function, and biomarkers.",
   "study_type": "nonrandomized_trial",
   "status": "completed",
   "phase": "phase_1_2",
   "population": "Older adults at risk for Alzheimer's disease.",
-  "sample_size": 15,
+  "sample_size": 12,
   "intervention_ids": [
     "dasatinib-quercetin"
   ],
@@ -38,14 +38,14 @@
     "cognition",
     "mobility"
   ],
-  "maturity_status": "triage_summary",
+  "maturity_status": "abstract_extracted",
   "provenance": [
     {
       "source_id": "pmid-40010154",
-      "locator_type": "derived_record",
-      "locator": "study dq-ad-risk-cognition-mobility-pilot derived from pmid-40010154",
-      "status": "triage_summary",
-      "note": "Triage-level generated record pending source-located extraction."
+      "locator_type": "abstract",
+      "locator": "PubMed PMID 40010154 abstract METHODS and FINDINGS",
+      "status": "abstract_extracted",
+      "note": "Abstract reports the D+Q dose schedule over 12 weeks and that 12 participants completed the intervention."
     }
   ]
 }

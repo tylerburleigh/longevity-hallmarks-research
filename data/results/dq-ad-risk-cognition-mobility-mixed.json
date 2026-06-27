@@ -12,19 +12,32 @@
   "intervention_ids": [
     "dasatinib-quercetin"
   ],
-  "sample_size": 15,
-  "result_type": "descriptive",
+  "comparator": "Single-arm before-versus-after pilot without a control group",
+  "arm_details": "Dasatinib 100 mg plus quercetin 1250 mg for 2 days every 2 weeks over 12 weeks.",
+  "sample_size": 12,
+  "result_type": "quantitative_effect",
   "effect": {
-    "measure": "descriptive",
-    "raw_text": "The pilot reported cognition and mobility measures, but current knowledge-base status treats the evidence as exploratory."
+    "measure": "mean_difference",
+    "value": 1,
+    "ci_lower": -0.7,
+    "ci_upper": 2.7,
+    "unit": "MoCA points",
+    "raw_text": "Mean MoCA increased by 1.0 point (95% CI -0.7, 2.7) overall; among participants with the lowest baseline MoCA scores, MoCA increased by 2.0 points (95% CI 0.1, 4.0). Mean TNF-alpha changed by -3.0% (95% CI -13.0, 7.1), and TNF-alpha change correlated inversely with MoCA change (r=-0.65, p=0.02)."
+  },
+  "analysis": {
+    "comparison": "Post-intervention versus baseline",
+    "method": "Single-arm absolute and percent change estimates reported in PubMed abstract",
+    "p_value": "correlation p=0.02",
+    "effect_note": "Overall MoCA confidence interval crosses zero; subgroup and biomarker-correlation results are exploratory."
   },
   "direction": "mixed",
   "evidence_tier": "human_functional",
   "confidence": "low",
-  "statement": "The AD-risk pilot contributes early human functional evidence but should not be upgraded without controlled, larger, outcome-level evidence.",
+  "statement": "The AD-risk pilot reported an imprecise overall MoCA increase, a larger exploratory increase among participants with lower baseline MoCA scores, and an inverse TNF-alpha/MoCA correlation after 12 weeks of intermittent D+Q.",
   "caveats": [
-    "Small pilot sample.",
-    "Functional endpoints require separate extraction and adjudication."
+    "Single-arm N=12 completion sample without a control group.",
+    "Mobility endpoint values are not extracted from the abstract and need full article extraction.",
+    "Subgroup and biomarker-correlation signals are exploratory."
   ],
   "tags": [
     "senolytics",
@@ -33,14 +46,14 @@
     "cognition",
     "mobility"
   ],
-  "maturity_status": "triage_summary",
+  "maturity_status": "abstract_extracted",
   "provenance": [
     {
       "source_id": "pmid-40010154",
-      "locator_type": "derived_record",
-      "locator": "result dq-ad-risk-cognition-mobility-mixed derived from pmid-40010154",
-      "status": "triage_summary",
-      "note": "Triage-level generated record pending source-located extraction."
+      "locator_type": "abstract",
+      "locator": "PubMed PMID 40010154 abstract FINDINGS and INTERPRETATION",
+      "status": "abstract_extracted",
+      "note": "Abstract supplies exact MoCA mean change and confidence interval, baseline-MoCA subgroup estimate, TNF-alpha percent change, and TNF-alpha/MoCA correlation."
     }
   ]
 }

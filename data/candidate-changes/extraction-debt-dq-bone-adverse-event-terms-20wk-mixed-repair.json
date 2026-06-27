@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair",
+  "name": "D+Q bone adverse-event term table extraction-debt repair",
+  "summary": "Updates the 20-week adverse-event table result with structured overall adverse-event fields, arm-level counts, and a calculated risk ratio with uncertainty while preserving blank preferred-term cells as not reported or below threshold; updates the safety synthesis boundary to remove the resolved missing-field debt for this result while keeping pooling blocked.",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-27T17:00:06Z",
+  "scope": {
+    "question": "Resolve extraction debt for dq-bone-adverse-event-terms-20wk-mixed: adverse_event.event_specific_counts, adverse_event.preferred_term, effect.uncertainty, and effect.value.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "chronic_inflammation",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair",
+      "path": "data/candidate-changes/extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair.json",
+      "change_type": "create",
+      "rationale": "Tracks the bounded self-healing extraction-debt repair candidate and required review lanes."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-adverse-event-terms-20wk-mixed",
+      "path": "data/results/dq-bone-adverse-event-terms-20wk-mixed.json",
+      "change_type": "update",
+      "rationale": "Adds structured adverse_event preferred-term/count fields for the Overall row plus a calculated risk ratio and uncertainty from the reported 5/30 control and 23/30 D+Q counts."
+    },
+    {
+      "record_type": "synthesis_group",
+      "record_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "path": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+      "change_type": "update",
+      "rationale": "Removes the resolved missing-field entry for dq-bone-adverse-event-terms-20wk-mixed while retaining safety pooling blockers for the aggregate registry and headache preferred-term results."
+    }
+  ],
+  "required_review_lanes": [
+    "extraction_fidelity",
+    "safety_limitations",
+    "synthesis_boundary",
+    "taxonomy_mapping"
+  ]
+}

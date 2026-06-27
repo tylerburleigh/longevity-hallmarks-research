@@ -3,11 +3,12 @@
   "record_type": "study",
   "id": "dq-diabetic-kidney-disease-pilot",
   "name": "D+Q diabetic kidney disease human senescent-cell biomarker pilot",
-  "summary": "Preliminary human trial testing whether intermittent dasatinib plus quercetin decreased senescent-cell and SASP-related biomarkers in adipose and skin samples from individuals with diabetic kidney disease.",
+  "summary": "Open-label phase 1 pilot in which 9 participants with diabetic kidney disease received oral dasatinib 100 mg plus quercetin 1000 mg for 3 days, with adipose, skin, and blood biomarker samples collected before treatment and 11 days after the course.",
   "study_type": "nonrandomized_trial",
   "status": "completed",
   "phase": "phase_2",
   "population": "Adults with diabetic kidney disease.",
+  "sample_size": 9,
   "intervention_ids": [
     "dasatinib-quercetin"
   ],
@@ -35,14 +36,14 @@
     "biomarker",
     "diabetic-kidney-disease"
   ],
-  "maturity_status": "triage_summary",
+  "maturity_status": "abstract_extracted",
   "provenance": [
     {
       "source_id": "pmid-31542391",
-      "locator_type": "derived_record",
-      "locator": "study dq-diabetic-kidney-disease-pilot derived from pmid-31542391",
-      "status": "triage_summary",
-      "note": "Triage-level generated record pending source-located extraction."
+      "locator_type": "abstract",
+      "locator": "PubMed PMID 31542391 abstract METHODS",
+      "status": "abstract_extracted",
+      "note": "Abstract reports N=9, 3 days of dasatinib 100 mg plus quercetin 1000 mg, and pre/post tissue and blood collection 11 days after treatment completion."
     }
   ]
 }

@@ -277,7 +277,6 @@ function nextActionsForRun(workerStates) {
 
 function recordWorkerDiagnostic({ worker, streamName, line }) {
   const diagnosticPatterns = [
-    /codex exec exceeded max_command_events/i,
     /Foreground checkout has changes/i,
     /git apply --binary failed/i,
     /isolated Codex wrapper exited with code/i,

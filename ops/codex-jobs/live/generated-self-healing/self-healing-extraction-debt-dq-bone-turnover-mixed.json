@@ -1,17 +1,17 @@
 {
   "schema_version": "1.0.0",
   "record_type": "codex_job",
-  "id": "self-healing-extraction-debt-dq-bone-adverse-event-terms-20wk-mixed",
-  "name": "Self-healing repair: extraction-debt-dq-bone-adverse-event-terms-20wk-mixed",
-  "summary": "Resolve missing synthesis fields: adverse_event.event_specific_counts, adverse_event.preferred_term, effect.uncertainty, effect.value.",
+  "id": "self-healing-extraction-debt-dq-bone-turnover-mixed",
+  "name": "Self-healing repair: extraction-debt-dq-bone-turnover-mixed",
+  "summary": "Upgrade result maturity for synthesis readiness.",
   "lifecycle_status": "ready",
   "agent_role": "extraction_agent",
   "mode": "extraction_refresh",
   "prompt_file": "docs/prompts/codex-agents/extraction-refresh.md",
-  "output_path": "research/agent-runs/self-healing-extraction-debt-dq-bone-adverse-event-terms-20wk-mixed.json",
-  "jsonl_log_path": "research/agent-runs/logs/self-healing-extraction-debt-dq-bone-adverse-event-terms-20wk-mixed.jsonl",
+  "output_path": "research/agent-runs/self-healing-extraction-debt-dq-bone-turnover-mixed.json",
+  "jsonl_log_path": "research/agent-runs/logs/self-healing-extraction-debt-dq-bone-turnover-mixed.jsonl",
   "scope": {
-    "question": "extraction_refresh: Resolve missing synthesis fields: adverse_event.event_specific_counts, adverse_event.preferred_term, effect.uncertainty, effect.value.",
+    "question": "extraction_refresh: Upgrade result maturity for synthesis readiness.",
     "hallmark_ids": [
       "cellular_senescence",
       "chronic_inflammation",
@@ -30,10 +30,10 @@
       "dq-postmenopausal-bone-rct"
     ],
     "outcome_ids": [
-      "dq-bone-adverse-events-20wk"
+      "dq-bone-turnover-marker"
     ],
     "result_ids": [
-      "dq-bone-adverse-event-terms-20wk-mixed"
+      "dq-bone-turnover-mixed"
     ]
   },
   "execution": {
@@ -42,35 +42,33 @@
     "approval_policy": "never",
     "output_schema_path": "schemas/agent-run.codex-output.schema.json",
     "timeout_ms": 3600000,
-    "no_output_timeout_ms": 300000,
-    "max_command_events": 120
+    "no_output_timeout_ms": 300000
   },
   "expected_outputs": {
     "canonical_write_policy": "candidate_change_required",
-    "candidate_change_id": "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair",
+    "candidate_change_id": "extraction-debt-dq-bone-turnover-mixed-repair",
     "required_review_lanes": [
       "extraction_fidelity",
-      "safety_limitations",
       "synthesis_boundary",
       "taxonomy_mapping"
     ]
   },
   "orchestration": {
     "read_sets": [
-      "path:data/results/dq-bone-adverse-event-terms-20wk-mixed.json",
+      "path:data/results/dq-bone-turnover-mixed.json",
       "path:ops/triage-state.v1.json",
-      "triage_job:extraction-debt-dq-bone-adverse-event-terms-20wk-mixed"
+      "triage_job:extraction-debt-dq-bone-turnover-mixed"
     ],
     "write_sets": [
-      "candidate_change:extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair",
-      "path:data/candidate-changes/extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair.json",
-      "path:data/results/dq-bone-adverse-event-terms-20wk-mixed.json",
-      "target_record:result/dq-bone-adverse-event-terms-20wk-mixed"
+      "candidate_change:extraction-debt-dq-bone-turnover-mixed-repair",
+      "path:data/candidate-changes/extraction-debt-dq-bone-turnover-mixed-repair.json",
+      "path:data/results/dq-bone-turnover-mixed.json",
+      "target_record:result/dq-bone-turnover-mixed"
     ],
     "conflict_keys": [
-      "candidate_change:extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair",
-      "target_record:result/dq-bone-adverse-event-terms-20wk-mixed",
-      "triage_job:extraction-debt-dq-bone-adverse-event-terms-20wk-mixed"
+      "candidate_change:extraction-debt-dq-bone-turnover-mixed-repair",
+      "target_record:result/dq-bone-turnover-mixed",
+      "triage_job:extraction-debt-dq-bone-turnover-mixed"
     ],
     "parallel_group": "extraction-refresh",
     "reconciliation_required": true,
@@ -95,7 +93,7 @@
     "candidate_agent_run_ledger_match"
   ],
   "notes": [
-    "Generated from ops/triage-state.v1.json recommended_jobs[] item extraction-debt-dq-bone-adverse-event-terms-20wk-mixed.",
+    "Generated from ops/triage-state.v1.json recommended_jobs[] item extraction-debt-dq-bone-turnover-mixed.",
     "Source queue: extraction_debt.",
     "The worker should keep edits bounded to the target record, listed inputs, and the candidate repair ledger."
   ]

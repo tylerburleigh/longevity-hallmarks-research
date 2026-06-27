@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "release_manifest",
   "id": "latest-consumer-export",
-  "generated_at": "2026-06-27T16:06:05.424Z",
+  "generated_at": "2026-06-27T18:52:46.023Z",
   "export_version": "0.1.0",
   "export_scope": {
     "description": "Consumer-facing latest export generated from canonical research and data records.",
@@ -50,21 +50,21 @@
       "format": "jsonl",
       "description": "Release-boundary export of records proposed by accepted or applied candidates and not blocked by dependency checks.",
       "record_count": 55,
-      "sha256": "a9eec851c858ebb17160a78aa86e36f21b07abd3356e1b45ddd5956a0c6fb6a3"
+      "sha256": "77ed0895ab5c7a91073a597b9504faf8829d1e85973201674622615445cbfbf4"
     },
     {
       "path": "exports/latest/studies.jsonl",
       "format": "jsonl",
       "description": "Canonical study records.",
       "record_count": 9,
-      "sha256": "797c4a8d1fc213ae0a37e3d1747949b0c7470af5f0ff1511663b6134f7f7f7bd"
+      "sha256": "9f2bd24c520cc40401cd9b8142cccacfc70d6f8e02c71cd3e8b454b840a29cf4"
     },
     {
       "path": "exports/latest/findings.jsonl",
       "format": "jsonl",
       "description": "Canonical finding records with maturity and provenance fields preserved.",
       "record_count": 9,
-      "sha256": "c66ee0e9dde2d7561005c16421010b011c5551637e0bdbf6eb124053938ce10d"
+      "sha256": "57c695b461388dff0a993887996bd73a4e392bc775bfdff1b1f6f87b9678266d"
     },
     {
       "path": "exports/latest/text-snapshots.jsonl",
@@ -77,15 +77,15 @@
       "path": "exports/latest/results.all.jsonl",
       "format": "jsonl",
       "description": "All canonical result records across maturity states.",
-      "record_count": 21,
-      "sha256": "8d42abc36399c579b6c2097b57c51b6e0ffaffea6b482066483af4c786b99e3b"
+      "record_count": 22,
+      "sha256": "295f5820343a3a56e815586ee3cafb08ccaa9f2274cc55f1914b8945a1153457"
     },
     {
       "path": "exports/latest/results.extraction_grade.jsonl",
       "format": "jsonl",
       "description": "Result records with registry, full-text, agent-reviewed, supervisor-agent-reviewed, or accepted extraction-grade maturity.",
       "record_count": 14,
-      "sha256": "f054f9ca7afe021caecc822628923c4e7defd23d1ef30b79eb6b7e8f250400e5"
+      "sha256": "0283b6b2b6f1e6248c05fe3860c220e4dfa1fddfc4291e6cb05074d3a560775a"
     },
     {
       "path": "exports/latest/results.registry_extracted.jsonl",
@@ -98,60 +98,60 @@
       "path": "exports/latest/results.triage.jsonl",
       "format": "jsonl",
       "description": "Result records that remain metadata, screening, abstract, or triage summaries.",
-      "record_count": 7,
-      "sha256": "c1a3a5b1a8e2b66f76beeeec58dbef65a83d5e98aa16c0085c4304b0887fdb91"
+      "record_count": 8,
+      "sha256": "f8a8e6b9f4ee5242c4ed9815ade72c247b3a39bca1e014875fc4b4578bd8e4cf"
     },
     {
       "path": "exports/latest/synthesis-groups.jsonl",
       "format": "jsonl",
       "description": "Synthesis compatibility groups with poolability decisions, missing effect fields, and agent supervision metadata.",
       "record_count": 8,
-      "sha256": "532ba03b524e96fa38c43300081b54804c499d8b01dcd514677a631ed0190b62"
+      "sha256": "725e913267aa14e604cca732bdd4c51a21f0d7d991e23b5322d90410a4052cff"
     },
     {
       "path": "exports/latest/evidence-map.json",
       "format": "json",
       "description": "Generated graph view of source, study, finding, outcome, result, coverage, and synthesis-compatibility links.",
       "record_count": 1,
-      "sha256": "c44a1083ed66e27fea9fcbc303c5be4713cf2ec99a1b7c154607ff124dbcea9c"
+      "sha256": "a0009e68193f355e1bbe4e34a1844a03e7d8f7eb3d93bdf518175daa1f1a982d"
     },
     {
       "path": "exports/latest/coverage-status.json",
       "format": "json",
       "description": "Consumer coverage status with current/superseded flags and known-gap warnings.",
       "record_count": 1,
-      "sha256": "04daf6b41f79ed35c7d66c59909df298b8297085b93b7e59ce8b15320ed289b0"
+      "sha256": "c90151d2281366301dd73f564c5f68b5b9cf054944a15f38c8457eed2a6c1f03"
     },
     {
       "path": "exports/latest/read-model.sqlite",
       "format": "sqlite",
       "description": "Generated SQLite read model for indexed joins over canonical JSON records.",
-      "record_count": 221,
-      "sha256": "862a67a00e5bc7d7ceb260a739a6ae581cf709529f73bc52eb5e9a220f659bf0"
+      "record_count": 229,
+      "sha256": "567a4a233e9cdf8b16d9b4b9ed5bddbd1e02ea765b2399ac5072ce8a8724c0c1"
     },
     {
       "path": "exports/latest/consumer-contract.json",
       "format": "json",
       "description": "Versioned machine-readable contract for consumer-facing export artifacts.",
       "record_count": 1,
-      "sha256": "7d2f04e8a4034196cf9c08b0efc5e7cfe995ad0dbb8e31d127ac61406ad202e5"
+      "sha256": "0fbc5c06a22e6bc9fa825a23b264b89f9bd7265d86bb43fd77d3274cbbf72558"
     }
   ],
   "record_counts": {
-    "canonical_records": 221,
+    "canonical_records": 229,
     "sources": 10,
     "source_rights": 2,
     "accepted_records": 55,
     "studies": 9,
     "findings": 9,
     "text_snapshots": 2,
-    "results_all": 21,
+    "results_all": 22,
     "results_extraction_grade": 14,
     "results_registry_extracted": 7,
-    "results_triage": 7,
+    "results_triage": 8,
     "synthesis_groups": 8,
     "coverage_assessments": 2,
-    "read_model_records": 221,
+    "read_model_records": 229,
     "consumer_contracts": 1
   },
   "notes": [

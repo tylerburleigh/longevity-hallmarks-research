@@ -218,7 +218,7 @@ async function writeFailureDiagnosticFixture(tempRoot) {
             reconciliation_required: false,
             job_ids: ["failure-diagnostic-job"],
             job_paths: ["ops/codex-jobs/live/failure-diagnostic-job.json"],
-            commands: [["sh", "-c", "echo 'Error: codex exec exceeded max_command_events of 70; saw 71 started command_execution events' >&2; exit 1"]],
+            commands: [["sh", "-c", "echo 'Error: isolated Codex wrapper exited with code 70' >&2; exit 1"]],
             overlapping_execution_keys: []
           }
         ],
@@ -364,7 +364,7 @@ async function writeImportPendingWorkerFixture(tempRoot) {
           rationale: "Fixture."
         }
       ],
-      generated_files: ["data/candidate-changes/import-candidate.json"],
+      generated_files: [],
       export_paths: []
     },
     quality_checks: [],
@@ -822,8 +822,8 @@ async function runFailureDiagnosticCase(tempRoot) {
   const worker = runRecord?.worker_states?.[0];
   assertEqual(runRecord?.status, "failed", "failure diagnostic run status", issues);
   assertEqual(worker?.status, "failed", "failure diagnostic worker status", issues);
-  if (!worker?.issues?.some((issue) => issue.includes("codex exec exceeded max_command_events"))) {
-    issues.push("failure diagnostic worker should preserve the max_command_events stderr line.");
+  if (!worker?.issues?.some((issue) => issue.includes("isolated Codex wrapper exited with code 70"))) {
+    issues.push("failure diagnostic worker should preserve the known worker stderr diagnostic.");
   }
 
   if (issues.length > 0) {

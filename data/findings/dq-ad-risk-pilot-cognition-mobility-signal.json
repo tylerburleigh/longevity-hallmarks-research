@@ -3,7 +3,7 @@
   "record_type": "finding",
   "id": "dq-ad-risk-pilot-cognition-mobility-signal",
   "name": "D+Q AD-risk pilot provides feasibility-oriented cognition and mobility signals",
-  "summary": "The 2025 pilot in older adults at risk for Alzheimer's disease contributes feasibility, safety, cognition, mobility, and biomarker evidence, but remains an early small study.",
+  "summary": "The 2025 single-arm pilot in older adults at risk for Alzheimer's disease reported 12 intervention completers, no related serious events, an imprecise overall MoCA increase, an exploratory MoCA increase in the lowest-baseline subgroup, and an inverse TNF-alpha/MoCA correlation.",
   "source_id": "pmid-40010154",
   "study_id": "dq-ad-risk-cognition-mobility-pilot",
   "intervention_ids": [
@@ -20,12 +20,12 @@
   "direction": "mixed",
   "evidence_tier": "human_functional",
   "confidence": "low",
-  "statement": "The AD-risk pilot adds early human functional and biomarker evidence for dasatinib plus quercetin, but the record should be treated as exploratory until larger controlled evidence is available.",
+  "statement": "After 12 weeks of intermittent D+Q, the AD-risk pilot reported mean MoCA +1.0 point overall, +2.0 points in the lowest-baseline-MoCA subgroup, TNF-alpha -3.0%, and an inverse TNF-alpha/MoCA correlation, all requiring cautious interpretation because the study lacked a control group.",
   "population_or_model": "Older adults at risk for Alzheimer's disease",
-  "time_horizon": "Pilot treatment and follow-up period reported in the 2025 publication",
+  "time_horizon": "Baseline to completion of 12-week intermittent D+Q course",
   "caveats": [
-    "Small pilot design limits causal inference and precision.",
-    "Cognition and mobility endpoints should be extracted independently rather than collapsed into a single efficacy claim."
+    "Small single-arm design limits causal inference and precision.",
+    "Mobility endpoints are not yet separately extracted from the full article."
   ],
   "tags": [
     "senolytics",
@@ -35,14 +35,14 @@
     "cognition",
     "mobility"
   ],
-  "maturity_status": "triage_summary",
+  "maturity_status": "abstract_extracted",
   "provenance": [
     {
       "source_id": "pmid-40010154",
-      "locator_type": "derived_record",
-      "locator": "finding dq-ad-risk-pilot-cognition-mobility-signal derived from pmid-40010154",
-      "status": "triage_summary",
-      "note": "Triage-level generated record pending source-located extraction."
+      "locator_type": "abstract",
+      "locator": "PubMed PMID 40010154 abstract METHODS, FINDINGS, and INTERPRETATION",
+      "status": "abstract_extracted",
+      "note": "Abstract supports D+Q dose schedule, completion count, MoCA estimates, TNF-alpha estimate, and TNF-alpha/MoCA correlation."
     }
   ],
   "target_hallmark_ids": [

@@ -1,0 +1,218 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "self-healing-coverage-gap-senolytics-safety-tables",
+  "agent_role": "extraction_agent",
+  "agent_id": "codex-cli-worker",
+  "mode": "extraction_refresh",
+  "started_at": "2026-06-27T16:46:23Z",
+  "completed_at": "2026-06-27T16:54:22Z",
+  "status": "partial",
+  "scope": {
+    "question": "extraction_refresh: Aggregate adverse-event counts were extracted for the D+Q bone RCT, but event-specific adverse-event terms, discontinuation details, dosing cadence, and durability details remain incomplete across the human evidence slice.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "codex_exec",
+    "isolation": "git_worktree",
+    "workspace_path": "/tmp/lhr-codex-worktrees/self-healing-coverage-gap-senolytics-safety-tables-20260627T164623z",
+    "prompt_file": "research/agent-runs/prompts/self-healing-coverage-gap-senolytics-safety-tables.md",
+    "prompt_template_file": "docs/prompts/codex-agents/extraction-refresh.md",
+    "job_file": "ops/codex-jobs/archive/self-healing-coverage-gap-senolytics-safety-tables.json",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "output_path": "research/agent-runs/self-healing-coverage-gap-senolytics-safety-tables.json",
+    "jsonl_log_path": "research/agent-runs/logs/self-healing-coverage-gap-senolytics-safety-tables.jsonl",
+    "sandbox": "workspace-write",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "user_request",
+      "reference": "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-safety-tables.json",
+      "summary": "Coordinator job specification for the bounded senolytics safety-table extraction-refresh repair."
+    },
+    {
+      "input_type": "plan_item",
+      "reference": "plan.md; docs/research-runbook.md; docs/agent-run-outputs.md; docs/extraction-rules.md; docs/source-snapshot-importers.md",
+      "summary": "Repository operating rules for bounded extraction refresh, source-snapshot provenance, candidate ledgers, review lanes, and verification."
+    },
+    {
+      "input_type": "other",
+      "reference": "schemas/agent-run.codex-output.schema.json; schemas/agent-run.schema.json; schemas/candidate-change.schema.json; schemas/coverage-assessment.schema.json; schemas/result.schema.json; schemas/synthesis-group.schema.json; schemas/evidence-review.schema.json",
+      "summary": "Schemas used to shape the final agent-run output, candidate ledger, target coverage assessment, and scoped safety-extraction context."
+    },
+    {
+      "input_type": "coverage_gap",
+      "reference": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json#senolytics-safety-tables",
+      "summary": "Target coverage gap for event-specific adverse-event terms, discontinuation details, dosing cadence, durability, and cross-human safety extraction."
+    },
+    {
+      "input_type": "record",
+      "reference": "ops/triage-state.v1.json",
+      "summary": "Triage state for the recommended self-healing coverage-gap job and related extraction debt."
+    },
+    {
+      "input_type": "source_snapshot",
+      "reference": "data/source-snapshots/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
+      "summary": "Retained PMC author-manuscript source snapshot for the D+Q bone RCT full-text safety table and methods/discussion locators."
+    },
+    {
+      "input_type": "text_snapshot",
+      "reference": "data/text-snapshots/text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
+      "summary": "Full-text snapshot with normalized markdown and section index for PMID 38956196."
+    },
+    {
+      "input_type": "source_snapshot",
+      "reference": "data/source-snapshots/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+      "summary": "Retained ClinicalTrials.gov source snapshot for aggregate adverse-event counts through approximately 20 weeks."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/results/dq-bone-adverse-event-terms-20wk-mixed.json; data/results/dq-bone-headache-20wk-descriptive.json; data/outcomes/dq-bone-adverse-events-20wk.json; data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+      "summary": "Scoped D+Q bone safety records used to reconcile current extraction status and remaining safety-table debt."
+    },
+    {
+      "input_type": "other",
+      "reference": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+      "summary": "Retained article markdown sections for Extended Data Table 1, safety/withdrawal narrative, D+Q dosing cadence, and durability discussion."
+    }
+  ],
+  "outputs": {
+    "summary": "Created the submitted coverage-gap repair candidate and updated the senolytics coverage assessment with source-snapshot-backed D+Q bone RCT safety-table, withdrawal, dosing-cadence, and durability locators. The extraction remains partial because structured event-term rows beyond headache and source-snapshot-backed safety extraction for DKD, IPF, and AD-risk studies remain open debt.",
+    "candidate_change_id": "coverage-gap-senolytics-safety-tables-repair",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "coverage-gap-senolytics-safety-tables-repair",
+        "path": "data/candidate-changes/coverage-gap-senolytics-safety-tables-repair.json",
+        "change_type": "create",
+        "rationale": "Tracks this bounded extraction-refresh repair candidate and its required review lanes."
+      },
+      {
+        "record_type": "coverage_assessment",
+        "record_id": "senolytics-coverage-repair-2026-06-21",
+        "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+        "change_type": "update",
+        "rationale": "Refreshes the safety_durability category and senolytics-safety-tables gap with source-snapshot-backed D+Q bone safety locators and explicit remaining extraction debt."
+      }
+    ],
+    "generated_files": [
+      "data/candidate-changes/coverage-gap-senolytics-safety-tables-repair.json",
+      "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json"
+    ],
+    "export_paths": [
+      "exports/latest/audit-manifest.json",
+      "exports/latest/consumer-contract.json",
+      "exports/latest/coverage-status.json",
+      "exports/latest/evidence-map.json",
+      "exports/latest/read-model.sqlite",
+      "ops/triage-state.v1.json",
+      "ops/release-readiness.v1.json",
+      "ops/reconciliation/parallel-reconciliation.v1.json",
+      "ops/codex-batches/orchestration-metrics.v1.json"
+    ]
+  },
+  "quality_checks": [
+    {
+      "check_name": "validate_records",
+      "status": "passed",
+      "summary": "npm run validate:records passed after the candidate and coverage-assessment updates; 313 JSON files validated."
+    },
+    {
+      "check_name": "audit_references",
+      "status": "passed",
+      "summary": "npm run audit:references passed for 222 record files."
+    },
+    {
+      "check_name": "audit_exports",
+      "status": "passed",
+      "summary": "After npm run export:latest, export auditing passed for 11 JSONL exports and 15 manifest hashes."
+    },
+    {
+      "check_name": "audit_agent_schemas",
+      "status": "passed",
+      "summary": "npm run audit:agent-schemas passed."
+    },
+    {
+      "check_name": "audit_agentic_process",
+      "status": "passed",
+      "summary": "npm run audit:agentic-process passed for 401 files."
+    },
+    {
+      "check_name": "candidate_agent_run_ledger_match",
+      "status": "passed",
+      "summary": "Final outputs.proposed_records matches the candidate_change.proposed_records ledger for coverage-gap-senolytics-safety-tables-repair."
+    },
+    {
+      "check_name": "diff_check",
+      "status": "passed",
+      "summary": "git diff --check exited 0."
+    },
+    {
+      "check_name": "export_latest",
+      "status": "passed",
+      "summary": "npm run export:latest wrote 16 export files to exports/latest."
+    },
+    {
+      "check_name": "repository_verification_post_run_profile",
+      "status": "passed",
+      "summary": "npm run verify:knowledge-base:post-run passed after refreshing triage state, release readiness, reconciliation, orchestration metrics, and latest exports."
+    },
+    {
+      "check_name": "verify_knowledge_base_full",
+      "status": "failed",
+      "summary": "npm run verify:knowledge-base did not complete because generated live self-healing job specs became stale after the triage-state refresh; the coordinator post-run verification profile passed."
+    },
+    {
+      "check_name": "worker_output_contract",
+      "status": "passed",
+      "summary": "Worker emitted exactly one final JSON agent_run message, matched output_path, and avoided ad hoc schema-validation snippets."
+    },
+    {
+      "check_name": "post_triage_state_export",
+      "status": "passed",
+      "summary": "post_triage_state_export exited 0: > longevity-hallmarks-research@0.1.0 export:triage-state > node scripts/export-triage-state.mjs Wrote ops/triage-state.v1.json."
+    },
+    {
+      "check_name": "post_release_readiness_export",
+      "status": "passed",
+      "summary": "post_release_readiness_export exited 0: > longevity-hallmarks-research@0.1.0 export:release-readiness > node scripts/export-release-readiness.mjs Wrote ops/release-readiness.v1.json."
+    },
+    {
+      "check_name": "post_reconciliation_export",
+      "status": "passed",
+      "summary": "post_reconciliation_export exited 0: > longevity-hallmarks-research@0.1.0 reconcile:parallel > node scripts/reconcile-parallel-outputs.mjs Wrote ops/reconciliation/parallel-reconciliation.v1.json."
+    },
+    {
+      "check_name": "post_orchestration_metrics_export",
+      "status": "passed",
+      "summary": "post_orchestration_metrics_export exited 0: > longevity-hallmarks-research@0.1.0 metrics:orchestration > node scripts/export-orchestration-metrics.mjs Wrote ops/codex-batches/orchestration-metrics.v1.json."
+    },
+    {
+      "check_name": "post_export",
+      "status": "passed",
+      "summary": "post_export exited 0: > longevity-hallmarks-research@0.1.0 export:latest > node scripts/export-latest.mjs Wrote 16 export file(s) to exports/latest."
+    },
+    {
+      "check_name": "post_verify",
+      "status": "passed",
+      "summary": "post_verify exited 0: > longevity-hallmarks-research@0.1.0 audit:orchestration-smoke-contract > node scripts/audit-orchestration-smoke-contract.mjs Orchestration smoke contract audit passed for orchestration-smoke-budgeted-codex-worktree-2026-06-23. > longevity-hallmarks-research@0.1.0 audit:agentic-process > node scripts/audit-agentic-process.mjs Agentic process audit passed for 402 file(s)."
+    }
+  ],
+  "blocking_issues": [
+    "Structured event-specific adverse-event rows beyond the accepted headache row were not extracted in this bounded coverage-assessment repair; remaining D+Q bone table rows and discontinuation count fields still need row-level extraction.",
+    "No retained source/text snapshots for DKD, IPF, or AD-risk safety tables were supplied in the bounded job contract, so cross-human safety extraction remains incomplete."
+  ],
+  "next_actions": [
+    "Move coverage-gap-senolytics-safety-tables-repair into review and run extraction_fidelity, safety_limitations, synthesis_boundary, and taxonomy_mapping lanes before promotion.",
+    "Create table-row extraction context packs for the remaining D+Q bone adverse-event terms and withdrawal/discontinuation details.",
+    "Ingest or retain source snapshots for DKD, IPF, and AD-risk safety extraction before any cross-human safety synthesis."
+  ]
+}

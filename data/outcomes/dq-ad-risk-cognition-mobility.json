@@ -3,7 +3,7 @@
   "record_type": "outcome",
   "id": "dq-ad-risk-cognition-mobility",
   "name": "Cognition and mobility in older adults at Alzheimer's disease risk",
-  "summary": "Functional cognition and mobility outcome from the 2025 dasatinib plus quercetin pilot study.",
+  "summary": "Functional and biomarker outcome from the 2025 single-arm D+Q pilot; the PubMed abstract gives exact MoCA, baseline-MoCA subgroup, TNF-alpha, and TNF-alpha/MoCA correlation values, while broader mobility endpoint values still require full article extraction.",
   "source_id": "pmid-40010154",
   "study_id": "dq-ad-risk-cognition-mobility-pilot",
   "finding_ids": [
@@ -18,10 +18,11 @@
   ],
   "endpoint_category": "functional",
   "measurement_type": "physiological_function",
-  "measurement_method": "Pilot cognitive and mobility assessments",
+  "measurement_method": "Montreal Cognitive Assessment, functional assessments, and TNF-alpha biomarker percent change",
+  "timepoint": "Baseline to completion of 12-week intermittent D+Q course",
   "analysis_role": "exploratory",
   "population_or_model": "Older adults at risk for Alzheimer's disease",
-  "directionality_preferred": "higher_better",
+  "directionality_preferred": "context_dependent",
   "tags": [
     "senolytics",
     "human",
@@ -29,14 +30,14 @@
     "cognition",
     "mobility"
   ],
-  "maturity_status": "triage_summary",
+  "maturity_status": "abstract_extracted",
   "provenance": [
     {
       "source_id": "pmid-40010154",
-      "locator_type": "derived_record",
-      "locator": "outcome dq-ad-risk-cognition-mobility derived from pmid-40010154",
-      "status": "triage_summary",
-      "note": "Triage-level generated record pending source-located extraction."
+      "locator_type": "abstract",
+      "locator": "PubMed PMID 40010154 abstract METHODS and FINDINGS",
+      "status": "abstract_extracted",
+      "note": "Abstract identifies MoCA, functional outcomes, and TNF-alpha biomarker change as extracted endpoints."
     }
   ],
   "target_hallmark_ids": [

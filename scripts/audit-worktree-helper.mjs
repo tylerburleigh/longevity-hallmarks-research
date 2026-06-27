@@ -23,11 +23,20 @@ function toPosixRelative(filePath) {
   return path.relative(workspaceRoot, filePath).split(path.sep).join("/");
 }
 
-function runCommand(command, args, { cwd }) {
+function runCommand(command, args, { cwd, timeoutMs = 30000 }) {
   const result = spawnSync(command, args, {
     cwd,
-    encoding: "utf8"
+    encoding: "utf8",
+    timeout: timeoutMs
   });
+
+  if (result.error) {
+    throw new Error(`${command} ${args.join(" ")} failed: ${result.error.message}`);
+  }
+
+  if (result.signal) {
+    throw new Error(`${command} ${args.join(" ")} terminated by signal ${result.signal}: ${(result.stderr || result.stdout).trim()}`);
+  }
 
   if (result.status !== 0) {
     throw new Error(`${command} ${args.join(" ")} failed: ${(result.stderr || result.stdout).trim()}`);

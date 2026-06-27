@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "coverage-gap-senolytics-safety-tables-repair",
+  "name": "Senolytics safety-table coverage-gap repair",
+  "summary": "Updates the senolytics coverage assessment with retained source-snapshot locators for the D+Q bone RCT safety table, withdrawal narrative, dosing cadence, and durability discussion, while preserving the remaining adverse-event and cross-human safety extraction gaps.",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-27T16:50:11Z",
+  "scope": {
+    "question": "Repair the senolytics safety/durability coverage gap by reconciling current D+Q bone RCT safety-table extraction status and preserving remaining event-term, discontinuation, dosing-cadence, durability, and cross-human safety extraction debt.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "coverage-gap-senolytics-safety-tables-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-safety-tables-repair.json",
+      "change_type": "create",
+      "rationale": "Tracks this bounded extraction-refresh repair candidate and its required review lanes."
+    },
+    {
+      "record_type": "coverage_assessment",
+      "record_id": "senolytics-coverage-repair-2026-06-21",
+      "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+      "change_type": "update",
+      "rationale": "Refreshes the safety_durability category and senolytics-safety-tables gap with source-snapshot-backed D+Q bone safety locators and explicit remaining extraction debt."
+    }
+  ],
+  "required_review_lanes": [
+    "extraction_fidelity",
+    "safety_limitations",
+    "synthesis_boundary",
+    "taxonomy_mapping"
+  ]
+}

@@ -3,7 +3,7 @@
   "record_type": "outcome",
   "id": "dq-dkd-senescent-cell-biomarkers",
   "name": "Senescent-cell and SASP-related biomarkers in diabetic kidney disease",
-  "summary": "Human biomarker outcome assessing senescent-cell burden and SASP-related markers after dasatinib plus quercetin.",
+  "summary": "Human biomarker outcome assessing adipose and skin senescent-cell markers, macrophage/crown-like structure markers, and circulating SASP factors before and 11 days after a 3-day dasatinib plus quercetin course.",
   "source_id": "pmid-31542391",
   "study_id": "dq-diabetic-kidney-disease-pilot",
   "finding_ids": [
@@ -18,7 +18,8 @@
   ],
   "endpoint_category": "biomarker",
   "measurement_type": "cellular_biomarker",
-  "measurement_method": "Tissue and circulating senescence/SASP biomarker assessment",
+  "measurement_method": "Adipose tissue and skin p16INK4A, p21CIP1, senescence-associated beta-galactosidase, adipocyte progenitor, macrophage/crown-like structure, and circulating SASP-factor assessment",
+  "timepoint": "Before treatment and 11 days after completing a 3-day D+Q course",
   "analysis_role": "exploratory",
   "population_or_model": "Adults with diabetic kidney disease",
   "directionality_preferred": "lower_better",
@@ -27,14 +28,14 @@
     "human",
     "biomarker"
   ],
-  "maturity_status": "triage_summary",
+  "maturity_status": "abstract_extracted",
   "provenance": [
     {
       "source_id": "pmid-31542391",
-      "locator_type": "derived_record",
-      "locator": "outcome dq-dkd-senescent-cell-biomarkers derived from pmid-31542391",
-      "status": "triage_summary",
-      "note": "Triage-level generated record pending source-located extraction."
+      "locator_type": "abstract",
+      "locator": "PubMed PMID 31542391 abstract METHODS and FINDINGS",
+      "status": "abstract_extracted",
+      "note": "Abstract identifies adipose tissue, skin biopsies, blood, senescent-cell markers, macrophage/crown-like structures, and circulating SASP factors as measured endpoints."
     }
   ],
   "target_hallmark_ids": [

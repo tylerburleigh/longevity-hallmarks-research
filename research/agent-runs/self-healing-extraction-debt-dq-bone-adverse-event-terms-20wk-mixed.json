@@ -1,0 +1,207 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "self-healing-extraction-debt-dq-bone-adverse-event-terms-20wk-mixed",
+  "agent_role": "extraction_agent",
+  "agent_id": "codex-cli-worker",
+  "mode": "extraction_refresh",
+  "started_at": "2026-06-27T16:56:27Z",
+  "completed_at": "2026-06-27T17:06:23Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "extraction_refresh: Resolve missing synthesis fields: adverse_event.event_specific_counts, adverse_event.preferred_term, effect.uncertainty, effect.value.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "chronic_inflammation",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": [
+      "dasatinib-quercetin"
+    ]
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "codex_exec",
+    "isolation": "git_worktree",
+    "workspace_path": "/tmp/lhr-codex-worktrees/self-healing-extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-20260627T165627z",
+    "prompt_file": "research/agent-runs/prompts/self-healing-extraction-debt-dq-bone-adverse-event-terms-20wk-mixed.md",
+    "prompt_template_file": "docs/prompts/codex-agents/extraction-refresh.md",
+    "job_file": "ops/codex-jobs/archive/self-healing-extraction-debt-dq-bone-adverse-event-terms-20wk-mixed.json",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "output_path": "research/agent-runs/self-healing-extraction-debt-dq-bone-adverse-event-terms-20wk-mixed.json",
+    "jsonl_log_path": "research/agent-runs/logs/self-healing-extraction-debt-dq-bone-adverse-event-terms-20wk-mixed.jsonl",
+    "sandbox": "workspace-write",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "user_request",
+      "reference": "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-adverse-event-terms-20wk-mixed.json",
+      "summary": "Coordinator job specification for the bounded self-healing extraction-debt repair."
+    },
+    {
+      "input_type": "other",
+      "reference": "plan.md; docs/research-runbook.md; docs/agent-run-outputs.md; docs/extraction-rules.md; docs/source-snapshot-importers.md; schemas/agent-run.codex-output.schema.json; schemas/agent-run.schema.json",
+      "summary": "Required repository operating rules and final agent-run schemas."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/results/dq-bone-adverse-event-terms-20wk-mixed.json",
+      "summary": "Target 20-week D+Q adverse-event table result requiring structured adverse-event and effect fields."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+      "summary": "Safety synthesis boundary containing the missing-field entry for the target result."
+    },
+    {
+      "input_type": "source_snapshot",
+      "reference": "data/source-snapshots/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
+      "summary": "Retained PMC author-manuscript source snapshot for PMID 38956196."
+    },
+    {
+      "input_type": "text_snapshot",
+      "reference": "data/text-snapshots/text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
+      "summary": "Full-text snapshot with normalized markdown and section index for the PMC author manuscript."
+    },
+    {
+      "input_type": "other",
+      "reference": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md; artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/sections.json",
+      "summary": "Retained article text used to verify Extended Data Table 1 and the Safety and adverse events section."
+    },
+    {
+      "input_type": "other",
+      "reference": "ops/triage-state.v1.json:1058",
+      "summary": "Scoped extraction-debt rows for adverse_event.event_specific_counts, adverse_event.preferred_term, effect.uncertainty, and effect.value on the target result."
+    }
+  ],
+  "outputs": {
+    "summary": "Created the submitted extraction-debt repair candidate, updated dq-bone-adverse-event-terms-20wk-mixed with an Overall-row adverse_event preferred term, arm-level counts, calculated risk ratio, and uncertainty, and updated the safety synthesis group to remove the resolved missing-field entry while keeping pooling blocked for remaining safety limitations.",
+    "candidate_change_id": "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair",
+        "path": "data/candidate-changes/extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair.json",
+        "change_type": "create",
+        "rationale": "Tracks the bounded self-healing extraction-debt repair candidate and required review lanes."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-adverse-event-terms-20wk-mixed",
+        "path": "data/results/dq-bone-adverse-event-terms-20wk-mixed.json",
+        "change_type": "update",
+        "rationale": "Adds structured adverse_event preferred-term/count fields for the Overall row plus a calculated risk ratio and uncertainty from the reported 5/30 control and 23/30 D+Q counts."
+      },
+      {
+        "record_type": "synthesis_group",
+        "record_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+        "path": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+        "change_type": "update",
+        "rationale": "Removes the resolved missing-field entry for dq-bone-adverse-event-terms-20wk-mixed while retaining safety pooling blockers for the aggregate registry and headache preferred-term results."
+      }
+    ],
+    "generated_files": [],
+    "export_paths": [
+      "exports/latest/accepted-records.jsonl",
+      "exports/latest/audit-manifest.json",
+      "exports/latest/consumer-contract.json",
+      "exports/latest/coverage-status.json",
+      "exports/latest/evidence-map.json",
+      "exports/latest/read-model.sqlite",
+      "exports/latest/results.all.jsonl",
+      "exports/latest/results.extraction_grade.jsonl",
+      "exports/latest/synthesis-groups.jsonl"
+    ]
+  },
+  "quality_checks": [
+    {
+      "check_name": "validate_records",
+      "status": "passed",
+      "summary": "npm run validate:records passed and validated 313 JSON file(s)."
+    },
+    {
+      "check_name": "audit_references",
+      "status": "passed",
+      "summary": "npm run audit:references passed for 222 record file(s)."
+    },
+    {
+      "check_name": "export_latest",
+      "status": "passed",
+      "summary": "npm run export:latest passed and wrote 16 export file(s) to exports/latest."
+    },
+    {
+      "check_name": "audit_exports",
+      "status": "passed",
+      "summary": "npm run audit:exports passed for 11 JSONL export(s) and 15 manifest file hash(es)."
+    },
+    {
+      "check_name": "audit_read_model",
+      "status": "passed",
+      "summary": "npm run audit:read-model passed for 222 canonical record(s) across 11 traced table(s)."
+    },
+    {
+      "check_name": "audit_agent_schemas",
+      "status": "passed",
+      "summary": "npm run audit:agent-schemas passed."
+    },
+    {
+      "check_name": "audit_agentic_process",
+      "status": "passed",
+      "summary": "npm run audit:agentic-process passed for 401 file(s)."
+    },
+    {
+      "check_name": "candidate_agent_run_ledger_match",
+      "status": "passed",
+      "summary": "Candidate proposed_records paths match final outputs.proposed_records paths for the candidate_change, result, and synthesis_group records."
+    },
+    {
+      "check_name": "verify_knowledge_base",
+      "status": "not_run",
+      "summary": "Deferred to coordinator post-run verification after final output import and generated control-plane refresh."
+    },
+    {
+      "check_name": "worker_output_contract",
+      "status": "passed",
+      "summary": "Worker emitted exactly one final JSON agent_run message, matched output_path, and avoided ad hoc schema-validation snippets."
+    },
+    {
+      "check_name": "post_triage_state_export",
+      "status": "passed",
+      "summary": "post_triage_state_export exited 0: > longevity-hallmarks-research@0.1.0 export:triage-state > node scripts/export-triage-state.mjs Wrote ops/triage-state.v1.json."
+    },
+    {
+      "check_name": "post_release_readiness_export",
+      "status": "passed",
+      "summary": "post_release_readiness_export exited 0: > longevity-hallmarks-research@0.1.0 export:release-readiness > node scripts/export-release-readiness.mjs Wrote ops/release-readiness.v1.json."
+    },
+    {
+      "check_name": "post_reconciliation_export",
+      "status": "passed",
+      "summary": "post_reconciliation_export exited 0: > longevity-hallmarks-research@0.1.0 reconcile:parallel > node scripts/reconcile-parallel-outputs.mjs Wrote ops/reconciliation/parallel-reconciliation.v1.json."
+    },
+    {
+      "check_name": "post_orchestration_metrics_export",
+      "status": "passed",
+      "summary": "post_orchestration_metrics_export exited 0: > longevity-hallmarks-research@0.1.0 metrics:orchestration > node scripts/export-orchestration-metrics.mjs Wrote ops/codex-batches/orchestration-metrics.v1.json."
+    },
+    {
+      "check_name": "post_export",
+      "status": "passed",
+      "summary": "post_export exited 0: > longevity-hallmarks-research@0.1.0 export:latest > node scripts/export-latest.mjs Wrote 16 export file(s) to exports/latest."
+    },
+    {
+      "check_name": "post_verify",
+      "status": "passed",
+      "summary": "post_verify exited 0: > longevity-hallmarks-research@0.1.0 audit:orchestration-smoke-contract > node scripts/audit-orchestration-smoke-contract.mjs Orchestration smoke contract audit passed for orchestration-smoke-budgeted-codex-worktree-2026-06-23. > longevity-hallmarks-research@0.1.0 audit:agentic-process > node scripts/audit-agentic-process.mjs Agentic process audit passed for 402 file(s)."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": [
+    "Move the submitted candidate into in_review and create active evidence_review records for extraction_fidelity, safety_limitations, synthesis_boundary, and taxonomy_mapping.",
+    "Run coordinator post-run generated-state refresh and repository verification before promotion consideration."
+  ]
+}

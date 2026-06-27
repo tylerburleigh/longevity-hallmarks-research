@@ -22,8 +22,7 @@
     "approval_policy": "never",
     "output_schema_path": "schemas/agent-run.codex-output.schema.json",
     "timeout_ms": 300000,
-    "no_output_timeout_ms": 60000,
-    "max_command_events": 24
+    "no_output_timeout_ms": 60000
   },
   "expected_outputs": {
     "canonical_write_policy": "candidate_change_required",

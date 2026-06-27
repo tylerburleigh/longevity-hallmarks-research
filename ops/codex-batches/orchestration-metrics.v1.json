@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "orchestration_metrics",
   "id": "orchestration-metrics-v1",
-  "generated_at": "2026-06-27T18:53:50.699Z",
+  "generated_at": "2026-06-27T19:45:32.357Z",
   "source_roots": [
     "data",
     "exports/latest",
@@ -42,17 +42,17 @@
     ]
   },
   "summary": {
-    "planned_live_job_count": 39,
+    "planned_live_job_count": 44,
     "archived_job_count": 33,
-    "planned_parallel_batch_count": 11,
-    "planned_parallel_worker_count": 39,
-    "planned_independent_batch_count": 10,
+    "planned_parallel_batch_count": 12,
+    "planned_parallel_worker_count": 44,
+    "planned_independent_batch_count": 11,
     "planned_reconciliation_batch_count": 1,
     "max_planned_batch_width": 4,
-    "planned_serial_wall_time_ms": 127800000,
-    "planned_parallel_wall_time_ms": 36000000,
-    "planned_wall_time_savings_ms": 91800000,
-    "planned_speedup_ratio": 3.55,
+    "planned_serial_wall_time_ms": 145800000,
+    "planned_parallel_wall_time_ms": 39600000,
+    "planned_wall_time_savings_ms": 106200000,
+    "planned_speedup_ratio": 3.6818,
     "executed_parallel_batch_run_count": 19,
     "executed_worker_count": 51,
     "failed_worker_count": 20,
@@ -60,16 +60,16 @@
     "succeeded_worker_count": 27,
     "actual_worker_wall_time_ms": 11014852,
     "actual_batch_wall_time_ms": 6478435,
-    "agent_run_count": 42,
-    "succeeded_agent_run_count": 35,
+    "agent_run_count": 43,
+    "succeeded_agent_run_count": 36,
     "partial_agent_run_count": 7,
     "failed_agent_run_count": 0,
     "agent_run_wall_time_ms": 20757000,
-    "duplicate_work_group_count": 17,
-    "duplicate_work_record_count": 35,
-    "conflict_finding_count": 19,
-    "conflict_rate": 0.0909,
-    "open_finding_rate": 0.6786,
+    "duplicate_work_group_count": 30,
+    "duplicate_work_record_count": 70,
+    "conflict_finding_count": 32,
+    "conflict_rate": 0.0833,
+    "open_finding_rate": 1.1034,
     "accepted_candidate_count": 10,
     "accepted_records_produced_count": 65,
     "extraction_debt_open_count": 47,
@@ -96,13 +96,13 @@
       },
       {
         "parallel_group": "candidate-review",
-        "batch_count": 3,
-        "job_count": 11,
-        "independent_batch_count": 3,
+        "batch_count": 4,
+        "job_count": 16,
+        "independent_batch_count": 4,
         "reconciliation_batch_count": 0,
         "max_batch_width": 4,
-        "expected_wall_time_ms": 10800000,
-        "expected_token_budget": 1100000,
+        "expected_wall_time_ms": 14400000,
+        "expected_token_budget": 1600000,
         "overlapping_execution_key_count": 0
       },
       {
@@ -163,13 +163,23 @@
         "parallel_group": "candidate-review",
         "execution_class": "independent",
         "reconciliation_required": false,
-        "job_count": 3,
+        "job_count": 4,
         "expected_wall_time_ms": 3600000,
-        "expected_token_budget": 300000,
+        "expected_token_budget": 400000,
         "overlapping_execution_key_count": 0
       },
       {
-        "batch_id": "parallel-batch-006-extraction-refresh",
+        "batch_id": "parallel-batch-006-candidate-review",
+        "parallel_group": "candidate-review",
+        "execution_class": "independent",
+        "reconciliation_required": false,
+        "job_count": 4,
+        "expected_wall_time_ms": 3600000,
+        "expected_token_budget": 400000,
+        "overlapping_execution_key_count": 0
+      },
+      {
+        "batch_id": "parallel-batch-007-extraction-refresh",
         "parallel_group": "extraction-refresh",
         "execution_class": "reconciliation_required",
         "reconciliation_required": true,
@@ -177,16 +187,6 @@
         "expected_wall_time_ms": 3600000,
         "expected_token_budget": 400000,
         "overlapping_execution_key_count": 2
-      },
-      {
-        "batch_id": "parallel-batch-007-extraction-refresh",
-        "parallel_group": "extraction-refresh",
-        "execution_class": "independent",
-        "reconciliation_required": true,
-        "job_count": 4,
-        "expected_wall_time_ms": 3600000,
-        "expected_token_budget": 400000,
-        "overlapping_execution_key_count": 0
       },
       {
         "batch_id": "parallel-batch-008-extraction-refresh",
@@ -220,6 +220,16 @@
       },
       {
         "batch_id": "parallel-batch-011-extraction-refresh",
+        "parallel_group": "extraction-refresh",
+        "execution_class": "independent",
+        "reconciliation_required": true,
+        "job_count": 4,
+        "expected_wall_time_ms": 3600000,
+        "expected_token_budget": 400000,
+        "overlapping_execution_key_count": 0
+      },
+      {
+        "batch_id": "parallel-batch-012-extraction-refresh",
         "parallel_group": "extraction-refresh",
         "execution_class": "independent",
         "reconciliation_required": true,
@@ -519,7 +529,7 @@
       },
       {
         "key": "succeeded",
-        "count": 35
+        "count": 36
       }
     ],
     "agent_run_role_counts": [
@@ -529,7 +539,7 @@
       },
       {
         "key": "extraction_agent",
-        "count": 8
+        "count": 9
       },
       {
         "key": "self_healing_agent",
@@ -768,19 +778,19 @@
   },
   "quality_pressure": {
     "duplicate_work": {
-      "group_count": 17,
-      "record_count": 35,
+      "group_count": 30,
+      "record_count": 70,
       "duplicate_source_group_count": 0,
       "duplicate_study_group_count": 0,
-      "overlapping_candidate_group_count": 17
+      "overlapping_candidate_group_count": 30
     },
     "conflicts": {
-      "open_finding_count": 19,
-      "blocking_finding_count": 19,
+      "open_finding_count": 32,
+      "blocking_finding_count": 32,
       "warning_finding_count": 0,
-      "conflict_rate": 0.0909,
-      "open_finding_rate": 0.6786,
-      "reconciliation_batch_rate": 0.0909
+      "conflict_rate": 0.0833,
+      "open_finding_rate": 1.1034,
+      "reconciliation_batch_rate": 0.0833
     },
     "worker_failures": {
       "failed_worker_count": 20,

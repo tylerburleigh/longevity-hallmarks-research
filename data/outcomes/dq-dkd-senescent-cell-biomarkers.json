@@ -35,7 +35,8 @@
       "locator_type": "abstract",
       "locator": "PubMed PMID 31542391 abstract METHODS and FINDINGS",
       "status": "abstract_extracted",
-      "note": "Abstract identifies adipose tissue, skin biopsies, blood, senescent-cell markers, macrophage/crown-like structures, and circulating SASP factors as measured endpoints."
+      "note": "Abstract identifies adipose tissue, skin biopsies, blood, senescent-cell markers, macrophage/crown-like structures, and circulating SASP factors as measured endpoints.",
+      "source_snapshot_id": "snapshot-pmid-31542391-pubmed-efetch-2026-06-27"
     }
   ],
   "target_hallmark_ids": [

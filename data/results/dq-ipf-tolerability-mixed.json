@@ -40,7 +40,8 @@
       "locator_type": "derived_record",
       "locator": "result dq-ipf-tolerability-mixed derived from pmid-36857968",
       "status": "triage_summary",
-      "note": "Triage-level generated record pending source-located extraction."
+      "note": "Triage-level generated record pending source-located extraction.",
+      "source_snapshot_id": "snapshot-pmid-36857968-pubmed-efetch-2026-06-27"
     }
   ]
 }

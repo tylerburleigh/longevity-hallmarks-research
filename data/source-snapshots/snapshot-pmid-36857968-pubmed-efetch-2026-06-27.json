@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "source_snapshot",
+  "id": "snapshot-pmid-36857968-pubmed-efetch-2026-06-27",
+  "source_id": "pmid-36857968",
+  "snapshot_type": "pubmed_efetch",
+  "retrieved_at": "2026-06-27T19:41:21.436Z",
+  "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=36857968&retmode=xml",
+  "content_type": "text/xml; charset=UTF-8",
+  "content_sha256": "884e3018ace1e27fc81e5302fb22dac852d697d690333a468eb6c95e334f0d18",
+  "payload_summary": {
+    "pmid": "36857968",
+    "article_title": "Senolytics dasatinib and quercetin in idiopathic pulmonary fibrosis: results of a phase I, single-blind, single-center, randomized, placebo-controlled pilot trial on feasibility and tolerability.",
+    "journal": "EBioMedicine",
+    "journal_iso_abbreviation": "EBioMedicine",
+    "doi": "10.1016/j.ebiom.2023.104481",
+    "publication_types": [
+      "Randomized Controlled Trial",
+      "Clinical Trial, Phase I",
+      "Journal Article"
+    ],
+    "abstract_excerpt": "Idiopathic pulmonary fibrosis (IPF) is an age-related, chronic, irreversible fibrotic lung disease. IPF is associated with increased senescent cells burden, which may be alleviated with administration of senescent cell targeting drugs termed 'senolytics'. We previously conducted an open-label single-arm pilot study of the senolytic combination of dasatinib and quercetin (D + Q) in patients with IPF but lack of control group limited interpretation and next-stage trial planning. The primary objective of this confirmatory randomized placebo-controlled pilot trial (RCT; NCT02874989) was to report adverse events with D + Q and inform study feasibility for future efficacy trials. Twelve participants with IPF aged >50 years were blinded and randomized at a 1:1 ratio to either receive three weeks of D + Q (D: 100 mg/d and Q: 1250 mg/d, three consecutive days per week) or matching placebo. All participants completed the scheduled drug dosing regimen (108/108 doses) and planned assessments (60/60). While the placebo arm reported fewer overall non-serious AEs (65 vs 22), there were no serious adverse events related to D + Q. Most AEs in the D + Q arm are common in IPF patients or anticipated "
+  },
+  "access_policy": {
+    "access_tier": "metadata_only",
+    "artifact_policy": "retain_metadata_hashes_and_locators",
+    "safe_artifact_classes": [
+      "metadata_summary",
+      "content_hash",
+      "provenance_locator",
+      "structured_extraction"
+    ],
+    "basis": "PubMed EFetch provides public metadata and abstract payloads for source identification and provenance, but it is not a reusable full-text source by itself.",
+    "checked_at": "2026-06-27T19:41:21.436Z",
+    "notes": "Use a separate open reusable full text, public repository copy, author manuscript, preprint, or registry source before retaining raw full text or normalized markdown."
+  },
+  "raw_storage": {
+    "stored": false,
+    "reason_not_stored": "Snapshot stores retrieval URL, content hash, and parsed metadata summary; raw XML can be refetched from NCBI EFetch."
+  },
+  "tags": [
+    "pubmed",
+    "source-snapshot"
+  ]
+}

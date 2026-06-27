@@ -35,7 +35,8 @@
       "locator_type": "abstract",
       "locator": "PubMed PMID 36857968 abstract FINDINGS and INTERPRETATION",
       "status": "abstract_extracted",
-      "note": "Abstract supplies exact dose-completion and assessment-completion counts plus qualitative between-arm interpretation of explored clinical measures."
+      "note": "Abstract supplies exact dose-completion and assessment-completion counts plus qualitative between-arm interpretation of explored clinical measures.",
+      "source_snapshot_id": "snapshot-pmid-36857968-pubmed-efetch-2026-06-27"
     }
   ],
   "statement": "In the N=12 randomized IPF pilot, all scheduled doses and planned assessments were completed, while clinical measures were underpowered and did not appear to differ meaningfully between D+Q and placebo.",

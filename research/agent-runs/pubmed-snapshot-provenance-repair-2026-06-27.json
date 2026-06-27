@@ -1,0 +1,273 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "pubmed-snapshot-provenance-repair-2026-06-27",
+  "agent_role": "extraction_agent",
+  "agent_id": "codex-interactive-session",
+  "mode": "extraction_refresh",
+  "started_at": "2026-06-27T19:43:38.144Z",
+  "completed_at": "2026-06-27T19:43:38.144Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "Create PubMed EFetch source snapshots for DKD, IPF, and AD-risk D+Q sources and attach source_snapshot_id provenance where eligible.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": [
+      "dasatinib-quercetin"
+    ]
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "interactive_session",
+    "isolation": "foreground_checkout",
+    "workspace_path": "/home/tyler/Workspace/longevity-hallmarks-research",
+    "sandbox": "danger-full-access",
+    "approval_policy": "never",
+    "command": [
+      "npm run ingest:pubmed -- --pmid 31542391 --write",
+      "npm run ingest:pubmed -- --pmid 36857968 --write",
+      "npm run ingest:pubmed -- --pmid 40010154 --write"
+    ]
+  },
+  "inputs": [
+    {
+      "input_type": "candidate_change",
+      "reference": "data/candidate-changes/senolytics-pubmed-snapshot-provenance-2026-06-27.json",
+      "summary": "Follow-up snapshot/provenance repair candidate for exact-effect extraction records."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/sources/pmid-31542391.json",
+      "summary": "DKD D+Q pilot PubMed source."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/sources/pmid-36857968.json",
+      "summary": "IPF D+Q randomized pilot PubMed source."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/sources/pmid-40010154.json",
+      "summary": "AD-risk D+Q pilot PubMed source."
+    }
+  ],
+  "outputs": {
+    "summary": "Created three PubMed EFetch source_snapshot records and attached source_snapshot_id provenance to eligible metadata, eligibility, risk-of-bias, study, outcome, result, and finding records for PMIDs 31542391, 36857968, and 40010154. No text_snapshot_id was added because PubMed EFetch snapshots are metadata/abstract snapshots, not retained full text.",
+    "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+        "path": "data/candidate-changes/senolytics-pubmed-snapshot-provenance-2026-06-27.json",
+        "change_type": "create",
+        "rationale": "Tracks PubMed EFetch source-snapshot creation and source_snapshot_id provenance repair for DKD, IPF, and AD-risk D+Q records."
+      },
+      {
+        "record_type": "eligibility_decision",
+        "record_id": "eligibility-pmid-31542391-senolytics-2026-06-21",
+        "path": "data/eligibility-decisions/eligibility-pmid-31542391-senolytics-2026-06-21.json",
+        "change_type": "update",
+        "rationale": "Links DKD eligibility provenance to the PubMed EFetch snapshot."
+      },
+      {
+        "record_type": "eligibility_decision",
+        "record_id": "eligibility-pmid-36857968-senolytics-2026-06-21",
+        "path": "data/eligibility-decisions/eligibility-pmid-36857968-senolytics-2026-06-21.json",
+        "change_type": "update",
+        "rationale": "Links IPF eligibility provenance to the PubMed EFetch snapshot."
+      },
+      {
+        "record_type": "finding",
+        "record_id": "dq-ad-risk-pilot-cognition-mobility-signal",
+        "path": "data/findings/dq-ad-risk-pilot-cognition-mobility-signal.json",
+        "change_type": "update",
+        "rationale": "Links AD-risk finding provenance to the PubMed EFetch snapshot."
+      },
+      {
+        "record_type": "finding",
+        "record_id": "dq-dkd-human-senescent-cell-biomarker-signal",
+        "path": "data/findings/dq-dkd-human-senescent-cell-biomarker-signal.json",
+        "change_type": "update",
+        "rationale": "Links DKD finding provenance to the PubMed EFetch snapshot."
+      },
+      {
+        "record_type": "finding",
+        "record_id": "dq-ipf-randomized-feasibility-tolerability-mixed",
+        "path": "data/findings/dq-ipf-randomized-feasibility-tolerability-mixed.json",
+        "change_type": "update",
+        "rationale": "Links legacy IPF feasibility/tolerability finding provenance to the PubMed EFetch snapshot."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-ad-risk-cognition-mobility",
+        "path": "data/outcomes/dq-ad-risk-cognition-mobility.json",
+        "change_type": "update",
+        "rationale": "Links AD-risk cognition/mobility outcome provenance to the PubMed EFetch snapshot."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-dkd-senescent-cell-biomarkers",
+        "path": "data/outcomes/dq-dkd-senescent-cell-biomarkers.json",
+        "change_type": "update",
+        "rationale": "Links DKD biomarker outcome provenance to the PubMed EFetch snapshot."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-ipf-dosing-completion-assessments",
+        "path": "data/outcomes/dq-ipf-dosing-completion-assessments.json",
+        "change_type": "update",
+        "rationale": "Links IPF dosing-completion outcome provenance to the PubMed EFetch snapshot."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-ipf-feasibility-tolerability",
+        "path": "data/outcomes/dq-ipf-feasibility-tolerability.json",
+        "change_type": "update",
+        "rationale": "Links legacy IPF feasibility/tolerability outcome provenance to the PubMed EFetch snapshot."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-ad-risk-cognition-mobility-mixed",
+        "path": "data/results/dq-ad-risk-cognition-mobility-mixed.json",
+        "change_type": "update",
+        "rationale": "Links AD-risk cognition/biomarker result provenance to the PubMed EFetch snapshot."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-dkd-biomarker-positive",
+        "path": "data/results/dq-dkd-biomarker-positive.json",
+        "change_type": "update",
+        "rationale": "Links DKD biomarker result provenance to the PubMed EFetch snapshot."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-ipf-dosing-completion-mixed",
+        "path": "data/results/dq-ipf-dosing-completion-mixed.json",
+        "change_type": "update",
+        "rationale": "Links IPF dosing-completion result provenance to the PubMed EFetch snapshot."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-ipf-tolerability-mixed",
+        "path": "data/results/dq-ipf-tolerability-mixed.json",
+        "change_type": "update",
+        "rationale": "Links legacy IPF tolerability result provenance to the PubMed EFetch snapshot."
+      },
+      {
+        "record_type": "risk_of_bias",
+        "record_id": "dq-ad-risk-pilot-rob",
+        "path": "data/risk-of-bias/dq-ad-risk-pilot-rob.json",
+        "change_type": "update",
+        "rationale": "Links AD-risk risk-of-bias provenance to the PubMed EFetch snapshot."
+      },
+      {
+        "record_type": "risk_of_bias",
+        "record_id": "dq-dkd-pilot-rob",
+        "path": "data/risk-of-bias/dq-dkd-pilot-rob.json",
+        "change_type": "update",
+        "rationale": "Links DKD risk-of-bias provenance to the PubMed EFetch snapshot."
+      },
+      {
+        "record_type": "risk_of_bias",
+        "record_id": "dq-ipf-randomized-pilot-rob",
+        "path": "data/risk-of-bias/dq-ipf-randomized-pilot-rob.json",
+        "change_type": "update",
+        "rationale": "Links IPF risk-of-bias provenance to the PubMed EFetch snapshot."
+      },
+      {
+        "record_type": "source_snapshot",
+        "record_id": "snapshot-pmid-31542391-pubmed-efetch-2026-06-27",
+        "path": "data/source-snapshots/snapshot-pmid-31542391-pubmed-efetch-2026-06-27.json",
+        "change_type": "create",
+        "rationale": "Adds durable PubMed EFetch metadata/abstract snapshot for the DKD D+Q pilot source."
+      },
+      {
+        "record_type": "source_snapshot",
+        "record_id": "snapshot-pmid-36857968-pubmed-efetch-2026-06-27",
+        "path": "data/source-snapshots/snapshot-pmid-36857968-pubmed-efetch-2026-06-27.json",
+        "change_type": "create",
+        "rationale": "Adds durable PubMed EFetch metadata/abstract snapshot for the IPF D+Q randomized-pilot source."
+      },
+      {
+        "record_type": "source_snapshot",
+        "record_id": "snapshot-pmid-40010154-pubmed-efetch-2026-06-27",
+        "path": "data/source-snapshots/snapshot-pmid-40010154-pubmed-efetch-2026-06-27.json",
+        "change_type": "create",
+        "rationale": "Adds durable PubMed EFetch metadata/abstract snapshot for the AD-risk D+Q pilot source."
+      },
+      {
+        "record_type": "source",
+        "record_id": "pmid-31542391",
+        "path": "data/sources/pmid-31542391.json",
+        "change_type": "update",
+        "rationale": "Links DKD PubMed source metadata provenance to the durable PubMed EFetch snapshot."
+      },
+      {
+        "record_type": "source",
+        "record_id": "pmid-36857968",
+        "path": "data/sources/pmid-36857968.json",
+        "change_type": "update",
+        "rationale": "Links IPF PubMed source metadata provenance to the durable PubMed EFetch snapshot."
+      },
+      {
+        "record_type": "source",
+        "record_id": "pmid-40010154",
+        "path": "data/sources/pmid-40010154.json",
+        "change_type": "update",
+        "rationale": "Links AD-risk PubMed source metadata provenance to the durable PubMed EFetch snapshot."
+      },
+      {
+        "record_type": "study",
+        "record_id": "dq-ad-risk-cognition-mobility-pilot",
+        "path": "data/studies/dq-ad-risk-cognition-mobility-pilot.json",
+        "change_type": "update",
+        "rationale": "Links AD-risk abstract-extracted study provenance to the PubMed EFetch snapshot."
+      },
+      {
+        "record_type": "study",
+        "record_id": "dq-diabetic-kidney-disease-pilot",
+        "path": "data/studies/dq-diabetic-kidney-disease-pilot.json",
+        "change_type": "update",
+        "rationale": "Links DKD abstract-extracted study provenance to the PubMed EFetch snapshot."
+      },
+      {
+        "record_type": "study",
+        "record_id": "dq-ipf-randomized-pilot",
+        "path": "data/studies/dq-ipf-randomized-pilot.json",
+        "change_type": "update",
+        "rationale": "Links IPF abstract-extracted study provenance to the PubMed EFetch snapshot."
+      }
+    ]
+  },
+  "quality_checks": [
+    {
+      "check_name": "ingest_pubmed_31542391",
+      "status": "passed",
+      "summary": "npm run ingest:pubmed -- --pmid 31542391 --write created snapshot-pmid-31542391-pubmed-efetch-2026-06-27."
+    },
+    {
+      "check_name": "ingest_pubmed_36857968",
+      "status": "passed",
+      "summary": "npm run ingest:pubmed -- --pmid 36857968 --write created snapshot-pmid-36857968-pubmed-efetch-2026-06-27."
+    },
+    {
+      "check_name": "ingest_pubmed_40010154",
+      "status": "passed",
+      "summary": "npm run ingest:pubmed -- --pmid 40010154 --write created snapshot-pmid-40010154-pubmed-efetch-2026-06-27."
+    },
+    {
+      "check_name": "validate_records",
+      "status": "passed",
+      "summary": "npm run validate:records passed before ledger update; rerun after ledger update is required."
+    }
+  ],
+  "next_actions": [
+    "Run validation and reference audits after this ledger update.",
+    "Run source_fidelity, safety_limitations, extraction_fidelity, synthesis_boundary, and taxonomy_mapping review lanes for senolytics-pubmed-snapshot-provenance-2026-06-27 before promotion.",
+    "Reconcile full article/PMC table details that remain outside PubMed EFetch abstract metadata."
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "source_snapshot",
+  "id": "snapshot-pmid-31542391-pubmed-efetch-2026-06-27",
+  "source_id": "pmid-31542391",
+  "snapshot_type": "pubmed_efetch",
+  "retrieved_at": "2026-06-27T19:41:21.440Z",
+  "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=31542391&retmode=xml",
+  "content_type": "text/xml; charset=UTF-8",
+  "content_sha256": "2c49ae9249e4083fa57709c67dab39df07893a8d562357f295c8b6182192ce19",
+  "payload_summary": {
+    "pmid": "31542391",
+    "article_title": "Senolytics decrease senescent cells in humans: Preliminary report from a clinical trial of Dasatinib plus Quercetin in individuals with diabetic kidney disease.",
+    "journal": "EBioMedicine",
+    "journal_iso_abbreviation": "EBioMedicine",
+    "doi": "10.1016/j.ebiom.2019.08.069",
+    "publication_types": [
+      "Journal Article"
+    ],
+    "abstract_excerpt": "Senescent cells, which can release factors that cause inflammation and dysfunction, the senescence-associated secretory phenotype (SASP), accumulate with ageing and at etiological sites in multiple chronic diseases. Senolytics, including the combination of Dasatinib and Quercetin (D + Q), selectively eliminate senescent cells by transiently disabling pro-survival networks that defend them against their own apoptotic environment. In the first clinical trial of senolytics, D + Q improved physical function in patients with idiopathic pulmonary fibrosis (IPF), a fatal senescence-associated disease, but to date, no peer-reviewed study has directly demonstrated that senolytics decrease senescent cells in humans. In an open label Phase 1 pilot study, we administered 3 days of oral D 100 mg and Q 1000 mg to subjects with diabetic kidney disease (N = 9; 68·7 ± 3·1 years old; 2 female; BMI:33·9 ± 2·3 kg/m2; eGFR:27·0 ± 2·1 mL/min/1·73m2). Adipose tissue, skin biopsies, and blood were collected before and 11 days after completing senolytic treatment. Senescent cell and macrophage/Langerhans cell markers and circulating SASP factors were assayed. D + Q reduced adipose tissue senescent cell bur"
+  },
+  "access_policy": {
+    "access_tier": "metadata_only",
+    "artifact_policy": "retain_metadata_hashes_and_locators",
+    "safe_artifact_classes": [
+      "metadata_summary",
+      "content_hash",
+      "provenance_locator",
+      "structured_extraction"
+    ],
+    "basis": "PubMed EFetch provides public metadata and abstract payloads for source identification and provenance, but it is not a reusable full-text source by itself.",
+    "checked_at": "2026-06-27T19:41:21.440Z",
+    "notes": "Use a separate open reusable full text, public repository copy, author manuscript, preprint, or registry source before retaining raw full text or normalized markdown."
+  },
+  "raw_storage": {
+    "stored": false,
+    "reason_not_stored": "Snapshot stores retrieval URL, content hash, and parsed metadata summary; raw XML can be refetched from NCBI EFetch."
+  },
+  "tags": [
+    "pubmed",
+    "source-snapshot"
+  ]
+}

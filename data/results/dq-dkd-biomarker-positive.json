@@ -41,7 +41,8 @@
       "locator_type": "abstract",
       "locator": "PubMed PMID 31542391 abstract METHODS, FINDINGS, and INTERPRETATION",
       "status": "abstract_extracted",
-      "note": "Abstract gives N=9, D+Q dose and timing, the 11-day post-treatment assessment, and directional biomarker decreases; it does not provide table-level numeric effects."
+      "note": "Abstract gives N=9, D+Q dose and timing, the 11-day post-treatment assessment, and directional biomarker decreases; it does not provide table-level numeric effects.",
+      "source_snapshot_id": "snapshot-pmid-31542391-pubmed-efetch-2026-06-27"
     }
   ]
 }

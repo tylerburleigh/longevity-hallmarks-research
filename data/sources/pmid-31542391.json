@@ -68,7 +68,8 @@
       "locator_type": "pubmed_metadata",
       "locator": "PubMed ESummary PMID 31542391",
       "status": "metadata_imported",
-      "note": "Canonical citation metadata import."
+      "note": "Canonical citation metadata import.",
+      "source_snapshot_id": "snapshot-pmid-31542391-pubmed-efetch-2026-06-27"
     }
   ]
 }

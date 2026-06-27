@@ -37,7 +37,8 @@
       "locator_type": "abstract",
       "locator": "PubMed PMID 40010154 abstract METHODS and FINDINGS",
       "status": "abstract_extracted",
-      "note": "Abstract identifies MoCA, functional outcomes, and TNF-alpha biomarker change as extracted endpoints."
+      "note": "Abstract identifies MoCA, functional outcomes, and TNF-alpha biomarker change as extracted endpoints.",
+      "source_snapshot_id": "snapshot-pmid-40010154-pubmed-efetch-2026-06-27"
     }
   ],
   "target_hallmark_ids": [

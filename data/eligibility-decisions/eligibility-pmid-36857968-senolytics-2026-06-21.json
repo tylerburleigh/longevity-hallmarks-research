@@ -34,7 +34,8 @@
       "locator_type": "pubmed_metadata",
       "locator": "PubMed ESummary PMID 36857968",
       "status": "screened",
-      "note": "Eligibility decision based on metadata and scoped triage, not full extraction."
+      "note": "Eligibility decision based on metadata and scoped triage, not full extraction.",
+      "source_snapshot_id": "snapshot-pmid-36857968-pubmed-efetch-2026-06-27"
     }
   ]
 }

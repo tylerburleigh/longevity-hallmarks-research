@@ -43,7 +43,8 @@
       "locator_type": "abstract",
       "locator": "PubMed PMID 31542391 abstract METHODS",
       "status": "abstract_extracted",
-      "note": "Abstract reports N=9, 3 days of dasatinib 100 mg plus quercetin 1000 mg, and pre/post tissue and blood collection 11 days after treatment completion."
+      "note": "Abstract reports N=9, 3 days of dasatinib 100 mg plus quercetin 1000 mg, and pre/post tissue and blood collection 11 days after treatment completion.",
+      "source_snapshot_id": "snapshot-pmid-31542391-pubmed-efetch-2026-06-27"
     }
   ]
 }

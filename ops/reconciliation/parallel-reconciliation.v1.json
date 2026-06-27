@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "parallel_reconciliation",
   "id": "parallel-reconciliation-v1",
-  "generated_at": "2026-06-27T18:53:50.690Z",
+  "generated_at": "2026-06-27T19:45:32.359Z",
   "source_roots": [
     "data",
     "research",
@@ -48,20 +48,20 @@
     "duplicate_source_group_count": 0,
     "study_count": 9,
     "duplicate_study_group_count": 0,
-    "candidate_count": 38,
-    "active_candidate_count": 28,
-    "overlapping_candidate_group_count": 17,
+    "candidate_count": 39,
+    "active_candidate_count": 29,
+    "overlapping_candidate_group_count": 30,
     "source_rights_count": 2,
     "source_rights_conflict_count": 0,
-    "agent_run_count": 42,
-    "parallel_batch_count": 11,
+    "agent_run_count": 43,
+    "parallel_batch_count": 12,
     "reconciliation_batch_count": 8,
     "parallel_batch_run_count": 19,
     "pending_parallel_worker_count": 0,
     "reconciliation_decision_count": 5,
     "incomplete_ledger_count": 2,
-    "open_finding_count": 19,
-    "blocking_finding_count": 19,
+    "open_finding_count": 32,
+    "blocking_finding_count": 32,
     "warning_finding_count": 0
   },
   "parallel_batches": [
@@ -81,23 +81,36 @@
       "finding_ids": [
         "missing-candidate-agent-run-bc8e426686e2",
         "missing-candidate-agent-run-de30675addbc",
+        "overlapping-candidate-051f7bfa25f5",
         "overlapping-candidate-0bae350639c4",
         "overlapping-candidate-14fca4c24b17",
-        "overlapping-candidate-1fe92924f19a",
-        "overlapping-candidate-22aef7b0106f",
+        "overlapping-candidate-1814f554f162",
+        "overlapping-candidate-231d9b5dcec0",
+        "overlapping-candidate-298bfaaed745",
+        "overlapping-candidate-3340ea30ecf9",
+        "overlapping-candidate-388c293aa4f0",
+        "overlapping-candidate-390f7962c509",
         "overlapping-candidate-3a06e6340cfa",
-        "overlapping-candidate-3d293b6d59eb",
-        "overlapping-candidate-5b54a7b0b914",
-        "overlapping-candidate-7916c987d067",
+        "overlapping-candidate-4240e977e018",
+        "overlapping-candidate-43512d643e3a",
+        "overlapping-candidate-4d3e75cad5c8",
+        "overlapping-candidate-630fad3725fc",
+        "overlapping-candidate-63a1208f9cc7",
+        "overlapping-candidate-6aba2e341d3c",
+        "overlapping-candidate-7806d9df0ae3",
+        "overlapping-candidate-82ff94160993",
         "overlapping-candidate-8be7ee3308f9",
+        "overlapping-candidate-9e392c3c4428",
         "overlapping-candidate-9f4b44292520",
-        "overlapping-candidate-a4082a9687df",
-        "overlapping-candidate-a67081667b75",
+        "overlapping-candidate-a3d8e7412fec",
+        "overlapping-candidate-a4f19070d3ff",
+        "overlapping-candidate-a87c623ee9a9",
         "overlapping-candidate-b3857906563f",
         "overlapping-candidate-b443e4e5da78",
         "overlapping-candidate-b633096216bd",
-        "overlapping-candidate-e073fc03167d",
-        "overlapping-candidate-fc917c5683d8"
+        "overlapping-candidate-ce1d7dacdfdc",
+        "overlapping-candidate-dccfb4c06775",
+        "overlapping-candidate-f9de2f5b26d9"
       ]
     },
     {
@@ -115,23 +128,36 @@
       "finding_ids": [
         "missing-candidate-agent-run-bc8e426686e2",
         "missing-candidate-agent-run-de30675addbc",
+        "overlapping-candidate-051f7bfa25f5",
         "overlapping-candidate-0bae350639c4",
         "overlapping-candidate-14fca4c24b17",
-        "overlapping-candidate-1fe92924f19a",
-        "overlapping-candidate-22aef7b0106f",
+        "overlapping-candidate-1814f554f162",
+        "overlapping-candidate-231d9b5dcec0",
+        "overlapping-candidate-298bfaaed745",
+        "overlapping-candidate-3340ea30ecf9",
+        "overlapping-candidate-388c293aa4f0",
+        "overlapping-candidate-390f7962c509",
         "overlapping-candidate-3a06e6340cfa",
-        "overlapping-candidate-3d293b6d59eb",
-        "overlapping-candidate-5b54a7b0b914",
-        "overlapping-candidate-7916c987d067",
+        "overlapping-candidate-4240e977e018",
+        "overlapping-candidate-43512d643e3a",
+        "overlapping-candidate-4d3e75cad5c8",
+        "overlapping-candidate-630fad3725fc",
+        "overlapping-candidate-63a1208f9cc7",
+        "overlapping-candidate-6aba2e341d3c",
+        "overlapping-candidate-7806d9df0ae3",
+        "overlapping-candidate-82ff94160993",
         "overlapping-candidate-8be7ee3308f9",
+        "overlapping-candidate-9e392c3c4428",
         "overlapping-candidate-9f4b44292520",
-        "overlapping-candidate-a4082a9687df",
-        "overlapping-candidate-a67081667b75",
+        "overlapping-candidate-a3d8e7412fec",
+        "overlapping-candidate-a4f19070d3ff",
+        "overlapping-candidate-a87c623ee9a9",
         "overlapping-candidate-b3857906563f",
         "overlapping-candidate-b443e4e5da78",
         "overlapping-candidate-b633096216bd",
-        "overlapping-candidate-e073fc03167d",
-        "overlapping-candidate-fc917c5683d8"
+        "overlapping-candidate-ce1d7dacdfdc",
+        "overlapping-candidate-dccfb4c06775",
+        "overlapping-candidate-f9de2f5b26d9"
       ]
     },
     {
@@ -172,14 +198,30 @@
       "job_ids": [
         "self-healing-candidate-review-extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair-safety-limitations",
         "self-healing-candidate-review-extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair-synthesis-boundary",
-        "self-healing-candidate-review-extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair-taxonomy-mapping"
+        "self-healing-candidate-review-extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair-taxonomy-mapping",
+        "self-healing-candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-extraction-fidelity"
       ],
       "overlapping_execution_keys": [],
       "status": "no_reconciliation_needed",
       "finding_ids": []
     },
     {
-      "batch_id": "parallel-batch-006-extraction-refresh",
+      "batch_id": "parallel-batch-006-candidate-review",
+      "parallel_group": "candidate-review",
+      "execution_class": "independent",
+      "reconciliation_required": false,
+      "job_ids": [
+        "self-healing-candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-safety-limitations",
+        "self-healing-candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-source-fidelity",
+        "self-healing-candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-synthesis-boundary",
+        "self-healing-candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-taxonomy-mapping"
+      ],
+      "overlapping_execution_keys": [],
+      "status": "no_reconciliation_needed",
+      "finding_ids": []
+    },
+    {
+      "batch_id": "parallel-batch-007-extraction-refresh",
       "parallel_group": "extraction-refresh",
       "execution_class": "reconciliation_required",
       "reconciliation_required": true,
@@ -197,27 +239,40 @@
       "finding_ids": [
         "missing-candidate-agent-run-bc8e426686e2",
         "missing-candidate-agent-run-de30675addbc",
+        "overlapping-candidate-051f7bfa25f5",
         "overlapping-candidate-0bae350639c4",
         "overlapping-candidate-14fca4c24b17",
-        "overlapping-candidate-1fe92924f19a",
-        "overlapping-candidate-22aef7b0106f",
+        "overlapping-candidate-1814f554f162",
+        "overlapping-candidate-231d9b5dcec0",
+        "overlapping-candidate-298bfaaed745",
+        "overlapping-candidate-3340ea30ecf9",
+        "overlapping-candidate-388c293aa4f0",
+        "overlapping-candidate-390f7962c509",
         "overlapping-candidate-3a06e6340cfa",
-        "overlapping-candidate-3d293b6d59eb",
-        "overlapping-candidate-5b54a7b0b914",
-        "overlapping-candidate-7916c987d067",
+        "overlapping-candidate-4240e977e018",
+        "overlapping-candidate-43512d643e3a",
+        "overlapping-candidate-4d3e75cad5c8",
+        "overlapping-candidate-630fad3725fc",
+        "overlapping-candidate-63a1208f9cc7",
+        "overlapping-candidate-6aba2e341d3c",
+        "overlapping-candidate-7806d9df0ae3",
+        "overlapping-candidate-82ff94160993",
         "overlapping-candidate-8be7ee3308f9",
+        "overlapping-candidate-9e392c3c4428",
         "overlapping-candidate-9f4b44292520",
-        "overlapping-candidate-a4082a9687df",
-        "overlapping-candidate-a67081667b75",
+        "overlapping-candidate-a3d8e7412fec",
+        "overlapping-candidate-a4f19070d3ff",
+        "overlapping-candidate-a87c623ee9a9",
         "overlapping-candidate-b3857906563f",
         "overlapping-candidate-b443e4e5da78",
         "overlapping-candidate-b633096216bd",
-        "overlapping-candidate-e073fc03167d",
-        "overlapping-candidate-fc917c5683d8"
+        "overlapping-candidate-ce1d7dacdfdc",
+        "overlapping-candidate-dccfb4c06775",
+        "overlapping-candidate-f9de2f5b26d9"
       ]
     },
     {
-      "batch_id": "parallel-batch-007-extraction-refresh",
+      "batch_id": "parallel-batch-008-extraction-refresh",
       "parallel_group": "extraction-refresh",
       "execution_class": "independent",
       "reconciliation_required": true,
@@ -232,27 +287,40 @@
       "finding_ids": [
         "missing-candidate-agent-run-bc8e426686e2",
         "missing-candidate-agent-run-de30675addbc",
+        "overlapping-candidate-051f7bfa25f5",
         "overlapping-candidate-0bae350639c4",
         "overlapping-candidate-14fca4c24b17",
-        "overlapping-candidate-1fe92924f19a",
-        "overlapping-candidate-22aef7b0106f",
+        "overlapping-candidate-1814f554f162",
+        "overlapping-candidate-231d9b5dcec0",
+        "overlapping-candidate-298bfaaed745",
+        "overlapping-candidate-3340ea30ecf9",
+        "overlapping-candidate-388c293aa4f0",
+        "overlapping-candidate-390f7962c509",
         "overlapping-candidate-3a06e6340cfa",
-        "overlapping-candidate-3d293b6d59eb",
-        "overlapping-candidate-5b54a7b0b914",
-        "overlapping-candidate-7916c987d067",
+        "overlapping-candidate-4240e977e018",
+        "overlapping-candidate-43512d643e3a",
+        "overlapping-candidate-4d3e75cad5c8",
+        "overlapping-candidate-630fad3725fc",
+        "overlapping-candidate-63a1208f9cc7",
+        "overlapping-candidate-6aba2e341d3c",
+        "overlapping-candidate-7806d9df0ae3",
+        "overlapping-candidate-82ff94160993",
         "overlapping-candidate-8be7ee3308f9",
+        "overlapping-candidate-9e392c3c4428",
         "overlapping-candidate-9f4b44292520",
-        "overlapping-candidate-a4082a9687df",
-        "overlapping-candidate-a67081667b75",
+        "overlapping-candidate-a3d8e7412fec",
+        "overlapping-candidate-a4f19070d3ff",
+        "overlapping-candidate-a87c623ee9a9",
         "overlapping-candidate-b3857906563f",
         "overlapping-candidate-b443e4e5da78",
         "overlapping-candidate-b633096216bd",
-        "overlapping-candidate-e073fc03167d",
-        "overlapping-candidate-fc917c5683d8"
+        "overlapping-candidate-ce1d7dacdfdc",
+        "overlapping-candidate-dccfb4c06775",
+        "overlapping-candidate-f9de2f5b26d9"
       ]
     },
     {
-      "batch_id": "parallel-batch-008-extraction-refresh",
+      "batch_id": "parallel-batch-009-extraction-refresh",
       "parallel_group": "extraction-refresh",
       "execution_class": "independent",
       "reconciliation_required": true,
@@ -267,27 +335,40 @@
       "finding_ids": [
         "missing-candidate-agent-run-bc8e426686e2",
         "missing-candidate-agent-run-de30675addbc",
+        "overlapping-candidate-051f7bfa25f5",
         "overlapping-candidate-0bae350639c4",
         "overlapping-candidate-14fca4c24b17",
-        "overlapping-candidate-1fe92924f19a",
-        "overlapping-candidate-22aef7b0106f",
+        "overlapping-candidate-1814f554f162",
+        "overlapping-candidate-231d9b5dcec0",
+        "overlapping-candidate-298bfaaed745",
+        "overlapping-candidate-3340ea30ecf9",
+        "overlapping-candidate-388c293aa4f0",
+        "overlapping-candidate-390f7962c509",
         "overlapping-candidate-3a06e6340cfa",
-        "overlapping-candidate-3d293b6d59eb",
-        "overlapping-candidate-5b54a7b0b914",
-        "overlapping-candidate-7916c987d067",
+        "overlapping-candidate-4240e977e018",
+        "overlapping-candidate-43512d643e3a",
+        "overlapping-candidate-4d3e75cad5c8",
+        "overlapping-candidate-630fad3725fc",
+        "overlapping-candidate-63a1208f9cc7",
+        "overlapping-candidate-6aba2e341d3c",
+        "overlapping-candidate-7806d9df0ae3",
+        "overlapping-candidate-82ff94160993",
         "overlapping-candidate-8be7ee3308f9",
+        "overlapping-candidate-9e392c3c4428",
         "overlapping-candidate-9f4b44292520",
-        "overlapping-candidate-a4082a9687df",
-        "overlapping-candidate-a67081667b75",
+        "overlapping-candidate-a3d8e7412fec",
+        "overlapping-candidate-a4f19070d3ff",
+        "overlapping-candidate-a87c623ee9a9",
         "overlapping-candidate-b3857906563f",
         "overlapping-candidate-b443e4e5da78",
         "overlapping-candidate-b633096216bd",
-        "overlapping-candidate-e073fc03167d",
-        "overlapping-candidate-fc917c5683d8"
+        "overlapping-candidate-ce1d7dacdfdc",
+        "overlapping-candidate-dccfb4c06775",
+        "overlapping-candidate-f9de2f5b26d9"
       ]
     },
     {
-      "batch_id": "parallel-batch-009-extraction-refresh",
+      "batch_id": "parallel-batch-010-extraction-refresh",
       "parallel_group": "extraction-refresh",
       "execution_class": "independent",
       "reconciliation_required": true,
@@ -302,27 +383,40 @@
       "finding_ids": [
         "missing-candidate-agent-run-bc8e426686e2",
         "missing-candidate-agent-run-de30675addbc",
+        "overlapping-candidate-051f7bfa25f5",
         "overlapping-candidate-0bae350639c4",
         "overlapping-candidate-14fca4c24b17",
-        "overlapping-candidate-1fe92924f19a",
-        "overlapping-candidate-22aef7b0106f",
+        "overlapping-candidate-1814f554f162",
+        "overlapping-candidate-231d9b5dcec0",
+        "overlapping-candidate-298bfaaed745",
+        "overlapping-candidate-3340ea30ecf9",
+        "overlapping-candidate-388c293aa4f0",
+        "overlapping-candidate-390f7962c509",
         "overlapping-candidate-3a06e6340cfa",
-        "overlapping-candidate-3d293b6d59eb",
-        "overlapping-candidate-5b54a7b0b914",
-        "overlapping-candidate-7916c987d067",
+        "overlapping-candidate-4240e977e018",
+        "overlapping-candidate-43512d643e3a",
+        "overlapping-candidate-4d3e75cad5c8",
+        "overlapping-candidate-630fad3725fc",
+        "overlapping-candidate-63a1208f9cc7",
+        "overlapping-candidate-6aba2e341d3c",
+        "overlapping-candidate-7806d9df0ae3",
+        "overlapping-candidate-82ff94160993",
         "overlapping-candidate-8be7ee3308f9",
+        "overlapping-candidate-9e392c3c4428",
         "overlapping-candidate-9f4b44292520",
-        "overlapping-candidate-a4082a9687df",
-        "overlapping-candidate-a67081667b75",
+        "overlapping-candidate-a3d8e7412fec",
+        "overlapping-candidate-a4f19070d3ff",
+        "overlapping-candidate-a87c623ee9a9",
         "overlapping-candidate-b3857906563f",
         "overlapping-candidate-b443e4e5da78",
         "overlapping-candidate-b633096216bd",
-        "overlapping-candidate-e073fc03167d",
-        "overlapping-candidate-fc917c5683d8"
+        "overlapping-candidate-ce1d7dacdfdc",
+        "overlapping-candidate-dccfb4c06775",
+        "overlapping-candidate-f9de2f5b26d9"
       ]
     },
     {
-      "batch_id": "parallel-batch-010-extraction-refresh",
+      "batch_id": "parallel-batch-011-extraction-refresh",
       "parallel_group": "extraction-refresh",
       "execution_class": "independent",
       "reconciliation_required": true,
@@ -337,27 +431,40 @@
       "finding_ids": [
         "missing-candidate-agent-run-bc8e426686e2",
         "missing-candidate-agent-run-de30675addbc",
+        "overlapping-candidate-051f7bfa25f5",
         "overlapping-candidate-0bae350639c4",
         "overlapping-candidate-14fca4c24b17",
-        "overlapping-candidate-1fe92924f19a",
-        "overlapping-candidate-22aef7b0106f",
+        "overlapping-candidate-1814f554f162",
+        "overlapping-candidate-231d9b5dcec0",
+        "overlapping-candidate-298bfaaed745",
+        "overlapping-candidate-3340ea30ecf9",
+        "overlapping-candidate-388c293aa4f0",
+        "overlapping-candidate-390f7962c509",
         "overlapping-candidate-3a06e6340cfa",
-        "overlapping-candidate-3d293b6d59eb",
-        "overlapping-candidate-5b54a7b0b914",
-        "overlapping-candidate-7916c987d067",
+        "overlapping-candidate-4240e977e018",
+        "overlapping-candidate-43512d643e3a",
+        "overlapping-candidate-4d3e75cad5c8",
+        "overlapping-candidate-630fad3725fc",
+        "overlapping-candidate-63a1208f9cc7",
+        "overlapping-candidate-6aba2e341d3c",
+        "overlapping-candidate-7806d9df0ae3",
+        "overlapping-candidate-82ff94160993",
         "overlapping-candidate-8be7ee3308f9",
+        "overlapping-candidate-9e392c3c4428",
         "overlapping-candidate-9f4b44292520",
-        "overlapping-candidate-a4082a9687df",
-        "overlapping-candidate-a67081667b75",
+        "overlapping-candidate-a3d8e7412fec",
+        "overlapping-candidate-a4f19070d3ff",
+        "overlapping-candidate-a87c623ee9a9",
         "overlapping-candidate-b3857906563f",
         "overlapping-candidate-b443e4e5da78",
         "overlapping-candidate-b633096216bd",
-        "overlapping-candidate-e073fc03167d",
-        "overlapping-candidate-fc917c5683d8"
+        "overlapping-candidate-ce1d7dacdfdc",
+        "overlapping-candidate-dccfb4c06775",
+        "overlapping-candidate-f9de2f5b26d9"
       ]
     },
     {
-      "batch_id": "parallel-batch-011-extraction-refresh",
+      "batch_id": "parallel-batch-012-extraction-refresh",
       "parallel_group": "extraction-refresh",
       "execution_class": "independent",
       "reconciliation_required": true,
@@ -369,23 +476,36 @@
       "finding_ids": [
         "missing-candidate-agent-run-bc8e426686e2",
         "missing-candidate-agent-run-de30675addbc",
+        "overlapping-candidate-051f7bfa25f5",
         "overlapping-candidate-0bae350639c4",
         "overlapping-candidate-14fca4c24b17",
-        "overlapping-candidate-1fe92924f19a",
-        "overlapping-candidate-22aef7b0106f",
+        "overlapping-candidate-1814f554f162",
+        "overlapping-candidate-231d9b5dcec0",
+        "overlapping-candidate-298bfaaed745",
+        "overlapping-candidate-3340ea30ecf9",
+        "overlapping-candidate-388c293aa4f0",
+        "overlapping-candidate-390f7962c509",
         "overlapping-candidate-3a06e6340cfa",
-        "overlapping-candidate-3d293b6d59eb",
-        "overlapping-candidate-5b54a7b0b914",
-        "overlapping-candidate-7916c987d067",
+        "overlapping-candidate-4240e977e018",
+        "overlapping-candidate-43512d643e3a",
+        "overlapping-candidate-4d3e75cad5c8",
+        "overlapping-candidate-630fad3725fc",
+        "overlapping-candidate-63a1208f9cc7",
+        "overlapping-candidate-6aba2e341d3c",
+        "overlapping-candidate-7806d9df0ae3",
+        "overlapping-candidate-82ff94160993",
         "overlapping-candidate-8be7ee3308f9",
+        "overlapping-candidate-9e392c3c4428",
         "overlapping-candidate-9f4b44292520",
-        "overlapping-candidate-a4082a9687df",
-        "overlapping-candidate-a67081667b75",
+        "overlapping-candidate-a3d8e7412fec",
+        "overlapping-candidate-a4f19070d3ff",
+        "overlapping-candidate-a87c623ee9a9",
         "overlapping-candidate-b3857906563f",
         "overlapping-candidate-b443e4e5da78",
         "overlapping-candidate-b633096216bd",
-        "overlapping-candidate-e073fc03167d",
-        "overlapping-candidate-fc917c5683d8"
+        "overlapping-candidate-ce1d7dacdfdc",
+        "overlapping-candidate-dccfb4c06775",
+        "overlapping-candidate-f9de2f5b26d9"
       ]
     }
   ],
@@ -432,14 +552,75 @@
       "summary": "Active candidates propose changes to the same record path: data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json."
     },
     {
-      "issue_id": "overlapping-candidate-fc917c5683d8",
+      "issue_id": "overlapping-candidate-9e392c3c4428",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "proposal_key": "data/eligibility-decisions/eligibility-pmid-31542391-senolytics-2026-06-21.json",
+      "candidate_change_ids": [
+        "senolytics-coverage-repair-2026-06-21",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "proposed_records": [
+        {
+          "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
+          "lifecycle_status": "needs_revision",
+          "record_type": "eligibility_decision",
+          "record_id": "eligibility-pmid-31542391-senolytics-2026-06-21",
+          "path": "data/eligibility-decisions/eligibility-pmid-31542391-senolytics-2026-06-21.json",
+          "change_type": "create"
+        },
+        {
+          "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+          "lifecycle_status": "submitted",
+          "record_type": "eligibility_decision",
+          "record_id": "eligibility-pmid-31542391-senolytics-2026-06-21",
+          "path": "data/eligibility-decisions/eligibility-pmid-31542391-senolytics-2026-06-21.json",
+          "change_type": "update"
+        }
+      ],
+      "summary": "Active candidates propose changes to the same record path: data/eligibility-decisions/eligibility-pmid-31542391-senolytics-2026-06-21.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-a3d8e7412fec",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "proposal_key": "data/eligibility-decisions/eligibility-pmid-36857968-senolytics-2026-06-21.json",
+      "candidate_change_ids": [
+        "senolytics-coverage-repair-2026-06-21",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "proposed_records": [
+        {
+          "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
+          "lifecycle_status": "needs_revision",
+          "record_type": "eligibility_decision",
+          "record_id": "eligibility-pmid-36857968-senolytics-2026-06-21",
+          "path": "data/eligibility-decisions/eligibility-pmid-36857968-senolytics-2026-06-21.json",
+          "change_type": "create"
+        },
+        {
+          "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+          "lifecycle_status": "submitted",
+          "record_type": "eligibility_decision",
+          "record_id": "eligibility-pmid-36857968-senolytics-2026-06-21",
+          "path": "data/eligibility-decisions/eligibility-pmid-36857968-senolytics-2026-06-21.json",
+          "change_type": "update"
+        }
+      ],
+      "summary": "Active candidates propose changes to the same record path: data/eligibility-decisions/eligibility-pmid-36857968-senolytics-2026-06-21.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-a4f19070d3ff",
       "category": "overlapping_candidate_proposal",
       "severity": "blocker",
       "status": "open",
       "proposal_key": "data/findings/dq-ad-risk-pilot-cognition-mobility-signal.json",
       "candidate_change_ids": [
         "coverage-gap-senolytics-exact-effect-extraction-repair",
-        "senolytics-coverage-repair-2026-06-21"
+        "senolytics-coverage-repair-2026-06-21",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
       ],
       "proposed_records": [
         {
@@ -457,6 +638,14 @@
           "record_id": "dq-ad-risk-pilot-cognition-mobility-signal",
           "path": "data/findings/dq-ad-risk-pilot-cognition-mobility-signal.json",
           "change_type": "create"
+        },
+        {
+          "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+          "lifecycle_status": "submitted",
+          "record_type": "finding",
+          "record_id": "dq-ad-risk-pilot-cognition-mobility-signal",
+          "path": "data/findings/dq-ad-risk-pilot-cognition-mobility-signal.json",
+          "change_type": "update"
         }
       ],
       "summary": "Active candidates propose changes to the same record path: data/findings/dq-ad-risk-pilot-cognition-mobility-signal.json."
@@ -492,14 +681,15 @@
       "summary": "Active candidates propose changes to the same record path: data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json."
     },
     {
-      "issue_id": "overlapping-candidate-3d293b6d59eb",
+      "issue_id": "overlapping-candidate-231d9b5dcec0",
       "category": "overlapping_candidate_proposal",
       "severity": "blocker",
       "status": "open",
       "proposal_key": "data/findings/dq-dkd-human-senescent-cell-biomarker-signal.json",
       "candidate_change_ids": [
         "coverage-gap-senolytics-exact-effect-extraction-repair",
-        "senolytics-coverage-repair-2026-06-21"
+        "senolytics-coverage-repair-2026-06-21",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
       ],
       "proposed_records": [
         {
@@ -517,9 +707,47 @@
           "record_id": "dq-dkd-human-senescent-cell-biomarker-signal",
           "path": "data/findings/dq-dkd-human-senescent-cell-biomarker-signal.json",
           "change_type": "create"
+        },
+        {
+          "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+          "lifecycle_status": "submitted",
+          "record_type": "finding",
+          "record_id": "dq-dkd-human-senescent-cell-biomarker-signal",
+          "path": "data/findings/dq-dkd-human-senescent-cell-biomarker-signal.json",
+          "change_type": "update"
         }
       ],
       "summary": "Active candidates propose changes to the same record path: data/findings/dq-dkd-human-senescent-cell-biomarker-signal.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-390f7962c509",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "proposal_key": "data/findings/dq-ipf-randomized-feasibility-tolerability-mixed.json",
+      "candidate_change_ids": [
+        "senolytics-coverage-repair-2026-06-21",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "proposed_records": [
+        {
+          "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
+          "lifecycle_status": "needs_revision",
+          "record_type": "finding",
+          "record_id": "dq-ipf-randomized-feasibility-tolerability-mixed",
+          "path": "data/findings/dq-ipf-randomized-feasibility-tolerability-mixed.json",
+          "change_type": "create"
+        },
+        {
+          "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+          "lifecycle_status": "submitted",
+          "record_type": "finding",
+          "record_id": "dq-ipf-randomized-feasibility-tolerability-mixed",
+          "path": "data/findings/dq-ipf-randomized-feasibility-tolerability-mixed.json",
+          "change_type": "update"
+        }
+      ],
+      "summary": "Active candidates propose changes to the same record path: data/findings/dq-ipf-randomized-feasibility-tolerability-mixed.json."
     },
     {
       "issue_id": "overlapping-candidate-b443e4e5da78",
@@ -552,14 +780,15 @@
       "summary": "Active candidates propose changes to the same record path: data/findings/dq-senolytic-drug-discovery-preclinical.json."
     },
     {
-      "issue_id": "overlapping-candidate-5b54a7b0b914",
+      "issue_id": "overlapping-candidate-630fad3725fc",
       "category": "overlapping_candidate_proposal",
       "severity": "blocker",
       "status": "open",
       "proposal_key": "data/outcomes/dq-ad-risk-cognition-mobility.json",
       "candidate_change_ids": [
         "coverage-gap-senolytics-exact-effect-extraction-repair",
-        "senolytics-coverage-repair-2026-06-21"
+        "senolytics-coverage-repair-2026-06-21",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
       ],
       "proposed_records": [
         {
@@ -577,6 +806,14 @@
           "record_id": "dq-ad-risk-cognition-mobility",
           "path": "data/outcomes/dq-ad-risk-cognition-mobility.json",
           "change_type": "create"
+        },
+        {
+          "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+          "lifecycle_status": "submitted",
+          "record_type": "outcome",
+          "record_id": "dq-ad-risk-cognition-mobility",
+          "path": "data/outcomes/dq-ad-risk-cognition-mobility.json",
+          "change_type": "update"
         }
       ],
       "summary": "Active candidates propose changes to the same record path: data/outcomes/dq-ad-risk-cognition-mobility.json."
@@ -612,14 +849,15 @@
       "summary": "Active candidates propose changes to the same record path: data/outcomes/dq-bone-turnover-marker.json."
     },
     {
-      "issue_id": "overlapping-candidate-22aef7b0106f",
+      "issue_id": "overlapping-candidate-82ff94160993",
       "category": "overlapping_candidate_proposal",
       "severity": "blocker",
       "status": "open",
       "proposal_key": "data/outcomes/dq-dkd-senescent-cell-biomarkers.json",
       "candidate_change_ids": [
         "coverage-gap-senolytics-exact-effect-extraction-repair",
-        "senolytics-coverage-repair-2026-06-21"
+        "senolytics-coverage-repair-2026-06-21",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
       ],
       "proposed_records": [
         {
@@ -637,19 +875,88 @@
           "record_id": "dq-dkd-senescent-cell-biomarkers",
           "path": "data/outcomes/dq-dkd-senescent-cell-biomarkers.json",
           "change_type": "create"
+        },
+        {
+          "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+          "lifecycle_status": "submitted",
+          "record_type": "outcome",
+          "record_id": "dq-dkd-senescent-cell-biomarkers",
+          "path": "data/outcomes/dq-dkd-senescent-cell-biomarkers.json",
+          "change_type": "update"
         }
       ],
       "summary": "Active candidates propose changes to the same record path: data/outcomes/dq-dkd-senescent-cell-biomarkers.json."
     },
     {
-      "issue_id": "overlapping-candidate-1fe92924f19a",
+      "issue_id": "overlapping-candidate-7806d9df0ae3",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "proposal_key": "data/outcomes/dq-ipf-dosing-completion-assessments.json",
+      "candidate_change_ids": [
+        "coverage-gap-senolytics-exact-effect-extraction-repair",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "proposed_records": [
+        {
+          "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-repair",
+          "lifecycle_status": "submitted",
+          "record_type": "outcome",
+          "record_id": "dq-ipf-dosing-completion-assessments",
+          "path": "data/outcomes/dq-ipf-dosing-completion-assessments.json",
+          "change_type": "create"
+        },
+        {
+          "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+          "lifecycle_status": "submitted",
+          "record_type": "outcome",
+          "record_id": "dq-ipf-dosing-completion-assessments",
+          "path": "data/outcomes/dq-ipf-dosing-completion-assessments.json",
+          "change_type": "update"
+        }
+      ],
+      "summary": "Active candidates propose changes to the same record path: data/outcomes/dq-ipf-dosing-completion-assessments.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-43512d643e3a",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "proposal_key": "data/outcomes/dq-ipf-feasibility-tolerability.json",
+      "candidate_change_ids": [
+        "senolytics-coverage-repair-2026-06-21",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "proposed_records": [
+        {
+          "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
+          "lifecycle_status": "needs_revision",
+          "record_type": "outcome",
+          "record_id": "dq-ipf-feasibility-tolerability",
+          "path": "data/outcomes/dq-ipf-feasibility-tolerability.json",
+          "change_type": "create"
+        },
+        {
+          "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+          "lifecycle_status": "submitted",
+          "record_type": "outcome",
+          "record_id": "dq-ipf-feasibility-tolerability",
+          "path": "data/outcomes/dq-ipf-feasibility-tolerability.json",
+          "change_type": "update"
+        }
+      ],
+      "summary": "Active candidates propose changes to the same record path: data/outcomes/dq-ipf-feasibility-tolerability.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-388c293aa4f0",
       "category": "overlapping_candidate_proposal",
       "severity": "blocker",
       "status": "open",
       "proposal_key": "data/results/dq-ad-risk-cognition-mobility-mixed.json",
       "candidate_change_ids": [
         "coverage-gap-senolytics-exact-effect-extraction-repair",
-        "senolytics-coverage-repair-2026-06-21"
+        "senolytics-coverage-repair-2026-06-21",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
       ],
       "proposed_records": [
         {
@@ -667,6 +974,14 @@
           "record_id": "dq-ad-risk-cognition-mobility-mixed",
           "path": "data/results/dq-ad-risk-cognition-mobility-mixed.json",
           "change_type": "create"
+        },
+        {
+          "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+          "lifecycle_status": "submitted",
+          "record_type": "result",
+          "record_id": "dq-ad-risk-cognition-mobility-mixed",
+          "path": "data/results/dq-ad-risk-cognition-mobility-mixed.json",
+          "change_type": "update"
         }
       ],
       "summary": "Active candidates propose changes to the same record path: data/results/dq-ad-risk-cognition-mobility-mixed.json."
@@ -702,14 +1017,15 @@
       "summary": "Active candidates propose changes to the same record path: data/results/dq-bone-turnover-mixed.json."
     },
     {
-      "issue_id": "overlapping-candidate-a67081667b75",
+      "issue_id": "overlapping-candidate-ce1d7dacdfdc",
       "category": "overlapping_candidate_proposal",
       "severity": "blocker",
       "status": "open",
       "proposal_key": "data/results/dq-dkd-biomarker-positive.json",
       "candidate_change_ids": [
         "coverage-gap-senolytics-exact-effect-extraction-repair",
-        "senolytics-coverage-repair-2026-06-21"
+        "senolytics-coverage-repair-2026-06-21",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
       ],
       "proposed_records": [
         {
@@ -727,9 +1043,167 @@
           "record_id": "dq-dkd-biomarker-positive",
           "path": "data/results/dq-dkd-biomarker-positive.json",
           "change_type": "create"
+        },
+        {
+          "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+          "lifecycle_status": "submitted",
+          "record_type": "result",
+          "record_id": "dq-dkd-biomarker-positive",
+          "path": "data/results/dq-dkd-biomarker-positive.json",
+          "change_type": "update"
         }
       ],
       "summary": "Active candidates propose changes to the same record path: data/results/dq-dkd-biomarker-positive.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-63a1208f9cc7",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "proposal_key": "data/results/dq-ipf-dosing-completion-mixed.json",
+      "candidate_change_ids": [
+        "coverage-gap-senolytics-exact-effect-extraction-repair",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "proposed_records": [
+        {
+          "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-repair",
+          "lifecycle_status": "submitted",
+          "record_type": "result",
+          "record_id": "dq-ipf-dosing-completion-mixed",
+          "path": "data/results/dq-ipf-dosing-completion-mixed.json",
+          "change_type": "create"
+        },
+        {
+          "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+          "lifecycle_status": "submitted",
+          "record_type": "result",
+          "record_id": "dq-ipf-dosing-completion-mixed",
+          "path": "data/results/dq-ipf-dosing-completion-mixed.json",
+          "change_type": "update"
+        }
+      ],
+      "summary": "Active candidates propose changes to the same record path: data/results/dq-ipf-dosing-completion-mixed.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-6aba2e341d3c",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "proposal_key": "data/results/dq-ipf-tolerability-mixed.json",
+      "candidate_change_ids": [
+        "senolytics-coverage-repair-2026-06-21",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "proposed_records": [
+        {
+          "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
+          "lifecycle_status": "needs_revision",
+          "record_type": "result",
+          "record_id": "dq-ipf-tolerability-mixed",
+          "path": "data/results/dq-ipf-tolerability-mixed.json",
+          "change_type": "create"
+        },
+        {
+          "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+          "lifecycle_status": "submitted",
+          "record_type": "result",
+          "record_id": "dq-ipf-tolerability-mixed",
+          "path": "data/results/dq-ipf-tolerability-mixed.json",
+          "change_type": "update"
+        }
+      ],
+      "summary": "Active candidates propose changes to the same record path: data/results/dq-ipf-tolerability-mixed.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-3340ea30ecf9",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "proposal_key": "data/risk-of-bias/dq-ad-risk-pilot-rob.json",
+      "candidate_change_ids": [
+        "senolytics-coverage-repair-2026-06-21",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "proposed_records": [
+        {
+          "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
+          "lifecycle_status": "needs_revision",
+          "record_type": "risk_of_bias",
+          "record_id": "dq-ad-risk-pilot-rob",
+          "path": "data/risk-of-bias/dq-ad-risk-pilot-rob.json",
+          "change_type": "create"
+        },
+        {
+          "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+          "lifecycle_status": "submitted",
+          "record_type": "risk_of_bias",
+          "record_id": "dq-ad-risk-pilot-rob",
+          "path": "data/risk-of-bias/dq-ad-risk-pilot-rob.json",
+          "change_type": "update"
+        }
+      ],
+      "summary": "Active candidates propose changes to the same record path: data/risk-of-bias/dq-ad-risk-pilot-rob.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-1814f554f162",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "proposal_key": "data/risk-of-bias/dq-dkd-pilot-rob.json",
+      "candidate_change_ids": [
+        "senolytics-coverage-repair-2026-06-21",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "proposed_records": [
+        {
+          "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
+          "lifecycle_status": "needs_revision",
+          "record_type": "risk_of_bias",
+          "record_id": "dq-dkd-pilot-rob",
+          "path": "data/risk-of-bias/dq-dkd-pilot-rob.json",
+          "change_type": "create"
+        },
+        {
+          "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+          "lifecycle_status": "submitted",
+          "record_type": "risk_of_bias",
+          "record_id": "dq-dkd-pilot-rob",
+          "path": "data/risk-of-bias/dq-dkd-pilot-rob.json",
+          "change_type": "update"
+        }
+      ],
+      "summary": "Active candidates propose changes to the same record path: data/risk-of-bias/dq-dkd-pilot-rob.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-a87c623ee9a9",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "proposal_key": "data/risk-of-bias/dq-ipf-randomized-pilot-rob.json",
+      "candidate_change_ids": [
+        "senolytics-coverage-repair-2026-06-21",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "proposed_records": [
+        {
+          "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
+          "lifecycle_status": "needs_revision",
+          "record_type": "risk_of_bias",
+          "record_id": "dq-ipf-randomized-pilot-rob",
+          "path": "data/risk-of-bias/dq-ipf-randomized-pilot-rob.json",
+          "change_type": "create"
+        },
+        {
+          "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+          "lifecycle_status": "submitted",
+          "record_type": "risk_of_bias",
+          "record_id": "dq-ipf-randomized-pilot-rob",
+          "path": "data/risk-of-bias/dq-ipf-randomized-pilot-rob.json",
+          "change_type": "update"
+        }
+      ],
+      "summary": "Active candidates propose changes to the same record path: data/risk-of-bias/dq-ipf-randomized-pilot-rob.json."
     },
     {
       "issue_id": "overlapping-candidate-8be7ee3308f9",
@@ -762,14 +1236,105 @@
       "summary": "Active candidates propose changes to the same record path: data/sources/pmid-25754370.json."
     },
     {
-      "issue_id": "overlapping-candidate-e073fc03167d",
+      "issue_id": "overlapping-candidate-4d3e75cad5c8",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "proposal_key": "data/sources/pmid-31542391.json",
+      "candidate_change_ids": [
+        "senolytics-coverage-repair-2026-06-21",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "proposed_records": [
+        {
+          "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
+          "lifecycle_status": "needs_revision",
+          "record_type": "source",
+          "record_id": "pmid-31542391",
+          "path": "data/sources/pmid-31542391.json",
+          "change_type": "create"
+        },
+        {
+          "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+          "lifecycle_status": "submitted",
+          "record_type": "source",
+          "record_id": "pmid-31542391",
+          "path": "data/sources/pmid-31542391.json",
+          "change_type": "update"
+        }
+      ],
+      "summary": "Active candidates propose changes to the same record path: data/sources/pmid-31542391.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-051f7bfa25f5",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "proposal_key": "data/sources/pmid-36857968.json",
+      "candidate_change_ids": [
+        "senolytics-coverage-repair-2026-06-21",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "proposed_records": [
+        {
+          "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
+          "lifecycle_status": "needs_revision",
+          "record_type": "source",
+          "record_id": "pmid-36857968",
+          "path": "data/sources/pmid-36857968.json",
+          "change_type": "create"
+        },
+        {
+          "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+          "lifecycle_status": "submitted",
+          "record_type": "source",
+          "record_id": "pmid-36857968",
+          "path": "data/sources/pmid-36857968.json",
+          "change_type": "update"
+        }
+      ],
+      "summary": "Active candidates propose changes to the same record path: data/sources/pmid-36857968.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-298bfaaed745",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "proposal_key": "data/sources/pmid-40010154.json",
+      "candidate_change_ids": [
+        "senolytics-coverage-repair-2026-06-21",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "proposed_records": [
+        {
+          "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
+          "lifecycle_status": "needs_revision",
+          "record_type": "source",
+          "record_id": "pmid-40010154",
+          "path": "data/sources/pmid-40010154.json",
+          "change_type": "create"
+        },
+        {
+          "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+          "lifecycle_status": "submitted",
+          "record_type": "source",
+          "record_id": "pmid-40010154",
+          "path": "data/sources/pmid-40010154.json",
+          "change_type": "update"
+        }
+      ],
+      "summary": "Active candidates propose changes to the same record path: data/sources/pmid-40010154.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-4240e977e018",
       "category": "overlapping_candidate_proposal",
       "severity": "blocker",
       "status": "open",
       "proposal_key": "data/studies/dq-ad-risk-cognition-mobility-pilot.json",
       "candidate_change_ids": [
         "coverage-gap-senolytics-exact-effect-extraction-repair",
-        "senolytics-coverage-repair-2026-06-21"
+        "senolytics-coverage-repair-2026-06-21",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
       ],
       "proposed_records": [
         {
@@ -787,19 +1352,28 @@
           "record_id": "dq-ad-risk-cognition-mobility-pilot",
           "path": "data/studies/dq-ad-risk-cognition-mobility-pilot.json",
           "change_type": "create"
+        },
+        {
+          "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+          "lifecycle_status": "submitted",
+          "record_type": "study",
+          "record_id": "dq-ad-risk-cognition-mobility-pilot",
+          "path": "data/studies/dq-ad-risk-cognition-mobility-pilot.json",
+          "change_type": "update"
         }
       ],
       "summary": "Active candidates propose changes to the same record path: data/studies/dq-ad-risk-cognition-mobility-pilot.json."
     },
     {
-      "issue_id": "overlapping-candidate-7916c987d067",
+      "issue_id": "overlapping-candidate-dccfb4c06775",
       "category": "overlapping_candidate_proposal",
       "severity": "blocker",
       "status": "open",
       "proposal_key": "data/studies/dq-diabetic-kidney-disease-pilot.json",
       "candidate_change_ids": [
         "coverage-gap-senolytics-exact-effect-extraction-repair",
-        "senolytics-coverage-repair-2026-06-21"
+        "senolytics-coverage-repair-2026-06-21",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
       ],
       "proposed_records": [
         {
@@ -817,19 +1391,28 @@
           "record_id": "dq-diabetic-kidney-disease-pilot",
           "path": "data/studies/dq-diabetic-kidney-disease-pilot.json",
           "change_type": "create"
+        },
+        {
+          "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+          "lifecycle_status": "submitted",
+          "record_type": "study",
+          "record_id": "dq-diabetic-kidney-disease-pilot",
+          "path": "data/studies/dq-diabetic-kidney-disease-pilot.json",
+          "change_type": "update"
         }
       ],
       "summary": "Active candidates propose changes to the same record path: data/studies/dq-diabetic-kidney-disease-pilot.json."
     },
     {
-      "issue_id": "overlapping-candidate-a4082a9687df",
+      "issue_id": "overlapping-candidate-f9de2f5b26d9",
       "category": "overlapping_candidate_proposal",
       "severity": "blocker",
       "status": "open",
       "proposal_key": "data/studies/dq-ipf-randomized-pilot.json",
       "candidate_change_ids": [
         "coverage-gap-senolytics-exact-effect-extraction-repair",
-        "senolytics-coverage-repair-2026-06-21"
+        "senolytics-coverage-repair-2026-06-21",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
       ],
       "proposed_records": [
         {
@@ -847,6 +1430,14 @@
           "record_id": "dq-ipf-randomized-pilot",
           "path": "data/studies/dq-ipf-randomized-pilot.json",
           "change_type": "create"
+        },
+        {
+          "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+          "lifecycle_status": "submitted",
+          "record_type": "study",
+          "record_id": "dq-ipf-randomized-pilot",
+          "path": "data/studies/dq-ipf-randomized-pilot.json",
+          "change_type": "update"
         }
       ],
       "summary": "Active candidates propose changes to the same record path: data/studies/dq-ipf-randomized-pilot.json."
@@ -1029,6 +1620,13 @@
       "summary": "Active candidate senolytics-coverage-repair-2026-06-21 has no linked candidate_change_required agent_run ledger."
     },
     {
+      "issue_id": "overlapping-candidate-051f7bfa25f5",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "summary": "Active candidates propose changes to the same record path: data/sources/pmid-36857968.json."
+    },
+    {
       "issue_id": "overlapping-candidate-0bae350639c4",
       "category": "overlapping_candidate_proposal",
       "severity": "blocker",
@@ -1043,18 +1641,46 @@
       "summary": "Active candidates propose changes to the same record path: data/results/dq-bone-turnover-mixed.json."
     },
     {
-      "issue_id": "overlapping-candidate-1fe92924f19a",
+      "issue_id": "overlapping-candidate-1814f554f162",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "summary": "Active candidates propose changes to the same record path: data/risk-of-bias/dq-dkd-pilot-rob.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-231d9b5dcec0",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "summary": "Active candidates propose changes to the same record path: data/findings/dq-dkd-human-senescent-cell-biomarker-signal.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-298bfaaed745",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "summary": "Active candidates propose changes to the same record path: data/sources/pmid-40010154.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-3340ea30ecf9",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "summary": "Active candidates propose changes to the same record path: data/risk-of-bias/dq-ad-risk-pilot-rob.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-388c293aa4f0",
       "category": "overlapping_candidate_proposal",
       "severity": "blocker",
       "status": "open",
       "summary": "Active candidates propose changes to the same record path: data/results/dq-ad-risk-cognition-mobility-mixed.json."
     },
     {
-      "issue_id": "overlapping-candidate-22aef7b0106f",
+      "issue_id": "overlapping-candidate-390f7962c509",
       "category": "overlapping_candidate_proposal",
       "severity": "blocker",
       "status": "open",
-      "summary": "Active candidates propose changes to the same record path: data/outcomes/dq-dkd-senescent-cell-biomarkers.json."
+      "summary": "Active candidates propose changes to the same record path: data/findings/dq-ipf-randomized-feasibility-tolerability-mixed.json."
     },
     {
       "issue_id": "overlapping-candidate-3a06e6340cfa",
@@ -1064,25 +1690,60 @@
       "summary": "Active candidates propose changes to the same record path: data/studies/zhu-senolytic-drug-discovery.json."
     },
     {
-      "issue_id": "overlapping-candidate-3d293b6d59eb",
+      "issue_id": "overlapping-candidate-4240e977e018",
       "category": "overlapping_candidate_proposal",
       "severity": "blocker",
       "status": "open",
-      "summary": "Active candidates propose changes to the same record path: data/findings/dq-dkd-human-senescent-cell-biomarker-signal.json."
+      "summary": "Active candidates propose changes to the same record path: data/studies/dq-ad-risk-cognition-mobility-pilot.json."
     },
     {
-      "issue_id": "overlapping-candidate-5b54a7b0b914",
+      "issue_id": "overlapping-candidate-43512d643e3a",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "summary": "Active candidates propose changes to the same record path: data/outcomes/dq-ipf-feasibility-tolerability.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-4d3e75cad5c8",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "summary": "Active candidates propose changes to the same record path: data/sources/pmid-31542391.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-630fad3725fc",
       "category": "overlapping_candidate_proposal",
       "severity": "blocker",
       "status": "open",
       "summary": "Active candidates propose changes to the same record path: data/outcomes/dq-ad-risk-cognition-mobility.json."
     },
     {
-      "issue_id": "overlapping-candidate-7916c987d067",
+      "issue_id": "overlapping-candidate-63a1208f9cc7",
       "category": "overlapping_candidate_proposal",
       "severity": "blocker",
       "status": "open",
-      "summary": "Active candidates propose changes to the same record path: data/studies/dq-diabetic-kidney-disease-pilot.json."
+      "summary": "Active candidates propose changes to the same record path: data/results/dq-ipf-dosing-completion-mixed.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-6aba2e341d3c",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "summary": "Active candidates propose changes to the same record path: data/results/dq-ipf-tolerability-mixed.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-7806d9df0ae3",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "summary": "Active candidates propose changes to the same record path: data/outcomes/dq-ipf-dosing-completion-assessments.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-82ff94160993",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "summary": "Active candidates propose changes to the same record path: data/outcomes/dq-dkd-senescent-cell-biomarkers.json."
     },
     {
       "issue_id": "overlapping-candidate-8be7ee3308f9",
@@ -1092,6 +1753,13 @@
       "summary": "Active candidates propose changes to the same record path: data/sources/pmid-25754370.json."
     },
     {
+      "issue_id": "overlapping-candidate-9e392c3c4428",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "summary": "Active candidates propose changes to the same record path: data/eligibility-decisions/eligibility-pmid-31542391-senolytics-2026-06-21.json."
+    },
+    {
       "issue_id": "overlapping-candidate-9f4b44292520",
       "category": "overlapping_candidate_proposal",
       "severity": "blocker",
@@ -1099,18 +1767,25 @@
       "summary": "Active candidates propose changes to the same record path: data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json."
     },
     {
-      "issue_id": "overlapping-candidate-a4082a9687df",
+      "issue_id": "overlapping-candidate-a3d8e7412fec",
       "category": "overlapping_candidate_proposal",
       "severity": "blocker",
       "status": "open",
-      "summary": "Active candidates propose changes to the same record path: data/studies/dq-ipf-randomized-pilot.json."
+      "summary": "Active candidates propose changes to the same record path: data/eligibility-decisions/eligibility-pmid-36857968-senolytics-2026-06-21.json."
     },
     {
-      "issue_id": "overlapping-candidate-a67081667b75",
+      "issue_id": "overlapping-candidate-a4f19070d3ff",
       "category": "overlapping_candidate_proposal",
       "severity": "blocker",
       "status": "open",
-      "summary": "Active candidates propose changes to the same record path: data/results/dq-dkd-biomarker-positive.json."
+      "summary": "Active candidates propose changes to the same record path: data/findings/dq-ad-risk-pilot-cognition-mobility-signal.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-a87c623ee9a9",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "summary": "Active candidates propose changes to the same record path: data/risk-of-bias/dq-ipf-randomized-pilot-rob.json."
     },
     {
       "issue_id": "overlapping-candidate-b3857906563f",
@@ -1134,18 +1809,25 @@
       "summary": "Active candidates propose changes to the same record path: data/outcomes/dq-bone-turnover-marker.json."
     },
     {
-      "issue_id": "overlapping-candidate-e073fc03167d",
+      "issue_id": "overlapping-candidate-ce1d7dacdfdc",
       "category": "overlapping_candidate_proposal",
       "severity": "blocker",
       "status": "open",
-      "summary": "Active candidates propose changes to the same record path: data/studies/dq-ad-risk-cognition-mobility-pilot.json."
+      "summary": "Active candidates propose changes to the same record path: data/results/dq-dkd-biomarker-positive.json."
     },
     {
-      "issue_id": "overlapping-candidate-fc917c5683d8",
+      "issue_id": "overlapping-candidate-dccfb4c06775",
       "category": "overlapping_candidate_proposal",
       "severity": "blocker",
       "status": "open",
-      "summary": "Active candidates propose changes to the same record path: data/findings/dq-ad-risk-pilot-cognition-mobility-signal.json."
+      "summary": "Active candidates propose changes to the same record path: data/studies/dq-diabetic-kidney-disease-pilot.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-f9de2f5b26d9",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "summary": "Active candidates propose changes to the same record path: data/studies/dq-ipf-randomized-pilot.json."
     }
   ]
 }

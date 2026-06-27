@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "triage_state",
   "id": "triage-state-v1",
-  "generated_at": "2026-06-27T18:34:42.991Z",
+  "generated_at": "2026-06-27T19:45:08.076Z",
   "source_roots": [
     "data",
     "research"
@@ -66,9 +66,9 @@
     }
   ],
   "summary": {
-    "candidate_count": 38,
+    "candidate_count": 39,
     "promotion_ready_count": 0,
-    "needs_review_count": 3,
+    "needs_review_count": 4,
     "needs_revision_count": 3,
     "blocked_count": 0,
     "accepted_count": 10,
@@ -80,7 +80,7 @@
     "stale_snapshot_count": 0,
     "watch_snapshot_count": 0,
     "partial_or_failed_agent_run_count": 7,
-    "recommended_job_count": 36
+    "recommended_job_count": 37
   },
   "candidate_readiness": [
     {
@@ -1042,6 +1042,36 @@
       "next_actions": []
     },
     {
+      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+      "path": "data/candidate-changes/senolytics-pubmed-snapshot-provenance-2026-06-27.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "needs_review",
+      "required_review_lanes": [
+        "extraction_fidelity",
+        "safety_limitations",
+        "source_fidelity",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "active_review_ids": [],
+      "active_review_paths": [],
+      "complete_accepting_review_lanes": [],
+      "missing_review_lanes": [
+        "extraction_fidelity",
+        "safety_limitations",
+        "source_fidelity",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 26,
+      "next_actions": [
+        "Run supervisor review lanes: extraction_fidelity, safety_limitations, source_fidelity, synthesis_boundary, taxonomy_mapping."
+      ]
+    },
+    {
       "candidate_change_id": "senolytics-scaffold-bootstrap-2026-06-21",
       "path": "data/candidate-changes/senolytics-scaffold-bootstrap-2026-06-21.json",
       "lifecycle_status": "needs_revision",
@@ -1141,6 +1171,36 @@
       "path": "data/candidate-changes/extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair.json",
       "review_lane": "taxonomy_mapping",
       "next_action": "Run taxonomy_mapping supervisor review for extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair."
+    },
+    {
+      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+      "path": "data/candidate-changes/senolytics-pubmed-snapshot-provenance-2026-06-27.json",
+      "review_lane": "extraction_fidelity",
+      "next_action": "Run extraction_fidelity supervisor review for senolytics-pubmed-snapshot-provenance-2026-06-27."
+    },
+    {
+      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+      "path": "data/candidate-changes/senolytics-pubmed-snapshot-provenance-2026-06-27.json",
+      "review_lane": "safety_limitations",
+      "next_action": "Run safety_limitations supervisor review for senolytics-pubmed-snapshot-provenance-2026-06-27."
+    },
+    {
+      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+      "path": "data/candidate-changes/senolytics-pubmed-snapshot-provenance-2026-06-27.json",
+      "review_lane": "source_fidelity",
+      "next_action": "Run source_fidelity supervisor review for senolytics-pubmed-snapshot-provenance-2026-06-27."
+    },
+    {
+      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+      "path": "data/candidate-changes/senolytics-pubmed-snapshot-provenance-2026-06-27.json",
+      "review_lane": "synthesis_boundary",
+      "next_action": "Run synthesis_boundary supervisor review for senolytics-pubmed-snapshot-provenance-2026-06-27."
+    },
+    {
+      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+      "path": "data/candidate-changes/senolytics-pubmed-snapshot-provenance-2026-06-27.json",
+      "review_lane": "taxonomy_mapping",
+      "next_action": "Run taxonomy_mapping supervisor review for senolytics-pubmed-snapshot-provenance-2026-06-27."
     },
     {
       "candidate_change_id": "senolytics-scaffold-bootstrap-2026-06-21",
@@ -1950,6 +2010,18 @@
       "rationale": "Required review lanes are missing: extraction_fidelity, safety_limitations, synthesis_boundary, taxonomy_mapping.",
       "inputs": [
         "data/candidate-changes/extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair.json"
+      ]
+    },
+    {
+      "job_id": "candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27",
+      "job_type": "candidate_review",
+      "priority": "high",
+      "source": "candidate_readiness",
+      "target_record_type": "candidate_change",
+      "target_record_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+      "rationale": "Required review lanes are missing: extraction_fidelity, safety_limitations, source_fidelity, synthesis_boundary, taxonomy_mapping.",
+      "inputs": [
+        "data/candidate-changes/senolytics-pubmed-snapshot-provenance-2026-06-27.json"
       ]
     },
     {

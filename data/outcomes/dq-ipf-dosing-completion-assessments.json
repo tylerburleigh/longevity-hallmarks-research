@@ -37,7 +37,8 @@
       "locator_type": "abstract",
       "locator": "PubMed PMID 36857968 abstract METHODS and FINDINGS",
       "status": "abstract_extracted",
-      "note": "Abstract reports the randomized dosing schedule and exact scheduled-dose and planned-assessment completion counts."
+      "note": "Abstract reports the randomized dosing schedule and exact scheduled-dose and planned-assessment completion counts.",
+      "source_snapshot_id": "snapshot-pmid-36857968-pubmed-efetch-2026-06-27"
     }
   ],
   "target_hallmark_ids": [

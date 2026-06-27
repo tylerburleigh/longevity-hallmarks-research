@@ -45,7 +45,8 @@
       "locator_type": "abstract",
       "locator": "PubMed PMID 36857968 abstract METHODS",
       "status": "abstract_extracted",
-      "note": "Abstract reports 12 participants, 1:1 randomization, D+Q dose, schedule, and matching placebo comparator."
+      "note": "Abstract reports 12 participants, 1:1 randomization, D+Q dose, schedule, and matching placebo comparator.",
+      "source_snapshot_id": "snapshot-pmid-36857968-pubmed-efetch-2026-06-27"
     }
   ]
 }

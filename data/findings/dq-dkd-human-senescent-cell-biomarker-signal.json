@@ -41,7 +41,8 @@
       "locator_type": "abstract",
       "locator": "PubMed PMID 31542391 abstract METHODS, FINDINGS, and INTERPRETATION",
       "status": "abstract_extracted",
-      "note": "Abstract supports sample size, dose, timing, and directional biomarker-decrease claim; exact biomarker table values remain unextracted."
+      "note": "Abstract supports sample size, dose, timing, and directional biomarker-decrease claim; exact biomarker table values remain unextracted.",
+      "source_snapshot_id": "snapshot-pmid-31542391-pubmed-efetch-2026-06-27"
     }
   ],
   "target_hallmark_ids": [

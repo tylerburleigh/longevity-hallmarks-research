@@ -250,19 +250,42 @@ export async function buildExecutionPlan(options) {
   };
 }
 
-async function copyUntrackedFileToWorktree(relativePath, worktreePath) {
+async function copyOverlayPath(sourcePath, targetPath, skippedPaths) {
+  const stat = await fs.lstat(sourcePath);
+
+  if (stat.isDirectory()) {
+    await fs.mkdir(targetPath, { recursive: true });
+    const entries = await fs.readdir(sourcePath);
+    for (const entry of entries) {
+      await copyOverlayPath(path.join(sourcePath, entry), path.join(targetPath, entry), skippedPaths);
+    }
+    return true;
+  }
+
+  if (stat.isSymbolicLink()) {
+    await fs.mkdir(path.dirname(targetPath), { recursive: true });
+    await fs.symlink(await fs.readlink(sourcePath), targetPath);
+    return true;
+  }
+
+  if (stat.isFile()) {
+    await fs.mkdir(path.dirname(targetPath), { recursive: true });
+    await fs.copyFile(sourcePath, targetPath);
+    return true;
+  }
+
+  skippedPaths.push(toPosixRelative(sourcePath));
+  return false;
+}
+
+async function copyUntrackedFileToWorktree(relativePath, worktreePath, skippedPaths) {
   const sourcePath = path.join(workspaceRoot, relativePath);
   const targetPath = path.join(worktreePath, relativePath);
   if (!(await exists(sourcePath))) {
-    return;
+    return false;
   }
 
-  await fs.mkdir(path.dirname(targetPath), { recursive: true });
-  await fs.cp(sourcePath, targetPath, {
-    recursive: true,
-    dereference: false,
-    preserveTimestamps: true
-  });
+  return copyOverlayPath(sourcePath, targetPath, skippedPaths);
 }
 
 async function applyDirtyOverlay(plan, options) {
@@ -283,11 +306,18 @@ async function applyDirtyOverlay(plan, options) {
     .filter((entry) => entry.startsWith("?? "))
     .map((entry) => entry.slice(3));
 
+  const skippedPaths = [];
+  let copiedPathCount = 0;
   for (const relativePath of untrackedPaths) {
-    await copyUntrackedFileToWorktree(relativePath, plan.worktree_path);
+    if (await copyUntrackedFileToWorktree(relativePath, plan.worktree_path, skippedPaths)) {
+      copiedPathCount += 1;
+    }
   }
 
-  plan.dirty_overlay_paths = untrackedPaths.length;
+  plan.dirty_overlay_paths = copiedPathCount;
+  if (skippedPaths.length > 0) {
+    plan.dirty_overlay_skipped_paths = skippedPaths.sort((left, right) => left.localeCompare(right));
+  }
 }
 
 export async function prepareWorktree(plan, options) {

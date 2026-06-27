@@ -250,23 +250,33 @@ async function applyOperation(root, operation) {
   throw new Error(`Unsupported operation type: ${operation.type}`);
 }
 
+function trackedFiles() {
+  const result = spawnSync("git", ["ls-files", "-z"], {
+    cwd: workspaceRoot,
+    encoding: "buffer"
+  });
+
+  if (result.status !== 0) {
+    throw new Error(`git ls-files failed: ${(result.stderr || result.stdout).toString("utf8").trim()}`);
+  }
+
+  return result.stdout
+    .toString("utf8")
+    .split("\0")
+    .filter(Boolean)
+    .sort((left, right) => left.localeCompare(right));
+}
+
 async function copyWorkspace(destinationRoot) {
   const repoRoot = path.join(destinationRoot, "repo");
-  await fs.cp(workspaceRoot, repoRoot, {
-    recursive: true,
-    filter: (sourcePath) => {
-      const relativePath = toPosixRelative(sourcePath);
-      if (!relativePath) {
-        return true;
-      }
-      return !(
-        relativePath === ".git" ||
-        relativePath.startsWith(".git/") ||
-        relativePath === "node_modules" ||
-        relativePath.startsWith("node_modules/")
-      );
-    }
-  });
+  await fs.mkdir(repoRoot, { recursive: true });
+
+  for (const relativePath of trackedFiles()) {
+    const sourcePath = path.join(workspaceRoot, relativePath);
+    const targetPath = path.join(repoRoot, relativePath);
+    await fs.mkdir(path.dirname(targetPath), { recursive: true });
+    await fs.copyFile(sourcePath, targetPath);
+  }
 
   const sourceNodeModules = path.join(workspaceRoot, "node_modules");
   if (await exists(sourceNodeModules)) {

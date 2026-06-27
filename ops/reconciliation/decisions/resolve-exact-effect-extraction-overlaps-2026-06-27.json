@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "reconciliation_decision",
+  "id": "resolve-exact-effect-extraction-overlaps-2026-06-27",
+  "created_at": "2026-06-27T21:24:19Z",
+  "reconciled_by_agent": "codex-coordinator",
+  "reconciliation_report_id": "parallel-reconciliation-v1",
+  "issue_ids": [
+    "overlapping-candidate-1fe92924f19a",
+    "overlapping-candidate-22aef7b0106f",
+    "overlapping-candidate-3d293b6d59eb",
+    "overlapping-candidate-5b54a7b0b914",
+    "overlapping-candidate-7916c987d067",
+    "overlapping-candidate-9f4b44292520",
+    "overlapping-candidate-a4082a9687df",
+    "overlapping-candidate-a67081667b75",
+    "overlapping-candidate-e073fc03167d",
+    "overlapping-candidate-fc917c5683d8"
+  ],
+  "issue_categories": [
+    "overlapping_candidate_proposal"
+  ],
+  "candidate_change_ids": [
+    "coverage-gap-senolytics-exact-effect-extraction-repair"
+  ],
+  "compatible_candidate_change_ids": [
+    "coverage-gap-senolytics-exact-effect-extraction-repair"
+  ],
+  "resolution_status": "resolved",
+  "resolution_summary": "The exact-effect extraction repair is compatible for promotion despite overlapping proposed paths because it is the narrower, reviewed candidate for source-located DKD, AD-risk, and IPF effect extraction updates plus the corresponding coverage-assessment refinement. The older broad senolytics-coverage-repair-2026-06-21 candidate remains in needs_revision and is not accepted, applied, or superseded by this decision. The safety-table candidate remains a separate submitted candidate and is not accepted, applied, or superseded by this decision.",
+  "evidence": [
+    {
+      "path": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-repair.json",
+      "summary": "The candidate ledger is bounded to exact-effect extraction repairs for DKD, AD-risk, and IPF records and the matching coverage-assessment update."
+    },
+    {
+      "path": "data/evidence-reviews/coverage-gap-senolytics-exact-effect-extraction-repair-extraction-fidelity.json",
+      "summary": "The extraction-fidelity review accepts the exact-effect extraction repair with no open blocking findings."
+    },
+    {
+      "path": "data/evidence-reviews/coverage-gap-senolytics-exact-effect-extraction-repair-synthesis-boundary.json",
+      "summary": "The synthesis-boundary review accepts the candidate and keeps the extracted effects within the candidate's stated synthesis limits."
+    },
+    {
+      "path": "data/evidence-reviews/coverage-gap-senolytics-exact-effect-extraction-repair-taxonomy-mapping.json",
+      "summary": "The taxonomy-mapping review accepts the candidate's DKD, AD-risk, and IPF record mappings with no open blocking findings."
+    },
+    {
+      "path": "data/candidate-changes/senolytics-coverage-repair-2026-06-21.json",
+      "summary": "The older broad coverage candidate remains in needs_revision and is not accepted, applied, or superseded by this decision."
+    },
+    {
+      "path": "data/candidate-changes/coverage-gap-senolytics-safety-tables-repair.json",
+      "summary": "The safety-table repair remains a separate submitted candidate and is not accepted, applied, or superseded by this decision."
+    }
+  ]
+}

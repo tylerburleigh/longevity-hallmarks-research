@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "coverage-gap-senolytics-safety-tables-repair-synthesis-boundary",
+  "candidate_change_id": "coverage-gap-senolytics-safety-tables-repair",
+  "review_lane": "synthesis_boundary",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-coverage-gap-senolytics-safety-tables-repair-synthesis-boundary",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "The candidate keeps the synthesis boundary appropriately narrow: it updates coverage assessment language and provenance for D+Q bone safety-table and durability context while continuing to block event-term, discontinuation, cross-human safety, and broad durability synthesis until further extraction is complete.",
+  "findings": [
+    {
+      "finding_id": "no-cross-human-safety-synthesis",
+      "severity": "note",
+      "category": "interpretation_overreach",
+      "claim_or_issue": "The proposed assessment does not convert D+Q bone table locators into a cross-human safety conclusion.",
+      "why_it_matters": "The senolytics human safety evidence spans different populations and incomplete source maturity, so synthesis would be premature.",
+      "recommended_action": "Keep cross-human safety synthesis blocked until DKD, IPF, AD-risk, and remaining D+Q bone rows have source-backed extraction.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "durability-boundary-preserved",
+      "severity": "note",
+      "category": "endpoint_boundary",
+      "claim_or_issue": "The assessment references durability discussion locators without claiming durable clinical benefit or long-term safety.",
+      "why_it_matters": "Locator-level durability context is useful for prioritization but is not equivalent to extracted durable outcome evidence.",
+      "recommended_action": "Retain durability as context and keep long-term effect claims out of synthesis until extracted outcome records support them.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "coverage-gap-language-actionable",
+      "severity": "note",
+      "category": "missing_caveat",
+      "claim_or_issue": "The known gap and next coverage action identify remaining table rows, withdrawals, and source-snapshot-backed human safety extraction.",
+      "why_it_matters": "Actionable gap language lets the queue continue to produce bounded extraction jobs rather than treating this candidate as final safety resolution.",
+      "recommended_action": "No change required for this lane.",
+      "resolution_status": "closed"
+    }
+  ]
+}

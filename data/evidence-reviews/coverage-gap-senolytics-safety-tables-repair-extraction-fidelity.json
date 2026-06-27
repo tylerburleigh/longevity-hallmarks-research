@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "coverage-gap-senolytics-safety-tables-repair-extraction-fidelity",
+  "candidate_change_id": "coverage-gap-senolytics-safety-tables-repair",
+  "review_lane": "extraction_fidelity",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-coverage-gap-senolytics-safety-tables-repair-extraction-fidelity",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "The candidate's proposed coverage-assessment update accurately reflects the currently extracted D+Q bone safety evidence: aggregate registry safety counts, the accepted structured headache preferred-term row, and retained full-text locators for the adverse-event table, withdrawal narrative, dosing cadence, and durability discussion. It does not claim that remaining adverse-event rows, discontinuation counts, or DKD/IPF/AD-risk safety slices have been fully extracted.",
+  "findings": [
+    {
+      "finding_id": "safety-table-locators-supported",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "The coverage assessment cites the retained PMC author-manuscript source snapshot and text snapshot for Extended Data Table 1 plus the safety, study-design, dosage, and discussion sections.",
+      "why_it_matters": "Those locators are the extraction-grade anchors for the D+Q bone safety-table and durability context described by the candidate.",
+      "recommended_action": "Keep the locator-level provenance attached to the coverage assessment and use it for later row-level extraction.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "existing-structured-safety-scope-preserved",
+      "severity": "note",
+      "category": "extraction_error",
+      "claim_or_issue": "The updated assessment limits completed structured safety extraction to aggregate adverse-event counts and the accepted headache preferred-term row.",
+      "why_it_matters": "This prevents the review from mistaking locator availability for complete event-term extraction.",
+      "recommended_action": "No change required; keep remaining publication table rows and discontinuation counts in the known gap.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "remaining-human-safety-extraction-debt-retained",
+      "severity": "note",
+      "category": "missing_caveat",
+      "claim_or_issue": "The candidate explicitly leaves DKD, IPF, and AD-risk source-snapshot-backed safety extraction incomplete.",
+      "why_it_matters": "Cross-human safety conclusions would be unsupported if those slices were implied to be complete.",
+      "recommended_action": "No change required for this lane; schedule separate source-snapshot-backed safety extraction for those human studies.",
+      "resolution_status": "closed"
+    }
+  ]
+}

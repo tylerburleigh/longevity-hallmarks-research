@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "self-healing-candidate-review-coverage-gap-senolytics-safety-tables-repair-extraction-fidelity",
+  "agent_role": "supervisor_agent",
+  "agent_id": "codex-cli-supervisor",
+  "mode": "agent_directed",
+  "started_at": "2026-06-27T21:36:00Z",
+  "completed_at": "2026-06-27T21:38:00Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "candidate_review: Required review lane is missing: extraction_fidelity.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "codex_exec",
+    "isolation": "git_worktree",
+    "workspace_path": "/home/tyler/Workspace/longevity-hallmarks-research",
+    "prompt_file": "research/agent-runs/prompts/self-healing-candidate-review-coverage-gap-senolytics-safety-tables-repair-extraction-fidelity.md",
+    "prompt_template_file": "docs/prompts/codex-agents/supervisor-review.md",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "output_path": "research/agent-runs/self-healing-candidate-review-coverage-gap-senolytics-safety-tables-repair-extraction-fidelity.json",
+    "sandbox": "workspace-write",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "other",
+      "reference": "ops/supervisor-review-context-packs/self-healing-candidate-review-coverage-gap-senolytics-safety-tables-repair-extraction-fidelity.json",
+      "summary": "Bounded supervisor review context pack for the extraction_fidelity lane."
+    },
+    {
+      "input_type": "candidate_change",
+      "reference": "data/candidate-changes/coverage-gap-senolytics-safety-tables-repair.json",
+      "summary": "Target safety-table coverage-gap repair candidate."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+      "summary": "Coverage assessment proposed by the target candidate."
+    }
+  ],
+  "outputs": {
+    "summary": "Created the missing extraction_fidelity evidence_review for coverage-gap-senolytics-safety-tables-repair with verdict accept and no open blocking findings.",
+    "candidate_change_id": "candidate-review-coverage-gap-senolytics-safety-tables-repair-extraction-fidelity-repair",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "candidate-review-coverage-gap-senolytics-safety-tables-repair-extraction-fidelity-repair",
+        "path": "data/candidate-changes/candidate-review-coverage-gap-senolytics-safety-tables-repair-extraction-fidelity-repair.json",
+        "change_type": "create",
+        "rationale": "Tracks the bounded self-healing repair candidate for the missing extraction_fidelity supervisor review lane."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "coverage-gap-senolytics-safety-tables-repair-extraction-fidelity",
+        "path": "data/evidence-reviews/coverage-gap-senolytics-safety-tables-repair-extraction-fidelity.json",
+        "change_type": "create",
+        "rationale": "Records the completed extraction_fidelity supervisor review for the target senolytics safety-table coverage-gap repair candidate."
+      }
+    ],
+    "generated_files": [
+      "data/candidate-changes/candidate-review-coverage-gap-senolytics-safety-tables-repair-extraction-fidelity-repair.json",
+      "data/evidence-reviews/coverage-gap-senolytics-safety-tables-repair-extraction-fidelity.json"
+    ],
+    "export_paths": []
+  },
+  "quality_checks": [
+    {
+      "check_name": "supervisor_review_lanes",
+      "status": "passed",
+      "summary": "Reviewed the extraction_fidelity lane and found it complete, accepting, non-blocking, and free of open major or critical findings."
+    },
+    {
+      "check_name": "candidate_agent_run_ledger_match",
+      "status": "passed",
+      "summary": "outputs.proposed_records matches the two-entry repair candidate ledger."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": []
+}

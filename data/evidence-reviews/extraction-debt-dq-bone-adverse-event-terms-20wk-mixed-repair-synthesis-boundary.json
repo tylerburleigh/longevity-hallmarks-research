@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair-synthesis-boundary",
+  "candidate_change_id": "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair",
+  "review_lane": "synthesis_boundary",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair-synthesis-boundary",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "The synthesis-boundary lane accepts the candidate because it narrows the safety synthesis update to a resolved missing-field debt for one overall-row result, keeps compatibility_status at needs_extraction, keeps pooling_decision at pooling_blocked, and preserves blockers for aggregate registry and headache preferred-term results.",
+  "findings": [
+    {
+      "finding_id": "synthesis-debt-removal-scoped",
+      "severity": "note",
+      "category": "endpoint_boundary",
+      "claim_or_issue": "The synthesis group removes the missing-field entry only for dq-bone-adverse-event-terms-20wk-mixed after the Overall row gains structured counts, effect value, and uncertainty.",
+      "why_it_matters": "Removing a resolved blocker is appropriate, but only if unresolved result-level blockers remain visible.",
+      "recommended_action": "Keep the remaining missing_effect_fields_by_result entries for the aggregate registry and headache results.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "pooling-boundary-preserved",
+      "severity": "note",
+      "category": "interpretation_overreach",
+      "claim_or_issue": "The group remains non-pooling, with no variance model selected and no safety meta-analysis estimate created.",
+      "why_it_matters": "One compatible overall-row result is insufficient for a pooled safety synthesis.",
+      "recommended_action": "Do not change pooling_decision until at least two compatible safety results have defensible comparative effects and uncertainty.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "preferred-term-boundary-preserved",
+      "severity": "note",
+      "category": "missing_caveat",
+      "claim_or_issue": "The candidate keeps headache and other preferred-term rows outside comparative synthesis when control cells are blank or ambiguous.",
+      "why_it_matters": "Preferred-term safety synthesis requires explicit event-specific arm counts or explicit zero semantics.",
+      "recommended_action": "Continue separate bounded extraction for preferred-term rows before any term-level pooling.",
+      "resolution_status": "closed"
+    }
+  ]
+}

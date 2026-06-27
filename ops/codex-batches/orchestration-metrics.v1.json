@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "orchestration_metrics",
   "id": "orchestration-metrics-v1",
-  "generated_at": "2026-06-27T21:07:11.823Z",
+  "generated_at": "2026-06-27T21:50:04.220Z",
   "source_roots": [
     "data",
     "exports/latest",
@@ -42,17 +42,17 @@
     ]
   },
   "summary": {
-    "planned_live_job_count": 34,
+    "planned_live_job_count": 26,
     "archived_job_count": 43,
-    "planned_parallel_batch_count": 10,
-    "planned_parallel_worker_count": 34,
-    "planned_independent_batch_count": 9,
+    "planned_parallel_batch_count": 8,
+    "planned_parallel_worker_count": 26,
+    "planned_independent_batch_count": 7,
     "planned_reconciliation_batch_count": 1,
     "max_planned_batch_width": 4,
-    "planned_serial_wall_time_ms": 113400000,
-    "planned_parallel_wall_time_ms": 32400000,
-    "planned_wall_time_savings_ms": 81000000,
-    "planned_speedup_ratio": 3.5,
+    "planned_serial_wall_time_ms": 84600000,
+    "planned_parallel_wall_time_ms": 25200000,
+    "planned_wall_time_savings_ms": 59400000,
+    "planned_speedup_ratio": 3.3571,
     "executed_parallel_batch_run_count": 19,
     "executed_worker_count": 51,
     "failed_worker_count": 20,
@@ -60,26 +60,26 @@
     "succeeded_worker_count": 27,
     "actual_worker_wall_time_ms": 11014852,
     "actual_batch_wall_time_ms": 6478435,
-    "agent_run_count": 53,
-    "succeeded_agent_run_count": 48,
+    "agent_run_count": 61,
+    "succeeded_agent_run_count": 56,
     "partial_agent_run_count": 5,
     "failed_agent_run_count": 0,
-    "agent_run_wall_time_ms": 23185000,
-    "duplicate_work_group_count": 17,
-    "duplicate_work_record_count": 35,
-    "conflict_finding_count": 19,
-    "conflict_rate": 0.1,
-    "open_finding_rate": 0.5,
-    "accepted_candidate_count": 11,
-    "accepted_records_produced_count": 90,
+    "agent_run_wall_time_ms": 24625000,
+    "duplicate_work_group_count": 7,
+    "duplicate_work_record_count": 14,
+    "conflict_finding_count": 9,
+    "conflict_rate": 0.125,
+    "open_finding_rate": 0.2093,
+    "accepted_candidate_count": 14,
+    "accepted_records_produced_count": 105,
     "extraction_debt_open_count": 47,
     "extraction_debt_high_priority_open_count": 41,
-    "extraction_debt_resolved_candidate_count": 5,
-    "extraction_debt_resolved_record_count": 46,
-    "release_ready_candidate_count": 8,
-    "release_blocked_candidate_count": 3,
+    "extraction_debt_resolved_candidate_count": 8,
+    "extraction_debt_resolved_record_count": 55,
+    "release_ready_candidate_count": 9,
+    "release_blocked_candidate_count": 5,
     "release_artifact_count": 16,
-    "release_ready_record_count": 56
+    "release_ready_record_count": 59
   },
   "planned_parallelism": {
     "by_parallel_group": [
@@ -92,17 +92,6 @@
         "max_batch_width": 4,
         "expected_wall_time_ms": 3600000,
         "expected_token_budget": 300000,
-        "overlapping_execution_key_count": 0
-      },
-      {
-        "parallel_group": "candidate-review",
-        "batch_count": 2,
-        "job_count": 8,
-        "independent_batch_count": 2,
-        "reconciliation_batch_count": 0,
-        "max_batch_width": 4,
-        "expected_wall_time_ms": 7200000,
-        "expected_token_budget": 800000,
         "overlapping_execution_key_count": 0
       },
       {
@@ -139,20 +128,20 @@
         "overlapping_execution_key_count": 0
       },
       {
-        "batch_id": "parallel-batch-003-candidate-review",
-        "parallel_group": "candidate-review",
-        "execution_class": "independent",
-        "reconciliation_required": false,
+        "batch_id": "parallel-batch-003-extraction-refresh",
+        "parallel_group": "extraction-refresh",
+        "execution_class": "reconciliation_required",
+        "reconciliation_required": true,
         "job_count": 4,
         "expected_wall_time_ms": 3600000,
         "expected_token_budget": 400000,
-        "overlapping_execution_key_count": 0
+        "overlapping_execution_key_count": 2
       },
       {
-        "batch_id": "parallel-batch-004-candidate-review",
-        "parallel_group": "candidate-review",
+        "batch_id": "parallel-batch-004-extraction-refresh",
+        "parallel_group": "extraction-refresh",
         "execution_class": "independent",
-        "reconciliation_required": false,
+        "reconciliation_required": true,
         "job_count": 4,
         "expected_wall_time_ms": 3600000,
         "expected_token_budget": 400000,
@@ -161,12 +150,12 @@
       {
         "batch_id": "parallel-batch-005-extraction-refresh",
         "parallel_group": "extraction-refresh",
-        "execution_class": "reconciliation_required",
+        "execution_class": "independent",
         "reconciliation_required": true,
         "job_count": 4,
         "expected_wall_time_ms": 3600000,
         "expected_token_budget": 400000,
-        "overlapping_execution_key_count": 2
+        "overlapping_execution_key_count": 0
       },
       {
         "batch_id": "parallel-batch-006-extraction-refresh",
@@ -190,26 +179,6 @@
       },
       {
         "batch_id": "parallel-batch-008-extraction-refresh",
-        "parallel_group": "extraction-refresh",
-        "execution_class": "independent",
-        "reconciliation_required": true,
-        "job_count": 4,
-        "expected_wall_time_ms": 3600000,
-        "expected_token_budget": 400000,
-        "overlapping_execution_key_count": 0
-      },
-      {
-        "batch_id": "parallel-batch-009-extraction-refresh",
-        "parallel_group": "extraction-refresh",
-        "execution_class": "independent",
-        "reconciliation_required": true,
-        "job_count": 4,
-        "expected_wall_time_ms": 3600000,
-        "expected_token_budget": 400000,
-        "overlapping_execution_key_count": 0
-      },
-      {
-        "batch_id": "parallel-batch-010-extraction-refresh",
         "parallel_group": "extraction-refresh",
         "execution_class": "independent",
         "reconciliation_required": true,
@@ -509,7 +478,7 @@
       },
       {
         "key": "succeeded",
-        "count": 48
+        "count": 56
       }
     ],
     "agent_run_role_counts": [
@@ -527,7 +496,7 @@
       },
       {
         "key": "supervisor_agent",
-        "count": 33
+        "count": 41
       },
       {
         "key": "synthesis_agent",
@@ -538,20 +507,24 @@
   "output_value": {
     "accepted_records_by_type": [
       {
+        "key": "coverage_assessment",
+        "count": 2
+      },
+      {
         "key": "eligibility_decision",
         "count": 2
       },
       {
         "key": "finding",
-        "count": 6
+        "count": 8
       },
       {
         "key": "outcome",
-        "count": 23
+        "count": 26
       },
       {
         "key": "result",
-        "count": 25
+        "count": 29
       },
       {
         "key": "risk_of_bias",
@@ -571,11 +544,11 @@
       },
       {
         "key": "study",
-        "count": 4
+        "count": 7
       },
       {
         "key": "synthesis_group",
-        "count": 9
+        "count": 10
       },
       {
         "key": "text_snapshot",
@@ -617,6 +590,42 @@
         "extraction_debt_record_count": 0,
         "related_agent_run_ids": [
           "self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21"
+        ]
+      },
+      {
+        "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-repair",
+        "lifecycle_status": "accepted",
+        "submitted_at": "2026-06-27T18:13:25Z",
+        "promoted_at": "2026-06-27T21:24:54.739Z",
+        "proposed_record_count": 13,
+        "accepted_record_count": 12,
+        "extraction_debt_record_count": 8,
+        "related_agent_run_ids": [
+          "self-healing-coverage-gap-senolytics-exact-effect-extraction"
+        ]
+      },
+      {
+        "candidate_change_id": "coverage-gap-senolytics-safety-tables-repair",
+        "lifecycle_status": "accepted",
+        "submitted_at": "2026-06-27T16:50:11Z",
+        "promoted_at": "2026-06-27T21:33:36.688Z",
+        "proposed_record_count": 2,
+        "accepted_record_count": 1,
+        "extraction_debt_record_count": 0,
+        "related_agent_run_ids": [
+          "self-healing-coverage-gap-senolytics-safety-tables"
+        ]
+      },
+      {
+        "candidate_change_id": "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair",
+        "lifecycle_status": "accepted",
+        "submitted_at": "2026-06-27T17:00:06Z",
+        "promoted_at": "2026-06-27T21:50:03.511Z",
+        "proposed_record_count": 3,
+        "accepted_record_count": 2,
+        "extraction_debt_record_count": 1,
+        "related_agent_run_ids": [
+          "self-healing-extraction-debt-dq-bone-adverse-event-terms-20wk-mixed"
         ]
       },
       {
@@ -725,20 +734,20 @@
     "extraction_debt": {
       "open_count": 47,
       "high_priority_open_count": 41,
-      "resolved_candidate_count": 5,
-      "resolved_record_count": 46,
+      "resolved_candidate_count": 8,
+      "resolved_record_count": 55,
       "resolved_records_by_type": [
         {
           "key": "finding",
-          "count": 5
+          "count": 7
         },
         {
           "key": "outcome",
-          "count": 16
+          "count": 19
         },
         {
           "key": "result",
-          "count": 18
+          "count": 22
         },
         {
           "key": "source_snapshot",
@@ -751,10 +760,10 @@
       ]
     },
     "release": {
-      "release_ready_candidate_count": 8,
-      "release_blocked_candidate_count": 3,
-      "release_ready_record_count": 56,
-      "blocked_accepted_record_count": 27,
+      "release_ready_candidate_count": 9,
+      "release_blocked_candidate_count": 5,
+      "release_ready_record_count": 59,
+      "blocked_accepted_record_count": 40,
       "release_artifact_count": 16,
       "export_files": [
         "exports/latest/accepted-records.jsonl",
@@ -778,19 +787,19 @@
   },
   "quality_pressure": {
     "duplicate_work": {
-      "group_count": 17,
-      "record_count": 35,
+      "group_count": 7,
+      "record_count": 14,
       "duplicate_source_group_count": 0,
       "duplicate_study_group_count": 0,
-      "overlapping_candidate_group_count": 17
+      "overlapping_candidate_group_count": 7
     },
     "conflicts": {
-      "open_finding_count": 19,
-      "blocking_finding_count": 19,
+      "open_finding_count": 9,
+      "blocking_finding_count": 9,
       "warning_finding_count": 0,
-      "conflict_rate": 0.1,
-      "open_finding_rate": 0.5,
-      "reconciliation_batch_rate": 0.1
+      "conflict_rate": 0.125,
+      "open_finding_rate": 0.2093,
+      "reconciliation_batch_rate": 0.125
     },
     "worker_failures": {
       "failed_worker_count": 20,

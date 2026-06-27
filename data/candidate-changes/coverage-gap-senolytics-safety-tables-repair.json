@@ -4,7 +4,7 @@
   "id": "coverage-gap-senolytics-safety-tables-repair",
   "name": "Senolytics safety-table coverage-gap repair",
   "summary": "Updates the senolytics coverage assessment with retained source-snapshot locators for the D+Q bone RCT safety table, withdrawal narrative, dosing cadence, and durability discussion, while preserving the remaining adverse-event and cross-human safety extraction gaps.",
-  "lifecycle_status": "submitted",
+  "lifecycle_status": "accepted",
   "submitted_at": "2026-06-27T16:50:11Z",
   "scope": {
     "question": "Repair the senolytics safety/durability coverage gap by reconciling current D+Q bone RCT safety-table extraction status and preserving remaining event-term, discontinuation, dosing-cadence, durability, and cross-human safety extraction debt.",
@@ -36,5 +36,26 @@
     "safety_limitations",
     "synthesis_boundary",
     "taxonomy_mapping"
-  ]
+  ],
+  "evidence_review_ids": [
+    "coverage-gap-senolytics-safety-tables-repair-extraction-fidelity",
+    "coverage-gap-senolytics-safety-tables-repair-safety-limitations",
+    "coverage-gap-senolytics-safety-tables-repair-synthesis-boundary",
+    "coverage-gap-senolytics-safety-tables-repair-taxonomy-mapping"
+  ],
+  "promotion": {
+    "target_status": "accepted",
+    "promoted_at": "2026-06-27T21:33:36.688Z",
+    "promoted_by_agent": "promote-candidate",
+    "reviewed_review_ids": [
+      "coverage-gap-senolytics-safety-tables-repair-extraction-fidelity",
+      "coverage-gap-senolytics-safety-tables-repair-safety-limitations",
+      "coverage-gap-senolytics-safety-tables-repair-synthesis-boundary",
+      "coverage-gap-senolytics-safety-tables-repair-taxonomy-mapping"
+    ],
+    "reconciliation_decision_ids": [
+      "resolve-safety-tables-overlap-2026-06-27"
+    ],
+    "summary": "Promoted to accepted after all required active review lanes passed."
+  }
 }

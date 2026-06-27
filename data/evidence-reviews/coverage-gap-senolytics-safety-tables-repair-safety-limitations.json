@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "coverage-gap-senolytics-safety-tables-repair-safety-limitations",
+  "candidate_change_id": "coverage-gap-senolytics-safety-tables-repair",
+  "review_lane": "safety_limitations",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-coverage-gap-senolytics-safety-tables-repair-safety-limitations",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "The safety-limitations lane accepts the candidate because the updated coverage assessment keeps safety_durability coverage thin, records only the safety extraction already supported by retained locators and accepted records, and preserves the remaining row-level, discontinuation, and cross-study safety extraction debt as explicit gaps before any safety synthesis.",
+  "findings": [
+    {
+      "finding_id": "safety-coverage-remains-thin",
+      "severity": "note",
+      "category": "safety_limitation",
+      "claim_or_issue": "The safety_durability category remains coverage_level thin after the update.",
+      "why_it_matters": "The candidate improves provenance and gap specificity but does not make the senolytics safety slice synthesis-ready.",
+      "recommended_action": "Retain the thin coverage level until remaining adverse-event rows and human-study safety slices are extracted.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "event-term-debt-not-closed",
+      "severity": "note",
+      "category": "safety_limitation",
+      "claim_or_issue": "The known gap still requires remaining D+Q bone adverse-event rows and withdrawal/discontinuation counts.",
+      "why_it_matters": "Safety synthesis needs term-specific and discontinuation structure rather than broad locator references alone.",
+      "recommended_action": "Run bounded table-row extraction context packs for the remaining D+Q bone safety rows before using this slice for safety synthesis.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "cross-human-safety-debt-preserved",
+      "severity": "note",
+      "category": "safety_limitation",
+      "claim_or_issue": "The DKD, IPF, and AD-risk human safety slices remain incomplete and are named in the gap language.",
+      "why_it_matters": "This caveat prevents extrapolating from one D+Q bone safety table to a cross-human senolytics safety conclusion.",
+      "recommended_action": "Keep cross-human safety synthesis blocked until source-specific safety extraction is complete.",
+      "resolution_status": "closed"
+    }
+  ]
+}

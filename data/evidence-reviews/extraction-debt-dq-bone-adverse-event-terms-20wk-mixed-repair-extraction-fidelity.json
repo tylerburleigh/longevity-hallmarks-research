@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair-extraction-fidelity",
+  "candidate_change_id": "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair",
+  "review_lane": "extraction_fidelity",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair-extraction-fidelity",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "The extraction-fidelity lane accepts the candidate because the proposed result update uses the retained full-text adverse-event table Overall row, preserves 5/30 control and 23/30 D+Q arm counts, calculates the risk ratio and approximate log-scale uncertainty from those counts, and leaves preferred-term rows with blank control cells descriptive rather than converting them to zero.",
+  "findings": [
+    {
+      "finding_id": "overall-row-counts-supported",
+      "severity": "note",
+      "category": "extraction_error",
+      "claim_or_issue": "The result records Overall adverse-event counts of 5/30 untreated control and 23/30 D+Q participants from Extended Data Table 1.",
+      "why_it_matters": "Those are the only adverse-event term-table counts in this candidate that support a comparative overall-row effect.",
+      "recommended_action": "Keep the Overall-row event_specific_counts and source-snapshot/table provenance as written.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "risk-ratio-calculation-supported",
+      "severity": "note",
+      "category": "extraction_error",
+      "claim_or_issue": "The candidate calculates RR 4.60 from (23/30)/(5/30), with log risk-ratio standard error 0.42049 and approximate 95% CI 2.02 to 10.49.",
+      "why_it_matters": "The effect.value and uncertainty fields are derived directly from reported arm counts rather than inferred from blank preferred-term cells.",
+      "recommended_action": "Retain the calculation note and keep the effect scoped to the Overall row only.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "blank-term-cells-preserved",
+      "severity": "note",
+      "category": "missing_caveat",
+      "claim_or_issue": "The result caveats and adverse_event.zero_handling state that blank preferred-term cells are not converted to zero counts.",
+      "why_it_matters": "Converting blank control cells to zero would create unsupported term-level comparative effects.",
+      "recommended_action": "Keep headache and other preferred-term rows descriptive unless explicit arm counts are later extracted.",
+      "resolution_status": "closed"
+    }
+  ]
+}

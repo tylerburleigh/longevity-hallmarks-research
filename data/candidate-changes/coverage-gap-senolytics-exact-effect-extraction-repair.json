@@ -4,7 +4,7 @@
   "id": "coverage-gap-senolytics-exact-effect-extraction-repair",
   "name": "Senolytics exact-effect extraction repair",
   "summary": "Updates DKD and AD-risk human records from triage summaries to PubMed abstract-located extraction and adds an IPF abstract-located dosing-completion outcome/result while correcting the IPF randomized-pilot sample size. This remains a partial repair because durable PubMed/PMC source snapshots could not be created by this worker and full article table reconciliation remains open.",
-  "lifecycle_status": "submitted",
+  "lifecycle_status": "accepted",
   "submitted_at": "2026-06-27T18:13:25Z",
   "scope": {
     "question": "Repair senolytics exact-effect extraction coverage for DKD, IPF, AD-risk, and D+Q bone reconciliation gaps.",
@@ -112,5 +112,24 @@
     "extraction_fidelity",
     "synthesis_boundary",
     "taxonomy_mapping"
-  ]
+  ],
+  "evidence_review_ids": [
+    "coverage-gap-senolytics-exact-effect-extraction-repair-extraction-fidelity",
+    "coverage-gap-senolytics-exact-effect-extraction-repair-synthesis-boundary",
+    "coverage-gap-senolytics-exact-effect-extraction-repair-taxonomy-mapping"
+  ],
+  "promotion": {
+    "target_status": "accepted",
+    "promoted_at": "2026-06-27T21:24:54.739Z",
+    "promoted_by_agent": "promote-candidate",
+    "reviewed_review_ids": [
+      "coverage-gap-senolytics-exact-effect-extraction-repair-extraction-fidelity",
+      "coverage-gap-senolytics-exact-effect-extraction-repair-synthesis-boundary",
+      "coverage-gap-senolytics-exact-effect-extraction-repair-taxonomy-mapping"
+    ],
+    "reconciliation_decision_ids": [
+      "resolve-exact-effect-extraction-overlaps-2026-06-27"
+    ],
+    "summary": "Promoted to accepted after all required active review lanes passed."
+  }
 }

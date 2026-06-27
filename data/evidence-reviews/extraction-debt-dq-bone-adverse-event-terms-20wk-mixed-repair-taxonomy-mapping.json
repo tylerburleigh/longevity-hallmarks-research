@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair-taxonomy-mapping",
+  "candidate_change_id": "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair",
+  "review_lane": "taxonomy_mapping",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair-taxonomy-mapping",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "The taxonomy-mapping lane accepts the candidate because the proposed result remains a safety_event for the D+Q postmenopausal bone RCT under the senolytics track and dasatinib-quercetin intervention, while the synthesis group remains a safety compatibility boundary rather than an efficacy or pooled-harm synthesis.",
+  "findings": [
+    {
+      "finding_id": "result-taxonomy-safety-event",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The repaired record remains result_type safety_event with adverse_event preferred-term and event-specific count structure.",
+      "why_it_matters": "The added effect fields should not shift the record into an efficacy endpoint or generalized clinical benefit/harm bucket.",
+      "recommended_action": "Retain result_type safety_event and the D+Q bone adverse-event outcome linkage.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "track-intervention-mapping-consistent",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The result and synthesis group remain mapped to track_id senolytics and intervention_id dasatinib-quercetin.",
+      "why_it_matters": "Consistent mapping keeps the repair within the D+Q senolytics safety slice.",
+      "recommended_action": "Retain the current track and intervention mappings.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "synthesis-group-taxonomy-contained",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The synthesis group continues to represent 20-week safety compatibility and pooling blockers for one RCT.",
+      "why_it_matters": "The candidate should not create a cross-study senolytics safety taxonomy or a mature pooled synthesis.",
+      "recommended_action": "Keep the synthesis group scoped to D+Q bone 20-week safety compatibility.",
+      "resolution_status": "closed"
+    }
+  ]
+}

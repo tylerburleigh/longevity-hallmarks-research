@@ -4,7 +4,7 @@
   "id": "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair",
   "name": "D+Q bone adverse-event term table extraction-debt repair",
   "summary": "Updates the 20-week adverse-event table result with structured overall adverse-event fields, arm-level counts, and a calculated risk ratio with uncertainty while preserving blank preferred-term cells as not reported or below threshold; updates the safety synthesis boundary to remove the resolved missing-field debt for this result while keeping pooling blocked.",
-  "lifecycle_status": "submitted",
+  "lifecycle_status": "accepted",
   "submitted_at": "2026-06-27T17:00:06Z",
   "scope": {
     "question": "Resolve extraction debt for dq-bone-adverse-event-terms-20wk-mixed: adverse_event.event_specific_counts, adverse_event.preferred_term, effect.uncertainty, and effect.value.",
@@ -45,5 +45,23 @@
     "safety_limitations",
     "synthesis_boundary",
     "taxonomy_mapping"
-  ]
+  ],
+  "evidence_review_ids": [
+    "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair-extraction-fidelity",
+    "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair-safety-limitations",
+    "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair-synthesis-boundary",
+    "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair-taxonomy-mapping"
+  ],
+  "promotion": {
+    "target_status": "accepted",
+    "promoted_at": "2026-06-27T21:50:03.511Z",
+    "promoted_by_agent": "promote-candidate",
+    "reviewed_review_ids": [
+      "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair-extraction-fidelity",
+      "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair-safety-limitations",
+      "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair-synthesis-boundary",
+      "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair-taxonomy-mapping"
+    ],
+    "summary": "Promoted to accepted after all required active review lanes passed."
+  }
 }

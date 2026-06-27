@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "coverage-gap-senolytics-safety-tables-repair-taxonomy-mapping",
+  "candidate_change_id": "coverage-gap-senolytics-safety-tables-repair",
+  "review_lane": "taxonomy_mapping",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-coverage-gap-senolytics-safety-tables-repair-taxonomy-mapping",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "The taxonomy-mapping lane accepts the candidate because the proposed update remains within the senolytics track, cellular-senescence hallmark scope, safety_durability coverage category, and coverage_assessment record type. It keeps safety-table provenance, adverse-event extraction debt, registry context, and human-study safety gaps separated from efficacy or general durability claims.",
+  "findings": [
+    {
+      "finding_id": "coverage-category-mapping-correct",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The candidate maps the repair to the safety_durability evidence category and senolytics-safety-tables coverage gap.",
+      "why_it_matters": "The updated language concerns adverse-event, discontinuation, dosing-cadence, and durability context rather than efficacy endpoints.",
+      "recommended_action": "Retain the safety_durability category and senolytics-safety-tables gap mapping.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "track-hallmark-scope-contained",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The candidate remains scoped to track_id senolytics and hallmark_id cellular_senescence.",
+      "why_it_matters": "This keeps the repair aligned with the senolytics vertical slice and avoids creating a separate D+Q bone safety taxonomy bucket.",
+      "recommended_action": "Retain the current track and hallmark scope.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "record-type-boundary-correct",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The candidate updates a coverage_assessment rather than adding result, finding, or synthesis_group records.",
+      "why_it_matters": "The work is a coverage and provenance repair; remaining row-level safety facts need later extraction records.",
+      "recommended_action": "Keep row-level adverse-event extraction as a follow-on extraction_refresh task rather than adding unsupported taxonomy here.",
+      "resolution_status": "closed"
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "self-healing-candidate-review-extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair-safety-limitations",
+  "agent_role": "supervisor_agent",
+  "agent_id": "codex-cli-supervisor",
+  "mode": "agent_directed",
+  "started_at": "2026-06-27T21:50:00Z",
+  "completed_at": "2026-06-27T21:54:00Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "candidate_review: Required review lane is missing: safety_limitations.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "chronic_inflammation",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "codex_exec",
+    "isolation": "git_worktree",
+    "workspace_path": "/home/tyler/Workspace/longevity-hallmarks-research",
+    "prompt_file": "research/agent-runs/prompts/self-healing-candidate-review-extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair-safety-limitations.md",
+    "prompt_template_file": "docs/prompts/codex-agents/supervisor-review.md",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "output_path": "research/agent-runs/self-healing-candidate-review-extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair-safety-limitations.json",
+    "sandbox": "workspace-write",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "other",
+      "reference": "ops/supervisor-review-context-packs/self-healing-candidate-review-extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair-safety-limitations.json",
+      "summary": "Bounded supervisor review context pack for the safety_limitations lane."
+    },
+    {
+      "input_type": "candidate_change",
+      "reference": "data/candidate-changes/extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair.json",
+      "summary": "Target D+Q bone adverse-event terms extraction-debt repair candidate."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/results/dq-bone-adverse-event-terms-20wk-mixed.json; data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+      "summary": "Target candidate proposed result and safety synthesis-group records."
+    }
+  ],
+  "outputs": {
+    "summary": "Created the missing safety_limitations evidence_review for extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair with verdict accept and no open blocking findings.",
+    "candidate_change_id": "candidate-review-extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair-safety-limitations-repair",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "candidate-review-extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair-safety-limitations-repair",
+        "path": "data/candidate-changes/candidate-review-extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair-safety-limitations-repair.json",
+        "change_type": "create",
+        "rationale": "Tracks the bounded self-healing repair candidate for the missing safety_limitations supervisor review lane."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair-safety-limitations",
+        "path": "data/evidence-reviews/extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair-safety-limitations.json",
+        "change_type": "create",
+        "rationale": "Records the completed safety_limitations supervisor review for the target D+Q bone adverse-event terms extraction-debt repair candidate."
+      }
+    ],
+    "generated_files": [
+      "data/candidate-changes/candidate-review-extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair-safety-limitations-repair.json",
+      "data/evidence-reviews/extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair-safety-limitations.json"
+    ],
+    "export_paths": []
+  },
+  "quality_checks": [
+    {
+      "check_name": "supervisor_review_lanes",
+      "status": "passed",
+      "summary": "Reviewed the safety_limitations lane and found it complete, accepting, non-blocking, and free of open major or critical findings."
+    },
+    {
+      "check_name": "candidate_agent_run_ledger_match",
+      "status": "passed",
+      "summary": "outputs.proposed_records matches the two-entry repair candidate ledger."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": []
+}

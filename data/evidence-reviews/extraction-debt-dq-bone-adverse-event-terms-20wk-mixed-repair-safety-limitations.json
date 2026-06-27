@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair-safety-limitations",
+  "candidate_change_id": "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair",
+  "review_lane": "safety_limitations",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair-safety-limitations",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "The safety-limitations lane accepts the candidate because it resolves the missing structured fields for the Overall adverse-event row while preserving the key safety limits: single-trial open-label reporting, non-serious/severe article context, descriptive preferred-term rows with blank-cell ambiguity, and blocked pooling until at least two compatible safety results have defensible comparative effects and uncertainty.",
+  "findings": [
+    {
+      "finding_id": "overall-row-safety-limit-contained",
+      "severity": "note",
+      "category": "safety_limitation",
+      "claim_or_issue": "The comparative RR applies only to overall adverse events in the publication table, not to headache or other preferred terms.",
+      "why_it_matters": "Safety interpretation would be overstated if the overall-row effect were treated as term-specific harm evidence.",
+      "recommended_action": "Retain the caveat limiting the effect to the Overall row.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "open-label-reporting-caveat-preserved",
+      "severity": "note",
+      "category": "safety_limitation",
+      "claim_or_issue": "The result keeps an open-label design caveat for subjective adverse-event reporting in the D+Q arm.",
+      "why_it_matters": "Awareness of treatment assignment can affect reporting of non-serious subjective events.",
+      "recommended_action": "Keep the open-label caveat with the result.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "pooling-still-blocked",
+      "severity": "note",
+      "category": "safety_limitation",
+      "claim_or_issue": "The synthesis group removes only the resolved missing-field entry for this result and keeps pooling blocked for aggregate registry and headache preferred-term limitations.",
+      "why_it_matters": "A single repaired overall-row result does not make the safety slice meta-analysis ready.",
+      "recommended_action": "Keep safety pooling blocked until compatible event-specific records with explicit arm counts and uncertainty are available.",
+      "resolution_status": "closed"
+    }
+  ]
+}

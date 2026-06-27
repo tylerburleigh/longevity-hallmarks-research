@@ -247,6 +247,19 @@ async function applyOperation(root, operation) {
     return;
   }
 
+  if (operation.type === "run_command") {
+    const result = runCommand(root, operation.command);
+    if (result.error || result.status !== 0) {
+      const output = `${result.stdout ?? ""}\n${result.stderr ?? ""}`.trim();
+      throw new Error(
+        `Fixture setup command failed: ${operation.command.join(" ")}${result.error ? `: ${result.error.message}` : ""}${
+          output ? `\n${output}` : ""
+        }`
+      );
+    }
+    return;
+  }
+
   throw new Error(`Unsupported operation type: ${operation.type}`);
 }
 

@@ -7,7 +7,7 @@
   "mode": "agent_directed",
   "started_at": "2026-06-27T15:21:31Z",
   "completed_at": "2026-06-27T15:26:14Z",
-  "status": "partial",
+  "status": "succeeded",
   "scope": {
     "question": "candidate_revision: Candidate has revision lanes or open findings: source_fidelity.",
     "hallmark_ids": [
@@ -65,7 +65,7 @@
     }
   ],
   "outputs": {
-    "summary": "Created the submitted repair candidate and updated the target senolytics scaffold bootstrap candidate lifecycle from submitted to needs_revision with a summary that preserves the source-fidelity limitation and missing synthesis-boundary and taxonomy-mapping lanes. No candidate was promoted.",
+    "summary": "Created the repair candidate and updated the target senolytics scaffold bootstrap candidate lifecycle from submitted to needs_revision with a summary that preserves the source-fidelity limitation and missing synthesis-boundary and taxonomy-mapping lanes. The repair candidate later completed all three required review lanes and was accepted; the original scaffold candidate remains in needs_revision and no candidate was promoted by this run.",
     "candidate_change_id": "candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair",
     "proposed_records": [
       {
@@ -164,16 +164,16 @@
       "check_name": "post_verify",
       "status": "passed",
       "summary": "post_verify exited 0: > longevity-hallmarks-research@0.1.0 audit:orchestration-smoke-contract > node scripts/audit-orchestration-smoke-contract.mjs Orchestration smoke contract audit passed for orchestration-smoke-budgeted-codex-worktree-2026-06-23. > longevity-hallmarks-research@0.1.0 audit:agentic-process > node scripts/audit-agentic-process.mjs Agentic process audit passed for 386 file(s)."
+    },
+    {
+      "check_name": "agent_run_recovery_status_alignment",
+      "status": "passed",
+      "summary": "Agent-run recovery on 2026-06-27 confirmed candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair is accepted with complete, accepting source_fidelity, synthesis_boundary, and taxonomy_mapping review lanes; the target run no longer needs partial agent-run recovery."
     }
   ],
-  "blocking_issues": [
-    "The target senolytics-scaffold-bootstrap-2026-06-21 candidate still has a linked source_fidelity review with verdict needs_revision; this bounded repair only aligns lifecycle state and creates a repair candidate.",
-    "The target candidate still lacks synthesis_boundary and taxonomy_mapping review lanes, so it is not promotion-ready.",
-    "The repair candidate candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair is submitted and still requires its source_fidelity, synthesis_boundary, and taxonomy_mapping supervisor review lanes."
-  ],
+  "blocking_issues": [],
   "next_actions": [
-    "Supervisor-review candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair across its three required lanes.",
-    "Complete or supersede the target candidate's source_fidelity review limitation with a direct source-fidelity review before promotion.",
-    "Run the missing synthesis_boundary and taxonomy_mapping review lanes for senolytics-scaffold-bootstrap-2026-06-21 before any promotion attempt."
+    "No further agent-run recovery action remains for self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21.",
+    "Treat any promotion work for senolytics-scaffold-bootstrap-2026-06-21 as a separate candidate-readiness task; its original source_fidelity, synthesis_boundary, and taxonomy_mapping limitations are not resolved by this agent-run recovery."
   ]
 }

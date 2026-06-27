@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "candidate-review-coverage-gap-senolytics-exact-effect-extraction-repair-extraction-fidelity-repair",
+  "name": "Extraction-fidelity review repair for senolytics exact-effect extraction candidate",
+  "summary": "Adds the missing extraction_fidelity supervisor review for candidate coverage-gap-senolytics-exact-effect-extraction-repair without promoting the target candidate.",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-27T20:59:43Z",
+  "scope": {
+    "question": "candidate_review: Required review lane is missing: extraction_fidelity.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "candidate-review-coverage-gap-senolytics-exact-effect-extraction-repair-extraction-fidelity-repair",
+      "path": "data/candidate-changes/candidate-review-coverage-gap-senolytics-exact-effect-extraction-repair-extraction-fidelity-repair.json",
+      "change_type": "create",
+      "rationale": "Tracks the bounded self-healing repair candidate for the missing extraction_fidelity supervisor review lane."
+    },
+    {
+      "record_type": "evidence_review",
+      "record_id": "coverage-gap-senolytics-exact-effect-extraction-repair-extraction-fidelity",
+      "path": "data/evidence-reviews/coverage-gap-senolytics-exact-effect-extraction-repair-extraction-fidelity.json",
+      "change_type": "create",
+      "rationale": "Records the completed extraction_fidelity supervisor review for the target senolytics exact-effect extraction repair candidate."
+    }
+  ],
+  "required_review_lanes": [
+    "extraction_fidelity"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-pubmed-snapshot-provenance-2026-06-27-extraction-fidelity",
+  "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+  "review_lane": "extraction_fidelity",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-extraction-fidelity",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Extraction-fidelity review accepted. The three PubMed EFetch source snapshots identify the same PMIDs as their source records, and each reviewed provenance-bearing source, eligibility, study, outcome, result, finding, and risk-of-bias record points to the matching PMID-specific source_snapshot_id. Abstract-extracted and triage-summary maturity labels remain bounded to the available PubMed metadata/abstract source.",
+  "findings": [
+    {
+      "finding_id": "source-snapshot-provenance-matches-reviewed-pmids",
+      "severity": "note",
+      "category": "source_mismatch",
+      "claim_or_issue": "No source mismatch found across the reviewed provenance updates: PMIDs 31542391, 36857968, and 40010154 each have a PubMed EFetch source_snapshot whose source_id, payload_summary.pmid, and URL PMID match the corresponding source record.",
+      "why_it_matters": "The candidate's extraction provenance depends on the source_snapshot_id linking each extracted or triage-derived record back to the correct source article.",
+      "recommended_action": "No change required for this lane.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "provenance-bearing-records-use-expected-snapshots",
+      "severity": "note",
+      "category": "extraction_error",
+      "claim_or_issue": "The 22 reviewed non-snapshot records that carry provenance each contain one source_snapshot_id, and each source_snapshot_id matches the record's source_id: pmid-31542391 to snapshot-pmid-31542391-pubmed-efetch-2026-06-27, pmid-36857968 to snapshot-pmid-36857968-pubmed-efetch-2026-06-27, and pmid-40010154 to snapshot-pmid-40010154-pubmed-efetch-2026-06-27.",
+      "why_it_matters": "This confirms the candidate did not attach an abstract extraction, eligibility decision, risk-of-bias note, outcome, result, finding, or source metadata record to the wrong PubMed snapshot.",
+      "recommended_action": "No change required for this lane.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "abstract-only-boundary-retained",
+      "severity": "note",
+      "category": "endpoint_boundary",
+      "claim_or_issue": "The candidate creates only metadata/abstract PubMed EFetch source snapshots, stores no raw XML or text snapshot, and preserves abstract_extracted or triage_summary maturity/status language on records whose extraction is bounded to PubMed metadata and abstracts.",
+      "why_it_matters": "Extraction fidelity would be overstated if metadata-only snapshots were treated as full-text support or if legacy triage summaries were silently upgraded.",
+      "recommended_action": "Keep full-article extraction and reconciliation as a separate future candidate when reusable full text or article tables are available.",
+      "resolution_status": "closed"
+    }
+  ]
+}

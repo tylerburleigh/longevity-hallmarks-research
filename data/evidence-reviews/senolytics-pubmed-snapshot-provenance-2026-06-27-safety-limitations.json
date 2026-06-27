@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-pubmed-snapshot-provenance-2026-06-27-safety-limitations",
+  "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+  "review_lane": "safety_limitations",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-safety-limitations",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Safety-limitations review accepts the candidate because the proposed change is provenance-bounded: it creates metadata-only PubMed EFetch source snapshots and links source_snapshot_id provenance without adding new treatment recommendations, efficacy claims, or safety generalizations. The named senolytics records retain pilot-study, small-sample, abstract-extraction, and adverse-event caveats.",
+  "findings": [
+    {
+      "finding_id": "safety-limitations-provenance-only-scope",
+      "severity": "note",
+      "category": "safety_limitation",
+      "claim_or_issue": "The candidate links PubMed EFetch source_snapshot_id values and creates source-snapshot metadata for PMIDs 31542391, 36857968, and 40010154.",
+      "why_it_matters": "A provenance-only repair should not make dasatinib plus quercetin appear safer or more effective than the underlying early human evidence supports.",
+      "recommended_action": "No change required; keep the candidate bounded to source-snapshot provenance and do not treat this repair as a certainty upgrade.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "safety-limitations-pilot-caveats-retained",
+      "severity": "note",
+      "category": "safety_limitation",
+      "claim_or_issue": "The reviewed finding, result, study, and risk-of-bias records describe small open-label or pilot randomized studies and include limits such as low confidence, exploratory analysis, non-definitive efficacy, single-arm design, and adverse-event boundaries.",
+      "why_it_matters": "Senolytic human evidence here involves small disease-specific studies, so missing caveats could overstate clinical readiness or general longevity relevance.",
+      "recommended_action": "No change required for this lane; preserve the existing caveats when later extraction or synthesis reviews update these records.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "safety-limitations-metadata-only-snapshots",
+      "severity": "note",
+      "category": "safety_limitation",
+      "claim_or_issue": "The three source snapshots set access_tier to metadata_only, mark raw_storage.stored as false, and state that PubMed EFetch is not a reusable full-text source by itself.",
+      "why_it_matters": "The snapshot records should not be mistaken for full-text evidence capable of resolving detailed safety-event tables or article-level limitations.",
+      "recommended_action": "No change required; use separate full-text or registry artifacts before drawing stronger adverse-event or safety conclusions.",
+      "resolution_status": "closed"
+    }
+  ]
+}

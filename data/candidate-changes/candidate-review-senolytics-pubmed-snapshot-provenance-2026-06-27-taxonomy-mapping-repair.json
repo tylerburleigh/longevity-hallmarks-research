@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-taxonomy-mapping-repair",
+  "name": "Supervisor taxonomy-mapping review for senolytics PubMed snapshot provenance repair",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-27T19:58:02Z",
+  "scope": {
+    "question": "candidate_review: Required review lane is missing: taxonomy_mapping.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "summary": "Adds the missing taxonomy_mapping evidence review for candidate senolytics-pubmed-snapshot-provenance-2026-06-27. The review accepts the lane because the proposed PubMed source-snapshot provenance repair preserves the cellular_senescence/senolytics/D+Q taxonomy and endpoint boundaries.",
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-taxonomy-mapping-repair",
+      "path": "data/candidate-changes/candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-taxonomy-mapping-repair.json",
+      "change_type": "create",
+      "rationale": "Tracks creation of the missing taxonomy_mapping supervisor review for the senolytics PubMed source-snapshot provenance repair candidate."
+    },
+    {
+      "record_type": "evidence_review",
+      "record_id": "senolytics-pubmed-snapshot-provenance-2026-06-27-taxonomy-mapping",
+      "path": "data/evidence-reviews/senolytics-pubmed-snapshot-provenance-2026-06-27-taxonomy-mapping.json",
+      "change_type": "create",
+      "rationale": "Records the complete taxonomy_mapping lane verdict for candidate senolytics-pubmed-snapshot-provenance-2026-06-27."
+    }
+  ],
+  "required_review_lanes": [
+    "taxonomy_mapping"
+  ]
+}

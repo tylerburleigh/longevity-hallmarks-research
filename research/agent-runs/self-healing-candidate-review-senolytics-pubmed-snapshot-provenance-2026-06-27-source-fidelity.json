@@ -1,0 +1,158 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "self-healing-candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-source-fidelity",
+  "agent_role": "supervisor_agent",
+  "agent_id": "codex-cli",
+  "mode": "agent_directed",
+  "started_at": "2026-06-27T19:50:12Z",
+  "completed_at": "2026-06-27T19:54:09Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "candidate_review: Required review lane is missing: source_fidelity.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "codex_exec",
+    "isolation": "git_worktree",
+    "workspace_path": "/tmp/lhr-codex-worktrees/self-healing-candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-source-fidelity-20260627T195012z",
+    "prompt_file": "research/agent-runs/prompts/self-healing-candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-source-fidelity.md",
+    "prompt_template_file": "docs/prompts/codex-agents/supervisor-review.md",
+    "job_file": "ops/codex-jobs/archive/self-healing-candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-source-fidelity.json",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "output_path": "research/agent-runs/self-healing-candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-source-fidelity.json",
+    "jsonl_log_path": "research/agent-runs/logs/self-healing-candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-source-fidelity.jsonl",
+    "sandbox": "workspace-write",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "user_request",
+      "reference": "codex_job:self-healing-candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-source-fidelity",
+      "summary": "Coordinator requested bounded supervisor review for the missing source_fidelity lane."
+    },
+    {
+      "input_type": "other",
+      "reference": "ops/supervisor-review-context-packs/self-healing-candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-source-fidelity.json",
+      "summary": "Context pack defining the target candidate, required lane, schemas, expected outputs, and review constraints."
+    },
+    {
+      "input_type": "other",
+      "reference": "schemas/agent-run.codex-output.schema.json; schemas/agent-run.schema.json; schemas/evidence-review.schema.json; schemas/candidate-change.schema.json",
+      "summary": "Schemas used for the final agent-run contract and generated candidate/review records."
+    },
+    {
+      "input_type": "candidate_change",
+      "reference": "data/candidate-changes/senolytics-pubmed-snapshot-provenance-2026-06-27.json",
+      "summary": "Target candidate reviewed for source_fidelity."
+    },
+    {
+      "input_type": "record",
+      "reference": "ops/supervisor-review-context-packs/self-healing-candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-source-fidelity.json#review_context.relevant_input_records",
+      "summary": "Named proposed source snapshots and downstream source, eligibility, study, outcome, result, finding, and risk-of-bias records were checked for PMID/source_snapshot_id alignment."
+    }
+  ],
+  "outputs": {
+    "summary": "Created the repair candidate ledger and the missing source_fidelity evidence_review. The lane is complete with an accept verdict, no blocking issues, and no open major or critical findings.",
+    "candidate_change_id": "candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-source-fidelity-repair",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-source-fidelity-repair",
+        "path": "data/candidate-changes/candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-source-fidelity-repair.json",
+        "change_type": "create",
+        "rationale": "Tracks the bounded repair that creates the missing source_fidelity supervisor review record."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "senolytics-pubmed-snapshot-provenance-2026-06-27-source-fidelity",
+        "path": "data/evidence-reviews/senolytics-pubmed-snapshot-provenance-2026-06-27-source-fidelity.json",
+        "change_type": "create",
+        "rationale": "Records the completed source_fidelity supervisor review for candidate senolytics-pubmed-snapshot-provenance-2026-06-27."
+      }
+    ],
+    "generated_files": [
+      "data/candidate-changes/candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-source-fidelity-repair.json",
+      "data/evidence-reviews/senolytics-pubmed-snapshot-provenance-2026-06-27-source-fidelity.json"
+    ],
+    "export_paths": []
+  },
+  "quality_checks": [
+    {
+      "check_name": "supervisor_review_lanes",
+      "status": "passed",
+      "summary": "Reviewed the required source_fidelity lane; the evidence_review is complete, non-blocking, and has no open major or critical findings."
+    },
+    {
+      "check_name": "candidate_agent_run_ledger_match",
+      "status": "passed",
+      "summary": "Final outputs.proposed_records matches the repair candidate proposed_records ledger in order and content."
+    },
+    {
+      "check_name": "validate_records",
+      "status": "passed",
+      "summary": "npm run validate:records completed successfully and validated 378 JSON files."
+    },
+    {
+      "check_name": "audit_references",
+      "status": "passed",
+      "summary": "npm run audit:references completed successfully for 236 record files."
+    },
+    {
+      "check_name": "audit_agent_schemas",
+      "status": "passed",
+      "summary": "npm run audit:agent-schemas completed successfully."
+    },
+    {
+      "check_name": "audit_agentic_process",
+      "status": "passed",
+      "summary": "npm run audit:agentic-process completed successfully for 418 files."
+    },
+    {
+      "check_name": "worker_output_contract",
+      "status": "passed",
+      "summary": "Worker emitted exactly one final JSON agent_run message, matched output_path, and avoided ad hoc schema-validation snippets."
+    },
+    {
+      "check_name": "post_triage_state_export",
+      "status": "passed",
+      "summary": "post_triage_state_export exited 0: > longevity-hallmarks-research@0.1.0 export:triage-state > node scripts/export-triage-state.mjs Wrote ops/triage-state.v1.json."
+    },
+    {
+      "check_name": "post_release_readiness_export",
+      "status": "passed",
+      "summary": "post_release_readiness_export exited 0: > longevity-hallmarks-research@0.1.0 export:release-readiness > node scripts/export-release-readiness.mjs Wrote ops/release-readiness.v1.json."
+    },
+    {
+      "check_name": "post_reconciliation_export",
+      "status": "passed",
+      "summary": "post_reconciliation_export exited 0: > longevity-hallmarks-research@0.1.0 reconcile:parallel > node scripts/reconcile-parallel-outputs.mjs Wrote ops/reconciliation/parallel-reconciliation.v1.json."
+    },
+    {
+      "check_name": "post_orchestration_metrics_export",
+      "status": "passed",
+      "summary": "post_orchestration_metrics_export exited 0: > longevity-hallmarks-research@0.1.0 metrics:orchestration > node scripts/export-orchestration-metrics.mjs Wrote ops/codex-batches/orchestration-metrics.v1.json."
+    },
+    {
+      "check_name": "post_export",
+      "status": "passed",
+      "summary": "post_export exited 0: > longevity-hallmarks-research@0.1.0 export:latest > node scripts/export-latest.mjs Wrote 16 export file(s) to exports/latest."
+    },
+    {
+      "check_name": "post_verify",
+      "status": "passed",
+      "summary": "post_verify exited 0: > longevity-hallmarks-research@0.1.0 audit:orchestration-smoke-contract > node scripts/audit-orchestration-smoke-contract.mjs Orchestration smoke contract audit passed for orchestration-smoke-budgeted-codex-worktree-2026-06-23. > longevity-hallmarks-research@0.1.0 audit:agentic-process > node scripts/audit-agentic-process.mjs Agentic process audit passed for 419 file(s)."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": [
+    "Coordinator post-run should run the declared export and knowledge-base verification steps."
+  ]
+}

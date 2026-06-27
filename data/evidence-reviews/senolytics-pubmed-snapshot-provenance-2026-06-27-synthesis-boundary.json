@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-pubmed-snapshot-provenance-2026-06-27-synthesis-boundary",
+  "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+  "review_lane": "synthesis_boundary",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Synthesis-boundary review accepts the candidate. The candidate creates PubMed EFetch source snapshots and attaches source_snapshot_id provenance to existing DKD, IPF, and AD-risk D+Q records without expanding endpoint claims, upgrading certainty, or converting abstract/triage-derived records into full-article extraction.",
+  "findings": [
+    {
+      "finding_id": "synthesis-boundary-provenance-only",
+      "severity": "note",
+      "category": "endpoint_boundary",
+      "claim_or_issue": "The proposed change is limited to PubMed EFetch snapshot creation and source_snapshot_id provenance attachment.",
+      "why_it_matters": "A provenance repair should not itself create new efficacy conclusions or broaden the synthesis basis beyond metadata and abstract-supported evidence.",
+      "recommended_action": "No revision required; retain the provenance repair as metadata/abstract-only support.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "synthesis-boundary-caveats-preserved",
+      "severity": "note",
+      "category": "interpretation_overreach",
+      "claim_or_issue": "The reviewed finding and result records preserve low-confidence, pilot-study caveats: DKD remains human biomarker evidence, IPF remains feasibility/tolerability and underpowered, and AD-risk remains single-arm exploratory functional evidence.",
+      "why_it_matters": "These boundaries prevent the source-snapshot provenance repair from being interpreted as stronger clinical, disease-modifying, or general longevity evidence.",
+      "recommended_action": "No revision required; keep the existing caveats and low-confidence classifications.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "synthesis-boundary-derived-record-status-retained",
+      "severity": "note",
+      "category": "missing_caveat",
+      "claim_or_issue": "Legacy IPF outcome, result, finding, and risk-of-bias records that remain derived or triage-summary records continue to state that full source-located extraction is pending.",
+      "why_it_matters": "Attaching a PubMed EFetch snapshot should not erase the distinction between abstract-supported provenance and full article/table extraction.",
+      "recommended_action": "No revision required in this lane; any later certainty upgrade should wait for source-located extraction.",
+      "resolution_status": "closed"
+    }
+  ]
+}

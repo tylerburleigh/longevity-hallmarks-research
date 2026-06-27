@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "coverage-gap-senolytics-exact-effect-extraction-repair-extraction-fidelity",
+  "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-repair",
+  "review_lane": "extraction_fidelity",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-repair-extraction-fidelity",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Extraction-fidelity review of the proposed DKD, IPF, AD-risk, and coverage-assessment records found the candidate's abstract-located sample, dosing, timing, endpoint, and effect wording consistent with the cited PubMed metadata snapshots and source records. The records preserve the abstract-extracted maturity boundary and retain caveats for missing full-text/table reconciliation, so this lane has no open major or critical findings.",
+  "findings": [
+    {
+      "finding_id": "dkd-abstract-extraction-supported",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "The DKD study, outcome, result, and finding records extract N=9, oral dasatinib 100 mg plus quercetin 1000 mg for 3 days, pre/post tissue and blood collection 11 days after completion, and directional senescent-cell/SASP biomarker decreases from PMID 31542391.",
+      "why_it_matters": "These values are the central exact-effect repair for the DKD human biomarker slice, and the records avoid adding unsupported numeric biomarker effect sizes.",
+      "recommended_action": "No change required for this lane; keep the full-text numeric biomarker table extraction as a future coverage action rather than a blocker for the abstract-level repair.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "ipf-abstract-extraction-supported",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "The IPF randomized-pilot records extract N=12, 1:1 randomization, dasatinib 100 mg/day plus quercetin 1250 mg/day for 3 consecutive days per week over 3 weeks, 108/108 scheduled doses, 60/60 planned assessments, and no meaningful between-arm clinical-measure difference wording from PMID 36857968.",
+      "why_it_matters": "The new dosing-completion outcome/result corrects the operational exact-effect gap without turning the pilot feasibility result into an efficacy claim.",
+      "recommended_action": "No change required for this lane; keep the legacy generic IPF outcome/result reconciliation as a separate extraction refresh task.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "ad-risk-abstract-extraction-supported",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "The AD-risk study, outcome, result, and finding records extract the D+Q schedule, 12 completers, MoCA +1.0 points with 95% CI -0.7 to 2.7, lowest-baseline-MoCA subgroup +2.0 points with 95% CI 0.1 to 4.0, TNF-alpha -3.0% with 95% CI -13.0 to 7.1, and inverse TNF-alpha/MoCA correlation r=-0.65, p=0.02 from PMID 40010154.",
+      "why_it_matters": "The extracted effect values are exactly the abstract-reported estimates and the candidate keeps them in an exploratory, low-confidence single-arm interpretation.",
+      "recommended_action": "No change required for this lane; mobility endpoint values should remain deferred until full-article extraction.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "source-boundary-caveats-preserved",
+      "severity": "note",
+      "category": "missing_caveat",
+      "claim_or_issue": "The candidate records use maturity_status abstract_extracted for the new DKD, IPF, and AD-risk exact-effect records and the coverage assessment explicitly keeps durable full-text/table reconciliation gaps open.",
+      "why_it_matters": "This prevents abstract-located repairs from being mistaken for source-snapshot-backed full-text extraction or cross-human synthesis readiness.",
+      "recommended_action": "No change required for this lane; coordinator post-run export and later extraction-refresh work can carry the remaining gaps.",
+      "resolution_status": "closed"
+    }
+  ]
+}

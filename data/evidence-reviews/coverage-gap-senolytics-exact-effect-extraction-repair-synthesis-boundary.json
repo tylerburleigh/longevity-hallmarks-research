@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "coverage-gap-senolytics-exact-effect-extraction-repair-synthesis-boundary",
+  "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-repair",
+  "review_lane": "synthesis_boundary",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-repair-synthesis-boundary",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "The proposed DKD, AD-risk, IPF, and coverage-assessment updates keep synthesis claims bounded to abstract-located or otherwise explicitly limited evidence. Human efficacy language remains low-confidence, pilot-scale, endpoint-specific, and caveated; coverage-level statements preserve source-snapshot, full-text/table, safety, registry, and cross-human synthesis limitations.",
+  "findings": [
+    {
+      "finding_id": "synthesis-boundary-human-efficacy-contained",
+      "severity": "note",
+      "category": "interpretation_overreach",
+      "claim_or_issue": "DKD, AD-risk, and IPF records make endpoint-specific pilot claims rather than generalized senolytic clinical efficacy claims.",
+      "why_it_matters": "The target candidate adds human biomarker and functional details from small or pilot studies, where overstatement would distort synthesis readiness.",
+      "recommended_action": "Keep the existing low-confidence, pilot-scale, abstract-extracted caveats with these records and avoid promoting them into cross-human efficacy synthesis until source-snapshot-backed extraction is complete.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "synthesis-boundary-gap-deferrals-preserved",
+      "severity": "note",
+      "category": "missing_caveat",
+      "claim_or_issue": "The coverage assessment labels the vertical slice adequate while retaining explicit gaps for durable source snapshots, IPF legacy reconciliation, D+Q bone table/supplement extraction, safety rows, registry breadth, and review-landscape coverage.",
+      "why_it_matters": "The adequacy verdict could otherwise be read as full synthesis readiness across the senolytics track.",
+      "recommended_action": "Preserve the known_gaps and next_coverage_action language before any export or synthesis refresh uses this coverage assessment.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "synthesis-boundary-endpoints-separated",
+      "severity": "note",
+      "category": "endpoint_boundary",
+      "claim_or_issue": "The new IPF dosing-completion outcome/result separate trial conduct, non-serious adverse-event imbalance, and underpowered clinical measures from broader aging or healthspan claims.",
+      "why_it_matters": "Combining feasibility, safety, biomarker, and functional endpoints would create an unsupported synthesis boundary for this randomized pilot.",
+      "recommended_action": "Retain the endpoint-specific outcome/result framing and the caveat that clinical measures should remain separate from general aging or healthspan claims.",
+      "resolution_status": "closed"
+    }
+  ]
+}

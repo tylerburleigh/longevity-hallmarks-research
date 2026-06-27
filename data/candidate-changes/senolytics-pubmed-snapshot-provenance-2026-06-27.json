@@ -4,7 +4,7 @@
   "id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
   "name": "Senolytics PubMed source-snapshot provenance repair",
   "summary": "Creates durable PubMed EFetch source snapshots for PMIDs 31542391, 36857968, and 40010154, then attaches source_snapshot_id provenance to eligible source metadata, eligibility, risk-of-bias, study, outcome, result, and finding records. No text snapshots are added because PubMed EFetch is metadata/abstract-only.",
-  "lifecycle_status": "submitted",
+  "lifecycle_status": "accepted",
   "submitted_at": "2026-06-27T19:45:00Z",
   "scope": {
     "question": "Attach durable PubMed EFetch source snapshots to DKD, IPF, and AD-risk D+Q provenance records.",
@@ -205,5 +205,28 @@
     "source_fidelity",
     "synthesis_boundary",
     "taxonomy_mapping"
-  ]
+  ],
+  "evidence_review_ids": [
+    "senolytics-pubmed-snapshot-provenance-2026-06-27-extraction-fidelity",
+    "senolytics-pubmed-snapshot-provenance-2026-06-27-safety-limitations",
+    "senolytics-pubmed-snapshot-provenance-2026-06-27-source-fidelity",
+    "senolytics-pubmed-snapshot-provenance-2026-06-27-synthesis-boundary",
+    "senolytics-pubmed-snapshot-provenance-2026-06-27-taxonomy-mapping"
+  ],
+  "promotion": {
+    "target_status": "accepted",
+    "promoted_at": "2026-06-27T20:40:40.161Z",
+    "promoted_by_agent": "promote-candidate",
+    "reviewed_review_ids": [
+      "senolytics-pubmed-snapshot-provenance-2026-06-27-extraction-fidelity",
+      "senolytics-pubmed-snapshot-provenance-2026-06-27-safety-limitations",
+      "senolytics-pubmed-snapshot-provenance-2026-06-27-source-fidelity",
+      "senolytics-pubmed-snapshot-provenance-2026-06-27-synthesis-boundary",
+      "senolytics-pubmed-snapshot-provenance-2026-06-27-taxonomy-mapping"
+    ],
+    "reconciliation_decision_ids": [
+      "resolve-pubmed-snapshot-provenance-overlaps-2026-06-27"
+    ],
+    "summary": "Promoted to accepted after all required active review lanes passed."
+  }
 }

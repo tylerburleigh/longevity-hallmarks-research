@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "reconciliation_decision",
+  "id": "resolve-pubmed-snapshot-provenance-overlaps-2026-06-27",
+  "created_at": "2026-06-27T20:45:00Z",
+  "reconciled_by_agent": "codex-coordinator",
+  "reconciliation_report_id": "parallel-reconciliation-v1",
+  "issue_ids": [
+    "overlapping-candidate-051f7bfa25f5",
+    "overlapping-candidate-1814f554f162",
+    "overlapping-candidate-231d9b5dcec0",
+    "overlapping-candidate-298bfaaed745",
+    "overlapping-candidate-3340ea30ecf9",
+    "overlapping-candidate-388c293aa4f0",
+    "overlapping-candidate-390f7962c509",
+    "overlapping-candidate-4240e977e018",
+    "overlapping-candidate-43512d643e3a",
+    "overlapping-candidate-4d3e75cad5c8",
+    "overlapping-candidate-630fad3725fc",
+    "overlapping-candidate-63a1208f9cc7",
+    "overlapping-candidate-6aba2e341d3c",
+    "overlapping-candidate-7806d9df0ae3",
+    "overlapping-candidate-82ff94160993",
+    "overlapping-candidate-9e392c3c4428",
+    "overlapping-candidate-a3d8e7412fec",
+    "overlapping-candidate-a4f19070d3ff",
+    "overlapping-candidate-a87c623ee9a9",
+    "overlapping-candidate-ce1d7dacdfdc",
+    "overlapping-candidate-dccfb4c06775",
+    "overlapping-candidate-f9de2f5b26d9"
+  ],
+  "issue_categories": [
+    "overlapping_candidate_proposal"
+  ],
+  "candidate_change_ids": [
+    "senolytics-pubmed-snapshot-provenance-2026-06-27"
+  ],
+  "compatible_candidate_change_ids": [
+    "senolytics-pubmed-snapshot-provenance-2026-06-27"
+  ],
+  "resolution_status": "resolved",
+  "resolution_summary": "The PubMed snapshot provenance candidate is compatible for promotion despite path overlaps because it is a provenance-only repair: it adds three PubMed EFetch source_snapshot records and links source_snapshot_id provenance into existing DKD, IPF, and AD-risk records. It does not change extracted effect values, safety interpretation, taxonomy mapping, lifecycle status, or release status for the older broad coverage and exact-effect candidates. Those older candidates remain separately governed by their own review, revision, and promotion gates.",
+  "evidence": [
+    {
+      "path": "data/candidate-changes/senolytics-pubmed-snapshot-provenance-2026-06-27.json",
+      "summary": "The candidate ledger is limited to PubMed EFetch source-snapshot creation and source_snapshot_id provenance links for DKD, IPF, and AD-risk records."
+    },
+    {
+      "path": "data/evidence-reviews/senolytics-pubmed-snapshot-provenance-2026-06-27-source-fidelity.json",
+      "summary": "The source-fidelity review accepts the PubMed snapshot provenance repair as source-located and non-blocking."
+    },
+    {
+      "path": "data/evidence-reviews/senolytics-pubmed-snapshot-provenance-2026-06-27-extraction-fidelity.json",
+      "summary": "The extraction-fidelity review accepts the candidate because it does not mutate extracted values, sample sizes, timepoints, or interpretation claims."
+    },
+    {
+      "path": "data/evidence-reviews/senolytics-pubmed-snapshot-provenance-2026-06-27-synthesis-boundary.json",
+      "summary": "The synthesis-boundary review accepts the candidate because provenance links do not broaden synthesis conclusions or remove existing caveats."
+    },
+    {
+      "path": "data/candidate-changes/senolytics-coverage-repair-2026-06-21.json",
+      "summary": "The broad coverage candidate remains in needs_revision and is not accepted, applied, or superseded by this decision."
+    },
+    {
+      "path": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-repair.json",
+      "summary": "The exact-effect extraction repair remains a separate submitted candidate with its own missing review lanes and is not accepted, applied, or superseded by this decision."
+    }
+  ]
+}

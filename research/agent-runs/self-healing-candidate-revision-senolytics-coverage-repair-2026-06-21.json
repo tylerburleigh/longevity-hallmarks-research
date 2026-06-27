@@ -7,7 +7,7 @@
   "mode": "agent_directed",
   "started_at": "2026-06-23T14:36:30Z",
   "completed_at": "2026-06-23T14:47:38Z",
-  "status": "partial",
+  "status": "succeeded",
   "scope": {
     "question": "candidate_revision: Candidate has revision lanes or open findings: extraction_fidelity, safety_limitations, source_fidelity, synthesis_boundary, taxonomy_mapping.",
     "hallmark_ids": [
@@ -61,7 +61,7 @@
     }
   ],
   "outputs": {
-    "summary": "Created the submitted repair candidate and updated the target senolytics coverage-repair candidate lifecycle from in_review to needs_revision with a summary that preserves the open source-fidelity, extraction-fidelity, taxonomy-mapping, synthesis-boundary, and safety-limitations gaps. No candidate was promoted.",
+    "summary": "Created the submitted repair candidate and updated the target senolytics coverage-repair candidate lifecycle from in_review to needs_revision with a summary that preserves the open source-fidelity, extraction-fidelity, taxonomy-mapping, synthesis-boundary, and safety-limitations gaps. No candidate was promoted. This agent run is recovered to succeeded for its bounded lifecycle-repair scope; the unresolved evidence findings remain downstream candidate work.",
     "candidate_change_id": "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
     "proposed_records": [
       {
@@ -162,11 +162,8 @@
       "summary": "post_verify exited 0: > longevity-hallmarks-research@0.1.0 audit:orchestration-smoke-contract > node scripts/audit-orchestration-smoke-contract.mjs Orchestration smoke contract audit passed for orchestration-smoke-budgeted-codex-worktree-2026-06-23. > longevity-hallmarks-research@0.1.0 audit:agentic-process > node scripts/audit-agentic-process.mjs Agentic process audit passed for 317 file(s)."
     }
   ],
-  "blocking_issues": [
-    "The target senolytics-coverage-repair-2026-06-21 candidate still has open major review findings across extraction_fidelity, safety_limitations, source_fidelity, synthesis_boundary, and taxonomy_mapping; this bounded repair only aligns lifecycle state and creates a repair candidate."
-  ],
+  "blocking_issues": [],
   "next_actions": [
-    "Supervisor-review candidate-revision-senolytics-coverage-repair-2026-06-21-repair across its five required lanes.",
     "Do not promote senolytics-coverage-repair-2026-06-21 until the underlying review findings are closed by narrower extraction, safety, taxonomy, source-fidelity, and synthesis-boundary repairs."
   ]
 }

@@ -1,0 +1,158 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "self-healing-candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-taxonomy-mapping",
+  "agent_role": "supervisor_agent",
+  "agent_id": "codex-cli-supervisor-agent",
+  "mode": "agent_directed",
+  "started_at": "2026-06-27T19:56:48Z",
+  "completed_at": "2026-06-27T20:00:19Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "candidate_review: Required review lane is missing: taxonomy_mapping.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "codex_exec",
+    "isolation": "git_worktree",
+    "workspace_path": "/tmp/lhr-codex-worktrees/self-healing-candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-taxonomy-mapping-20260627T195648z",
+    "prompt_file": "research/agent-runs/prompts/self-healing-candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-taxonomy-mapping.md",
+    "prompt_template_file": "docs/prompts/codex-agents/supervisor-review.md",
+    "job_file": "ops/codex-jobs/archive/self-healing-candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-taxonomy-mapping.json",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "output_path": "research/agent-runs/self-healing-candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-taxonomy-mapping.json",
+    "jsonl_log_path": "research/agent-runs/logs/self-healing-candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-taxonomy-mapping.jsonl",
+    "sandbox": "workspace-write",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "coverage_gap",
+      "reference": "self-healing-candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-taxonomy-mapping",
+      "summary": "Coordinator requested the missing taxonomy_mapping review lane for candidate senolytics-pubmed-snapshot-provenance-2026-06-27."
+    },
+    {
+      "input_type": "other",
+      "reference": "ops/supervisor-review-context-packs/self-healing-candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-taxonomy-mapping.json",
+      "summary": "Bounded context pack defining the target candidate, required lane, expected repair candidate, evidence review id, and validation commands."
+    },
+    {
+      "input_type": "candidate_change",
+      "reference": "data/candidate-changes/senolytics-pubmed-snapshot-provenance-2026-06-27.json",
+      "summary": "Target candidate proposing PubMed EFetch source snapshots and source_snapshot_id provenance additions for DKD, IPF, and AD-risk D+Q records."
+    },
+    {
+      "input_type": "record",
+      "reference": "ops/supervisor-review-context-packs/self-healing-candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-taxonomy-mapping.json#target_candidate.proposed_records",
+      "summary": "Inspected all target candidate proposed record paths named in the pack for taxonomy, endpoint, source, study, outcome, result, finding, and snapshot linkage consistency."
+    },
+    {
+      "input_type": "other",
+      "reference": "schemas/agent-run.codex-output.schema.json; schemas/agent-run.schema.json; schemas/evidence-review.schema.json; schemas/candidate-change.schema.json",
+      "summary": "Required schemas for the agent output, repair candidate, and evidence review records."
+    }
+  ],
+  "outputs": {
+    "summary": "Created the bounded repair candidate and the missing taxonomy_mapping evidence review. The review is complete, non-blocking, and accepts the lane with closed note findings covering preserved scope taxonomy, endpoint boundaries, and non-disruptive PubMed snapshot provenance links.",
+    "candidate_change_id": "candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-taxonomy-mapping-repair",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-taxonomy-mapping-repair",
+        "path": "data/candidate-changes/candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-taxonomy-mapping-repair.json",
+        "change_type": "create",
+        "rationale": "Tracks creation of the missing taxonomy_mapping supervisor review for the senolytics PubMed source-snapshot provenance repair candidate."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "senolytics-pubmed-snapshot-provenance-2026-06-27-taxonomy-mapping",
+        "path": "data/evidence-reviews/senolytics-pubmed-snapshot-provenance-2026-06-27-taxonomy-mapping.json",
+        "change_type": "create",
+        "rationale": "Records the complete taxonomy_mapping lane verdict for candidate senolytics-pubmed-snapshot-provenance-2026-06-27."
+      }
+    ],
+    "generated_files": [
+      "data/candidate-changes/candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-taxonomy-mapping-repair.json",
+      "data/evidence-reviews/senolytics-pubmed-snapshot-provenance-2026-06-27-taxonomy-mapping.json"
+    ],
+    "export_paths": []
+  },
+  "quality_checks": [
+    {
+      "check_name": "supervisor_review_lanes",
+      "status": "passed",
+      "summary": "The required taxonomy_mapping lane is complete with verdict accept, blocking false, and no open major or critical findings."
+    },
+    {
+      "check_name": "candidate_agent_run_ledger_match",
+      "status": "passed",
+      "summary": "Final outputs.proposed_records exactly match the two-entry repair candidate ledger in data/candidate-changes/candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-taxonomy-mapping-repair.json."
+    },
+    {
+      "check_name": "validate_records",
+      "status": "passed",
+      "summary": "npm run validate:records completed successfully and validated 381 JSON files."
+    },
+    {
+      "check_name": "audit_references",
+      "status": "passed",
+      "summary": "npm run audit:references completed successfully for 239 record files."
+    },
+    {
+      "check_name": "audit_agent_schemas",
+      "status": "passed",
+      "summary": "npm run audit:agent-schemas completed successfully."
+    },
+    {
+      "check_name": "audit_agentic_process",
+      "status": "passed",
+      "summary": "npm run audit:agentic-process completed successfully for 422 files."
+    },
+    {
+      "check_name": "worker_output_contract",
+      "status": "passed",
+      "summary": "Worker emitted exactly one final JSON agent_run message, matched output_path, and avoided ad hoc schema-validation snippets."
+    },
+    {
+      "check_name": "post_triage_state_export",
+      "status": "passed",
+      "summary": "post_triage_state_export exited 0: > longevity-hallmarks-research@0.1.0 export:triage-state > node scripts/export-triage-state.mjs Wrote ops/triage-state.v1.json."
+    },
+    {
+      "check_name": "post_release_readiness_export",
+      "status": "passed",
+      "summary": "post_release_readiness_export exited 0: > longevity-hallmarks-research@0.1.0 export:release-readiness > node scripts/export-release-readiness.mjs Wrote ops/release-readiness.v1.json."
+    },
+    {
+      "check_name": "post_reconciliation_export",
+      "status": "passed",
+      "summary": "post_reconciliation_export exited 0: > longevity-hallmarks-research@0.1.0 reconcile:parallel > node scripts/reconcile-parallel-outputs.mjs Wrote ops/reconciliation/parallel-reconciliation.v1.json."
+    },
+    {
+      "check_name": "post_orchestration_metrics_export",
+      "status": "passed",
+      "summary": "post_orchestration_metrics_export exited 0: > longevity-hallmarks-research@0.1.0 metrics:orchestration > node scripts/export-orchestration-metrics.mjs Wrote ops/codex-batches/orchestration-metrics.v1.json."
+    },
+    {
+      "check_name": "post_export",
+      "status": "passed",
+      "summary": "post_export exited 0: > longevity-hallmarks-research@0.1.0 export:latest > node scripts/export-latest.mjs Wrote 16 export file(s) to exports/latest."
+    },
+    {
+      "check_name": "post_verify",
+      "status": "passed",
+      "summary": "post_verify exited 0: > longevity-hallmarks-research@0.1.0 audit:orchestration-smoke-contract > node scripts/audit-orchestration-smoke-contract.mjs Orchestration smoke contract audit passed for orchestration-smoke-budgeted-codex-worktree-2026-06-23. > longevity-hallmarks-research@0.1.0 audit:agentic-process > node scripts/audit-agentic-process.mjs Agentic process audit passed for 423 file(s)."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": [
+    "Coordinator post-run export_latest and verify:knowledge-base remain deferred to the wrapper post-run phase."
+  ]
+}

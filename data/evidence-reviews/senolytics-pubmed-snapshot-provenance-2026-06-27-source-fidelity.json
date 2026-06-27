@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-pubmed-snapshot-provenance-2026-06-27-source-fidelity",
+  "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+  "review_lane": "source_fidelity",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-source-fidelity",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Accepted for source_fidelity. The three PubMed EFetch source snapshots align to the intended PMID source records, and the proposed source, eligibility, study, outcome, result, finding, and risk-of-bias records attach matching source_snapshot_id provenance. The snapshots retain metadata, abstract summaries, locators, and content hashes only; no raw full text or raw XML is stored.",
+  "findings": [
+    {
+      "finding_id": "pubmed-snapshot-pmid-alignment",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "Snapshots for PMIDs 31542391, 36857968, and 40010154 have source_id values, PubMed EFetch URL id parameters, and payload_summary.pmid values matching the proposed source records.",
+      "why_it_matters": "The repair is meant to add durable source provenance without changing source identity; a PMID mismatch would contaminate downstream evidence chains.",
+      "recommended_action": "No revision needed; keep each PubMed EFetch snapshot bound to its matching PMID source.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "downstream-source-snapshot-links-complete",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "The proposed eligibility, study, outcome, result, finding, and risk-of-bias records each include a source_snapshot_id that matches the record's source_id or source_ids entry.",
+      "why_it_matters": "The candidate's scope is provenance repair; every updated downstream record needs an unambiguous link back to the durable PubMed snapshot.",
+      "recommended_action": "No revision needed; retain the matched source_snapshot_id values on the proposed records.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "metadata-only-snapshot-boundary",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "The PubMed EFetch snapshots are explicitly metadata_only artifacts with content hashes, locators, parsed summaries, and raw_storage.stored set to false.",
+      "why_it_matters": "PubMed EFetch is suitable for source identification and abstract-level provenance, but it should not be treated as reusable full text.",
+      "recommended_action": "No revision needed; use separate open full-text or registry snapshots before retaining or citing full-text material.",
+      "resolution_status": "closed"
+    }
+  ]
+}

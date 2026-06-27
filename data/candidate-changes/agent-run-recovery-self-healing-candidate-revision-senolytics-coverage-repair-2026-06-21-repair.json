@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "agent-run-recovery-self-healing-candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
+  "name": "Agent-run recovery for senolytics coverage repair lifecycle run",
+  "summary": "Recovers the prior self-healing lifecycle-repair agent run from partial to succeeded for its bounded scope after the repair candidate was created and post-run export/verification completed; unresolved senolytics coverage evidence findings remain tracked as downstream candidate work.",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-27T20:31:20Z",
+  "scope": {
+    "question": "Recover the self-healing candidate-revision agent-run record for senolytics coverage repair without promoting any candidate or changing underlying evidence records.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "chronic_inflammation"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "agent-run-recovery-self-healing-candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
+      "path": "data/candidate-changes/agent-run-recovery-self-healing-candidate-revision-senolytics-coverage-repair-2026-06-21-repair.json",
+      "change_type": "create",
+      "rationale": "Tracks this bounded agent-run recovery candidate and records that no promotion or underlying evidence mutation was performed."
+    },
+    {
+      "record_type": "agent_run",
+      "record_id": "self-healing-candidate-revision-senolytics-coverage-repair-2026-06-21",
+      "path": "research/agent-runs/self-healing-candidate-revision-senolytics-coverage-repair-2026-06-21.json",
+      "change_type": "update",
+      "rationale": "Aligns the target agent_run status and blocking issue ledger with the completed bounded lifecycle-repair scope while preserving downstream evidence-review limitations as next action context."
+    }
+  ],
+  "required_review_lanes": []
+}

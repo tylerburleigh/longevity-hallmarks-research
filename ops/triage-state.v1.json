@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "triage_state",
   "id": "triage-state-v1",
-  "generated_at": "2026-06-27T19:45:08.076Z",
+  "generated_at": "2026-06-27T21:07:11.423Z",
   "source_roots": [
     "data",
     "research"
@@ -66,12 +66,12 @@
     }
   ],
   "summary": {
-    "candidate_count": 39,
-    "promotion_ready_count": 0,
-    "needs_review_count": 4,
+    "candidate_count": 49,
+    "promotion_ready_count": 1,
+    "needs_review_count": 2,
     "needs_revision_count": 3,
     "blocked_count": 0,
-    "accepted_count": 10,
+    "accepted_count": 11,
     "applied_count": 0,
     "rejected_count": 0,
     "coverage_gap_count": 4,
@@ -79,10 +79,46 @@
     "extraction_debt_count": 47,
     "stale_snapshot_count": 0,
     "watch_snapshot_count": 0,
-    "partial_or_failed_agent_run_count": 7,
-    "recommended_job_count": 37
+    "partial_or_failed_agent_run_count": 5,
+    "recommended_job_count": 34
   },
   "candidate_readiness": [
+    {
+      "candidate_change_id": "agent-run-recovery-self-healing-candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
+      "path": "data/candidate-changes/agent-run-recovery-self-healing-candidate-revision-senolytics-coverage-repair-2026-06-21-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "required_review_lanes": [],
+      "active_review_ids": [],
+      "active_review_paths": [],
+      "complete_accepting_review_lanes": [],
+      "missing_review_lanes": [],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 2,
+      "next_actions": [
+        "Move the candidate into review by creating the required supervisor review jobs."
+      ]
+    },
+    {
+      "candidate_change_id": "agent-run-recovery-self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair",
+      "path": "data/candidate-changes/agent-run-recovery-self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "required_review_lanes": [],
+      "active_review_ids": [],
+      "active_review_paths": [],
+      "complete_accepting_review_lanes": [],
+      "missing_review_lanes": [],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 2,
+      "next_actions": [
+        "Move the candidate into review by creating the required supervisor review jobs."
+      ]
+    },
     {
       "candidate_change_id": "candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-extraction-fidelity-repair",
       "path": "data/candidate-changes/candidate-review-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-extraction-fidelity-repair.json",
@@ -344,6 +380,66 @@
       ]
     },
     {
+      "candidate_change_id": "candidate-review-coverage-gap-senolytics-exact-effect-extraction-repair-extraction-fidelity-repair",
+      "path": "data/candidate-changes/candidate-review-coverage-gap-senolytics-exact-effect-extraction-repair-extraction-fidelity-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "required_review_lanes": [
+        "extraction_fidelity"
+      ],
+      "active_review_ids": [],
+      "active_review_paths": [],
+      "complete_accepting_review_lanes": [],
+      "missing_review_lanes": [],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 2,
+      "next_actions": [
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
+    {
+      "candidate_change_id": "candidate-review-coverage-gap-senolytics-exact-effect-extraction-repair-synthesis-boundary-repair",
+      "path": "data/candidate-changes/candidate-review-coverage-gap-senolytics-exact-effect-extraction-repair-synthesis-boundary-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "required_review_lanes": [
+        "synthesis_boundary"
+      ],
+      "active_review_ids": [],
+      "active_review_paths": [],
+      "complete_accepting_review_lanes": [],
+      "missing_review_lanes": [],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 2,
+      "next_actions": [
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
+    {
+      "candidate_change_id": "candidate-review-coverage-gap-senolytics-exact-effect-extraction-repair-taxonomy-mapping-repair",
+      "path": "data/candidate-changes/candidate-review-coverage-gap-senolytics-exact-effect-extraction-repair-taxonomy-mapping-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "required_review_lanes": [
+        "taxonomy_mapping"
+      ],
+      "active_review_ids": [],
+      "active_review_paths": [],
+      "complete_accepting_review_lanes": [],
+      "missing_review_lanes": [],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 2,
+      "next_actions": [
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
+    {
       "candidate_change_id": "candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity-repair",
       "path": "data/candidate-changes/candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity-repair.json",
       "lifecycle_status": "submitted",
@@ -426,6 +522,106 @@
     {
       "candidate_change_id": "candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping-repair",
       "path": "data/candidate-changes/candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "required_review_lanes": [
+        "taxonomy_mapping"
+      ],
+      "active_review_ids": [],
+      "active_review_paths": [],
+      "complete_accepting_review_lanes": [],
+      "missing_review_lanes": [],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 2,
+      "next_actions": [
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
+    {
+      "candidate_change_id": "candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-extraction-fidelity-repair",
+      "path": "data/candidate-changes/candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-extraction-fidelity-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "required_review_lanes": [
+        "extraction_fidelity"
+      ],
+      "active_review_ids": [],
+      "active_review_paths": [],
+      "complete_accepting_review_lanes": [],
+      "missing_review_lanes": [],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 2,
+      "next_actions": [
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
+    {
+      "candidate_change_id": "candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-safety-limitations-repair",
+      "path": "data/candidate-changes/candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-safety-limitations-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "required_review_lanes": [
+        "safety_limitations"
+      ],
+      "active_review_ids": [],
+      "active_review_paths": [],
+      "complete_accepting_review_lanes": [],
+      "missing_review_lanes": [],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 2,
+      "next_actions": [
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
+    {
+      "candidate_change_id": "candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-source-fidelity-repair",
+      "path": "data/candidate-changes/candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-source-fidelity-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "required_review_lanes": [
+        "source_fidelity"
+      ],
+      "active_review_ids": [],
+      "active_review_paths": [],
+      "complete_accepting_review_lanes": [],
+      "missing_review_lanes": [],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 2,
+      "next_actions": [
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
+    {
+      "candidate_change_id": "candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-synthesis-boundary-repair",
+      "path": "data/candidate-changes/candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-synthesis-boundary-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "required_review_lanes": [
+        "synthesis_boundary"
+      ],
+      "active_review_ids": [],
+      "active_review_paths": [],
+      "complete_accepting_review_lanes": [],
+      "missing_review_lanes": [],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 2,
+      "next_actions": [
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
+    {
+      "candidate_change_id": "candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-taxonomy-mapping-repair",
+      "path": "data/candidate-changes/candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27-taxonomy-mapping-repair.json",
       "lifecycle_status": "submitted",
       "readiness_status": "submitted",
       "required_review_lanes": [
@@ -559,26 +755,34 @@
       "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-repair",
       "path": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-repair.json",
       "lifecycle_status": "submitted",
-      "readiness_status": "needs_review",
+      "readiness_status": "promotion_ready",
       "required_review_lanes": [
         "extraction_fidelity",
         "synthesis_boundary",
         "taxonomy_mapping"
       ],
-      "active_review_ids": [],
-      "active_review_paths": [],
-      "complete_accepting_review_lanes": [],
-      "missing_review_lanes": [
+      "active_review_ids": [
+        "coverage-gap-senolytics-exact-effect-extraction-repair-extraction-fidelity",
+        "coverage-gap-senolytics-exact-effect-extraction-repair-synthesis-boundary",
+        "coverage-gap-senolytics-exact-effect-extraction-repair-taxonomy-mapping"
+      ],
+      "active_review_paths": [
+        "data/evidence-reviews/coverage-gap-senolytics-exact-effect-extraction-repair-extraction-fidelity.json",
+        "data/evidence-reviews/coverage-gap-senolytics-exact-effect-extraction-repair-synthesis-boundary.json",
+        "data/evidence-reviews/coverage-gap-senolytics-exact-effect-extraction-repair-taxonomy-mapping.json"
+      ],
+      "complete_accepting_review_lanes": [
         "extraction_fidelity",
         "synthesis_boundary",
         "taxonomy_mapping"
       ],
+      "missing_review_lanes": [],
       "revision_review_lanes": [],
       "blocking_review_ids": [],
       "open_major_or_critical_review_ids": [],
       "proposed_record_count": 13,
       "next_actions": [
-        "Run supervisor review lanes: extraction_fidelity, synthesis_boundary, taxonomy_mapping."
+        "Promote candidate with npm run promote:candidate -- coverage-gap-senolytics-exact-effect-extraction-repair --status accepted after coordinator selection."
       ]
     },
     {
@@ -1044,8 +1248,8 @@
     {
       "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
       "path": "data/candidate-changes/senolytics-pubmed-snapshot-provenance-2026-06-27.json",
-      "lifecycle_status": "submitted",
-      "readiness_status": "needs_review",
+      "lifecycle_status": "accepted",
+      "readiness_status": "accepted",
       "required_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
@@ -1053,23 +1257,33 @@
         "synthesis_boundary",
         "taxonomy_mapping"
       ],
-      "active_review_ids": [],
-      "active_review_paths": [],
-      "complete_accepting_review_lanes": [],
-      "missing_review_lanes": [
+      "active_review_ids": [
+        "senolytics-pubmed-snapshot-provenance-2026-06-27-extraction-fidelity",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27-safety-limitations",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27-source-fidelity",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27-synthesis-boundary",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27-taxonomy-mapping"
+      ],
+      "active_review_paths": [
+        "data/evidence-reviews/senolytics-pubmed-snapshot-provenance-2026-06-27-extraction-fidelity.json",
+        "data/evidence-reviews/senolytics-pubmed-snapshot-provenance-2026-06-27-safety-limitations.json",
+        "data/evidence-reviews/senolytics-pubmed-snapshot-provenance-2026-06-27-source-fidelity.json",
+        "data/evidence-reviews/senolytics-pubmed-snapshot-provenance-2026-06-27-synthesis-boundary.json",
+        "data/evidence-reviews/senolytics-pubmed-snapshot-provenance-2026-06-27-taxonomy-mapping.json"
+      ],
+      "complete_accepting_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
         "source_fidelity",
         "synthesis_boundary",
         "taxonomy_mapping"
       ],
+      "missing_review_lanes": [],
       "revision_review_lanes": [],
       "blocking_review_ids": [],
       "open_major_or_critical_review_ids": [],
       "proposed_record_count": 26,
-      "next_actions": [
-        "Run supervisor review lanes: extraction_fidelity, safety_limitations, source_fidelity, synthesis_boundary, taxonomy_mapping."
-      ]
+      "next_actions": []
     },
     {
       "candidate_change_id": "senolytics-scaffold-bootstrap-2026-06-21",
@@ -1104,26 +1318,10 @@
       ]
     }
   ],
-  "promotion_ready_candidate_ids": [],
+  "promotion_ready_candidate_ids": [
+    "coverage-gap-senolytics-exact-effect-extraction-repair"
+  ],
   "missing_review_lane_queue": [
-    {
-      "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-repair",
-      "path": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-repair.json",
-      "review_lane": "extraction_fidelity",
-      "next_action": "Run extraction_fidelity supervisor review for coverage-gap-senolytics-exact-effect-extraction-repair."
-    },
-    {
-      "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-repair",
-      "path": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-repair.json",
-      "review_lane": "synthesis_boundary",
-      "next_action": "Run synthesis_boundary supervisor review for coverage-gap-senolytics-exact-effect-extraction-repair."
-    },
-    {
-      "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-repair",
-      "path": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-repair.json",
-      "review_lane": "taxonomy_mapping",
-      "next_action": "Run taxonomy_mapping supervisor review for coverage-gap-senolytics-exact-effect-extraction-repair."
-    },
     {
       "candidate_change_id": "coverage-gap-senolytics-safety-tables-repair",
       "path": "data/candidate-changes/coverage-gap-senolytics-safety-tables-repair.json",
@@ -1171,36 +1369,6 @@
       "path": "data/candidate-changes/extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair.json",
       "review_lane": "taxonomy_mapping",
       "next_action": "Run taxonomy_mapping supervisor review for extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair."
-    },
-    {
-      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
-      "path": "data/candidate-changes/senolytics-pubmed-snapshot-provenance-2026-06-27.json",
-      "review_lane": "extraction_fidelity",
-      "next_action": "Run extraction_fidelity supervisor review for senolytics-pubmed-snapshot-provenance-2026-06-27."
-    },
-    {
-      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
-      "path": "data/candidate-changes/senolytics-pubmed-snapshot-provenance-2026-06-27.json",
-      "review_lane": "safety_limitations",
-      "next_action": "Run safety_limitations supervisor review for senolytics-pubmed-snapshot-provenance-2026-06-27."
-    },
-    {
-      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
-      "path": "data/candidate-changes/senolytics-pubmed-snapshot-provenance-2026-06-27.json",
-      "review_lane": "source_fidelity",
-      "next_action": "Run source_fidelity supervisor review for senolytics-pubmed-snapshot-provenance-2026-06-27."
-    },
-    {
-      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
-      "path": "data/candidate-changes/senolytics-pubmed-snapshot-provenance-2026-06-27.json",
-      "review_lane": "synthesis_boundary",
-      "next_action": "Run synthesis_boundary supervisor review for senolytics-pubmed-snapshot-provenance-2026-06-27."
-    },
-    {
-      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
-      "path": "data/candidate-changes/senolytics-pubmed-snapshot-provenance-2026-06-27.json",
-      "review_lane": "taxonomy_mapping",
-      "next_action": "Run taxonomy_mapping supervisor review for senolytics-pubmed-snapshot-provenance-2026-06-27."
     },
     {
       "candidate_change_id": "senolytics-scaffold-bootstrap-2026-06-21",
@@ -1894,37 +2062,6 @@
       "mode": "agent_directed"
     },
     {
-      "agent_run_id": "self-healing-candidate-revision-senolytics-coverage-repair-2026-06-21",
-      "path": "research/agent-runs/self-healing-candidate-revision-senolytics-coverage-repair-2026-06-21.json",
-      "status": "partial",
-      "agent_role": "self_healing_agent",
-      "blocking_issues": [
-        "The target senolytics-coverage-repair-2026-06-21 candidate still has open major review findings across extraction_fidelity, safety_limitations, source_fidelity, synthesis_boundary, and taxonomy_mapping; this bounded repair only aligns lifecycle state and creates a repair candidate."
-      ],
-      "next_actions": [
-        "Supervisor-review candidate-revision-senolytics-coverage-repair-2026-06-21-repair across its five required lanes.",
-        "Do not promote senolytics-coverage-repair-2026-06-21 until the underlying review findings are closed by narrower extraction, safety, taxonomy, source-fidelity, and synthesis-boundary repairs."
-      ],
-      "mode": "agent_directed"
-    },
-    {
-      "agent_run_id": "self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21",
-      "path": "research/agent-runs/self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21.json",
-      "status": "partial",
-      "agent_role": "self_healing_agent",
-      "blocking_issues": [
-        "The target senolytics-scaffold-bootstrap-2026-06-21 candidate still has a linked source_fidelity review with verdict needs_revision; this bounded repair only aligns lifecycle state and creates a repair candidate.",
-        "The target candidate still lacks synthesis_boundary and taxonomy_mapping review lanes, so it is not promotion-ready.",
-        "The repair candidate candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair is submitted and still requires its source_fidelity, synthesis_boundary, and taxonomy_mapping supervisor review lanes."
-      ],
-      "next_actions": [
-        "Supervisor-review candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair across its three required lanes.",
-        "Complete or supersede the target candidate's source_fidelity review limitation with a direct source-fidelity review before promotion.",
-        "Run the missing synthesis_boundary and taxonomy_mapping review lanes for senolytics-scaffold-bootstrap-2026-06-21 before any promotion attempt."
-      ],
-      "mode": "agent_directed"
-    },
-    {
       "agent_run_id": "self-healing-coverage-gap-senolytics-exact-effect-extraction",
       "path": "research/agent-runs/self-healing-coverage-gap-senolytics-exact-effect-extraction.json",
       "status": "partial",
@@ -1977,13 +2114,14 @@
   ],
   "recommended_jobs": [
     {
-      "job_id": "candidate-review-coverage-gap-senolytics-exact-effect-extraction-repair",
-      "job_type": "candidate_review",
+      "job_id": "candidate-promotion-coverage-gap-senolytics-exact-effect-extraction-repair",
+      "job_type": "candidate_promotion",
       "priority": "high",
       "source": "candidate_readiness",
       "target_record_type": "candidate_change",
       "target_record_id": "coverage-gap-senolytics-exact-effect-extraction-repair",
-      "rationale": "Required review lanes are missing: extraction_fidelity, synthesis_boundary, taxonomy_mapping.",
+      "rationale": "All required active review lanes are complete, accepting, non-blocking, and free of open major or critical findings.",
+      "suggested_command": "npm run promote:candidate -- coverage-gap-senolytics-exact-effect-extraction-repair --status accepted --dry-run",
       "inputs": [
         "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-repair.json"
       ]
@@ -2010,18 +2148,6 @@
       "rationale": "Required review lanes are missing: extraction_fidelity, safety_limitations, synthesis_boundary, taxonomy_mapping.",
       "inputs": [
         "data/candidate-changes/extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair.json"
-      ]
-    },
-    {
-      "job_id": "candidate-review-senolytics-pubmed-snapshot-provenance-2026-06-27",
-      "job_type": "candidate_review",
-      "priority": "high",
-      "source": "candidate_readiness",
-      "target_record_type": "candidate_change",
-      "target_record_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
-      "rationale": "Required review lanes are missing: extraction_fidelity, safety_limitations, source_fidelity, synthesis_boundary, taxonomy_mapping.",
-      "inputs": [
-        "data/candidate-changes/senolytics-pubmed-snapshot-provenance-2026-06-27.json"
       ]
     },
     {
@@ -2273,30 +2399,6 @@
       "rationale": "The target senolytics-bone-rct-extraction-refresh-2026-06-21 candidate still has open major review findings in extraction_fidelity and safety_limitations; this bounded repair only aligns lifecycle state and creates a repair candidate.",
       "inputs": [
         "research/agent-runs/self-healing-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21.json"
-      ]
-    },
-    {
-      "job_id": "agent-run-recovery-self-healing-candidate-revision-senolytics-coverage-repair-2026-06-21",
-      "job_type": "agent_run_recovery",
-      "priority": "medium",
-      "source": "agent_run_status",
-      "target_record_type": "agent_run",
-      "target_record_id": "self-healing-candidate-revision-senolytics-coverage-repair-2026-06-21",
-      "rationale": "The target senolytics-coverage-repair-2026-06-21 candidate still has open major review findings across extraction_fidelity, safety_limitations, source_fidelity, synthesis_boundary, and taxonomy_mapping; this bounded repair only aligns lifecycle state and creates a repair candidate.",
-      "inputs": [
-        "research/agent-runs/self-healing-candidate-revision-senolytics-coverage-repair-2026-06-21.json"
-      ]
-    },
-    {
-      "job_id": "agent-run-recovery-self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21",
-      "job_type": "agent_run_recovery",
-      "priority": "medium",
-      "source": "agent_run_status",
-      "target_record_type": "agent_run",
-      "target_record_id": "self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21",
-      "rationale": "The target senolytics-scaffold-bootstrap-2026-06-21 candidate still has a linked source_fidelity review with verdict needs_revision; this bounded repair only aligns lifecycle state and creates a repair candidate. The target candidate still lacks synthesis_boundary and taxonomy_mapping review lanes, so it is not promotion-ready. The repair candidate candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair is submitted and still requires its source_fidelity, synthesis_boundary, and taxonomy_mapping supervisor review lanes.",
-      "inputs": [
-        "research/agent-runs/self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21.json"
       ]
     },
     {

@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "senolytics-pubmed-snapshot-provenance-2026-06-27-taxonomy-mapping",
+  "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
+  "review_lane": "taxonomy_mapping",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex-cli-supervisor-agent",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Taxonomy mapping lane is complete for the PubMed source-snapshot provenance repair. The proposed records add PubMed EFetch snapshots and source_snapshot_id provenance while preserving the cellular_senescence/senolytics/D+Q scope, source-study-outcome-result-finding links, and endpoint categories for DKD, IPF, and AD-risk records.",
+  "findings": [
+    {
+      "finding_id": "taxonomy-scope-preserved",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The candidate scope is cellular_senescence and senolytics, and the proposed study, outcome, result, and finding records remain mapped to dasatinib-quercetin where intervention taxonomy is expected.",
+      "why_it_matters": "The provenance repair should not introduce a different hallmark, track, or intervention taxonomy while attaching PubMed snapshot provenance.",
+      "recommended_action": "No change needed; keep the existing cellular_senescence, senolytics, and dasatinib-quercetin taxonomy assignments.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "taxonomy-endpoint-boundaries-consistent",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "Endpoint categorization remains consistent across the three sources: DKD records are biomarker-focused, IPF records are safety/feasibility or other trial-conduct focused, and the AD-risk records are functional with biomarker context.",
+      "why_it_matters": "Endpoint categories determine whether evidence is routed as biomarker, functional, safety, or trial-conduct evidence rather than being overgeneralized.",
+      "recommended_action": "No change needed; preserve the current endpoint categories and source-study-outcome-result-finding linkages.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "taxonomy-source-snapshot-links-non-disruptive",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The three new source_snapshot records map one-to-one to PMIDs 31542391, 36857968, and 40010154, and the provenance additions do not add or remove taxonomy-bearing fields.",
+      "why_it_matters": "Snapshot provenance should improve source traceability without changing how evidence is classified in the longevity taxonomy.",
+      "recommended_action": "No change needed; use the PubMed EFetch snapshots as provenance anchors only.",
+      "resolution_status": "closed"
+    }
+  ]
+}

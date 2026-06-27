@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "agent-run-recovery-self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair",
+  "name": "Agent-run recovery for senolytics scaffold self-healing repair",
+  "summary": "Recovers the target self-healing agent-run record from partial status after the senolytics scaffold repair candidate completed review and was accepted, while preserving that the original scaffold candidate itself remains in needs_revision and was not promoted.",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-27T20:32:37Z",
+  "scope": {
+    "question": "Recover the self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21 agent-run state after its repair candidate completed review and promotion handling.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "agent-run-recovery-self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair",
+      "path": "data/candidate-changes/agent-run-recovery-self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair.json",
+      "change_type": "create",
+      "rationale": "Tracks this bounded agent-run recovery repair without promoting any candidate."
+    },
+    {
+      "record_type": "agent_run",
+      "record_id": "self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21",
+      "path": "research/agent-runs/self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21.json",
+      "change_type": "update",
+      "rationale": "Aligns the target agent-run status and blockers with the completed repair-candidate review state while preserving remaining scaffold-candidate limitations as separate next-action context."
+    }
+  ],
+  "required_review_lanes": []
+}

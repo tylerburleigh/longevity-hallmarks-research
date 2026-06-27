@@ -191,10 +191,12 @@
           "content": "{\n  \"schema_version\": \"1.0.0\",\n  \"record_type\": \"reconciliation_decision\",\n  \"id\": \"bad-fixture-decision\",\n  \"created_at\": \"2026-06-22T22:00:00Z\",\n  \"reconciled_by_agent\": \"fixture\",\n  \"reconciliation_report_id\": \"parallel-reconciliation-v1\",\n  \"issue_ids\": [\n    \"missing-current-issue\"\n  ],\n  \"issue_categories\": [\n    \"overlapping_candidate_proposal\"\n  ],\n  \"candidate_change_ids\": [\n    \"senolytics-bone-rct-extraction-refresh-2026-06-21\"\n  ],\n  \"resolution_status\": \"resolved\",\n  \"resolution_summary\": \"Fixture decision that must fail because the issue ID is not present in the current reconciliation report.\"\n}\n"
         },
         {
-          "type": "set_json",
-          "path": "ops/reconciliation/parallel-reconciliation.v1.json",
-          "pointer": "/summary/reconciliation_decision_count",
-          "value": 6
+          "type": "run_command",
+          "command": [
+            "npm",
+            "run",
+            "reconcile:parallel"
+          ]
         }
       ],
       "expected_failure_substrings": [

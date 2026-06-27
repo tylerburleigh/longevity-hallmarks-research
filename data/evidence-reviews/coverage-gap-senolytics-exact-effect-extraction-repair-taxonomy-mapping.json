@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "coverage-gap-senolytics-exact-effect-extraction-repair-taxonomy-mapping",
+  "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-repair",
+  "review_lane": "taxonomy_mapping",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-repair-taxonomy-mapping",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "The candidate's proposed DKD, AD-risk, IPF, and coverage-assessment updates map consistently to the senolytics track, D+Q intervention class, human evidence tiers, endpoint categories, and cellular-senescence/chronic-inflammation hallmark scope. Taxonomy limitations are explicitly carried as maturity and coverage gaps rather than being collapsed into broader efficacy claims.",
+  "findings": [
+    {
+      "finding_id": "taxonomy-track-intervention-consistency",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The proposed study, outcome, result, finding, and coverage-assessment records consistently place dasatinib plus quercetin under intervention_id dasatinib-quercetin and track_id senolytics.",
+      "why_it_matters": "Consistent intervention and track mapping keeps the repair within the senolytics evidence track instead of creating parallel D+Q or indication-specific buckets.",
+      "recommended_action": "Retain the current intervention and track mappings.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "taxonomy-hallmark-endpoint-boundary",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The DKD biomarker records, AD-risk cognition/mobility records, and IPF dosing-completion records all retain cellular_senescence and chronic_inflammation hallmark scope while separating biomarker, functional, safety, and other endpoint categories.",
+      "why_it_matters": "This separation prevents biomarker or feasibility findings from being treated as generalized clinical efficacy while preserving the mechanistic senescence/SASP rationale.",
+      "recommended_action": "Retain the endpoint-category and hallmark mappings as written.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "taxonomy-maturity-gap-boundary",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The coverage assessment and proposed records label DKD, IPF, and AD-risk updates as abstract_extracted or triage_summary where appropriate and keep full-text, source-snapshot, and safety-table work in known gaps.",
+      "why_it_matters": "Encoding maturity and remaining gaps separately from track or hallmark taxonomy reduces the risk of overstating the evidence tier or review readiness.",
+      "recommended_action": "Keep the maturity_status values and coverage gap notes attached until source-snapshot-backed extraction and table reconciliation are complete.",
+      "resolution_status": "closed"
+    }
+  ]
+}

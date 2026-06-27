@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "parallel_reconciliation",
   "id": "parallel-reconciliation-v1",
-  "generated_at": "2026-06-23T19:45:31.909Z",
+  "generated_at": "2026-06-27T16:06:05.185Z",
   "source_roots": [
     "data",
     "research",
@@ -48,17 +48,17 @@
     "duplicate_source_group_count": 0,
     "study_count": 9,
     "duplicate_study_group_count": 0,
-    "candidate_count": 31,
-    "active_candidate_count": 22,
+    "candidate_count": 35,
+    "active_candidate_count": 25,
     "overlapping_candidate_group_count": 7,
     "source_rights_count": 2,
     "source_rights_conflict_count": 0,
-    "agent_run_count": 35,
-    "parallel_batch_count": 4,
-    "reconciliation_batch_count": 4,
-    "parallel_batch_run_count": 16,
+    "agent_run_count": 39,
+    "parallel_batch_count": 3,
+    "reconciliation_batch_count": 3,
+    "parallel_batch_run_count": 18,
     "pending_parallel_worker_count": 0,
-    "reconciliation_decision_count": 4,
+    "reconciliation_decision_count": 5,
     "incomplete_ledger_count": 2,
     "open_finding_count": 9,
     "blocking_finding_count": 9,
@@ -66,29 +66,7 @@
   },
   "parallel_batches": [
     {
-      "batch_id": "parallel-batch-001-candidate-revision",
-      "parallel_group": "candidate-revision",
-      "execution_class": "independent",
-      "reconciliation_required": true,
-      "job_ids": [
-        "self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21"
-      ],
-      "overlapping_execution_keys": [],
-      "status": "reconciliation_open",
-      "finding_ids": [
-        "missing-candidate-agent-run-bc8e426686e2",
-        "missing-candidate-agent-run-de30675addbc",
-        "overlapping-candidate-0bae350639c4",
-        "overlapping-candidate-14fca4c24b17",
-        "overlapping-candidate-3a06e6340cfa",
-        "overlapping-candidate-8be7ee3308f9",
-        "overlapping-candidate-b3857906563f",
-        "overlapping-candidate-b443e4e5da78",
-        "overlapping-candidate-b633096216bd"
-      ]
-    },
-    {
-      "batch_id": "parallel-batch-002-extraction-refresh",
+      "batch_id": "parallel-batch-001-extraction-refresh",
       "parallel_group": "extraction-refresh",
       "execution_class": "reconciliation_required",
       "reconciliation_required": true,
@@ -116,7 +94,7 @@
       ]
     },
     {
-      "batch_id": "parallel-batch-003-extraction-refresh",
+      "batch_id": "parallel-batch-002-extraction-refresh",
       "parallel_group": "extraction-refresh",
       "execution_class": "independent",
       "reconciliation_required": true,
@@ -141,7 +119,7 @@
       ]
     },
     {
-      "batch_id": "parallel-batch-004-extraction-refresh",
+      "batch_id": "parallel-batch-003-extraction-refresh",
       "parallel_group": "extraction-refresh",
       "execution_class": "independent",
       "reconciliation_required": true,
@@ -220,7 +198,7 @@
         },
         {
           "candidate_change_id": "senolytics-scaffold-bootstrap-2026-06-21",
-          "lifecycle_status": "submitted",
+          "lifecycle_status": "needs_revision",
           "record_type": "finding",
           "record_id": "dq-senolytic-drug-discovery-preclinical",
           "path": "data/findings/dq-senolytic-drug-discovery-preclinical.json",
@@ -310,7 +288,7 @@
         },
         {
           "candidate_change_id": "senolytics-scaffold-bootstrap-2026-06-21",
-          "lifecycle_status": "submitted",
+          "lifecycle_status": "needs_revision",
           "record_type": "source",
           "record_id": "pmid-25754370",
           "path": "data/sources/pmid-25754370.json",
@@ -370,7 +348,7 @@
         },
         {
           "candidate_change_id": "senolytics-scaffold-bootstrap-2026-06-21",
-          "lifecycle_status": "submitted",
+          "lifecycle_status": "needs_revision",
           "record_type": "study",
           "record_id": "zhu-senolytic-drug-discovery",
           "path": "data/studies/zhu-senolytic-drug-discovery.json",

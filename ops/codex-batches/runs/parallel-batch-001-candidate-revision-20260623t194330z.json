@@ -37,7 +37,8 @@
       "completed_at": "2026-06-23T19:43:33.643Z",
       "exit_code": 1,
       "output_path": "research/agent-runs/self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21.json",
-      "worker_log_path": "research/agent-runs/logs/self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21.jsonl"
+      "worker_log_path": "research/agent-runs/logs/self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21.jsonl",
+      "archive_path": "ops/codex-jobs/archive/self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21.json"
     }
   ],
   "summary": {
@@ -46,7 +47,7 @@
     "succeeded_count": 0,
     "pending_reconciliation_count": 0,
     "failed_count": 1,
-    "archived_count": 0
+    "archived_count": 1
   },
   "next_actions": [
     "Inspect batch log events and failed worker logs before rerunning failed jobs."

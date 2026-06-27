@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-taxonomy-mapping-repair",
+  "name": "Taxonomy mapping review repair for senolytics scaffold revision",
+  "summary": "Creates the missing taxonomy-mapping supervisor review for the senolytics scaffold revision-state repair candidate without promoting or mutating the reviewed candidate.",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-27T15:42:18Z",
+  "scope": {
+    "question": "Repair the missing taxonomy-mapping review lane for candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-taxonomy-mapping-repair",
+      "path": "data/candidate-changes/candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-taxonomy-mapping-repair.json",
+      "change_type": "create",
+      "rationale": "Tracks this bounded supervisor-lane repair candidate and its generated review record."
+    },
+    {
+      "record_type": "evidence_review",
+      "record_id": "candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-taxonomy-mapping",
+      "path": "data/evidence-reviews/candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-taxonomy-mapping.json",
+      "change_type": "create",
+      "rationale": "Adds the missing taxonomy-mapping review lane for the target revision-state repair candidate."
+    }
+  ],
+  "required_review_lanes": [
+    "taxonomy_mapping"
+  ]
+}

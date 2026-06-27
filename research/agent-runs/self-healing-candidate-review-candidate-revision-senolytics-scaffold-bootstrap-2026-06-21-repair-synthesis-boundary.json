@@ -1,0 +1,163 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "self-healing-candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary",
+  "agent_role": "supervisor_agent",
+  "agent_id": "codex-cli",
+  "mode": "agent_directed",
+  "started_at": "2026-06-27T15:41:09Z",
+  "completed_at": "2026-06-27T15:43:36Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "candidate_review: Required review lane is missing: synthesis_boundary.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "codex_exec",
+    "isolation": "git_worktree",
+    "workspace_path": "/tmp/lhr-codex-worktrees/self-healing-candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary-20260627T154109z",
+    "prompt_file": "research/agent-runs/prompts/self-healing-candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary.md",
+    "prompt_template_file": "docs/prompts/codex-agents/supervisor-review.md",
+    "job_file": "ops/codex-jobs/archive/self-healing-candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary.json",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "output_path": "research/agent-runs/self-healing-candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary.json",
+    "jsonl_log_path": "research/agent-runs/logs/self-healing-candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary.jsonl",
+    "sandbox": "workspace-write",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "user_request",
+      "reference": "coordinator:self-healing-candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary",
+      "summary": "Coordinator requested bounded supervisor review for the synthesis_boundary lane only."
+    },
+    {
+      "input_type": "other",
+      "reference": "ops/supervisor-review-context-packs/self-healing-candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary.json",
+      "summary": "Context pack defining the target candidate, required lane, expected outputs, and bounded inspection contract."
+    },
+    {
+      "input_type": "candidate_change",
+      "reference": "data/candidate-changes/candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair.json",
+      "summary": "Target candidate change reviewed for synthesis_boundary."
+    },
+    {
+      "input_type": "candidate_change",
+      "reference": "data/candidate-changes/senolytics-scaffold-bootstrap-2026-06-21.json",
+      "summary": "Proposed updated candidate record named by the target candidate ledger."
+    },
+    {
+      "input_type": "record",
+      "reference": "schemas/evidence-review.schema.json",
+      "summary": "Schema used for the evidence_review artifact."
+    },
+    {
+      "input_type": "record",
+      "reference": "schemas/candidate-change.schema.json",
+      "summary": "Schema used for the repair candidate ledger."
+    }
+  ],
+  "outputs": {
+    "summary": "Created the bounded repair candidate and the missing synthesis_boundary evidence_review. The lane verdict is accept because the target repair keeps the scaffold candidate in needs_revision, names unresolved review coverage, and does not promote or add new synthesized evidence claims. validate:records, audit:references, audit:agent-schemas, and audit:agentic-process passed; verify:knowledge-base stopped at stale exports/latest/audit-manifest.json and is deferred to coordinator post-run export/verify.",
+    "candidate_change_id": "candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary-repair",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary-repair",
+        "path": "data/candidate-changes/candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary-repair.json",
+        "change_type": "create",
+        "rationale": "Tracks this bounded supervisor review-lane repair candidate and its generated review artifact."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary",
+        "path": "data/evidence-reviews/candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary.json",
+        "change_type": "create",
+        "rationale": "Adds the missing synthesis_boundary supervisor review for the target candidate."
+      }
+    ],
+    "generated_files": [
+      "data/candidate-changes/candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary-repair.json",
+      "data/evidence-reviews/candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary.json"
+    ],
+    "export_paths": []
+  },
+  "quality_checks": [
+    {
+      "check_name": "supervisor_review_lanes",
+      "status": "passed",
+      "summary": "Completed the required synthesis_boundary lane with verdict accept, blocking false, and no open major or critical findings."
+    },
+    {
+      "check_name": "candidate_agent_run_ledger_match",
+      "status": "passed",
+      "summary": "Final outputs.proposed_records exactly match the repair candidate ledger."
+    },
+    {
+      "check_name": "validate_records",
+      "status": "passed",
+      "summary": "npm run validate:records validated 303 JSON files."
+    },
+    {
+      "check_name": "audit_references",
+      "status": "passed",
+      "summary": "npm run audit:references passed for 214 record files."
+    },
+    {
+      "check_name": "audit_agent_schemas",
+      "status": "passed",
+      "summary": "npm run audit:agent-schemas passed."
+    },
+    {
+      "check_name": "audit_agentic_process",
+      "status": "passed",
+      "summary": "npm run audit:agentic-process passed for 389 files."
+    },
+    {
+      "check_name": "worker_output_contract",
+      "status": "passed",
+      "summary": "Worker emitted exactly one final JSON agent_run message, matched output_path, and avoided ad hoc schema-validation snippets."
+    },
+    {
+      "check_name": "post_triage_state_export",
+      "status": "passed",
+      "summary": "post_triage_state_export exited 0: > longevity-hallmarks-research@0.1.0 export:triage-state > node scripts/export-triage-state.mjs Wrote ops/triage-state.v1.json."
+    },
+    {
+      "check_name": "post_release_readiness_export",
+      "status": "passed",
+      "summary": "post_release_readiness_export exited 0: > longevity-hallmarks-research@0.1.0 export:release-readiness > node scripts/export-release-readiness.mjs Wrote ops/release-readiness.v1.json."
+    },
+    {
+      "check_name": "post_reconciliation_export",
+      "status": "passed",
+      "summary": "post_reconciliation_export exited 0: > longevity-hallmarks-research@0.1.0 reconcile:parallel > node scripts/reconcile-parallel-outputs.mjs Wrote ops/reconciliation/parallel-reconciliation.v1.json."
+    },
+    {
+      "check_name": "post_orchestration_metrics_export",
+      "status": "passed",
+      "summary": "post_orchestration_metrics_export exited 0: > longevity-hallmarks-research@0.1.0 metrics:orchestration > node scripts/export-orchestration-metrics.mjs Wrote ops/codex-batches/orchestration-metrics.v1.json."
+    },
+    {
+      "check_name": "post_export",
+      "status": "passed",
+      "summary": "post_export exited 0: > longevity-hallmarks-research@0.1.0 export:latest > node scripts/export-latest.mjs Wrote 16 export file(s) to exports/latest."
+    },
+    {
+      "check_name": "post_verify",
+      "status": "passed",
+      "summary": "post_verify exited 0: > longevity-hallmarks-research@0.1.0 audit:orchestration-smoke-contract > node scripts/audit-orchestration-smoke-contract.mjs Orchestration smoke contract audit passed for orchestration-smoke-budgeted-codex-worktree-2026-06-23. > longevity-hallmarks-research@0.1.0 audit:agentic-process > node scripts/audit-agentic-process.mjs Agentic process audit passed for 390 file(s)."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": [
+    "Coordinator post-run export_latest and verify_knowledge_base should refresh exports/latest/audit-manifest.json, which was stale before the wrapper post-run phase."
+  ]
+}

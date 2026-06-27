@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary",
+  "candidate_change_id": "candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair",
+  "review_lane": "synthesis_boundary",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "The target repair candidate stays within synthesis-boundary limits: it records that the scaffold candidate remains needs_revision because source-fidelity, synthesis-boundary, and taxonomy-mapping review coverage is incomplete, and it does not promote the candidate or introduce new synthesized evidence claims.",
+  "findings": [
+    {
+      "finding_id": "synthesis-boundary-respected",
+      "severity": "note",
+      "category": "interpretation_overreach",
+      "claim_or_issue": "The target candidate proposes only a repair ledger and an update that keeps the scaffold candidate in needs_revision while naming unresolved review lanes.",
+      "why_it_matters": "A synthesis-boundary review must ensure the repair does not convert incomplete review coverage into acceptance or stronger evidence claims.",
+      "recommended_action": "Accept this synthesis_boundary lane for the target repair candidate; remaining source_fidelity and taxonomy_mapping lane work should be handled by their own reviews.",
+      "resolution_status": "closed"
+    }
+  ]
+}

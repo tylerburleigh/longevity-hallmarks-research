@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-source-fidelity-repair",
+  "name": "Source-fidelity review repair for senolytics scaffold revision candidate",
+  "summary": "Adds the missing source_fidelity supervisor review for the senolytics scaffold revision-state repair candidate without promoting or applying the target candidate.",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-27T15:42:42Z",
+  "scope": {
+    "question": "Complete the missing source_fidelity review lane for candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-source-fidelity-repair",
+      "path": "data/candidate-changes/candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-source-fidelity-repair.json",
+      "change_type": "create",
+      "rationale": "Tracks this bounded repair candidate for the missing source_fidelity review lane."
+    },
+    {
+      "record_type": "evidence_review",
+      "record_id": "candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-source-fidelity",
+      "path": "data/evidence-reviews/candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-source-fidelity.json",
+      "change_type": "create",
+      "rationale": "Records the completed source_fidelity supervisor review for the target repair candidate."
+    }
+  ],
+  "required_review_lanes": [
+    "source_fidelity"
+  ]
+}

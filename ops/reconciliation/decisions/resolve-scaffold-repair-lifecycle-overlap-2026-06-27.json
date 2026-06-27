@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "reconciliation_decision",
+  "id": "resolve-scaffold-repair-lifecycle-overlap-2026-06-27",
+  "created_at": "2026-06-27T15:50:00Z",
+  "reconciled_by_agent": "codex-coordinator",
+  "reconciliation_report_id": "parallel-reconciliation-v1",
+  "issue_ids": [
+    "overlapping-candidate-a467518ae684"
+  ],
+  "issue_categories": [
+    "overlapping_candidate_proposal"
+  ],
+  "candidate_change_ids": [
+    "candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair"
+  ],
+  "compatible_candidate_change_ids": [
+    "candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair"
+  ],
+  "resolution_status": "resolved",
+  "resolution_summary": "The overlap is compatible for the lifecycle-repair candidate only. The repair candidate updates the original senolytics scaffold bootstrap candidate so it remains in needs_revision and does not promote, accept, or release the scaffold evidence slice. Its three accepting supervisor reviews are bounded to this lifecycle repair and preserve the original scaffold candidate's source-fidelity limitation plus missing synthesis-boundary and taxonomy-mapping review debt.",
+  "evidence": [
+    {
+      "path": "data/candidate-changes/candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair.json",
+      "summary": "The repair candidate proposes only a repair candidate record and an update to senolytics-scaffold-bootstrap-2026-06-21 that records the target remains in needs_revision."
+    },
+    {
+      "path": "data/candidate-changes/senolytics-scaffold-bootstrap-2026-06-21.json",
+      "summary": "The original scaffold candidate is in needs_revision and states that source-fidelity review is limited while synthesis-boundary and taxonomy-mapping review lanes remain missing."
+    },
+    {
+      "path": "data/evidence-reviews/candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-source-fidelity.json",
+      "summary": "The source-fidelity review accepts only the lifecycle repair and does not clear the original scaffold candidate's direct source-review limitation."
+    },
+    {
+      "path": "data/evidence-reviews/candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary.json",
+      "summary": "The synthesis-boundary review accepts the lifecycle repair because it keeps the scaffold candidate in needs_revision and does not introduce synthesized evidence claims."
+    },
+    {
+      "path": "data/evidence-reviews/candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-taxonomy-mapping.json",
+      "summary": "The taxonomy-mapping review accepts the lifecycle repair for the cellular_senescence and senolytics scope without promoting the original scaffold candidate."
+    }
+  ]
+}

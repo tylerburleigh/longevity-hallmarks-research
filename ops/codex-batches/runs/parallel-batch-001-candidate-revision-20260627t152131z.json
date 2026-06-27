@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "parallel_batch_run",
+  "id": "parallel-batch-001-candidate-revision-20260627t152131z",
+  "batch_plan_id": "parallel-batch-plan-v1",
+  "batch_plan_path": "ops/codex-batches/parallel-batch-plan.v1.json",
+  "batch_id": "parallel-batch-001-candidate-revision",
+  "batch_sequence": 1,
+  "parallel_group": "candidate-revision",
+  "execution_class": "independent",
+  "reconciliation_required": true,
+  "started_at": "2026-06-27T15:21:31.343Z",
+  "status": "succeeded",
+  "log_path": "ops/codex-batches/logs/parallel-batch-001-candidate-revision-20260627t152131z.jsonl",
+  "worker_states": [
+    {
+      "job_id": "self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21",
+      "job_path": "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21.json",
+      "command": [
+        "npm",
+        "run",
+        "agent:codex:worktree",
+        "--",
+        "--job-file",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21.json",
+        "--execute",
+        "--allow-dirty"
+      ],
+      "status": "succeeded",
+      "started_at": "2026-06-27T15:21:31.345Z",
+      "worktree_path": "/tmp/lhr-codex-worktrees/self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-20260627T152131z",
+      "completed_at": "2026-06-27T15:27:16.036Z",
+      "exit_code": 0,
+      "output_path": "research/agent-runs/self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21.json",
+      "worker_log_path": "research/agent-runs/logs/self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21.jsonl",
+      "archive_path": "ops/codex-jobs/archive/self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21.json"
+    }
+  ],
+  "summary": {
+    "planned_count": 0,
+    "running_count": 0,
+    "succeeded_count": 1,
+    "pending_reconciliation_count": 0,
+    "failed_count": 0,
+    "archived_count": 1
+  },
+  "next_actions": [
+    "Run npm run verify:knowledge-base after reviewing resulting candidate changes."
+  ],
+  "completed_at": "2026-06-27T15:27:16.037Z"
+}

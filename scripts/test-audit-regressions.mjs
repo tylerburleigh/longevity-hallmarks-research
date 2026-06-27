@@ -250,8 +250,26 @@ async function applyOperation(root, operation) {
   throw new Error(`Unsupported operation type: ${operation.type}`);
 }
 
-function trackedFiles() {
-  const result = spawnSync("git", ["ls-files", "-z"], {
+const copyRoots = [
+  ".gitignore",
+  "artifacts",
+  "codex-skills",
+  "data",
+  "docs",
+  "exports",
+  "ops",
+  "package-lock.json",
+  "package.json",
+  "plan.md",
+  "research",
+  "schemas",
+  "scripts",
+  "taxonomies",
+  "tests"
+];
+
+function workspaceFiles() {
+  const result = spawnSync("git", ["ls-files", "-z", "--cached", "--others", "--exclude-standard", "--", ...copyRoots], {
     cwd: workspaceRoot,
     encoding: "buffer"
   });
@@ -271,8 +289,11 @@ async function copyWorkspace(destinationRoot) {
   const repoRoot = path.join(destinationRoot, "repo");
   await fs.mkdir(repoRoot, { recursive: true });
 
-  for (const relativePath of trackedFiles()) {
+  for (const relativePath of workspaceFiles()) {
     const sourcePath = path.join(workspaceRoot, relativePath);
+    if (!(await exists(sourcePath))) {
+      continue;
+    }
     const targetPath = path.join(repoRoot, relativePath);
     await fs.mkdir(path.dirname(targetPath), { recursive: true });
     await fs.copyFile(sourcePath, targetPath);

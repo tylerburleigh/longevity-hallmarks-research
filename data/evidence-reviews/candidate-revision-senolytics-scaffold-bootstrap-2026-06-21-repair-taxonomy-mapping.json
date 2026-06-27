@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-taxonomy-mapping",
+  "candidate_change_id": "candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair",
+  "review_lane": "taxonomy_mapping",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-taxonomy-mapping",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "The target repair candidate keeps its scope on cellular_senescence and senolytics, and its proposed candidate-change update preserves the same hallmark and track mapping while only recording the unresolved review-lane state. No taxonomy drift or intervention-level overreach was found.",
+  "findings": [
+    {
+      "finding_id": "taxonomy-scope-alignment",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The target candidate and its proposed update are both scoped to hallmark cellular_senescence and track senolytics.",
+      "why_it_matters": "The repair concerns a senolytics scaffold candidate and does not introduce a broader disease, intervention, or evidence domain outside the declared cellular-senescence senolytics track.",
+      "recommended_action": "No taxonomy correction is required for this lane; keep the candidate in needs_revision until the other required review lanes are complete.",
+      "resolution_status": "closed"
+    }
+  ]
+}

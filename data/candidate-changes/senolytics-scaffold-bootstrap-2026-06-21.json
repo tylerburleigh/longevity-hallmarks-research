@@ -3,8 +3,8 @@
   "record_type": "candidate_change",
   "id": "senolytics-scaffold-bootstrap-2026-06-21",
   "name": "Senolytics Scaffold Bootstrap",
-  "summary": "Initial candidate change representing one source-backed senolytics evidence slice in the new repository.",
-  "lifecycle_status": "submitted",
+  "summary": "Initial candidate change representing one source-backed senolytics evidence slice in the new repository. This scaffold candidate remains in needs_revision because the linked source-fidelity review is explicitly limited to scaffold structure and the synthesis-boundary and taxonomy-mapping review lanes are still missing.",
+  "lifecycle_status": "needs_revision",
   "submitted_at": "2026-06-21T00:00:00Z",
   "scope": {
     "question": "Can the new evidence-synthesis scaffold validate a minimal senolytics vertical slice?",

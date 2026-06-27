@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "release_readiness",
   "id": "release-readiness-v1",
-  "generated_at": "2026-06-23T19:41:13.848Z",
+  "generated_at": "2026-06-27T16:06:04.829Z",
   "source_roots": [
     "data",
     "research"
@@ -17,18 +17,19 @@
     "canonical_source_of_truth": "data/ and research/ JSON records"
   },
   "summary": {
-    "candidate_count": 31,
-    "not_ready_candidate_count": 22,
+    "candidate_count": 35,
+    "not_ready_candidate_count": 25,
     "promotion_ready_candidate_count": 0,
-    "release_ready_candidate_count": 7,
+    "release_ready_candidate_count": 8,
     "partial_release_ready_candidate_count": 2,
     "release_blocked_candidate_count": 2,
-    "accepted_or_applied_candidate_count": 9,
-    "accepted_record_count": 53,
+    "accepted_or_applied_candidate_count": 10,
+    "accepted_record_count": 55,
     "blocked_accepted_record_count": 2
   },
   "promotion_ready_candidate_ids": [],
   "release_ready_candidate_ids": [
+    "candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair",
     "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
     "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
     "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
@@ -233,6 +234,63 @@
       ]
     },
     {
+      "candidate_change_id": "candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-source-fidelity-repair",
+      "path": "data/candidate-changes/candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-source-fidelity-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "release_status": "not_ready",
+      "required_review_lanes": [
+        "source_fidelity"
+      ],
+      "active_review_ids": [],
+      "proposed_record_count": 2,
+      "release_ready_record_count": 0,
+      "blocked_record_count": 0,
+      "release_ready_record_ids": [],
+      "blocked_record_ids": [],
+      "next_actions": [
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
+    {
+      "candidate_change_id": "candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary-repair",
+      "path": "data/candidate-changes/candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "release_status": "not_ready",
+      "required_review_lanes": [
+        "synthesis_boundary"
+      ],
+      "active_review_ids": [],
+      "proposed_record_count": 2,
+      "release_ready_record_count": 0,
+      "blocked_record_count": 0,
+      "release_ready_record_ids": [],
+      "blocked_record_ids": [],
+      "next_actions": [
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
+    {
+      "candidate_change_id": "candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-taxonomy-mapping-repair",
+      "path": "data/candidate-changes/candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-taxonomy-mapping-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "release_status": "not_ready",
+      "required_review_lanes": [
+        "taxonomy_mapping"
+      ],
+      "active_review_ids": [],
+      "proposed_record_count": 2,
+      "release_ready_record_count": 0,
+      "blocked_record_count": 0,
+      "release_ready_record_ids": [],
+      "blocked_record_ids": [],
+      "next_actions": [
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
+    {
       "candidate_change_id": "candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity-repair",
       "path": "data/candidate-changes/candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity-repair.json",
       "lifecycle_status": "submitted",
@@ -393,6 +451,34 @@
       "next_actions": [
         "Included records without blockers are eligible for accepted-record export.",
         "Resolve blocked records before treating the whole candidate as fully released: candidate_change:senolytics-coverage-repair-2026-06-21."
+      ]
+    },
+    {
+      "candidate_change_id": "candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair",
+      "path": "data/candidate-changes/candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair.json",
+      "lifecycle_status": "accepted",
+      "readiness_status": "accepted",
+      "release_status": "release_ready",
+      "required_review_lanes": [
+        "source_fidelity",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "active_review_ids": [
+        "candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-source-fidelity",
+        "candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary",
+        "candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-taxonomy-mapping"
+      ],
+      "proposed_record_count": 2,
+      "release_ready_record_count": 2,
+      "blocked_record_count": 0,
+      "release_ready_record_ids": [
+        "candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair",
+        "senolytics-scaffold-bootstrap-2026-06-21"
+      ],
+      "blocked_record_ids": [],
+      "next_actions": [
+        "Included in accepted-record export."
       ]
     },
     {
@@ -786,7 +872,7 @@
     {
       "candidate_change_id": "senolytics-scaffold-bootstrap-2026-06-21",
       "path": "data/candidate-changes/senolytics-scaffold-bootstrap-2026-06-21.json",
-      "lifecycle_status": "submitted",
+      "lifecycle_status": "needs_revision",
       "readiness_status": "needs_revision",
       "release_status": "not_ready",
       "required_review_lanes": [
@@ -831,6 +917,21 @@
       "release_status": "accepted",
       "candidate_change_ids": [
         "candidate-revision-senolytics-coverage-repair-2026-06-21-repair"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
+    },
+    {
+      "record_type": "candidate_change",
+      "record_id": "candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair",
+      "path": "data/candidate-changes/candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair"
       ],
       "candidate_lifecycle_statuses": [
         "accepted"
@@ -942,6 +1043,21 @@
       ],
       "change_types": [
         "create"
+      ]
+    },
+    {
+      "record_type": "candidate_change",
+      "record_id": "senolytics-scaffold-bootstrap-2026-06-21",
+      "path": "data/candidate-changes/senolytics-scaffold-bootstrap-2026-06-21.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "update"
       ]
     },
     {

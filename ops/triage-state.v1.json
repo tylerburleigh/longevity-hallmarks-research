@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "triage_state",
   "id": "triage-state-v1",
-  "generated_at": "2026-06-23T19:41:04.821Z",
+  "generated_at": "2026-06-27T16:06:04.708Z",
   "source_roots": [
     "data",
     "research"
@@ -66,12 +66,12 @@
     }
   ],
   "summary": {
-    "candidate_count": 31,
+    "candidate_count": 35,
     "promotion_ready_count": 0,
     "needs_review_count": 0,
     "needs_revision_count": 3,
     "blocked_count": 0,
-    "accepted_count": 9,
+    "accepted_count": 10,
     "applied_count": 0,
     "rejected_count": 0,
     "coverage_gap_count": 4,
@@ -79,8 +79,8 @@
     "extraction_debt_count": 50,
     "stale_snapshot_count": 0,
     "watch_snapshot_count": 0,
-    "partial_or_failed_agent_run_count": 4,
-    "recommended_job_count": 30
+    "partial_or_failed_agent_run_count": 5,
+    "recommended_job_count": 31
   },
   "candidate_readiness": [
     {
@@ -284,6 +284,66 @@
       ]
     },
     {
+      "candidate_change_id": "candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-source-fidelity-repair",
+      "path": "data/candidate-changes/candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-source-fidelity-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "required_review_lanes": [
+        "source_fidelity"
+      ],
+      "active_review_ids": [],
+      "active_review_paths": [],
+      "complete_accepting_review_lanes": [],
+      "missing_review_lanes": [],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 2,
+      "next_actions": [
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
+    {
+      "candidate_change_id": "candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary-repair",
+      "path": "data/candidate-changes/candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "required_review_lanes": [
+        "synthesis_boundary"
+      ],
+      "active_review_ids": [],
+      "active_review_paths": [],
+      "complete_accepting_review_lanes": [],
+      "missing_review_lanes": [],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 2,
+      "next_actions": [
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
+    {
+      "candidate_change_id": "candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-taxonomy-mapping-repair",
+      "path": "data/candidate-changes/candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-taxonomy-mapping-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "required_review_lanes": [
+        "taxonomy_mapping"
+      ],
+      "active_review_ids": [],
+      "active_review_paths": [],
+      "complete_accepting_review_lanes": [],
+      "missing_review_lanes": [],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 2,
+      "next_actions": [
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
+    {
       "candidate_change_id": "candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity-repair",
       "path": "data/candidate-changes/candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity-repair.json",
       "lifecycle_status": "submitted",
@@ -452,6 +512,38 @@
       "complete_accepting_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
+        "source_fidelity",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "missing_review_lanes": [],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 2,
+      "next_actions": []
+    },
+    {
+      "candidate_change_id": "candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair",
+      "path": "data/candidate-changes/candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair.json",
+      "lifecycle_status": "accepted",
+      "readiness_status": "accepted",
+      "required_review_lanes": [
+        "source_fidelity",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "active_review_ids": [
+        "candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-source-fidelity",
+        "candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary",
+        "candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-taxonomy-mapping"
+      ],
+      "active_review_paths": [
+        "data/evidence-reviews/candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-source-fidelity.json",
+        "data/evidence-reviews/candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary.json",
+        "data/evidence-reviews/candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-taxonomy-mapping.json"
+      ],
+      "complete_accepting_review_lanes": [
         "source_fidelity",
         "synthesis_boundary",
         "taxonomy_mapping"
@@ -870,7 +962,7 @@
     {
       "candidate_change_id": "senolytics-scaffold-bootstrap-2026-06-21",
       "path": "data/candidate-changes/senolytics-scaffold-bootstrap-2026-06-21.json",
-      "lifecycle_status": "submitted",
+      "lifecycle_status": "needs_revision",
       "readiness_status": "needs_revision",
       "required_review_lanes": [
         "source_fidelity",
@@ -1649,6 +1741,23 @@
       "mode": "agent_directed"
     },
     {
+      "agent_run_id": "self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21",
+      "path": "research/agent-runs/self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21.json",
+      "status": "partial",
+      "agent_role": "self_healing_agent",
+      "blocking_issues": [
+        "The target senolytics-scaffold-bootstrap-2026-06-21 candidate still has a linked source_fidelity review with verdict needs_revision; this bounded repair only aligns lifecycle state and creates a repair candidate.",
+        "The target candidate still lacks synthesis_boundary and taxonomy_mapping review lanes, so it is not promotion-ready.",
+        "The repair candidate candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair is submitted and still requires its source_fidelity, synthesis_boundary, and taxonomy_mapping supervisor review lanes."
+      ],
+      "next_actions": [
+        "Supervisor-review candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair across its three required lanes.",
+        "Complete or supersede the target candidate's source_fidelity review limitation with a direct source-fidelity review before promotion.",
+        "Run the missing synthesis_boundary and taxonomy_mapping review lanes for senolytics-scaffold-bootstrap-2026-06-21 before any promotion attempt."
+      ],
+      "mode": "agent_directed"
+    },
+    {
       "agent_run_id": "senolytics-bone-rct-extraction-refresh-2026-06-21",
       "path": "research/agent-runs/senolytics-bone-rct-extraction-refresh-2026-06-21.json",
       "status": "partial",
@@ -1939,6 +2048,18 @@
       "rationale": "The target senolytics-coverage-repair-2026-06-21 candidate still has open major review findings across extraction_fidelity, safety_limitations, source_fidelity, synthesis_boundary, and taxonomy_mapping; this bounded repair only aligns lifecycle state and creates a repair candidate.",
       "inputs": [
         "research/agent-runs/self-healing-candidate-revision-senolytics-coverage-repair-2026-06-21.json"
+      ]
+    },
+    {
+      "job_id": "agent-run-recovery-self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21",
+      "job_type": "agent_run_recovery",
+      "priority": "medium",
+      "source": "agent_run_status",
+      "target_record_type": "agent_run",
+      "target_record_id": "self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21",
+      "rationale": "The target senolytics-scaffold-bootstrap-2026-06-21 candidate still has a linked source_fidelity review with verdict needs_revision; this bounded repair only aligns lifecycle state and creates a repair candidate. The target candidate still lacks synthesis_boundary and taxonomy_mapping review lanes, so it is not promotion-ready. The repair candidate candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair is submitted and still requires its source_fidelity, synthesis_boundary, and taxonomy_mapping supervisor review lanes.",
+      "inputs": [
+        "research/agent-runs/self-healing-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21.json"
       ]
     },
     {

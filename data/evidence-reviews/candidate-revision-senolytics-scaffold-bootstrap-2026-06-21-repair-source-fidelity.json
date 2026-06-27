@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-source-fidelity",
+  "candidate_change_id": "candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair",
+  "review_lane": "source_fidelity",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-source-fidelity",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "The target repair candidate accurately reflects the named scaffold candidate, its needs_revision lifecycle state, the linked nonblocking source-fidelity limitation, and the still-unresolved taxonomy_mapping and synthesis_boundary review lanes. No source-fidelity blocker was found for this bounded repair.",
+  "findings": [
+    {
+      "finding_id": "target-repair-matches-linked-review-state",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "The target repair candidate states that the senolytics scaffold candidate remains in needs_revision because its linked source_fidelity review is limited and taxonomy_mapping plus synthesis_boundary lanes remain missing.",
+      "why_it_matters": "The source_fidelity lane for this repair depends on whether the candidate's lifecycle rationale matches the referenced candidate and review records rather than introducing unsupported source claims.",
+      "recommended_action": "Accept the source_fidelity lane for this repair; leave the separate taxonomy_mapping and synthesis_boundary lane reviews to their dedicated review tasks.",
+      "resolution_status": "closed"
+    }
+  ]
+}

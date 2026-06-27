@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary-repair",
+  "name": "Synthesis-boundary review repair for senolytics scaffold revision candidate",
+  "summary": "Adds the missing synthesis-boundary supervisor review for the senolytics scaffold revision-state repair candidate without promoting or mutating the target candidate.",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-27T15:42:12Z",
+  "scope": {
+    "question": "Add the missing synthesis_boundary supervisor review lane for candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary-repair",
+      "path": "data/candidate-changes/candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary-repair.json",
+      "change_type": "create",
+      "rationale": "Tracks this bounded supervisor review-lane repair candidate and its generated review artifact."
+    },
+    {
+      "record_type": "evidence_review",
+      "record_id": "candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary",
+      "path": "data/evidence-reviews/candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary.json",
+      "change_type": "create",
+      "rationale": "Adds the missing synthesis_boundary supervisor review for the target candidate."
+    }
+  ],
+  "required_review_lanes": [
+    "synthesis_boundary"
+  ]
+}

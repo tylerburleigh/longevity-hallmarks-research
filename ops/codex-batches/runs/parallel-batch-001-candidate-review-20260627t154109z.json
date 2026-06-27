@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "parallel_batch_run",
+  "id": "parallel-batch-001-candidate-review-20260627t154109z",
+  "batch_plan_id": "parallel-batch-plan-v1",
+  "batch_plan_path": "ops/codex-batches/parallel-batch-plan.v1.json",
+  "batch_id": "parallel-batch-001-candidate-review",
+  "batch_sequence": 1,
+  "parallel_group": "candidate-review",
+  "execution_class": "independent",
+  "reconciliation_required": false,
+  "started_at": "2026-06-27T15:41:09.513Z",
+  "status": "succeeded",
+  "log_path": "ops/codex-batches/logs/parallel-batch-001-candidate-review-20260627t154109z.jsonl",
+  "worker_states": [
+    {
+      "job_id": "self-healing-candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-source-fidelity",
+      "job_path": "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-source-fidelity.json",
+      "command": [
+        "npm",
+        "run",
+        "agent:codex:worktree",
+        "--",
+        "--job-file",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-source-fidelity.json",
+        "--execute",
+        "--allow-dirty"
+      ],
+      "status": "succeeded",
+      "started_at": "2026-06-27T15:41:09.514Z",
+      "worktree_path": "/tmp/lhr-codex-worktrees/self-healing-candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-source-fidelity-20260627T154109z",
+      "completed_at": "2026-06-27T15:45:28.061Z",
+      "exit_code": 0,
+      "output_path": "research/agent-runs/self-healing-candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-source-fidelity.json",
+      "worker_log_path": "research/agent-runs/logs/self-healing-candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-source-fidelity.jsonl",
+      "archive_path": "ops/codex-jobs/archive/self-healing-candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-source-fidelity.json"
+    },
+    {
+      "job_id": "self-healing-candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary",
+      "job_path": "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary.json",
+      "command": [
+        "npm",
+        "run",
+        "agent:codex:worktree",
+        "--",
+        "--job-file",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary.json",
+        "--execute",
+        "--allow-dirty"
+      ],
+      "status": "succeeded",
+      "started_at": "2026-06-27T15:41:09.514Z",
+      "worktree_path": "/tmp/lhr-codex-worktrees/self-healing-candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary-20260627T154109z",
+      "completed_at": "2026-06-27T15:44:25.126Z",
+      "exit_code": 0,
+      "output_path": "research/agent-runs/self-healing-candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary.json",
+      "worker_log_path": "research/agent-runs/logs/self-healing-candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary.jsonl",
+      "archive_path": "ops/codex-jobs/archive/self-healing-candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-synthesis-boundary.json"
+    },
+    {
+      "job_id": "self-healing-candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-taxonomy-mapping",
+      "job_path": "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-taxonomy-mapping.json",
+      "command": [
+        "npm",
+        "run",
+        "agent:codex:worktree",
+        "--",
+        "--job-file",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-taxonomy-mapping.json",
+        "--execute",
+        "--allow-dirty"
+      ],
+      "status": "succeeded",
+      "started_at": "2026-06-27T15:41:09.514Z",
+      "worktree_path": "/tmp/lhr-codex-worktrees/self-healing-candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-taxonomy-mapping-20260627T154109z",
+      "completed_at": "2026-06-27T15:44:45.091Z",
+      "exit_code": 0,
+      "output_path": "research/agent-runs/self-healing-candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-taxonomy-mapping.json",
+      "worker_log_path": "research/agent-runs/logs/self-healing-candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-taxonomy-mapping.jsonl",
+      "archive_path": "ops/codex-jobs/archive/self-healing-candidate-review-candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair-taxonomy-mapping.json"
+    }
+  ],
+  "summary": {
+    "planned_count": 0,
+    "running_count": 0,
+    "succeeded_count": 3,
+    "pending_reconciliation_count": 0,
+    "failed_count": 0,
+    "archived_count": 3
+  },
+  "next_actions": [
+    "Run npm run verify:knowledge-base after reviewing resulting candidate changes."
+  ],
+  "completed_at": "2026-06-27T15:45:28.062Z"
+}

@@ -7,6 +7,7 @@ import path from "node:path";
 
 const workspaceRoot = process.cwd();
 const runnerScriptPath = path.join(workspaceRoot, "scripts", "run-parallel-codex-batch.mjs");
+const importScriptPath = path.join(workspaceRoot, "scripts", "import-parallel-batch-run.mjs");
 
 async function writeFixturePlan(tempRoot) {
   const planPath = path.join(tempRoot, "parallel-batch-plan.fixture.json");
@@ -278,6 +279,145 @@ async function writeUsageLimitDiagnosticFixture(tempRoot) {
     )}\n`
   );
   return planPath;
+}
+
+async function writeImportPendingWorkerFixture(tempRoot) {
+  await writeJson(tempRoot, "package.json", {
+    scripts: {
+      "validate:records": "node -e \"process.exit(0)\""
+    }
+  });
+  await writeJson(tempRoot, "ops/codex-jobs/live/import-job.json", {
+    schema_version: "1.0.0",
+    record_type: "codex_job",
+    id: "import-job",
+    lifecycle_status: "ready",
+    agent_role: "self_healing_agent",
+    mode: "agent_directed",
+    prompt_file: "docs/prompts/codex-agents/self-healing-repair.md",
+    output_path: "research/agent-runs/import-job.json",
+    jsonl_log_path: "research/agent-runs/logs/import-job.jsonl"
+  });
+
+  const worktreePath = path.join(tempRoot, "worker-worktree");
+  await writeJson(worktreePath, "data/candidate-changes/import-candidate.json", {
+    schema_version: "1.0.0",
+    record_type: "candidate_change",
+    id: "import-candidate",
+    name: "Import candidate",
+    lifecycle_status: "submitted",
+    submitted_at: "2026-06-23T00:00:00Z",
+    scope: {
+      question: "Fixture candidate."
+    },
+    proposed_records: [
+      {
+        record_type: "candidate_change",
+        record_id: "import-candidate",
+        path: "data/candidate-changes/import-candidate.json",
+        change_type: "create",
+        rationale: "Fixture."
+      }
+    ],
+    required_review_lanes: []
+  });
+  await writeJson(worktreePath, "research/agent-runs/import-job.json", {
+    schema_version: "1.0.0",
+    record_type: "agent_run",
+    id: "import-job",
+    agent_role: "self_healing_agent",
+    agent_id: "fixture",
+    mode: "agent_directed",
+    started_at: "2026-06-23T00:00:00Z",
+    completed_at: "2026-06-23T00:00:01Z",
+    status: "succeeded",
+    scope: {
+      question: "Fixture import job.",
+      hallmark_ids: [],
+      track_ids: [],
+      intervention_ids: []
+    },
+    canonical_write_policy: "candidate_change_required",
+    execution: {
+      surface: "codex_exec",
+      isolation: "git_worktree",
+      workspace_path: worktreePath,
+      prompt_file: "research/agent-runs/prompts/import-job.md",
+      prompt_template_file: "docs/prompts/codex-agents/self-healing-repair.md",
+      job_file: "ops/codex-jobs/live/import-job.json",
+      output_schema_path: "schemas/agent-run.codex-output.schema.json",
+      output_path: "research/agent-runs/import-job.json",
+      jsonl_log_path: "research/agent-runs/logs/import-job.jsonl",
+      sandbox: "workspace-write",
+      approval_policy: "never"
+    },
+    inputs: [],
+    outputs: {
+      summary: "Fixture import output.",
+      candidate_change_id: "import-candidate",
+      proposed_records: [
+        {
+          record_type: "candidate_change",
+          record_id: "import-candidate",
+          path: "data/candidate-changes/import-candidate.json",
+          change_type: "create",
+          rationale: "Fixture."
+        }
+      ],
+      generated_files: ["data/candidate-changes/import-candidate.json"],
+      export_paths: []
+    },
+    quality_checks: [],
+    blocking_issues: [],
+    next_actions: []
+  });
+  await fs.mkdir(path.join(worktreePath, "research/agent-runs/prompts"), { recursive: true });
+  await fs.writeFile(path.join(worktreePath, "research/agent-runs/prompts/import-job.md"), "Fixture prompt.\n");
+  await fs.mkdir(path.join(worktreePath, "research/agent-runs/logs"), { recursive: true });
+  await fs.writeFile(path.join(worktreePath, "research/agent-runs/logs/import-job.jsonl"), "{\"type\":\"fixture\"}\n");
+  await fs.writeFile(path.join(worktreePath, "research/agent-runs/logs/import-job.command.jsonl"), "{\"type\":\"command\"}\n");
+
+  await writeJson(tempRoot, "ops/codex-batches/runs/import-run.json", {
+    schema_version: "1.0.0",
+    record_type: "parallel_batch_run",
+    id: "import-run",
+    batch_plan_id: "fixture-plan",
+    batch_plan_path: "ops/codex-batches/parallel-batch-plan.v1.json",
+    batch_id: "import-batch",
+    batch_sequence: 1,
+    parallel_group: "fixture",
+    execution_class: "independent",
+    reconciliation_required: false,
+    started_at: "2026-06-23T00:00:00Z",
+    status: "partial",
+    log_path: "ops/codex-batches/logs/import-run.jsonl",
+    worker_states: [
+      {
+        job_id: "import-job",
+        job_path: "ops/codex-jobs/live/import-job.json",
+        command: ["node", "-e", "process.exit(0)"],
+        status: "succeeded_pending_reconciliation",
+        started_at: "2026-06-23T00:00:00Z",
+        worktree_path: worktreePath,
+        completed_at: "2026-06-23T00:00:01Z",
+        exit_code: 0,
+        output_path: "research/agent-runs/import-job.json",
+        worker_log_path: "research/agent-runs/logs/import-job.jsonl",
+        issues: ["research/agent-runs/import-job.json is not present in the coordinator checkout."]
+      }
+    ],
+    summary: {
+      planned_count: 0,
+      running_count: 0,
+      succeeded_count: 0,
+      pending_reconciliation_count: 1,
+      failed_count: 0,
+      archived_count: 0
+    },
+    next_actions: ["Reconcile successful worker worktrees into the coordinator checkout, then rerun audits and archive completed job specs."]
+  });
+  await fs.mkdir(path.join(tempRoot, "ops/codex-batches/logs"), { recursive: true });
+  await fs.writeFile(path.join(tempRoot, "ops/codex-batches/logs/import-run.jsonl"), "{\"type\":\"fixture\"}\n");
 }
 
 async function writeInterruptionFixture(tempRoot) {
@@ -748,6 +888,87 @@ async function runUsageLimitDiagnosticCase(tempRoot) {
   return [];
 }
 
+async function runImportPendingWorkerCase(tempRoot) {
+  await writeImportPendingWorkerFixture(tempRoot);
+  const result = spawnSync(
+    "node",
+    [
+      importScriptPath,
+      "--run",
+      "import-run",
+      "--skip-refresh"
+    ],
+    {
+      cwd: tempRoot,
+      encoding: "utf8",
+      env: {
+        ...process.env,
+        npm_config_update_notifier: "false"
+      }
+    }
+  );
+
+  const issues = [];
+  if (result.error) {
+    issues.push(`import helper failed to start: ${result.error.message}`);
+  }
+  if (result.status !== 0) {
+    issues.push(`import helper exited ${result.status}: stdout=${result.stdout.trim()} stderr=${result.stderr.trim()}`);
+  }
+
+  let runRecord;
+  try {
+    runRecord = JSON.parse(await fs.readFile(path.join(tempRoot, "ops/codex-batches/runs/import-run.json"), "utf8"));
+  } catch (error) {
+    issues.push(`import run record missing or invalid: ${error.message}`);
+  }
+
+  const worker = runRecord?.worker_states?.[0];
+  assertEqual(runRecord?.status, "succeeded", "import run status", issues);
+  assertEqual(worker?.status, "succeeded", "import worker status", issues);
+  assertEqual(worker?.archive_path, "ops/codex-jobs/archive/import-job.json", "import worker archive path", issues);
+  if (worker?.issues) {
+    issues.push("import worker should clear missing-output issue after import.");
+  }
+
+  const expectedPaths = [
+    "data/candidate-changes/import-candidate.json",
+    "research/agent-runs/import-job.json",
+    "research/agent-runs/prompts/import-job.md",
+    "research/agent-runs/logs/import-job.jsonl",
+    "research/agent-runs/logs/import-job.command.jsonl",
+    "ops/codex-jobs/archive/import-job.json"
+  ];
+  for (const relativePath of expectedPaths) {
+    try {
+      await fs.access(path.join(tempRoot, relativePath));
+    } catch {
+      issues.push(`import helper should create ${relativePath}.`);
+    }
+  }
+  try {
+    await fs.access(path.join(tempRoot, "ops/codex-jobs/live/import-job.json"));
+    issues.push("import helper should remove archived live job.");
+  } catch {
+    // Expected.
+  }
+
+  let agentRun;
+  try {
+    agentRun = JSON.parse(await fs.readFile(path.join(tempRoot, "research/agent-runs/import-job.json"), "utf8"));
+  } catch (error) {
+    issues.push(`imported agent run missing or invalid: ${error.message}`);
+  }
+  assertEqual(agentRun?.execution?.job_file, "ops/codex-jobs/archive/import-job.json", "imported agent_run job_file", issues);
+
+  if (issues.length > 0) {
+    return issues;
+  }
+
+  console.log("PASS parallel-batch-import-pending-worker");
+  return [];
+}
+
 async function main() {
   const tempRoot = await fs.mkdtemp(path.join(os.tmpdir(), "lhr-parallel-batch-runner-"));
   try {
@@ -757,7 +978,8 @@ async function main() {
       ...(await runFailureDiagnosticCase(tempRoot)),
       ...(await runUsageLimitDiagnosticCase(tempRoot)),
       ...(await runInterruptionCase(tempRoot)),
-      ...(await runArchiveCollisionCase(tempRoot))
+      ...(await runArchiveCollisionCase(tempRoot)),
+      ...(await runImportPendingWorkerCase(tempRoot))
     ];
     if (issues.length > 0) {
       console.error(`Parallel-batch runner regression failed with ${issues.length} issue(s):`);

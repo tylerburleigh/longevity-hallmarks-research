@@ -16,6 +16,7 @@
     "jobs:self-healing": "node scripts/generate-self-healing-jobs.mjs",
     "jobs:plan-parallel": "node scripts/plan-parallel-codex-batches.mjs",
     "jobs:run-batch": "node scripts/run-parallel-codex-batch.mjs",
+    "jobs:import-batch": "node scripts/import-parallel-batch-run.mjs",
     "jobs:archive": "node scripts/archive-codex-job.mjs",
     "reconcile:parallel": "node scripts/reconcile-parallel-outputs.mjs",
     "metrics:orchestration": "node scripts/export-orchestration-metrics.mjs",

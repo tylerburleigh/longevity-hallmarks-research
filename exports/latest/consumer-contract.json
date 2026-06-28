@@ -3,7 +3,7 @@
   "record_type": "consumer_output_contract",
   "id": "latest-consumer-output-contract",
   "contract_version": "0.1.0",
-  "generated_at": "2026-06-28T18:13:32.643Z",
+  "generated_at": "2026-06-28T18:44:05.300Z",
   "canonical_source_of_truth": "Canonical JSON records under data/ and research/ remain authoritative.",
   "generated_export_root": "exports/latest",
   "stability_model": {

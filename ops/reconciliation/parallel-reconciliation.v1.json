@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "parallel_reconciliation",
   "id": "parallel-reconciliation-v1",
-  "generated_at": "2026-06-28T18:13:32.268Z",
+  "generated_at": "2026-06-28T18:44:04.924Z",
   "source_roots": [
     "data",
     "research",
@@ -48,15 +48,15 @@
     "duplicate_source_group_count": 0,
     "study_count": 9,
     "duplicate_study_group_count": 0,
-    "candidate_count": 66,
-    "active_candidate_count": 48,
+    "candidate_count": 70,
+    "active_candidate_count": 52,
     "overlapping_candidate_group_count": 3,
     "source_rights_count": 2,
     "source_rights_conflict_count": 0,
-    "agent_run_count": 73,
+    "agent_run_count": 77,
     "parallel_batch_count": 12,
     "reconciliation_batch_count": 8,
-    "parallel_batch_run_count": 22,
+    "parallel_batch_run_count": 23,
     "pending_parallel_worker_count": 0,
     "reconciliation_decision_count": 8,
     "incomplete_ledger_count": 0,
@@ -66,15 +66,12 @@
   },
   "parallel_batches": [
     {
-      "batch_id": "parallel-batch-001-candidate-review",
-      "parallel_group": "candidate-review",
+      "batch_id": "parallel-batch-001-candidate-promotion",
+      "parallel_group": "candidate-promotion",
       "execution_class": "independent",
       "reconciliation_required": false,
       "job_ids": [
-        "self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-extraction-fidelity",
-        "self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-safety-limitations",
-        "self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-synthesis-boundary",
-        "self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-taxonomy-mapping"
+        "self-healing-candidate-promotion-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair"
       ],
       "overlapping_execution_keys": [],
       "status": "no_reconciliation_needed",

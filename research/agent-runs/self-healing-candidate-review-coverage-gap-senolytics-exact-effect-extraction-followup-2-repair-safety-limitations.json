@@ -1,0 +1,168 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-safety-limitations",
+  "agent_role": "supervisor_agent",
+  "agent_id": "codex-cli-supervisor",
+  "mode": "agent_directed",
+  "started_at": "2026-06-28T18:29:39Z",
+  "completed_at": "2026-06-28T18:33:13Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "candidate_review: Required review lane is missing: safety_limitations.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "codex_exec",
+    "isolation": "git_worktree",
+    "workspace_path": "/tmp/lhr-codex-worktrees/self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-safety-limitations-20260628T182939z",
+    "prompt_file": "research/agent-runs/prompts/self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-safety-limitations.md",
+    "prompt_template_file": "docs/prompts/codex-agents/supervisor-review.md",
+    "job_file": "ops/codex-jobs/archive/self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-safety-limitations.json",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "output_path": "research/agent-runs/self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-safety-limitations.json",
+    "jsonl_log_path": "research/agent-runs/logs/self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-safety-limitations.jsonl",
+    "sandbox": "workspace-write",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "other",
+      "reference": "ops/supervisor-review-context-packs/self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-safety-limitations.json",
+      "summary": "Bounded context pack for the safety_limitations lane review."
+    },
+    {
+      "input_type": "candidate_change",
+      "reference": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-2-repair.json",
+      "summary": "Target submitted senolytics extraction-refresh repair candidate."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+      "summary": "Proposed coverage assessment update inspected for safety limitation boundaries."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/findings/dq-ipf-randomized-feasibility-tolerability-mixed.json",
+      "summary": "Proposed IPF safety finding update inspected for pilot and safety caveats."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/outcomes/dq-ipf-feasibility-tolerability.json",
+      "summary": "Proposed IPF safety outcome update inspected for abstract-level boundaries."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/results/dq-ipf-tolerability-mixed.json",
+      "summary": "Proposed IPF safety result update inspected for adverse-event count handling."
+    }
+  ],
+  "outputs": {
+    "summary": "Created the missing safety_limitations evidence_review with verdict accept and a repair candidate ledger for the generated review record. The lane has no open major or critical findings and does not promote or mutate the target candidate.",
+    "candidate_change_id": "candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-safety-limitations-repair",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-safety-limitations-repair",
+        "path": "data/candidate-changes/candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-safety-limitations-repair.json",
+        "change_type": "create",
+        "rationale": "Tracks this bounded supervisor-lane repair candidate and its changed-record ledger."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-safety-limitations",
+        "path": "data/evidence-reviews/coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-safety-limitations.json",
+        "change_type": "create",
+        "rationale": "Adds the missing safety_limitations supervisor review for the target senolytics extraction-refresh candidate."
+      }
+    ],
+    "generated_files": [
+      "data/candidate-changes/candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-safety-limitations-repair.json",
+      "data/evidence-reviews/coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-safety-limitations.json"
+    ],
+    "export_paths": []
+  },
+  "quality_checks": [
+    {
+      "check_name": "supervisor_review_lanes",
+      "status": "passed",
+      "summary": "Reviewed the required safety_limitations lane; evidence_review is complete, non-blocking, accepted, and has no open major or critical findings."
+    },
+    {
+      "check_name": "candidate_agent_run_ledger_match",
+      "status": "passed",
+      "summary": "Final outputs.proposed_records matches the repair candidate proposed_records ledger exactly."
+    },
+    {
+      "check_name": "validate_records",
+      "status": "passed",
+      "summary": "npm run validate:records passed; 507 JSON files validated."
+    },
+    {
+      "check_name": "audit_references",
+      "status": "passed",
+      "summary": "npm run audit:references passed for 328 record files."
+    },
+    {
+      "check_name": "audit_agent_schemas",
+      "status": "passed",
+      "summary": "npm run audit:agent-schemas passed."
+    },
+    {
+      "check_name": "audit_agentic_process",
+      "status": "passed",
+      "summary": "npm run audit:agentic-process passed for 540 files."
+    },
+    {
+      "check_name": "audit_exports",
+      "status": "not_run",
+      "summary": "Deferred to coordinator post-run export; a pre-post-run export audit reported exports/latest/audit-manifest.json record_counts stale after new records were created."
+    },
+    {
+      "check_name": "worker_output_contract",
+      "status": "passed",
+      "summary": "Worker emitted exactly one final JSON agent_run message, matched output_path, and avoided ad hoc schema-validation snippets."
+    },
+    {
+      "check_name": "post_triage_state_export",
+      "status": "passed",
+      "summary": "post_triage_state_export exited 0: > longevity-hallmarks-research@0.1.0 export:triage-state > node scripts/export-triage-state.mjs Wrote ops/triage-state.v1.json."
+    },
+    {
+      "check_name": "post_release_readiness_export",
+      "status": "passed",
+      "summary": "post_release_readiness_export exited 0: > longevity-hallmarks-research@0.1.0 export:release-readiness > node scripts/export-release-readiness.mjs Wrote ops/release-readiness.v1.json."
+    },
+    {
+      "check_name": "post_reconciliation_export",
+      "status": "passed",
+      "summary": "post_reconciliation_export exited 0: > longevity-hallmarks-research@0.1.0 reconcile:parallel > node scripts/reconcile-parallel-outputs.mjs Wrote ops/reconciliation/parallel-reconciliation.v1.json."
+    },
+    {
+      "check_name": "post_orchestration_metrics_export",
+      "status": "passed",
+      "summary": "post_orchestration_metrics_export exited 0: > longevity-hallmarks-research@0.1.0 metrics:orchestration > node scripts/export-orchestration-metrics.mjs Wrote ops/codex-batches/orchestration-metrics.v1.json."
+    },
+    {
+      "check_name": "post_export",
+      "status": "passed",
+      "summary": "post_export exited 0: > longevity-hallmarks-research@0.1.0 export:latest > node scripts/export-latest.mjs Wrote 16 export file(s) to exports/latest."
+    },
+    {
+      "check_name": "post_verify",
+      "status": "passed",
+      "summary": "post_verify exited 0: > longevity-hallmarks-research@0.1.0 audit:orchestration-smoke-contract > node scripts/audit-orchestration-smoke-contract.mjs Orchestration smoke contract audit passed for orchestration-smoke-budgeted-codex-worktree-2026-06-23. > longevity-hallmarks-research@0.1.0 audit:agentic-process > node scripts/audit-agentic-process.mjs Agentic process audit passed for 541 file(s)."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": [
+    "Coordinator post-run should run export:latest and verify:knowledge-base as declared in the job post_run configuration."
+  ]
+}

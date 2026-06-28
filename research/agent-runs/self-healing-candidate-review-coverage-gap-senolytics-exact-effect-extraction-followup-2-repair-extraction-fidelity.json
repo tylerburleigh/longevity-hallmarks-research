@@ -1,0 +1,198 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-extraction-fidelity",
+  "agent_role": "supervisor_agent",
+  "agent_id": "codex-cli-worker",
+  "mode": "agent_directed",
+  "started_at": "2026-06-28T18:29:39Z",
+  "completed_at": "2026-06-28T18:35:23Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "candidate_review: Required review lane is missing: extraction_fidelity.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "codex_exec",
+    "isolation": "git_worktree",
+    "workspace_path": "/tmp/lhr-codex-worktrees/self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-extraction-fidelity-20260628T182939z",
+    "prompt_file": "research/agent-runs/prompts/self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-extraction-fidelity.md",
+    "prompt_template_file": "docs/prompts/codex-agents/supervisor-review.md",
+    "job_file": "ops/codex-jobs/archive/self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-extraction-fidelity.json",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "output_path": "research/agent-runs/self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-extraction-fidelity.json",
+    "jsonl_log_path": "research/agent-runs/logs/self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-extraction-fidelity.jsonl",
+    "sandbox": "workspace-write",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "other",
+      "reference": "ops/supervisor-review-context-packs/self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-extraction-fidelity.json",
+      "summary": "Bounded context pack specifying target candidate, extraction_fidelity lane, expected repair candidate, evidence review id, and validation commands."
+    },
+    {
+      "input_type": "candidate_change",
+      "reference": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-2-repair.json",
+      "summary": "Target submitted candidate reviewed only for the extraction_fidelity lane."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+      "summary": "Proposed coverage assessment checked for abstract-level/full-text boundary and remaining-debt wording."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/findings/dq-ipf-randomized-feasibility-tolerability-mixed.json",
+      "summary": "Proposed IPF finding checked against the cited PubMed abstract snapshot context."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/outcomes/dq-ipf-feasibility-tolerability.json",
+      "summary": "Proposed IPF outcome checked for endpoint and measurement boundaries."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/results/dq-ipf-tolerability-mixed.json",
+      "summary": "Proposed IPF result checked for sample size, adverse-event count semantics, and caveats."
+    },
+    {
+      "input_type": "source_snapshot",
+      "reference": "snapshot-pmid-36857968-pubmed-efetch-2026-06-27",
+      "summary": "PubMed EFetch snapshot used to check IPF abstract-level extraction claims."
+    },
+    {
+      "input_type": "source_snapshot",
+      "reference": "snapshot-pmid-31542391-pubmed-efetch-2026-06-27",
+      "summary": "PubMed EFetch snapshot used to check DKD abstract-level coverage wording."
+    },
+    {
+      "input_type": "source_snapshot",
+      "reference": "snapshot-pmid-40010154-pubmed-efetch-2026-06-27",
+      "summary": "PubMed EFetch snapshot used to check AD-risk abstract-level coverage wording."
+    },
+    {
+      "input_type": "text_snapshot",
+      "reference": "text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+      "summary": "Retained PMC author-manuscript text snapshot used to check D+Q bone safety-table coverage claims."
+    },
+    {
+      "input_type": "text_snapshot",
+      "reference": "text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+      "summary": "ClinicalTrials.gov text snapshot used to check D+Q bone registry adverse-event coverage claims."
+    }
+  ],
+  "outputs": {
+    "summary": "Created the bounded repair candidate and an accepting extraction_fidelity evidence review for coverage-gap-senolytics-exact-effect-extraction-followup-2-repair. The reviewed lane is complete, non-blocking, and has no open major or critical findings; exports remain deferred to coordinator post-run refresh.",
+    "candidate_change_id": "candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-extraction-fidelity-repair",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-extraction-fidelity-repair",
+        "path": "data/candidate-changes/candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-extraction-fidelity-repair.json",
+        "change_type": "create",
+        "rationale": "Tracks this bounded supervisor-review repair ledger for the missing extraction_fidelity lane."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-extraction-fidelity",
+        "path": "data/evidence-reviews/coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-extraction-fidelity.json",
+        "change_type": "create",
+        "rationale": "Adds the missing extraction_fidelity supervisor review for the target candidate."
+      }
+    ],
+    "generated_files": [
+      "data/candidate-changes/candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-extraction-fidelity-repair.json",
+      "data/evidence-reviews/coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-extraction-fidelity.json"
+    ],
+    "export_paths": []
+  },
+  "quality_checks": [
+    {
+      "check_name": "validate_records",
+      "status": "passed",
+      "summary": "npm run validate:records passed; 507 JSON files validated."
+    },
+    {
+      "check_name": "audit_references",
+      "status": "passed",
+      "summary": "npm run audit:references passed for 328 record files."
+    },
+    {
+      "check_name": "audit_agent_schemas",
+      "status": "passed",
+      "summary": "npm run audit:agent-schemas passed."
+    },
+    {
+      "check_name": "audit_agentic_process",
+      "status": "passed",
+      "summary": "npm run audit:agentic-process passed for 540 files."
+    },
+    {
+      "check_name": "supervisor_review_lanes",
+      "status": "passed",
+      "summary": "Reviewed the coordinator-required extraction_fidelity lane only; evidence review verdict is accept, blocking is false, and no open major or critical findings remain."
+    },
+    {
+      "check_name": "candidate_agent_run_ledger_match",
+      "status": "passed",
+      "summary": "Final outputs.proposed_records matches the repair candidate proposed_records ledger exactly."
+    },
+    {
+      "check_name": "audit_exports",
+      "status": "not_run",
+      "summary": "A pre-post-run export audit attempt reported stale exports/latest/audit-manifest.json record_counts after the new records; final export audit is deferred to coordinator post-run export_latest."
+    },
+    {
+      "check_name": "verify_knowledge_base",
+      "status": "not_run",
+      "summary": "A full verify attempt stopped at the stale export audit; coordinator post-run verification is expected after export refresh."
+    },
+    {
+      "check_name": "worker_output_contract",
+      "status": "passed",
+      "summary": "Worker emitted exactly one final JSON agent_run message, matched output_path, and avoided ad hoc schema-validation snippets."
+    },
+    {
+      "check_name": "post_triage_state_export",
+      "status": "passed",
+      "summary": "post_triage_state_export exited 0: > longevity-hallmarks-research@0.1.0 export:triage-state > node scripts/export-triage-state.mjs Wrote ops/triage-state.v1.json."
+    },
+    {
+      "check_name": "post_release_readiness_export",
+      "status": "passed",
+      "summary": "post_release_readiness_export exited 0: > longevity-hallmarks-research@0.1.0 export:release-readiness > node scripts/export-release-readiness.mjs Wrote ops/release-readiness.v1.json."
+    },
+    {
+      "check_name": "post_reconciliation_export",
+      "status": "passed",
+      "summary": "post_reconciliation_export exited 0: > longevity-hallmarks-research@0.1.0 reconcile:parallel > node scripts/reconcile-parallel-outputs.mjs Wrote ops/reconciliation/parallel-reconciliation.v1.json."
+    },
+    {
+      "check_name": "post_orchestration_metrics_export",
+      "status": "passed",
+      "summary": "post_orchestration_metrics_export exited 0: > longevity-hallmarks-research@0.1.0 metrics:orchestration > node scripts/export-orchestration-metrics.mjs Wrote ops/codex-batches/orchestration-metrics.v1.json."
+    },
+    {
+      "check_name": "post_export",
+      "status": "passed",
+      "summary": "post_export exited 0: > longevity-hallmarks-research@0.1.0 export:latest > node scripts/export-latest.mjs Wrote 16 export file(s) to exports/latest."
+    },
+    {
+      "check_name": "post_verify",
+      "status": "passed",
+      "summary": "post_verify exited 0: > longevity-hallmarks-research@0.1.0 audit:orchestration-smoke-contract > node scripts/audit-orchestration-smoke-contract.mjs Orchestration smoke contract audit passed for orchestration-smoke-budgeted-codex-worktree-2026-06-23. > longevity-hallmarks-research@0.1.0 audit:agentic-process > node scripts/audit-agentic-process.mjs Agentic process audit passed for 541 file(s)."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": [
+    "Coordinator post-run should run export_latest and verify_knowledge_base as configured so exports/latest reflects the new review records."
+  ]
+}

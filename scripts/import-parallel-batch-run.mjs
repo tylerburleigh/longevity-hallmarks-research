@@ -272,7 +272,7 @@ async function archiveWorker({ run, worker, job, archivedAt, dryRun }) {
   if (await exists(archivePath)) {
     throw new Error(`${archivePath} already exists.`);
   }
-  if (!(await exists(job.output_path))) {
+  if (!dryRun && !(await exists(job.output_path))) {
     throw new Error(`${job.output_path} does not exist in coordinator checkout after import.`);
   }
 

@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "orchestration_metrics",
   "id": "orchestration-metrics-v1",
-  "generated_at": "2026-06-28T18:13:32.992Z",
+  "generated_at": "2026-06-28T18:44:05.657Z",
   "source_roots": [
     "data",
     "exports/latest",
@@ -42,34 +42,34 @@
     ]
   },
   "summary": {
-    "planned_live_job_count": 45,
-    "archived_job_count": 53,
+    "planned_live_job_count": 42,
+    "archived_job_count": 57,
     "planned_parallel_batch_count": 12,
-    "planned_parallel_worker_count": 45,
+    "planned_parallel_worker_count": 42,
     "planned_independent_batch_count": 11,
     "planned_reconciliation_batch_count": 8,
     "max_planned_batch_width": 4,
-    "planned_serial_wall_time_ms": 162000000,
-    "planned_parallel_wall_time_ms": 43200000,
-    "planned_wall_time_savings_ms": 118800000,
-    "planned_speedup_ratio": 3.75,
-    "executed_parallel_batch_run_count": 22,
-    "executed_worker_count": 60,
+    "planned_serial_wall_time_ms": 147900000,
+    "planned_parallel_wall_time_ms": 39900000,
+    "planned_wall_time_savings_ms": 108000000,
+    "planned_speedup_ratio": 3.7068,
+    "executed_parallel_batch_run_count": 23,
+    "executed_worker_count": 64,
     "failed_worker_count": 19,
     "pending_reconciliation_worker_count": 0,
-    "succeeded_worker_count": 41,
-    "actual_worker_wall_time_ms": 18496194,
-    "actual_batch_wall_time_ms": 8953771,
-    "agent_run_count": 73,
-    "succeeded_agent_run_count": 63,
+    "succeeded_worker_count": 45,
+    "actual_worker_wall_time_ms": 19822287,
+    "actual_batch_wall_time_ms": 9502863,
+    "agent_run_count": 77,
+    "succeeded_agent_run_count": 67,
     "partial_agent_run_count": 10,
     "failed_agent_run_count": 0,
-    "agent_run_wall_time_ms": 28975000,
+    "agent_run_wall_time_ms": 29944000,
     "duplicate_work_group_count": 3,
     "duplicate_work_record_count": 8,
     "conflict_finding_count": 3,
-    "conflict_rate": 0.0625,
-    "open_finding_rate": 0.0625,
+    "conflict_rate": 0.0577,
+    "open_finding_rate": 0.0577,
     "accepted_candidate_count": 15,
     "accepted_records_produced_count": 108,
     "extraction_debt_open_count": 54,
@@ -84,14 +84,25 @@
   "planned_parallelism": {
     "by_parallel_group": [
       {
+        "parallel_group": "candidate-promotion",
+        "batch_count": 1,
+        "job_count": 1,
+        "independent_batch_count": 1,
+        "reconciliation_batch_count": 0,
+        "max_batch_width": 1,
+        "expected_wall_time_ms": 300000,
+        "expected_token_budget": 10000,
+        "overlapping_execution_key_count": 0
+      },
+      {
         "parallel_group": "candidate-review",
-        "batch_count": 4,
-        "job_count": 14,
-        "independent_batch_count": 4,
+        "batch_count": 3,
+        "job_count": 10,
+        "independent_batch_count": 3,
         "reconciliation_batch_count": 0,
         "max_batch_width": 4,
-        "expected_wall_time_ms": 14400000,
-        "expected_token_budget": 1400000,
+        "expected_wall_time_ms": 10800000,
+        "expected_token_budget": 1000000,
         "overlapping_execution_key_count": 0
       },
       {
@@ -108,13 +119,13 @@
     ],
     "batches": [
       {
-        "batch_id": "parallel-batch-001-candidate-review",
-        "parallel_group": "candidate-review",
+        "batch_id": "parallel-batch-001-candidate-promotion",
+        "parallel_group": "candidate-promotion",
         "execution_class": "independent",
         "reconciliation_required": false,
-        "job_count": 4,
-        "expected_wall_time_ms": 3600000,
-        "expected_token_budget": 400000,
+        "job_count": 1,
+        "expected_wall_time_ms": 300000,
+        "expected_token_budget": 10000,
         "overlapping_execution_key_count": 0
       },
       {
@@ -386,6 +397,20 @@
         "succeeded_worker_count": 4
       },
       {
+        "batch_run_id": "parallel-batch-001-candidate-review-20260628t182939z",
+        "path": "ops/codex-batches/runs/parallel-batch-001-candidate-review-20260628t182939z.json",
+        "batch_id": "parallel-batch-001-candidate-review",
+        "parallel_group": "candidate-review",
+        "status": "succeeded",
+        "started_at": "2026-06-28T18:29:39.696Z",
+        "completed_at": "2026-06-28T18:38:48.788Z",
+        "wall_time_ms": 549092,
+        "worker_count": 4,
+        "failed_worker_count": 0,
+        "pending_reconciliation_worker_count": 0,
+        "succeeded_worker_count": 4
+      },
+      {
         "batch_run_id": "parallel-batch-001-candidate-revision-20260623t194330z",
         "path": "ops/codex-batches/runs/parallel-batch-001-candidate-revision-20260623t194330z.json",
         "batch_id": "parallel-batch-001-candidate-revision",
@@ -547,7 +572,7 @@
       },
       {
         "key": "succeeded",
-        "count": 41
+        "count": 45
       }
     ],
     "agent_run_status_counts": [
@@ -557,7 +582,7 @@
       },
       {
         "key": "succeeded",
-        "count": 63
+        "count": 67
       }
     ],
     "agent_run_role_counts": [
@@ -579,7 +604,7 @@
       },
       {
         "key": "supervisor_agent",
-        "count": 47
+        "count": 51
       },
       {
         "key": "synthesis_agent",
@@ -892,8 +917,8 @@
       "open_finding_count": 3,
       "blocking_finding_count": 3,
       "warning_finding_count": 0,
-      "conflict_rate": 0.0625,
-      "open_finding_rate": 0.0625,
+      "conflict_rate": 0.0577,
+      "open_finding_rate": 0.0577,
       "reconciliation_batch_rate": 0.6667
     },
     "worker_failures": {

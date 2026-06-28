@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-extraction-fidelity",
+  "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+  "review_lane": "extraction_fidelity",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-extraction-fidelity",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Extraction fidelity is acceptable for the proposed coverage assessment and IPF finding/outcome/result updates. The reviewed records preserve abstract-level versus full-text/table boundaries, keep the IPF result descriptive and underpowered, and align the checked sample, dosing, adverse-event, and remaining-debt claims with the cited source snapshots and retained text artifacts.",
+  "findings": [
+    {
+      "finding_id": "ipf-abstract-extraction-supported",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "The IPF finding, outcome, and result consistently treat PMID 36857968 as an abstract-extracted randomized pilot: N=12 randomized 1:1, D+Q dosing over 3 weeks, completed scheduled dosing and assessments, more non-serious adverse-event reports with D+Q, no D+Q-related serious adverse events, and no powered efficacy inference.",
+      "why_it_matters": "The target repair is meant to replace generic legacy IPF wording with exact, bounded safety and feasibility extraction, not to upgrade the pilot into efficacy evidence.",
+      "recommended_action": "No extraction-fidelity correction is required; keep the current caveats that event-report totals are not participant-level preferred-term counts and that article-table extraction remains future work.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "coverage-boundaries-preserved",
+      "severity": "note",
+      "category": "endpoint_boundary",
+      "claim_or_issue": "The coverage assessment distinguishes DKD, IPF, and AD-risk PubMed abstract-level extraction from unresolved full article/table extraction, and it keeps D+Q bone supplement reconciliation and cross-human safety harmonization as explicit remaining debt.",
+      "why_it_matters": "The coverage record would overstate readiness if abstract-backed details were presented as complete full-text safety or efficacy extraction.",
+      "recommended_action": "No lane-blocking correction is required; retain the known gaps and next coverage action as written.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "bone-safety-artifacts-support-coverage-text",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "The D+Q bone safety coverage statements are consistent with the retained PMC text snapshot and ClinicalTrials.gov registry snapshot: the article artifact lists overall and preferred-term adverse-event rows, and the registry artifact provides aggregate serious, other, and death counts through approximately 20 weeks.",
+      "why_it_matters": "The coverage assessment relies on those previously retained artifacts when describing the state of D+Q bone safety extraction and the remaining supplement/table reconciliation debt.",
+      "recommended_action": "No extraction-fidelity correction is required for this lane.",
+      "resolution_status": "closed"
+    }
+  ]
+}

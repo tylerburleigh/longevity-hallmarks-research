@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-synthesis-boundary",
+  "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+  "review_lane": "synthesis_boundary",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-synthesis-boundary",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "The reviewed candidate keeps synthesis boundaries intact: it limits the IPF update to abstract-located feasibility and tolerability evidence, treats DKD/IPF/AD-risk extraction as abstract-level pending full-text/table reconciliation, preserves D+Q bone supplement and cross-human safety debt, and does not convert pilot disease-specific signals into longevity efficacy claims.",
+  "findings": [
+    {
+      "finding_id": "synthesis-boundary-pilot-efficacy-limits",
+      "severity": "note",
+      "category": "interpretation_overreach",
+      "claim_or_issue": "The updated IPF finding, outcome, and result describe N=12 pilot feasibility and tolerability, explicitly noting that the trial is too small for efficacy inference and that disease-specific IPF outcomes do not establish general longevity benefit.",
+      "why_it_matters": "The candidate avoids synthesizing a small disease-specific pilot into a broader senolytic efficacy or healthspan claim.",
+      "recommended_action": "No revision required; preserve the existing pilot, safety, and endpoint-boundary caveats during any later synthesis.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "synthesis-boundary-coverage-debt-visible",
+      "severity": "note",
+      "category": "missing_caveat",
+      "claim_or_issue": "The coverage assessment labels the senolytics vertical slice as adequate while still listing full-text/table extraction debt for DKD, IPF, AD-risk, D+Q bone supplement material, registry surveillance breadth, and review-landscape screening.",
+      "why_it_matters": "Keeping those limitations explicit prevents the coverage assessment from being used as a formal cross-human efficacy or safety synthesis.",
+      "recommended_action": "No revision required; keep the documented debt and the block on cross-human safety synthesis until definitions, denominators, zero semantics, relatedness, and seriousness fields are harmonized.",
+      "resolution_status": "closed"
+    }
+  ]
+}

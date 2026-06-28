@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-taxonomy-mapping",
+  "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+  "review_lane": "taxonomy_mapping",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-taxonomy-mapping",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Taxonomy mapping is acceptable for the bounded candidate. The proposed coverage assessment, IPF finding, outcome, and result keep the senolytics track, cellular-senescence hallmark scope, human pilot safety/feasibility endpoint boundary, and low-confidence mixed evidence tiering separated from broader efficacy or longevity claims.",
+  "findings": [
+    {
+      "finding_id": "taxonomy-scope-track-hallmark-consistent",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The proposed records remain anchored to track_id senolytics and include cellular_senescence in hallmark mappings, while the IPF clinical records also retain chronic_inflammation as a secondary hallmark context.",
+      "why_it_matters": "The lane needs to ensure the candidate does not drift from the senolytics/cellular-senescence scope or collapse secondary disease biology into the primary hallmark assignment.",
+      "recommended_action": "No change required; retain cellular_senescence as the in-scope hallmark and keep chronic_inflammation only as secondary cross-hallmark context on the IPF records.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "taxonomy-endpoint-tier-boundary-preserved",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The IPF finding, outcome, and result are mapped to safety/feasibility endpoint categories with mixed direction, low confidence, and human_functional evidence tier rather than clinical efficacy, healthspan, or lifespan categories.",
+      "why_it_matters": "Correct endpoint and tier mapping prevents a small N=12 disease-specific pilot from being treated as generalized senolytic efficacy or longevity evidence.",
+      "recommended_action": "No change required; preserve the safety/feasibility and pilot-study taxonomy in downstream synthesis.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "taxonomy-coverage-categories-explicit",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The coverage assessment keeps human interventional, safety durability, active registry, review-landscape, and taxonomy-boundary categories distinct, with remaining full-text/table and surveillance debt left in gap fields.",
+      "why_it_matters": "The assessment's taxonomy should organize coverage state without implying that unresolved extraction or surveillance gaps have been closed.",
+      "recommended_action": "No change required; keep the explicit gap taxonomy until the named full-text/table, registry, and review-landscape work is completed.",
+      "resolution_status": "closed"
+    }
+  ]
+}

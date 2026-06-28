@@ -1109,6 +1109,74 @@ async function runImportPendingWorkerCase(tempRoot) {
   return [];
 }
 
+async function runImportPendingWorkerDryRunCase(tempRoot) {
+  await writeImportPendingWorkerFixture(tempRoot);
+  const result = spawnSync(
+    "node",
+    [
+      importScriptPath,
+      "--run",
+      "import-run",
+      "--dry-run",
+      "--skip-refresh"
+    ],
+    {
+      cwd: tempRoot,
+      encoding: "utf8",
+      env: {
+        ...process.env,
+        npm_config_update_notifier: "false"
+      }
+    }
+  );
+
+  const issues = [];
+  if (result.error) {
+    issues.push(`dry-run import helper failed to start: ${result.error.message}`);
+  }
+  if (result.status !== 0) {
+    issues.push(`dry-run import helper exited ${result.status}: stdout=${result.stdout.trim()} stderr=${result.stderr.trim()}`);
+  }
+
+  let runRecord;
+  try {
+    runRecord = JSON.parse(await fs.readFile(path.join(tempRoot, "ops/codex-batches/runs/import-run.json"), "utf8"));
+  } catch (error) {
+    issues.push(`dry-run import run record missing or invalid: ${error.message}`);
+  }
+
+  const worker = runRecord?.worker_states?.[0];
+  assertEqual(runRecord?.status, "partial", "dry-run import run status", issues);
+  assertEqual(worker?.status, "succeeded_pending_reconciliation", "dry-run import worker status", issues);
+
+  const forbiddenPaths = [
+    "data/candidate-changes/import-candidate.json",
+    "research/agent-runs/import-job.json",
+    "ops/codex-jobs/archive/import-job.json"
+  ];
+  for (const relativePath of forbiddenPaths) {
+    try {
+      await fs.access(path.join(tempRoot, relativePath));
+      issues.push(`dry-run import helper should not create ${relativePath}.`);
+    } catch {
+      // Expected.
+    }
+  }
+
+  try {
+    await fs.access(path.join(tempRoot, "ops/codex-jobs/live/import-job.json"));
+  } catch {
+    issues.push("dry-run import helper should leave live job in place.");
+  }
+
+  if (issues.length > 0) {
+    return issues;
+  }
+
+  console.log("PASS parallel-batch-import-pending-worker-dry-run");
+  return [];
+}
+
 async function runArchiveRunningWorkerCase(tempRoot) {
   await writeArchiveRunningWorkerFixture(tempRoot);
   const result = spawnSync(
@@ -1222,6 +1290,7 @@ async function main() {
       ...(await runUsageLimitDiagnosticCase(tempRoot)),
       ...(await runInterruptionCase(tempRoot)),
       ...(await runArchiveCollisionCase(tempRoot)),
+      ...(await runImportPendingWorkerDryRunCase(tempRoot)),
       ...(await runImportPendingWorkerCase(tempRoot)),
       ...(await runArchiveRunningWorkerCase(tempRoot)),
       ...(await runPostVerifyHeartbeatCase(tempRoot))

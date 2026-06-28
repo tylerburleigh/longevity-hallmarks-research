@@ -101,7 +101,7 @@
         "--execute",
         "--allow-dirty"
       ],
-      "status": "failed",
+      "status": "succeeded",
       "started_at": "2026-06-27T17:07:10.300Z",
       "worktree_path": "/tmp/lhr-codex-worktrees/self-healing-extraction-debt-dq-bone-adverse-events-20wk-mixed-20260627T170710z",
       "issues": [
@@ -111,16 +111,17 @@
       "completed_at": "2026-06-27T17:19:49.661Z",
       "exit_code": 1,
       "output_path": "research/agent-runs/self-healing-extraction-debt-dq-bone-adverse-events-20wk-mixed.json",
-      "worker_log_path": "research/agent-runs/logs/self-healing-extraction-debt-dq-bone-adverse-events-20wk-mixed.jsonl"
+      "worker_log_path": "research/agent-runs/logs/self-healing-extraction-debt-dq-bone-adverse-events-20wk-mixed.jsonl",
+      "archive_path": "ops/codex-jobs/archive/self-healing-extraction-debt-dq-bone-adverse-events-20wk-mixed.json"
     }
   ],
   "summary": {
     "planned_count": 0,
     "running_count": 0,
-    "succeeded_count": 2,
+    "succeeded_count": 3,
     "pending_reconciliation_count": 0,
-    "failed_count": 2,
-    "archived_count": 3
+    "failed_count": 1,
+    "archived_count": 4
   },
   "next_actions": [
     "Inspect batch log events and failed worker logs before rerunning failed jobs."

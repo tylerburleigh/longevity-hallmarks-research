@@ -1,0 +1,237 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "self-healing-extraction-debt-dq-bone-adverse-events-20wk-mixed",
+  "agent_role": "extraction_agent",
+  "agent_id": "codex-extraction-agent",
+  "mode": "extraction_refresh",
+  "started_at": "2026-06-28T16:23:23Z",
+  "completed_at": "2026-06-28T16:32:50Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "extraction_refresh: Resolve missing synthesis fields: adverse_event.event_specific_counts, adverse_event.preferred_term, analysis.comparison, effect.uncertainty, effect.value.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "chronic_inflammation",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": [
+      "dasatinib-quercetin"
+    ]
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "codex_exec",
+    "isolation": "git_worktree",
+    "workspace_path": "/tmp/lhr-codex-worktrees/self-healing-extraction-debt-dq-bone-adverse-events-20wk-mixed-20260628T162323z",
+    "prompt_file": "research/agent-runs/prompts/self-healing-extraction-debt-dq-bone-adverse-events-20wk-mixed.md",
+    "prompt_template_file": "docs/prompts/codex-agents/extraction-refresh.md",
+    "job_file": "ops/codex-jobs/archive/self-healing-extraction-debt-dq-bone-adverse-events-20wk-mixed.json",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "output_path": "research/agent-runs/self-healing-extraction-debt-dq-bone-adverse-events-20wk-mixed.json",
+    "jsonl_log_path": "research/agent-runs/logs/self-healing-extraction-debt-dq-bone-adverse-events-20wk-mixed.jsonl",
+    "sandbox": "workspace-write",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "user_request",
+      "reference": "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-adverse-events-20wk-mixed.json",
+      "summary": "Bounded extraction-refresh job for result dq-bone-adverse-events-20wk-mixed and candidate extraction-debt-dq-bone-adverse-events-20wk-mixed-repair."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/results/dq-bone-adverse-events-20wk-mixed.json",
+      "summary": "Target registry-extracted aggregate adverse-event result with missing synthesis fields."
+    },
+    {
+      "input_type": "source_snapshot",
+      "reference": "data/source-snapshots/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+      "summary": "ClinicalTrials.gov API v2 source snapshot for NCT04313634."
+    },
+    {
+      "input_type": "text_snapshot",
+      "reference": "data/text-snapshots/text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+      "summary": "Retained ClinicalTrials.gov normalized registry text and section index for adverse-event locators."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json; data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+      "summary": "Synthesis groups that listed missing fields for the target result."
+    },
+    {
+      "input_type": "export",
+      "reference": "ops/triage-state.v1.json",
+      "summary": "Triage extraction-debt rows identifying missing fields for dq-bone-adverse-events-20wk-mixed."
+    },
+    {
+      "input_type": "other",
+      "reference": "plan.md; docs/research-runbook.md; docs/agent-run-outputs.md; docs/extraction-rules.md; docs/source-snapshot-importers.md; schemas/agent-run.codex-output.schema.json; schemas/agent-run.schema.json",
+      "summary": "Repository runbook, extraction, snapshot, and final-output contract instructions."
+    }
+  ],
+  "outputs": {
+    "summary": "Created the submitted repair candidate, updated dq-bone-adverse-events-20wk-mixed with ClinicalTrials.gov other-adverse-event arm counts plus calculated risk ratio and uncertainty, and updated the registry and safety synthesis groups to remove the resolved missing-field entries while keeping pooling blocked for remaining boundary limitations.",
+    "candidate_change_id": "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
+        "path": "data/candidate-changes/extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.json",
+        "change_type": "create",
+        "rationale": "Tracks the bounded self-healing extraction-debt repair candidate and required review lanes."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-adverse-events-20wk-mixed",
+        "path": "data/results/dq-bone-adverse-events-20wk-mixed.json",
+        "change_type": "update",
+        "rationale": "Adds structured adverse_event fields for the registry other-adverse-event aggregate plus a calculated risk ratio and uncertainty from the reported 23/30 D+Q and 5/30 untreated-control counts."
+      },
+      {
+        "record_type": "synthesis_group",
+        "record_id": "senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21",
+        "path": "data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
+        "change_type": "update",
+        "rationale": "Removes the resolved missing-field entry for dq-bone-adverse-events-20wk-mixed while preserving the broad registry mixed-endpoint pooling blocker."
+      },
+      {
+        "record_type": "synthesis_group",
+        "record_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+        "path": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+        "change_type": "update",
+        "rationale": "Removes the resolved missing-field entry for dq-bone-adverse-events-20wk-mixed while retaining safety pooling blockers for single-trial evidence, overlapping aggregate summaries, and the headache preferred-term result."
+      }
+    ],
+    "generated_files": [
+      "data/candidate-changes/extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.json",
+      "data/results/dq-bone-adverse-events-20wk-mixed.json",
+      "data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
+      "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+      "exports/latest/accepted-records.jsonl",
+      "exports/latest/audit-manifest.json",
+      "exports/latest/consumer-contract.json",
+      "exports/latest/coverage-status.json",
+      "exports/latest/evidence-map.json",
+      "exports/latest/findings.jsonl",
+      "exports/latest/read-model.sqlite",
+      "exports/latest/results.all.jsonl",
+      "exports/latest/results.extraction_grade.jsonl",
+      "exports/latest/results.registry_extracted.jsonl",
+      "exports/latest/results.triage.jsonl",
+      "exports/latest/source-rights.jsonl",
+      "exports/latest/sources.jsonl",
+      "exports/latest/studies.jsonl",
+      "exports/latest/synthesis-groups.jsonl",
+      "exports/latest/text-snapshots.jsonl"
+    ],
+    "export_paths": [
+      "exports/latest/accepted-records.jsonl",
+      "exports/latest/audit-manifest.json",
+      "exports/latest/consumer-contract.json",
+      "exports/latest/coverage-status.json",
+      "exports/latest/evidence-map.json",
+      "exports/latest/findings.jsonl",
+      "exports/latest/read-model.sqlite",
+      "exports/latest/results.all.jsonl",
+      "exports/latest/results.extraction_grade.jsonl",
+      "exports/latest/results.registry_extracted.jsonl",
+      "exports/latest/results.triage.jsonl",
+      "exports/latest/source-rights.jsonl",
+      "exports/latest/sources.jsonl",
+      "exports/latest/studies.jsonl",
+      "exports/latest/synthesis-groups.jsonl",
+      "exports/latest/text-snapshots.jsonl"
+    ]
+  },
+  "quality_checks": [
+    {
+      "check_name": "validate_records",
+      "status": "passed",
+      "summary": "npm run validate:records passed and validated 415 JSON file(s)."
+    },
+    {
+      "check_name": "audit_references",
+      "status": "passed",
+      "summary": "npm run audit:references passed for 289 record file(s)."
+    },
+    {
+      "check_name": "export_latest",
+      "status": "passed",
+      "summary": "npm run export:latest passed and wrote 16 export file(s) to exports/latest."
+    },
+    {
+      "check_name": "audit_exports",
+      "status": "passed",
+      "summary": "npm run audit:exports passed for 11 JSONL export(s) and 15 manifest file hash(es)."
+    },
+    {
+      "check_name": "audit_read_model",
+      "status": "passed",
+      "summary": "npm run audit:read-model passed for 289 canonical record(s) across 11 traced table(s)."
+    },
+    {
+      "check_name": "audit_agent_schemas",
+      "status": "passed",
+      "summary": "npm run audit:agent-schemas passed."
+    },
+    {
+      "check_name": "audit_agentic_process",
+      "status": "passed",
+      "summary": "npm run audit:agentic-process passed for 490 file(s)."
+    },
+    {
+      "check_name": "candidate_agent_run_ledger_match",
+      "status": "passed",
+      "summary": "Candidate proposed_records paths match final outputs.proposed_records paths for the candidate_change, result, and two synthesis_group records."
+    },
+    {
+      "check_name": "verify_knowledge_base",
+      "status": "not_run",
+      "summary": "Deferred to coordinator post-run verification after final output import and generated control-plane refresh."
+    },
+    {
+      "check_name": "worker_output_contract",
+      "status": "passed",
+      "summary": "Worker emitted exactly one final JSON agent_run message, matched output_path, and avoided ad hoc schema-validation snippets."
+    },
+    {
+      "check_name": "post_triage_state_export",
+      "status": "passed",
+      "summary": "post_triage_state_export exited 0: > longevity-hallmarks-research@0.1.0 export:triage-state > node scripts/export-triage-state.mjs Wrote ops/triage-state.v1.json."
+    },
+    {
+      "check_name": "post_release_readiness_export",
+      "status": "passed",
+      "summary": "post_release_readiness_export exited 0: > longevity-hallmarks-research@0.1.0 export:release-readiness > node scripts/export-release-readiness.mjs Wrote ops/release-readiness.v1.json."
+    },
+    {
+      "check_name": "post_reconciliation_export",
+      "status": "passed",
+      "summary": "post_reconciliation_export exited 0: > longevity-hallmarks-research@0.1.0 reconcile:parallel > node scripts/reconcile-parallel-outputs.mjs Wrote ops/reconciliation/parallel-reconciliation.v1.json."
+    },
+    {
+      "check_name": "post_orchestration_metrics_export",
+      "status": "passed",
+      "summary": "post_orchestration_metrics_export exited 0: > longevity-hallmarks-research@0.1.0 metrics:orchestration > node scripts/export-orchestration-metrics.mjs Wrote ops/codex-batches/orchestration-metrics.v1.json."
+    },
+    {
+      "check_name": "post_export",
+      "status": "passed",
+      "summary": "post_export exited 0: > longevity-hallmarks-research@0.1.0 export:latest > node scripts/export-latest.mjs Wrote 16 export file(s) to exports/latest."
+    },
+    {
+      "check_name": "post_verify",
+      "status": "passed",
+      "summary": "post_verify exited 0: > longevity-hallmarks-research@0.1.0 audit:orchestration-smoke-contract > node scripts/audit-orchestration-smoke-contract.mjs Orchestration smoke contract audit passed for orchestration-smoke-budgeted-codex-worktree-2026-06-23. > longevity-hallmarks-research@0.1.0 audit:agentic-process > node scripts/audit-agentic-process.mjs Agentic process audit passed for 491 file(s)."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": [
+    "Run supervisor review lanes for extraction_fidelity, safety_limitations, synthesis_boundary, and taxonomy_mapping before promotion.",
+    "Coordinator post-run should refresh generated control-plane exports and run full knowledge-base verification."
+  ]
+}

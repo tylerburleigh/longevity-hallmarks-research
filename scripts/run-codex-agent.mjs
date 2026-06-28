@@ -20,6 +20,10 @@ const wrapperOwnedQualityCheckNames = [
 const wrapperOwnedQualityChecks = new Set(wrapperOwnedQualityCheckNames);
 const placeholderOutputReferences = new Set(["none", "n/a", "na", "null", "unknown", "not_applicable", "not-applicable"]);
 const optionalOutputReferenceFields = ["research_session_id", "search_log_id", "screening_run_id"];
+const coordinatorCommandHeartbeatMs = Math.max(
+  1000,
+  Number.parseInt(process.env.CODEX_COORDINATOR_COMMAND_HEARTBEAT_MS ?? "60000", 10) || 60000
+);
 
 function usage() {
   console.error(`Usage:
@@ -693,6 +697,25 @@ function runCoordinatorCommand(options, name, command, args) {
     });
     const stdoutChunks = [];
     const stderrChunks = [];
+    let heartbeatCount = 0;
+    const heartbeatTimer = setInterval(() => {
+      heartbeatCount += 1;
+      process.stdout.write(
+        `${JSON.stringify({
+          type: "coordinator.command.heartbeat",
+          name,
+          command: [command, ...args],
+          cwd: options.workdir,
+          started_at: startedAt,
+          heartbeat_at: new Date().toISOString(),
+          heartbeat_count: heartbeatCount
+        })}\n`
+      );
+    }, coordinatorCommandHeartbeatMs);
+
+    function clearHeartbeatTimer() {
+      clearInterval(heartbeatTimer);
+    }
 
     child.stdout.on("data", (chunk) => {
       stdoutChunks.push(chunk);
@@ -702,6 +725,7 @@ function runCoordinatorCommand(options, name, command, args) {
     });
 
     child.on("error", (error) => {
+      clearHeartbeatTimer();
       const event = {
         type: "coordinator.command.failed",
         name,
@@ -720,6 +744,7 @@ function runCoordinatorCommand(options, name, command, args) {
     });
 
     child.on("close", (code) => {
+      clearHeartbeatTimer();
       const event = {
         type: code === 0 ? "coordinator.command.completed" : "coordinator.command.failed",
         name,

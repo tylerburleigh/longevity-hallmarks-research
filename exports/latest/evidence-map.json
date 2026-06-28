@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "evidence_map",
   "id": "latest-consumer-evidence-map",
-  "generated_at": "2026-06-28T11:10:47.221Z",
+  "generated_at": "2026-06-28T16:35:49.246Z",
   "scope": {
     "description": "Generated consumer evidence graph over canonical source, study, finding, outcome, result, coverage-assessment, and synthesis-group records.",
     "record_types": [
@@ -26,12 +26,11 @@
   },
   "maturity_counts": {
     "abstract_extracted": 11,
-    "agent_reviewed": 7,
+    "agent_reviewed": 8,
     "full_text_extracted": 13,
     "metadata_imported": 18,
     "registry_extracted": 15,
     "screened": 6,
-    "supervisor_agent_reviewed": 1,
     "triage_summary": 20
   },
   "nodes": [
@@ -872,7 +871,7 @@
       "record_type": "synthesis_group",
       "id": "senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21",
       "name": "D+Q bone RCT registry-extracted synthesis compatibility",
-      "maturity_status": "supervisor_agent_reviewed",
+      "maturity_status": "agent_reviewed",
       "compatibility_status": "not_poolable",
       "pooling_decision": "pooling_blocked",
       "track_ids": [

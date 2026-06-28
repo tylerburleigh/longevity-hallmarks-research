@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "release_manifest",
   "id": "latest-consumer-export",
-  "generated_at": "2026-06-28T11:10:47.221Z",
+  "generated_at": "2026-06-28T16:35:49.246Z",
   "export_version": "0.1.0",
   "export_scope": {
     "description": "Consumer-facing latest export generated from canonical research and data records.",
@@ -50,7 +50,7 @@
       "format": "jsonl",
       "description": "Release-boundary export of records proposed by accepted or applied candidates and not blocked by dependency checks.",
       "record_count": 87,
-      "sha256": "6e58eb77549f2d45e410b50fef467389b694b0f6d3034707d9aafde08cc46a05"
+      "sha256": "31db2f40003d994fa625d9991ebb3c68dd34192781e7a0a54dcec2b5ac1596ab"
     },
     {
       "path": "exports/latest/studies.jsonl",
@@ -78,21 +78,21 @@
       "format": "jsonl",
       "description": "All canonical result records across maturity states.",
       "record_count": 22,
-      "sha256": "b53d212207453cc00f288aa0a7f602c1fffe63e11d23e1663e077b1e67c49480"
+      "sha256": "6c76d9e00578d780dfe1184716867a208df834ffd7ccf9372d1db86b14c990fc"
     },
     {
       "path": "exports/latest/results.extraction_grade.jsonl",
       "format": "jsonl",
       "description": "Result records with registry, full-text, agent-reviewed, supervisor-agent-reviewed, or accepted extraction-grade maturity.",
       "record_count": 14,
-      "sha256": "0283b6b2b6f1e6248c05fe3860c220e4dfa1fddfc4291e6cb05074d3a560775a"
+      "sha256": "9d90d355d4e06763069790495197418493dec692a4b4ef9f625a843cb9205318"
     },
     {
       "path": "exports/latest/results.registry_extracted.jsonl",
       "format": "jsonl",
       "description": "Result records with registry-extracted structured values.",
       "record_count": 7,
-      "sha256": "7d506a88c87336375a951c36a6fbbaf8dd70ffc7309459beca02477d46f09d6f"
+      "sha256": "f5c13a07890327690484c06b5f8194b5c2d2610e538de3326d39c3de957ee0f8"
     },
     {
       "path": "exports/latest/results.triage.jsonl",
@@ -106,39 +106,39 @@
       "format": "jsonl",
       "description": "Synthesis compatibility groups with poolability decisions, missing effect fields, and agent supervision metadata.",
       "record_count": 8,
-      "sha256": "725e913267aa14e604cca732bdd4c51a21f0d7d991e23b5322d90410a4052cff"
+      "sha256": "7ad8cf71f619fa8471a7eee33a3d88e4c2939d9978fa44e2f094d88ce97f1728"
     },
     {
       "path": "exports/latest/evidence-map.json",
       "format": "json",
       "description": "Generated graph view of source, study, finding, outcome, result, coverage, and synthesis-compatibility links.",
       "record_count": 1,
-      "sha256": "4e7c830b34950fded8dcd0421fe61b99f8821e048f3ee0c9bc32fa48fedf0a21"
+      "sha256": "ad49bc8d3bf00e86393ab46b0d16552778aa7d69358eda2212d65e16ad6bd67b"
     },
     {
       "path": "exports/latest/coverage-status.json",
       "format": "json",
       "description": "Consumer coverage status with current/superseded flags and known-gap warnings.",
       "record_count": 1,
-      "sha256": "91a53c52b2e0c6f0ea4f6049f35d97131cbce0a1598ed6fa549bc412aa1bda3a"
+      "sha256": "e9bf43c556084f032628e89e94a53c6140aa63f71e99716cc307fc1920d01576"
     },
     {
       "path": "exports/latest/read-model.sqlite",
       "format": "sqlite",
       "description": "Generated SQLite read model for indexed joins over canonical JSON records.",
-      "record_count": 288,
-      "sha256": "7ad0ee3ab5ef38b6c6b62108d8439f4292daf7dbf466464ab69587c462d2c3cd"
+      "record_count": 290,
+      "sha256": "a25dc306b414357a2bfe14fde9155e510ca8defd4dc4f76d9ceabc73f3d03d48"
     },
     {
       "path": "exports/latest/consumer-contract.json",
       "format": "json",
       "description": "Versioned machine-readable contract for consumer-facing export artifacts.",
       "record_count": 1,
-      "sha256": "a558eb39cfbd6aa87847038afb63606cfca1b719db01c05ad313795d295bea65"
+      "sha256": "4b815745ba054275e5c14f8936cd69e9562ac85b5e2d7cb999b9833a904e6151"
     }
   ],
   "record_counts": {
-    "canonical_records": 288,
+    "canonical_records": 290,
     "sources": 10,
     "source_rights": 2,
     "accepted_records": 87,
@@ -151,7 +151,7 @@
     "results_triage": 8,
     "synthesis_groups": 8,
     "coverage_assessments": 2,
-    "read_model_records": 288,
+    "read_model_records": 290,
     "consumer_contracts": 1
   },
   "notes": [

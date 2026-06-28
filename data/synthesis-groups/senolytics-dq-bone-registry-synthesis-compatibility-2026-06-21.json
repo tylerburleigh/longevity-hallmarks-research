@@ -3,7 +3,7 @@
   "record_type": "synthesis_group",
   "id": "senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21",
   "name": "D+Q bone RCT registry-extracted synthesis compatibility",
-  "assessed_at": "2026-06-21T20:10:00Z",
+  "assessed_at": "2026-06-28T16:27:27Z",
   "question": "Can the D+Q postmenopausal bone RCT registry-extracted endpoint results be pooled for a meta-analysis estimate?",
   "track_ids": [
     "senolytics"
@@ -21,7 +21,7 @@
     "comparator": "Untreated control.",
     "endpoint_family": "Bone turnover, bone density, SASP, and aggregate safety endpoints.",
     "time_horizon": "Baseline to 2, 4, or 20 weeks depending on endpoint.",
-    "effect_metric": "Percent change, descriptive group summaries, or p-value-only effects depending on endpoint.",
+    "effect_metric": "Percent change, descriptive group summaries, p-value-only effects, or a registry aggregate adverse-event risk ratio depending on endpoint.",
     "variance_model": "No pooling model selected because effect uncertainty fields are absent or incompatible."
   },
   "outcome_ids": [
@@ -44,7 +44,7 @@
   ],
   "compatibility_status": "not_poolable",
   "pooling_decision": "pooling_blocked",
-  "pooling_rationale": "The grouped results are useful for an evidence map, but they mix primary, secondary, biomarker, BMD, SASP, and safety endpoints across different time horizons. Several records only provide p-values or descriptive summaries, and the registry full-range dispersion is not a variance estimate suitable for pooling.",
+  "pooling_rationale": "The grouped results are useful for an evidence map, but they mix primary, secondary, biomarker, BMD, SASP, and safety endpoints across different time horizons. Several non-safety records only provide p-values or descriptive summaries, and the registry full-range dispersion is not a variance estimate suitable for pooling. The aggregate adverse-event result now has a registry-derived risk ratio and uncertainty but remains incompatible with the mixed endpoint set.",
   "non_pooling_reason": "Do not compute a pooled estimate until endpoint-specific compatibility groups contain at least two comparable studies and each included result has an effect value plus CI, standard error, or variance.",
   "pooling_requirements": {
     "minimum_result_count": 2,
@@ -116,30 +116,21 @@
         ],
         "impact": "blocks_pooling",
         "note": "The registry record has group medians and a p-value, but no extractable effect value or variance estimate."
-      },
-      {
-        "result_id": "dq-bone-adverse-events-20wk-mixed",
-        "missing_fields": [
-          "effect.value",
-          "effect.uncertainty",
-          "analysis.comparison"
-        ],
-        "impact": "blocks_pooling",
-        "note": "Aggregate adverse-event counts should be represented in a safety-specific compatibility group before any effect estimate is attempted."
       }
     ]
   },
   "agent_supervision": {
-    "assessing_agent": "codex-evidence-extraction",
-    "supervisor_agent": "codex-synthesis-audit",
+    "assessing_agent": "codex-extraction-agent",
+    "supervisor_agent": "pending-supervisor-review",
     "audit_status": "passed",
     "self_healing_actions": [
-      "Keep this synthesis group in pooling_blocked state until uncertainty fields are extracted or a compatible endpoint-specific group is created.",
+      "The dq-bone-adverse-events-20wk-mixed registry aggregate now has effect.value, effect.uncertainty, and analysis.comparison fields derived from explicit other-adverse-event counts.",
+      "Keep this mixed-endpoint registry synthesis group in pooling_blocked state because the endpoint families and time horizons remain incompatible.",
       "Route missing effect fields to extraction_refresh when PubMed full text, supplements, or registry analysis tables can support them.",
       "Regenerate consumer exports after any referenced outcome, result, or synthesis-group record changes."
     ]
   },
-  "maturity_status": "supervisor_agent_reviewed",
+  "maturity_status": "agent_reviewed",
   "provenance": [
     {
       "source_id": "nct-04313634",

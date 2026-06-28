@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "triage_state",
   "id": "triage-state-v1",
-  "generated_at": "2026-06-28T14:12:08.314Z",
+  "generated_at": "2026-06-28T16:34:13.592Z",
   "source_roots": [
     "data",
     "research"
@@ -66,9 +66,9 @@
     }
   ],
   "summary": {
-    "candidate_count": 57,
+    "candidate_count": 58,
     "promotion_ready_count": 0,
-    "needs_review_count": 0,
+    "needs_review_count": 1,
     "needs_revision_count": 0,
     "blocked_count": 0,
     "accepted_count": 14,
@@ -76,7 +76,7 @@
     "rejected_count": 3,
     "coverage_gap_count": 4,
     "high_priority_coverage_gap_count": 2,
-    "extraction_debt_count": 47,
+    "extraction_debt_count": 39,
     "stale_snapshot_count": 0,
     "watch_snapshot_count": 0,
     "partial_or_failed_agent_run_count": 0,
@@ -1022,6 +1022,34 @@
       "next_actions": []
     },
     {
+      "candidate_change_id": "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
+      "path": "data/candidate-changes/extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "needs_review",
+      "required_review_lanes": [
+        "extraction_fidelity",
+        "safety_limitations",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "active_review_ids": [],
+      "active_review_paths": [],
+      "complete_accepting_review_lanes": [],
+      "missing_review_lanes": [
+        "extraction_fidelity",
+        "safety_limitations",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 4,
+      "next_actions": [
+        "Run supervisor review lanes: extraction_fidelity, safety_limitations, synthesis_boundary, taxonomy_mapping."
+      ]
+    },
+    {
       "candidate_change_id": "orchestration-parallel-smoke-a-candidate-2026-06-23",
       "path": "data/candidate-changes/orchestration-parallel-smoke-a-candidate-2026-06-23.json",
       "lifecycle_status": "submitted",
@@ -1492,6 +1520,30 @@
   "promotion_ready_candidate_ids": [],
   "missing_review_lane_queue": [
     {
+      "candidate_change_id": "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
+      "path": "data/candidate-changes/extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.json",
+      "review_lane": "extraction_fidelity",
+      "next_action": "Run extraction_fidelity supervisor review for extraction-debt-dq-bone-adverse-events-20wk-mixed-repair."
+    },
+    {
+      "candidate_change_id": "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
+      "path": "data/candidate-changes/extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.json",
+      "review_lane": "safety_limitations",
+      "next_action": "Run safety_limitations supervisor review for extraction-debt-dq-bone-adverse-events-20wk-mixed-repair."
+    },
+    {
+      "candidate_change_id": "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
+      "path": "data/candidate-changes/extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.json",
+      "review_lane": "synthesis_boundary",
+      "next_action": "Run synthesis_boundary supervisor review for extraction-debt-dq-bone-adverse-events-20wk-mixed-repair."
+    },
+    {
+      "candidate_change_id": "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
+      "path": "data/candidate-changes/extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.json",
+      "review_lane": "taxonomy_mapping",
+      "next_action": "Run taxonomy_mapping supervisor review for extraction-debt-dq-bone-adverse-events-20wk-mixed-repair."
+    },
+    {
       "candidate_change_id": "senolytics-scaffold-bootstrap-2026-06-21",
       "path": "data/candidate-changes/senolytics-scaffold-bootstrap-2026-06-21.json",
       "review_lane": "synthesis_boundary",
@@ -1551,110 +1603,6 @@
     }
   ],
   "extraction_debt": [
-    {
-      "debt_id": "debt-senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21-dq-bone-adverse-events-20wk-mixed-analysis.comparison",
-      "result_id": "dq-bone-adverse-events-20wk-mixed",
-      "path": "data/results/dq-bone-adverse-events-20wk-mixed.json",
-      "synthesis_group_id": "senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21",
-      "missing_field": "analysis.comparison",
-      "debt_type": "missing_analysis_comparison",
-      "severity": "high",
-      "source": "synthesis_group_missing_effect_fields",
-      "impact": "blocks_pooling",
-      "note": "Aggregate adverse-event counts should be represented in a safety-specific compatibility group before any effect estimate is attempted.",
-      "next_action": "Run extraction refresh for dq-bone-adverse-events-20wk-mixed to resolve analysis.comparison."
-    },
-    {
-      "debt_id": "debt-senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21-dq-bone-adverse-events-20wk-mixed-effect.uncertainty",
-      "result_id": "dq-bone-adverse-events-20wk-mixed",
-      "path": "data/results/dq-bone-adverse-events-20wk-mixed.json",
-      "synthesis_group_id": "senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21",
-      "missing_field": "effect.uncertainty",
-      "debt_type": "missing_effect_uncertainty",
-      "severity": "high",
-      "source": "synthesis_group_missing_effect_fields",
-      "impact": "blocks_pooling",
-      "note": "Aggregate adverse-event counts should be represented in a safety-specific compatibility group before any effect estimate is attempted.",
-      "next_action": "Run extraction refresh for dq-bone-adverse-events-20wk-mixed to resolve effect.uncertainty."
-    },
-    {
-      "debt_id": "debt-senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21-dq-bone-adverse-events-20wk-mixed-effect.value",
-      "result_id": "dq-bone-adverse-events-20wk-mixed",
-      "path": "data/results/dq-bone-adverse-events-20wk-mixed.json",
-      "synthesis_group_id": "senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21",
-      "missing_field": "effect.value",
-      "debt_type": "missing_effect_value",
-      "severity": "high",
-      "source": "synthesis_group_missing_effect_fields",
-      "impact": "blocks_pooling",
-      "note": "Aggregate adverse-event counts should be represented in a safety-specific compatibility group before any effect estimate is attempted.",
-      "next_action": "Run extraction refresh for dq-bone-adverse-events-20wk-mixed to resolve effect.value."
-    },
-    {
-      "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-adverse-events-20wk-mixed-adverse_event.event_specific_counts",
-      "result_id": "dq-bone-adverse-events-20wk-mixed",
-      "path": "data/results/dq-bone-adverse-events-20wk-mixed.json",
-      "synthesis_group_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
-      "missing_field": "adverse_event.event_specific_counts",
-      "debt_type": "missing_adverse_event_event_specific_counts",
-      "severity": "high",
-      "source": "synthesis_group_missing_effect_fields",
-      "impact": "blocks_pooling",
-      "note": "The result is an aggregate safety_event record, not preferred-term event-specific extraction; it lacks comparative effect value, uncertainty, and explicit event-specific preferred-term counts.",
-      "next_action": "Run extraction refresh for dq-bone-adverse-events-20wk-mixed to resolve adverse_event.event_specific_counts."
-    },
-    {
-      "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-adverse-events-20wk-mixed-adverse_event.preferred_term",
-      "result_id": "dq-bone-adverse-events-20wk-mixed",
-      "path": "data/results/dq-bone-adverse-events-20wk-mixed.json",
-      "synthesis_group_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
-      "missing_field": "adverse_event.preferred_term",
-      "debt_type": "missing_adverse_event_preferred_term",
-      "severity": "high",
-      "source": "synthesis_group_missing_effect_fields",
-      "impact": "blocks_pooling",
-      "note": "The result is an aggregate safety_event record, not preferred-term event-specific extraction; it lacks comparative effect value, uncertainty, and explicit event-specific preferred-term counts.",
-      "next_action": "Run extraction refresh for dq-bone-adverse-events-20wk-mixed to resolve adverse_event.preferred_term."
-    },
-    {
-      "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-adverse-events-20wk-mixed-analysis.comparison",
-      "result_id": "dq-bone-adverse-events-20wk-mixed",
-      "path": "data/results/dq-bone-adverse-events-20wk-mixed.json",
-      "synthesis_group_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
-      "missing_field": "analysis.comparison",
-      "debt_type": "missing_analysis_comparison",
-      "severity": "high",
-      "source": "synthesis_group_missing_effect_fields",
-      "impact": "blocks_pooling",
-      "note": "The result is an aggregate safety_event record, not preferred-term event-specific extraction; it lacks comparative effect value, uncertainty, and explicit event-specific preferred-term counts.",
-      "next_action": "Run extraction refresh for dq-bone-adverse-events-20wk-mixed to resolve analysis.comparison."
-    },
-    {
-      "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-adverse-events-20wk-mixed-effect.uncertainty",
-      "result_id": "dq-bone-adverse-events-20wk-mixed",
-      "path": "data/results/dq-bone-adverse-events-20wk-mixed.json",
-      "synthesis_group_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
-      "missing_field": "effect.uncertainty",
-      "debt_type": "missing_effect_uncertainty",
-      "severity": "high",
-      "source": "synthesis_group_missing_effect_fields",
-      "impact": "blocks_pooling",
-      "note": "The result is an aggregate safety_event record, not preferred-term event-specific extraction; it lacks comparative effect value, uncertainty, and explicit event-specific preferred-term counts.",
-      "next_action": "Run extraction refresh for dq-bone-adverse-events-20wk-mixed to resolve effect.uncertainty."
-    },
-    {
-      "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-adverse-events-20wk-mixed-effect.value",
-      "result_id": "dq-bone-adverse-events-20wk-mixed",
-      "path": "data/results/dq-bone-adverse-events-20wk-mixed.json",
-      "synthesis_group_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
-      "missing_field": "effect.value",
-      "debt_type": "missing_effect_value",
-      "severity": "high",
-      "source": "synthesis_group_missing_effect_fields",
-      "impact": "blocks_pooling",
-      "note": "The result is an aggregate safety_event record, not preferred-term event-specific extraction; it lacks comparative effect value, uncertainty, and explicit event-specific preferred-term counts.",
-      "next_action": "Run extraction refresh for dq-bone-adverse-events-20wk-mixed to resolve effect.value."
-    },
     {
       "debt_id": "debt-senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21-dq-bone-bmd-20wk-inconclusive-effect.uncertainty",
       "result_id": "dq-bone-bmd-20wk-inconclusive",
@@ -2155,6 +2103,18 @@
   "partial_or_failed_agent_runs": [],
   "recommended_jobs": [
     {
+      "job_id": "candidate-review-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
+      "job_type": "candidate_review",
+      "priority": "high",
+      "source": "candidate_readiness",
+      "target_record_type": "candidate_change",
+      "target_record_id": "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
+      "rationale": "Required review lanes are missing: extraction_fidelity, safety_limitations, synthesis_boundary, taxonomy_mapping.",
+      "inputs": [
+        "data/candidate-changes/extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.json"
+      ]
+    },
+    {
       "job_id": "coverage-gap-senolytics-exact-effect-extraction-followup-2",
       "job_type": "extraction_refresh",
       "priority": "high",
@@ -2176,18 +2136,6 @@
       "rationale": "Aggregate adverse-event counts and the D+Q bone headache preferred-term row have been extracted for the D+Q bone RCT, and retained full-text locators now identify the safety table, withdrawal narrative, dosing cadence, and durability discussion. Event-specific structured rows beyond headache, discontinuation count fields, and source-snapshot-backed safety extraction for the DKD, IPF, and AD-risk human studies remain incomplete.",
       "inputs": [
         "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json"
-      ]
-    },
-    {
-      "job_id": "extraction-debt-dq-bone-adverse-events-20wk-mixed",
-      "job_type": "extraction_refresh",
-      "priority": "high",
-      "source": "extraction_debt",
-      "target_record_type": "result",
-      "target_record_id": "dq-bone-adverse-events-20wk-mixed",
-      "rationale": "Resolve missing synthesis fields: adverse_event.event_specific_counts, adverse_event.preferred_term, analysis.comparison, effect.uncertainty, effect.value.",
-      "inputs": [
-        "data/results/dq-bone-adverse-events-20wk-mixed.json"
       ]
     },
     {

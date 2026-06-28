@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
+  "name": "D+Q bone registry aggregate adverse-event extraction-debt repair",
+  "summary": "Updates the ClinicalTrials.gov 20-week aggregate adverse-event result with a registry aggregate adverse_event category, arm-level counts, calculated risk ratio, and uncertainty; updates the registry and safety synthesis boundaries to remove the resolved missing-field debt while keeping pooling blocked for endpoint incompatibility, overlap, and remaining headache-specific limitations.",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-28T16:27:27Z",
+  "scope": {
+    "question": "Resolve extraction debt for dq-bone-adverse-events-20wk-mixed: adverse_event.event_specific_counts, adverse_event.preferred_term, analysis.comparison, effect.uncertainty, and effect.value.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "chronic_inflammation",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
+      "path": "data/candidate-changes/extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.json",
+      "change_type": "create",
+      "rationale": "Tracks the bounded self-healing extraction-debt repair candidate and required review lanes."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-adverse-events-20wk-mixed",
+      "path": "data/results/dq-bone-adverse-events-20wk-mixed.json",
+      "change_type": "update",
+      "rationale": "Adds structured adverse_event fields for the registry other-adverse-event aggregate plus a calculated risk ratio and uncertainty from the reported 23/30 D+Q and 5/30 untreated-control counts."
+    },
+    {
+      "record_type": "synthesis_group",
+      "record_id": "senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21",
+      "path": "data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
+      "change_type": "update",
+      "rationale": "Removes the resolved missing-field entry for dq-bone-adverse-events-20wk-mixed while preserving the broad registry mixed-endpoint pooling blocker."
+    },
+    {
+      "record_type": "synthesis_group",
+      "record_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "path": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+      "change_type": "update",
+      "rationale": "Removes the resolved missing-field entry for dq-bone-adverse-events-20wk-mixed while retaining safety pooling blockers for single-trial evidence, overlapping aggregate summaries, and the headache preferred-term result."
+    }
+  ],
+  "required_review_lanes": [
+    "extraction_fidelity",
+    "safety_limitations",
+    "synthesis_boundary",
+    "taxonomy_mapping"
+  ]
+}

@@ -34,6 +34,28 @@ const broadReadPatterns = [
   }
 ];
 
+function parseArgs(argv) {
+  const options = {
+    failOnLegacyFindings: false,
+    json: false
+  };
+
+  for (const arg of argv) {
+    if (arg === "--fail-on-legacy-findings") {
+      options.failOnLegacyFindings = true;
+    } else if (arg === "--json") {
+      options.json = true;
+    } else if (arg === "--help" || arg === "-h") {
+      console.error(`Usage: node scripts/audit-worker-context-discipline.mjs [--fail-on-legacy-findings] [--json]`);
+      process.exit(0);
+    } else {
+      throw new Error(`Unknown argument: ${arg}`);
+    }
+  }
+
+  return options;
+}
+
 async function exists(filePath) {
   try {
     await fs.access(filePath);
@@ -192,8 +214,10 @@ function commandFindings({ job, events }) {
 }
 
 async function main() {
+  const options = parseArgs(process.argv.slice(2));
   const jobFiles = (await Promise.all(jobRoots.map((root) => walkJsonFiles(path.join(workspaceRoot, root))))).flat();
   const issues = [];
+  const legacyFindings = [];
   const telemetry = {
     pack_backed_supervisor_job_count: 0,
     enforced_job_count: 0,
@@ -227,6 +251,13 @@ async function main() {
     const findings = commandFindings({ job, events });
     if (!enforced) {
       telemetry.legacy_exempt_finding_count += findings.length;
+      for (const finding of findings) {
+        legacyFindings.push({
+          job_path: jobPath,
+          job_id: job.id,
+          finding
+        });
+      }
       continue;
     }
 
@@ -234,6 +265,30 @@ async function main() {
       const outputSuffix = finding.output_chars ? ` (${finding.output_chars} chars)` : "";
       issues.push(`${jobPath}: ${finding.type}${outputSuffix}: ${finding.detail}: ${finding.command}`);
     }
+  }
+
+  if (options.failOnLegacyFindings) {
+    for (const legacyFinding of legacyFindings) {
+      const outputSuffix = legacyFinding.finding.output_chars ? ` (${legacyFinding.finding.output_chars} chars)` : "";
+      issues.push(
+        `${legacyFinding.job_path}: legacy_${legacyFinding.finding.type}${outputSuffix}: ${legacyFinding.finding.detail}: ${legacyFinding.finding.command}`
+      );
+    }
+  }
+
+  if (options.json) {
+    console.log(
+      JSON.stringify(
+        {
+          policy,
+          telemetry,
+          issues,
+          legacy_findings: legacyFindings
+        },
+        null,
+        2
+      )
+    );
   }
 
   if (issues.length > 0) {
@@ -244,11 +299,16 @@ async function main() {
     process.exit(1);
   }
 
-  console.log(
-    `Worker context-discipline audit passed for ${telemetry.pack_backed_supervisor_job_count} pack-backed supervisor job(s); ` +
-      `${telemetry.enforced_job_count} enforced, ${telemetry.legacy_exempt_job_count} legacy exempt, ` +
-      `${telemetry.legacy_exempt_finding_count} legacy finding(s) measured.`
-  );
+  if (!options.json) {
+    const legacySuffix =
+      telemetry.legacy_exempt_job_count > 0
+        ? `, ${telemetry.legacy_exempt_job_count} historical exempt (${telemetry.legacy_exempt_finding_count} finding(s) available in --json output)`
+        : "";
+    console.log(
+      `Worker context-discipline audit passed for ${telemetry.pack_backed_supervisor_job_count} pack-backed supervisor job(s); ` +
+        `${telemetry.enforced_job_count} enforced${legacySuffix}.`
+    );
+  }
 }
 
 main().catch((error) => {

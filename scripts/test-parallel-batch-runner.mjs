@@ -9,6 +9,7 @@ const workspaceRoot = process.cwd();
 const runnerScriptPath = path.join(workspaceRoot, "scripts", "run-parallel-codex-batch.mjs");
 const importScriptPath = path.join(workspaceRoot, "scripts", "import-parallel-batch-run.mjs");
 const archiveScriptPath = path.join(workspaceRoot, "scripts", "archive-codex-job.mjs");
+const agentScriptPath = path.join(workspaceRoot, "scripts", "run-codex-agent.mjs");
 
 async function writeFixturePlan(tempRoot) {
   const planPath = path.join(tempRoot, "parallel-batch-plan.fixture.json");
@@ -496,6 +497,67 @@ async function writeArchiveRunningWorkerFixture(tempRoot) {
   });
   await fs.mkdir(path.join(tempRoot, "ops/codex-batches/logs"), { recursive: true });
   await fs.writeFile(path.join(tempRoot, "ops/codex-batches/logs/archive-running-run.jsonl"), "{\"type\":\"fixture\"}\n");
+}
+
+async function writePostVerifyHeartbeatFixture(tempRoot) {
+  await writeJson(tempRoot, "package.json", {
+    type: "module",
+    scripts: {
+      "verify:knowledge-base:post-run": "node -e \"setTimeout(() => {}, 1300)\"",
+      "audit:codex-jobs": "node -e \"process.exit(0)\"",
+      "validate:records": "node -e \"process.exit(0)\""
+    }
+  });
+  await fs.mkdir(path.join(tempRoot, "docs/prompts/codex-agents"), { recursive: true });
+  await fs.writeFile(path.join(tempRoot, "docs/prompts/codex-agents/self-healing-repair.md"), "Fixture prompt.\n");
+  await fs.mkdir(path.join(tempRoot, "schemas"), { recursive: true });
+  await fs.writeFile(path.join(tempRoot, "schemas/agent-run.codex-output.schema.json"), "{}\n");
+
+  const fakeBin = path.join(tempRoot, "bin");
+  await fs.mkdir(fakeBin, { recursive: true });
+  const fakeCodexPath = path.join(fakeBin, "codex");
+  await fs.writeFile(
+    fakeCodexPath,
+    `#!/usr/bin/env node
+import { mkdirSync, writeFileSync } from "node:fs";
+import { dirname } from "node:path";
+const outputPath = process.argv[process.argv.indexOf("-o") + 1];
+const record = {
+  schema_version: "1.0.0",
+  record_type: "agent_run",
+  id: "post-verify-heartbeat-job",
+  agent_role: "self_healing_agent",
+  agent_id: "fixture",
+  started_at: "2026-06-23T00:00:00Z",
+  completed_at: "2026-06-23T00:00:01Z",
+  status: "succeeded",
+  scope: {
+    question: "Fixture post-verify heartbeat job.",
+    hallmark_ids: [],
+    track_ids: [],
+    intervention_ids: []
+  },
+  canonical_write_policy: "no_canonical_writes",
+  execution: {
+    surface: "codex_exec",
+    isolation: "git_worktree",
+    sandbox: "workspace-write",
+    approval_policy: "never",
+    output_path: "research/agent-runs/post-verify-heartbeat-job.json",
+    jsonl_log_path: "research/agent-runs/logs/post-verify-heartbeat-job.jsonl"
+  },
+  outputs: {
+    summary: "Fixture output."
+  },
+  quality_checks: []
+};
+mkdirSync(dirname(outputPath), { recursive: true });
+writeFileSync(outputPath, JSON.stringify(record, null, 2) + "\\n");
+process.stdout.write(JSON.stringify({ type: "item.completed", item: { id: "final", type: "agent_message", text: JSON.stringify(record) } }) + "\\n");
+`
+  );
+  await fs.chmod(fakeCodexPath, 0o755);
+  return fakeBin;
 }
 
 async function writeInterruptionFixture(tempRoot) {
@@ -1099,6 +1161,57 @@ async function runArchiveRunningWorkerCase(tempRoot) {
   return [];
 }
 
+async function runPostVerifyHeartbeatCase(tempRoot) {
+  const fakeBin = await writePostVerifyHeartbeatFixture(tempRoot);
+  const result = spawnSync(
+    process.execPath,
+    [
+      agentScriptPath,
+      "--id",
+      "post-verify-heartbeat-job",
+      "--role",
+      "self_healing_agent",
+      "--prompt-file",
+      "docs/prompts/codex-agents/self-healing-repair.md",
+      "--output",
+      "research/agent-runs/post-verify-heartbeat-job.json",
+      "--execute",
+      "--post-verify"
+    ],
+    {
+      cwd: tempRoot,
+      encoding: "utf8",
+      env: {
+        ...process.env,
+        CODEX_COORDINATOR_COMMAND_HEARTBEAT_MS: "1000",
+        PATH: `${fakeBin}${path.delimiter}${process.env.PATH ?? ""}`,
+        npm_config_update_notifier: "false"
+      }
+    }
+  );
+
+  const issues = [];
+  if (result.error) {
+    issues.push(`post-verify heartbeat run failed to start: ${result.error.message}`);
+  }
+  if (result.status !== 0) {
+    issues.push(`post-verify heartbeat run exited ${result.status}: ${(result.stderr ?? "").trim()}`);
+  }
+  if (!result.stdout.includes("\"type\":\"coordinator.command.heartbeat\"")) {
+    issues.push("post-verify heartbeat run should emit a coordinator.command.heartbeat event while the quiet command is still running.");
+  }
+  if (!result.stdout.includes("\"name\":\"post_verify\"")) {
+    issues.push("post-verify heartbeat run should identify the quiet post_verify command.");
+  }
+
+  if (issues.length > 0) {
+    return issues;
+  }
+
+  console.log("PASS codex-agent-post-verify-heartbeat");
+  return [];
+}
+
 async function main() {
   const tempRoot = await fs.mkdtemp(path.join(os.tmpdir(), "lhr-parallel-batch-runner-"));
   try {
@@ -1110,7 +1223,8 @@ async function main() {
       ...(await runInterruptionCase(tempRoot)),
       ...(await runArchiveCollisionCase(tempRoot)),
       ...(await runImportPendingWorkerCase(tempRoot)),
-      ...(await runArchiveRunningWorkerCase(tempRoot))
+      ...(await runArchiveRunningWorkerCase(tempRoot)),
+      ...(await runPostVerifyHeartbeatCase(tempRoot))
     ];
     if (issues.length > 0) {
       console.error(`Parallel-batch runner regression failed with ${issues.length} issue(s):`);

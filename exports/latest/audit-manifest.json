@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "release_manifest",
   "id": "latest-consumer-export",
-  "generated_at": "2026-06-27T22:13:02.648Z",
+  "generated_at": "2026-06-28T10:52:45.420Z",
   "export_version": "0.1.0",
   "export_scope": {
     "description": "Consumer-facing latest export generated from canonical research and data records.",
@@ -113,32 +113,32 @@
       "format": "json",
       "description": "Generated graph view of source, study, finding, outcome, result, coverage, and synthesis-compatibility links.",
       "record_count": 1,
-      "sha256": "3a919cda2268b60c4298bb8f3c8c952a3fa7073fc05116821cf425d8ffe0baa1"
+      "sha256": "3a0536e5b71c0538d9259812d2d9ca513d7e1bdd548b927c3f839677261f272a"
     },
     {
       "path": "exports/latest/coverage-status.json",
       "format": "json",
       "description": "Consumer coverage status with current/superseded flags and known-gap warnings.",
       "record_count": 1,
-      "sha256": "ca23238e405230d409e8e4cda15e8586ed54aea7675febaca3b60daf412140a5"
+      "sha256": "d7a8faa155e1f24ddc612178cc1336e468788dbf107813f221dbece723491ffe"
     },
     {
       "path": "exports/latest/read-model.sqlite",
       "format": "sqlite",
       "description": "Generated SQLite read model for indexed joins over canonical JSON records.",
-      "record_count": 286,
-      "sha256": "bd8945a1e91c4fe0d08888ad85dc7564e5eb626e33cf0ce2c1ccdd5c2cabf9f6"
+      "record_count": 288,
+      "sha256": "4d000d21c251d053eeffd28c0ca01dd29028ebed596e9d5633a0a780926affac"
     },
     {
       "path": "exports/latest/consumer-contract.json",
       "format": "json",
       "description": "Versioned machine-readable contract for consumer-facing export artifacts.",
       "record_count": 1,
-      "sha256": "b1c0074af9b195fcb9263f212dd28cdd1719d2e886febeac9e1534d9e0297013"
+      "sha256": "eda870efcc01340cc5bf5376532ce2f98f3049ad60cda8561d382289f6a63d5c"
     }
   ],
   "record_counts": {
-    "canonical_records": 286,
+    "canonical_records": 288,
     "sources": 10,
     "source_rights": 2,
     "accepted_records": 87,
@@ -151,7 +151,7 @@
     "results_triage": 8,
     "synthesis_groups": 8,
     "coverage_assessments": 2,
-    "read_model_records": 286,
+    "read_model_records": 288,
     "consumer_contracts": 1
   },
   "notes": [

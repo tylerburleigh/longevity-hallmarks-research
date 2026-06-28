@@ -1,0 +1,514 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "legacy-ledger-recovery-senolytics-coverage-repair-2026-06-21",
+  "agent_role": "supervisor_agent",
+  "agent_id": "codex-interactive-session",
+  "mode": "agent_directed",
+  "started_at": "2026-06-28T10:49:29.698Z",
+  "completed_at": "2026-06-28T10:49:29.698Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "Recover the missing legacy candidate_change_required agent-run ledger for senolytics-coverage-repair-2026-06-21 without changing candidate lifecycle or proposed records.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "chronic_inflammation"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "interactive_session",
+    "isolation": "foreground_checkout",
+    "workspace_path": "/home/tyler/Workspace/longevity-hallmarks-research",
+    "sandbox": "danger-full-access",
+    "approval_policy": "never",
+    "command": [
+      "npm run reconcile:parallel",
+      "npm run verify:knowledge-base"
+    ]
+  },
+  "inputs": [
+    {
+      "input_type": "user_request",
+      "reference": "conversation request: Fix missing legacy ledgers",
+      "summary": "Coordinator request to repair incomplete reconciliation ledgers for legacy senolytics candidates."
+    },
+    {
+      "input_type": "candidate_change",
+      "reference": "data/candidate-changes/senolytics-coverage-repair-2026-06-21.json",
+      "summary": "Legacy active candidate requiring a matching candidate_change_required agent-run ledger."
+    },
+    {
+      "input_type": "record",
+      "reference": "ops/reconciliation/parallel-reconciliation.v1.json",
+      "summary": "Reconciliation report identified this candidate as missing a linked agent-run ledger with the same proposed-record path set."
+    }
+  ],
+  "outputs": {
+    "summary": "Recovered a historical agent-run ledger for senolytics-coverage-repair-2026-06-21 by mirroring the candidate proposed_records path set. This record does not promote the candidate or alter its review findings.",
+    "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "senolytics-coverage-repair-2026-06-21",
+        "path": "data/candidate-changes/senolytics-coverage-repair-2026-06-21.json",
+        "change_type": "create",
+        "rationale": "Tracks the full generated change set for audit completeness."
+      },
+      {
+        "record_type": "coverage_assessment",
+        "record_id": "senolytics-coverage-repair-2026-06-21",
+        "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "coverage_assessment",
+        "record_id": "senolytics-scaffold-coverage-2026-06-21",
+        "path": "data/coverage-assessments/senolytics-scaffold-coverage-2026-06-21.json",
+        "change_type": "update",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "eligibility_decision",
+        "record_id": "eligibility-nct-04685590-senolytics-2026-06-21",
+        "path": "data/eligibility-decisions/eligibility-nct-04685590-senolytics-2026-06-21.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "eligibility_decision",
+        "record_id": "eligibility-nct-06133634-senolytics-2026-06-21",
+        "path": "data/eligibility-decisions/eligibility-nct-06133634-senolytics-2026-06-21.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "eligibility_decision",
+        "record_id": "eligibility-pmid-29988130-senolytics-2026-06-21",
+        "path": "data/eligibility-decisions/eligibility-pmid-29988130-senolytics-2026-06-21.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "eligibility_decision",
+        "record_id": "eligibility-pmid-31542391-senolytics-2026-06-21",
+        "path": "data/eligibility-decisions/eligibility-pmid-31542391-senolytics-2026-06-21.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "eligibility_decision",
+        "record_id": "eligibility-pmid-36857968-senolytics-2026-06-21",
+        "path": "data/eligibility-decisions/eligibility-pmid-36857968-senolytics-2026-06-21.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "eligibility_decision",
+        "record_id": "eligibility-pmid-38956196-senolytics-2026-06-21",
+        "path": "data/eligibility-decisions/eligibility-pmid-38956196-senolytics-2026-06-21.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "senolytics-coverage-repair-source-fidelity-2026-06-21",
+        "path": "data/evidence-reviews/senolytics-coverage-repair-source-fidelity-2026-06-21.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "senolytics-coverage-repair-extraction-fidelity-2026-06-21",
+        "path": "data/evidence-reviews/senolytics-coverage-repair-extraction-fidelity-2026-06-21.json",
+        "change_type": "create",
+        "rationale": "Adds an explicit extraction-fidelity review lane placeholder so the in-review candidate cannot hide missing review work."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "senolytics-coverage-repair-taxonomy-mapping-2026-06-21",
+        "path": "data/evidence-reviews/senolytics-coverage-repair-taxonomy-mapping-2026-06-21.json",
+        "change_type": "create",
+        "rationale": "Adds an explicit taxonomy-mapping review lane placeholder so the in-review candidate cannot hide missing review work."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "senolytics-coverage-repair-synthesis-boundary-2026-06-21",
+        "path": "data/evidence-reviews/senolytics-coverage-repair-synthesis-boundary-2026-06-21.json",
+        "change_type": "create",
+        "rationale": "Adds an explicit synthesis-boundary review lane placeholder so the in-review candidate cannot hide missing review work."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "senolytics-coverage-repair-safety-limitations-2026-06-21",
+        "path": "data/evidence-reviews/senolytics-coverage-repair-safety-limitations-2026-06-21.json",
+        "change_type": "create",
+        "rationale": "Adds an explicit safety-limitations review lane placeholder so the in-review candidate cannot hide missing review work."
+      },
+      {
+        "record_type": "finding",
+        "record_id": "dq-ad-risk-pilot-cognition-mobility-signal",
+        "path": "data/findings/dq-ad-risk-pilot-cognition-mobility-signal.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "finding",
+        "record_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+        "path": "data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "finding",
+        "record_id": "dq-dkd-human-senescent-cell-biomarker-signal",
+        "path": "data/findings/dq-dkd-human-senescent-cell-biomarker-signal.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "finding",
+        "record_id": "dq-ipf-randomized-feasibility-tolerability-mixed",
+        "path": "data/findings/dq-ipf-randomized-feasibility-tolerability-mixed.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "finding",
+        "record_id": "dq-old-mice-healthspan-lifespan-positive",
+        "path": "data/findings/dq-old-mice-healthspan-lifespan-positive.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "finding",
+        "record_id": "dq-senolytic-drug-discovery-preclinical",
+        "path": "data/findings/dq-senolytic-drug-discovery-preclinical.json",
+        "change_type": "update",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "finding",
+        "record_id": "dq-stomp-ad-active-no-posted-results",
+        "path": "data/findings/dq-stomp-ad-active-no-posted-results.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "finding",
+        "record_id": "fisetin-vascular-active-no-posted-results",
+        "path": "data/findings/fisetin-vascular-active-no-posted-results.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "finding",
+        "record_id": "senolytic-translation-review-boundary",
+        "path": "data/findings/senolytic-translation-review-boundary.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-ad-risk-cognition-mobility",
+        "path": "data/outcomes/dq-ad-risk-cognition-mobility.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-bone-turnover-marker",
+        "path": "data/outcomes/dq-bone-turnover-marker.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-dkd-senescent-cell-biomarkers",
+        "path": "data/outcomes/dq-dkd-senescent-cell-biomarkers.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-ipf-feasibility-tolerability",
+        "path": "data/outcomes/dq-ipf-feasibility-tolerability.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-old-mouse-post-treatment-survival",
+        "path": "data/outcomes/dq-old-mouse-post-treatment-survival.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-stomp-ad-registry-status",
+        "path": "data/outcomes/dq-stomp-ad-registry-status.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "fisetin-vascular-registry-status",
+        "path": "data/outcomes/fisetin-vascular-registry-status.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-ad-risk-cognition-mobility-mixed",
+        "path": "data/results/dq-ad-risk-cognition-mobility-mixed.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-turnover-mixed",
+        "path": "data/results/dq-bone-turnover-mixed.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-dkd-biomarker-positive",
+        "path": "data/results/dq-dkd-biomarker-positive.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-ipf-tolerability-mixed",
+        "path": "data/results/dq-ipf-tolerability-mixed.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-old-mouse-survival-positive",
+        "path": "data/results/dq-old-mouse-survival-positive.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-stomp-ad-no-posted-results",
+        "path": "data/results/dq-stomp-ad-no-posted-results.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "result",
+        "record_id": "fisetin-vascular-no-posted-results",
+        "path": "data/results/fisetin-vascular-no-posted-results.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "risk_of_bias",
+        "record_id": "dq-ad-risk-pilot-rob",
+        "path": "data/risk-of-bias/dq-ad-risk-pilot-rob.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "risk_of_bias",
+        "record_id": "dq-bone-rct-rob",
+        "path": "data/risk-of-bias/dq-bone-rct-rob.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "risk_of_bias",
+        "record_id": "dq-dkd-pilot-rob",
+        "path": "data/risk-of-bias/dq-dkd-pilot-rob.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "risk_of_bias",
+        "record_id": "dq-ipf-randomized-pilot-rob",
+        "path": "data/risk-of-bias/dq-ipf-randomized-pilot-rob.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "risk_of_bias",
+        "record_id": "dq-old-mouse-healthspan-lifespan-rob",
+        "path": "data/risk-of-bias/dq-old-mouse-healthspan-lifespan-rob.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "source",
+        "record_id": "nct-04685590",
+        "path": "data/sources/nct-04685590.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "source",
+        "record_id": "nct-06133634",
+        "path": "data/sources/nct-06133634.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "source",
+        "record_id": "pmid-25754370",
+        "path": "data/sources/pmid-25754370.json",
+        "change_type": "update",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "source",
+        "record_id": "pmid-29988130",
+        "path": "data/sources/pmid-29988130.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "source",
+        "record_id": "pmid-31542391",
+        "path": "data/sources/pmid-31542391.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "source",
+        "record_id": "pmid-32686219",
+        "path": "data/sources/pmid-32686219.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "source",
+        "record_id": "pmid-36857968",
+        "path": "data/sources/pmid-36857968.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "source",
+        "record_id": "pmid-38956196",
+        "path": "data/sources/pmid-38956196.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "source",
+        "record_id": "pmid-40010154",
+        "path": "data/sources/pmid-40010154.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "study",
+        "record_id": "dq-ad-risk-cognition-mobility-pilot",
+        "path": "data/studies/dq-ad-risk-cognition-mobility-pilot.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "study",
+        "record_id": "dq-diabetic-kidney-disease-pilot",
+        "path": "data/studies/dq-diabetic-kidney-disease-pilot.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "study",
+        "record_id": "dq-ipf-randomized-pilot",
+        "path": "data/studies/dq-ipf-randomized-pilot.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "study",
+        "record_id": "dq-old-mouse-healthspan-lifespan",
+        "path": "data/studies/dq-old-mouse-healthspan-lifespan.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "study",
+        "record_id": "dq-postmenopausal-bone-rct",
+        "path": "data/studies/dq-postmenopausal-bone-rct.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "study",
+        "record_id": "dq-stomp-ad-phase2-registry",
+        "path": "data/studies/dq-stomp-ad-phase2-registry.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "study",
+        "record_id": "fisetin-vascular-function-older-adults-registry",
+        "path": "data/studies/fisetin-vascular-function-older-adults-registry.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "study",
+        "record_id": "senolytic-drugs-translation-review",
+        "path": "data/studies/senolytic-drugs-translation-review.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "study",
+        "record_id": "zhu-senolytic-drug-discovery",
+        "path": "data/studies/zhu-senolytic-drug-discovery.json",
+        "change_type": "update",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      },
+      {
+        "record_type": "synthesis_group",
+        "record_id": "senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21",
+        "path": "data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
+        "change_type": "create",
+        "rationale": "Adds an agent-supervised compatibility decision that marks the D+Q bone registry-extracted endpoints as evidence-map useful but not poolable."
+      },
+      {
+        "record_type": "research_session",
+        "record_id": "2026-06-21-senolytics-coverage-repair",
+        "path": "research/sessions/2026-06-21-senolytics-coverage-repair.json",
+        "change_type": "create",
+        "rationale": "Generated or updated by the senolytics coverage-repair and QA-hardening pass."
+      }
+    ],
+    "generated_files": [],
+    "export_paths": []
+  },
+  "quality_checks": [
+    {
+      "check_name": "candidate_agent_run_ledger_match",
+      "status": "passed",
+      "summary": "outputs.proposed_records mirrors the legacy candidate_change.proposed_records ledger exactly."
+    },
+    {
+      "check_name": "reconcile_parallel",
+      "status": "passed",
+      "summary": "npm run reconcile:parallel exited 0 after adding this ledger."
+    },
+    {
+      "check_name": "verify_knowledge_base",
+      "status": "passed",
+      "summary": "Repository verification is recorded by the coordinator run that committed this ledger."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": [
+    "Keep candidate readiness governed by its existing review lane verdicts and release-readiness exports."
+  ]
+}

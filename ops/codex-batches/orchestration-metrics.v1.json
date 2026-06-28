@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "orchestration_metrics",
   "id": "orchestration-metrics-v1",
-  "generated_at": "2026-06-27T22:13:02.967Z",
+  "generated_at": "2026-06-28T10:52:45.408Z",
   "source_roots": [
     "data",
     "exports/latest",
@@ -60,16 +60,16 @@
     "succeeded_worker_count": 27,
     "actual_worker_wall_time_ms": 11014852,
     "actual_batch_wall_time_ms": 6478435,
-    "agent_run_count": 61,
-    "succeeded_agent_run_count": 56,
+    "agent_run_count": 63,
+    "succeeded_agent_run_count": 58,
     "partial_agent_run_count": 5,
     "failed_agent_run_count": 0,
     "agent_run_wall_time_ms": 24625000,
     "duplicate_work_group_count": 7,
     "duplicate_work_record_count": 14,
-    "conflict_finding_count": 9,
+    "conflict_finding_count": 7,
     "conflict_rate": 0.125,
-    "open_finding_rate": 0.2093,
+    "open_finding_rate": 0.1628,
     "accepted_candidate_count": 14,
     "accepted_records_produced_count": 105,
     "extraction_debt_open_count": 47,
@@ -478,7 +478,7 @@
       },
       {
         "key": "succeeded",
-        "count": 56
+        "count": 58
       }
     ],
     "agent_run_role_counts": [
@@ -496,7 +496,7 @@
       },
       {
         "key": "supervisor_agent",
-        "count": 41
+        "count": 43
       },
       {
         "key": "synthesis_agent",
@@ -794,11 +794,11 @@
       "overlapping_candidate_group_count": 7
     },
     "conflicts": {
-      "open_finding_count": 9,
-      "blocking_finding_count": 9,
+      "open_finding_count": 7,
+      "blocking_finding_count": 7,
       "warning_finding_count": 0,
       "conflict_rate": 0.125,
-      "open_finding_rate": 0.2093,
+      "open_finding_rate": 0.1628,
       "reconciliation_batch_rate": 0.125
     },
     "worker_failures": {

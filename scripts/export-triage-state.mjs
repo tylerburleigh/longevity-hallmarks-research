@@ -617,6 +617,13 @@ function buildPartialOrFailedAgentRuns({ agentRunEntries, candidateEntries }) {
       }
       const candidateId = entry.record.outputs?.candidate_change_id;
       const candidate = candidateById.get(candidateId);
+      if (
+        !candidateId &&
+        entry.record.canonical_write_policy === "no_canonical_writes" &&
+        (entry.record.quality_checks ?? []).some((check) => check.check_name === "post_verify" && check.status === "passed")
+      ) {
+        return false;
+      }
       return !terminalCandidateStatuses.has(candidate?.lifecycle_status);
     })
     .map((entry) => {

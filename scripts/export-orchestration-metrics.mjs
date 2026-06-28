@@ -319,6 +319,8 @@ export async function buildOrchestrationMetrics({ generatedAt = new Date().toISO
   const activeCandidateCount = reconciliation?.summary?.active_candidate_count ?? candidateEntries.length;
   const plannedReconciliationBatchCount = batchPlan?.summary?.reconciliation_batch_count ?? 0;
   const plannedBatchCount = batchPlan?.summary?.batch_count ?? plannedBatches.length;
+  const conflictRate = ratio(openFindingCount, activeCandidateCount);
+  const actionablePartialOrFailedAgentRunCount = triageState?.summary?.partial_or_failed_agent_run_count ?? 0;
   const highPriorityExtractionDebtCount = (triageState?.extraction_debt ?? []).filter((item) => item.severity === "high").length;
 
   return {
@@ -379,7 +381,7 @@ export async function buildOrchestrationMetrics({ generatedAt = new Date().toISO
         + (reconciliation?.summary?.overlapping_candidate_group_count ?? 0),
       duplicate_work_record_count: duplicateWorkRecordCount(reconciliation),
       conflict_finding_count: openFindingCount,
-      conflict_rate: ratio(plannedReconciliationBatchCount, plannedBatchCount),
+      conflict_rate: conflictRate,
       open_finding_rate: ratio(openFindingCount, activeCandidateCount),
       accepted_candidate_count: acceptedCandidates.length,
       accepted_records_produced_count: acceptedRecords.length,
@@ -435,13 +437,13 @@ export async function buildOrchestrationMetrics({ generatedAt = new Date().toISO
         open_finding_count: openFindingCount,
         blocking_finding_count: reconciliation?.summary?.blocking_finding_count ?? 0,
         warning_finding_count: reconciliation?.summary?.warning_finding_count ?? 0,
-        conflict_rate: ratio(plannedReconciliationBatchCount, plannedBatchCount),
+        conflict_rate: conflictRate,
         open_finding_rate: ratio(openFindingCount, activeCandidateCount),
         reconciliation_batch_rate: ratio(plannedReconciliationBatchCount, plannedBatchCount)
       },
       worker_failures: {
         failed_worker_count: workers.filter((worker) => worker.status === "failed").length,
-        partial_or_failed_agent_run_count: agentRunEntries.filter((entry) => ["partial", "failed"].includes(entry.record.status)).length
+        partial_or_failed_agent_run_count: actionablePartialOrFailedAgentRunCount
       }
     }
   };

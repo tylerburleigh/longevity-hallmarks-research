@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "orchestration_metrics",
   "id": "orchestration-metrics-v1",
-  "generated_at": "2026-06-28T11:10:47.211Z",
+  "generated_at": "2026-06-28T13:06:43.502Z",
   "source_roots": [
     "data",
     "exports/latest",
@@ -68,7 +68,7 @@
     "duplicate_work_group_count": 0,
     "duplicate_work_record_count": 0,
     "conflict_finding_count": 0,
-    "conflict_rate": 0.1667,
+    "conflict_rate": 0,
     "open_finding_rate": 0,
     "accepted_candidate_count": 14,
     "accepted_records_produced_count": 105,
@@ -766,13 +766,13 @@
       "open_finding_count": 0,
       "blocking_finding_count": 0,
       "warning_finding_count": 0,
-      "conflict_rate": 0.1667,
+      "conflict_rate": 0,
       "open_finding_rate": 0,
       "reconciliation_batch_rate": 0.1667
     },
     "worker_failures": {
       "failed_worker_count": 20,
-      "partial_or_failed_agent_run_count": 5
+      "partial_or_failed_agent_run_count": 0
     }
   }
 }

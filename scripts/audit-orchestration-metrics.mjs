@@ -48,6 +48,7 @@ async function main() {
   }
 
   const actual = await readJson(outputPath);
+  const triageState = await readJson(actual.metric_policy?.triage_state_path ?? "ops/triage-state.v1.json");
   if (Number.isNaN(new Date(actual.generated_at).getTime())) {
     console.error(`Orchestration-metrics audit failed: ${outputPath} has invalid generated_at.`);
     process.exit(1);
@@ -64,6 +65,27 @@ async function main() {
       console.error(`Changed top-level section(s): ${diffs.join(", ")}.`);
     }
     console.error("Run npm run metrics:orchestration and review the generated diff.");
+    process.exit(1);
+  }
+
+  const issues = [];
+  if (actual.summary?.conflict_finding_count === 0 && actual.summary?.conflict_rate !== 0) {
+    issues.push("summary.conflict_rate must be 0 when summary.conflict_finding_count is 0.");
+  }
+  if (actual.quality_pressure?.conflicts?.open_finding_count === 0 && actual.quality_pressure?.conflicts?.conflict_rate !== 0) {
+    issues.push("quality_pressure.conflicts.conflict_rate must be 0 when open_finding_count is 0.");
+  }
+  if (
+    actual.quality_pressure?.worker_failures?.partial_or_failed_agent_run_count !==
+    triageState.summary?.partial_or_failed_agent_run_count
+  ) {
+    issues.push("quality_pressure.worker_failures.partial_or_failed_agent_run_count must match triage summary.partial_or_failed_agent_run_count.");
+  }
+  if (issues.length > 0) {
+    console.error(`Orchestration-metrics audit failed with ${issues.length} semantic issue(s):`);
+    for (const issue of issues) {
+      console.error(`- ${issue}`);
+    }
     process.exit(1);
   }
 

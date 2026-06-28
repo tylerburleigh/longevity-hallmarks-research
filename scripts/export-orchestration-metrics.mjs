@@ -256,6 +256,38 @@ function workerStates(batchRuns) {
   return batchRuns.flatMap((entry) => entry.record.worker_states ?? []);
 }
 
+function latestWorkerStatesByJob(batchRuns) {
+  const latestWorkersByJob = new Map();
+
+  for (const entry of batchRuns) {
+    for (const [workerIndex, worker] of (entry.record.worker_states ?? []).entries()) {
+      if (!worker.job_id) {
+        continue;
+      }
+
+      const sortKey = [
+        worker.completed_at ?? entry.record.completed_at ?? worker.started_at ?? entry.record.started_at ?? "",
+        entry.record.started_at ?? "",
+        entry.path,
+        String(workerIndex).padStart(6, "0")
+      ].join("\u0000");
+      const current = latestWorkersByJob.get(worker.job_id);
+      if (!current || sortKey > current.sortKey) {
+        latestWorkersByJob.set(worker.job_id, { worker, sortKey });
+      }
+    }
+  }
+
+  return [...latestWorkersByJob.values()].map((entry) => entry.worker);
+}
+
+function actionableFailedWorkerCount({ batchRuns, liveJobs }) {
+  const liveJobIds = new Set(liveJobs.map((entry) => entry.record.id));
+  return latestWorkerStatesByJob(batchRuns).filter(
+    (worker) => worker.status === "failed" && liveJobIds.has(worker.job_id)
+  ).length;
+}
+
 function duplicateWorkRecordCount(reconciliation) {
   return sum([
     ...(reconciliation?.duplicate_sources ?? []).map((finding) => finding.source_ids?.length ?? 0),
@@ -321,6 +353,7 @@ export async function buildOrchestrationMetrics({ generatedAt = new Date().toISO
   const plannedBatchCount = batchPlan?.summary?.batch_count ?? plannedBatches.length;
   const conflictRate = ratio(openFindingCount, activeCandidateCount);
   const actionablePartialOrFailedAgentRunCount = triageState?.summary?.partial_or_failed_agent_run_count ?? 0;
+  const actionableFailedWorkerCountValue = actionableFailedWorkerCount({ batchRuns, liveJobs });
   const highPriorityExtractionDebtCount = (triageState?.extraction_debt ?? []).filter((item) => item.severity === "high").length;
 
   return {
@@ -442,7 +475,7 @@ export async function buildOrchestrationMetrics({ generatedAt = new Date().toISO
         reconciliation_batch_rate: ratio(plannedReconciliationBatchCount, plannedBatchCount)
       },
       worker_failures: {
-        failed_worker_count: workers.filter((worker) => worker.status === "failed").length,
+        failed_worker_count: actionableFailedWorkerCountValue,
         partial_or_failed_agent_run_count: actionablePartialOrFailedAgentRunCount
       }
     }

@@ -23,6 +23,83 @@ async function readJson(relativePath) {
   return JSON.parse(await fs.readFile(path.join(workspaceRoot, relativePath), "utf8"));
 }
 
+async function existsPath(relativePath) {
+  try {
+    await fs.access(path.join(workspaceRoot, relativePath));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function walkJsonFiles(relativeRoot) {
+  const rootPath = path.join(workspaceRoot, relativeRoot);
+  if (!(await existsPath(relativeRoot))) {
+    return [];
+  }
+
+  const entries = await fs.readdir(rootPath, { withFileTypes: true });
+  const files = [];
+  for (const entry of entries) {
+    const relativePath = path.join(relativeRoot, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...(await walkJsonFiles(relativePath)));
+    } else if (entry.isFile() && entry.name.endsWith(".json")) {
+      files.push(relativePath.split(path.sep).join("/"));
+    }
+  }
+  return files.sort((left, right) => left.localeCompare(right));
+}
+
+async function recordIdsUnder(relativeRoot, recordType) {
+  const ids = [];
+  for (const filePath of await walkJsonFiles(relativeRoot)) {
+    const record = await readJson(filePath);
+    if (record.record_type === recordType && record.id) {
+      ids.push(record.id);
+    }
+  }
+  return ids;
+}
+
+function latestWorkerStatesByJob(batchRunEntries) {
+  const latestWorkersByJob = new Map();
+  for (const { record, path: runPath } of batchRunEntries) {
+    for (const [workerIndex, worker] of (record.worker_states ?? []).entries()) {
+      if (!worker.job_id) {
+        continue;
+      }
+
+      const sortKey = [
+        worker.completed_at ?? record.completed_at ?? worker.started_at ?? record.started_at ?? "",
+        record.started_at ?? "",
+        runPath,
+        String(workerIndex).padStart(6, "0")
+      ].join("\u0000");
+      const current = latestWorkersByJob.get(worker.job_id);
+      if (!current || sortKey > current.sortKey) {
+        latestWorkersByJob.set(worker.job_id, { worker, sortKey });
+      }
+    }
+  }
+  return [...latestWorkersByJob.values()].map((entry) => entry.worker);
+}
+
+async function actionableFailedWorkerCount(actual) {
+  const liveJobIds = new Set(await recordIdsUnder(actual.metric_policy?.live_job_root ?? "ops/codex-jobs/live", "codex_job"));
+  const batchRunRoot = actual.metric_policy?.batch_run_root ?? "ops/codex-batches/runs";
+  const batchRunEntries = [];
+  for (const filePath of await walkJsonFiles(batchRunRoot)) {
+    const record = await readJson(filePath);
+    if (record.record_type === "parallel_batch_run") {
+      batchRunEntries.push({ record, path: filePath });
+    }
+  }
+  return latestWorkerStatesByJob(batchRunEntries).filter(
+    (worker) => worker.status === "failed" && liveJobIds.has(worker.job_id)
+  ).length;
+}
+
 function stableJson(value) {
   return JSON.stringify(value, null, 2);
 }
@@ -69,6 +146,7 @@ async function main() {
   }
 
   const issues = [];
+  const expectedActionableFailedWorkerCount = await actionableFailedWorkerCount(actual);
   if (actual.summary?.conflict_finding_count === 0 && actual.summary?.conflict_rate !== 0) {
     issues.push("summary.conflict_rate must be 0 when summary.conflict_finding_count is 0.");
   }
@@ -80,6 +158,9 @@ async function main() {
     triageState.summary?.partial_or_failed_agent_run_count
   ) {
     issues.push("quality_pressure.worker_failures.partial_or_failed_agent_run_count must match triage summary.partial_or_failed_agent_run_count.");
+  }
+  if (actual.quality_pressure?.worker_failures?.failed_worker_count !== expectedActionableFailedWorkerCount) {
+    issues.push("quality_pressure.worker_failures.failed_worker_count must match latest failed live worker count.");
   }
   if (issues.length > 0) {
     console.error(`Orchestration-metrics audit failed with ${issues.length} semantic issue(s):`);

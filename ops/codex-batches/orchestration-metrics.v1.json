@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "orchestration_metrics",
   "id": "orchestration-metrics-v1",
-  "generated_at": "2026-06-28T13:06:43.502Z",
+  "generated_at": "2026-06-28T13:42:09.632Z",
   "source_roots": [
     "data",
     "exports/latest",
@@ -771,7 +771,7 @@
       "reconciliation_batch_rate": 0.1667
     },
     "worker_failures": {
-      "failed_worker_count": 20,
+      "failed_worker_count": 1,
       "partial_or_failed_agent_run_count": 0
     }
   }

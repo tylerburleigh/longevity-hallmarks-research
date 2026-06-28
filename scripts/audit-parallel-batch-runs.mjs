@@ -125,6 +125,12 @@ async function main() {
       if (worker.status === "succeeded" && !outputPathExists) {
         issues.push(`${relativePath}: succeeded worker ${worker.job_id} output_path does not exist: ${worker.output_path}.`);
       }
+      if (worker.status === "running" && worker.archive_path) {
+        issues.push(`${relativePath}: worker ${worker.job_id} is running but has archive_path; archived workers must use a terminal status.`);
+      }
+      if (worker.status === "running" && worker.output_path && outputPathExists) {
+        issues.push(`${relativePath}: worker ${worker.job_id} is running but output_path exists; completed workers must use a terminal status.`);
+      }
       if (worker.status === "succeeded_pending_reconciliation") {
         if ((worker.issues ?? []).length === 0) {
           issues.push(`${relativePath}: pending-reconciliation worker ${worker.job_id} should include issues[].`);

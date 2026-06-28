@@ -480,6 +480,45 @@
       ]
     },
     {
+      "id": "archived-batch-worker-still-running",
+      "description": "Archived batch-run workers cannot remain marked running.",
+      "command": [
+        "npm",
+        "run",
+        "audit:parallel-batch-runs"
+      ],
+      "operations": [
+        {
+          "type": "set_json",
+          "path": "ops/codex-batches/runs/coverage-repair-review-batch-3-2026-06-23.json",
+          "pointer": "/status",
+          "value": "running"
+        },
+        {
+          "type": "set_json",
+          "path": "ops/codex-batches/runs/coverage-repair-review-batch-3-2026-06-23.json",
+          "pointer": "/summary/running_count",
+          "value": 1
+        },
+        {
+          "type": "set_json",
+          "path": "ops/codex-batches/runs/coverage-repair-review-batch-3-2026-06-23.json",
+          "pointer": "/summary/succeeded_count",
+          "value": 3
+        },
+        {
+          "type": "set_json",
+          "path": "ops/codex-batches/runs/coverage-repair-review-batch-3-2026-06-23.json",
+          "pointer": "/worker_states/0/status",
+          "value": "running"
+        }
+      ],
+      "expected_failure_substrings": [
+        "is running but has archive_path",
+        "archived workers must use a terminal status"
+      ]
+    },
+    {
       "id": "post-step-failure-is-observable",
       "description": "Codex post-run verification failures must surface as nonzero coordinator command failures.",
       "command": [

@@ -171,7 +171,11 @@ function nextActionsForRun(workerStates) {
   return actions;
 }
 
-async function updateBatchRunsForArchivedJob({ jobFile, archivePath, outputPath }) {
+function workerStatusForArchivedJob(status) {
+  return status === "failed" ? "failed" : "succeeded";
+}
+
+async function updateBatchRunsForArchivedJob({ jobFile, archivePath, outputPath, status, archivedAt }) {
   const updatedRunPaths = [];
   const runFiles = await walkJsonFiles(batchRunRoot);
 
@@ -189,8 +193,9 @@ async function updateBatchRunsForArchivedJob({ jobFile, archivePath, outputPath 
 
       worker.archive_path = archivePath;
       worker.output_path = outputPath;
-      if (worker.status === "succeeded_pending_reconciliation" || worker.status === "succeeded") {
-        worker.status = "succeeded";
+      worker.status = workerStatusForArchivedJob(status);
+      if (!worker.completed_at) {
+        worker.completed_at = archivedAt;
       }
       if (worker.issues) {
         worker.issues = worker.issues.filter((issue) => !issue.includes(`${outputPath} is not present in the coordinator checkout.`));
@@ -261,7 +266,9 @@ async function archiveJob(options) {
   const updatedBatchRunPaths = await updateBatchRunsForArchivedJob({
     jobFile: plan.job_file,
     archivePath: plan.archive_path,
-    outputPath: plan.output_path
+    outputPath: plan.output_path,
+    status: plan.status,
+    archivedAt: plan.archived_at
   });
 
   console.log(JSON.stringify({ type: "codex_job.archived", ...plan, updated_batch_run_paths: updatedBatchRunPaths }));

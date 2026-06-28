@@ -8,6 +8,7 @@ import path from "node:path";
 const workspaceRoot = process.cwd();
 const runnerScriptPath = path.join(workspaceRoot, "scripts", "run-parallel-codex-batch.mjs");
 const importScriptPath = path.join(workspaceRoot, "scripts", "import-parallel-batch-run.mjs");
+const archiveScriptPath = path.join(workspaceRoot, "scripts", "archive-codex-job.mjs");
 
 async function writeFixturePlan(tempRoot) {
   const planPath = path.join(tempRoot, "parallel-batch-plan.fixture.json");
@@ -418,6 +419,83 @@ async function writeImportPendingWorkerFixture(tempRoot) {
   });
   await fs.mkdir(path.join(tempRoot, "ops/codex-batches/logs"), { recursive: true });
   await fs.writeFile(path.join(tempRoot, "ops/codex-batches/logs/import-run.jsonl"), "{\"type\":\"fixture\"}\n");
+}
+
+async function writeArchiveRunningWorkerFixture(tempRoot) {
+  await writeJson(tempRoot, "ops/codex-jobs/live/archive-running-job.json", {
+    schema_version: "1.0.0",
+    record_type: "codex_job",
+    id: "archive-running-job",
+    lifecycle_status: "ready",
+    agent_role: "self_healing_agent",
+    mode: "agent_directed",
+    prompt_file: "docs/prompts/codex-agents/parallel-synthetic-candidate.md",
+    output_path: "research/agent-runs/archive-running-job.json",
+    jsonl_log_path: "research/agent-runs/logs/archive-running-job.jsonl"
+  });
+  await writeJson(tempRoot, "research/agent-runs/archive-running-job.json", {
+    schema_version: "1.0.0",
+    record_type: "agent_run",
+    id: "archive-running-job",
+    agent_role: "self_healing_agent",
+    agent_id: "fixture",
+    started_at: "2026-06-23T00:00:00Z",
+    completed_at: "2026-06-23T00:00:01Z",
+    status: "succeeded",
+    scope: {
+      question: "Fixture output for archive running worker recovery.",
+      hallmark_ids: [],
+      track_ids: [],
+      intervention_ids: []
+    },
+    canonical_write_policy: "no_canonical_writes",
+    execution: {
+      surface: "codex_exec",
+      isolation: "git_worktree",
+      sandbox: "workspace-write",
+      approval_policy: "never",
+      job_file: "ops/codex-jobs/live/archive-running-job.json"
+    },
+    outputs: {
+      summary: "Fixture output."
+    },
+    quality_checks: []
+  });
+  await writeJson(tempRoot, "ops/codex-batches/runs/archive-running-run.json", {
+    schema_version: "1.0.0",
+    record_type: "parallel_batch_run",
+    id: "archive-running-run",
+    batch_plan_id: "fixture-plan",
+    batch_plan_path: "ops/codex-batches/parallel-batch-plan.v1.json",
+    batch_id: "archive-running-batch",
+    batch_sequence: 1,
+    parallel_group: "fixture",
+    execution_class: "independent",
+    reconciliation_required: false,
+    started_at: "2026-06-23T00:00:00Z",
+    status: "running",
+    log_path: "ops/codex-batches/logs/archive-running-run.jsonl",
+    worker_states: [
+      {
+        job_id: "archive-running-job",
+        job_path: "ops/codex-jobs/live/archive-running-job.json",
+        command: ["node", "-e", "process.exit(0)"],
+        status: "running",
+        started_at: "2026-06-23T00:00:00Z"
+      }
+    ],
+    summary: {
+      planned_count: 0,
+      running_count: 1,
+      succeeded_count: 0,
+      pending_reconciliation_count: 0,
+      failed_count: 0,
+      archived_count: 0
+    },
+    next_actions: []
+  });
+  await fs.mkdir(path.join(tempRoot, "ops/codex-batches/logs"), { recursive: true });
+  await fs.writeFile(path.join(tempRoot, "ops/codex-batches/logs/archive-running-run.jsonl"), "{\"type\":\"fixture\"}\n");
 }
 
 async function writeInterruptionFixture(tempRoot) {
@@ -969,6 +1047,58 @@ async function runImportPendingWorkerCase(tempRoot) {
   return [];
 }
 
+async function runArchiveRunningWorkerCase(tempRoot) {
+  await writeArchiveRunningWorkerFixture(tempRoot);
+  const result = spawnSync(
+    "node",
+    [
+      archiveScriptPath,
+      "--job-file",
+      "ops/codex-jobs/live/archive-running-job.json",
+      "--archived-at",
+      "2026-06-23T00:00:02Z"
+    ],
+    {
+      cwd: tempRoot,
+      encoding: "utf8",
+      env: {
+        ...process.env,
+        npm_config_update_notifier: "false"
+      }
+    }
+  );
+
+  const issues = [];
+  if (result.error) {
+    issues.push(`archive helper failed to start: ${result.error.message}`);
+  }
+  if (result.status !== 0) {
+    issues.push(`archive helper exited ${result.status}: stdout=${result.stdout.trim()} stderr=${result.stderr.trim()}`);
+  }
+
+  let runRecord;
+  try {
+    runRecord = JSON.parse(await fs.readFile(path.join(tempRoot, "ops/codex-batches/runs/archive-running-run.json"), "utf8"));
+  } catch (error) {
+    issues.push(`archive running run record missing or invalid: ${error.message}`);
+  }
+
+  const worker = runRecord?.worker_states?.[0];
+  assertEqual(runRecord?.status, "succeeded", "archive running run status", issues);
+  assertEqual(worker?.status, "succeeded", "archive running worker status", issues);
+  assertEqual(worker?.completed_at, "2026-06-23T00:00:02Z", "archive running worker completed_at", issues);
+  assertEqual(worker?.archive_path, "ops/codex-jobs/archive/archive-running-job.json", "archive running worker archive path", issues);
+  assertEqual(runRecord?.summary?.running_count, 0, "archive running summary.running_count", issues);
+  assertEqual(runRecord?.summary?.succeeded_count, 1, "archive running summary.succeeded_count", issues);
+
+  if (issues.length > 0) {
+    return issues;
+  }
+
+  console.log("PASS parallel-batch-archive-running-worker");
+  return [];
+}
+
 async function main() {
   const tempRoot = await fs.mkdtemp(path.join(os.tmpdir(), "lhr-parallel-batch-runner-"));
   try {
@@ -979,7 +1109,8 @@ async function main() {
       ...(await runUsageLimitDiagnosticCase(tempRoot)),
       ...(await runInterruptionCase(tempRoot)),
       ...(await runArchiveCollisionCase(tempRoot)),
-      ...(await runImportPendingWorkerCase(tempRoot))
+      ...(await runImportPendingWorkerCase(tempRoot)),
+      ...(await runArchiveRunningWorkerCase(tempRoot))
     ];
     if (issues.length > 0) {
       console.error(`Parallel-batch runner regression failed with ${issues.length} issue(s):`);

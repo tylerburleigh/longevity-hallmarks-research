@@ -37,6 +37,7 @@ Inspection discipline:
 - Prefer the coordinator-specified candidate, its proposed record paths, linked review records, and required schemas.
 - When a context pack is present, inspect additional files only when the pack points to them or validation reveals a pack inconsistency.
 - Do not perform broad `rg`/`jq` sweeps over unrelated records for pack-backed jobs; query only for specific ids or paths required by the pack or a validation failure.
+- Keep non-validation command output compact. Prefer targeted `jq` projections, ids, summaries, and counts over dumping many complete records in one command; split large context-pack record reads when needed.
 - Do not inspect broad orchestration, wrapper, export, or audit implementation files unless a concrete validation failure points there.
 - If repository exports are stale before the wrapper post-run phase, record that as deferred to coordinator post-run export rather than chasing unrelated implementation files.
 

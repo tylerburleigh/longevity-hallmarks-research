@@ -44,6 +44,31 @@
       ]
     },
     {
+      "id": "missing-safety-lane-for-safety-domain-records",
+      "description": "Safety-domain candidate records must retain the safety_limitations review lane.",
+      "command": [
+        "npm",
+        "run",
+        "audit:references"
+      ],
+      "operations": [
+        {
+          "type": "set_json",
+          "path": "data/candidate-changes/coverage-gap-senolytics-safety-tables-followup-2-repair.json",
+          "pointer": "/required_review_lanes",
+          "value": [
+            "extraction_fidelity",
+            "synthesis_boundary",
+            "taxonomy_mapping"
+          ]
+        }
+      ],
+      "expected_failure_substrings": [
+        "proposed record set requires safety_limitations",
+        "coverage-gap-senolytics-safety-tables-followup-2-repair"
+      ]
+    },
+    {
       "id": "duplicate-active-review-lane",
       "description": "A candidate may not link multiple active reviews for the same lane.",
       "command": [

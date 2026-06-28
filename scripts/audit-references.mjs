@@ -86,6 +86,14 @@ const candidateReviewLaneRules = [
   }
 ];
 const safetyScopePattern = /\b(safety|adverse[-_ ]?event|adverse|harm|tolerability|toxicity)\b/i;
+const safetyLaneGovernanceRecordTypes = new Set([
+  "agent_run",
+  "candidate_change",
+  "evidence_review",
+  "research_session",
+  "screening_run",
+  "search_log"
+]);
 const artifactRetentionAccessTiers = new Set([
   "open_reusable",
   "public_registry",
@@ -703,7 +711,7 @@ function checkCandidateRequiredReviewLanes({ issues, record, ownerPath }) {
       proposedRecord.path,
       proposedRecord.rationale
     ].join(" ");
-    if (safetyScopePattern.test(searchableText)) {
+    if (!safetyLaneGovernanceRecordTypes.has(proposedRecord.record_type) && safetyScopePattern.test(searchableText)) {
       inferredReviewLanes.add("safety_limitations");
     }
   }

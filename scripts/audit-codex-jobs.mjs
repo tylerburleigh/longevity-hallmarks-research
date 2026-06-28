@@ -10,6 +10,14 @@ const archiveJobPathPrefix = "ops/codex-jobs/archive/";
 const activeJobStatuses = new Set(["planned", "ready", "running"]);
 const finalJobStatuses = new Set(["succeeded", "failed", "superseded", "archived"]);
 const safetyScopePattern = /\b(safety|adverse[-_ ]?event|adverse|harm|tolerability|toxicity)\b/i;
+const safetyLaneGovernanceRecordTypes = new Set([
+  "agent_run",
+  "candidate_change",
+  "evidence_review",
+  "research_session",
+  "screening_run",
+  "search_log"
+]);
 const aggregateQualityGateChecks = {
   audit_exports: new Set(["verify_knowledge_base", "post_verify"]),
   audit_triage_state: new Set(["verify_knowledge_base", "post_verify"]),
@@ -92,6 +100,15 @@ function checkArrayEqual({ issues, ownerPath, field, expected, actual }) {
   }
 }
 
+function arraysEqual(left, right) {
+  const leftSorted = sortedArray(left);
+  const rightSorted = sortedArray(right);
+  if (leftSorted.length !== rightSorted.length) {
+    return false;
+  }
+  return leftSorted.every((value, index) => value === rightSorted[index]);
+}
+
 function expectedCandidateReviewLanesForJobCandidate(job, candidate) {
   const expectedLanes = new Set(job.expected_outputs?.required_review_lanes ?? []);
 
@@ -102,12 +119,46 @@ function expectedCandidateReviewLanesForJobCandidate(job, candidate) {
       proposedRecord.path,
       proposedRecord.rationale
     ].join(" ");
-    if (safetyScopePattern.test(searchableText)) {
+    if (!safetyLaneGovernanceRecordTypes.has(proposedRecord.record_type) && safetyScopePattern.test(searchableText)) {
       expectedLanes.add("safety_limitations");
     }
   }
 
   return [...expectedLanes].sort();
+}
+
+function isLegacyGovernanceSafetyLaneSuperset(job, candidate, expectedLanes) {
+  if (!finalJobStatuses.has(job.lifecycle_status)) {
+    return false;
+  }
+
+  const actualLanes = candidate.required_review_lanes ?? [];
+  if (!arraysEqual(actualLanes, [...expectedLanes, "safety_limitations"])) {
+    return false;
+  }
+
+  return (candidate.proposed_records ?? []).every((proposedRecord) =>
+    safetyLaneGovernanceRecordTypes.has(proposedRecord.record_type)
+  );
+}
+
+function checkCandidateReviewLanes({ issues, ownerPath, job, candidate }) {
+  const expectedLanes = expectedCandidateReviewLanesForJobCandidate(job, candidate);
+  if (arraysEqual(candidate.required_review_lanes, expectedLanes)) {
+    return;
+  }
+
+  if (isLegacyGovernanceSafetyLaneSuperset(job, candidate, expectedLanes)) {
+    return;
+  }
+
+  checkArrayEqual({
+    issues,
+    ownerPath,
+    field: "candidate_change.required_review_lanes[]",
+    expected: expectedLanes,
+    actual: candidate.required_review_lanes
+  });
 }
 
 function checkPathExists({ issues, ownerPath, field, relativePath }) {
@@ -593,13 +644,7 @@ async function checkCodexJob({ issues, job, ownerPath }) {
 
     if (await exists(path.join(workspaceRoot, candidatePath))) {
       const candidate = await readJson(candidatePath);
-      checkArrayEqual({
-        issues,
-        ownerPath,
-        field: "candidate_change.required_review_lanes[]",
-        expected: expectedCandidateReviewLanesForJobCandidate(job, candidate),
-        actual: candidate.required_review_lanes
-      });
+      checkCandidateReviewLanes({ issues, ownerPath, job, candidate });
       if ((job.quality_gates ?? []).includes("candidate_agent_run_ledger_match")) {
         if (checkCandidateAgentRunLedgerMatch({ issues, ownerPath, candidate, agentRun })) {
           auditSatisfiedQualityGates.add("candidate_agent_run_ledger_match");

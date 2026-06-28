@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "parallel_reconciliation",
   "id": "parallel-reconciliation-v1",
-  "generated_at": "2026-06-28T19:32:03.850Z",
+  "generated_at": "2026-06-28T19:57:59.819Z",
   "source_roots": [
     "data",
     "research",
@@ -48,15 +48,15 @@
     "duplicate_source_group_count": 0,
     "study_count": 9,
     "duplicate_study_group_count": 0,
-    "candidate_count": 74,
-    "active_candidate_count": 56,
+    "candidate_count": 76,
+    "active_candidate_count": 58,
     "overlapping_candidate_group_count": 3,
     "source_rights_count": 2,
     "source_rights_conflict_count": 0,
-    "agent_run_count": 81,
-    "parallel_batch_count": 11,
+    "agent_run_count": 83,
+    "parallel_batch_count": 10,
     "reconciliation_batch_count": 8,
-    "parallel_batch_run_count": 24,
+    "parallel_batch_run_count": 26,
     "pending_parallel_worker_count": 0,
     "reconciliation_decision_count": 8,
     "incomplete_ledger_count": 0,
@@ -94,20 +94,7 @@
       "finding_ids": []
     },
     {
-      "batch_id": "parallel-batch-003-candidate-review",
-      "parallel_group": "candidate-review",
-      "execution_class": "independent",
-      "reconciliation_required": false,
-      "job_ids": [
-        "self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-synthesis-boundary",
-        "self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-taxonomy-mapping"
-      ],
-      "overlapping_execution_keys": [],
-      "status": "no_reconciliation_needed",
-      "finding_ids": []
-    },
-    {
-      "batch_id": "parallel-batch-004-extraction-refresh",
+      "batch_id": "parallel-batch-003-extraction-refresh",
       "parallel_group": "extraction-refresh",
       "execution_class": "reconciliation_required",
       "reconciliation_required": true,
@@ -129,7 +116,7 @@
       ]
     },
     {
-      "batch_id": "parallel-batch-005-extraction-refresh",
+      "batch_id": "parallel-batch-004-extraction-refresh",
       "parallel_group": "extraction-refresh",
       "execution_class": "independent",
       "reconciliation_required": true,
@@ -148,7 +135,7 @@
       ]
     },
     {
-      "batch_id": "parallel-batch-006-extraction-refresh",
+      "batch_id": "parallel-batch-005-extraction-refresh",
       "parallel_group": "extraction-refresh",
       "execution_class": "independent",
       "reconciliation_required": true,
@@ -167,7 +154,7 @@
       ]
     },
     {
-      "batch_id": "parallel-batch-007-extraction-refresh",
+      "batch_id": "parallel-batch-006-extraction-refresh",
       "parallel_group": "extraction-refresh",
       "execution_class": "independent",
       "reconciliation_required": true,
@@ -186,7 +173,7 @@
       ]
     },
     {
-      "batch_id": "parallel-batch-008-extraction-refresh",
+      "batch_id": "parallel-batch-007-extraction-refresh",
       "parallel_group": "extraction-refresh",
       "execution_class": "independent",
       "reconciliation_required": true,
@@ -205,7 +192,7 @@
       ]
     },
     {
-      "batch_id": "parallel-batch-009-extraction-refresh",
+      "batch_id": "parallel-batch-008-extraction-refresh",
       "parallel_group": "extraction-refresh",
       "execution_class": "independent",
       "reconciliation_required": true,
@@ -224,7 +211,7 @@
       ]
     },
     {
-      "batch_id": "parallel-batch-010-extraction-refresh",
+      "batch_id": "parallel-batch-009-extraction-refresh",
       "parallel_group": "extraction-refresh",
       "execution_class": "independent",
       "reconciliation_required": true,
@@ -243,7 +230,7 @@
       ]
     },
     {
-      "batch_id": "parallel-batch-011-extraction-refresh",
+      "batch_id": "parallel-batch-010-extraction-refresh",
       "parallel_group": "extraction-refresh",
       "execution_class": "independent",
       "reconciliation_required": true,

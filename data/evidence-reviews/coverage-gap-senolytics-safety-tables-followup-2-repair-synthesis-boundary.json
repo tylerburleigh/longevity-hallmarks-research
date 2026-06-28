@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "coverage-gap-senolytics-safety-tables-followup-2-repair-synthesis-boundary",
+  "candidate_change_id": "coverage-gap-senolytics-safety-tables-followup-2-repair",
+  "review_lane": "synthesis_boundary",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-synthesis-boundary",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Accepted for the synthesis_boundary lane. The candidate keeps D+Q bone safety synthesis in a pooling_blocked compatibility state, preserves event-term and discontinuation non-pooling reasons, and keeps DKD, IPF, and AD-risk safety records at abstract-limited or descriptive maturity without promoting them to cross-human safety synthesis.",
+  "findings": [
+    {
+      "finding_id": "dq-bone-safety-pooling-boundary-preserved",
+      "severity": "note",
+      "category": "endpoint_boundary",
+      "claim_or_issue": "The updated D+Q bone safety compatibility group includes the newly proposed preferred-term and discontinuation results while retaining compatibility_status needs_extraction, pooling_decision pooling_blocked, and missing-effect-field blockers for rows without defensible comparative effects.",
+      "why_it_matters": "This prevents single-trial, partly overlapping adverse-event rows and registry discontinuation counts from being treated as poolable safety estimates.",
+      "recommended_action": "Keep the compatibility group as the synthesis boundary for these D+Q bone safety records until independent compatible results with explicit arm counts, zero semantics, and uncertainty are available.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "cross-human-safety-boundary-retained",
+      "severity": "note",
+      "category": "safety_limitation",
+      "claim_or_issue": "The coverage assessment and proposed DKD, IPF, and AD-risk safety records retain abstract-level and full-text/table extraction limitations, including the statement that cross-human safety synthesis remains blocked until definitions, denominators, relatedness, and seriousness are harmonized.",
+      "why_it_matters": "The candidate adds source-snapshot-backed safety extraction progress without converting incomplete human safety evidence into a generalized senolytics safety conclusion.",
+      "recommended_action": "Proceed with this lane accepted and leave future cross-human safety synthesis to a later extraction-refresh or synthesis-refresh candidate after full article/table extraction is available.",
+      "resolution_status": "closed"
+    }
+  ]
+}

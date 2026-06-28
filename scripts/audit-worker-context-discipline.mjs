@@ -9,6 +9,7 @@ const policy = {
   enforced_after: "2026-06-23T18:00:00.000Z",
   extraction_enforced_after: "2026-06-28T19:00:00.000Z",
   max_non_context_output_chars: 30000,
+  max_context_record_output_chars: 50000,
   required_first_command: "context_pack_read"
 };
 const activeJobStatuses = new Set(["planned", "ready", "running"]);
@@ -119,6 +120,40 @@ function isValidationCommand(command) {
   return /\bnpm\s+run\s+(validate:records|audit:references|audit:agent-schemas|audit:agentic-process|verify:knowledge-base)/.test(command);
 }
 
+function commandJsonPaths(command) {
+  return [
+    ...command.matchAll(/\b(?:data|research|ops|schemas)\/[A-Za-z0-9._/-]+\.json\b/g)
+  ].map((match) => match[0]);
+}
+
+function contextPackAllowedPaths(contextPack) {
+  return new Set(
+    [
+      contextPack.target_candidate?.path,
+      ...(contextPack.target_candidate?.proposed_records ?? []).map((record) => record.path),
+      ...(contextPack.review_context?.active_review_records ?? []).map((record) => record.path),
+      ...(contextPack.review_context?.relevant_input_records ?? []).map((record) => record.path),
+      ...(contextPack.schema_context?.schema_paths ?? []),
+      ...(contextPack.expected_outputs?.proposed_record_paths ?? []),
+      ...(contextPack.expected_outputs?.generated_file_paths ?? [])
+    ].filter(Boolean)
+  );
+}
+
+function isBoundedContextRecordCommand({ command, contextPack }) {
+  if (!contextPack) {
+    return false;
+  }
+
+  const paths = commandJsonPaths(command);
+  if (paths.length === 0) {
+    return false;
+  }
+
+  const allowedPaths = contextPackAllowedPaths(contextPack);
+  return paths.every((recordPath) => allowedPaths.has(recordPath));
+}
+
 function isEnforced(job) {
   if (activeJobStatuses.has(job.lifecycle_status)) {
     return false;
@@ -178,7 +213,7 @@ async function readCommandEvents(logPath) {
   return { events, missing: false };
 }
 
-function commandFindings({ job, events }) {
+function commandFindings({ job, events, contextPack }) {
   const findings = [];
   const firstCommand = events[0]?.command;
 
@@ -209,7 +244,11 @@ function commandFindings({ job, events }) {
 
     if (
       event.aggregated_output_chars > policy.max_non_context_output_chars &&
-      !isValidationCommand(command)
+      !isValidationCommand(command) &&
+      !(
+        isBoundedContextRecordCommand({ command, contextPack }) &&
+        event.aggregated_output_chars <= policy.max_context_record_output_chars
+      )
     ) {
       findings.push({
         type: "large_non_context_output",
@@ -329,7 +368,8 @@ async function main() {
       continue;
     }
 
-    const findings = commandFindings({ job, events });
+    const contextPack = await readJson(job.context_pack_path);
+    const findings = commandFindings({ job, events, contextPack });
     if (!enforced) {
       telemetry.legacy_exempt_finding_count += findings.length;
       for (const finding of findings) {

@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "release_readiness",
   "id": "release-readiness-v1",
-  "generated_at": "2026-06-28T19:32:03.428Z",
+  "generated_at": "2026-06-28T19:57:59.412Z",
   "source_roots": [
     "data",
     "research"
@@ -17,8 +17,8 @@
     "canonical_source_of_truth": "data/ and research/ JSON records"
   },
   "summary": {
-    "candidate_count": 74,
-    "not_ready_candidate_count": 57,
+    "candidate_count": 76,
+    "not_ready_candidate_count": 59,
     "promotion_ready_candidate_count": 2,
     "release_ready_candidate_count": 10,
     "partial_release_ready_candidate_count": 5,
@@ -530,6 +530,44 @@
       "release_status": "not_ready",
       "required_review_lanes": [
         "extraction_fidelity"
+      ],
+      "active_review_ids": [],
+      "proposed_record_count": 2,
+      "release_ready_record_count": 0,
+      "blocked_record_count": 0,
+      "release_ready_record_ids": [],
+      "blocked_record_ids": [],
+      "next_actions": [
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
+    {
+      "candidate_change_id": "candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-synthesis-boundary-repair",
+      "path": "data/candidate-changes/candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-synthesis-boundary-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "release_status": "not_ready",
+      "required_review_lanes": [
+        "synthesis_boundary"
+      ],
+      "active_review_ids": [],
+      "proposed_record_count": 2,
+      "release_ready_record_count": 0,
+      "blocked_record_count": 0,
+      "release_ready_record_ids": [],
+      "blocked_record_ids": [],
+      "next_actions": [
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
+    {
+      "candidate_change_id": "candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-taxonomy-mapping-repair",
+      "path": "data/candidate-changes/candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-taxonomy-mapping-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "release_status": "not_ready",
+      "required_review_lanes": [
+        "taxonomy_mapping"
       ],
       "active_review_ids": [],
       "proposed_record_count": 2,
@@ -1186,14 +1224,17 @@
         "synthesis_boundary",
         "taxonomy_mapping"
       ],
-      "active_review_ids": [],
+      "active_review_ids": [
+        "coverage-gap-senolytics-safety-tables-followup-2-repair-synthesis-boundary",
+        "coverage-gap-senolytics-safety-tables-followup-2-repair-taxonomy-mapping"
+      ],
       "proposed_record_count": 17,
       "release_ready_record_count": 0,
       "blocked_record_count": 0,
       "release_ready_record_ids": [],
       "blocked_record_ids": [],
       "next_actions": [
-        "Run supervisor review lanes: extraction_fidelity, safety_limitations, synthesis_boundary, taxonomy_mapping."
+        "Run supervisor review lanes: extraction_fidelity, safety_limitations."
       ]
     },
     {

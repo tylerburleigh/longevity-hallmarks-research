@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "parallel_batch_run",
+  "id": "parallel-batch-003-candidate-review-20260628t194526z",
+  "batch_plan_id": "parallel-batch-plan-v1",
+  "batch_plan_path": "ops/codex-batches/parallel-batch-plan.v1.json",
+  "batch_id": "parallel-batch-003-candidate-review",
+  "batch_sequence": 3,
+  "parallel_group": "candidate-review",
+  "execution_class": "independent",
+  "reconciliation_required": false,
+  "started_at": "2026-06-28T19:45:26.076Z",
+  "status": "succeeded",
+  "log_path": "ops/codex-batches/logs/parallel-batch-003-candidate-review-20260628t194526z.jsonl",
+  "worker_states": [
+    {
+      "job_id": "self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-synthesis-boundary",
+      "job_path": "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-synthesis-boundary.json",
+      "command": [
+        "npm",
+        "run",
+        "agent:codex:worktree",
+        "--",
+        "--job-file",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-synthesis-boundary.json",
+        "--execute",
+        "--allow-dirty"
+      ],
+      "status": "succeeded",
+      "started_at": "2026-06-28T19:45:26.081Z",
+      "worktree_path": "/tmp/lhr-codex-worktrees/self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-synthesis-boundary-20260628T194526z",
+      "completed_at": "2026-06-28T19:57:38.155Z",
+      "exit_code": 0,
+      "output_path": "research/agent-runs/self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-synthesis-boundary.json",
+      "worker_log_path": "research/agent-runs/logs/self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-synthesis-boundary.jsonl",
+      "archive_path": "ops/codex-jobs/archive/self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-synthesis-boundary.json"
+    },
+    {
+      "job_id": "self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-taxonomy-mapping",
+      "job_path": "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-taxonomy-mapping.json",
+      "command": [
+        "npm",
+        "run",
+        "agent:codex:worktree",
+        "--",
+        "--job-file",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-taxonomy-mapping.json",
+        "--execute",
+        "--allow-dirty"
+      ],
+      "status": "succeeded",
+      "started_at": "2026-06-28T19:45:26.081Z",
+      "worktree_path": "/tmp/lhr-codex-worktrees/self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-taxonomy-mapping-20260628T194526z",
+      "completed_at": "2026-06-28T19:49:42.351Z",
+      "exit_code": 0,
+      "output_path": "research/agent-runs/self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-taxonomy-mapping.json",
+      "worker_log_path": "research/agent-runs/logs/self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-taxonomy-mapping.jsonl",
+      "archive_path": "ops/codex-jobs/archive/self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-taxonomy-mapping.json"
+    }
+  ],
+  "summary": {
+    "planned_count": 0,
+    "running_count": 0,
+    "succeeded_count": 2,
+    "pending_reconciliation_count": 0,
+    "failed_count": 0,
+    "archived_count": 2
+  },
+  "next_actions": [
+    "Run npm run verify:knowledge-base after reviewing resulting candidate changes."
+  ],
+  "completed_at": "2026-06-28T19:57:38.156Z"
+}

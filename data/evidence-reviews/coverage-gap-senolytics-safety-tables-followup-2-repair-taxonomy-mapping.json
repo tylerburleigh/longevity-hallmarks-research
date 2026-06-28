@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "coverage-gap-senolytics-safety-tables-followup-2-repair-taxonomy-mapping",
+  "candidate_change_id": "coverage-gap-senolytics-safety-tables-followup-2-repair",
+  "review_lane": "taxonomy_mapping",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-taxonomy-mapping",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Taxonomy mapping lane accepted for the bounded safety-table repair. The proposed safety outcomes, adverse-event result records, coverage assessment, and D+Q bone safety synthesis group keep safety endpoints separated from efficacy claims, preserve preferred-term and zero-handling boundaries, and maintain the cross-result pooling block where endpoint definitions remain incompatible.",
+  "findings": [
+    {
+      "finding_id": "taxonomy-mapping-safety-endpoints-closed",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The DKD, IPF, AD-risk, and D+Q bone records are mapped to safety-oriented endpoint and result taxonomies rather than efficacy or generic longevity-benefit buckets.",
+      "why_it_matters": "This keeps adverse-event extraction, tolerability, and serious-adverse-event absence statements from being interpreted as positive efficacy evidence.",
+      "recommended_action": "No revision required; preserve the safety endpoint_category, measurement_type, result_type, and adverse_event mappings in this candidate.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "taxonomy-mapping-adverse-event-fields-closed",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The preferred-term D+Q bone rows and discontinuation result use structured adverse_event fields for preferred_term, term_source, seriousness, relatedness, event_specific_counts, and zero_handling.",
+      "why_it_matters": "Structured adverse-event terms and explicit blank-cell or zero semantics are needed to prevent unsupported comparative safety effects and double counting.",
+      "recommended_action": "No revision required; keep blank publication-table cells as not_reported_or_below_threshold and keep discontinuation extraction distinct from preferred-term adverse-event rows.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "taxonomy-mapping-synthesis-boundary-closed",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The coverage assessment and D+Q bone synthesis group retain safety_durability as thin and keep pooling blocked until event definitions, denominators, zero semantics, relatedness, seriousness, and uncertainty are harmonized.",
+      "why_it_matters": "This prevents a taxonomy upgrade from implying cross-human safety synthesis readiness when the candidate only adds bounded row-level and abstract-level safety extraction.",
+      "recommended_action": "No revision required; continue treating full article/table safety extraction and harmonized cross-human safety synthesis as future work.",
+      "resolution_status": "closed"
+    }
+  ]
+}

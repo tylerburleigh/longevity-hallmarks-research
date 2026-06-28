@@ -75,6 +75,13 @@ function checkEqual({ issues, ownerPath, field, expected, actual }) {
   }
 }
 
+function archivePathForJobPath(jobPath) {
+  if (!jobPath) {
+    return undefined;
+  }
+  return `ops/codex-jobs/archive/${path.basename(jobPath)}`;
+}
+
 async function main() {
   const issues = [];
   const runFiles = await walkJsonFiles(path.join(workspaceRoot, runRoot));
@@ -113,10 +120,14 @@ async function main() {
       const archivePathExists = worker.archive_path
         ? await exists(path.join(workspaceRoot, worker.archive_path))
         : false;
+      const retryArchivePath = archivePathForJobPath(worker.job_path);
+      const retryArchivePathExists = retryArchivePath
+        ? await exists(path.join(workspaceRoot, retryArchivePath))
+        : false;
       const outputPathExists = worker.output_path
         ? await exists(path.join(workspaceRoot, worker.output_path))
         : false;
-      if (!jobPathExists && !archivePathExists) {
+      if (!jobPathExists && !archivePathExists && !(worker.status === "failed" && retryArchivePathExists)) {
         issues.push(`${relativePath}: worker ${worker.job_id} has neither live job_path nor archive_path.`);
       }
       if (worker.status === "succeeded" && worker.archive_path && !archivePathExists) {

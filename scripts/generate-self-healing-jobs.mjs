@@ -10,17 +10,18 @@ export const generatedJobRoot = "ops/codex-jobs/live/generated-self-healing";
 export const supervisorReviewContextPackRoot = "ops/supervisor-review-context-packs";
 export const defaultLimit = 5;
 
-const skippedJobTypes = new Set(["candidate_promotion"]);
 const highCostJobTypes = new Set(["extraction_refresh", "coverage_repair", "snapshot_refresh"]);
 const safetyPattern = /\b(safety|adverse[-_ ]?event|adverse|harm|tolerability|toxicity)\b/i;
 
 const promptByJobType = {
   candidate_review: "docs/prompts/codex-agents/supervisor-review.md",
+  candidate_promotion: "docs/prompts/codex-agents/candidate-promotion.md",
   extraction_refresh: "docs/prompts/codex-agents/extraction-refresh.md"
 };
 
 const agentRoleByJobType = {
   candidate_review: "supervisor_agent",
+  candidate_promotion: "release_agent",
   extraction_refresh: "extraction_agent"
 };
 
@@ -254,6 +255,10 @@ function scopeFromRecommendedJob(recordIndex, recommendedJob) {
 }
 
 function reviewLanesForJob(recordIndex, recommendedJob) {
+  if (recommendedJob.job_type === "candidate_promotion") {
+    return [];
+  }
+
   if ((recommendedJob.required_review_lanes ?? []).length > 0) {
     return sortStrings(recommendedJob.required_review_lanes);
   }
@@ -293,6 +298,15 @@ function reviewLanesForJob(recordIndex, recommendedJob) {
 }
 
 function jobCost(recommendedJob) {
+  if (recommendedJob.job_type === "candidate_promotion") {
+    return {
+      cost_class: "low",
+      expected_wall_time_ms: 300000,
+      expected_token_budget: 10000,
+      io_intensity: "low"
+    };
+  }
+
   if (recommendedJob.priority === "high" || highCostJobTypes.has(recommendedJob.job_type)) {
     return {
       cost_class: "high",
@@ -364,6 +378,12 @@ function candidateReviewOutputSpec({ recommendedJob, candidateChangeId, required
 }
 
 function buildWriteSets({ recommendedJob, candidateChangeId, requiredReviewLanes = [], proposedRecordPaths = [] }) {
+  if (recommendedJob.job_type === "candidate_promotion") {
+    return sortStrings([
+      `promotion_check:${recommendedJob.target_record_id}`
+    ]);
+  }
+
   const candidateChangeKeys = [
     `candidate_change:${candidateChangeId}`,
     `path:data/candidate-changes/${candidateChangeId}.json`
@@ -385,6 +405,13 @@ function buildWriteSets({ recommendedJob, candidateChangeId, requiredReviewLanes
 }
 
 function buildConflictKeys({ recommendedJob, candidateChangeId, requiredReviewLanes = [] }) {
+  if (recommendedJob.job_type === "candidate_promotion") {
+    return sortStrings([
+      `promotion:${recommendedJob.target_record_id}`,
+      `target_record:${recommendedJob.target_record_type}/${recommendedJob.target_record_id}`
+    ]);
+  }
+
   const candidateChangeKeys = [
     `candidate_change:${candidateChangeId}`
   ];
@@ -407,10 +434,27 @@ function buildConflictKeys({ recommendedJob, candidateChangeId, requiredReviewLa
 }
 
 function reconciliationRequiredForJob(recommendedJob) {
+  if (recommendedJob.job_type === "candidate_promotion") {
+    return false;
+  }
+
   return recommendedJob.job_type !== "candidate_review";
 }
 
 function buildQualityGates(recommendedJob) {
+  if (recommendedJob.job_type === "candidate_promotion") {
+    return [
+      "validate_records",
+      "audit_references",
+      "audit_exports",
+      "audit_triage_state",
+      "audit_reconciliation",
+      "audit_agent_schemas",
+      "audit_agentic_process",
+      "worker_output_contract"
+    ];
+  }
+
   const gates = [
     "validate_records",
     "audit_references",
@@ -458,8 +502,8 @@ function buildJob(recordIndex, recommendedJob) {
       no_output_timeout_ms: 300000
     },
     expected_outputs: {
-      canonical_write_policy: "candidate_change_required",
-      candidate_change_id: candidateChangeId,
+      canonical_write_policy: recommendedJob.job_type === "candidate_promotion" ? "no_canonical_writes" : "candidate_change_required",
+      ...(recommendedJob.job_type === "candidate_promotion" ? {} : { candidate_change_id: candidateChangeId }),
       required_review_lanes: requiredReviewLanes,
       ...(outputSpec.proposedRecordPaths ? { proposed_record_paths: outputSpec.proposedRecordPaths } : {}),
       ...(outputSpec.generatedFilePaths ? { generated_file_paths: outputSpec.generatedFilePaths } : {}),
@@ -486,6 +530,12 @@ function buildJob(recordIndex, recommendedJob) {
     notes: [
       `Generated from ${triageStatePath} recommended_jobs[] item ${sourceJobId(recommendedJob)}.`,
       `Source queue: ${recommendedJob.source}.`,
+      ...(recommendedJob.job_type === "candidate_promotion"
+        ? [
+            `Dry-run promotion command: ${recommendedJob.suggested_command}.`,
+            "This job verifies promotion readiness only; coordinator promotion remains explicit through npm run promote:candidate."
+          ]
+        : []),
       ...(recommendedJob.review_lane ? [`Supervisor review lane: ${recommendedJob.review_lane}.`] : []),
       "The worker should keep edits bounded to the target record, listed inputs, and the candidate repair ledger."
     ]
@@ -722,9 +772,6 @@ export async function buildSelfHealingJobs(options = {}) {
   const jobs = [];
 
   for (const recommendedJob of triageState.recommended_jobs ?? []) {
-    if (skippedJobTypes.has(recommendedJob.job_type)) {
-      continue;
-    }
     if (options.priority && recommendedJob.priority !== options.priority) {
       continue;
     }

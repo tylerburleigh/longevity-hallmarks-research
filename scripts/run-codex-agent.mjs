@@ -400,6 +400,50 @@ async function writeCommandPlan(options, command) {
 async function executeCommand(options, command) {
   const logHandle = await fs.open(resolveRepoPath(options.log), "w");
   const stdoutChunks = [];
+  let stdoutBuffer = "";
+
+  function redactOversizedCommandOutput(line) {
+    if (!line) {
+      return line;
+    }
+
+    try {
+      const event = JSON.parse(line);
+      if (
+        event?.type === "item.completed" &&
+        event.item?.type === "command_execution" &&
+        typeof event.item.aggregated_output === "string" &&
+        event.item.aggregated_output.length > 30000
+      ) {
+        const originalChars = event.item.aggregated_output.length;
+        event.item.aggregated_output = "[redacted: command output exceeded 30000 characters; rerun a narrower command for details]";
+        event.item.aggregated_output_redacted = true;
+        event.item.aggregated_output_original_chars = originalChars;
+        return JSON.stringify(event);
+      }
+    } catch {
+      return line;
+    }
+
+    return line;
+  }
+
+  function sanitizedChunk(chunk) {
+    const text = chunk.toString("utf8");
+    const lines = `${stdoutBuffer}${text}`.split("\n");
+    stdoutBuffer = lines.pop() ?? "";
+    const sanitizedLines = lines.map((line) => redactOversizedCommandOutput(line.replace(/\r$/, "")));
+    return sanitizedLines.length > 0 ? `${sanitizedLines.join("\n")}\n` : "";
+  }
+
+  function flushSanitizedStdout() {
+    if (!stdoutBuffer) {
+      return "";
+    }
+    const line = redactOversizedCommandOutput(stdoutBuffer.replace(/\r$/, ""));
+    stdoutBuffer = "";
+    return line ? `${line}\n` : "";
+  }
 
   return new Promise((resolve, reject) => {
     let settled = false;
@@ -425,6 +469,13 @@ async function executeCommand(options, command) {
       }
       settled = true;
       clearTimers();
+      const finalChunk = flushSanitizedStdout();
+      if (finalChunk) {
+        const finalBuffer = Buffer.from(finalChunk);
+        stdoutChunks.push(finalBuffer);
+        process.stdout.write(finalChunk);
+        logHandle.write(finalChunk).catch(() => {});
+      }
       options.workerStdout = Buffer.concat(stdoutChunks).toString("utf8");
       logHandle.close().finally(() => {
         if (error) {
@@ -465,9 +516,14 @@ async function executeCommand(options, command) {
         return;
       }
       resetIdleTimer();
-      stdoutChunks.push(chunk);
-      process.stdout.write(chunk);
-      logHandle.write(chunk).catch((error) => {
+      const output = sanitizedChunk(chunk);
+      if (!output) {
+        return;
+      }
+      const outputBuffer = Buffer.from(output);
+      stdoutChunks.push(outputBuffer);
+      process.stdout.write(output);
+      logHandle.write(output).catch((error) => {
         child.kill();
         settleWith(error);
       });

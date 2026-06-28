@@ -783,6 +783,9 @@
       "additionalProperties": false,
       "required": [
         "failed_worker_count",
+        "historical_failed_worker_count",
+        "historical_failure_classes",
+        "recent_failed_workers",
         "partial_or_failed_agent_run_count"
       ],
       "properties": {
@@ -790,9 +793,67 @@
           "type": "integer",
           "minimum": 0
         },
+        "historical_failed_worker_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "historical_failure_classes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/countByKey"
+          }
+        },
+        "recent_failed_workers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/recentFailedWorker"
+          }
+        },
         "partial_or_failed_agent_run_count": {
           "type": "integer",
           "minimum": 0
+        }
+      }
+    },
+    "recentFailedWorker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "batch_run_id",
+        "batch_id",
+        "job_id",
+        "failure_class",
+        "issue_count"
+      ],
+      "properties": {
+        "batch_run_id": {
+          "type": "string"
+        },
+        "batch_id": {
+          "type": "string"
+        },
+        "job_id": {
+          "$ref": "./common.schema.json#/$defs/agentRunRef"
+        },
+        "failure_class": {
+          "enum": [
+            "usage_limit",
+            "max_command_events",
+            "timeout",
+            "worktree_state",
+            "worker_exit",
+            "other"
+          ]
+        },
+        "completed_at": {
+          "$ref": "./common.schema.json#/$defs/dateTime"
+        },
+        "issue_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "primary_issue": {
+          "type": "string"
         }
       }
     }

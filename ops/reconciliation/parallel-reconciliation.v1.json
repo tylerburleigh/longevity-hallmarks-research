@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "parallel_reconciliation",
   "id": "parallel-reconciliation-v1",
-  "generated_at": "2026-06-28T17:07:45.145Z",
+  "generated_at": "2026-06-28T17:20:20.108Z",
   "source_roots": [
     "data",
     "research",
@@ -54,7 +54,7 @@
     "source_rights_count": 2,
     "source_rights_conflict_count": 0,
     "agent_run_count": 68,
-    "parallel_batch_count": 6,
+    "parallel_batch_count": 7,
     "reconciliation_batch_count": 6,
     "parallel_batch_run_count": 20,
     "pending_parallel_worker_count": 0,
@@ -66,7 +66,19 @@
   },
   "parallel_batches": [
     {
-      "batch_id": "parallel-batch-001-extraction-refresh",
+      "batch_id": "parallel-batch-001-candidate-promotion",
+      "parallel_group": "candidate-promotion",
+      "execution_class": "independent",
+      "reconciliation_required": false,
+      "job_ids": [
+        "self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair"
+      ],
+      "overlapping_execution_keys": [],
+      "status": "no_reconciliation_needed",
+      "finding_ids": []
+    },
+    {
+      "batch_id": "parallel-batch-002-extraction-refresh",
       "parallel_group": "extraction-refresh",
       "execution_class": "reconciliation_required",
       "reconciliation_required": true,
@@ -84,7 +96,7 @@
       "finding_ids": []
     },
     {
-      "batch_id": "parallel-batch-002-extraction-refresh",
+      "batch_id": "parallel-batch-003-extraction-refresh",
       "parallel_group": "extraction-refresh",
       "execution_class": "independent",
       "reconciliation_required": true,
@@ -99,7 +111,7 @@
       "finding_ids": []
     },
     {
-      "batch_id": "parallel-batch-003-extraction-refresh",
+      "batch_id": "parallel-batch-004-extraction-refresh",
       "parallel_group": "extraction-refresh",
       "execution_class": "independent",
       "reconciliation_required": true,
@@ -114,7 +126,7 @@
       "finding_ids": []
     },
     {
-      "batch_id": "parallel-batch-004-extraction-refresh",
+      "batch_id": "parallel-batch-005-extraction-refresh",
       "parallel_group": "extraction-refresh",
       "execution_class": "independent",
       "reconciliation_required": true,
@@ -129,7 +141,7 @@
       "finding_ids": []
     },
     {
-      "batch_id": "parallel-batch-005-extraction-refresh",
+      "batch_id": "parallel-batch-006-extraction-refresh",
       "parallel_group": "extraction-refresh",
       "execution_class": "independent",
       "reconciliation_required": true,
@@ -144,7 +156,7 @@
       "finding_ids": []
     },
     {
-      "batch_id": "parallel-batch-006-extraction-refresh",
+      "batch_id": "parallel-batch-007-extraction-refresh",
       "parallel_group": "extraction-refresh",
       "execution_class": "independent",
       "reconciliation_required": true,

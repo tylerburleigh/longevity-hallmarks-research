@@ -26,7 +26,7 @@ Generated jobs are written under `ops/codex-jobs/live/generated-self-healing/`. 
 - read, write, conflict, and parallel-batch keys
 - post-run export and verification requirements
 
-The generator skips `candidate_promotion` recommendations because promotion is handled by `npm run promote:candidate`.
+For `candidate_promotion` recommendations, the generator emits a low-cost release-agent readiness-check job. The worker runs only the dry-run promotion command recorded in the job notes and must not promote, apply, or mutate canonical records. Actual promotion remains an explicit coordinator action through `npm run promote:candidate`.
 
 For `candidate_review` recommendations, the generator emits one supervisor-agent job per missing review lane. Each lane job reads the source candidate, writes a lane-scoped repair candidate plus one evidence-review record, and declares `candidate_review:<candidate_change_id>/<review_lane>` write/conflict keys. Different lanes for the same candidate can therefore share independent parallel batches without broad writes to the source candidate record.
 

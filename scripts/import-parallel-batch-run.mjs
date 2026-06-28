@@ -279,7 +279,7 @@ function refreshCommands({ verify }) {
     ["npm", "run", "jobs:self-healing", "--", "--replace"],
     ["npm", "run", "jobs:plan-parallel"],
     ["npm", "run", "reconcile:parallel"],
-    ["npm", "run", "metrics:orchestration"],
+    ["npm", "run", "export:read-model"],
     ["npm", "run", "export:latest"],
     ["npm", "run", "metrics:orchestration"]
   ];

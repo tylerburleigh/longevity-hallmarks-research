@@ -288,6 +288,59 @@ function actionableFailedWorkerCount({ batchRuns, liveJobs }) {
   ).length;
 }
 
+function classifyWorkerFailure(worker) {
+  const text = (worker.issues ?? []).join("\n");
+  if (/usage limit|purchase more credits/i.test(text)) {
+    return "usage_limit";
+  }
+  if (/max_command_events/i.test(text)) {
+    return "max_command_events";
+  }
+  if (/no stdout|no output|timeout|exceeded timeout/i.test(text)) {
+    return "timeout";
+  }
+  if (/Foreground checkout has changes|git apply --binary failed|dirty/i.test(text)) {
+    return "worktree_state";
+  }
+  if (/isolated Codex wrapper exited with code|Worker exited with code/i.test(text)) {
+    return "worker_exit";
+  }
+  return "other";
+}
+
+function truncateText(value, maxChars = 500) {
+  if (!value) {
+    return undefined;
+  }
+  const text = String(value);
+  return text.length > maxChars ? `${text.slice(0, maxChars)}...` : text;
+}
+
+function failedWorkerSamples(batchRuns) {
+  return batchRuns
+    .flatMap((entry) => (entry.record.worker_states ?? [])
+      .filter((worker) => worker.status === "failed")
+      .map((worker) => ({
+        batch_run_id: entry.record.id,
+        batch_id: entry.record.batch_id,
+        job_id: worker.job_id,
+        failure_class: classifyWorkerFailure(worker),
+        completed_at: worker.completed_at ?? entry.record.completed_at,
+        issue_count: worker.issues?.length ?? 0,
+        primary_issue: truncateText(worker.issues?.[0])
+      })))
+    .toSorted((left, right) => [
+      right.completed_at ?? "",
+      right.batch_run_id,
+      right.job_id
+    ].join("\u0000").localeCompare([
+      left.completed_at ?? "",
+      left.batch_run_id,
+      left.job_id
+    ].join("\u0000")))
+    .slice(0, 10);
+}
+
 function duplicateWorkRecordCount(reconciliation) {
   return sum([
     ...(reconciliation?.duplicate_sources ?? []).map((finding) => finding.source_ids?.length ?? 0),
@@ -345,6 +398,7 @@ export async function buildOrchestrationMetrics({ generatedAt = new Date().toISO
   const plannedParallelWallTimeMs = batchPlan?.summary?.estimated_wall_time_ms ?? 0;
   const batchRunsSummary = batchRunMetrics(batchRuns);
   const workers = workerStates(batchRuns);
+  const failedWorkers = workers.filter((worker) => worker.status === "failed");
   const workerDurations = workers.map((worker) => durationMs(worker.started_at, worker.completed_at));
   const agentRunDurations = agentRunEntries.map((entry) => durationMs(entry.record.started_at, entry.record.completed_at));
   const openFindingCount = reconciliation?.summary?.open_finding_count ?? 0;
@@ -476,6 +530,9 @@ export async function buildOrchestrationMetrics({ generatedAt = new Date().toISO
       },
       worker_failures: {
         failed_worker_count: actionableFailedWorkerCountValue,
+        historical_failed_worker_count: failedWorkers.length,
+        historical_failure_classes: countBy(failedWorkers.map(classifyWorkerFailure)),
+        recent_failed_workers: failedWorkerSamples(batchRuns),
         partial_or_failed_agent_run_count: actionablePartialOrFailedAgentRunCount
       }
     }

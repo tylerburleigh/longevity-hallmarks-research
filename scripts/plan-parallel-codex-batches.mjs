@@ -296,7 +296,7 @@ export function buildParallelBatchPlanFromJobs({
       batch_count: batches.length,
       max_batch_width: Math.max(0, ...batches.map((batch) => batch.job_ids.length)),
       independent_batch_count: batches.filter((batch) => batch.execution_class === "independent").length,
-      reconciliation_batch_count: batches.filter((batch) => batch.execution_class === "reconciliation_required").length,
+      reconciliation_batch_count: batches.filter((batch) => batch.reconciliation_required).length,
       estimated_wall_time_ms: estimatedWallTimeMs,
       estimated_token_budget: estimatedTokenBudget
     },

@@ -147,6 +147,7 @@ async function main() {
 
   const issues = [];
   const expectedActionableFailedWorkerCount = await actionableFailedWorkerCount(actual);
+  const plannedReconciliationBatchCount = (actual.planned_parallelism?.batches ?? []).filter((batch) => batch.reconciliation_required).length;
   if (actual.summary?.conflict_finding_count === 0 && actual.summary?.conflict_rate !== 0) {
     issues.push("summary.conflict_rate must be 0 when summary.conflict_finding_count is 0.");
   }
@@ -161,6 +162,9 @@ async function main() {
   }
   if (actual.quality_pressure?.worker_failures?.failed_worker_count !== expectedActionableFailedWorkerCount) {
     issues.push("quality_pressure.worker_failures.failed_worker_count must match latest failed live worker count.");
+  }
+  if (actual.summary?.planned_reconciliation_batch_count !== plannedReconciliationBatchCount) {
+    issues.push("summary.planned_reconciliation_batch_count must match planned batches with reconciliation_required=true.");
   }
   if (issues.length > 0) {
     console.error(`Orchestration-metrics audit failed with ${issues.length} semantic issue(s):`);

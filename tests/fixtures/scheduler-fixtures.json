@@ -291,6 +291,67 @@
       }
     },
     {
+      "id": "independent-reconciliation-required-batch",
+      "description": "Independent jobs that require post-run reconciliation count as reconciliation-required batches even without overlapping execution keys.",
+      "max_workers": 4,
+      "parallel_group": "independent-reconciliation-required",
+      "jobs": [
+        {
+          "id": "fixture-independent-reconcile-alpha",
+          "agent_role": "extraction_agent",
+          "mode": "extraction_refresh",
+          "read_sets": [
+            "path:data/results/fixture-independent-alpha.json"
+          ],
+          "write_sets": [
+            "candidate_change:fixture-independent-alpha-repair"
+          ],
+          "conflict_keys": [
+            "target_record:result/fixture-independent-alpha"
+          ],
+          "reconciliation_required": true
+        },
+        {
+          "id": "fixture-independent-reconcile-beta",
+          "agent_role": "extraction_agent",
+          "mode": "extraction_refresh",
+          "read_sets": [
+            "path:data/results/fixture-independent-beta.json"
+          ],
+          "write_sets": [
+            "candidate_change:fixture-independent-beta-repair"
+          ],
+          "conflict_keys": [
+            "target_record:result/fixture-independent-beta"
+          ],
+          "reconciliation_required": true
+        }
+      ],
+      "expected": {
+        "summary": {
+          "live_job_count": 2,
+          "schedulable_job_count": 2,
+          "deferred_job_count": 0,
+          "batch_count": 1,
+          "max_batch_width": 2,
+          "independent_batch_count": 1,
+          "reconciliation_batch_count": 1
+        },
+        "batches": [
+          {
+            "parallel_group": "independent-reconciliation-required",
+            "execution_class": "independent",
+            "reconciliation_required": true,
+            "job_ids": [
+              "fixture-independent-reconcile-alpha",
+              "fixture-independent-reconcile-beta"
+            ],
+            "overlapping_execution_keys": []
+          }
+        ]
+      }
+    },
+    {
       "id": "self-healing-repair-batch",
       "description": "Self-healing repairs for distinct targets share a batch while same-target repairs without reconciliation are serialized.",
       "max_workers": 4,

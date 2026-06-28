@@ -226,7 +226,7 @@ function plannedGroupMetrics(batchPlan) {
       batch_count: batches.length,
       job_count: sum(batches.map((batch) => batch.job_ids?.length ?? 0)),
       independent_batch_count: batches.filter((batch) => batch.execution_class === "independent").length,
-      reconciliation_batch_count: batches.filter((batch) => batch.execution_class === "reconciliation_required").length,
+      reconciliation_batch_count: batches.filter((batch) => batch.reconciliation_required).length,
       max_batch_width: Math.max(0, ...batches.map((batch) => batch.job_ids?.length ?? 0)),
       expected_wall_time_ms: sum(batches.map((batch) => batch.expected_cost?.expected_wall_time_ms ?? 0)),
       expected_token_budget: sum(batches.map((batch) => batch.expected_cost?.expected_token_budget ?? 0)),

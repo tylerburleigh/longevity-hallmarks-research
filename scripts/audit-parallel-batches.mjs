@@ -64,6 +64,19 @@ async function main() {
     process.exit(1);
   }
 
+  const issues = [];
+  const reconciliationBatchCount = (actual.batches ?? []).filter((batch) => batch.reconciliation_required).length;
+  if (actual.summary?.reconciliation_batch_count !== reconciliationBatchCount) {
+    issues.push("summary.reconciliation_batch_count must match batches[] with reconciliation_required=true.");
+  }
+  if (issues.length > 0) {
+    console.error(`Parallel-batch audit failed with ${issues.length} semantic issue(s):`);
+    for (const issue of issues) {
+      console.error(`- ${issue}`);
+    }
+    process.exit(1);
+  }
+
   console.log(`Parallel-batch audit passed for ${actual.batches.length} batch(es).`);
 }
 

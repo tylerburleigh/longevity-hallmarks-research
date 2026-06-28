@@ -163,6 +163,18 @@ async function main() {
   if (actual.quality_pressure?.worker_failures?.failed_worker_count !== expectedActionableFailedWorkerCount) {
     issues.push("quality_pressure.worker_failures.failed_worker_count must match latest failed live worker count.");
   }
+  if (actual.summary?.actionable_failed_worker_count !== expectedActionableFailedWorkerCount) {
+    issues.push("summary.actionable_failed_worker_count must match latest failed live worker count.");
+  }
+  if (actual.summary?.historical_failed_worker_count !== actual.summary?.failed_worker_count) {
+    issues.push("summary.historical_failed_worker_count must match summary.failed_worker_count.");
+  }
+  if (
+    actual.summary?.actionable_partial_or_failed_agent_run_count !==
+    triageState.summary?.partial_or_failed_agent_run_count
+  ) {
+    issues.push("summary.actionable_partial_or_failed_agent_run_count must match triage summary.partial_or_failed_agent_run_count.");
+  }
   if (actual.summary?.planned_reconciliation_batch_count !== plannedReconciliationBatchCount) {
     issues.push("summary.planned_reconciliation_batch_count must match planned batches with reconciliation_required=true.");
   }

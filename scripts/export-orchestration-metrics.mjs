@@ -454,6 +454,8 @@ export async function buildOrchestrationMetrics({ generatedAt = new Date().toISO
       executed_parallel_batch_run_count: batchRuns.length,
       executed_worker_count: workers.length,
       failed_worker_count: workers.filter((worker) => worker.status === "failed").length,
+      actionable_failed_worker_count: actionableFailedWorkerCountValue,
+      historical_failed_worker_count: failedWorkers.length,
       pending_reconciliation_worker_count: workers.filter((worker) => worker.status === "succeeded_pending_reconciliation").length,
       succeeded_worker_count: workers.filter((worker) => worker.status === "succeeded").length,
       actual_worker_wall_time_ms: sum(workerDurations),
@@ -462,6 +464,7 @@ export async function buildOrchestrationMetrics({ generatedAt = new Date().toISO
       succeeded_agent_run_count: agentRunEntries.filter((entry) => entry.record.status === "succeeded").length,
       partial_agent_run_count: agentRunEntries.filter((entry) => entry.record.status === "partial").length,
       failed_agent_run_count: agentRunEntries.filter((entry) => entry.record.status === "failed").length,
+      actionable_partial_or_failed_agent_run_count: actionablePartialOrFailedAgentRunCount,
       agent_run_wall_time_ms: sum(agentRunDurations),
       duplicate_work_group_count: (reconciliation?.summary?.duplicate_source_group_count ?? 0)
         + (reconciliation?.summary?.duplicate_study_group_count ?? 0)

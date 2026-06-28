@@ -119,6 +119,8 @@
         "executed_parallel_batch_run_count",
         "executed_worker_count",
         "failed_worker_count",
+        "actionable_failed_worker_count",
+        "historical_failed_worker_count",
         "pending_reconciliation_worker_count",
         "succeeded_worker_count",
         "actual_worker_wall_time_ms",
@@ -127,6 +129,7 @@
         "succeeded_agent_run_count",
         "partial_agent_run_count",
         "failed_agent_run_count",
+        "actionable_partial_or_failed_agent_run_count",
         "agent_run_wall_time_ms",
         "duplicate_work_group_count",
         "duplicate_work_record_count",
@@ -201,6 +204,14 @@
           "type": "integer",
           "minimum": 0
         },
+        "actionable_failed_worker_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "historical_failed_worker_count": {
+          "type": "integer",
+          "minimum": 0
+        },
         "pending_reconciliation_worker_count": {
           "type": "integer",
           "minimum": 0
@@ -230,6 +241,10 @@
           "minimum": 0
         },
         "failed_agent_run_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "actionable_partial_or_failed_agent_run_count": {
           "type": "integer",
           "minimum": 0
         },

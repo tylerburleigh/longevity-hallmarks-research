@@ -8,6 +8,7 @@
   "agent_role": "extraction_agent",
   "mode": "extraction_refresh",
   "prompt_file": "docs/prompts/codex-agents/extraction-refresh.md",
+  "context_pack_path": "ops/extraction-context-packs/self-healing-extraction-debt-dq-bone-turnover-mixed.json",
   "output_path": "research/agent-runs/self-healing-extraction-debt-dq-bone-turnover-mixed.json",
   "jsonl_log_path": "research/agent-runs/logs/self-healing-extraction-debt-dq-bone-turnover-mixed.jsonl",
   "scope": {
@@ -51,10 +52,29 @@
       "extraction_fidelity",
       "synthesis_boundary",
       "taxonomy_mapping"
+    ],
+    "proposed_record_paths": [
+      "data/candidate-changes/extraction-debt-dq-bone-turnover-mixed-repair.json",
+      "data/results/dq-bone-turnover-mixed.json"
+    ],
+    "generated_file_paths": [
+      "data/candidate-changes/extraction-debt-dq-bone-turnover-mixed-repair.json",
+      "data/results/dq-bone-turnover-mixed.json"
+    ],
+    "export_paths": [
+      "exports/latest/audit-manifest.json",
+      "exports/latest/coverage-status.json",
+      "exports/latest/evidence-map.json",
+      "exports/latest/read-model.sqlite",
+      "ops/release-readiness.v1.json",
+      "ops/reconciliation/parallel-reconciliation.v1.json",
+      "ops/triage-state.v1.json",
+      "ops/codex-batches/orchestration-metrics.v1.json"
     ]
   },
   "orchestration": {
     "read_sets": [
+      "context_pack:self-healing-extraction-debt-dq-bone-turnover-mixed",
       "path:data/outcomes/dq-bone-turnover-marker.json",
       "path:data/results/dq-bone-turnover-mixed.json",
       "path:data/sources/pmid-38956196.json",

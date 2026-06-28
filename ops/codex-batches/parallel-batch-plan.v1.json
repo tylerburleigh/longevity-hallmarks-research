@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "parallel_batch_plan",
   "id": "parallel-batch-plan-v1",
-  "generated_at": "2026-06-28T21:24:11.083Z",
+  "generated_at": "2026-06-28T23:14:46.570Z",
   "source_job_root": "ops/codex-jobs/live",
   "planner_version": "1.0.0",
   "scheduler_policy": {
@@ -160,6 +160,10 @@
         "extraction_refresh"
       ],
       "read_sets": [
+        "context_pack:self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-3",
+        "context_pack:self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-2",
+        "context_pack:self-healing-coverage-gap-senolytics-review-landscape-followup-2",
+        "context_pack:self-healing-coverage-gap-senolytics-safety-tables-followup-3",
         "path:data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
         "path:ops/triage-state.v1.json",
         "triage_job:coverage-gap-senolytics-exact-effect-extraction-followup-3",
@@ -264,6 +268,10 @@
         "extraction_refresh"
       ],
       "read_sets": [
+        "context_pack:self-healing-extraction-debt-dq-ad-risk-cognition-mobility-mixed",
+        "context_pack:self-healing-extraction-debt-dq-ad-risk-serious-adverse-events-none",
+        "context_pack:self-healing-extraction-debt-dq-bone-adverse-event-discontinuations-20wk-descriptive",
+        "context_pack:self-healing-extraction-debt-dq-bone-bmd-20wk-inconclusive",
         "path:data/outcomes/dq-ad-risk-cognition-mobility.json",
         "path:data/outcomes/dq-ad-risk-safety-tolerability.json",
         "path:data/outcomes/dq-bone-adverse-events-20wk.json",
@@ -385,6 +393,10 @@
         "extraction_refresh"
       ],
       "read_sets": [
+        "context_pack:self-healing-extraction-debt-dq-bone-constipation-20wk-descriptive",
+        "context_pack:self-healing-extraction-debt-dq-bone-ctx-20wk-null",
+        "context_pack:self-healing-extraction-debt-dq-bone-diarrhea-20wk-descriptive",
+        "context_pack:self-healing-extraction-debt-dq-bone-fatigue-20wk-descriptive",
         "path:data/outcomes/dq-bone-adverse-events-20wk.json",
         "path:data/outcomes/dq-bone-ctx-20wk.json",
         "path:data/results/dq-bone-constipation-20wk-descriptive.json",
@@ -503,6 +515,10 @@
         "extraction_refresh"
       ],
       "read_sets": [
+        "context_pack:self-healing-extraction-debt-dq-bone-gastrointestinal-reflux-20wk-descriptive",
+        "context_pack:self-healing-extraction-debt-dq-bone-headache-20wk-descriptive",
+        "context_pack:self-healing-extraction-debt-dq-bone-nausea-20wk-descriptive",
+        "context_pack:self-healing-extraction-debt-dq-bone-p16-t3-ctx-2wk-positive",
         "path:data/outcomes/dq-bone-adverse-events-20wk.json",
         "path:data/outcomes/dq-bone-p16-t3-ctx-2wk.json",
         "path:data/results/dq-bone-gastrointestinal-reflux-20wk-descriptive.json",
@@ -620,6 +636,10 @@
         "extraction_refresh"
       ],
       "read_sets": [
+        "context_pack:self-healing-extraction-debt-dq-bone-p16-t3-ctx-4wk-inconclusive",
+        "context_pack:self-healing-extraction-debt-dq-bone-p16-t3-p1np-2wk-positive",
+        "context_pack:self-healing-extraction-debt-dq-bone-p16-t3-p1np-4wk-inconclusive",
+        "context_pack:self-healing-extraction-debt-dq-bone-p16-t3-radius-bmd-20wk-positive",
         "path:data/outcomes/dq-bone-p16-t3-ctx-4wk.json",
         "path:data/outcomes/dq-bone-p16-t3-p1np-2wk.json",
         "path:data/outcomes/dq-bone-p16-t3-p1np-4wk.json",
@@ -739,6 +759,10 @@
         "extraction_refresh"
       ],
       "read_sets": [
+        "context_pack:self-healing-extraction-debt-dq-bone-p1np-20wk-null",
+        "context_pack:self-healing-extraction-debt-dq-bone-p1np-2wk-positive",
+        "context_pack:self-healing-extraction-debt-dq-bone-p1np-4wk-positive",
+        "context_pack:self-healing-extraction-debt-dq-bone-sasp-2wk-null",
         "path:data/outcomes/dq-bone-p1np-20wk.json",
         "path:data/outcomes/dq-bone-p1np-2wk.json",
         "path:data/outcomes/dq-bone-p1np-4wk.json",
@@ -858,6 +882,10 @@
         "extraction_refresh"
       ],
       "read_sets": [
+        "context_pack:self-healing-extraction-debt-dq-bone-turnover-mixed",
+        "context_pack:self-healing-extraction-debt-dq-bone-vertigo-20wk-descriptive",
+        "context_pack:self-healing-extraction-debt-dq-dkd-adverse-events-abstract-not-reported",
+        "context_pack:self-healing-extraction-debt-dq-dkd-biomarker-positive",
         "path:data/outcomes/dq-bone-adverse-events-20wk.json",
         "path:data/outcomes/dq-bone-turnover-marker.json",
         "path:data/outcomes/dq-dkd-safety-tolerability.json",
@@ -977,6 +1005,9 @@
         "extraction_refresh"
       ],
       "read_sets": [
+        "context_pack:self-healing-extraction-debt-dq-ipf-dosing-completion-mixed",
+        "context_pack:self-healing-extraction-debt-dq-ipf-tolerability-mixed",
+        "context_pack:self-healing-extraction-debt-dq-old-mouse-survival-positive",
         "path:data/outcomes/dq-ipf-dosing-completion-assessments.json",
         "path:data/outcomes/dq-ipf-feasibility-tolerability.json",
         "path:data/outcomes/dq-old-mouse-post-treatment-survival.json",

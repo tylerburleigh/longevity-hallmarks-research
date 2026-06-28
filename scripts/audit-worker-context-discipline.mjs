@@ -131,6 +131,8 @@ function contextPackAllowedPaths(contextPack) {
     [
       contextPack.target_candidate?.path,
       ...(contextPack.target_candidate?.proposed_records ?? []).map((record) => record.path),
+      ...(contextPack.target_context?.input_records ?? []).map((record) => record.path),
+      ...(contextPack.target_context?.target_records ?? []).map((record) => record.path),
       ...(contextPack.review_context?.active_review_records ?? []).map((record) => record.path),
       ...(contextPack.review_context?.relevant_input_records ?? []).map((record) => record.path),
       ...(contextPack.schema_context?.schema_paths ?? []),
@@ -262,11 +264,24 @@ function commandFindings({ job, events, contextPack }) {
   return findings;
 }
 
-function extractionCommandFindings({ events }) {
+function extractionCommandFindings({ job, events, contextPack }) {
   const findings = [];
+  const firstCommand = events[0]?.command;
+
+  if (job.context_pack_path && (!firstCommand || !isContextPackCommand(firstCommand, job.context_pack_path))) {
+    findings.push({
+      type: "context_pack_not_first",
+      command: firstCommand ?? "(no command events)",
+      detail: "pack-backed extraction jobs must read their context pack before other repository inspection"
+    });
+  }
 
   for (const event of events) {
     const command = event.command;
+    if (job.context_pack_path && isContextPackCommand(command, job.context_pack_path)) {
+      continue;
+    }
+
     for (const pattern of broadReadPatterns) {
       if (pattern.matches(command)) {
         findings.push({
@@ -280,7 +295,11 @@ function extractionCommandFindings({ events }) {
 
     if (
       event.aggregated_output_chars > policy.max_non_context_output_chars &&
-      !isValidationCommand(command)
+      !isValidationCommand(command) &&
+      !(
+        isBoundedContextRecordCommand({ command, contextPack }) &&
+        event.aggregated_output_chars <= policy.max_context_record_output_chars
+      )
     ) {
       findings.push({
         type: event.aggregated_output_redacted ? "redacted_large_output" : "large_non_context_output",
@@ -332,7 +351,8 @@ async function main() {
         continue;
       }
 
-      const findings = extractionCommandFindings({ events });
+      const contextPack = job.context_pack_path ? await readJson(job.context_pack_path) : undefined;
+      const findings = extractionCommandFindings({ job, events, contextPack });
       if (!enforced) {
         telemetry.legacy_exempt_finding_count += findings.length;
         for (const finding of findings) {

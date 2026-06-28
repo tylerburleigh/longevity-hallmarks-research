@@ -1,0 +1,160 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "extraction_context_pack",
+  "id": "self-healing-extraction-debt-dq-bone-adverse-event-discontinuations-20wk-descriptive",
+  "pack_type": "record_scoped_extraction",
+  "created_at": "2026-06-28T00:00:00Z",
+  "purpose": "Bounded extraction refresh for extraction-debt-dq-bone-adverse-event-discontinuations-20wk-descriptive-repair.",
+  "scope": {
+    "question": "extraction_refresh: Resolve missing synthesis fields: effect.uncertainty, effect.value.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "chronic_inflammation",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": [
+      "dasatinib-quercetin"
+    ],
+    "source_ids": [
+      "nct-04313634"
+    ],
+    "study_ids": [
+      "dq-postmenopausal-bone-rct"
+    ],
+    "outcome_ids": [
+      "dq-bone-adverse-events-20wk"
+    ],
+    "result_ids": [
+      "dq-bone-adverse-event-discontinuations-20wk-descriptive"
+    ]
+  },
+  "target_context": {
+    "input_records": [
+      {
+        "record_type": "outcome",
+        "record_id": "dq-bone-adverse-events-20wk",
+        "path": "data/outcomes/dq-bone-adverse-events-20wk.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-adverse-event-discontinuations-20wk-descriptive",
+        "path": "data/results/dq-bone-adverse-event-discontinuations-20wk-descriptive.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "source",
+        "record_id": "nct-04313634",
+        "path": "data/sources/nct-04313634.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "study",
+        "record_id": "dq-postmenopausal-bone-rct",
+        "path": "data/studies/dq-postmenopausal-bone-rct.json",
+        "role": "scoped_input"
+      }
+    ],
+    "target_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "extraction-debt-dq-bone-adverse-event-discontinuations-20wk-descriptive-repair",
+        "path": "data/candidate-changes/extraction-debt-dq-bone-adverse-event-discontinuations-20wk-descriptive-repair.json",
+        "role": "candidate_ledger",
+        "record_state": "proposed"
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-adverse-event-discontinuations-20wk-descriptive",
+        "path": "data/results/dq-bone-adverse-event-discontinuations-20wk-descriptive.json",
+        "role": "target_record",
+        "record_state": "existing"
+      }
+    ]
+  },
+  "extraction_targets": [
+    {
+      "target_label": "extraction_refresh: Resolve missing synthesis fields: effect.uncertainty, effect.value.",
+      "interpretation_rules": [
+        "Use only the scoped input records and any retained source or text snapshots named by those records unless validation exposes a concrete inconsistency.",
+        "Preserve missing, ambiguous, or not-reported source cells as uncertainty rather than inventing exact effects.",
+        "Write changes through the declared candidate_change ledger; do not directly promote or apply the candidate."
+      ]
+    }
+  ],
+  "schema_context": {
+    "schema_paths": [
+      "schemas/agent-run.codex-output.schema.json",
+      "schemas/agent-run.schema.json",
+      "schemas/candidate-change.schema.json",
+      "schemas/result.schema.json",
+      "schemas/outcome.schema.json",
+      "schemas/study.schema.json",
+      "schemas/source.schema.json"
+    ],
+    "required_fields": [
+      "agent_run.outputs.candidate_change_id",
+      "agent_run.outputs.proposed_records[]",
+      "agent_run.outputs.generated_files[]",
+      "agent_run.quality_checks[]",
+      "candidate_change.proposed_records[]",
+      "candidate_change.required_review_lanes[] equals expected_outputs.required_review_lanes[]"
+    ],
+    "known_schema_limitations": [
+      "This generated pack scopes records and schemas; it does not preselect retained artifact line locators."
+    ]
+  },
+  "exemplar_records": [],
+  "expected_outputs": {
+    "candidate_change_id": "extraction-debt-dq-bone-adverse-event-discontinuations-20wk-descriptive-repair",
+    "proposed_record_paths": [
+      "data/candidate-changes/extraction-debt-dq-bone-adverse-event-discontinuations-20wk-descriptive-repair.json",
+      "data/results/dq-bone-adverse-event-discontinuations-20wk-descriptive.json"
+    ],
+    "generated_file_paths": [
+      "data/candidate-changes/extraction-debt-dq-bone-adverse-event-discontinuations-20wk-descriptive-repair.json",
+      "data/results/dq-bone-adverse-event-discontinuations-20wk-descriptive.json"
+    ],
+    "export_paths": [
+      "exports/latest/audit-manifest.json",
+      "exports/latest/coverage-status.json",
+      "exports/latest/evidence-map.json",
+      "exports/latest/read-model.sqlite",
+      "ops/release-readiness.v1.json",
+      "ops/reconciliation/parallel-reconciliation.v1.json",
+      "ops/triage-state.v1.json",
+      "ops/codex-batches/orchestration-metrics.v1.json"
+    ],
+    "required_review_lanes": [
+      "extraction_fidelity",
+      "safety_limitations",
+      "synthesis_boundary",
+      "taxonomy_mapping"
+    ]
+  },
+  "verification": {
+    "worker_commands": [
+      "npm run validate:records",
+      "npm run audit:references",
+      "npm run audit:agent-schemas",
+      "npm run audit:agentic-process"
+    ],
+    "coordinator_post_run": [
+      "npm run export:latest",
+      "npm run verify:knowledge-base"
+    ]
+  },
+  "constraints": [
+    "Read the context pack first and keep repository inspection bounded to the pack, scoped read_sets, and listed verification commands.",
+    "Create only the repair candidate and target record paths declared in expected_outputs.",
+    "Set the repair candidate required_review_lanes[] exactly to expected_outputs.required_review_lanes[].",
+    "Do not perform broad repository searches or full-record dumps unless validation identifies a specific missing path or schema inconsistency."
+  ],
+  "known_limitations": [
+    "Source artifact locators may need to be discovered from scoped source_snapshot or text_snapshot records when present.",
+    "The pack is a routing contract for extraction repair, not a source-fidelity review."
+  ]
+}

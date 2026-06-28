@@ -8,6 +8,7 @@ export const workspaceRoot = process.cwd();
 export const triageStatePath = "ops/triage-state.v1.json";
 export const generatedJobRoot = "ops/codex-jobs/live/generated-self-healing";
 export const supervisorReviewContextPackRoot = "ops/supervisor-review-context-packs";
+export const extractionContextPackRoot = "ops/extraction-context-packs";
 export const defaultLimit = 5;
 
 const highCostJobTypes = new Set(["extraction_refresh", "coverage_repair", "snapshot_refresh"]);
@@ -403,6 +404,33 @@ function candidateReviewOutputSpec({ recommendedJob, candidateChangeId, required
   };
 }
 
+function extractionOutputSpec(recordIndex, recommendedJob, candidateChangeId) {
+  if (recommendedJob.job_type !== "extraction_refresh") {
+    return {};
+  }
+
+  const targetPath = getRecordPath(recordIndex, recommendedJob.target_record_type, recommendedJob.target_record_id);
+  const proposedRecordPaths = sortStrings([
+    `data/candidate-changes/${candidateChangeId}.json`,
+    targetPath
+  ]);
+
+  return {
+    proposedRecordPaths,
+    generatedFilePaths: proposedRecordPaths,
+    exportPaths: [
+      "exports/latest/audit-manifest.json",
+      "exports/latest/coverage-status.json",
+      "exports/latest/evidence-map.json",
+      "exports/latest/read-model.sqlite",
+      "ops/release-readiness.v1.json",
+      "ops/reconciliation/parallel-reconciliation.v1.json",
+      "ops/triage-state.v1.json",
+      "ops/codex-batches/orchestration-metrics.v1.json"
+    ]
+  };
+}
+
 function buildWriteSets({ recommendedJob, candidateChangeId, requiredReviewLanes = [], proposedRecordPaths = [] }) {
   if (recommendedJob.job_type === "candidate_promotion") {
     return sortStrings([
@@ -502,8 +530,16 @@ function buildJob(recordIndex, recommendedJob) {
   const jobId = idSlug(`self-healing-${recommendedJob.job_id}`);
   const candidateChangeId = idSlug(`${recommendedJob.job_id}-repair`);
   const requiredReviewLanes = reviewLanesForJob(recordIndex, recommendedJob);
-  const outputSpec = candidateReviewOutputSpec({ recommendedJob, candidateChangeId, requiredReviewLanes });
-  const contextPackId = recommendedJob.job_type === "candidate_review" ? jobId : undefined;
+  const outputSpec = {
+    ...extractionOutputSpec(recordIndex, recommendedJob, candidateChangeId),
+    ...candidateReviewOutputSpec({ recommendedJob, candidateChangeId, requiredReviewLanes })
+  };
+  const contextPackId = ["candidate_review", "extraction_refresh"].includes(recommendedJob.job_type) ? jobId : undefined;
+  const contextPackPath = recommendedJob.job_type === "candidate_review"
+    ? `${supervisorReviewContextPackRoot}/${contextPackId}.json`
+    : recommendedJob.job_type === "extraction_refresh"
+      ? `${extractionContextPackRoot}/${contextPackId}.json`
+      : undefined;
   const scope = scopeFromRecommendedJob(recordIndex, recommendedJob);
 
   return {
@@ -516,7 +552,7 @@ function buildJob(recordIndex, recommendedJob) {
     agent_role: agentRoleForJob(recommendedJob),
     mode: modeForJob(recommendedJob),
     prompt_file: promptForJob(recommendedJob),
-    ...(contextPackId ? { context_pack_path: `${supervisorReviewContextPackRoot}/${contextPackId}.json` } : {}),
+    ...(contextPackPath ? { context_pack_path: contextPackPath } : {}),
     output_path: `research/agent-runs/${jobId}.json`,
     jsonl_log_path: `research/agent-runs/logs/${jobId}.jsonl`,
     scope,
@@ -619,6 +655,29 @@ function recordPointerFromPath(recordIndex, recordPath, role) {
   return recordPointerFromRecord(recordIndex.byPath.get(recordPath), recordPath, role);
 }
 
+function targetRecordPointerFromPath(recordIndex, recordPath, role) {
+  const pointer = recordPointerFromPath(recordIndex, recordPath, role);
+  if (pointer) {
+    return {
+      ...pointer,
+      record_state: "existing"
+    };
+  }
+
+  const candidateMatch = recordPath.match(/^data\/candidate-changes\/([^/]+)\.json$/);
+  if (!candidateMatch) {
+    return undefined;
+  }
+
+  return {
+    record_type: "candidate_change",
+    record_id: candidateMatch[1],
+    path: recordPath,
+    ...(role ? { role } : {}),
+    record_state: "proposed"
+  };
+}
+
 function hasOpenMajorOrCriticalFinding(review) {
   return (review.findings ?? []).some((finding) =>
     ["critical", "major"].includes(finding.severity) && finding.resolution_status === "open"
@@ -659,7 +718,117 @@ function relevantInputRecordsForCandidate(recordIndex, candidate, targetCandidat
 }
 
 export function supervisorReviewContextPackPath(job) {
+  if (job.agent_role !== "supervisor_agent") {
+    return undefined;
+  }
   return job.context_pack_path;
+}
+
+export function extractionContextPackPath(job) {
+  if (job.agent_role !== "extraction_agent") {
+    return undefined;
+  }
+  return job.context_pack_path;
+}
+
+function scopedInputRecords(recordIndex, job) {
+  const readPaths = (job.orchestration?.read_sets ?? [])
+    .map((readSet) => readSet.match(/^path:(data\/.+\.json)$/)?.[1])
+    .filter(Boolean);
+
+  return sortStrings(readPaths)
+    .map((recordPath) => recordPointerFromPath(recordIndex, recordPath, "scoped_input"))
+    .filter(Boolean);
+}
+
+function targetRecordPointers(recordIndex, job) {
+  return (job.expected_outputs?.proposed_record_paths ?? [])
+    .map((recordPath) =>
+      targetRecordPointerFromPath(
+        recordIndex,
+        recordPath,
+        recordPath.includes("/candidate-changes/") ? "candidate_ledger" : "target_record"
+      )
+    )
+    .filter(Boolean);
+}
+
+export function buildExtractionContextPack(recordIndex, job) {
+  return {
+    schema_version: "1.0.0",
+    record_type: "extraction_context_pack",
+    id: job.id,
+    pack_type: "record_scoped_extraction",
+    created_at: "2026-06-28T00:00:00Z",
+    purpose: `Bounded extraction refresh for ${job.expected_outputs.candidate_change_id}.`,
+    scope: job.scope,
+    target_context: {
+      input_records: scopedInputRecords(recordIndex, job),
+      target_records: targetRecordPointers(recordIndex, job)
+    },
+    extraction_targets: [
+      {
+        target_label: job.scope?.question ?? job.summary,
+        interpretation_rules: [
+          "Use only the scoped input records and any retained source or text snapshots named by those records unless validation exposes a concrete inconsistency.",
+          "Preserve missing, ambiguous, or not-reported source cells as uncertainty rather than inventing exact effects.",
+          "Write changes through the declared candidate_change ledger; do not directly promote or apply the candidate."
+        ]
+      }
+    ],
+    schema_context: {
+      schema_paths: [
+        "schemas/agent-run.codex-output.schema.json",
+        "schemas/agent-run.schema.json",
+        "schemas/candidate-change.schema.json",
+        "schemas/result.schema.json",
+        "schemas/outcome.schema.json",
+        "schemas/study.schema.json",
+        "schemas/source.schema.json"
+      ],
+      required_fields: [
+        "agent_run.outputs.candidate_change_id",
+        "agent_run.outputs.proposed_records[]",
+        "agent_run.outputs.generated_files[]",
+        "agent_run.quality_checks[]",
+        "candidate_change.proposed_records[]",
+        "candidate_change.required_review_lanes[] equals expected_outputs.required_review_lanes[]"
+      ],
+      known_schema_limitations: [
+        "This generated pack scopes records and schemas; it does not preselect retained artifact line locators."
+      ]
+    },
+    exemplar_records: [],
+    expected_outputs: {
+      candidate_change_id: job.expected_outputs.candidate_change_id,
+      proposed_record_paths: job.expected_outputs.proposed_record_paths,
+      generated_file_paths: job.expected_outputs.generated_file_paths,
+      export_paths: job.expected_outputs.export_paths,
+      required_review_lanes: job.expected_outputs.required_review_lanes
+    },
+    verification: {
+      worker_commands: [
+        "npm run validate:records",
+        "npm run audit:references",
+        "npm run audit:agent-schemas",
+        "npm run audit:agentic-process"
+      ],
+      coordinator_post_run: [
+        "npm run export:latest",
+        "npm run verify:knowledge-base"
+      ]
+    },
+    constraints: [
+      "Read the context pack first and keep repository inspection bounded to the pack, scoped read_sets, and listed verification commands.",
+      "Create only the repair candidate and target record paths declared in expected_outputs.",
+      "Set the repair candidate required_review_lanes[] exactly to expected_outputs.required_review_lanes[].",
+      "Do not perform broad repository searches or full-record dumps unless validation identifies a specific missing path or schema inconsistency."
+    ],
+    known_limitations: [
+      "Source artifact locators may need to be discovered from scoped source_snapshot or text_snapshot records when present.",
+      "The pack is a routing contract for extraction repair, not a source-fidelity review."
+    ]
+  };
 }
 
 export function buildSupervisorReviewContextPack(recordIndex, job) {
@@ -844,7 +1013,7 @@ async function existingJobIds() {
   return ids;
 }
 
-async function referencedSupervisorContextPackPaths() {
+async function referencedContextPackPaths() {
   const roots = ["ops/codex-jobs/live", "ops/codex-jobs/archive"];
   const paths = new Set();
   for (const root of roots) {
@@ -876,20 +1045,23 @@ async function pruneObsoleteGeneratedJobs({ outputDir, expectedJobs }) {
   return removed;
 }
 
-async function pruneObsoleteSupervisorContextPacks({ expectedJobs, preservePaths = new Set() }) {
+async function pruneObsoleteContextPacks({ root, expectedJobs, contextPackPathForJob, preservePaths = new Set(), generatedIdPrefix }) {
   const expectedPaths = new Set(
     [
       ...expectedJobs
-        .map((job) => supervisorReviewContextPackPath(job))
+        .map((job) => contextPackPathForJob(job))
         .filter(Boolean),
       ...preservePaths
     ]
   );
-  const files = await walkJsonFiles(path.join(workspaceRoot, supervisorReviewContextPackRoot));
+  const files = await walkJsonFiles(path.join(workspaceRoot, root));
   const removed = [];
 
   for (const filePath of files) {
     const relativePath = toPosixRelative(filePath);
+    if (generatedIdPrefix && !path.basename(relativePath).startsWith(generatedIdPrefix)) {
+      continue;
+    }
     if (expectedPaths.has(relativePath)) {
       continue;
     }
@@ -914,10 +1086,15 @@ async function main() {
     const written = options.dryRun || (alreadyExists && !options.replace)
       ? false
       : await writeJson(relativePath, job, { replace: options.replace });
-    const contextPackPath = supervisorReviewContextPackPath(job);
+    const contextPackPath = supervisorReviewContextPackPath(job) ?? extractionContextPackPath(job);
+    const contextPack = supervisorReviewContextPackPath(job)
+      ? buildSupervisorReviewContextPack(recordIndex, job)
+      : extractionContextPackPath(job)
+        ? buildExtractionContextPack(recordIndex, job)
+        : undefined;
     const contextPackWritten = options.dryRun || !contextPackPath || (alreadyExists && !options.replace)
       ? false
-      : await writeJson(contextPackPath, buildSupervisorReviewContextPack(recordIndex, job), { replace: options.replace });
+      : await writeJson(contextPackPath, contextPack, { replace: options.replace });
 
     output.push({
       id: job.id,
@@ -934,7 +1111,7 @@ async function main() {
     ? await buildSelfHealingJobs({ limit: Number.POSITIVE_INFINITY, recordIndex })
     : [];
   const preservedContextPackPaths = options.replace && !options.dryRun
-    ? await referencedSupervisorContextPackPaths()
+    ? await referencedContextPackPaths()
     : new Set();
   const removedObsoletePaths = options.replace && !options.dryRun
     ? await pruneObsoleteGeneratedJobs({
@@ -943,10 +1120,21 @@ async function main() {
       })
     : [];
   const removedObsoleteContextPackPaths = options.replace && !options.dryRun
-    ? await pruneObsoleteSupervisorContextPacks({
-        expectedJobs: expectedJobsForPrune,
-        preservePaths: preservedContextPackPaths
-      })
+    ? [
+        ...(await pruneObsoleteContextPacks({
+          root: supervisorReviewContextPackRoot,
+          expectedJobs: expectedJobsForPrune,
+          contextPackPathForJob: supervisorReviewContextPackPath,
+          preservePaths: preservedContextPackPaths
+        })),
+        ...(await pruneObsoleteContextPacks({
+          root: extractionContextPackRoot,
+          expectedJobs: expectedJobsForPrune,
+          contextPackPathForJob: extractionContextPackPath,
+          preservePaths: preservedContextPackPaths,
+          generatedIdPrefix: "self-healing-"
+        }))
+      ]
     : [];
 
   const summary = {

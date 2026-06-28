@@ -1,0 +1,159 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "extraction_context_pack",
+  "id": "self-healing-extraction-debt-dq-dkd-adverse-events-abstract-not-reported",
+  "pack_type": "record_scoped_extraction",
+  "created_at": "2026-06-28T00:00:00Z",
+  "purpose": "Bounded extraction refresh for extraction-debt-dq-dkd-adverse-events-abstract-not-reported-repair.",
+  "scope": {
+    "question": "extraction_refresh: Upgrade result maturity for synthesis readiness.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "chronic_inflammation"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": [
+      "dasatinib-quercetin"
+    ],
+    "source_ids": [
+      "pmid-31542391"
+    ],
+    "study_ids": [
+      "dq-diabetic-kidney-disease-pilot"
+    ],
+    "outcome_ids": [
+      "dq-dkd-safety-tolerability"
+    ],
+    "result_ids": [
+      "dq-dkd-adverse-events-abstract-not-reported"
+    ]
+  },
+  "target_context": {
+    "input_records": [
+      {
+        "record_type": "outcome",
+        "record_id": "dq-dkd-safety-tolerability",
+        "path": "data/outcomes/dq-dkd-safety-tolerability.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-dkd-adverse-events-abstract-not-reported",
+        "path": "data/results/dq-dkd-adverse-events-abstract-not-reported.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "source",
+        "record_id": "pmid-31542391",
+        "path": "data/sources/pmid-31542391.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "study",
+        "record_id": "dq-diabetic-kidney-disease-pilot",
+        "path": "data/studies/dq-diabetic-kidney-disease-pilot.json",
+        "role": "scoped_input"
+      }
+    ],
+    "target_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "extraction-debt-dq-dkd-adverse-events-abstract-not-reported-repair",
+        "path": "data/candidate-changes/extraction-debt-dq-dkd-adverse-events-abstract-not-reported-repair.json",
+        "role": "candidate_ledger",
+        "record_state": "proposed"
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-dkd-adverse-events-abstract-not-reported",
+        "path": "data/results/dq-dkd-adverse-events-abstract-not-reported.json",
+        "role": "target_record",
+        "record_state": "existing"
+      }
+    ]
+  },
+  "extraction_targets": [
+    {
+      "target_label": "extraction_refresh: Upgrade result maturity for synthesis readiness.",
+      "interpretation_rules": [
+        "Use only the scoped input records and any retained source or text snapshots named by those records unless validation exposes a concrete inconsistency.",
+        "Preserve missing, ambiguous, or not-reported source cells as uncertainty rather than inventing exact effects.",
+        "Write changes through the declared candidate_change ledger; do not directly promote or apply the candidate."
+      ]
+    }
+  ],
+  "schema_context": {
+    "schema_paths": [
+      "schemas/agent-run.codex-output.schema.json",
+      "schemas/agent-run.schema.json",
+      "schemas/candidate-change.schema.json",
+      "schemas/result.schema.json",
+      "schemas/outcome.schema.json",
+      "schemas/study.schema.json",
+      "schemas/source.schema.json"
+    ],
+    "required_fields": [
+      "agent_run.outputs.candidate_change_id",
+      "agent_run.outputs.proposed_records[]",
+      "agent_run.outputs.generated_files[]",
+      "agent_run.quality_checks[]",
+      "candidate_change.proposed_records[]",
+      "candidate_change.required_review_lanes[] equals expected_outputs.required_review_lanes[]"
+    ],
+    "known_schema_limitations": [
+      "This generated pack scopes records and schemas; it does not preselect retained artifact line locators."
+    ]
+  },
+  "exemplar_records": [],
+  "expected_outputs": {
+    "candidate_change_id": "extraction-debt-dq-dkd-adverse-events-abstract-not-reported-repair",
+    "proposed_record_paths": [
+      "data/candidate-changes/extraction-debt-dq-dkd-adverse-events-abstract-not-reported-repair.json",
+      "data/results/dq-dkd-adverse-events-abstract-not-reported.json"
+    ],
+    "generated_file_paths": [
+      "data/candidate-changes/extraction-debt-dq-dkd-adverse-events-abstract-not-reported-repair.json",
+      "data/results/dq-dkd-adverse-events-abstract-not-reported.json"
+    ],
+    "export_paths": [
+      "exports/latest/audit-manifest.json",
+      "exports/latest/coverage-status.json",
+      "exports/latest/evidence-map.json",
+      "exports/latest/read-model.sqlite",
+      "ops/release-readiness.v1.json",
+      "ops/reconciliation/parallel-reconciliation.v1.json",
+      "ops/triage-state.v1.json",
+      "ops/codex-batches/orchestration-metrics.v1.json"
+    ],
+    "required_review_lanes": [
+      "extraction_fidelity",
+      "safety_limitations",
+      "synthesis_boundary",
+      "taxonomy_mapping"
+    ]
+  },
+  "verification": {
+    "worker_commands": [
+      "npm run validate:records",
+      "npm run audit:references",
+      "npm run audit:agent-schemas",
+      "npm run audit:agentic-process"
+    ],
+    "coordinator_post_run": [
+      "npm run export:latest",
+      "npm run verify:knowledge-base"
+    ]
+  },
+  "constraints": [
+    "Read the context pack first and keep repository inspection bounded to the pack, scoped read_sets, and listed verification commands.",
+    "Create only the repair candidate and target record paths declared in expected_outputs.",
+    "Set the repair candidate required_review_lanes[] exactly to expected_outputs.required_review_lanes[].",
+    "Do not perform broad repository searches or full-record dumps unless validation identifies a specific missing path or schema inconsistency."
+  ],
+  "known_limitations": [
+    "Source artifact locators may need to be discovered from scoped source_snapshot or text_snapshot records when present.",
+    "The pack is a routing contract for extraction repair, not a source-fidelity review."
+  ]
+}

@@ -43,7 +43,7 @@ Job files use `record_type: "codex_job"` and are validated by `schemas/codex-job
 
 Job execution guards may include `timeout_ms` and `no_output_timeout_ms`. Command-event caps are disabled and should not be used for new jobs.
 
-Extraction-refresh jobs may declare `context_pack_path` pointing at an `extraction_context_pack` record under `ops/extraction-context-packs/`. Live jobs in the `extraction-pilot` parallel group must declare one. The worker reads the pack first and uses its retained artifact locators, target records, schema slices, exemplar records, expected outputs, and verification commands as the bounded task contract.
+Extraction-refresh jobs declare `context_pack_path` pointing at an `extraction_context_pack` record under `ops/extraction-context-packs/`. Live extraction-refresh jobs must declare one. The worker reads the pack first and uses its scoped input records, target records, schema slices, expected outputs, constraints, and verification commands as the bounded task contract. Table-row packs may also include retained artifact locators and extracted cells.
 
 Candidate-review supervisor jobs may declare `context_pack_path` pointing at a `supervisor_review_context_pack` record under `ops/supervisor-review-context-packs/`. Runnable generated candidate-review lane jobs must declare one. The worker reads the pack first and uses its target candidate, single review lane, prior review state, proposed record pointers, expected evidence-review path, and verification commands as the bounded review contract.
 
@@ -138,7 +138,7 @@ Every worker final output must pass two schema gates:
 - The Codex-specific schema is response-format strict: every declared object property is required. Fields that are optional in canonical records are nullable in the Codex schema, and the wrapper removes null object properties before persisting the canonical `agent_run`.
 - `npm run audit:release-readiness` checks that the generated release-boundary queue still matches candidate lifecycle state and accepted-record export eligibility.
 - `npm run audit:codex-jobs` checks that persisted `codex_job` specs match their final `agent_run` records, candidate records, expected paths, required review lanes, quality gates, orchestration metadata, logs, and post-run checks.
-- `npm run audit:worker-context-discipline` checks pack-backed supervisor-review worker logs. It measures legacy broad-context reads and, for post-policy archived runs, fails broad runbook reads, broad repository searches/listings, missing first context-pack reads, and oversized non-context command output.
+- `npm run audit:worker-context-discipline` checks pack-backed supervisor-review and extraction worker logs. It measures legacy broad-context reads and, for post-policy archived runs, fails broad runbook reads, broad repository searches/listings, missing first context-pack reads, and oversized non-context command output.
 - `worker_output_contract` checks the JSONL worker stream for a single final JSON `agent_run` and rejects ad hoc schema-validation snippets.
 
 When `canonical_write_policy` is `candidate_change_required`, the output must include:

@@ -511,6 +511,11 @@ function checkContextPackCommon({ issues, job, ownerPath, contextPack }) {
 }
 
 function checkExtractionContextPack({ issues, job, ownerPath, contextPack }) {
+  if (job.agent_role !== "extraction_agent") {
+    issues.push(`${ownerPath}: extraction_context_pack can only be used by extraction-agent jobs.`);
+    return;
+  }
+
   checkContextPackCommon({ issues, job, ownerPath, contextPack });
 }
 
@@ -536,11 +541,11 @@ function checkSupervisorReviewContextPack({ issues, job, ownerPath, contextPack 
 
 async function checkContextPack({ issues, job, ownerPath }) {
   const isRunnableLiveJob = ownerPath.startsWith(liveJobPathPrefix) && activeJobStatuses.has(job.lifecycle_status);
-  const isExtractionPilot = job.mode === "extraction_refresh" && job.orchestration?.parallel_group === "extraction-pilot";
+  const isExtractionRefresh = job.mode === "extraction_refresh" && job.agent_role === "extraction_agent";
   const isSupervisorCandidateReview = isCandidateReviewLaneJob(job);
 
-  if (isRunnableLiveJob && isExtractionPilot && !job.context_pack_path) {
-    issues.push(`${ownerPath}: live extraction-pilot jobs must declare context_pack_path.`);
+  if (isRunnableLiveJob && isExtractionRefresh && !job.context_pack_path) {
+    issues.push(`${ownerPath}: live extraction-refresh jobs must declare context_pack_path.`);
     return;
   }
 

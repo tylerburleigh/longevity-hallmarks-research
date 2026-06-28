@@ -22,6 +22,15 @@ Task:
 7. Do not promote any candidate.
 8. Run validation and repository verification when feasible.
 
+Inspection discipline:
+
+- Prefer coordinator-specified target records, source snapshots, context-pack paths, and exact ids.
+- Use targeted commands such as `sed`/`jq` on named files or `rg` for specific ids within a narrow path list.
+- Do not run broad `rg`, `find`, `rg --files`, or full-directory `ls` sweeps across `data`, `research`, `ops`, `docs`, `schemas`, or `taxonomies`.
+- Do not dump whole generated exports, batch logs, worker logs, or broad schema directories unless a concrete validation failure requires that exact file.
+- If exports, triage state, release readiness, reconciliation, or metrics are stale before wrapper post-run refresh, record that as deferred to coordinator post-run refresh rather than investigating unrelated orchestration code.
+- If a command emits oversized or redacted output, rerun a narrower command and cite the narrower result in your final quality checks or blocking issues.
+
 Final response:
 
 Return exactly one JSON object that validates against schemas/agent-run.codex-output.schema.json and schemas/agent-run.schema.json. Use execution.surface = "codex_exec". Include blocking_issues when extraction remains incomplete.

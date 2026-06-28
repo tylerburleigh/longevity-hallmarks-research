@@ -7,6 +7,7 @@ const workspaceRoot = process.cwd();
 const jobRoots = ["ops/codex-jobs/live", "ops/codex-jobs/archive"];
 const policy = {
   enforced_after: "2026-06-23T18:00:00.000Z",
+  extraction_enforced_after: "2026-06-28T19:00:00.000Z",
   max_non_context_output_chars: 30000,
   required_first_command: "context_pack_read"
 };
@@ -102,6 +103,14 @@ function isPackBackedSupervisorJob(job) {
   );
 }
 
+function isExtractionWorkerJob(job) {
+  return (
+    job?.record_type === "codex_job" &&
+    job.agent_role === "extraction_agent" &&
+    job.prompt_file === "docs/prompts/codex-agents/extraction-refresh.md"
+  );
+}
+
 function isContextPackCommand(command, contextPackPath) {
   return command.includes(contextPackPath) || command.includes(path.basename(contextPackPath));
 }
@@ -160,7 +169,8 @@ async function readCommandEvents(logPath) {
       event.started_line = lineIndex + 1;
     } else if (record.type === "item.completed") {
       event.completed_line = lineIndex + 1;
-      event.aggregated_output_chars = String(item.aggregated_output ?? "").length;
+      event.aggregated_output_chars = item.aggregated_output_original_chars ?? String(item.aggregated_output ?? "").length;
+      event.aggregated_output_redacted = Boolean(item.aggregated_output_redacted);
       event.exit_code = item.exit_code;
     }
   }
@@ -213,6 +223,38 @@ function commandFindings({ job, events }) {
   return findings;
 }
 
+function extractionCommandFindings({ events }) {
+  const findings = [];
+
+  for (const event of events) {
+    const command = event.command;
+    for (const pattern of broadReadPatterns) {
+      if (pattern.matches(command)) {
+        findings.push({
+          type: "broad_command",
+          label: pattern.label,
+          command,
+          detail: "extraction workers must use targeted ids, explicit paths, or context-pack supplied records instead of broad repository inspection"
+        });
+      }
+    }
+
+    if (
+      event.aggregated_output_chars > policy.max_non_context_output_chars &&
+      !isValidationCommand(command)
+    ) {
+      findings.push({
+        type: event.aggregated_output_redacted ? "redacted_large_output" : "large_non_context_output",
+        command,
+        output_chars: event.aggregated_output_chars,
+        detail: `non-validation command output exceeds ${policy.max_non_context_output_chars} chars`
+      });
+    }
+  }
+
+  return findings;
+}
+
 async function main() {
   const options = parseArgs(process.argv.slice(2));
   const jobFiles = (await Promise.all(jobRoots.map((root) => walkJsonFiles(path.join(workspaceRoot, root))))).flat();
@@ -220,6 +262,8 @@ async function main() {
   const legacyFindings = [];
   const telemetry = {
     pack_backed_supervisor_job_count: 0,
+    extraction_worker_job_count: 0,
+    enforced_extraction_job_count: 0,
     enforced_job_count: 0,
     legacy_exempt_job_count: 0,
     legacy_exempt_finding_count: 0
@@ -229,6 +273,43 @@ async function main() {
     const jobPath = toPosixRelative(jobFile);
     const job = await readJson(jobPath);
     if (!isPackBackedSupervisorJob(job)) {
+      if (!isExtractionWorkerJob(job)) {
+        continue;
+      }
+
+      telemetry.extraction_worker_job_count += 1;
+      const enforced = isEnforced(job) && Date.parse(job.archived_at ?? "") >= Date.parse(policy.extraction_enforced_after);
+      if (enforced) {
+        telemetry.enforced_extraction_job_count += 1;
+      } else {
+        telemetry.legacy_exempt_job_count += 1;
+      }
+
+      const { events, missing } = await readCommandEvents(job.jsonl_log_path);
+      if (missing) {
+        if (enforced) {
+          issues.push(`${jobPath}: command stream log path does not exist: ${job.jsonl_log_path}.`);
+        }
+        continue;
+      }
+
+      const findings = extractionCommandFindings({ events });
+      if (!enforced) {
+        telemetry.legacy_exempt_finding_count += findings.length;
+        for (const finding of findings) {
+          legacyFindings.push({
+            job_path: jobPath,
+            job_id: job.id,
+            finding
+          });
+        }
+        continue;
+      }
+
+      for (const finding of findings) {
+        const outputSuffix = finding.output_chars ? ` (${finding.output_chars} chars)` : "";
+        issues.push(`${jobPath}: ${finding.type}${outputSuffix}: ${finding.detail}: ${finding.command}`);
+      }
       continue;
     }
 
@@ -306,7 +387,8 @@ async function main() {
         : "";
     console.log(
       `Worker context-discipline audit passed for ${telemetry.pack_backed_supervisor_job_count} pack-backed supervisor job(s); ` +
-        `${telemetry.enforced_job_count} enforced${legacySuffix}.`
+        `${telemetry.enforced_job_count} enforced; ${telemetry.extraction_worker_job_count} extraction worker job(s), ` +
+        `${telemetry.enforced_extraction_job_count} extraction enforced${legacySuffix}.`
     );
   }
 }

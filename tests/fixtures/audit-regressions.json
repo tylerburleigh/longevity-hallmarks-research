@@ -661,6 +661,50 @@
       ]
     },
     {
+      "id": "extraction-worker-broad-redacted-output",
+      "description": "Post-policy extraction workers must not perform broad searches that produce redacted oversized output.",
+      "command": [
+        "npm",
+        "run",
+        "audit:worker-context-discipline"
+      ],
+      "operations": [
+        {
+          "type": "copy_json",
+          "from": "ops/codex-jobs/archive/self-healing-coverage-gap-senolytics-safety-tables-followup-2.json",
+          "to": "ops/codex-jobs/archive/fixture-extraction-worker-broad-redacted-output.json",
+          "mutations": [
+            {
+              "type": "set_json",
+              "pointer": "/id",
+              "value": "fixture-extraction-worker-broad-redacted-output"
+            },
+            {
+              "type": "set_json",
+              "pointer": "/archived_at",
+              "value": "2026-06-28T19:30:00.000Z"
+            },
+            {
+              "type": "set_json",
+              "pointer": "/jsonl_log_path",
+              "value": "research/agent-runs/logs/fixture-extraction-worker-broad-redacted-output.jsonl"
+            }
+          ]
+        },
+        {
+          "type": "write_text",
+          "path": "research/agent-runs/logs/fixture-extraction-worker-broad-redacted-output.jsonl",
+          "content": "{\"type\":\"item.started\",\"item\":{\"id\":\"item_0\",\"type\":\"command_execution\",\"command\":\"/usr/bin/zsh -lc 'rg -n \\\"senolytics\\\" data research ops docs schemas'\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"command_execution\",\"command\":\"/usr/bin/zsh -lc 'rg -n \\\"senolytics\\\" data research ops docs schemas'\",\"aggregated_output\":\"[redacted: command output exceeded 30000 characters; rerun a narrower command for details]\",\"aggregated_output_redacted\":true,\"aggregated_output_original_chars\":1048576,\"exit_code\":0,\"status\":\"completed\"}}\n"
+        }
+      ],
+      "expected_failure_substrings": [
+        "Worker context-discipline audit failed",
+        "broad_command",
+        "redacted_large_output",
+        "1048576 chars"
+      ]
+    },
+    {
       "id": "deprecated-non-agentic-process-vocabulary",
       "description": "Agentic process audit must reject deprecated process vocabulary.",
       "command": [

@@ -35,6 +35,19 @@ if (blockedCoverageAssessmentUpdates.length > 0) {
   );
 }
 
+const uniqueBlockedRecordKeys = new Set(
+  (releaseReadiness.blocked_accepted_records ?? []).map((record) => `${record.record_type}:${record.record_id}`)
+);
+if (releaseReadiness.summary?.blocked_accepted_proposal_count !== releaseReadiness.blocked_accepted_records.length) {
+  fail("release readiness should expose proposal-level blocked accepted record count explicitly.");
+}
+if (releaseReadiness.summary?.unique_blocked_accepted_record_count !== uniqueBlockedRecordKeys.size) {
+  fail("release readiness should expose unique blocked accepted record count explicitly.");
+}
+if ((releaseReadiness.blocked_accepted_record_groups ?? []).length !== uniqueBlockedRecordKeys.size) {
+  fail("release readiness should group blocked accepted records by unique record key.");
+}
+
 const promotionJobsBlockedByReconciliation = (triageState.recommended_jobs ?? []).filter(
   (job) =>
     job.job_type === "candidate_promotion" &&
@@ -70,4 +83,5 @@ if (genericRepairJobsForReconciliationBlockers.length > 0) {
 }
 
 console.log("PASS release-readiness accepted update dependency handling");
+console.log("PASS release-readiness blocked record grouping");
 console.log("PASS triage reconciliation-blocked promotion handling");

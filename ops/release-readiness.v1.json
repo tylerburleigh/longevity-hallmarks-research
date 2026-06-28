@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "release_readiness",
   "id": "release-readiness-v1",
-  "generated_at": "2026-06-28T20:55:29.726Z",
+  "generated_at": "2026-06-28T21:11:19.124Z",
   "source_roots": [
     "data",
     "research"
@@ -25,7 +25,8 @@
     "release_blocked_candidate_count": 5,
     "accepted_or_applied_candidate_count": 15,
     "accepted_record_count": 88,
-    "blocked_accepted_record_count": 5
+    "blocked_accepted_proposal_count": 5,
+    "unique_blocked_accepted_record_count": 1
   },
   "promotion_ready_candidate_ids": [],
   "release_ready_candidate_ids": [
@@ -3170,6 +3171,61 @@
       ],
       "change_types": [
         "create"
+      ]
+    }
+  ],
+  "blocked_accepted_record_groups": [
+    {
+      "record_type": "synthesis_group",
+      "record_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "path": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+      "candidate_change_ids": [
+        "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair",
+        "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
+        "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
+        "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
+        "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create",
+        "update"
+      ],
+      "blockers": [
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-diarrhea-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-nausea-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-constipation-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-gastrointestinal-reflux-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-vertigo-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-fatigue-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-body-pain-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-adverse-event-discontinuations-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        }
       ]
     }
   ],

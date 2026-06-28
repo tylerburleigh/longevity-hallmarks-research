@@ -688,7 +688,8 @@
         "release_ready_candidate_count",
         "release_blocked_candidate_count",
         "release_ready_record_count",
-        "blocked_accepted_record_count",
+        "blocked_accepted_proposal_count",
+        "unique_blocked_accepted_record_count",
         "release_artifact_count",
         "export_files"
       ],
@@ -705,7 +706,11 @@
           "type": "integer",
           "minimum": 0
         },
-        "blocked_accepted_record_count": {
+        "blocked_accepted_proposal_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "unique_blocked_accepted_record_count": {
           "type": "integer",
           "minimum": 0
         },

@@ -400,6 +400,20 @@ function buildAcceptedRecordQueues({ candidateEntries, recordsByKey }) {
   return {
     releaseReadyRecords: sortObjects([...releaseReadyByRecord.values()], ["record_type", "record_id"]),
     blockedAcceptedRecords: sortObjects(blockedAcceptedRecords, ["candidate_change_id", "record_type", "record_id"]),
+    blockedAcceptedRecordGroups: sortObjects(
+      [...itemsByKey.values()]
+        .filter((item) => item.blockers.length > 0)
+        .map((item) => ({
+          record_type: item.record_type,
+          record_id: item.record_id,
+          path: item.path,
+          candidate_change_ids: item.candidate_change_ids,
+          candidate_lifecycle_statuses: item.candidate_lifecycle_statuses,
+          change_types: item.change_types,
+          blockers: item.blockers
+        })),
+      ["record_type", "record_id"]
+    ),
     releaseRecordsByCandidateId,
     blockedRecordsByCandidateId
   };
@@ -490,7 +504,13 @@ export async function buildReleaseReadiness({ generatedAt = new Date().toISOStri
   const recordsByKey = buildRecordIndex(entries);
   const candidateEntries = recordsOf(entries, "candidate_change");
   const triageState = await buildTriageState({ generatedAt });
-  const { releaseReadyRecords, blockedAcceptedRecords, releaseRecordsByCandidateId, blockedRecordsByCandidateId } =
+  const {
+    releaseReadyRecords,
+    blockedAcceptedRecords,
+    blockedAcceptedRecordGroups,
+    releaseRecordsByCandidateId,
+    blockedRecordsByCandidateId
+  } =
     buildAcceptedRecordQueues({ candidateEntries, recordsByKey });
   const candidateReleaseStatuses = buildCandidateReleaseStatuses({
     candidateReadiness: triageState.candidate_readiness,
@@ -524,7 +544,8 @@ export async function buildReleaseReadiness({ generatedAt = new Date().toISOStri
         acceptedCandidateStatuses.has(candidate.lifecycle_status)
       ).length,
       accepted_record_count: releaseReadyRecords.length,
-      blocked_accepted_record_count: blockedAcceptedRecords.length
+      blocked_accepted_proposal_count: blockedAcceptedRecords.length,
+      unique_blocked_accepted_record_count: blockedAcceptedRecordGroups.length
     },
     promotion_ready_candidate_ids: triageState.promotion_ready_candidate_ids,
     release_ready_candidate_ids: sortStrings(
@@ -539,6 +560,7 @@ export async function buildReleaseReadiness({ generatedAt = new Date().toISOStri
     ),
     candidate_release_statuses: candidateReleaseStatuses,
     release_ready_records: releaseReadyRecords,
+    blocked_accepted_record_groups: blockedAcceptedRecordGroups,
     blocked_accepted_records: blockedAcceptedRecords
   };
 }

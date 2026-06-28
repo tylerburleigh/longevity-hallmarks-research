@@ -17,6 +17,7 @@
     "release_blocked_candidate_ids",
     "candidate_release_statuses",
     "release_ready_records",
+    "blocked_accepted_record_groups",
     "blocked_accepted_records"
   ],
   "properties": {
@@ -106,6 +107,12 @@
         "$ref": "#/$defs/releaseReadyRecord"
       }
     },
+    "blocked_accepted_record_groups": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/blockedAcceptedRecordGroup"
+      }
+    },
     "blocked_accepted_records": {
       "type": "array",
       "items": {
@@ -135,7 +142,8 @@
         "release_blocked_candidate_count",
         "accepted_or_applied_candidate_count",
         "accepted_record_count",
-        "blocked_accepted_record_count"
+        "blocked_accepted_proposal_count",
+        "unique_blocked_accepted_record_count"
       ],
       "properties": {
         "candidate_count": {
@@ -170,7 +178,11 @@
           "type": "integer",
           "minimum": 0
         },
-        "blocked_accepted_record_count": {
+        "blocked_accepted_proposal_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "unique_blocked_accepted_record_count": {
           "type": "integer",
           "minimum": 0
         }
@@ -383,6 +395,66 @@
             "accepted",
             "applied"
           ]
+        },
+        "blockers": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/releaseBlocker"
+          }
+        }
+      }
+    },
+    "blockedAcceptedRecordGroup": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "record_type",
+        "record_id",
+        "path",
+        "candidate_change_ids",
+        "candidate_lifecycle_statuses",
+        "change_types",
+        "blockers"
+      ],
+      "properties": {
+        "record_type": {
+          "type": "string"
+        },
+        "record_id": {
+          "$ref": "./common.schema.json#/$defs/identifier"
+        },
+        "path": {
+          "type": "string"
+        },
+        "candidate_change_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "./common.schema.json#/$defs/candidateChangeRef"
+          },
+          "uniqueItems": true
+        },
+        "candidate_lifecycle_statuses": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "accepted",
+              "applied"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "change_types": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "create",
+              "release_accept",
+              "update",
+              "delete"
+            ]
+          },
+          "uniqueItems": true
         },
         "blockers": {
           "type": "array",

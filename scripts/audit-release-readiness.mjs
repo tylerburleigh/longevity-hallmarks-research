@@ -65,6 +65,33 @@ async function main() {
     process.exit(1);
   }
 
+  const issues = [];
+  const blockedRecords = actual.blocked_accepted_records ?? [];
+  const blockedRecordGroups = actual.blocked_accepted_record_groups ?? [];
+  const blockedRecordKeys = new Set(blockedRecords.map((record) => `${record.record_type}:${record.record_id}`));
+  const blockedRecordGroupKeys = new Set(blockedRecordGroups.map((record) => `${record.record_type}:${record.record_id}`));
+
+  if (actual.summary?.blocked_accepted_proposal_count !== blockedRecords.length) {
+    issues.push("summary.blocked_accepted_proposal_count must match blocked_accepted_records.length.");
+  }
+  if (actual.summary?.unique_blocked_accepted_record_count !== blockedRecordGroups.length) {
+    issues.push("summary.unique_blocked_accepted_record_count must match blocked_accepted_record_groups.length.");
+  }
+  if (actual.summary?.unique_blocked_accepted_record_count !== blockedRecordKeys.size) {
+    issues.push("summary.unique_blocked_accepted_record_count must match unique blocked record keys.");
+  }
+  if (blockedRecordGroupKeys.size !== blockedRecordGroups.length || blockedRecordGroupKeys.size !== blockedRecordKeys.size) {
+    issues.push("blocked_accepted_record_groups must contain exactly one entry per unique blocked record key.");
+  }
+
+  if (issues.length > 0) {
+    console.error(`Release-readiness audit failed with ${issues.length} semantic issue(s):`);
+    for (const issue of issues) {
+      console.error(`- ${issue}`);
+    }
+    process.exit(1);
+  }
+
   console.log(`Release-readiness audit passed for ${releaseReadinessPath}.`);
 }
 

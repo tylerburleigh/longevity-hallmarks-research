@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "coverage-gap-senolytics-registry-surveillance-breadth-repair-extraction-fidelity",
+  "candidate_change_id": "coverage-gap-senolytics-registry-surveillance-breadth-repair",
+  "review_lane": "extraction_fidelity",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex-cli",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Extraction-fidelity review accepts the candidate because it does not create new registry extraction records without source snapshots, and the proposed coverage assessment explicitly preserves the ClinicalTrials.gov snapshot-fetch blocker for deferred fisetin frailty registries NCT03430037 and NCT03675724.",
+  "findings": [
+    {
+      "finding_id": "no-unsourced-registry-extraction",
+      "severity": "note",
+      "category": "source_mismatch",
+      "claim_or_issue": "The target candidate names NCT03430037 and NCT03675724 only as deferred registry-surveillance candidates and does not add extraction-grade no-results records for them.",
+      "why_it_matters": "Extraction fidelity would be blocked if active-trial status or no-results claims were promoted without retained ClinicalTrials.gov source snapshots.",
+      "recommended_action": "Keep the registry candidates in the coverage gap until a source-snapshot-backed ClinicalTrials.gov surveillance pass supports extraction-grade records.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "coverage-record-preserves-extraction-boundary",
+      "severity": "note",
+      "category": "missing_caveat",
+      "claim_or_issue": "The proposed coverage assessment states that ClinicalTrials.gov snapshots could not be fetched in the worker and that broader fisetin and D+Q surveillance remains incomplete.",
+      "why_it_matters": "The coverage record's caveat prevents users from treating registry surveillance as complete or treating deferred trials as extracted evidence.",
+      "recommended_action": "Retain the blocker language and defer new active-trial or no-results extraction until source snapshots are available.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "no-new-endpoint-values-to-reconcile",
+      "severity": "note",
+      "category": "extraction_error",
+      "claim_or_issue": "The proposed change is a coverage-assessment update and introduces no new sample sizes, endpoint values, adverse-event counts, or registry result fields for the deferred fisetin registries.",
+      "why_it_matters": "With no new numeric or endpoint extraction in this candidate, extraction-fidelity review is bounded to whether the assessment accurately preserves the absence of source-backed registry extraction.",
+      "recommended_action": "No correction is required for this lane.",
+      "resolution_status": "closed"
+    }
+  ]
+}

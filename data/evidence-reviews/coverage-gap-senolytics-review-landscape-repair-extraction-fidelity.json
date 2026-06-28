@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "coverage-gap-senolytics-review-landscape-repair-extraction-fidelity",
+  "candidate_change_id": "coverage-gap-senolytics-review-landscape-repair",
+  "review_lane": "extraction_fidelity",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-coverage-gap-senolytics-review-landscape-repair-extraction-fidelity",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Extraction-fidelity review accepts the candidate. The coverage assessment, research session, search log, and screening run consistently describe a blocked no-op review-landscape pass: no PubMed hit list was retrieved, no source snapshots were created, no screening decisions were made, and no systematic-review or meta-analysis source was added. The proposed records preserve that limitation instead of converting it into an evidence claim.",
+  "findings": [
+    {
+      "finding_id": "blocked-noop-trace-consistent",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "The target candidate claims only a blocked no-op search and screening trail for the senolytics review-landscape gap.",
+      "why_it_matters": "The research session, search log, screening run, and coverage assessment all carry the same blocker: no source row or context pack supplied a candidate review source and PubMed/NLM retrieval was unavailable, so no extracted review evidence should appear.",
+      "recommended_action": "No record edit is needed for this lane; preserve the blocker until a network-enabled, source-snapshot-backed screening pass is run.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "no-unsourced-review-extraction",
+      "severity": "note",
+      "category": "source_mismatch",
+      "claim_or_issue": "The proposed records do not add a systematic-review or meta-analysis source, source snapshot, text snapshot, eligibility decision, or review-derived finding.",
+      "why_it_matters": "Extraction fidelity would fail if the candidate upgraded the review landscape using an unavailable PubMed result or unsnapshotted source, but the candidate leaves hits, decisions, and included source IDs empty.",
+      "recommended_action": "Accept this lane and require any future review-landscape upgrade to cite concrete retained PubMed or full-text source snapshots.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "coverage-gap-caveat-retained",
+      "severity": "note",
+      "category": "missing_caveat",
+      "claim_or_issue": "The coverage assessment continues to mark recent_reviews_meta_analyses as thin and keeps the senolytics-review-landscape known gap open.",
+      "why_it_matters": "The no-op repair remains faithful only if the unresolved systematic-review/meta-analysis gap is visible to future triage and synthesis work.",
+      "recommended_action": "No change is needed for extraction fidelity; future work should close the gap only after durable search, screening, and source-snapshot records exist.",
+      "resolution_status": "closed"
+    }
+  ]
+}

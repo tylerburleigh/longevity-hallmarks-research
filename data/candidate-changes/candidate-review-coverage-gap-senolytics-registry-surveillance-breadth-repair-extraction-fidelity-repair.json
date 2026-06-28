@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-repair-extraction-fidelity-repair",
+  "name": "Extraction-fidelity review repair for senolytics registry-surveillance candidate",
+  "summary": "Adds the missing extraction_fidelity supervisor review for the senolytics registry-surveillance breadth repair candidate without promoting the target candidate.",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-28T19:07:50Z",
+  "scope": {
+    "question": "candidate_review: Required review lane is missing: extraction_fidelity.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-repair-extraction-fidelity-repair",
+      "path": "data/candidate-changes/candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-repair-extraction-fidelity-repair.json",
+      "change_type": "create",
+      "rationale": "Tracks the bounded supervisor repair that supplies the missing extraction_fidelity review lane."
+    },
+    {
+      "record_type": "evidence_review",
+      "record_id": "coverage-gap-senolytics-registry-surveillance-breadth-repair-extraction-fidelity",
+      "path": "data/evidence-reviews/coverage-gap-senolytics-registry-surveillance-breadth-repair-extraction-fidelity.json",
+      "change_type": "create",
+      "rationale": "Records the complete non-blocking extraction_fidelity verdict for the target candidate."
+    }
+  ],
+  "required_review_lanes": [
+    "extraction_fidelity"
+  ]
+}

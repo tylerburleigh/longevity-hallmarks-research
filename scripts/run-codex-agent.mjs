@@ -255,6 +255,23 @@ function stableStringify(value) {
   return JSON.stringify(value);
 }
 
+function sortedArray(values) {
+  return [...(values ?? [])].sort();
+}
+
+function stableArrayLabel(values) {
+  return values.map((value) => JSON.stringify(value)).join(", ");
+}
+
+function arraysEqual(left, right) {
+  const sortedLeft = sortedArray(left);
+  const sortedRight = sortedArray(right);
+  if (sortedLeft.length !== sortedRight.length) {
+    return false;
+  }
+  return sortedLeft.every((value, index) => value === sortedRight[index]);
+}
+
 function omitNullObjectProperties(value) {
   if (Array.isArray(value)) {
     return value.map((item) => omitNullObjectProperties(item));
@@ -626,6 +643,40 @@ function protectedArtifactMutationIssues({ events, options }) {
   return issues;
 }
 
+async function candidateReviewLedgerIssues(options) {
+  const candidateChangeId = options.job?.expected_outputs?.candidate_change_id;
+  const expectedReviewLanes = options.job?.expected_outputs?.required_review_lanes;
+  if (!candidateChangeId || !expectedReviewLanes) {
+    return [];
+  }
+
+  const candidatePath = `data/candidate-changes/${candidateChangeId}.json`;
+  const absoluteCandidatePath = resolveRepoPath(candidatePath);
+  if (!(await exists(absoluteCandidatePath))) {
+    return [`${candidatePath}: expected generated candidate_change is missing.`];
+  }
+
+  const issues = [];
+  let candidate;
+  try {
+    candidate = JSON.parse(await fs.readFile(absoluteCandidatePath, "utf8"));
+  } catch (error) {
+    return [`${candidatePath}: generated candidate_change is not valid JSON: ${error.message}`];
+  }
+
+  if (candidate.record_type !== "candidate_change") {
+    issues.push(`${candidatePath}: expected record_type "candidate_change", found ${JSON.stringify(candidate.record_type)}.`);
+  }
+
+  if (!arraysEqual(candidate.required_review_lanes, expectedReviewLanes)) {
+    issues.push(
+      `${candidatePath}: required_review_lanes mismatch; expected [${stableArrayLabel(sortedArray(expectedReviewLanes))}], found [${stableArrayLabel(sortedArray(candidate.required_review_lanes))}].`
+    );
+  }
+
+  return issues;
+}
+
 async function appendCoordinatorAuditEvent(options, { name, exitCode, summary, issues = [] }) {
   const event = {
     type: exitCode === 0 ? "coordinator.audit.completed" : "coordinator.audit.failed",
@@ -679,6 +730,7 @@ async function auditWorkerOutputContract(options) {
     }
   }
   issues.push(...protectedArtifactMutationIssues({ events, options }));
+  issues.push(...(await candidateReviewLedgerIssues(options)));
 
   if (agentRunMessages.length !== 1) {
     issues.push(`${options.log}: expected exactly one JSON agent_run message, found ${agentRunMessages.length}.`);

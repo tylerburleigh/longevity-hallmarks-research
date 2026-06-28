@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-repair-synthesis-boundary-repair",
+  "name": "Synthesis boundary review for senolytics registry-surveillance repair",
+  "summary": "Adds the missing synthesis_boundary supervisor evidence review for the senolytics registry-surveillance breadth repair candidate without promoting or mutating the target candidate.",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-28T19:08:08Z",
+  "scope": {
+    "question": "candidate_review: Required review lane is missing: synthesis_boundary.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-repair-synthesis-boundary-repair",
+      "path": "data/candidate-changes/candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-repair-synthesis-boundary-repair.json",
+      "change_type": "create",
+      "rationale": "Tracks the bounded self-healing repair ledger for the missing synthesis_boundary review lane."
+    },
+    {
+      "record_type": "evidence_review",
+      "record_id": "coverage-gap-senolytics-registry-surveillance-breadth-repair-synthesis-boundary",
+      "path": "data/evidence-reviews/coverage-gap-senolytics-registry-surveillance-breadth-repair-synthesis-boundary.json",
+      "change_type": "create",
+      "rationale": "Records the completed synthesis_boundary supervisor review for the target senolytics registry-surveillance breadth repair candidate."
+    }
+  ],
+  "required_review_lanes": [
+    "synthesis_boundary"
+  ]
+}

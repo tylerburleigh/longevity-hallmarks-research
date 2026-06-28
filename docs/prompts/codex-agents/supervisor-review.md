@@ -27,9 +27,10 @@ Task:
 3. Create or update evidence_review records with concrete findings.
 4. Use verdict accept only when the reviewed lane is complete, non-blocking, and has no open major or critical finding.
 5. Do not promote any candidate.
-6. Include a passed `quality_checks[]` entry named `supervisor_review_lanes` when the lane review is complete and acceptable.
-7. Include a passed `quality_checks[]` entry named `candidate_agent_run_ledger_match` when the final `outputs.proposed_records[]` matches the repair candidate ledger.
-8. Run validation and repository verification when feasible.
+6. When creating a repair `candidate_change`, set its `required_review_lanes[]` exactly to the coordinator job's `expected_outputs.required_review_lanes[]`.
+7. Include a passed `quality_checks[]` entry named `supervisor_review_lanes` when the lane review is complete and acceptable.
+8. Include a passed `quality_checks[]` entry named `candidate_agent_run_ledger_match` when the final `outputs.proposed_records[]` matches the repair candidate ledger.
+9. Run validation and repository verification when feasible.
 
 Inspection discipline:
 

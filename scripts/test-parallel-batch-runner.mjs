@@ -298,7 +298,11 @@ async function writeImportPendingWorkerFixture(tempRoot) {
     mode: "agent_directed",
     prompt_file: "docs/prompts/codex-agents/self-healing-repair.md",
     output_path: "research/agent-runs/import-job.json",
-    jsonl_log_path: "research/agent-runs/logs/import-job.jsonl"
+    jsonl_log_path: "research/agent-runs/logs/import-job.jsonl",
+    expected_outputs: {
+      candidate_change_id: "import-candidate",
+      required_review_lanes: ["extraction_fidelity"]
+    }
   });
 
   const worktreePath = path.join(tempRoot, "worker-worktree");
@@ -321,7 +325,7 @@ async function writeImportPendingWorkerFixture(tempRoot) {
         rationale: "Fixture."
       }
     ],
-    required_review_lanes: []
+    required_review_lanes: ["extraction_fidelity"]
   });
   await writeJson(worktreePath, "research/agent-runs/import-job.json", {
     schema_version: "1.0.0",
@@ -548,6 +552,99 @@ const record = {
   },
   outputs: {
     summary: "Fixture output."
+  },
+  quality_checks: []
+};
+mkdirSync(dirname(outputPath), { recursive: true });
+writeFileSync(outputPath, JSON.stringify(record, null, 2) + "\\n");
+process.stdout.write(JSON.stringify({ type: "item.completed", item: { id: "final", type: "agent_message", text: JSON.stringify(record) } }) + "\\n");
+`
+  );
+  await fs.chmod(fakeCodexPath, 0o755);
+  return fakeBin;
+}
+
+async function writeWorkerBadReviewLedgerFixture(tempRoot) {
+  await writeJson(tempRoot, "package.json", {
+    type: "module",
+    scripts: {
+      "validate:records": "node -e \"process.exit(0)\""
+    }
+  });
+  await fs.mkdir(path.join(tempRoot, "docs/prompts/codex-agents"), { recursive: true });
+  await fs.writeFile(path.join(tempRoot, "docs/prompts/codex-agents/supervisor-review.md"), "Fixture supervisor prompt.\n");
+  await fs.mkdir(path.join(tempRoot, "schemas"), { recursive: true });
+  await fs.writeFile(path.join(tempRoot, "schemas/agent-run.codex-output.schema.json"), "{}\n");
+  await writeJson(tempRoot, "ops/codex-jobs/live/bad-review-ledger-job.json", {
+    schema_version: "1.0.0",
+    record_type: "codex_job",
+    id: "bad-review-ledger-job",
+    lifecycle_status: "ready",
+    agent_role: "supervisor_agent",
+    mode: "agent_directed",
+    prompt_file: "docs/prompts/codex-agents/supervisor-review.md",
+    output_path: "research/agent-runs/bad-review-ledger-job.json",
+    jsonl_log_path: "research/agent-runs/logs/bad-review-ledger-job.jsonl",
+    expected_outputs: {
+      candidate_change_id: "bad-review-ledger-candidate",
+      required_review_lanes: ["synthesis_boundary"]
+    },
+    quality_gates: ["worker_output_contract"]
+  });
+
+  const fakeBin = path.join(tempRoot, "bin");
+  await fs.mkdir(fakeBin, { recursive: true });
+  const fakeCodexPath = path.join(fakeBin, "codex");
+  await fs.writeFile(
+    fakeCodexPath,
+    `#!/usr/bin/env node
+import { mkdirSync, writeFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+const outputPath = process.argv[process.argv.indexOf("-o") + 1];
+const cwd = process.cwd();
+const candidatePath = join(cwd, "data/candidate-changes/bad-review-ledger-candidate.json");
+mkdirSync(dirname(candidatePath), { recursive: true });
+writeFileSync(candidatePath, JSON.stringify({
+  schema_version: "1.0.0",
+  record_type: "candidate_change",
+  id: "bad-review-ledger-candidate",
+  name: "Bad review ledger candidate",
+  lifecycle_status: "submitted",
+  submitted_at: "2026-06-23T00:00:00Z",
+  scope: { question: "Fixture bad ledger." },
+  proposed_records: [],
+  required_review_lanes: []
+}, null, 2) + "\\n");
+const record = {
+  schema_version: "1.0.0",
+  record_type: "agent_run",
+  id: "bad-review-ledger-job",
+  agent_role: "supervisor_agent",
+  agent_id: "fixture",
+  started_at: "2026-06-23T00:00:00Z",
+  completed_at: "2026-06-23T00:00:01Z",
+  status: "succeeded",
+  scope: {
+    question: "Fixture bad review ledger job.",
+    hallmark_ids: [],
+    track_ids: [],
+    intervention_ids: []
+  },
+  canonical_write_policy: "candidate_change_required",
+  execution: {
+    surface: "codex_exec",
+    isolation: "git_worktree",
+    sandbox: "workspace-write",
+    approval_policy: "never",
+    output_path: "research/agent-runs/bad-review-ledger-job.json",
+    jsonl_log_path: "research/agent-runs/logs/bad-review-ledger-job.jsonl"
+  },
+  outputs: {
+    summary: "Fixture output.",
+    candidate_change_id: "bad-review-ledger-candidate",
+    proposed_records: [],
+    generated_files: ["data/candidate-changes/bad-review-ledger-candidate.json"],
+    export_paths: []
   },
   quality_checks: []
 };
@@ -1177,6 +1274,75 @@ async function runImportPendingWorkerDryRunCase(tempRoot) {
   return [];
 }
 
+async function runImportPendingWorkerBadLedgerDryRunCase(tempRoot) {
+  await writeImportPendingWorkerFixture(tempRoot);
+  await writeJson(tempRoot, "worker-worktree/data/candidate-changes/import-candidate.json", {
+    schema_version: "1.0.0",
+    record_type: "candidate_change",
+    id: "import-candidate",
+    name: "Import candidate",
+    lifecycle_status: "submitted",
+    submitted_at: "2026-06-23T00:00:00Z",
+    scope: {
+      question: "Fixture candidate."
+    },
+    proposed_records: [
+      {
+        record_type: "candidate_change",
+        record_id: "import-candidate",
+        path: "data/candidate-changes/import-candidate.json",
+        change_type: "create",
+        rationale: "Fixture."
+      }
+    ],
+    required_review_lanes: []
+  });
+
+  const result = spawnSync(
+    "node",
+    [
+      importScriptPath,
+      "--run",
+      "import-run",
+      "--dry-run",
+      "--skip-refresh"
+    ],
+    {
+      cwd: tempRoot,
+      encoding: "utf8",
+      env: {
+        ...process.env,
+        npm_config_update_notifier: "false"
+      }
+    }
+  );
+
+  const issues = [];
+  if (result.error) {
+    issues.push(`bad-ledger dry-run import helper failed to start: ${result.error.message}`);
+  }
+  if (result.status === 0) {
+    issues.push("bad-ledger dry-run import helper should fail.");
+  }
+  if (!result.stderr.includes("required_review_lanes mismatch")) {
+    issues.push(`bad-ledger dry-run import helper should report required_review_lanes mismatch: stderr=${result.stderr.trim()}`);
+  }
+
+  try {
+    await fs.access(path.join(tempRoot, "data/candidate-changes/import-candidate.json"));
+    issues.push("bad-ledger dry-run import helper should not copy invalid candidate artifact.");
+  } catch {
+    // Expected.
+  }
+
+  if (issues.length > 0) {
+    return issues;
+  }
+
+  console.log("PASS parallel-batch-import-pending-worker-bad-ledger-dry-run");
+  return [];
+}
+
 async function runArchiveRunningWorkerCase(tempRoot) {
   await writeArchiveRunningWorkerFixture(tempRoot);
   const result = spawnSync(
@@ -1226,6 +1392,50 @@ async function runArchiveRunningWorkerCase(tempRoot) {
   }
 
   console.log("PASS parallel-batch-archive-running-worker");
+  return [];
+}
+
+async function runWorkerOutputBadReviewLedgerCase(tempRoot) {
+  const fakeBin = await writeWorkerBadReviewLedgerFixture(tempRoot);
+  const result = spawnSync(
+    process.execPath,
+    [
+      agentScriptPath,
+      "--job-file",
+      "ops/codex-jobs/live/bad-review-ledger-job.json",
+      "--execute"
+    ],
+    {
+      cwd: tempRoot,
+      encoding: "utf8",
+      env: {
+        ...process.env,
+        PATH: `${fakeBin}${path.delimiter}${process.env.PATH ?? ""}`,
+        npm_config_update_notifier: "false"
+      }
+    }
+  );
+
+  const issues = [];
+  if (result.error) {
+    issues.push(`bad review ledger wrapper run failed to start: ${result.error.message}`);
+  }
+  if (result.status === 0) {
+    issues.push("bad review ledger wrapper run should fail.");
+  }
+  const combinedOutput = `${result.stdout ?? ""}\n${result.stderr ?? ""}`;
+  if (!combinedOutput.includes("worker_output_contract failed")) {
+    issues.push("bad review ledger wrapper run should fail worker_output_contract.");
+  }
+  if (!combinedOutput.includes("required_review_lanes mismatch")) {
+    issues.push("bad review ledger wrapper run should report required_review_lanes mismatch.");
+  }
+
+  if (issues.length > 0) {
+    return issues;
+  }
+
+  console.log("PASS codex-agent-bad-review-ledger-contract");
   return [];
 }
 
@@ -1291,8 +1501,10 @@ async function main() {
       ...(await runInterruptionCase(tempRoot)),
       ...(await runArchiveCollisionCase(tempRoot)),
       ...(await runImportPendingWorkerDryRunCase(tempRoot)),
+      ...(await runImportPendingWorkerBadLedgerDryRunCase(tempRoot)),
       ...(await runImportPendingWorkerCase(tempRoot)),
       ...(await runArchiveRunningWorkerCase(tempRoot)),
+      ...(await runWorkerOutputBadReviewLedgerCase(tempRoot)),
       ...(await runPostVerifyHeartbeatCase(tempRoot))
     ];
     if (issues.length > 0) {

@@ -285,6 +285,7 @@
       "agent_run.outputs.generated_files[]",
       "agent_run.quality_checks[]",
       "candidate_change.proposed_records[]",
+      "candidate_change.required_review_lanes[] equals expected_outputs.required_review_lanes[]",
       "evidence_review.review_lane",
       "evidence_review.verdict",
       "evidence_review.findings[]"
@@ -327,6 +328,7 @@
   },
   "constraints": [
     "Create only the repair candidate and evidence_review paths declared in expected_outputs.",
+    "Set the repair candidate required_review_lanes[] exactly to expected_outputs.required_review_lanes[].",
     "Do not promote, apply, or directly mutate the target candidate during a lane review.",
     "Do not add open-ended human-judgment escape hatches; make an agentic supervisor verdict from the available records.",
     "Inspect additional files only when the pack points to them or validation reveals a pack inconsistency.",

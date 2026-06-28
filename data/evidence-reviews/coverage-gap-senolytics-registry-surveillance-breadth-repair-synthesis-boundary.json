@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "coverage-gap-senolytics-registry-surveillance-breadth-repair-synthesis-boundary",
+  "candidate_change_id": "coverage-gap-senolytics-registry-surveillance-breadth-repair",
+  "review_lane": "synthesis_boundary",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-repair-synthesis-boundary",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "The proposed coverage assessment keeps the registry-surveillance repair within a triage-summary synthesis boundary: it names deferred fisetin frailty registry candidates, explicitly states that ClinicalTrials.gov snapshots were not fetched, avoids adding unsupported extraction-grade no-results records, and keeps active-trial, review-landscape, and cross-human safety gaps open.",
+  "findings": [
+    {
+      "finding_id": "synthesis-boundary-registry-gap-preserved",
+      "severity": "note",
+      "category": "missing_caveat",
+      "claim_or_issue": "The active-trials registry category is marked thin and the known gap names deferred fisetin frailty registries NCT03430037 and NCT03675724 while preserving the failed ClinicalTrials.gov snapshot ingestion blocker.",
+      "why_it_matters": "The candidate must not convert registry candidates into source-backed no-results evidence without retained registry snapshots.",
+      "recommended_action": "No revision required for this lane; keep the deferred registry candidates as a surveillance gap until source snapshots are fetched.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "synthesis-boundary-no-extraction-upgrade",
+      "severity": "note",
+      "category": "interpretation_overreach",
+      "claim_or_issue": "The assessment summary and provenance retain triage_summary or abstract/full-text-specific maturity labels instead of upgrading the unfetched registry candidates to extraction-grade records.",
+      "why_it_matters": "Synthesis should remain bounded by available snapshots and should not imply that unavailable registry records were reviewed.",
+      "recommended_action": "No revision required for this lane; maintain the stated source-snapshot requirement before adding new registry status records.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "synthesis-boundary-safety-review-limits-retained",
+      "severity": "note",
+      "category": "endpoint_boundary",
+      "claim_or_issue": "The proposed assessment continues to state that systematic-review screening, full article/table extraction for several human studies, and harmonized cross-human adverse-event synthesis remain incomplete.",
+      "why_it_matters": "These caveats prevent the adequate vertical-slice coverage verdict from being read as a complete clinical efficacy or safety synthesis.",
+      "recommended_action": "No revision required for this lane; leave these limitations visible until dedicated extraction and review-landscape jobs close them.",
+      "resolution_status": "closed"
+    }
+  ]
+}

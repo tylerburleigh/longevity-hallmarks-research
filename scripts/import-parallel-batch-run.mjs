@@ -130,6 +130,23 @@ function unique(values) {
   return [...new Set(values.filter(Boolean))];
 }
 
+function sortedArray(values) {
+  return [...(values ?? [])].sort();
+}
+
+function stableArrayLabel(values) {
+  return values.map((value) => JSON.stringify(value)).join(", ");
+}
+
+function arraysEqual(left, right) {
+  const sortedLeft = sortedArray(left);
+  const sortedRight = sortedArray(right);
+  if (sortedLeft.length !== sortedRight.length) {
+    return false;
+  }
+  return sortedLeft.every((value, index) => value === sortedRight[index]);
+}
+
 function sha256(bytes) {
   return createHash("sha256").update(bytes).digest("hex");
 }
@@ -213,6 +230,26 @@ function declaredArtifactPaths({ job, agentRun }) {
     ...proposedRecordPaths,
     ...(agentRun.outputs?.export_paths ?? [])
   ]);
+}
+
+async function validateWorkerCandidateLedger({ job, worker }) {
+  const candidateChangeId = job.expected_outputs?.candidate_change_id;
+  const expectedReviewLanes = job.expected_outputs?.required_review_lanes;
+  if (!candidateChangeId || !expectedReviewLanes) {
+    return;
+  }
+
+  const candidatePath = `data/candidate-changes/${candidateChangeId}.json`;
+  const candidate = JSON.parse(await fs.readFile(path.join(worker.worktree_path, candidatePath), "utf8"));
+  if (candidate.record_type !== "candidate_change") {
+    throw new Error(`${candidatePath}: expected record_type "candidate_change" in worker worktree ${worker.worktree_path}.`);
+  }
+
+  if (!arraysEqual(candidate.required_review_lanes, expectedReviewLanes)) {
+    throw new Error(
+      `${worker.job_id}: ${candidatePath} required_review_lanes mismatch; expected [${stableArrayLabel(sortedArray(expectedReviewLanes))}], found [${stableArrayLabel(sortedArray(candidate.required_review_lanes))}].`
+    );
+  }
 }
 
 async function updateAgentRunJobFile({ outputPath, archivePath }) {
@@ -365,6 +402,7 @@ async function importBatchRun(options) {
 
     const job = await readJson(worker.job_path);
     const agentRun = await loadAgentRunFromWorktree({ worktreePath: worker.worktree_path, outputPath: job.output_path });
+    await validateWorkerCandidateLedger({ job, worker });
     const artifactPaths = declaredArtifactPaths({ job, agentRun });
     const copied = [];
     for (const artifactPath of artifactPaths) {

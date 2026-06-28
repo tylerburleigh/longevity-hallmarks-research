@@ -1,0 +1,148 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-repair-extraction-fidelity",
+  "agent_role": "supervisor_agent",
+  "agent_id": "codex-cli",
+  "mode": "agent_directed",
+  "started_at": "2026-06-28T19:07:50Z",
+  "completed_at": "2026-06-28T19:09:32Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "candidate_review: Required review lane is missing: extraction_fidelity.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "codex_exec",
+    "isolation": "git_worktree",
+    "workspace_path": "/tmp/lhr-codex-worktrees/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-repair-extraction-fidelity-20260628T190650z",
+    "prompt_file": "research/agent-runs/prompts/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-repair-extraction-fidelity.md",
+    "prompt_template_file": "docs/prompts/codex-agents/supervisor-review.md",
+    "job_file": "ops/codex-jobs/archive/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-repair-extraction-fidelity.json",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "output_path": "research/agent-runs/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-repair-extraction-fidelity.json",
+    "jsonl_log_path": "research/agent-runs/logs/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-repair-extraction-fidelity.jsonl",
+    "sandbox": "workspace-write",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "other",
+      "reference": "ops/supervisor-review-context-packs/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-repair-extraction-fidelity.json",
+      "summary": "Bounded supervisor review context pack specifying the extraction_fidelity lane, target candidate, proposed coverage assessment, schemas, and expected repair outputs."
+    },
+    {
+      "input_type": "candidate_change",
+      "reference": "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-repair.json",
+      "summary": "Target submitted candidate for the senolytics registry-surveillance breadth repair."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+      "summary": "Proposed coverage assessment update reviewed for extraction-fidelity boundaries."
+    }
+  ],
+  "outputs": {
+    "summary": "Created the repair candidate ledger and a complete non-blocking extraction_fidelity evidence_review accepting the target candidate lane. The review found no unsupported registry extraction because NCT03430037 and NCT03675724 remain deferred until ClinicalTrials.gov source snapshots are available.",
+    "candidate_change_id": "candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-repair-extraction-fidelity-repair",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-repair-extraction-fidelity-repair",
+        "path": "data/candidate-changes/candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-repair-extraction-fidelity-repair.json",
+        "change_type": "create",
+        "rationale": "Tracks the bounded supervisor repair that supplies the missing extraction_fidelity review lane."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "coverage-gap-senolytics-registry-surveillance-breadth-repair-extraction-fidelity",
+        "path": "data/evidence-reviews/coverage-gap-senolytics-registry-surveillance-breadth-repair-extraction-fidelity.json",
+        "change_type": "create",
+        "rationale": "Records the complete non-blocking extraction_fidelity verdict for the target candidate."
+      }
+    ],
+    "generated_files": [
+      "data/candidate-changes/candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-repair-extraction-fidelity-repair.json",
+      "data/evidence-reviews/coverage-gap-senolytics-registry-surveillance-breadth-repair-extraction-fidelity.json"
+    ],
+    "export_paths": []
+  },
+  "quality_checks": [
+    {
+      "check_name": "validate_records",
+      "status": "passed",
+      "summary": "npm run validate:records passed; 521 JSON files validated."
+    },
+    {
+      "check_name": "audit_references",
+      "status": "passed",
+      "summary": "npm run audit:references passed for 340 record files."
+    },
+    {
+      "check_name": "audit_agent_schemas",
+      "status": "passed",
+      "summary": "npm run audit:agent-schemas passed."
+    },
+    {
+      "check_name": "audit_agentic_process",
+      "status": "passed",
+      "summary": "npm run audit:agentic-process passed for 556 files."
+    },
+    {
+      "check_name": "supervisor_review_lanes",
+      "status": "passed",
+      "summary": "Reviewed extraction_fidelity only; the lane is complete, non-blocking, and has no open major or critical finding."
+    },
+    {
+      "check_name": "candidate_agent_run_ledger_match",
+      "status": "passed",
+      "summary": "Final outputs.proposed_records matches the repair candidate ledger exactly."
+    },
+    {
+      "check_name": "worker_output_contract",
+      "status": "passed",
+      "summary": "Worker emitted exactly one final JSON agent_run message, matched output_path, and avoided ad hoc schema-validation snippets."
+    },
+    {
+      "check_name": "post_triage_state_export",
+      "status": "passed",
+      "summary": "post_triage_state_export exited 0: > longevity-hallmarks-research@0.1.0 export:triage-state > node scripts/export-triage-state.mjs Wrote ops/triage-state.v1.json."
+    },
+    {
+      "check_name": "post_release_readiness_export",
+      "status": "passed",
+      "summary": "post_release_readiness_export exited 0: > longevity-hallmarks-research@0.1.0 export:release-readiness > node scripts/export-release-readiness.mjs Wrote ops/release-readiness.v1.json."
+    },
+    {
+      "check_name": "post_reconciliation_export",
+      "status": "passed",
+      "summary": "post_reconciliation_export exited 0: > longevity-hallmarks-research@0.1.0 reconcile:parallel > node scripts/reconcile-parallel-outputs.mjs Wrote ops/reconciliation/parallel-reconciliation.v1.json."
+    },
+    {
+      "check_name": "post_orchestration_metrics_export",
+      "status": "passed",
+      "summary": "post_orchestration_metrics_export exited 0: > longevity-hallmarks-research@0.1.0 metrics:orchestration > node scripts/export-orchestration-metrics.mjs Wrote ops/codex-batches/orchestration-metrics.v1.json."
+    },
+    {
+      "check_name": "post_export",
+      "status": "passed",
+      "summary": "post_export exited 0: > longevity-hallmarks-research@0.1.0 export:latest > node scripts/export-latest.mjs Wrote 16 export file(s) to exports/latest."
+    },
+    {
+      "check_name": "post_verify",
+      "status": "passed",
+      "summary": "post_verify exited 0: > longevity-hallmarks-research@0.1.0 audit:orchestration-smoke-contract > node scripts/audit-orchestration-smoke-contract.mjs Orchestration smoke contract audit passed for orchestration-smoke-budgeted-codex-worktree-2026-06-23. > longevity-hallmarks-research@0.1.0 audit:agentic-process > node scripts/audit-agentic-process.mjs Agentic process audit passed for 557 file(s)."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": [
+    "Coordinator post-run export and knowledge-base verification can run after this worker exits."
+  ]
+}

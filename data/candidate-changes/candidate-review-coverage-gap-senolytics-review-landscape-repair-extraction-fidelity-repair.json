@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "candidate-review-coverage-gap-senolytics-review-landscape-repair-extraction-fidelity-repair",
+  "name": "Supervisor extraction-fidelity review for senolytics review-landscape repair",
+  "summary": "Creates the missing extraction_fidelity evidence review for coverage-gap-senolytics-review-landscape-repair. The lane is accepted because the proposed records faithfully preserve the blocked no-op search and screening state, keep the systematic-review/meta-analysis gap explicit, and do not extract unsupported review-source claims.",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-28T19:08:12Z",
+  "scope": {
+    "question": "candidate_review: Required review lane is missing: extraction_fidelity.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "candidate-review-coverage-gap-senolytics-review-landscape-repair-extraction-fidelity-repair",
+      "path": "data/candidate-changes/candidate-review-coverage-gap-senolytics-review-landscape-repair-extraction-fidelity-repair.json",
+      "change_type": "create",
+      "rationale": "Tracks the bounded repair ledger for the missing extraction_fidelity review lane."
+    },
+    {
+      "record_type": "evidence_review",
+      "record_id": "coverage-gap-senolytics-review-landscape-repair-extraction-fidelity",
+      "path": "data/evidence-reviews/coverage-gap-senolytics-review-landscape-repair-extraction-fidelity.json",
+      "change_type": "create",
+      "rationale": "Records the supervisor extraction_fidelity verdict for the target candidate."
+    }
+  ],
+  "required_review_lanes": [
+    "extraction_fidelity"
+  ]
+}

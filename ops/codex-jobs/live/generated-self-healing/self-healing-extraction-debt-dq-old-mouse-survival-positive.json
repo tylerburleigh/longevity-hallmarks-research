@@ -54,7 +54,10 @@
   },
   "orchestration": {
     "read_sets": [
+      "path:data/outcomes/dq-old-mouse-post-treatment-survival.json",
       "path:data/results/dq-old-mouse-survival-positive.json",
+      "path:data/sources/pmid-29988130.json",
+      "path:data/studies/dq-old-mouse-healthspan-lifespan.json",
       "path:ops/triage-state.v1.json",
       "triage_job:extraction-debt-dq-old-mouse-survival-positive"
     ],

@@ -55,7 +55,10 @@
   },
   "orchestration": {
     "read_sets": [
+      "path:data/outcomes/dq-bone-ctx-20wk.json",
       "path:data/results/dq-bone-ctx-20wk-null.json",
+      "path:data/sources/nct-04313634.json",
+      "path:data/studies/dq-postmenopausal-bone-rct.json",
       "path:ops/triage-state.v1.json",
       "triage_job:extraction-debt-dq-bone-ctx-20wk-null"
     ],

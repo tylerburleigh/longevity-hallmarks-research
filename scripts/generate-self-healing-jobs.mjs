@@ -173,6 +173,10 @@ function getRecord(recordIndex, recordType, recordId) {
   return recordIndex.byTypeAndId.get(`${recordType}:${recordId}`)?.record;
 }
 
+function getRecordPath(recordIndex, recordType, recordId) {
+  return recordIndex.byTypeAndId.get(`${recordType}:${recordId}`)?.path;
+}
+
 function getInputRecords(recordIndex, recommendedJob) {
   return (recommendedJob.inputs ?? [])
     .map((inputPath) => recordIndex.byPath.get(inputPath))
@@ -348,12 +352,34 @@ function candidateReviewLaneKey(recommendedJob, lane) {
   return `candidate_review:${recommendedJob.target_record_id}/${lane}`;
 }
 
-function buildReadSets(recommendedJob, { contextPackId } = {}) {
+function scopedRecordReadPaths(recordIndex, scope) {
+  const scopedRecordTypes = [
+    ["source", scope?.source_ids],
+    ["study", scope?.study_ids],
+    ["outcome", scope?.outcome_ids],
+    ["result", scope?.result_ids]
+  ];
+  const paths = [];
+
+  for (const [recordType, recordIds] of scopedRecordTypes) {
+    for (const recordId of recordIds ?? []) {
+      const recordPath = getRecordPath(recordIndex, recordType, recordId);
+      if (recordPath) {
+        paths.push(recordPath);
+      }
+    }
+  }
+
+  return sortStrings(paths);
+}
+
+function buildReadSets(recordIndex, recommendedJob, { contextPackId, scope } = {}) {
   return sortStrings([
     `path:${triageStatePath}`,
     `triage_job:${sourceJobId(recommendedJob)}`,
     ...(contextPackId ? [`context_pack:${contextPackId}`] : []),
-    ...((recommendedJob.inputs ?? []).map((inputPath) => `path:${inputPath}`))
+    ...((recommendedJob.inputs ?? []).map((inputPath) => `path:${inputPath}`)),
+    ...scopedRecordReadPaths(recordIndex, scope).map((recordPath) => `path:${recordPath}`)
   ]);
 }
 
@@ -478,6 +504,7 @@ function buildJob(recordIndex, recommendedJob) {
   const requiredReviewLanes = reviewLanesForJob(recordIndex, recommendedJob);
   const outputSpec = candidateReviewOutputSpec({ recommendedJob, candidateChangeId, requiredReviewLanes });
   const contextPackId = recommendedJob.job_type === "candidate_review" ? jobId : undefined;
+  const scope = scopeFromRecommendedJob(recordIndex, recommendedJob);
 
   return {
     schema_version: "1.0.0",
@@ -492,7 +519,7 @@ function buildJob(recordIndex, recommendedJob) {
     ...(contextPackId ? { context_pack_path: `${supervisorReviewContextPackRoot}/${contextPackId}.json` } : {}),
     output_path: `research/agent-runs/${jobId}.json`,
     jsonl_log_path: `research/agent-runs/logs/${jobId}.jsonl`,
-    scope: scopeFromRecommendedJob(recordIndex, recommendedJob),
+    scope,
     execution: {
       isolation: "git_worktree",
       sandbox: "workspace-write",
@@ -510,7 +537,7 @@ function buildJob(recordIndex, recommendedJob) {
       ...(outputSpec.exportPaths ? { export_paths: outputSpec.exportPaths } : {})
     },
     orchestration: {
-      read_sets: buildReadSets(recommendedJob, { contextPackId }),
+      read_sets: buildReadSets(recordIndex, recommendedJob, { contextPackId, scope }),
       write_sets: buildWriteSets({
         recommendedJob,
         candidateChangeId,

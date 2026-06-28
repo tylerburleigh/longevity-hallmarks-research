@@ -54,7 +54,10 @@
   },
   "orchestration": {
     "read_sets": [
+      "path:data/outcomes/dq-ad-risk-cognition-mobility.json",
       "path:data/results/dq-ad-risk-cognition-mobility-mixed.json",
+      "path:data/sources/pmid-40010154.json",
+      "path:data/studies/dq-ad-risk-cognition-mobility-pilot.json",
       "path:ops/triage-state.v1.json",
       "triage_job:extraction-debt-dq-ad-risk-cognition-mobility-mixed"
     ],

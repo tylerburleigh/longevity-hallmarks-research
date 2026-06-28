@@ -62,6 +62,21 @@ async function readJson(relativePath) {
   return JSON.parse(await fs.readFile(path.join(workspaceRoot, relativePath), "utf8"));
 }
 
+async function buildRecordIndex() {
+  const files = (await Promise.all(["data", "research"].map((root) => walkJsonFiles(path.join(workspaceRoot, root))))).flat();
+  const byTypeAndId = new Map();
+
+  for (const filePath of files) {
+    const relativePath = toPosixRelative(filePath);
+    const record = await readJson(relativePath);
+    if (record?.record_type && record?.id) {
+      byTypeAndId.set(`${record.record_type}:${record.id}`, { record, path: relativePath });
+    }
+  }
+
+  return { byTypeAndId };
+}
+
 function sortedArray(value) {
   return [...(value ?? [])].sort();
 }
@@ -359,7 +374,28 @@ function checkJobLifecycle({ issues, job, ownerPath, outputExists }) {
   }
 }
 
-function checkOrchestrationMetadata({ issues, job, ownerPath }) {
+function scopedRecordReadPaths(recordIndex, scope) {
+  const scopedRecordTypes = [
+    ["source", scope?.source_ids],
+    ["study", scope?.study_ids],
+    ["outcome", scope?.outcome_ids],
+    ["result", scope?.result_ids]
+  ];
+  const paths = [];
+
+  for (const [recordType, recordIds] of scopedRecordTypes) {
+    for (const recordId of recordIds ?? []) {
+      const recordPath = recordIndex.byTypeAndId.get(`${recordType}:${recordId}`)?.path;
+      if (recordPath) {
+        paths.push(recordPath);
+      }
+    }
+  }
+
+  return sortedArray(new Set(paths));
+}
+
+function checkOrchestrationMetadata({ issues, job, ownerPath, recordIndex }) {
   const orchestration = job.orchestration ?? {};
   const readSets = orchestration.read_sets ?? [];
   const writeSets = orchestration.write_sets ?? [];
@@ -402,6 +438,15 @@ function checkOrchestrationMetadata({ issues, job, ownerPath }) {
   }
 
   checkCandidateReviewLaneOrchestration({ issues, ownerPath, job, readSets, writeSets, conflictKeys });
+
+  if (ownerPath.startsWith(liveJobPathPrefix) && job.agent_role === "extraction_agent" && activeJobStatuses.has(job.lifecycle_status)) {
+    for (const recordPath of scopedRecordReadPaths(recordIndex, job.scope)) {
+      const readKey = `path:${recordPath}`;
+      if (!readSets.includes(readKey)) {
+        issues.push(`${ownerPath}: extraction job orchestration.read_sets missing scoped record key "${readKey}".`);
+      }
+    }
+  }
 
   if (job.execution?.sandbox === "read-only" && writeSets.length > 0) {
     issues.push(`${ownerPath}: read-only jobs must not declare orchestration.write_sets.`);
@@ -532,13 +577,13 @@ async function checkContextPack({ issues, job, ownerPath }) {
   issues.push(`${ownerPath}: context_pack_path references unsupported record_type "${contextPack.record_type}".`);
 }
 
-async function checkCodexJob({ issues, job, ownerPath }) {
+async function checkCodexJob({ issues, job, ownerPath, recordIndex }) {
   await checkPathExists({ issues, ownerPath, field: "prompt_file", relativePath: job.prompt_file });
   await checkPathExists({ issues, ownerPath, field: "execution.output_schema_path", relativePath: job.execution?.output_schema_path });
   const outputExists = await exists(path.join(workspaceRoot, job.output_path));
 
   checkJobLifecycle({ issues, job, ownerPath, outputExists });
-  checkOrchestrationMetadata({ issues, job, ownerPath });
+  checkOrchestrationMetadata({ issues, job, ownerPath, recordIndex });
   await checkContextPack({ issues, job, ownerPath });
 
   if (job.post_run?.verify_knowledge_base && !job.post_run?.export_latest) {
@@ -697,6 +742,7 @@ function checkActiveJobConflicts({ issues, activeJobs }) {
 async function main() {
   const issues = [];
   const jobFiles = await walkJsonFiles(jobRoot);
+  const recordIndex = await buildRecordIndex();
   let liveJobCount = 0;
   let archivedJobCount = 0;
   const activeJobs = [];
@@ -717,7 +763,7 @@ async function main() {
     if (ownerPath.startsWith(archiveJobPathPrefix)) {
       archivedJobCount += 1;
     }
-    await checkCodexJob({ issues, job, ownerPath });
+    await checkCodexJob({ issues, job, ownerPath, recordIndex });
   }
 
   checkActiveJobConflicts({ issues, activeJobs });

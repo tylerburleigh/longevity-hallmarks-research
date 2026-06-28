@@ -54,7 +54,10 @@
   },
   "orchestration": {
     "read_sets": [
+      "path:data/outcomes/dq-dkd-senescent-cell-biomarkers.json",
       "path:data/results/dq-dkd-biomarker-positive.json",
+      "path:data/sources/pmid-31542391.json",
+      "path:data/studies/dq-diabetic-kidney-disease-pilot.json",
       "path:ops/triage-state.v1.json",
       "triage_job:extraction-debt-dq-dkd-biomarker-positive"
     ],

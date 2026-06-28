@@ -55,7 +55,10 @@
   },
   "orchestration": {
     "read_sets": [
+      "path:data/outcomes/dq-dkd-safety-tolerability.json",
       "path:data/results/dq-dkd-adverse-events-abstract-not-reported.json",
+      "path:data/sources/pmid-31542391.json",
+      "path:data/studies/dq-diabetic-kidney-disease-pilot.json",
       "path:ops/triage-state.v1.json",
       "triage_job:extraction-debt-dq-dkd-adverse-events-abstract-not-reported"
     ],

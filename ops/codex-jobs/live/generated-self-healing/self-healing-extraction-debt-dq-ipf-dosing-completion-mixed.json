@@ -54,7 +54,10 @@
   },
   "orchestration": {
     "read_sets": [
+      "path:data/outcomes/dq-ipf-dosing-completion-assessments.json",
       "path:data/results/dq-ipf-dosing-completion-mixed.json",
+      "path:data/sources/pmid-36857968.json",
+      "path:data/studies/dq-ipf-randomized-pilot.json",
       "path:ops/triage-state.v1.json",
       "triage_job:extraction-debt-dq-ipf-dosing-completion-mixed"
     ],

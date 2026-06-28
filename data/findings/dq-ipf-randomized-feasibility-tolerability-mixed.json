@@ -3,7 +3,7 @@
   "record_type": "finding",
   "id": "dq-ipf-randomized-feasibility-tolerability-mixed",
   "name": "D+Q IPF randomized pilot primarily supports feasibility and tolerability boundaries",
-  "summary": "The idiopathic pulmonary fibrosis randomized pilot provides human safety and feasibility evidence, but it is not a definitive efficacy trial.",
+  "summary": "The idiopathic pulmonary fibrosis randomized pilot abstract reports 12 participants randomized 1:1 to D+Q or placebo, complete scheduled dosing and assessment completion, more non-serious adverse events in the D+Q arm, no D+Q-related serious adverse events, and no meaningful between-arm differences in explored clinical measures.",
   "source_id": "pmid-36857968",
   "study_id": "dq-ipf-randomized-pilot",
   "intervention_ids": [
@@ -20,12 +20,13 @@
   "direction": "mixed",
   "evidence_tier": "human_functional",
   "confidence": "low",
-  "statement": "The randomized IPF pilot is useful for feasibility, tolerability, and endpoint-boundary evidence, but small sample size and pilot design prevent strong efficacy inference.",
+  "statement": "The randomized IPF pilot is useful for feasibility, tolerability, and endpoint-boundary evidence: all scheduled doses and planned assessments were completed, D+Q had more non-serious adverse events than placebo, and the trial was too small to support efficacy inference.",
   "population_or_model": "Adults with idiopathic pulmonary fibrosis",
-  "time_horizon": "Pilot intervention and follow-up period reported in the phase 1 study",
+  "time_horizon": "3-week intervention period and planned pilot assessments",
   "caveats": [
     "Treat as safety and feasibility evidence unless a later synthesis verifies a powered efficacy endpoint.",
-    "Functional outcomes should remain separate from aging-healthspan claims."
+    "Functional outcomes should remain separate from aging-healthspan claims.",
+    "Article-table extraction is still needed for term-level adverse events and clinical-measure details beyond the abstract."
   ],
   "tags": [
     "senolytics",
@@ -35,14 +36,14 @@
     "idiopathic-pulmonary-fibrosis",
     "pilot"
   ],
-  "maturity_status": "triage_summary",
+  "maturity_status": "abstract_extracted",
   "provenance": [
     {
       "source_id": "pmid-36857968",
-      "locator_type": "derived_record",
-      "locator": "finding dq-ipf-randomized-feasibility-tolerability-mixed derived from pmid-36857968",
-      "status": "triage_summary",
-      "note": "Triage-level generated record pending source-located extraction.",
+      "locator_type": "abstract",
+      "locator": "PubMed PMID 36857968 abstract METHODS, FINDINGS, and INTERPRETATION",
+      "status": "abstract_extracted",
+      "note": "Abstract supports randomized N=12 sample size, D+Q dose schedule, full scheduled-dose and assessment completion, non-serious adverse-event imbalance, no D+Q-related serious adverse events, and underpowered clinical-measure interpretation.",
       "source_snapshot_id": "snapshot-pmid-36857968-pubmed-efetch-2026-06-27"
     }
   ],

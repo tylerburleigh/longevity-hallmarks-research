@@ -1,0 +1,321 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "self-healing-coverage-gap-senolytics-safety-tables-followup-2",
+  "agent_role": "extraction_agent",
+  "agent_id": "codex-cli-worker",
+  "mode": "extraction_refresh",
+  "started_at": "2026-06-28T17:51:16Z",
+  "completed_at": "2026-06-28T18:08:31Z",
+  "status": "partial",
+  "scope": {
+    "question": "extraction_refresh: Aggregate adverse-event counts and the D+Q bone headache preferred-term row have been extracted for the D+Q bone RCT, and retained full-text locators now identify the safety table, withdrawal narrative, dosing cadence, and durability discussion. Event-specific structured rows beyond headache, discontinuation count fields, and source-snapshot-backed safety extraction for the DKD, IPF, and AD-risk human studies remain incomplete.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "codex_exec",
+    "isolation": "git_worktree",
+    "workspace_path": "/tmp/lhr-codex-worktrees/self-healing-coverage-gap-senolytics-safety-tables-followup-2-20260628T175116z",
+    "prompt_file": "research/agent-runs/prompts/self-healing-coverage-gap-senolytics-safety-tables-followup-2.md",
+    "prompt_template_file": "docs/prompts/codex-agents/extraction-refresh.md",
+    "job_file": "ops/codex-jobs/archive/self-healing-coverage-gap-senolytics-safety-tables-followup-2.json",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "output_path": "research/agent-runs/self-healing-coverage-gap-senolytics-safety-tables-followup-2.json",
+    "jsonl_log_path": "research/agent-runs/logs/self-healing-coverage-gap-senolytics-safety-tables-followup-2.jsonl",
+    "sandbox": "workspace-write",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "user_request",
+      "reference": "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-safety-tables-followup-2.json",
+      "summary": "Coordinator job specification for the bounded senolytics safety-table follow-up extraction refresh."
+    },
+    {
+      "input_type": "other",
+      "reference": "plan.md; docs/research-runbook.md; docs/agent-run-outputs.md; docs/extraction-rules.md; docs/source-snapshot-importers.md",
+      "summary": "Repository operating rules for bounded extraction, source-snapshot provenance, candidate ledgers, review gates, and validation."
+    },
+    {
+      "input_type": "other",
+      "reference": "schemas/agent-run.codex-output.schema.json; schemas/agent-run.schema.json; schemas/result.schema.json; schemas/outcome.schema.json; schemas/candidate-change.schema.json; schemas/synthesis-group.schema.json; schemas/evidence-review.schema.json",
+      "summary": "Schemas used to shape the agent run, candidate change, outcomes, results, synthesis boundary, and review-lane decisions."
+    },
+    {
+      "input_type": "coverage_gap",
+      "reference": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+      "summary": "Target coverage assessment containing the senolytics safety-table follow-up gap."
+    },
+    {
+      "input_type": "record",
+      "reference": "ops/triage-state.v1.json",
+      "summary": "Triage-state recommended job entry for coverage-gap-senolytics-safety-tables-followup-2."
+    },
+    {
+      "input_type": "source_snapshot",
+      "reference": "data/source-snapshots/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json; data/source-snapshots/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json; data/source-snapshots/snapshot-pmid-31542391-pubmed-efetch-2026-06-27.json; data/source-snapshots/snapshot-pmid-36857968-pubmed-efetch-2026-06-27.json; data/source-snapshots/snapshot-pmid-40010154-pubmed-efetch-2026-06-27.json",
+      "summary": "Retained source snapshots supporting full-text D+Q bone extraction, registry discontinuation counts, and PubMed abstract safety extraction for DKD, IPF, and AD-risk studies."
+    },
+    {
+      "input_type": "text_snapshot",
+      "reference": "data/text-snapshots/text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json; data/text-snapshots/text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+      "summary": "Retained text snapshots with section locators for the D+Q bone safety table, safety narrative, dosing context, and registry adverse-event modules."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/results/dq-bone-adverse-event-terms-20wk-mixed.json; data/results/dq-bone-headache-20wk-descriptive.json; data/results/dq-ipf-tolerability-mixed.json; data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+      "summary": "Scoped existing safety result records and synthesis boundary used to add row-level extraction while preserving pooling blockers."
+    }
+  ],
+  "outputs": {
+    "summary": "Created submitted candidate coverage-gap-senolytics-safety-tables-followup-2-repair; added D+Q bone preferred-term rows beyond headache, registry/article adverse-event discontinuation extraction, PubMed-backed IPF and AD-risk safety extraction, and a DKD abstract-limited safety record. Updated the coverage assessment and D+Q bone safety synthesis boundary while keeping full article/table cross-human safety extraction gaps open.",
+    "candidate_change_id": "coverage-gap-senolytics-safety-tables-followup-2-repair",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "coverage-gap-senolytics-safety-tables-followup-2-repair",
+        "path": "data/candidate-changes/coverage-gap-senolytics-safety-tables-followup-2-repair.json",
+        "change_type": "create",
+        "rationale": "Tracks this bounded safety extraction-refresh repair candidate and required review lanes."
+      },
+      {
+        "record_type": "coverage_assessment",
+        "record_id": "senolytics-coverage-repair-2026-06-21",
+        "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+        "change_type": "update",
+        "rationale": "Refreshes the safety_durability coverage state after row-level D+Q bone extraction and source-snapshot-backed human safety extraction progress."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-dkd-safety-tolerability",
+        "path": "data/outcomes/dq-dkd-safety-tolerability.json",
+        "change_type": "create",
+        "rationale": "Defines the DKD safety extraction boundary supported by the retained PubMed source snapshot."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-ad-risk-safety-tolerability",
+        "path": "data/outcomes/dq-ad-risk-safety-tolerability.json",
+        "change_type": "create",
+        "rationale": "Defines the AD-risk safety outcome supported by the retained PubMed source snapshot."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-ipf-feasibility-tolerability",
+        "path": "data/outcomes/dq-ipf-feasibility-tolerability.json",
+        "change_type": "update",
+        "rationale": "Upgrades the legacy IPF safety outcome from triage summary to PubMed source-snapshot-backed abstract extraction."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-diarrhea-20wk-descriptive",
+        "path": "data/results/dq-bone-diarrhea-20wk-descriptive.json",
+        "change_type": "create",
+        "rationale": "Adds the D+Q bone publication-table diarrhea preferred-term row with blank-control zero-handling."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-nausea-20wk-descriptive",
+        "path": "data/results/dq-bone-nausea-20wk-descriptive.json",
+        "change_type": "create",
+        "rationale": "Adds the D+Q bone publication-table nausea preferred-term row with blank-control zero-handling."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-constipation-20wk-descriptive",
+        "path": "data/results/dq-bone-constipation-20wk-descriptive.json",
+        "change_type": "create",
+        "rationale": "Adds the D+Q bone publication-table constipation preferred-term row with blank-control zero-handling."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-gastrointestinal-reflux-20wk-descriptive",
+        "path": "data/results/dq-bone-gastrointestinal-reflux-20wk-descriptive.json",
+        "change_type": "create",
+        "rationale": "Adds the D+Q bone publication-table gastrointestinal reflux preferred-term row with blank-control zero-handling."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-vertigo-20wk-descriptive",
+        "path": "data/results/dq-bone-vertigo-20wk-descriptive.json",
+        "change_type": "create",
+        "rationale": "Adds the D+Q bone publication-table vertigo preferred-term row with blank-control zero-handling."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-fatigue-20wk-descriptive",
+        "path": "data/results/dq-bone-fatigue-20wk-descriptive.json",
+        "change_type": "create",
+        "rationale": "Adds the D+Q bone publication-table fatigue preferred-term row and links it to the withdrawal narrative caveat."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-body-pain-20wk-descriptive",
+        "path": "data/results/dq-bone-body-pain-20wk-descriptive.json",
+        "change_type": "create",
+        "rationale": "Adds the D+Q bone publication-table body-pain preferred-term row with explicit arm counts and calculated imprecise risk ratio."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-adverse-event-discontinuations-20wk-descriptive",
+        "path": "data/results/dq-bone-adverse-event-discontinuations-20wk-descriptive.json",
+        "change_type": "create",
+        "rationale": "Adds registry participant-flow adverse-event discontinuation counts and article withdrawal-narrative provenance for the D+Q and untreated-control arms."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-dkd-adverse-events-abstract-not-reported",
+        "path": "data/results/dq-dkd-adverse-events-abstract-not-reported.json",
+        "change_type": "create",
+        "rationale": "Creates a PubMed source-snapshot-backed DKD safety limitation record where the retained abstract summary does not report adverse-event counts."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-ipf-tolerability-mixed",
+        "path": "data/results/dq-ipf-tolerability-mixed.json",
+        "change_type": "update",
+        "rationale": "Reconciles the legacy IPF generic tolerability result with abstract-located non-serious adverse-event totals, serious-adverse-event relatedness, and sleep/anxiety counts."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-ad-risk-serious-adverse-events-none",
+        "path": "data/results/dq-ad-risk-serious-adverse-events-none.json",
+        "change_type": "create",
+        "rationale": "Adds the AD-risk abstract-reported absence of serious adverse events related to the D+Q intervention."
+      },
+      {
+        "record_type": "synthesis_group",
+        "record_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+        "path": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+        "change_type": "update",
+        "rationale": "Keeps the D+Q bone safety synthesis boundary current after adding preferred-term and discontinuation results while preserving pooling blockers."
+      }
+    ],
+    "generated_files": [
+      "data/candidate-changes/coverage-gap-senolytics-safety-tables-followup-2-repair.json",
+      "data/outcomes/dq-dkd-safety-tolerability.json",
+      "data/outcomes/dq-ad-risk-safety-tolerability.json",
+      "data/results/dq-bone-diarrhea-20wk-descriptive.json",
+      "data/results/dq-bone-nausea-20wk-descriptive.json",
+      "data/results/dq-bone-constipation-20wk-descriptive.json",
+      "data/results/dq-bone-gastrointestinal-reflux-20wk-descriptive.json",
+      "data/results/dq-bone-vertigo-20wk-descriptive.json",
+      "data/results/dq-bone-fatigue-20wk-descriptive.json",
+      "data/results/dq-bone-body-pain-20wk-descriptive.json",
+      "data/results/dq-bone-adverse-event-discontinuations-20wk-descriptive.json",
+      "data/results/dq-dkd-adverse-events-abstract-not-reported.json",
+      "data/results/dq-ad-risk-serious-adverse-events-none.json"
+    ],
+    "export_paths": [
+      "exports/latest/accepted-records.jsonl",
+      "exports/latest/audit-manifest.json",
+      "exports/latest/consumer-contract.json",
+      "exports/latest/coverage-status.json",
+      "exports/latest/evidence-map.json",
+      "exports/latest/read-model.sqlite",
+      "exports/latest/results.all.jsonl",
+      "exports/latest/results.extraction_grade.jsonl",
+      "exports/latest/results.registry_extracted.jsonl",
+      "exports/latest/results.triage.jsonl",
+      "exports/latest/synthesis-groups.jsonl"
+    ]
+  },
+  "quality_checks": [
+    {
+      "check_name": "validate_records",
+      "status": "passed",
+      "summary": "npm run validate:records passed and validated 454 JSON file(s)."
+    },
+    {
+      "check_name": "audit_references",
+      "status": "passed",
+      "summary": "npm run audit:references passed for 316 record file(s)."
+    },
+    {
+      "check_name": "export_latest",
+      "status": "passed",
+      "summary": "npm run export:latest passed and wrote 16 export file(s) to exports/latest."
+    },
+    {
+      "check_name": "audit_exports",
+      "status": "passed",
+      "summary": "npm run audit:exports passed for 11 JSONL export(s) and 15 manifest file hash(es)."
+    },
+    {
+      "check_name": "audit_read_model",
+      "status": "passed",
+      "summary": "npm run verify:knowledge-base reached audit:read-model, which passed for 316 canonical record(s) across 11 traced table(s)."
+    },
+    {
+      "check_name": "audit_agent_schemas",
+      "status": "passed",
+      "summary": "npm run audit:agent-schemas passed."
+    },
+    {
+      "check_name": "audit_agentic_process",
+      "status": "passed",
+      "summary": "npm run audit:agentic-process passed for 524 file(s)."
+    },
+    {
+      "check_name": "candidate_agent_run_ledger_match",
+      "status": "passed",
+      "summary": "The final agent_run outputs.proposed_records mirrors the candidate_change proposed_records ledger for coverage-gap-senolytics-safety-tables-followup-2-repair."
+    },
+    {
+      "check_name": "verify_knowledge_base",
+      "status": "failed",
+      "summary": "npm run verify:knowledge-base ran validate:records, audit:references, audit:exports, and audit:read-model successfully, then stopped because audit:triage-state reported ops/triage-state.v1.json stale in candidate_readiness, coverage_gaps, extraction_debt, missing_review_lane_queue, recommended_jobs, and summary."
+    },
+    {
+      "check_name": "worker_output_contract",
+      "status": "passed",
+      "summary": "Worker emitted exactly one final JSON agent_run message, matched output_path, and avoided ad hoc schema-validation snippets."
+    },
+    {
+      "check_name": "post_triage_state_export",
+      "status": "passed",
+      "summary": "post_triage_state_export exited 0: > longevity-hallmarks-research@0.1.0 export:triage-state > node scripts/export-triage-state.mjs Wrote ops/triage-state.v1.json."
+    },
+    {
+      "check_name": "post_release_readiness_export",
+      "status": "passed",
+      "summary": "post_release_readiness_export exited 0: > longevity-hallmarks-research@0.1.0 export:release-readiness > node scripts/export-release-readiness.mjs Wrote ops/release-readiness.v1.json."
+    },
+    {
+      "check_name": "post_reconciliation_export",
+      "status": "passed",
+      "summary": "post_reconciliation_export exited 0: > longevity-hallmarks-research@0.1.0 reconcile:parallel > node scripts/reconcile-parallel-outputs.mjs Wrote ops/reconciliation/parallel-reconciliation.v1.json."
+    },
+    {
+      "check_name": "post_orchestration_metrics_export",
+      "status": "passed",
+      "summary": "post_orchestration_metrics_export exited 0: > longevity-hallmarks-research@0.1.0 metrics:orchestration > node scripts/export-orchestration-metrics.mjs Wrote ops/codex-batches/orchestration-metrics.v1.json."
+    },
+    {
+      "check_name": "post_export",
+      "status": "passed",
+      "summary": "post_export exited 0: > longevity-hallmarks-research@0.1.0 export:latest > node scripts/export-latest.mjs Wrote 16 export file(s) to exports/latest."
+    },
+    {
+      "check_name": "post_verify",
+      "status": "passed",
+      "summary": "post_verify exited 0: > longevity-hallmarks-research@0.1.0 audit:orchestration-smoke-contract > node scripts/audit-orchestration-smoke-contract.mjs Orchestration smoke contract audit passed for orchestration-smoke-budgeted-codex-worktree-2026-06-23. > longevity-hallmarks-research@0.1.0 audit:agentic-process > node scripts/audit-agentic-process.mjs Agentic process audit passed for 525 file(s)."
+    }
+  ],
+  "blocking_issues": [
+    "Extraction remains incomplete for full article/table safety details in DKD, IPF, and AD-risk studies and for any D+Q bone supplement safety material; the new records preserve this as coverage debt rather than synthesis-ready cross-human safety evidence.",
+    "Full repository verification remains incomplete because generated triage state was stale after canonical record changes; this bounded worker did not regenerate ops/triage-state.v1.json, release-readiness, or self-healing job specs."
+  ],
+  "next_actions": [
+    "Move coverage-gap-senolytics-safety-tables-followup-2-repair into in_review and create active extraction_fidelity, safety_limitations, synthesis_boundary, and taxonomy_mapping evidence_review records.",
+    "Run retained full-text or table-row extraction for DKD, IPF, AD-risk, and D+Q bone supplement safety details before attempting cross-human safety synthesis.",
+    "Regenerate triage, release-readiness, reconciliation, orchestration metrics, and self-healing job state before rerunning full verify:knowledge-base."
+  ]
+}

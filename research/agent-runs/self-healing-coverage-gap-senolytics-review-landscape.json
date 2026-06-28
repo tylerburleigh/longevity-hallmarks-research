@@ -1,0 +1,207 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "self-healing-coverage-gap-senolytics-review-landscape",
+  "agent_role": "extraction_agent",
+  "agent_id": "codex-cli",
+  "mode": "extraction_refresh",
+  "started_at": "2026-06-28T17:51:16Z",
+  "completed_at": "2026-06-28T18:03:47Z",
+  "status": "partial",
+  "scope": {
+    "question": "extraction_refresh: No recent systematic-review or meta-analysis source has been screened into the knowledge base.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "codex_exec",
+    "isolation": "git_worktree",
+    "workspace_path": "/tmp/lhr-codex-worktrees/self-healing-coverage-gap-senolytics-review-landscape-20260628T175116z",
+    "prompt_file": "research/agent-runs/prompts/self-healing-coverage-gap-senolytics-review-landscape.md",
+    "prompt_template_file": "docs/prompts/codex-agents/extraction-refresh.md",
+    "job_file": "ops/codex-jobs/archive/self-healing-coverage-gap-senolytics-review-landscape.json",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "output_path": "research/agent-runs/self-healing-coverage-gap-senolytics-review-landscape.json",
+    "jsonl_log_path": "research/agent-runs/logs/self-healing-coverage-gap-senolytics-review-landscape.jsonl",
+    "sandbox": "workspace-write",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "user_request",
+      "reference": "codex_job:self-healing-coverage-gap-senolytics-review-landscape",
+      "summary": "Coordinator requested a bounded extraction-refresh repair for the senolytics review-landscape coverage gap."
+    },
+    {
+      "input_type": "record",
+      "reference": "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-review-landscape.json",
+      "summary": "Live job declared no context_pack_path and scoped writes to the coverage assessment and repair candidate."
+    },
+    {
+      "input_type": "coverage_gap",
+      "reference": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json#senolytics-review-landscape",
+      "summary": "Target gap stated that no recent systematic-review or meta-analysis source had been screened into the knowledge base."
+    },
+    {
+      "input_type": "record",
+      "reference": "ops/triage-state.v1.json#coverage-gap-senolytics-review-landscape",
+      "summary": "Triage state queued the review-landscape coverage gap as a medium-priority extraction_refresh job."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+      "summary": "Target coverage assessment was updated to preserve the unresolved review-landscape gap and record the blocker."
+    },
+    {
+      "input_type": "other",
+      "reference": "docs/research-runbook.md; docs/agent-run-outputs.md; docs/extraction-rules.md; docs/source-snapshot-importers.md",
+      "summary": "Runbook and extraction rules governed candidate ledger, source-snapshot, no-op search, and review-lane handling."
+    },
+    {
+      "input_type": "other",
+      "reference": "schemas/agent-run.codex-output.schema.json; schemas/agent-run.schema.json",
+      "summary": "Agent-run output schemas constrained the final structured response."
+    }
+  ],
+  "outputs": {
+    "summary": "Submitted a partial repair candidate, updated the senolytics coverage assessment, and created durable research-session, search-log, and screening-run records documenting the blocked no-op review-landscape pass. No recent systematic-review or meta-analysis source was screened because no source row/context pack was supplied and PubMed/NLM retrieval was unavailable in the worker.",
+    "research_session_id": "2026-06-28-senolytics-review-landscape-repair",
+    "search_log_id": "search-2026-06-28-senolytics-review-landscape",
+    "screening_run_id": "screening-2026-06-28-senolytics-review-landscape",
+    "candidate_change_id": "coverage-gap-senolytics-review-landscape-repair",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "coverage-gap-senolytics-review-landscape-repair",
+        "path": "data/candidate-changes/coverage-gap-senolytics-review-landscape-repair.json",
+        "change_type": "create",
+        "rationale": "Tracks the bounded self-healing repair candidate and required review-lane contract."
+      },
+      {
+        "record_type": "coverage_assessment",
+        "record_id": "senolytics-coverage-repair-2026-06-21",
+        "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+        "change_type": "update",
+        "rationale": "Refreshes the review-landscape category and gap text to preserve the unresolved systematic-review/meta-analysis screening gap and record the source-row/snapshot blocker."
+      },
+      {
+        "record_type": "research_session",
+        "record_id": "2026-06-28-senolytics-review-landscape-repair",
+        "path": "research/sessions/2026-06-28-senolytics-review-landscape-repair.json",
+        "change_type": "create",
+        "rationale": "Records the bounded extraction-refresh session and blocked outcome for the review-landscape gap."
+      },
+      {
+        "record_type": "search_log",
+        "record_id": "search-2026-06-28-senolytics-review-landscape",
+        "path": "research/search-logs/2026-06-28-senolytics-review-landscape.json",
+        "change_type": "create",
+        "rationale": "Records the attempted PubMed review-landscape query and the worker-network blocker."
+      },
+      {
+        "record_type": "screening_run",
+        "record_id": "screening-2026-06-28-senolytics-review-landscape",
+        "path": "research/screening-runs/2026-06-28-senolytics-review-landscape.json",
+        "change_type": "create",
+        "rationale": "Records that no search hits could be screened into the knowledge base during this bounded pass."
+      }
+    ],
+    "generated_files": [],
+    "export_paths": []
+  },
+  "quality_checks": [
+    {
+      "check_name": "validate_records",
+      "status": "passed",
+      "summary": "npm run validate:records passed after the candidate, coverage assessment, session, search-log, and screening-run changes; 445 JSON files validated."
+    },
+    {
+      "check_name": "audit_references",
+      "status": "passed",
+      "summary": "npm run audit:references passed after removing pre-output agent_run_id links from the new search and screening records; 307 record files audited."
+    },
+    {
+      "check_name": "audit_agent_schemas",
+      "status": "passed",
+      "summary": "npm run audit:agent-schemas passed."
+    },
+    {
+      "check_name": "audit_agentic_process",
+      "status": "passed",
+      "summary": "npm run audit:agentic-process passed for 515 files."
+    },
+    {
+      "check_name": "audit_codex_jobs",
+      "status": "passed",
+      "summary": "npm run audit:codex-jobs passed for 71 job files."
+    },
+    {
+      "check_name": "audit_exports",
+      "status": "failed",
+      "summary": "npm run audit:exports failed because exports/latest/accepted-records.jsonl and exports/latest/audit-manifest.json are stale until post-run export_latest regenerates them."
+    },
+    {
+      "check_name": "verify_knowledge_base",
+      "status": "not_run",
+      "summary": "Full verify:knowledge-base was not run because audit_exports is expected to fail before the coordinator post-run export step."
+    },
+    {
+      "check_name": "candidate_agent_run_ledger_match",
+      "status": "passed",
+      "summary": "Final proposed_records paths match the candidate_change proposed_records ledger."
+    },
+    {
+      "check_name": "worker_output_contract",
+      "status": "passed",
+      "summary": "Worker emitted exactly one final JSON agent_run message, matched output_path, and avoided ad hoc schema-validation snippets."
+    },
+    {
+      "check_name": "post_triage_state_export",
+      "status": "passed",
+      "summary": "post_triage_state_export exited 0: > longevity-hallmarks-research@0.1.0 export:triage-state > node scripts/export-triage-state.mjs Wrote ops/triage-state.v1.json."
+    },
+    {
+      "check_name": "post_release_readiness_export",
+      "status": "passed",
+      "summary": "post_release_readiness_export exited 0: > longevity-hallmarks-research@0.1.0 export:release-readiness > node scripts/export-release-readiness.mjs Wrote ops/release-readiness.v1.json."
+    },
+    {
+      "check_name": "post_reconciliation_export",
+      "status": "passed",
+      "summary": "post_reconciliation_export exited 0: > longevity-hallmarks-research@0.1.0 reconcile:parallel > node scripts/reconcile-parallel-outputs.mjs Wrote ops/reconciliation/parallel-reconciliation.v1.json."
+    },
+    {
+      "check_name": "post_orchestration_metrics_export",
+      "status": "passed",
+      "summary": "post_orchestration_metrics_export exited 0: > longevity-hallmarks-research@0.1.0 metrics:orchestration > node scripts/export-orchestration-metrics.mjs Wrote ops/codex-batches/orchestration-metrics.v1.json."
+    },
+    {
+      "check_name": "post_export",
+      "status": "passed",
+      "summary": "post_export exited 0: > longevity-hallmarks-research@0.1.0 export:latest > node scripts/export-latest.mjs Wrote 16 export file(s) to exports/latest."
+    },
+    {
+      "check_name": "post_verify",
+      "status": "passed",
+      "summary": "post_verify exited 0: > longevity-hallmarks-research@0.1.0 audit:orchestration-smoke-contract > node scripts/audit-orchestration-smoke-contract.mjs Orchestration smoke contract audit passed for orchestration-smoke-budgeted-codex-worktree-2026-06-23. > longevity-hallmarks-research@0.1.0 audit:agentic-process > node scripts/audit-agentic-process.mjs Agentic process audit passed for 516 file(s)."
+    }
+  ],
+  "blocking_issues": [
+    "No context_pack_path or source row was supplied for a concrete recent systematic-review or meta-analysis candidate.",
+    "PubMed/NLM retrieval was unavailable from the worker environment, preventing source-snapshot-backed search, screening, and source creation.",
+    "No recent systematic-review or meta-analysis source was screened into the knowledge base; the review-landscape gap remains open.",
+    "exports/latest is stale until the coordinator post-run export_latest step runs."
+  ],
+  "next_actions": [
+    "Run a network-enabled search and screening pass for recent senolytics systematic reviews, meta-analyses, trial reviews, and evidence maps.",
+    "Create or refresh PubMed source snapshots before upgrading any included review source beyond screened or triage-summary maturity.",
+    "Run the required extraction_fidelity, synthesis_boundary, and taxonomy_mapping review lanes for coverage-gap-senolytics-review-landscape-repair.",
+    "Do not promote the candidate until the source-snapshot-backed review-landscape gap is resolved and required reviews pass."
+  ]
+}

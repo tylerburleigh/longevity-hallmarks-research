@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "search_log",
+  "id": "search-2026-06-28-senolytics-review-landscape",
+  "name": "Senolytics recent review-landscape search",
+  "research_session_id": "2026-06-28-senolytics-review-landscape-repair",
+  "searched_at": "2026-06-28T17:58:29Z",
+  "agent_id": "codex-cli",
+  "scope": {
+    "question": "Find recent systematic reviews, meta-analyses, trial-landscape reviews, or evidence maps relevant to senolytics and cellular senescence.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "search_strategy": {
+    "source_names": [
+      "PubMed ESearch"
+    ],
+    "rationale": "The coverage gap specifically asks whether a recent systematic-review or meta-analysis source can be screened into the senolytics knowledge base.",
+    "planned_queries": [
+      "(senolytics OR senolytic OR senotherapeutic) AND (systematic review OR meta-analysis OR trial-landscape review)"
+    ]
+  },
+  "queries": [
+    {
+      "query_id": "pubmed-senolytics-review-landscape-2026-06-28",
+      "source_name": "PubMed ESearch",
+      "query": "(senolytics OR senolytic OR senotherapeutic) AND (systematic review OR meta-analysis OR trial-landscape review)",
+      "checked_at": "2026-06-28T17:58:29Z",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/?term=%28senolytics%20OR%20senolytic%20OR%20senotherapeutic%29%20AND%20%28systematic%20review%20OR%20meta-analysis%20OR%20trial-landscape%20review%29",
+      "filters": [
+        "recent reviews",
+        "systematic reviews",
+        "meta-analyses",
+        "senolytics track",
+        "cellular senescence hallmark"
+      ],
+      "result_count": 0,
+      "retrieved_count": 0,
+      "no_op": true,
+      "no_op_reason": "Blocked: PubMed/NLM DNS resolution was unavailable in the worker environment, so no authoritative hit list could be retrieved or snapshotted."
+    }
+  ],
+  "hits": [],
+  "canonical_source_ids": [],
+  "coverage_effect": "blocked",
+  "blocking_issues": [
+    "No context pack or source row was supplied for a candidate systematic review or meta-analysis.",
+    "PubMed/NLM snapshot retrieval was unavailable from the worker environment, preventing source-snapshot-backed screening."
+  ],
+  "summary": "The review-landscape search could not retrieve authoritative PubMed results in this worker, so no new review source was screened into the knowledge base.",
+  "next_actions": [
+    "Run a network-enabled search/screening pass over PubMed for recent senolytics systematic reviews, meta-analyses, trial reviews, and evidence maps.",
+    "Create PubMed source snapshots before upgrading any included review source beyond screened or triage-summary maturity."
+  ]
+}

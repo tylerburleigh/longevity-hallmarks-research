@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "outcome",
+  "id": "dq-ad-risk-safety-tolerability",
+  "name": "Safety and tolerability in AD-risk D+Q pilot",
+  "summary": "Abstract-located safety outcome for the single-arm pilot of intermittent dasatinib plus quercetin in older adults at risk for Alzheimer's disease.",
+  "source_id": "pmid-40010154",
+  "study_id": "dq-ad-risk-cognition-mobility-pilot",
+  "finding_ids": [
+    "dq-ad-risk-pilot-cognition-mobility-signal"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ],
+  "track_ids": [
+    "senolytics"
+  ],
+  "endpoint_category": "safety",
+  "measurement_type": "adverse_event",
+  "measurement_method": "PubMed abstract-reported serious-adverse-event statement",
+  "timepoint": "12-week intermittent D+Q intervention",
+  "analysis_role": "safety",
+  "population_or_model": "Older adults at risk for Alzheimer's disease",
+  "directionality_preferred": "context_dependent",
+  "maturity_status": "abstract_extracted",
+  "provenance": [
+    {
+      "source_id": "pmid-40010154",
+      "source_snapshot_id": "snapshot-pmid-40010154-pubmed-efetch-2026-06-27",
+      "locator_type": "abstract",
+      "locator": "PubMed PMID 40010154 abstract safety sentence",
+      "status": "abstract_extracted",
+      "note": "PubMed EFetch abstract snapshot reports no serious adverse events related to the intervention and identifies the N=12 completion sample."
+    }
+  ],
+  "target_hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ],
+  "tags": [
+    "senolytics",
+    "human",
+    "safety",
+    "ad-risk",
+    "abstract-extracted"
+  ]
+}

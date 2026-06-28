@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { spawnSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 
@@ -15,6 +16,9 @@ function usage() {
 Options:
   --dry-run          Print planned imports without copying, archiving, or refreshing.
   --overwrite        Allow replacing existing coordinator files when content differs.
+  --allow-conflicting-overwrite
+                     With --overwrite, allow last-worker-wins copying when multiple
+                     workers produced different content for the same artifact path.
   --skip-archive     Copy artifacts but leave live job specs and batch states unchanged.
   --skip-refresh     Skip generated-state refresh commands after import.
   --verify           Run npm run verify:knowledge-base after refresh.
@@ -25,6 +29,7 @@ function parseArgs(argv) {
   const options = {
     dryRun: false,
     overwrite: false,
+    allowConflictingOverwrite: false,
     archive: true,
     refresh: true,
     verify: false
@@ -38,6 +43,8 @@ function parseArgs(argv) {
       options.dryRun = true;
     } else if (arg === "--overwrite") {
       options.overwrite = true;
+    } else if (arg === "--allow-conflicting-overwrite") {
+      options.allowConflictingOverwrite = true;
     } else if (arg === "--skip-archive") {
       options.archive = false;
     } else if (arg === "--skip-refresh") {
@@ -121,6 +128,40 @@ function commandLogPathFor(jsonlLogPath) {
 
 function unique(values) {
   return [...new Set(values.filter(Boolean))];
+}
+
+function sha256(bytes) {
+  return createHash("sha256").update(bytes).digest("hex");
+}
+
+async function detectSharedArtifactConflicts(workers) {
+  const artifactsByPath = new Map();
+
+  for (const worker of workers) {
+    const job = await readJson(worker.job_path);
+    const agentRun = await loadAgentRunFromWorktree({ worktreePath: worker.worktree_path, outputPath: job.output_path });
+    for (const artifactPath of declaredArtifactPaths({ job, agentRun })) {
+      const sourcePath = path.join(worker.worktree_path, artifactPath);
+      const sourceBytes = await readFileIfExists(sourcePath);
+      if (!sourceBytes) {
+        continue;
+      }
+      const entries = artifactsByPath.get(artifactPath) ?? [];
+      entries.push({
+        job_id: worker.job_id,
+        hash: sha256(sourceBytes)
+      });
+      artifactsByPath.set(artifactPath, entries);
+    }
+  }
+
+  return [...artifactsByPath.entries()]
+    .map(([artifactPath, entries]) => ({
+      artifactPath,
+      entries,
+      hashes: [...new Set(entries.map((entry) => entry.hash))]
+    }))
+    .filter((entry) => entry.entries.length > 1 && entry.hashes.length > 1);
 }
 
 async function copyFileFromWorktree({ worktreePath, relativePath, overwrite, dryRun }) {
@@ -298,6 +339,21 @@ async function importBatchRun(options) {
 
   const workers = (run.worker_states ?? []).filter((worker) => worker.status === "succeeded_pending_reconciliation");
   const imported = [];
+
+  if (options.overwrite && !options.allowConflictingOverwrite) {
+    const sharedArtifactConflicts = await detectSharedArtifactConflicts(workers);
+    if (sharedArtifactConflicts.length > 0) {
+      const details = sharedArtifactConflicts
+        .map((conflict) => {
+          const jobs = conflict.entries.map((entry) => `${entry.job_id}:${entry.hash.slice(0, 12)}`).join(", ");
+          return `- ${conflict.artifactPath}: ${jobs}`;
+        })
+        .join("\n");
+      throw new Error(
+        `Multiple workers produced different content for the same artifact path. Reconcile manually or rerun with --allow-conflicting-overwrite if last-worker-wins copying is intended.\n${details}`
+      );
+    }
+  }
 
   for (const worker of workers) {
     if (!worker.worktree_path) {

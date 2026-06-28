@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "result",
+  "id": "dq-dkd-adverse-events-abstract-not-reported",
+  "name": "D+Q DKD pilot adverse-event abstract reporting result",
+  "source_id": "pmid-31542391",
+  "study_id": "dq-diabetic-kidney-disease-pilot",
+  "outcome_id": "dq-dkd-safety-tolerability",
+  "finding_ids": [
+    "dq-dkd-human-senescent-cell-biomarker-signal"
+  ],
+  "intervention_ids": [
+    "dasatinib-quercetin"
+  ],
+  "comparator": "Single-arm open-label pilot; adverse-event counts not reported in PubMed abstract snapshot",
+  "arm_details": "The PubMed EFetch abstract snapshot reports N=9 diabetic kidney disease participants receiving oral dasatinib 100 mg plus quercetin 1000 mg for 3 days, with assessment 11 days after treatment completion, but the retained abstract summary does not report adverse-event counts, serious adverse events, withdrawals, or tolerability rates.",
+  "sample_size": 9,
+  "result_type": "safety_event",
+  "effect": {
+    "measure": "not_reported",
+    "raw_text": "PubMed abstract snapshot gives treatment exposure and biomarker findings, but no adverse-event count or serious-adverse-event statement is present in the retained abstract summary."
+  },
+  "analysis": {
+    "comparison": "Not applicable; single-arm open-label pilot",
+    "effect_note": "This record marks source-snapshot-backed absence of abstract-level safety counts, not absence of adverse events."
+  },
+  "adverse_event": {
+    "preferred_term": "Adverse events",
+    "term_source": "source_text",
+    "seriousness": "not_reported",
+    "severity": "not_reported",
+    "relatedness": "not_reported",
+    "event_specific_counts": [
+      {
+        "arm_id": "dq",
+        "arm_label": "D+Q",
+        "sample_size": 9,
+        "count_status": "not_reported",
+        "raw_value": "not reported in retained PubMed abstract summary",
+        "interpretation": "The source snapshot supports exposure timing but does not provide adverse-event counts in the abstract-level retained summary."
+      }
+    ],
+    "zero_handling": {
+      "control_zero_status": "not_applicable",
+      "supports_comparative_effect": false,
+      "rationale": "The DKD pilot is single-arm and the abstract-level snapshot does not provide event counts; no zero or comparative effect can be inferred."
+    }
+  },
+  "direction": "inconclusive",
+  "evidence_tier": "human_biomarker",
+  "confidence": "low",
+  "maturity_status": "abstract_extracted",
+  "provenance": [
+    {
+      "source_id": "pmid-31542391",
+      "source_snapshot_id": "snapshot-pmid-31542391-pubmed-efetch-2026-06-27",
+      "locator_type": "abstract",
+      "locator": "PubMed PMID 31542391 abstract METHODS and FINDINGS",
+      "status": "abstract_extracted",
+      "note": "PubMed EFetch abstract snapshot supplies N=9, D+Q dose, and 11-day post-treatment assessment but not adverse-event counts or serious-adverse-event outcomes."
+    }
+  ],
+  "statement": "For the DKD pilot, the retained PubMed abstract snapshot supports D+Q exposure and timing but does not report adverse-event counts or a serious-adverse-event outcome; safety extraction remains abstract-limited.",
+  "time_horizon": "3-day D+Q course with assessment 11 days after treatment completion",
+  "caveats": [
+    "Do not interpret this record as evidence that no adverse events occurred.",
+    "Full article or registry extraction is still needed for DKD safety counts and discontinuation details.",
+    "The DKD study is an open-label N=9 biomarker pilot."
+  ],
+  "tags": [
+    "senolytics",
+    "human",
+    "diabetic-kidney-disease",
+    "safety",
+    "adverse-events",
+    "abstract-extracted",
+    "extraction-limited"
+  ]
+}

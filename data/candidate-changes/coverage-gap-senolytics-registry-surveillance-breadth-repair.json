@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "coverage-gap-senolytics-registry-surveillance-breadth-repair",
+  "name": "Senolytics registry-surveillance breadth repair",
+  "summary": "Updates the senolytics coverage assessment to name the deferred fisetin frailty registry candidates NCT03430037 and NCT03675724 and to preserve the blocker that ClinicalTrials.gov source snapshots could not be fetched in this worker. No new extraction-grade registry records were created.",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-28T17:57:08Z",
+  "scope": {
+    "question": "Repair the senolytics active-trials registry breadth gap by sharpening the deferred fisetin and D+Q surveillance boundary while preserving source-snapshot requirements.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "coverage-gap-senolytics-registry-surveillance-breadth-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-repair.json",
+      "change_type": "create",
+      "rationale": "Tracks the bounded self-healing registry-surveillance repair candidate and required review lanes."
+    },
+    {
+      "record_type": "coverage_assessment",
+      "record_id": "senolytics-coverage-repair-2026-06-21",
+      "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+      "change_type": "update",
+      "rationale": "Clarifies that deferred fisetin frailty registries require source-snapshot-backed surveillance and that no extraction-grade no-results records were added because snapshot ingestion was blocked."
+    }
+  ],
+  "required_review_lanes": [
+    "extraction_fidelity",
+    "synthesis_boundary",
+    "taxonomy_mapping"
+  ]
+}

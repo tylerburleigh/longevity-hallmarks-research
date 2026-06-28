@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "parallel_reconciliation",
   "id": "parallel-reconciliation-v1",
-  "generated_at": "2026-06-28T17:47:08.769Z",
+  "generated_at": "2026-06-28T18:13:32.268Z",
   "source_roots": [
     "data",
     "research",
@@ -48,100 +48,102 @@
     "duplicate_source_group_count": 0,
     "study_count": 9,
     "duplicate_study_group_count": 0,
-    "candidate_count": 62,
-    "active_candidate_count": 44,
-    "overlapping_candidate_group_count": 0,
+    "candidate_count": 66,
+    "active_candidate_count": 48,
+    "overlapping_candidate_group_count": 3,
     "source_rights_count": 2,
     "source_rights_conflict_count": 0,
-    "agent_run_count": 69,
-    "parallel_batch_count": 6,
-    "reconciliation_batch_count": 6,
-    "parallel_batch_run_count": 21,
+    "agent_run_count": 73,
+    "parallel_batch_count": 12,
+    "reconciliation_batch_count": 8,
+    "parallel_batch_run_count": 22,
     "pending_parallel_worker_count": 0,
     "reconciliation_decision_count": 8,
     "incomplete_ledger_count": 0,
-    "open_finding_count": 0,
-    "blocking_finding_count": 0,
+    "open_finding_count": 3,
+    "blocking_finding_count": 3,
     "warning_finding_count": 0
   },
   "parallel_batches": [
     {
-      "batch_id": "parallel-batch-001-extraction-refresh",
+      "batch_id": "parallel-batch-001-candidate-review",
+      "parallel_group": "candidate-review",
+      "execution_class": "independent",
+      "reconciliation_required": false,
+      "job_ids": [
+        "self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-extraction-fidelity",
+        "self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-safety-limitations",
+        "self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-synthesis-boundary",
+        "self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-taxonomy-mapping"
+      ],
+      "overlapping_execution_keys": [],
+      "status": "no_reconciliation_needed",
+      "finding_ids": []
+    },
+    {
+      "batch_id": "parallel-batch-002-candidate-review",
+      "parallel_group": "candidate-review",
+      "execution_class": "independent",
+      "reconciliation_required": false,
+      "job_ids": [
+        "self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-repair-extraction-fidelity",
+        "self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-repair-synthesis-boundary",
+        "self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-repair-taxonomy-mapping",
+        "self-healing-candidate-review-coverage-gap-senolytics-review-landscape-repair-extraction-fidelity"
+      ],
+      "overlapping_execution_keys": [],
+      "status": "no_reconciliation_needed",
+      "finding_ids": []
+    },
+    {
+      "batch_id": "parallel-batch-003-candidate-review",
+      "parallel_group": "candidate-review",
+      "execution_class": "independent",
+      "reconciliation_required": false,
+      "job_ids": [
+        "self-healing-candidate-review-coverage-gap-senolytics-review-landscape-repair-synthesis-boundary",
+        "self-healing-candidate-review-coverage-gap-senolytics-review-landscape-repair-taxonomy-mapping",
+        "self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-extraction-fidelity",
+        "self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-safety-limitations"
+      ],
+      "overlapping_execution_keys": [],
+      "status": "no_reconciliation_needed",
+      "finding_ids": []
+    },
+    {
+      "batch_id": "parallel-batch-004-candidate-review",
+      "parallel_group": "candidate-review",
+      "execution_class": "independent",
+      "reconciliation_required": false,
+      "job_ids": [
+        "self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-synthesis-boundary",
+        "self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-taxonomy-mapping"
+      ],
+      "overlapping_execution_keys": [],
+      "status": "no_reconciliation_needed",
+      "finding_ids": []
+    },
+    {
+      "batch_id": "parallel-batch-005-extraction-refresh",
       "parallel_group": "extraction-refresh",
       "execution_class": "reconciliation_required",
       "reconciliation_required": true,
       "job_ids": [
-        "self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-2",
-        "self-healing-coverage-gap-senolytics-registry-surveillance-breadth",
-        "self-healing-coverage-gap-senolytics-review-landscape",
-        "self-healing-coverage-gap-senolytics-safety-tables-followup-2"
+        "self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-3",
+        "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-2",
+        "self-healing-coverage-gap-senolytics-review-landscape-followup-2",
+        "self-healing-coverage-gap-senolytics-safety-tables-followup-3"
       ],
       "overlapping_execution_keys": [
         "path:data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
         "target_record:coverage_assessment/senolytics-coverage-repair-2026-06-21"
       ],
       "status": "reconciliation_open",
-      "finding_ids": []
-    },
-    {
-      "batch_id": "parallel-batch-002-extraction-refresh",
-      "parallel_group": "extraction-refresh",
-      "execution_class": "independent",
-      "reconciliation_required": true,
-      "job_ids": [
-        "self-healing-extraction-debt-dq-ad-risk-cognition-mobility-mixed",
-        "self-healing-extraction-debt-dq-bone-bmd-20wk-inconclusive",
-        "self-healing-extraction-debt-dq-bone-ctx-20wk-null",
-        "self-healing-extraction-debt-dq-bone-headache-20wk-descriptive"
-      ],
-      "overlapping_execution_keys": [],
-      "status": "reconciliation_open",
-      "finding_ids": []
-    },
-    {
-      "batch_id": "parallel-batch-003-extraction-refresh",
-      "parallel_group": "extraction-refresh",
-      "execution_class": "independent",
-      "reconciliation_required": true,
-      "job_ids": [
-        "self-healing-extraction-debt-dq-bone-p16-t3-ctx-2wk-positive",
-        "self-healing-extraction-debt-dq-bone-p16-t3-ctx-4wk-inconclusive",
-        "self-healing-extraction-debt-dq-bone-p16-t3-p1np-2wk-positive",
-        "self-healing-extraction-debt-dq-bone-p16-t3-p1np-4wk-inconclusive"
-      ],
-      "overlapping_execution_keys": [],
-      "status": "reconciliation_open",
-      "finding_ids": []
-    },
-    {
-      "batch_id": "parallel-batch-004-extraction-refresh",
-      "parallel_group": "extraction-refresh",
-      "execution_class": "independent",
-      "reconciliation_required": true,
-      "job_ids": [
-        "self-healing-extraction-debt-dq-bone-p16-t3-radius-bmd-20wk-positive",
-        "self-healing-extraction-debt-dq-bone-p1np-20wk-null",
-        "self-healing-extraction-debt-dq-bone-p1np-2wk-positive",
-        "self-healing-extraction-debt-dq-bone-p1np-4wk-positive"
-      ],
-      "overlapping_execution_keys": [],
-      "status": "reconciliation_open",
-      "finding_ids": []
-    },
-    {
-      "batch_id": "parallel-batch-005-extraction-refresh",
-      "parallel_group": "extraction-refresh",
-      "execution_class": "independent",
-      "reconciliation_required": true,
-      "job_ids": [
-        "self-healing-extraction-debt-dq-bone-sasp-2wk-null",
-        "self-healing-extraction-debt-dq-bone-turnover-mixed",
-        "self-healing-extraction-debt-dq-dkd-biomarker-positive",
-        "self-healing-extraction-debt-dq-ipf-dosing-completion-mixed"
-      ],
-      "overlapping_execution_keys": [],
-      "status": "reconciliation_open",
-      "finding_ids": []
+      "finding_ids": [
+        "overlapping-candidate-8565f8a0ea32",
+        "overlapping-candidate-c921c3f9f3a1",
+        "overlapping-candidate-e7373f983b3c"
+      ]
     },
     {
       "batch_id": "parallel-batch-006-extraction-refresh",
@@ -149,18 +151,268 @@
       "execution_class": "independent",
       "reconciliation_required": true,
       "job_ids": [
+        "self-healing-extraction-debt-dq-ad-risk-cognition-mobility-mixed",
+        "self-healing-extraction-debt-dq-ad-risk-serious-adverse-events-none",
+        "self-healing-extraction-debt-dq-bone-adverse-event-discontinuations-20wk-descriptive",
+        "self-healing-extraction-debt-dq-bone-bmd-20wk-inconclusive"
+      ],
+      "overlapping_execution_keys": [],
+      "status": "reconciliation_open",
+      "finding_ids": [
+        "overlapping-candidate-8565f8a0ea32",
+        "overlapping-candidate-c921c3f9f3a1",
+        "overlapping-candidate-e7373f983b3c"
+      ]
+    },
+    {
+      "batch_id": "parallel-batch-007-extraction-refresh",
+      "parallel_group": "extraction-refresh",
+      "execution_class": "independent",
+      "reconciliation_required": true,
+      "job_ids": [
+        "self-healing-extraction-debt-dq-bone-constipation-20wk-descriptive",
+        "self-healing-extraction-debt-dq-bone-ctx-20wk-null",
+        "self-healing-extraction-debt-dq-bone-diarrhea-20wk-descriptive",
+        "self-healing-extraction-debt-dq-bone-fatigue-20wk-descriptive"
+      ],
+      "overlapping_execution_keys": [],
+      "status": "reconciliation_open",
+      "finding_ids": [
+        "overlapping-candidate-8565f8a0ea32",
+        "overlapping-candidate-c921c3f9f3a1",
+        "overlapping-candidate-e7373f983b3c"
+      ]
+    },
+    {
+      "batch_id": "parallel-batch-008-extraction-refresh",
+      "parallel_group": "extraction-refresh",
+      "execution_class": "independent",
+      "reconciliation_required": true,
+      "job_ids": [
+        "self-healing-extraction-debt-dq-bone-gastrointestinal-reflux-20wk-descriptive",
+        "self-healing-extraction-debt-dq-bone-headache-20wk-descriptive",
+        "self-healing-extraction-debt-dq-bone-nausea-20wk-descriptive",
+        "self-healing-extraction-debt-dq-bone-p16-t3-ctx-2wk-positive"
+      ],
+      "overlapping_execution_keys": [],
+      "status": "reconciliation_open",
+      "finding_ids": [
+        "overlapping-candidate-8565f8a0ea32",
+        "overlapping-candidate-c921c3f9f3a1",
+        "overlapping-candidate-e7373f983b3c"
+      ]
+    },
+    {
+      "batch_id": "parallel-batch-009-extraction-refresh",
+      "parallel_group": "extraction-refresh",
+      "execution_class": "independent",
+      "reconciliation_required": true,
+      "job_ids": [
+        "self-healing-extraction-debt-dq-bone-p16-t3-ctx-4wk-inconclusive",
+        "self-healing-extraction-debt-dq-bone-p16-t3-p1np-2wk-positive",
+        "self-healing-extraction-debt-dq-bone-p16-t3-p1np-4wk-inconclusive",
+        "self-healing-extraction-debt-dq-bone-p16-t3-radius-bmd-20wk-positive"
+      ],
+      "overlapping_execution_keys": [],
+      "status": "reconciliation_open",
+      "finding_ids": [
+        "overlapping-candidate-8565f8a0ea32",
+        "overlapping-candidate-c921c3f9f3a1",
+        "overlapping-candidate-e7373f983b3c"
+      ]
+    },
+    {
+      "batch_id": "parallel-batch-010-extraction-refresh",
+      "parallel_group": "extraction-refresh",
+      "execution_class": "independent",
+      "reconciliation_required": true,
+      "job_ids": [
+        "self-healing-extraction-debt-dq-bone-p1np-20wk-null",
+        "self-healing-extraction-debt-dq-bone-p1np-2wk-positive",
+        "self-healing-extraction-debt-dq-bone-p1np-4wk-positive",
+        "self-healing-extraction-debt-dq-bone-sasp-2wk-null"
+      ],
+      "overlapping_execution_keys": [],
+      "status": "reconciliation_open",
+      "finding_ids": [
+        "overlapping-candidate-8565f8a0ea32",
+        "overlapping-candidate-c921c3f9f3a1",
+        "overlapping-candidate-e7373f983b3c"
+      ]
+    },
+    {
+      "batch_id": "parallel-batch-011-extraction-refresh",
+      "parallel_group": "extraction-refresh",
+      "execution_class": "independent",
+      "reconciliation_required": true,
+      "job_ids": [
+        "self-healing-extraction-debt-dq-bone-turnover-mixed",
+        "self-healing-extraction-debt-dq-bone-vertigo-20wk-descriptive",
+        "self-healing-extraction-debt-dq-dkd-adverse-events-abstract-not-reported",
+        "self-healing-extraction-debt-dq-dkd-biomarker-positive"
+      ],
+      "overlapping_execution_keys": [],
+      "status": "reconciliation_open",
+      "finding_ids": [
+        "overlapping-candidate-8565f8a0ea32",
+        "overlapping-candidate-c921c3f9f3a1",
+        "overlapping-candidate-e7373f983b3c"
+      ]
+    },
+    {
+      "batch_id": "parallel-batch-012-extraction-refresh",
+      "parallel_group": "extraction-refresh",
+      "execution_class": "independent",
+      "reconciliation_required": true,
+      "job_ids": [
+        "self-healing-extraction-debt-dq-ipf-dosing-completion-mixed",
         "self-healing-extraction-debt-dq-ipf-tolerability-mixed",
         "self-healing-extraction-debt-dq-old-mouse-survival-positive"
       ],
       "overlapping_execution_keys": [],
       "status": "reconciliation_open",
-      "finding_ids": []
+      "finding_ids": [
+        "overlapping-candidate-8565f8a0ea32",
+        "overlapping-candidate-c921c3f9f3a1",
+        "overlapping-candidate-e7373f983b3c"
+      ]
     }
   ],
   "duplicate_sources": [],
   "duplicate_studies": [],
-  "overlapping_candidate_proposals": [],
+  "overlapping_candidate_proposals": [
+    {
+      "issue_id": "overlapping-candidate-8565f8a0ea32",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "proposal_key": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+      "candidate_change_ids": [
+        "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+        "coverage-gap-senolytics-registry-surveillance-breadth-repair",
+        "coverage-gap-senolytics-review-landscape-repair",
+        "coverage-gap-senolytics-safety-tables-followup-2-repair"
+      ],
+      "proposed_records": [
+        {
+          "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+          "lifecycle_status": "submitted",
+          "record_type": "coverage_assessment",
+          "record_id": "senolytics-coverage-repair-2026-06-21",
+          "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+          "change_type": "update"
+        },
+        {
+          "candidate_change_id": "coverage-gap-senolytics-registry-surveillance-breadth-repair",
+          "lifecycle_status": "submitted",
+          "record_type": "coverage_assessment",
+          "record_id": "senolytics-coverage-repair-2026-06-21",
+          "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+          "change_type": "update"
+        },
+        {
+          "candidate_change_id": "coverage-gap-senolytics-review-landscape-repair",
+          "lifecycle_status": "submitted",
+          "record_type": "coverage_assessment",
+          "record_id": "senolytics-coverage-repair-2026-06-21",
+          "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+          "change_type": "update"
+        },
+        {
+          "candidate_change_id": "coverage-gap-senolytics-safety-tables-followup-2-repair",
+          "lifecycle_status": "submitted",
+          "record_type": "coverage_assessment",
+          "record_id": "senolytics-coverage-repair-2026-06-21",
+          "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+          "change_type": "update"
+        }
+      ],
+      "summary": "Active candidates propose changes to the same record path: data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-e7373f983b3c",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "proposal_key": "data/outcomes/dq-ipf-feasibility-tolerability.json",
+      "candidate_change_ids": [
+        "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+        "coverage-gap-senolytics-safety-tables-followup-2-repair"
+      ],
+      "proposed_records": [
+        {
+          "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+          "lifecycle_status": "submitted",
+          "record_type": "outcome",
+          "record_id": "dq-ipf-feasibility-tolerability",
+          "path": "data/outcomes/dq-ipf-feasibility-tolerability.json",
+          "change_type": "update"
+        },
+        {
+          "candidate_change_id": "coverage-gap-senolytics-safety-tables-followup-2-repair",
+          "lifecycle_status": "submitted",
+          "record_type": "outcome",
+          "record_id": "dq-ipf-feasibility-tolerability",
+          "path": "data/outcomes/dq-ipf-feasibility-tolerability.json",
+          "change_type": "update"
+        }
+      ],
+      "summary": "Active candidates propose changes to the same record path: data/outcomes/dq-ipf-feasibility-tolerability.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-c921c3f9f3a1",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "proposal_key": "data/results/dq-ipf-tolerability-mixed.json",
+      "candidate_change_ids": [
+        "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+        "coverage-gap-senolytics-safety-tables-followup-2-repair"
+      ],
+      "proposed_records": [
+        {
+          "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+          "lifecycle_status": "submitted",
+          "record_type": "result",
+          "record_id": "dq-ipf-tolerability-mixed",
+          "path": "data/results/dq-ipf-tolerability-mixed.json",
+          "change_type": "update"
+        },
+        {
+          "candidate_change_id": "coverage-gap-senolytics-safety-tables-followup-2-repair",
+          "lifecycle_status": "submitted",
+          "record_type": "result",
+          "record_id": "dq-ipf-tolerability-mixed",
+          "path": "data/results/dq-ipf-tolerability-mixed.json",
+          "change_type": "update"
+        }
+      ],
+      "summary": "Active candidates propose changes to the same record path: data/results/dq-ipf-tolerability-mixed.json."
+    }
+  ],
   "source_rights_conflicts": [],
   "incomplete_ledgers": [],
-  "open_findings": []
+  "open_findings": [
+    {
+      "issue_id": "overlapping-candidate-8565f8a0ea32",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "summary": "Active candidates propose changes to the same record path: data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-c921c3f9f3a1",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "summary": "Active candidates propose changes to the same record path: data/results/dq-ipf-tolerability-mixed.json."
+    },
+    {
+      "issue_id": "overlapping-candidate-e7373f983b3c",
+      "category": "overlapping_candidate_proposal",
+      "severity": "blocker",
+      "status": "open",
+      "summary": "Active candidates propose changes to the same record path: data/outcomes/dq-ipf-feasibility-tolerability.json."
+    }
+  ]
 }

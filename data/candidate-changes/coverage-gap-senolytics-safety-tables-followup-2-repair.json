@@ -1,0 +1,145 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "coverage-gap-senolytics-safety-tables-followup-2-repair",
+  "name": "Senolytics safety-table follow-up extraction repair",
+  "summary": "Adds full-text structured D+Q bone publication-table preferred-term adverse-event rows beyond headache, a registry/article discontinuation result, PubMed source-snapshot-backed IPF and AD-risk safety extraction, and a DKD abstract-limited safety record while keeping full article/table cross-human safety extraction gaps open.",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-28T17:57:22Z",
+  "scope": {
+    "question": "Repair the senolytics safety-table follow-up gap by adding event-specific D+Q bone adverse-event rows, discontinuation count fields, and source-snapshot-backed DKD, IPF, and AD-risk safety extraction where the retained sources support it.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "coverage-gap-senolytics-safety-tables-followup-2-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-safety-tables-followup-2-repair.json",
+      "change_type": "create",
+      "rationale": "Tracks this bounded safety extraction-refresh repair candidate and required review lanes."
+    },
+    {
+      "record_type": "coverage_assessment",
+      "record_id": "senolytics-coverage-repair-2026-06-21",
+      "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+      "change_type": "update",
+      "rationale": "Refreshes the safety_durability coverage state after row-level D+Q bone extraction and source-snapshot-backed human safety extraction progress."
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-dkd-safety-tolerability",
+      "path": "data/outcomes/dq-dkd-safety-tolerability.json",
+      "change_type": "create",
+      "rationale": "Defines the DKD safety extraction boundary supported by the retained PubMed source snapshot."
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-ad-risk-safety-tolerability",
+      "path": "data/outcomes/dq-ad-risk-safety-tolerability.json",
+      "change_type": "create",
+      "rationale": "Defines the AD-risk safety outcome supported by the retained PubMed source snapshot."
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-ipf-feasibility-tolerability",
+      "path": "data/outcomes/dq-ipf-feasibility-tolerability.json",
+      "change_type": "update",
+      "rationale": "Upgrades the legacy IPF safety outcome from triage summary to PubMed source-snapshot-backed abstract extraction."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-diarrhea-20wk-descriptive",
+      "path": "data/results/dq-bone-diarrhea-20wk-descriptive.json",
+      "change_type": "create",
+      "rationale": "Adds the D+Q bone publication-table diarrhea preferred-term row with blank-control zero-handling."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-nausea-20wk-descriptive",
+      "path": "data/results/dq-bone-nausea-20wk-descriptive.json",
+      "change_type": "create",
+      "rationale": "Adds the D+Q bone publication-table nausea preferred-term row with blank-control zero-handling."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-constipation-20wk-descriptive",
+      "path": "data/results/dq-bone-constipation-20wk-descriptive.json",
+      "change_type": "create",
+      "rationale": "Adds the D+Q bone publication-table constipation preferred-term row with blank-control zero-handling."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-gastrointestinal-reflux-20wk-descriptive",
+      "path": "data/results/dq-bone-gastrointestinal-reflux-20wk-descriptive.json",
+      "change_type": "create",
+      "rationale": "Adds the D+Q bone publication-table gastrointestinal reflux preferred-term row with blank-control zero-handling."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-vertigo-20wk-descriptive",
+      "path": "data/results/dq-bone-vertigo-20wk-descriptive.json",
+      "change_type": "create",
+      "rationale": "Adds the D+Q bone publication-table vertigo preferred-term row with blank-control zero-handling."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-fatigue-20wk-descriptive",
+      "path": "data/results/dq-bone-fatigue-20wk-descriptive.json",
+      "change_type": "create",
+      "rationale": "Adds the D+Q bone publication-table fatigue preferred-term row and links it to the withdrawal narrative caveat."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-body-pain-20wk-descriptive",
+      "path": "data/results/dq-bone-body-pain-20wk-descriptive.json",
+      "change_type": "create",
+      "rationale": "Adds the D+Q bone publication-table body-pain preferred-term row with explicit arm counts and calculated imprecise risk ratio."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-bone-adverse-event-discontinuations-20wk-descriptive",
+      "path": "data/results/dq-bone-adverse-event-discontinuations-20wk-descriptive.json",
+      "change_type": "create",
+      "rationale": "Adds registry participant-flow adverse-event discontinuation counts and article withdrawal-narrative provenance for the D+Q and untreated-control arms."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-dkd-adverse-events-abstract-not-reported",
+      "path": "data/results/dq-dkd-adverse-events-abstract-not-reported.json",
+      "change_type": "create",
+      "rationale": "Creates a PubMed source-snapshot-backed DKD safety limitation record where the retained abstract summary does not report adverse-event counts."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-ipf-tolerability-mixed",
+      "path": "data/results/dq-ipf-tolerability-mixed.json",
+      "change_type": "update",
+      "rationale": "Reconciles the legacy IPF generic tolerability result with abstract-located non-serious adverse-event totals, serious-adverse-event relatedness, and sleep/anxiety counts."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-ad-risk-serious-adverse-events-none",
+      "path": "data/results/dq-ad-risk-serious-adverse-events-none.json",
+      "change_type": "create",
+      "rationale": "Adds the AD-risk abstract-reported absence of serious adverse events related to the D+Q intervention."
+    },
+    {
+      "record_type": "synthesis_group",
+      "record_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "path": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+      "change_type": "update",
+      "rationale": "Keeps the D+Q bone safety synthesis boundary current after adding preferred-term and discontinuation results while preserving pooling blockers."
+    }
+  ],
+  "required_review_lanes": [
+    "extraction_fidelity",
+    "safety_limitations",
+    "synthesis_boundary",
+    "taxonomy_mapping"
+  ]
+}

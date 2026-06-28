@@ -3,8 +3,8 @@
   "record_type": "synthesis_group",
   "id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
   "name": "D+Q bone RCT 20-week safety synthesis compatibility",
-  "assessed_at": "2026-06-28T16:27:27Z",
-  "question": "Can the 20-week aggregate, overall table-row, and headache preferred-term adverse-event results from the D+Q postmenopausal bone RCT be pooled for a safety meta-analysis estimate?",
+  "assessed_at": "2026-06-28T17:57:22Z",
+  "question": "Can the 20-week aggregate, overall table-row, preferred-term, and discontinuation adverse-event results from the D+Q postmenopausal bone RCT be pooled for a safety meta-analysis estimate?",
   "track_ids": [
     "senolytics"
   ],
@@ -19,7 +19,7 @@
     "population": "Postmenopausal women in the D+Q and untreated-control arms of one phase 2 randomized trial.",
     "intervention": "Intermittent dasatinib plus quercetin.",
     "comparator": "Untreated control.",
-    "endpoint_family": "Overall adverse events, headache preferred-term adverse event, serious adverse events, withdrawals, and deaths through approximately 20 weeks.",
+    "endpoint_family": "Overall adverse events, publication-table preferred-term adverse events, serious adverse events, withdrawals/discontinuations, and deaths through approximately 20 weeks.",
     "time_horizon": "Baseline to approximately 20 weeks.",
     "effect_metric": "Event-specific risk ratio or risk difference with preferred-term counts and explicit zero/not-reported handling.",
     "variance_model": "No safety pooling model selected because the available records are single-trial and still lack two compatible adverse-event results with defensible comparative effects and uncertainty."
@@ -30,12 +30,20 @@
   "result_ids": [
     "dq-bone-adverse-events-20wk-mixed",
     "dq-bone-adverse-event-terms-20wk-mixed",
-    "dq-bone-headache-20wk-descriptive"
+    "dq-bone-headache-20wk-descriptive",
+    "dq-bone-diarrhea-20wk-descriptive",
+    "dq-bone-nausea-20wk-descriptive",
+    "dq-bone-constipation-20wk-descriptive",
+    "dq-bone-gastrointestinal-reflux-20wk-descriptive",
+    "dq-bone-vertigo-20wk-descriptive",
+    "dq-bone-fatigue-20wk-descriptive",
+    "dq-bone-body-pain-20wk-descriptive",
+    "dq-bone-adverse-event-discontinuations-20wk-descriptive"
   ],
   "compatibility_status": "needs_extraction",
   "pooling_decision": "pooling_blocked",
-  "pooling_rationale": "Pooling remains blocked after adding structured overall publication-table fields to dq-bone-adverse-event-terms-20wk-mixed and registry aggregate other-adverse-event fields to dq-bone-adverse-events-20wk-mixed. The available safety results are from a single trial, the aggregate registry and publication-table overall rows are overlapping summaries, and the headache preferred-term result still preserves a blank control cell that prevents a defensible headache-specific comparative effect.",
-  "non_pooling_reason": "Do not pool safety until adverse events have structured preferred terms, event-specific arm counts with explicit zero/not-reported semantics, a valid comparison, and effect uncertainty from at least two compatible safety results.",
+  "pooling_rationale": "Pooling remains blocked after adding structured publication-table preferred-term rows and registry discontinuation fields. The available safety results are from a single trial, the registry aggregate and publication-table overall rows are overlapping summaries, most preferred-term rows have blank control cells that cannot be converted to zero, and discontinuation reasons are heterogeneous.",
+  "non_pooling_reason": "Do not pool safety until adverse events have compatible endpoint definitions, structured preferred terms, event-specific arm counts with explicit zero/not-reported semantics, a valid comparison, and effect uncertainty from at least two independent compatible safety results.",
   "pooling_requirements": {
     "minimum_result_count": 2,
     "required_result_maturity_statuses": [
@@ -60,11 +68,73 @@
         "result_id": "dq-bone-headache-20wk-descriptive",
         "missing_fields": [
           "effect.value",
-          "effect.uncertainty",
-          "adverse_event.event_specific_counts"
+          "effect.uncertainty"
         ],
         "impact": "blocks_pooling",
         "note": "The term-specific result now has structured adverse_event.preferred_term and arm-level count-status fields. Pooling remains blocked because the control headache cell is blank/ambiguous rather than an explicit event count, and no comparative effect or uncertainty is available."
+      },
+      {
+        "result_id": "dq-bone-diarrhea-20wk-descriptive",
+        "missing_fields": [
+          "effect.value",
+          "effect.uncertainty"
+        ],
+        "impact": "blocks_pooling",
+        "note": "The D+Q diarrhea count is explicit, but the control cell is blank/ambiguous and cannot support a comparative effect without unsupported zero handling."
+      },
+      {
+        "result_id": "dq-bone-nausea-20wk-descriptive",
+        "missing_fields": [
+          "effect.value",
+          "effect.uncertainty"
+        ],
+        "impact": "blocks_pooling",
+        "note": "The D+Q nausea count is explicit, but the control cell is blank/ambiguous and cannot support a comparative effect without unsupported zero handling."
+      },
+      {
+        "result_id": "dq-bone-constipation-20wk-descriptive",
+        "missing_fields": [
+          "effect.value",
+          "effect.uncertainty"
+        ],
+        "impact": "blocks_pooling",
+        "note": "The D+Q constipation count is explicit, but the control cell is blank/ambiguous and cannot support a comparative effect without unsupported zero handling."
+      },
+      {
+        "result_id": "dq-bone-gastrointestinal-reflux-20wk-descriptive",
+        "missing_fields": [
+          "effect.value",
+          "effect.uncertainty"
+        ],
+        "impact": "blocks_pooling",
+        "note": "The D+Q gastrointestinal reflux count is explicit, but the control cell is blank/ambiguous and cannot support a comparative effect without unsupported zero handling."
+      },
+      {
+        "result_id": "dq-bone-vertigo-20wk-descriptive",
+        "missing_fields": [
+          "effect.value",
+          "effect.uncertainty"
+        ],
+        "impact": "blocks_pooling",
+        "note": "The D+Q vertigo count is explicit, but the control cell is blank/ambiguous and cannot support a comparative effect without unsupported zero handling."
+      },
+      {
+        "result_id": "dq-bone-fatigue-20wk-descriptive",
+        "missing_fields": [
+          "effect.value",
+          "effect.uncertainty"
+        ],
+        "impact": "blocks_pooling",
+        "note": "The D+Q fatigue count is explicit, but the control cell is blank/ambiguous and cannot support a comparative effect without unsupported zero handling; the separate fatigue-related withdrawal narrative should not be double-counted."
+      },
+      {
+        "result_id": "dq-bone-adverse-event-discontinuations-20wk-descriptive",
+        "missing_fields": [
+          "effect.value",
+          "effect.uncertainty"
+        ],
+        "impact": "blocks_pooling",
+        "note": "The registry provides explicit adverse-event discontinuation counts, but the result is kept descriptive because control count is zero and discontinuation reasons are heterogeneous."
       }
     ]
   },
@@ -75,6 +145,8 @@
     "self_healing_actions": [
       "The dq-bone-adverse-events-20wk-mixed registry aggregate now has an Other adverse events category term, arm-level counts, risk ratio, and uncertainty derived from explicit ClinicalTrials.gov eventGroup counts.",
       "The dq-bone-adverse-event-terms-20wk-mixed result now has an Overall-row preferred term, arm-level counts, risk ratio, and uncertainty derived from reported table counts.",
+      "Publication-table preferred-term rows beyond headache now have structured result.adverse_event preferred terms and arm-level count-status fields.",
+      "Registry participant-flow discontinuation counts now have a structured adverse-event-discontinuation result with article narrative provenance.",
       "Keep safety pooling blocked until adverse-event records have explicit event counts or explicit zero semantics for every compared arm.",
       "Use result.adverse_event preferred-term and event-specific count fields for future term-level safety extraction.",
       "Create comparative safety effect records only when the extraction process can derive or source risk ratios, risk differences, and uncertainty without unsupported assumptions."

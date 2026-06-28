@@ -1,0 +1,117 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "parallel_batch_run",
+  "id": "parallel-batch-001-extraction-refresh-20260628t175116z",
+  "batch_plan_id": "parallel-batch-plan-v1",
+  "batch_plan_path": "ops/codex-batches/parallel-batch-plan.v1.json",
+  "batch_id": "parallel-batch-001-extraction-refresh",
+  "batch_sequence": 1,
+  "parallel_group": "extraction-refresh",
+  "execution_class": "reconciliation_required",
+  "reconciliation_required": true,
+  "started_at": "2026-06-28T17:51:16.881Z",
+  "status": "succeeded",
+  "log_path": "ops/codex-batches/logs/parallel-batch-001-extraction-refresh-20260628t175116z.jsonl",
+  "worker_states": [
+    {
+      "job_id": "self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-2",
+      "job_path": "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-2.json",
+      "command": [
+        "npm",
+        "run",
+        "agent:codex:worktree",
+        "--",
+        "--job-file",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-2.json",
+        "--execute",
+        "--allow-dirty"
+      ],
+      "status": "succeeded",
+      "started_at": "2026-06-28T17:51:16.883Z",
+      "worktree_path": "/tmp/lhr-codex-worktrees/self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-2-20260628T175116z",
+      "completed_at": "2026-06-28T18:01:55.536Z",
+      "exit_code": 0,
+      "output_path": "research/agent-runs/self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-2.json",
+      "worker_log_path": "research/agent-runs/logs/self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-2.jsonl",
+      "archive_path": "ops/codex-jobs/archive/self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-2.json"
+    },
+    {
+      "job_id": "self-healing-coverage-gap-senolytics-registry-surveillance-breadth",
+      "job_path": "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-registry-surveillance-breadth.json",
+      "command": [
+        "npm",
+        "run",
+        "agent:codex:worktree",
+        "--",
+        "--job-file",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-registry-surveillance-breadth.json",
+        "--execute",
+        "--allow-dirty"
+      ],
+      "status": "succeeded",
+      "started_at": "2026-06-28T17:51:16.883Z",
+      "worktree_path": "/tmp/lhr-codex-worktrees/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-20260628T175116z",
+      "completed_at": "2026-06-28T18:00:48.654Z",
+      "exit_code": 0,
+      "output_path": "research/agent-runs/self-healing-coverage-gap-senolytics-registry-surveillance-breadth.json",
+      "worker_log_path": "research/agent-runs/logs/self-healing-coverage-gap-senolytics-registry-surveillance-breadth.jsonl",
+      "archive_path": "ops/codex-jobs/archive/self-healing-coverage-gap-senolytics-registry-surveillance-breadth.json"
+    },
+    {
+      "job_id": "self-healing-coverage-gap-senolytics-review-landscape",
+      "job_path": "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-review-landscape.json",
+      "command": [
+        "npm",
+        "run",
+        "agent:codex:worktree",
+        "--",
+        "--job-file",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-review-landscape.json",
+        "--execute",
+        "--allow-dirty"
+      ],
+      "status": "succeeded",
+      "started_at": "2026-06-28T17:51:16.883Z",
+      "worktree_path": "/tmp/lhr-codex-worktrees/self-healing-coverage-gap-senolytics-review-landscape-20260628T175116z",
+      "completed_at": "2026-06-28T18:04:43.325Z",
+      "exit_code": 0,
+      "output_path": "research/agent-runs/self-healing-coverage-gap-senolytics-review-landscape.json",
+      "worker_log_path": "research/agent-runs/logs/self-healing-coverage-gap-senolytics-review-landscape.jsonl",
+      "archive_path": "ops/codex-jobs/archive/self-healing-coverage-gap-senolytics-review-landscape.json"
+    },
+    {
+      "job_id": "self-healing-coverage-gap-senolytics-safety-tables-followup-2",
+      "job_path": "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-safety-tables-followup-2.json",
+      "command": [
+        "npm",
+        "run",
+        "agent:codex:worktree",
+        "--",
+        "--job-file",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-safety-tables-followup-2.json",
+        "--execute",
+        "--allow-dirty"
+      ],
+      "status": "succeeded",
+      "started_at": "2026-06-28T17:51:16.883Z",
+      "worktree_path": "/tmp/lhr-codex-worktrees/self-healing-coverage-gap-senolytics-safety-tables-followup-2-20260628T175116z",
+      "completed_at": "2026-06-28T18:10:14.726Z",
+      "exit_code": 0,
+      "output_path": "research/agent-runs/self-healing-coverage-gap-senolytics-safety-tables-followup-2.json",
+      "worker_log_path": "research/agent-runs/logs/self-healing-coverage-gap-senolytics-safety-tables-followup-2.jsonl",
+      "archive_path": "ops/codex-jobs/archive/self-healing-coverage-gap-senolytics-safety-tables-followup-2.json"
+    }
+  ],
+  "summary": {
+    "planned_count": 0,
+    "running_count": 0,
+    "succeeded_count": 4,
+    "pending_reconciliation_count": 0,
+    "failed_count": 0,
+    "archived_count": 4
+  },
+  "next_actions": [
+    "Run npm run verify:knowledge-base after reviewing resulting candidate changes."
+  ],
+  "completed_at": "2026-06-28T18:10:14.727Z"
+}

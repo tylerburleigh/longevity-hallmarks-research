@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "evidence_map",
   "id": "latest-consumer-evidence-map",
-  "generated_at": "2026-06-28T17:47:09.129Z",
+  "generated_at": "2026-06-28T18:13:32.643Z",
   "scope": {
     "description": "Generated consumer evidence graph over canonical source, study, finding, outcome, result, coverage-assessment, and synthesis-group records.",
     "record_types": [
@@ -18,20 +18,20 @@
   "node_counts": {
     "coverage_assessment": 2,
     "finding": 9,
-    "outcome": 20,
-    "result": 22,
+    "outcome": 22,
+    "result": 32,
     "source": 10,
     "study": 9,
     "synthesis_group": 8
   },
   "maturity_counts": {
-    "abstract_extracted": 11,
+    "abstract_extracted": 18,
     "agent_reviewed": 8,
-    "full_text_extracted": 13,
+    "full_text_extracted": 20,
     "metadata_imported": 18,
-    "registry_extracted": 15,
+    "registry_extracted": 16,
     "screened": 6,
-    "triage_summary": 20
+    "triage_summary": 17
   },
   "nodes": [
     {
@@ -96,7 +96,7 @@
       "record_type": "finding",
       "id": "dq-ipf-randomized-feasibility-tolerability-mixed",
       "name": "D+Q IPF randomized pilot primarily supports feasibility and tolerability boundaries",
-      "maturity_status": "triage_summary",
+      "maturity_status": "abstract_extracted",
       "evidence_tier": "human_functional",
       "direction": "mixed",
       "track_ids": [
@@ -186,6 +186,19 @@
       "record_type": "outcome",
       "id": "dq-ad-risk-cognition-mobility",
       "name": "Cognition and mobility in older adults at Alzheimer's disease risk",
+      "maturity_status": "abstract_extracted",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "chronic_inflammation"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "id": "dq-ad-risk-safety-tolerability",
+      "name": "Safety and tolerability in AD-risk D+Q pilot",
       "maturity_status": "abstract_extracted",
       "track_ids": [
         "senolytics"
@@ -365,6 +378,19 @@
     },
     {
       "record_type": "outcome",
+      "id": "dq-dkd-safety-tolerability",
+      "name": "Safety and tolerability in diabetic kidney disease D+Q pilot",
+      "maturity_status": "abstract_extracted",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence",
+        "chronic_inflammation"
+      ]
+    },
+    {
+      "record_type": "outcome",
       "id": "dq-dkd-senescent-cell-biomarkers",
       "name": "Senescent-cell and SASP-related biomarkers in diabetic kidney disease",
       "maturity_status": "abstract_extracted",
@@ -393,7 +419,7 @@
       "record_type": "outcome",
       "id": "dq-ipf-feasibility-tolerability",
       "name": "Feasibility and tolerability in idiopathic pulmonary fibrosis",
-      "maturity_status": "triage_summary",
+      "maturity_status": "abstract_extracted",
       "track_ids": [
         "senolytics"
       ],
@@ -448,6 +474,22 @@
     },
     {
       "record_type": "result",
+      "id": "dq-ad-risk-serious-adverse-events-none",
+      "name": "D+Q AD-risk pilot serious-adverse-event result",
+      "maturity_status": "abstract_extracted",
+      "evidence_tier": "human_functional",
+      "direction": "inconclusive"
+    },
+    {
+      "record_type": "result",
+      "id": "dq-bone-adverse-event-discontinuations-20wk-descriptive",
+      "name": "D+Q 20-week adverse-event discontinuation result",
+      "maturity_status": "registry_extracted",
+      "evidence_tier": "clinical_or_mortality",
+      "direction": "inconclusive"
+    },
+    {
+      "record_type": "result",
       "id": "dq-bone-adverse-event-terms-20wk-mixed",
       "name": "D+Q 20-week adverse-event term table result",
       "maturity_status": "full_text_extracted",
@@ -472,6 +514,22 @@
     },
     {
       "record_type": "result",
+      "id": "dq-bone-body-pain-20wk-descriptive",
+      "name": "D+Q 20-week body-pain adverse-event result",
+      "maturity_status": "full_text_extracted",
+      "evidence_tier": "clinical_or_mortality",
+      "direction": "inconclusive"
+    },
+    {
+      "record_type": "result",
+      "id": "dq-bone-constipation-20wk-descriptive",
+      "name": "D+Q 20-week constipation adverse-event result",
+      "maturity_status": "full_text_extracted",
+      "evidence_tier": "clinical_or_mortality",
+      "direction": "inconclusive"
+    },
+    {
+      "record_type": "result",
       "id": "dq-bone-ctx-20wk-null",
       "name": "D+Q 20-week CTx primary outcome null result",
       "maturity_status": "registry_extracted",
@@ -480,8 +538,40 @@
     },
     {
       "record_type": "result",
+      "id": "dq-bone-diarrhea-20wk-descriptive",
+      "name": "D+Q 20-week diarrhea adverse-event result",
+      "maturity_status": "full_text_extracted",
+      "evidence_tier": "clinical_or_mortality",
+      "direction": "inconclusive"
+    },
+    {
+      "record_type": "result",
+      "id": "dq-bone-fatigue-20wk-descriptive",
+      "name": "D+Q 20-week fatigue adverse-event result",
+      "maturity_status": "full_text_extracted",
+      "evidence_tier": "clinical_or_mortality",
+      "direction": "inconclusive"
+    },
+    {
+      "record_type": "result",
+      "id": "dq-bone-gastrointestinal-reflux-20wk-descriptive",
+      "name": "D+Q 20-week gastrointestinal reflux adverse-event result",
+      "maturity_status": "full_text_extracted",
+      "evidence_tier": "clinical_or_mortality",
+      "direction": "inconclusive"
+    },
+    {
+      "record_type": "result",
       "id": "dq-bone-headache-20wk-descriptive",
       "name": "D+Q 20-week headache adverse-event result",
+      "maturity_status": "full_text_extracted",
+      "evidence_tier": "clinical_or_mortality",
+      "direction": "inconclusive"
+    },
+    {
+      "record_type": "result",
+      "id": "dq-bone-nausea-20wk-descriptive",
+      "name": "D+Q 20-week nausea adverse-event result",
       "maturity_status": "full_text_extracted",
       "evidence_tier": "clinical_or_mortality",
       "direction": "inconclusive"
@@ -568,6 +658,22 @@
     },
     {
       "record_type": "result",
+      "id": "dq-bone-vertigo-20wk-descriptive",
+      "name": "D+Q 20-week vertigo adverse-event result",
+      "maturity_status": "full_text_extracted",
+      "evidence_tier": "clinical_or_mortality",
+      "direction": "inconclusive"
+    },
+    {
+      "record_type": "result",
+      "id": "dq-dkd-adverse-events-abstract-not-reported",
+      "name": "D+Q DKD pilot adverse-event abstract reporting result",
+      "maturity_status": "abstract_extracted",
+      "evidence_tier": "human_biomarker",
+      "direction": "inconclusive"
+    },
+    {
+      "record_type": "result",
       "id": "dq-dkd-biomarker-positive",
       "name": "D+Q diabetic kidney disease senescence biomarker result",
       "maturity_status": "abstract_extracted",
@@ -586,7 +692,7 @@
       "record_type": "result",
       "id": "dq-ipf-tolerability-mixed",
       "name": "D+Q IPF feasibility and tolerability mixed result",
-      "maturity_status": "triage_summary",
+      "maturity_status": "abstract_extracted",
       "evidence_tier": "human_functional",
       "direction": "mixed"
     },
@@ -1203,6 +1309,27 @@
     },
     {
       "from_type": "outcome",
+      "from_id": "dq-ad-risk-safety-tolerability",
+      "to_type": "source",
+      "to_id": "pmid-40010154",
+      "relationship": "defined_from"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-ad-risk-safety-tolerability",
+      "to_type": "study",
+      "to_id": "dq-ad-risk-cognition-mobility-pilot",
+      "relationship": "measured_in"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-ad-risk-safety-tolerability",
+      "to_type": "finding",
+      "to_id": "dq-ad-risk-pilot-cognition-mobility-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "outcome",
       "from_id": "dq-bone-adverse-events-20wk",
       "to_type": "source",
       "to_id": "nct-04313634",
@@ -1472,6 +1599,27 @@
       "from_id": "dq-bone-turnover-marker",
       "to_type": "finding",
       "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-dkd-safety-tolerability",
+      "to_type": "source",
+      "to_id": "pmid-31542391",
+      "relationship": "defined_from"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-dkd-safety-tolerability",
+      "to_type": "study",
+      "to_id": "dq-diabetic-kidney-disease-pilot",
+      "relationship": "measured_in"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "dq-dkd-safety-tolerability",
+      "to_type": "finding",
+      "to_id": "dq-dkd-human-senescent-cell-biomarker-signal",
       "relationship": "supports_finding"
     },
     {
@@ -1630,6 +1778,62 @@
     },
     {
       "from_type": "result",
+      "from_id": "dq-ad-risk-serious-adverse-events-none",
+      "to_type": "study",
+      "to_id": "dq-ad-risk-cognition-mobility-pilot",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-ad-risk-serious-adverse-events-none",
+      "to_type": "source",
+      "to_id": "pmid-40010154",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-ad-risk-serious-adverse-events-none",
+      "to_type": "outcome",
+      "to_id": "dq-ad-risk-safety-tolerability",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-ad-risk-serious-adverse-events-none",
+      "to_type": "finding",
+      "to_id": "dq-ad-risk-pilot-cognition-mobility-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-adverse-event-discontinuations-20wk-descriptive",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-adverse-event-discontinuations-20wk-descriptive",
+      "to_type": "source",
+      "to_id": "nct-04313634",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-adverse-event-discontinuations-20wk-descriptive",
+      "to_type": "outcome",
+      "to_id": "dq-bone-adverse-events-20wk",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-adverse-event-discontinuations-20wk-descriptive",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
       "from_id": "dq-bone-adverse-event-terms-20wk-mixed",
       "to_type": "study",
       "to_id": "dq-postmenopausal-bone-rct",
@@ -1714,6 +1918,62 @@
     },
     {
       "from_type": "result",
+      "from_id": "dq-bone-body-pain-20wk-descriptive",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-body-pain-20wk-descriptive",
+      "to_type": "source",
+      "to_id": "pmid-38956196",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-body-pain-20wk-descriptive",
+      "to_type": "outcome",
+      "to_id": "dq-bone-adverse-events-20wk",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-body-pain-20wk-descriptive",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-constipation-20wk-descriptive",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-constipation-20wk-descriptive",
+      "to_type": "source",
+      "to_id": "pmid-38956196",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-constipation-20wk-descriptive",
+      "to_type": "outcome",
+      "to_id": "dq-bone-adverse-events-20wk",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-constipation-20wk-descriptive",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
       "from_id": "dq-bone-ctx-20wk-null",
       "to_type": "study",
       "to_id": "dq-postmenopausal-bone-rct",
@@ -1742,6 +2002,90 @@
     },
     {
       "from_type": "result",
+      "from_id": "dq-bone-diarrhea-20wk-descriptive",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-diarrhea-20wk-descriptive",
+      "to_type": "source",
+      "to_id": "pmid-38956196",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-diarrhea-20wk-descriptive",
+      "to_type": "outcome",
+      "to_id": "dq-bone-adverse-events-20wk",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-diarrhea-20wk-descriptive",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-fatigue-20wk-descriptive",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-fatigue-20wk-descriptive",
+      "to_type": "source",
+      "to_id": "pmid-38956196",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-fatigue-20wk-descriptive",
+      "to_type": "outcome",
+      "to_id": "dq-bone-adverse-events-20wk",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-fatigue-20wk-descriptive",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-gastrointestinal-reflux-20wk-descriptive",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-gastrointestinal-reflux-20wk-descriptive",
+      "to_type": "source",
+      "to_id": "pmid-38956196",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-gastrointestinal-reflux-20wk-descriptive",
+      "to_type": "outcome",
+      "to_id": "dq-bone-adverse-events-20wk",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-gastrointestinal-reflux-20wk-descriptive",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
       "from_id": "dq-bone-headache-20wk-descriptive",
       "to_type": "study",
       "to_id": "dq-postmenopausal-bone-rct",
@@ -1764,6 +2108,34 @@
     {
       "from_type": "result",
       "from_id": "dq-bone-headache-20wk-descriptive",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-nausea-20wk-descriptive",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-nausea-20wk-descriptive",
+      "to_type": "source",
+      "to_id": "pmid-38956196",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-nausea-20wk-descriptive",
+      "to_type": "outcome",
+      "to_id": "dq-bone-adverse-events-20wk",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-nausea-20wk-descriptive",
       "to_type": "finding",
       "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
       "relationship": "supports_finding"
@@ -2046,6 +2418,62 @@
       "from_id": "dq-bone-turnover-mixed",
       "to_type": "finding",
       "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-vertigo-20wk-descriptive",
+      "to_type": "study",
+      "to_id": "dq-postmenopausal-bone-rct",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-vertigo-20wk-descriptive",
+      "to_type": "source",
+      "to_id": "pmid-38956196",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-vertigo-20wk-descriptive",
+      "to_type": "outcome",
+      "to_id": "dq-bone-adverse-events-20wk",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-bone-vertigo-20wk-descriptive",
+      "to_type": "finding",
+      "to_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-dkd-adverse-events-abstract-not-reported",
+      "to_type": "study",
+      "to_id": "dq-diabetic-kidney-disease-pilot",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-dkd-adverse-events-abstract-not-reported",
+      "to_type": "source",
+      "to_id": "pmid-31542391",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-dkd-adverse-events-abstract-not-reported",
+      "to_type": "outcome",
+      "to_id": "dq-dkd-safety-tolerability",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "dq-dkd-adverse-events-abstract-not-reported",
+      "to_type": "finding",
+      "to_id": "dq-dkd-human-senescent-cell-biomarker-signal",
       "relationship": "supports_finding"
     },
     {
@@ -2528,6 +2956,13 @@
       "from_type": "synthesis_group",
       "from_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
       "to_type": "result",
+      "to_id": "dq-bone-adverse-event-discontinuations-20wk-descriptive",
+      "relationship": "assesses_pooling_compatibility"
+    },
+    {
+      "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "to_type": "result",
       "to_id": "dq-bone-adverse-event-terms-20wk-mixed",
       "relationship": "assesses_pooling_compatibility"
     },
@@ -2542,7 +2977,56 @@
       "from_type": "synthesis_group",
       "from_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
       "to_type": "result",
+      "to_id": "dq-bone-body-pain-20wk-descriptive",
+      "relationship": "assesses_pooling_compatibility"
+    },
+    {
+      "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "to_type": "result",
+      "to_id": "dq-bone-constipation-20wk-descriptive",
+      "relationship": "assesses_pooling_compatibility"
+    },
+    {
+      "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "to_type": "result",
+      "to_id": "dq-bone-diarrhea-20wk-descriptive",
+      "relationship": "assesses_pooling_compatibility"
+    },
+    {
+      "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "to_type": "result",
+      "to_id": "dq-bone-fatigue-20wk-descriptive",
+      "relationship": "assesses_pooling_compatibility"
+    },
+    {
+      "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "to_type": "result",
+      "to_id": "dq-bone-gastrointestinal-reflux-20wk-descriptive",
+      "relationship": "assesses_pooling_compatibility"
+    },
+    {
+      "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "to_type": "result",
       "to_id": "dq-bone-headache-20wk-descriptive",
+      "relationship": "assesses_pooling_compatibility"
+    },
+    {
+      "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "to_type": "result",
+      "to_id": "dq-bone-nausea-20wk-descriptive",
+      "relationship": "assesses_pooling_compatibility"
+    },
+    {
+      "from_type": "synthesis_group",
+      "from_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "to_type": "result",
+      "to_id": "dq-bone-vertigo-20wk-descriptive",
       "relationship": "assesses_pooling_compatibility"
     },
     {

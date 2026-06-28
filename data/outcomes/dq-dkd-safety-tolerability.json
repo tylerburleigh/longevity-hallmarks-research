@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "outcome",
+  "id": "dq-dkd-safety-tolerability",
+  "name": "Safety and tolerability in diabetic kidney disease D+Q pilot",
+  "summary": "Abstract-located safety extraction boundary for the open-label diabetic kidney disease pilot of a 3-day dasatinib plus quercetin course.",
+  "source_id": "pmid-31542391",
+  "study_id": "dq-diabetic-kidney-disease-pilot",
+  "finding_ids": [
+    "dq-dkd-human-senescent-cell-biomarker-signal"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ],
+  "track_ids": [
+    "senolytics"
+  ],
+  "endpoint_category": "safety",
+  "measurement_type": "safety",
+  "measurement_method": "PubMed abstract review for adverse-event reporting and treatment-exposure context",
+  "timepoint": "3-day D+Q course with assessment 11 days after treatment completion",
+  "analysis_role": "safety",
+  "population_or_model": "Adults with diabetic kidney disease",
+  "directionality_preferred": "context_dependent",
+  "maturity_status": "abstract_extracted",
+  "provenance": [
+    {
+      "source_id": "pmid-31542391",
+      "source_snapshot_id": "snapshot-pmid-31542391-pubmed-efetch-2026-06-27",
+      "locator_type": "abstract",
+      "locator": "PubMed PMID 31542391 abstract METHODS and FINDINGS",
+      "status": "abstract_extracted",
+      "note": "PubMed EFetch abstract snapshot supplies N=9, D+Q dose, and assessment timing but does not report adverse-event counts or serious-adverse-event outcomes in the retained abstract summary."
+    }
+  ],
+  "target_hallmark_ids": [
+    "cellular_senescence",
+    "chronic_inflammation"
+  ],
+  "tags": [
+    "senolytics",
+    "human",
+    "safety",
+    "diabetic-kidney-disease",
+    "abstract-extracted"
+  ]
+}

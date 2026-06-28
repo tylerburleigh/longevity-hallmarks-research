@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+  "name": "Repair senolytics exact-effect extraction follow-up coverage state",
+  "summary": "Updates the senolytics coverage assessment to recognize durable PubMed EFetch snapshots for DKD, IPF, and AD-risk abstract-level extraction, and reconciles the legacy IPF generic feasibility/tolerability finding, outcome, and result to the abstract-reported N=12 randomized pilot. The candidate leaves D+Q bone full publication-table and supplement reconciliation, plus full-text DKD/IPF/AD-risk extraction beyond abstracts, as explicit remaining debt.",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-28T17:54:19Z",
+  "scope": {
+    "question": "Refresh the senolytics exact-effect extraction coverage gap after durable PubMed abstract snapshots became available, reconcile the legacy IPF generic outcome/result, and keep D+Q bone publication-table and supplement debt visible.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-2-repair.json",
+      "change_type": "create",
+      "rationale": "Tracks this bounded extraction-refresh repair candidate and its changed canonical-record ledger."
+    },
+    {
+      "record_type": "coverage_assessment",
+      "record_id": "senolytics-coverage-repair-2026-06-21",
+      "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+      "change_type": "update",
+      "rationale": "Refreshes the coverage gap text and provenance to reflect source-snapshot-backed abstract extraction and the remaining full-text/table debt."
+    },
+    {
+      "record_type": "finding",
+      "record_id": "dq-ipf-randomized-feasibility-tolerability-mixed",
+      "path": "data/findings/dq-ipf-randomized-feasibility-tolerability-mixed.json",
+      "change_type": "update",
+      "rationale": "Reconciles the legacy generic IPF finding from triage-level wording to PubMed abstract-located N=12 feasibility and tolerability details."
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-ipf-feasibility-tolerability",
+      "path": "data/outcomes/dq-ipf-feasibility-tolerability.json",
+      "change_type": "update",
+      "rationale": "Reconciles the legacy generic IPF outcome to the abstract-located feasibility, tolerability, dose-completion, and assessment-completion endpoint context."
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-ipf-tolerability-mixed",
+      "path": "data/results/dq-ipf-tolerability-mixed.json",
+      "change_type": "update",
+      "rationale": "Corrects the legacy IPF generic result sample size to N=12 and adds abstract-located D+Q versus placebo safety and feasibility details."
+    }
+  ],
+  "required_review_lanes": [
+    "extraction_fidelity",
+    "safety_limitations",
+    "synthesis_boundary",
+    "taxonomy_mapping"
+  ]
+}

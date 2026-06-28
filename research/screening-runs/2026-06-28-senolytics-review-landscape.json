@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "screening_run",
+  "id": "screening-2026-06-28-senolytics-review-landscape",
+  "name": "Senolytics review-landscape blocked screening",
+  "research_session_id": "2026-06-28-senolytics-review-landscape-repair",
+  "screened_at": "2026-06-28T17:58:29Z",
+  "agent_id": "codex-cli",
+  "scope": {
+    "question": "Screen recent systematic reviews, meta-analyses, trial-landscape reviews, or evidence maps relevant to senolytics and cellular senescence.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "screening_rule_set": "senolytics-review-landscape-coverage-gap-2026-06-28",
+  "search_log_ids": [
+    "search-2026-06-28-senolytics-review-landscape"
+  ],
+  "decisions": [],
+  "included_source_ids": [],
+  "eligibility_decision_ids": [],
+  "candidate_change_id": "coverage-gap-senolytics-review-landscape-repair",
+  "coverage_assessment_id": "senolytics-coverage-repair-2026-06-21",
+  "blocking_issues": [
+    "No authoritative search hits were retrieved because PubMed/NLM DNS resolution was unavailable in the worker environment.",
+    "No candidate source row was supplied by context pack or codex job metadata."
+  ],
+  "summary": "No source was screened into the knowledge base in this run. The screening run records the blocked state so the review-landscape gap remains auditable rather than silently unresolved.",
+  "next_actions": [
+    "Repeat screening from a durable PubMed search log once source retrieval is available.",
+    "Create eligibility decisions only for concrete source records backed by source snapshots."
+  ]
+}

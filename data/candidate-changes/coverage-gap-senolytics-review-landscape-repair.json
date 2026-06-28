@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "coverage-gap-senolytics-review-landscape-repair",
+  "name": "Senolytics review-landscape coverage-gap repair",
+  "summary": "Updates the senolytics coverage assessment and records a blocked no-op search/screening trail to keep the recent systematic-review/meta-analysis landscape gap explicit after a bounded extraction-refresh pass could not add a source-snapshot-backed review source. The repair is partial: no recent systematic review or meta-analysis was screened into the knowledge base because the job supplied no source row or context pack and PubMed snapshot retrieval was unavailable from the worker.",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-28T17:58:29Z",
+  "scope": {
+    "question": "Repair the senolytics review-landscape coverage gap by determining whether a recent systematic-review or meta-analysis source can be screened into the knowledge base.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "coverage-gap-senolytics-review-landscape-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-review-landscape-repair.json",
+      "change_type": "create",
+      "rationale": "Tracks the bounded self-healing repair candidate and required review-lane contract."
+    },
+    {
+      "record_type": "coverage_assessment",
+      "record_id": "senolytics-coverage-repair-2026-06-21",
+      "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+      "change_type": "update",
+      "rationale": "Refreshes the review-landscape category and gap text to preserve the unresolved systematic-review/meta-analysis screening gap and record the source-row/snapshot blocker."
+    },
+    {
+      "record_type": "research_session",
+      "record_id": "2026-06-28-senolytics-review-landscape-repair",
+      "path": "research/sessions/2026-06-28-senolytics-review-landscape-repair.json",
+      "change_type": "create",
+      "rationale": "Records the bounded extraction-refresh session and blocked outcome for the review-landscape gap."
+    },
+    {
+      "record_type": "search_log",
+      "record_id": "search-2026-06-28-senolytics-review-landscape",
+      "path": "research/search-logs/2026-06-28-senolytics-review-landscape.json",
+      "change_type": "create",
+      "rationale": "Records the attempted PubMed review-landscape query and the worker-network blocker."
+    },
+    {
+      "record_type": "screening_run",
+      "record_id": "screening-2026-06-28-senolytics-review-landscape",
+      "path": "research/screening-runs/2026-06-28-senolytics-review-landscape.json",
+      "change_type": "create",
+      "rationale": "Records that no search hits could be screened into the knowledge base during this bounded pass."
+    }
+  ],
+  "required_review_lanes": [
+    "extraction_fidelity",
+    "synthesis_boundary",
+    "taxonomy_mapping"
+  ]
+}

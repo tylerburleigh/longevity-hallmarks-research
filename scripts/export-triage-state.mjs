@@ -617,10 +617,16 @@ function buildPartialOrFailedAgentRuns({ agentRunEntries, candidateEntries }) {
       }
       const candidateId = entry.record.outputs?.candidate_change_id;
       const candidate = candidateById.get(candidateId);
+      const postVerifyPassed = (entry.record.quality_checks ?? []).some(
+        (check) => check.check_name === "post_verify" && check.status === "passed"
+      );
+      if (postVerifyPassed && entry.record.canonical_write_policy === "candidate_change_required") {
+        return false;
+      }
       if (
         !candidateId &&
         entry.record.canonical_write_policy === "no_canonical_writes" &&
-        (entry.record.quality_checks ?? []).some((check) => check.check_name === "post_verify" && check.status === "passed")
+        postVerifyPassed
       ) {
         return false;
       }

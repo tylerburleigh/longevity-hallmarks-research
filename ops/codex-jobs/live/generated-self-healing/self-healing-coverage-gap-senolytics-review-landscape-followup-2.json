@@ -1,17 +1,17 @@
 {
   "schema_version": "1.0.0",
   "record_type": "codex_job",
-  "id": "self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-2",
-  "name": "Self-healing repair: coverage-gap-senolytics-exact-effect-extraction-followup-2",
-  "summary": "DKD and AD-risk human studies now have PubMed abstract-located sample, dosing, timepoint, and effect details, and IPF has an abstract-located dosing-completion result plus corrected randomized-pilot sample size. However, durable source snapshots could not be created in this worker, the legacy IPF generic outcome/result still needs reconciliation, and the D+Q bone RCT still needs full publication table and supplement reconciliation.",
+  "id": "self-healing-coverage-gap-senolytics-review-landscape-followup-2",
+  "name": "Self-healing repair: coverage-gap-senolytics-review-landscape-followup-2",
+  "summary": "No recent systematic-review or meta-analysis source has been screened into the knowledge base. This bounded batch did not close the gap because the job supplied no source row or context pack and PubMed/NLM retrieval was unavailable from the worker environment.",
   "lifecycle_status": "ready",
   "agent_role": "extraction_agent",
   "mode": "extraction_refresh",
   "prompt_file": "docs/prompts/codex-agents/extraction-refresh.md",
-  "output_path": "research/agent-runs/self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-2.json",
-  "jsonl_log_path": "research/agent-runs/logs/self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-2.jsonl",
+  "output_path": "research/agent-runs/self-healing-coverage-gap-senolytics-review-landscape-followup-2.json",
+  "jsonl_log_path": "research/agent-runs/logs/self-healing-coverage-gap-senolytics-review-landscape-followup-2.jsonl",
   "scope": {
-    "question": "extraction_refresh: DKD and AD-risk human studies now have PubMed abstract-located sample, dosing, timepoint, and effect details, and IPF has an abstract-located dosing-completion result plus corrected randomized-pilot sample size. However, durable source snapshots could not be created in this worker, the legacy IPF generic outcome/result still needs reconciliation, and the D+Q bone RCT still needs full publication table and supplement reconciliation.",
+    "question": "extraction_refresh: No recent systematic-review or meta-analysis source has been screened into the knowledge base. This bounded batch did not close the gap because the job supplied no source row or context pack and PubMed/NLM retrieval was unavailable from the worker environment.",
     "hallmark_ids": [
       "cellular_senescence"
     ],
@@ -30,7 +30,7 @@
   },
   "expected_outputs": {
     "canonical_write_policy": "candidate_change_required",
-    "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+    "candidate_change_id": "coverage-gap-senolytics-review-landscape-followup-2-repair",
     "required_review_lanes": [
       "extraction_fidelity",
       "synthesis_boundary",
@@ -41,18 +41,18 @@
     "read_sets": [
       "path:data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
       "path:ops/triage-state.v1.json",
-      "triage_job:coverage-gap-senolytics-exact-effect-extraction-followup-2"
+      "triage_job:coverage-gap-senolytics-review-landscape-followup-2"
     ],
     "write_sets": [
-      "candidate_change:coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
-      "path:data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-2-repair.json",
+      "candidate_change:coverage-gap-senolytics-review-landscape-followup-2-repair",
+      "path:data/candidate-changes/coverage-gap-senolytics-review-landscape-followup-2-repair.json",
       "path:data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
       "target_record:coverage_assessment/senolytics-coverage-repair-2026-06-21"
     ],
     "conflict_keys": [
-      "candidate_change:coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+      "candidate_change:coverage-gap-senolytics-review-landscape-followup-2-repair",
       "target_record:coverage_assessment/senolytics-coverage-repair-2026-06-21",
-      "triage_job:coverage-gap-senolytics-exact-effect-extraction-followup-2"
+      "triage_job:coverage-gap-senolytics-review-landscape-followup-2"
     ],
     "parallel_group": "extraction-refresh",
     "reconciliation_required": true,
@@ -77,7 +77,7 @@
     "candidate_agent_run_ledger_match"
   ],
   "notes": [
-    "Generated from ops/triage-state.v1.json recommended_jobs[] item coverage-gap-senolytics-exact-effect-extraction-followup-2.",
+    "Generated from ops/triage-state.v1.json recommended_jobs[] item coverage-gap-senolytics-review-landscape-followup-2.",
     "Source queue: coverage_gap.",
     "The worker should keep edits bounded to the target record, listed inputs, and the candidate repair ledger."
   ]

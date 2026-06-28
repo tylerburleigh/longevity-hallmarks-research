@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "research_session",
+  "id": "2026-06-28-senolytics-review-landscape-repair",
+  "name": "Senolytics review-landscape coverage-gap repair",
+  "mode": "extraction_refresh",
+  "started_at": "2026-06-28T17:51:16Z",
+  "completed_at": "2026-06-28T17:58:29Z",
+  "scope": {
+    "question": "Can the senolytics track add a recent systematic-review or meta-analysis source to repair the review-landscape coverage gap?",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "selected_via": "queue_default",
+  "outcome": "candidate_change_submitted",
+  "summary": "Submitted a partial candidate that preserves the review-landscape gap and records a blocked no-op search/screening trail. No source-snapshot-backed systematic-review or meta-analysis source was added because the job supplied no context pack or source row and PubMed snapshot retrieval was unavailable from the worker environment.",
+  "candidate_change_id": "coverage-gap-senolytics-review-landscape-repair",
+  "next_recommended_mode": "extraction_refresh",
+  "search_log": [
+    {
+      "source_name": "PubMed ESearch",
+      "query": "(senolytics OR senolytic OR senotherapeutic) AND (systematic review OR meta-analysis OR trial-landscape review)",
+      "checked_at": "2026-06-28T17:58:29Z",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/?term=%28senolytics%20OR%20senolytic%20OR%20senotherapeutic%29%20AND%20%28systematic%20review%20OR%20meta-analysis%20OR%20trial-landscape%20review%29",
+      "summary": "The worker attempted to reach PubMed/NLM tooling but DNS resolution was unavailable, so no PubMed hit list or source snapshot could be created in this pass."
+    }
+  ]
+}

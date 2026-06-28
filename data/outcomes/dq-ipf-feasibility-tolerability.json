@@ -3,7 +3,7 @@
   "record_type": "outcome",
   "id": "dq-ipf-feasibility-tolerability",
   "name": "Feasibility and tolerability in idiopathic pulmonary fibrosis",
-  "summary": "Safety and feasibility outcome for intermittent dasatinib plus quercetin in an IPF randomized pilot.",
+  "summary": "Abstract-located safety and feasibility outcome for intermittent dasatinib plus quercetin in an IPF randomized pilot.",
   "source_id": "pmid-36857968",
   "study_id": "dq-ipf-randomized-pilot",
   "finding_ids": [
@@ -18,7 +18,8 @@
   ],
   "endpoint_category": "safety",
   "measurement_type": "safety",
-  "measurement_method": "Pilot-trial feasibility, tolerability, and adverse-event assessment",
+  "measurement_method": "PubMed abstract-reported adverse events, serious-adverse-event relatedness, scheduled-dose completion, and planned-assessment completion",
+  "timepoint": "3-week intervention period and planned pilot assessments",
   "analysis_role": "primary",
   "population_or_model": "Adults with idiopathic pulmonary fibrosis",
   "directionality_preferred": "context_dependent",
@@ -28,14 +29,14 @@
     "safety",
     "pilot"
   ],
-  "maturity_status": "triage_summary",
+  "maturity_status": "abstract_extracted",
   "provenance": [
     {
       "source_id": "pmid-36857968",
-      "locator_type": "derived_record",
-      "locator": "outcome dq-ipf-feasibility-tolerability derived from pmid-36857968",
-      "status": "triage_summary",
-      "note": "Triage-level generated record pending source-located extraction.",
+      "locator_type": "abstract",
+      "locator": "PubMed PMID 36857968 abstract METHODS, FINDINGS, and INTERPRETATION",
+      "status": "abstract_extracted",
+      "note": "PubMed EFetch abstract snapshot reports 1:1 randomization, D+Q dosing, exact dose/assessment completion, non-serious adverse-event totals, sleep disturbance/anxiety participant counts, no serious adverse events related to D+Q, and pilot interpretation.",
       "source_snapshot_id": "snapshot-pmid-36857968-pubmed-efetch-2026-06-27"
     }
   ],

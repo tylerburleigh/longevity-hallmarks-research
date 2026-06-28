@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "release_readiness",
   "id": "release-readiness-v1",
-  "generated_at": "2026-06-28T17:47:08.371Z",
+  "generated_at": "2026-06-28T18:13:31.860Z",
   "source_roots": [
     "data",
     "research"
@@ -17,15 +17,15 @@
     "canonical_source_of_truth": "data/ and research/ JSON records"
   },
   "summary": {
-    "candidate_count": 62,
-    "not_ready_candidate_count": 47,
+    "candidate_count": 66,
+    "not_ready_candidate_count": 51,
     "promotion_ready_candidate_count": 0,
-    "release_ready_candidate_count": 15,
-    "partial_release_ready_candidate_count": 0,
-    "release_blocked_candidate_count": 0,
+    "release_ready_candidate_count": 10,
+    "partial_release_ready_candidate_count": 5,
+    "release_blocked_candidate_count": 5,
     "accepted_or_applied_candidate_count": 15,
-    "accepted_record_count": 89,
-    "blocked_accepted_record_count": 0
+    "accepted_record_count": 88,
+    "blocked_accepted_record_count": 5
   },
   "promotion_ready_candidate_ids": [],
   "release_ready_candidate_ids": [
@@ -34,18 +34,19 @@
     "candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair",
     "coverage-gap-senolytics-exact-effect-extraction-repair",
     "coverage-gap-senolytics-safety-tables-repair",
-    "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair",
-    "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
-    "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
-    "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
-    "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
     "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
     "senolytics-dq-bone-registry-text-snapshot-2026-06-22",
     "senolytics-dq-bone-release-anchor-2026-06-22",
     "senolytics-dq-bone-source-rights-seed-2026-06-22",
     "senolytics-pubmed-snapshot-provenance-2026-06-27"
   ],
-  "release_blocked_candidate_ids": [],
+  "release_blocked_candidate_ids": [
+    "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair",
+    "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
+    "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
+    "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
+    "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
+  ],
   "candidate_release_statuses": [
     {
       "candidate_change_id": "agent-run-recovery-self-healing-candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
@@ -905,6 +906,28 @@
       ]
     },
     {
+      "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-2-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "needs_review",
+      "release_status": "not_ready",
+      "required_review_lanes": [
+        "extraction_fidelity",
+        "safety_limitations",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "active_review_ids": [],
+      "proposed_record_count": 5,
+      "release_ready_record_count": 0,
+      "blocked_record_count": 0,
+      "release_ready_record_ids": [],
+      "blocked_record_ids": [],
+      "next_actions": [
+        "Run supervisor review lanes: extraction_fidelity, safety_limitations, synthesis_boundary, taxonomy_mapping."
+      ]
+    },
+    {
       "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-repair",
       "path": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-repair.json",
       "lifecycle_status": "accepted",
@@ -944,6 +967,70 @@
       ]
     },
     {
+      "candidate_change_id": "coverage-gap-senolytics-registry-surveillance-breadth-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "needs_review",
+      "release_status": "not_ready",
+      "required_review_lanes": [
+        "extraction_fidelity",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "active_review_ids": [],
+      "proposed_record_count": 2,
+      "release_ready_record_count": 0,
+      "blocked_record_count": 0,
+      "release_ready_record_ids": [],
+      "blocked_record_ids": [],
+      "next_actions": [
+        "Run supervisor review lanes: extraction_fidelity, synthesis_boundary, taxonomy_mapping."
+      ]
+    },
+    {
+      "candidate_change_id": "coverage-gap-senolytics-review-landscape-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-review-landscape-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "needs_review",
+      "release_status": "not_ready",
+      "required_review_lanes": [
+        "extraction_fidelity",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "active_review_ids": [],
+      "proposed_record_count": 5,
+      "release_ready_record_count": 0,
+      "blocked_record_count": 0,
+      "release_ready_record_ids": [],
+      "blocked_record_ids": [],
+      "next_actions": [
+        "Run supervisor review lanes: extraction_fidelity, synthesis_boundary, taxonomy_mapping."
+      ]
+    },
+    {
+      "candidate_change_id": "coverage-gap-senolytics-safety-tables-followup-2-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-safety-tables-followup-2-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "needs_review",
+      "release_status": "not_ready",
+      "required_review_lanes": [
+        "extraction_fidelity",
+        "safety_limitations",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "active_review_ids": [],
+      "proposed_record_count": 17,
+      "release_ready_record_count": 0,
+      "blocked_record_count": 0,
+      "release_ready_record_ids": [],
+      "blocked_record_ids": [],
+      "next_actions": [
+        "Run supervisor review lanes: extraction_fidelity, safety_limitations, synthesis_boundary, taxonomy_mapping."
+      ]
+    },
+    {
       "candidate_change_id": "coverage-gap-senolytics-safety-tables-repair",
       "path": "data/candidate-changes/coverage-gap-senolytics-safety-tables-repair.json",
       "lifecycle_status": "accepted",
@@ -978,7 +1065,7 @@
       "path": "data/candidate-changes/extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair.json",
       "lifecycle_status": "accepted",
       "readiness_status": "accepted",
-      "release_status": "release_ready",
+      "release_status": "partial_release_ready",
       "required_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
@@ -992,16 +1079,18 @@
         "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair-taxonomy-mapping"
       ],
       "proposed_record_count": 3,
-      "release_ready_record_count": 3,
-      "blocked_record_count": 0,
+      "release_ready_record_count": 2,
+      "blocked_record_count": 1,
       "release_ready_record_ids": [
         "dq-bone-adverse-event-terms-20wk-mixed",
-        "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair",
+        "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair"
+      ],
+      "blocked_record_ids": [
         "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21"
       ],
-      "blocked_record_ids": [],
       "next_actions": [
-        "Included in accepted-record export."
+        "Included records without blockers are eligible for accepted-record export.",
+        "Resolve blocked records before treating the whole candidate as fully released: synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21."
       ]
     },
     {
@@ -1009,7 +1098,7 @@
       "path": "data/candidate-changes/extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.json",
       "lifecycle_status": "accepted",
       "readiness_status": "accepted",
-      "release_status": "release_ready",
+      "release_status": "partial_release_ready",
       "required_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
@@ -1023,17 +1112,19 @@
         "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-taxonomy-mapping"
       ],
       "proposed_record_count": 4,
-      "release_ready_record_count": 4,
-      "blocked_record_count": 0,
+      "release_ready_record_count": 3,
+      "blocked_record_count": 1,
       "release_ready_record_ids": [
         "dq-bone-adverse-events-20wk-mixed",
         "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
-        "senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21",
+        "senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21"
+      ],
+      "blocked_record_ids": [
         "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21"
       ],
-      "blocked_record_ids": [],
       "next_actions": [
-        "Included in accepted-record export."
+        "Included records without blockers are eligible for accepted-record export.",
+        "Resolve blocked records before treating the whole candidate as fully released: synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21."
       ]
     },
     {
@@ -1163,7 +1254,7 @@
       "path": "data/candidate-changes/senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21.json",
       "lifecycle_status": "accepted",
       "readiness_status": "accepted",
-      "release_status": "release_ready",
+      "release_status": "partial_release_ready",
       "required_review_lanes": [
         "safety_limitations",
         "synthesis_boundary",
@@ -1175,20 +1266,22 @@
         "senolytics-dq-bone-endpoint-taxonomy-mapping-2026-06-21"
       ],
       "proposed_record_count": 7,
-      "release_ready_record_count": 7,
-      "blocked_record_count": 0,
+      "release_ready_record_count": 6,
+      "blocked_record_count": 1,
       "release_ready_record_ids": [
         "senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21",
         "senolytics-dq-bone-ctx-20wk-synthesis-compatibility-2026-06-21",
         "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
         "senolytics-dq-bone-p1np-20wk-synthesis-compatibility-2026-06-21",
         "senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21",
-        "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
         "senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21"
       ],
-      "blocked_record_ids": [],
+      "blocked_record_ids": [
+        "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21"
+      ],
       "next_actions": [
-        "Included in accepted-record export."
+        "Included records without blockers are eligible for accepted-record export.",
+        "Resolve blocked records before treating the whole candidate as fully released: synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21."
       ]
     },
     {
@@ -1196,7 +1289,7 @@
       "path": "data/candidate-changes/senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23.json",
       "lifecycle_status": "accepted",
       "readiness_status": "accepted",
-      "release_status": "release_ready",
+      "release_status": "partial_release_ready",
       "required_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
@@ -1210,16 +1303,18 @@
         "senolytics-dq-bone-headache-ae-taxonomy-mapping-2026-06-23"
       ],
       "proposed_record_count": 3,
-      "release_ready_record_count": 3,
-      "blocked_record_count": 0,
+      "release_ready_record_count": 2,
+      "blocked_record_count": 1,
       "release_ready_record_ids": [
         "dq-bone-headache-20wk-descriptive",
-        "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
+        "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23"
+      ],
+      "blocked_record_ids": [
         "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21"
       ],
-      "blocked_record_ids": [],
       "next_actions": [
-        "Included in accepted-record export."
+        "Included records without blockers are eligible for accepted-record export.",
+        "Resolve blocked records before treating the whole candidate as fully released: synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21."
       ]
     },
     {
@@ -1227,7 +1322,7 @@
       "path": "data/candidate-changes/senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22.json",
       "lifecycle_status": "accepted",
       "readiness_status": "accepted",
-      "release_status": "release_ready",
+      "release_status": "partial_release_ready",
       "required_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
@@ -1243,8 +1338,8 @@
         "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping"
       ],
       "proposed_record_count": 19,
-      "release_ready_record_count": 19,
-      "blocked_record_count": 0,
+      "release_ready_record_count": 18,
+      "blocked_record_count": 1,
       "release_ready_record_ids": [
         "dq-bone-adverse-event-terms-20wk-mixed",
         "dq-bone-p16-t3-ctx-2wk",
@@ -1261,14 +1356,16 @@
         "pmid-38956196",
         "senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22",
         "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
-        "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
         "snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
         "source-rights-pmid-38956196-2026-06-22",
         "text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22"
       ],
-      "blocked_record_ids": [],
+      "blocked_record_ids": [
+        "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21"
+      ],
       "next_actions": [
-        "Included in accepted-record export."
+        "Included records without blockers are eligible for accepted-record export.",
+        "Resolve blocked records before treating the whole candidate as fully released: synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21."
       ]
     },
     {
@@ -2828,26 +2925,6 @@
     },
     {
       "record_type": "synthesis_group",
-      "record_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
-      "path": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
-      "release_status": "accepted",
-      "candidate_change_ids": [
-        "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair",
-        "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
-        "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
-        "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
-        "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22"
-      ],
-      "candidate_lifecycle_statuses": [
-        "accepted"
-      ],
-      "change_types": [
-        "create",
-        "update"
-      ]
-    },
-    {
-      "record_type": "synthesis_group",
       "record_id": "senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21",
       "path": "data/synthesis-groups/senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21.json",
       "release_status": "accepted",
@@ -2892,5 +2969,216 @@
       ]
     }
   ],
-  "blocked_accepted_records": []
+  "blocked_accepted_records": [
+    {
+      "record_type": "synthesis_group",
+      "record_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "path": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+      "change_type": "update",
+      "candidate_change_id": "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair",
+      "candidate_lifecycle_status": "accepted",
+      "blockers": [
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-diarrhea-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-nausea-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-constipation-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-gastrointestinal-reflux-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-vertigo-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-fatigue-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-body-pain-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-adverse-event-discontinuations-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        }
+      ]
+    },
+    {
+      "record_type": "synthesis_group",
+      "record_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "path": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+      "change_type": "update",
+      "candidate_change_id": "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
+      "candidate_lifecycle_status": "accepted",
+      "blockers": [
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-diarrhea-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-nausea-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-constipation-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-gastrointestinal-reflux-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-vertigo-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-fatigue-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-body-pain-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-adverse-event-discontinuations-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        }
+      ]
+    },
+    {
+      "record_type": "synthesis_group",
+      "record_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "path": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+      "change_type": "create",
+      "candidate_change_id": "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
+      "candidate_lifecycle_status": "accepted",
+      "blockers": [
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-diarrhea-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-nausea-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-constipation-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-gastrointestinal-reflux-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-vertigo-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-fatigue-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-body-pain-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-adverse-event-discontinuations-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        }
+      ]
+    },
+    {
+      "record_type": "synthesis_group",
+      "record_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "path": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+      "change_type": "update",
+      "candidate_change_id": "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
+      "candidate_lifecycle_status": "accepted",
+      "blockers": [
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-diarrhea-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-nausea-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-constipation-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-gastrointestinal-reflux-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-vertigo-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-fatigue-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-body-pain-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-adverse-event-discontinuations-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        }
+      ]
+    },
+    {
+      "record_type": "synthesis_group",
+      "record_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "path": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+      "change_type": "update",
+      "candidate_change_id": "senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22",
+      "candidate_lifecycle_status": "accepted",
+      "blockers": [
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-diarrhea-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-nausea-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-constipation-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-gastrointestinal-reflux-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-vertigo-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-fatigue-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-body-pain-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        },
+        {
+          "blocker_type": "unaccepted_dependency",
+          "message": "synthesis_group:senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21 depends on result:dq-bone-adverse-event-discontinuations-20wk-descriptive through result_ids, but that record is not proposed by an accepted or applied candidate."
+        }
+      ]
+    }
+  ]
 }

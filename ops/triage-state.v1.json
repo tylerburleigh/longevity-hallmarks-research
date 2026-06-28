@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "triage_state",
   "id": "triage-state-v1",
-  "generated_at": "2026-06-28T17:47:08.247Z",
+  "generated_at": "2026-06-28T18:13:31.737Z",
   "source_roots": [
     "data",
     "research"
@@ -66,9 +66,9 @@
     }
   ],
   "summary": {
-    "candidate_count": 62,
+    "candidate_count": 66,
     "promotion_ready_count": 0,
-    "needs_review_count": 0,
+    "needs_review_count": 4,
     "needs_revision_count": 0,
     "blocked_count": 0,
     "accepted_count": 15,
@@ -76,11 +76,11 @@
     "rejected_count": 3,
     "coverage_gap_count": 4,
     "high_priority_coverage_gap_count": 2,
-    "extraction_debt_count": 39,
+    "extraction_debt_count": 54,
     "stale_snapshot_count": 0,
     "watch_snapshot_count": 0,
     "partial_or_failed_agent_run_count": 0,
-    "recommended_job_count": 22
+    "recommended_job_count": 35
   },
   "candidate_readiness": [
     {
@@ -1001,6 +1001,34 @@
       "next_actions": []
     },
     {
+      "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-2-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "needs_review",
+      "required_review_lanes": [
+        "extraction_fidelity",
+        "safety_limitations",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "active_review_ids": [],
+      "active_review_paths": [],
+      "complete_accepting_review_lanes": [],
+      "missing_review_lanes": [
+        "extraction_fidelity",
+        "safety_limitations",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 5,
+      "next_actions": [
+        "Run supervisor review lanes: extraction_fidelity, safety_limitations, synthesis_boundary, taxonomy_mapping."
+      ]
+    },
+    {
       "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-repair",
       "path": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-repair.json",
       "lifecycle_status": "accepted",
@@ -1031,6 +1059,86 @@
       "open_major_or_critical_review_ids": [],
       "proposed_record_count": 13,
       "next_actions": []
+    },
+    {
+      "candidate_change_id": "coverage-gap-senolytics-registry-surveillance-breadth-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "needs_review",
+      "required_review_lanes": [
+        "extraction_fidelity",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "active_review_ids": [],
+      "active_review_paths": [],
+      "complete_accepting_review_lanes": [],
+      "missing_review_lanes": [
+        "extraction_fidelity",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 2,
+      "next_actions": [
+        "Run supervisor review lanes: extraction_fidelity, synthesis_boundary, taxonomy_mapping."
+      ]
+    },
+    {
+      "candidate_change_id": "coverage-gap-senolytics-review-landscape-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-review-landscape-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "needs_review",
+      "required_review_lanes": [
+        "extraction_fidelity",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "active_review_ids": [],
+      "active_review_paths": [],
+      "complete_accepting_review_lanes": [],
+      "missing_review_lanes": [
+        "extraction_fidelity",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 5,
+      "next_actions": [
+        "Run supervisor review lanes: extraction_fidelity, synthesis_boundary, taxonomy_mapping."
+      ]
+    },
+    {
+      "candidate_change_id": "coverage-gap-senolytics-safety-tables-followup-2-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-safety-tables-followup-2-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "needs_review",
+      "required_review_lanes": [
+        "extraction_fidelity",
+        "safety_limitations",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "active_review_ids": [],
+      "active_review_paths": [],
+      "complete_accepting_review_lanes": [],
+      "missing_review_lanes": [
+        "extraction_fidelity",
+        "safety_limitations",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 17,
+      "next_actions": [
+        "Run supervisor review lanes: extraction_fidelity, safety_limitations, synthesis_boundary, taxonomy_mapping."
+      ]
     },
     {
       "candidate_change_id": "coverage-gap-senolytics-safety-tables-repair",
@@ -1611,6 +1719,90 @@
   "promotion_ready_candidate_ids": [],
   "missing_review_lane_queue": [
     {
+      "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-2-repair.json",
+      "review_lane": "extraction_fidelity",
+      "next_action": "Run extraction_fidelity supervisor review for coverage-gap-senolytics-exact-effect-extraction-followup-2-repair."
+    },
+    {
+      "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-2-repair.json",
+      "review_lane": "safety_limitations",
+      "next_action": "Run safety_limitations supervisor review for coverage-gap-senolytics-exact-effect-extraction-followup-2-repair."
+    },
+    {
+      "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-2-repair.json",
+      "review_lane": "synthesis_boundary",
+      "next_action": "Run synthesis_boundary supervisor review for coverage-gap-senolytics-exact-effect-extraction-followup-2-repair."
+    },
+    {
+      "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-2-repair.json",
+      "review_lane": "taxonomy_mapping",
+      "next_action": "Run taxonomy_mapping supervisor review for coverage-gap-senolytics-exact-effect-extraction-followup-2-repair."
+    },
+    {
+      "candidate_change_id": "coverage-gap-senolytics-registry-surveillance-breadth-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-repair.json",
+      "review_lane": "extraction_fidelity",
+      "next_action": "Run extraction_fidelity supervisor review for coverage-gap-senolytics-registry-surveillance-breadth-repair."
+    },
+    {
+      "candidate_change_id": "coverage-gap-senolytics-registry-surveillance-breadth-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-repair.json",
+      "review_lane": "synthesis_boundary",
+      "next_action": "Run synthesis_boundary supervisor review for coverage-gap-senolytics-registry-surveillance-breadth-repair."
+    },
+    {
+      "candidate_change_id": "coverage-gap-senolytics-registry-surveillance-breadth-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-repair.json",
+      "review_lane": "taxonomy_mapping",
+      "next_action": "Run taxonomy_mapping supervisor review for coverage-gap-senolytics-registry-surveillance-breadth-repair."
+    },
+    {
+      "candidate_change_id": "coverage-gap-senolytics-review-landscape-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-review-landscape-repair.json",
+      "review_lane": "extraction_fidelity",
+      "next_action": "Run extraction_fidelity supervisor review for coverage-gap-senolytics-review-landscape-repair."
+    },
+    {
+      "candidate_change_id": "coverage-gap-senolytics-review-landscape-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-review-landscape-repair.json",
+      "review_lane": "synthesis_boundary",
+      "next_action": "Run synthesis_boundary supervisor review for coverage-gap-senolytics-review-landscape-repair."
+    },
+    {
+      "candidate_change_id": "coverage-gap-senolytics-review-landscape-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-review-landscape-repair.json",
+      "review_lane": "taxonomy_mapping",
+      "next_action": "Run taxonomy_mapping supervisor review for coverage-gap-senolytics-review-landscape-repair."
+    },
+    {
+      "candidate_change_id": "coverage-gap-senolytics-safety-tables-followup-2-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-safety-tables-followup-2-repair.json",
+      "review_lane": "extraction_fidelity",
+      "next_action": "Run extraction_fidelity supervisor review for coverage-gap-senolytics-safety-tables-followup-2-repair."
+    },
+    {
+      "candidate_change_id": "coverage-gap-senolytics-safety-tables-followup-2-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-safety-tables-followup-2-repair.json",
+      "review_lane": "safety_limitations",
+      "next_action": "Run safety_limitations supervisor review for coverage-gap-senolytics-safety-tables-followup-2-repair."
+    },
+    {
+      "candidate_change_id": "coverage-gap-senolytics-safety-tables-followup-2-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-safety-tables-followup-2-repair.json",
+      "review_lane": "synthesis_boundary",
+      "next_action": "Run synthesis_boundary supervisor review for coverage-gap-senolytics-safety-tables-followup-2-repair."
+    },
+    {
+      "candidate_change_id": "coverage-gap-senolytics-safety-tables-followup-2-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-safety-tables-followup-2-repair.json",
+      "review_lane": "taxonomy_mapping",
+      "next_action": "Run taxonomy_mapping supervisor review for coverage-gap-senolytics-safety-tables-followup-2-repair."
+    },
+    {
       "candidate_change_id": "senolytics-scaffold-bootstrap-2026-06-21",
       "path": "data/candidate-changes/senolytics-scaffold-bootstrap-2026-06-21.json",
       "review_lane": "synthesis_boundary",
@@ -1631,8 +1823,8 @@
       "gap_type": "operational_gap",
       "category": "human_interventional",
       "priority": "high",
-      "description": "DKD and AD-risk human studies now have PubMed abstract-located sample, dosing, timepoint, and effect details, and IPF has an abstract-located dosing-completion result plus corrected randomized-pilot sample size. However, durable source snapshots could not be created in this worker, the legacy IPF generic outcome/result still needs reconciliation, and the D+Q bone RCT still needs full publication table and supplement reconciliation.",
-      "suggested_action": "Create or refresh durable PubMed/PMC source snapshots for DKD, IPF, and AD-risk, complete full-text/table extraction where needed, and reconcile the bone RCT registry extraction against full article tables and supplements.",
+      "description": "DKD, IPF, and AD-risk human studies now have retained PubMed source snapshots supporting abstract-level sample, dosing, timepoint, effect, and safety details, and the legacy IPF generic feasibility/tolerability extraction has been reconciled to the N=12 randomized pilot. Full article/table extraction for DKD, IPF, AD-risk, and D+Q bone supplements remains incomplete.",
+      "suggested_action": "Retain or ingest full-text/table source snapshots for DKD, IPF, AD-risk, and D+Q bone supplements, then reconcile abstract-level extraction against article tables before formal synthesis.",
       "next_recommended_mode": "extraction_refresh"
     },
     {
@@ -1642,8 +1834,8 @@
       "gap_type": "coverage_gap",
       "category": "safety_durability",
       "priority": "high",
-      "description": "Aggregate adverse-event counts and the D+Q bone headache preferred-term row have been extracted for the D+Q bone RCT, and retained full-text locators now identify the safety table, withdrawal narrative, dosing cadence, and durability discussion. Event-specific structured rows beyond headache, discontinuation count fields, and source-snapshot-backed safety extraction for the DKD, IPF, and AD-risk human studies remain incomplete.",
-      "suggested_action": "Run table-row extraction context packs for the remaining D+Q bone adverse-event terms and withdrawals, then ingest or retain appropriate source snapshots before extending safety extraction across DKD, IPF, and AD-risk studies.",
+      "description": "Aggregate adverse-event counts, the D+Q bone headache preferred-term row, additional publication-table preferred-term rows, and registry/article discontinuation fields have been extracted for the D+Q bone RCT. IPF and AD-risk now have PubMed source-snapshot-backed abstract safety extraction, and DKD has a source-snapshot-backed record documenting that adverse-event counts were not reported in the retained abstract summary. Full article/table safety extraction for DKD, IPF, AD-risk, D+Q bone supplement material, and harmonized cross-human adverse-event definitions remain incomplete.",
+      "suggested_action": "Run retained full-text or table-row extraction for DKD, IPF, and AD-risk safety details, reconcile any D+Q bone supplement safety tables, and create a cross-human safety compatibility group only after event terms, denominators, zero semantics, relatedness, and seriousness are harmonized.",
       "next_recommended_mode": "extraction_refresh"
     },
     {
@@ -1653,8 +1845,8 @@
       "gap_type": "coverage_gap",
       "category": "active_trials_registries",
       "priority": "medium",
-      "description": "Only two active no-results registry records were added in this repair pass; broader fisetin and D+Q trial surveillance remains incomplete.",
-      "suggested_action": "Run a surveillance pass over ClinicalTrials.gov for senolytics, D+Q, fisetin, and senescence-targeting terms.",
+      "description": "Only two active no-results registry records are present. The prior coverage-repair session also deferred fisetin frailty registry candidates NCT03430037 and NCT03675724, but this batch could not fetch ClinicalTrials.gov source snapshots for those registries, so broader current fisetin and D+Q trial surveillance remains incomplete.",
+      "suggested_action": "Run a source-snapshot-backed ClinicalTrials.gov surveillance pass for NCT03430037, NCT03675724, senolytics, D+Q, fisetin, and senescence-targeting terms; add no-results status records only when fetched registry snapshots support them.",
       "next_recommended_mode": "extraction_refresh"
     },
     {
@@ -1664,12 +1856,38 @@
       "gap_type": "coverage_gap",
       "category": "recent_reviews_meta_analyses",
       "priority": "medium",
-      "description": "No recent systematic-review or meta-analysis source has been screened into the knowledge base.",
-      "suggested_action": "Search for recent systematic reviews, meta-analyses, and trial-landscape reviews.",
+      "description": "No recent systematic-review or meta-analysis source has been screened into the knowledge base. This bounded batch did not close the gap because the job supplied no source row or context pack and PubMed/NLM retrieval was unavailable from the worker environment.",
+      "suggested_action": "Run a bounded search/screening job for recent systematic reviews, meta-analyses, and trial-landscape reviews; create or refresh PubMed source snapshots before upgrading any review source beyond screened or triage-summary maturity.",
       "next_recommended_mode": "extraction_refresh"
     }
   ],
   "extraction_debt": [
+    {
+      "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-adverse-event-discontinuations-20wk-descriptive-effect.uncertainty",
+      "result_id": "dq-bone-adverse-event-discontinuations-20wk-descriptive",
+      "path": "data/results/dq-bone-adverse-event-discontinuations-20wk-descriptive.json",
+      "synthesis_group_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "missing_field": "effect.uncertainty",
+      "debt_type": "missing_effect_uncertainty",
+      "severity": "high",
+      "source": "synthesis_group_missing_effect_fields",
+      "impact": "blocks_pooling",
+      "note": "The registry provides explicit adverse-event discontinuation counts, but the result is kept descriptive because control count is zero and discontinuation reasons are heterogeneous.",
+      "next_action": "Run extraction refresh for dq-bone-adverse-event-discontinuations-20wk-descriptive to resolve effect.uncertainty."
+    },
+    {
+      "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-adverse-event-discontinuations-20wk-descriptive-effect.value",
+      "result_id": "dq-bone-adverse-event-discontinuations-20wk-descriptive",
+      "path": "data/results/dq-bone-adverse-event-discontinuations-20wk-descriptive.json",
+      "synthesis_group_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "missing_field": "effect.value",
+      "debt_type": "missing_effect_value",
+      "severity": "high",
+      "source": "synthesis_group_missing_effect_fields",
+      "impact": "blocks_pooling",
+      "note": "The registry provides explicit adverse-event discontinuation counts, but the result is kept descriptive because control count is zero and discontinuation reasons are heterogeneous.",
+      "next_action": "Run extraction refresh for dq-bone-adverse-event-discontinuations-20wk-descriptive to resolve effect.value."
+    },
     {
       "debt_id": "debt-senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21-dq-bone-bmd-20wk-inconclusive-effect.uncertainty",
       "result_id": "dq-bone-bmd-20wk-inconclusive",
@@ -1749,6 +1967,32 @@
       "next_action": "Run extraction refresh for dq-bone-bmd-20wk-inconclusive to resolve effect.value."
     },
     {
+      "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-constipation-20wk-descriptive-effect.uncertainty",
+      "result_id": "dq-bone-constipation-20wk-descriptive",
+      "path": "data/results/dq-bone-constipation-20wk-descriptive.json",
+      "synthesis_group_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "missing_field": "effect.uncertainty",
+      "debt_type": "missing_effect_uncertainty",
+      "severity": "high",
+      "source": "synthesis_group_missing_effect_fields",
+      "impact": "blocks_pooling",
+      "note": "The D+Q constipation count is explicit, but the control cell is blank/ambiguous and cannot support a comparative effect without unsupported zero handling.",
+      "next_action": "Run extraction refresh for dq-bone-constipation-20wk-descriptive to resolve effect.uncertainty."
+    },
+    {
+      "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-constipation-20wk-descriptive-effect.value",
+      "result_id": "dq-bone-constipation-20wk-descriptive",
+      "path": "data/results/dq-bone-constipation-20wk-descriptive.json",
+      "synthesis_group_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "missing_field": "effect.value",
+      "debt_type": "missing_effect_value",
+      "severity": "high",
+      "source": "synthesis_group_missing_effect_fields",
+      "impact": "blocks_pooling",
+      "note": "The D+Q constipation count is explicit, but the control cell is blank/ambiguous and cannot support a comparative effect without unsupported zero handling.",
+      "next_action": "Run extraction refresh for dq-bone-constipation-20wk-descriptive to resolve effect.value."
+    },
+    {
       "debt_id": "debt-senolytics-dq-bone-ctx-20wk-synthesis-compatibility-2026-06-21-dq-bone-ctx-20wk-null-effect.uncertainty",
       "result_id": "dq-bone-ctx-20wk-null",
       "path": "data/results/dq-bone-ctx-20wk-null.json",
@@ -1801,17 +2045,82 @@
       "next_action": "Run extraction refresh for dq-bone-ctx-20wk-null to resolve effect.value."
     },
     {
-      "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-headache-20wk-descriptive-adverse_event.event_specific_counts",
-      "result_id": "dq-bone-headache-20wk-descriptive",
-      "path": "data/results/dq-bone-headache-20wk-descriptive.json",
+      "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-diarrhea-20wk-descriptive-effect.uncertainty",
+      "result_id": "dq-bone-diarrhea-20wk-descriptive",
+      "path": "data/results/dq-bone-diarrhea-20wk-descriptive.json",
       "synthesis_group_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
-      "missing_field": "adverse_event.event_specific_counts",
-      "debt_type": "missing_adverse_event_event_specific_counts",
+      "missing_field": "effect.uncertainty",
+      "debt_type": "missing_effect_uncertainty",
       "severity": "high",
       "source": "synthesis_group_missing_effect_fields",
       "impact": "blocks_pooling",
-      "note": "The term-specific result now has structured adverse_event.preferred_term and arm-level count-status fields. Pooling remains blocked because the control headache cell is blank/ambiguous rather than an explicit event count, and no comparative effect or uncertainty is available.",
-      "next_action": "Run extraction refresh for dq-bone-headache-20wk-descriptive to resolve adverse_event.event_specific_counts."
+      "note": "The D+Q diarrhea count is explicit, but the control cell is blank/ambiguous and cannot support a comparative effect without unsupported zero handling.",
+      "next_action": "Run extraction refresh for dq-bone-diarrhea-20wk-descriptive to resolve effect.uncertainty."
+    },
+    {
+      "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-diarrhea-20wk-descriptive-effect.value",
+      "result_id": "dq-bone-diarrhea-20wk-descriptive",
+      "path": "data/results/dq-bone-diarrhea-20wk-descriptive.json",
+      "synthesis_group_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "missing_field": "effect.value",
+      "debt_type": "missing_effect_value",
+      "severity": "high",
+      "source": "synthesis_group_missing_effect_fields",
+      "impact": "blocks_pooling",
+      "note": "The D+Q diarrhea count is explicit, but the control cell is blank/ambiguous and cannot support a comparative effect without unsupported zero handling.",
+      "next_action": "Run extraction refresh for dq-bone-diarrhea-20wk-descriptive to resolve effect.value."
+    },
+    {
+      "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-fatigue-20wk-descriptive-effect.uncertainty",
+      "result_id": "dq-bone-fatigue-20wk-descriptive",
+      "path": "data/results/dq-bone-fatigue-20wk-descriptive.json",
+      "synthesis_group_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "missing_field": "effect.uncertainty",
+      "debt_type": "missing_effect_uncertainty",
+      "severity": "high",
+      "source": "synthesis_group_missing_effect_fields",
+      "impact": "blocks_pooling",
+      "note": "The D+Q fatigue count is explicit, but the control cell is blank/ambiguous and cannot support a comparative effect without unsupported zero handling; the separate fatigue-related withdrawal narrative should not be double-counted.",
+      "next_action": "Run extraction refresh for dq-bone-fatigue-20wk-descriptive to resolve effect.uncertainty."
+    },
+    {
+      "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-fatigue-20wk-descriptive-effect.value",
+      "result_id": "dq-bone-fatigue-20wk-descriptive",
+      "path": "data/results/dq-bone-fatigue-20wk-descriptive.json",
+      "synthesis_group_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "missing_field": "effect.value",
+      "debt_type": "missing_effect_value",
+      "severity": "high",
+      "source": "synthesis_group_missing_effect_fields",
+      "impact": "blocks_pooling",
+      "note": "The D+Q fatigue count is explicit, but the control cell is blank/ambiguous and cannot support a comparative effect without unsupported zero handling; the separate fatigue-related withdrawal narrative should not be double-counted.",
+      "next_action": "Run extraction refresh for dq-bone-fatigue-20wk-descriptive to resolve effect.value."
+    },
+    {
+      "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-gastrointestinal-reflux-20wk-descriptive-effect.uncertainty",
+      "result_id": "dq-bone-gastrointestinal-reflux-20wk-descriptive",
+      "path": "data/results/dq-bone-gastrointestinal-reflux-20wk-descriptive.json",
+      "synthesis_group_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "missing_field": "effect.uncertainty",
+      "debt_type": "missing_effect_uncertainty",
+      "severity": "high",
+      "source": "synthesis_group_missing_effect_fields",
+      "impact": "blocks_pooling",
+      "note": "The D+Q gastrointestinal reflux count is explicit, but the control cell is blank/ambiguous and cannot support a comparative effect without unsupported zero handling.",
+      "next_action": "Run extraction refresh for dq-bone-gastrointestinal-reflux-20wk-descriptive to resolve effect.uncertainty."
+    },
+    {
+      "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-gastrointestinal-reflux-20wk-descriptive-effect.value",
+      "result_id": "dq-bone-gastrointestinal-reflux-20wk-descriptive",
+      "path": "data/results/dq-bone-gastrointestinal-reflux-20wk-descriptive.json",
+      "synthesis_group_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "missing_field": "effect.value",
+      "debt_type": "missing_effect_value",
+      "severity": "high",
+      "source": "synthesis_group_missing_effect_fields",
+      "impact": "blocks_pooling",
+      "note": "The D+Q gastrointestinal reflux count is explicit, but the control cell is blank/ambiguous and cannot support a comparative effect without unsupported zero handling.",
+      "next_action": "Run extraction refresh for dq-bone-gastrointestinal-reflux-20wk-descriptive to resolve effect.value."
     },
     {
       "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-headache-20wk-descriptive-effect.uncertainty",
@@ -1838,6 +2147,32 @@
       "impact": "blocks_pooling",
       "note": "The term-specific result now has structured adverse_event.preferred_term and arm-level count-status fields. Pooling remains blocked because the control headache cell is blank/ambiguous rather than an explicit event count, and no comparative effect or uncertainty is available.",
       "next_action": "Run extraction refresh for dq-bone-headache-20wk-descriptive to resolve effect.value."
+    },
+    {
+      "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-nausea-20wk-descriptive-effect.uncertainty",
+      "result_id": "dq-bone-nausea-20wk-descriptive",
+      "path": "data/results/dq-bone-nausea-20wk-descriptive.json",
+      "synthesis_group_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "missing_field": "effect.uncertainty",
+      "debt_type": "missing_effect_uncertainty",
+      "severity": "high",
+      "source": "synthesis_group_missing_effect_fields",
+      "impact": "blocks_pooling",
+      "note": "The D+Q nausea count is explicit, but the control cell is blank/ambiguous and cannot support a comparative effect without unsupported zero handling.",
+      "next_action": "Run extraction refresh for dq-bone-nausea-20wk-descriptive to resolve effect.uncertainty."
+    },
+    {
+      "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-nausea-20wk-descriptive-effect.value",
+      "result_id": "dq-bone-nausea-20wk-descriptive",
+      "path": "data/results/dq-bone-nausea-20wk-descriptive.json",
+      "synthesis_group_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "missing_field": "effect.value",
+      "debt_type": "missing_effect_value",
+      "severity": "high",
+      "source": "synthesis_group_missing_effect_fields",
+      "impact": "blocks_pooling",
+      "note": "The D+Q nausea count is explicit, but the control cell is blank/ambiguous and cannot support a comparative effect without unsupported zero handling.",
+      "next_action": "Run extraction refresh for dq-bone-nausea-20wk-descriptive to resolve effect.value."
     },
     {
       "debt_id": "debt-senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22-dq-bone-p16-t3-ctx-2wk-positive-effect.uncertainty",
@@ -2100,6 +2435,32 @@
       "next_action": "Run extraction refresh for dq-bone-sasp-2wk-null to resolve marker_level_identity."
     },
     {
+      "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-vertigo-20wk-descriptive-effect.uncertainty",
+      "result_id": "dq-bone-vertigo-20wk-descriptive",
+      "path": "data/results/dq-bone-vertigo-20wk-descriptive.json",
+      "synthesis_group_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "missing_field": "effect.uncertainty",
+      "debt_type": "missing_effect_uncertainty",
+      "severity": "high",
+      "source": "synthesis_group_missing_effect_fields",
+      "impact": "blocks_pooling",
+      "note": "The D+Q vertigo count is explicit, but the control cell is blank/ambiguous and cannot support a comparative effect without unsupported zero handling.",
+      "next_action": "Run extraction refresh for dq-bone-vertigo-20wk-descriptive to resolve effect.uncertainty."
+    },
+    {
+      "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-vertigo-20wk-descriptive-effect.value",
+      "result_id": "dq-bone-vertigo-20wk-descriptive",
+      "path": "data/results/dq-bone-vertigo-20wk-descriptive.json",
+      "synthesis_group_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
+      "missing_field": "effect.value",
+      "debt_type": "missing_effect_value",
+      "severity": "high",
+      "source": "synthesis_group_missing_effect_fields",
+      "impact": "blocks_pooling",
+      "note": "The D+Q vertigo count is explicit, but the control cell is blank/ambiguous and cannot support a comparative effect without unsupported zero handling.",
+      "next_action": "Run extraction refresh for dq-bone-vertigo-20wk-descriptive to resolve effect.value."
+    },
+    {
       "debt_id": "debt-dq-ad-risk-cognition-mobility-mixed-needs-extraction-refresh",
       "result_id": "dq-ad-risk-cognition-mobility-mixed",
       "path": "data/results/dq-ad-risk-cognition-mobility-mixed.json",
@@ -2111,6 +2472,17 @@
       "next_action": "Run extraction refresh for dq-ad-risk-cognition-mobility-mixed."
     },
     {
+      "debt_id": "debt-dq-ad-risk-serious-adverse-events-none-needs-extraction-refresh",
+      "result_id": "dq-ad-risk-serious-adverse-events-none",
+      "path": "data/results/dq-ad-risk-serious-adverse-events-none.json",
+      "debt_type": "needs_extraction_refresh",
+      "severity": "medium",
+      "source": "result_maturity_status",
+      "impact": "limits_precision",
+      "note": "Result maturity is abstract_extracted; it is useful for triage but not synthesis-ready.",
+      "next_action": "Run extraction refresh for dq-ad-risk-serious-adverse-events-none."
+    },
+    {
       "debt_id": "debt-dq-bone-turnover-mixed-needs-extraction-refresh",
       "result_id": "dq-bone-turnover-mixed",
       "path": "data/results/dq-bone-turnover-mixed.json",
@@ -2120,6 +2492,17 @@
       "impact": "limits_precision",
       "note": "Result maturity is triage_summary; it is useful for triage but not synthesis-ready.",
       "next_action": "Run extraction refresh for dq-bone-turnover-mixed."
+    },
+    {
+      "debt_id": "debt-dq-dkd-adverse-events-abstract-not-reported-needs-extraction-refresh",
+      "result_id": "dq-dkd-adverse-events-abstract-not-reported",
+      "path": "data/results/dq-dkd-adverse-events-abstract-not-reported.json",
+      "debt_type": "needs_extraction_refresh",
+      "severity": "medium",
+      "source": "result_maturity_status",
+      "impact": "limits_precision",
+      "note": "Result maturity is abstract_extracted; it is useful for triage but not synthesis-ready.",
+      "next_action": "Run extraction refresh for dq-dkd-adverse-events-abstract-not-reported."
     },
     {
       "debt_id": "debt-dq-dkd-biomarker-positive-needs-extraction-refresh",
@@ -2151,7 +2534,7 @@
       "severity": "medium",
       "source": "result_maturity_status",
       "impact": "limits_precision",
-      "note": "Result maturity is triage_summary; it is useful for triage but not synthesis-ready.",
+      "note": "Result maturity is abstract_extracted; it is useful for triage but not synthesis-ready.",
       "next_action": "Run extraction refresh for dq-ipf-tolerability-mixed."
     },
     {
@@ -2170,27 +2553,87 @@
   "partial_or_failed_agent_runs": [],
   "recommended_jobs": [
     {
-      "job_id": "coverage-gap-senolytics-exact-effect-extraction-followup-2",
+      "job_id": "candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+      "job_type": "candidate_review",
+      "priority": "high",
+      "source": "candidate_readiness",
+      "target_record_type": "candidate_change",
+      "target_record_id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+      "rationale": "Required review lanes are missing: extraction_fidelity, safety_limitations, synthesis_boundary, taxonomy_mapping.",
+      "inputs": [
+        "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-2-repair.json"
+      ]
+    },
+    {
+      "job_id": "candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-repair",
+      "job_type": "candidate_review",
+      "priority": "high",
+      "source": "candidate_readiness",
+      "target_record_type": "candidate_change",
+      "target_record_id": "coverage-gap-senolytics-registry-surveillance-breadth-repair",
+      "rationale": "Required review lanes are missing: extraction_fidelity, synthesis_boundary, taxonomy_mapping.",
+      "inputs": [
+        "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-repair.json"
+      ]
+    },
+    {
+      "job_id": "candidate-review-coverage-gap-senolytics-review-landscape-repair",
+      "job_type": "candidate_review",
+      "priority": "high",
+      "source": "candidate_readiness",
+      "target_record_type": "candidate_change",
+      "target_record_id": "coverage-gap-senolytics-review-landscape-repair",
+      "rationale": "Required review lanes are missing: extraction_fidelity, synthesis_boundary, taxonomy_mapping.",
+      "inputs": [
+        "data/candidate-changes/coverage-gap-senolytics-review-landscape-repair.json"
+      ]
+    },
+    {
+      "job_id": "candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair",
+      "job_type": "candidate_review",
+      "priority": "high",
+      "source": "candidate_readiness",
+      "target_record_type": "candidate_change",
+      "target_record_id": "coverage-gap-senolytics-safety-tables-followup-2-repair",
+      "rationale": "Required review lanes are missing: extraction_fidelity, safety_limitations, synthesis_boundary, taxonomy_mapping.",
+      "inputs": [
+        "data/candidate-changes/coverage-gap-senolytics-safety-tables-followup-2-repair.json"
+      ]
+    },
+    {
+      "job_id": "coverage-gap-senolytics-exact-effect-extraction-followup-3",
       "job_type": "extraction_refresh",
       "priority": "high",
       "source": "coverage_gap",
       "target_record_type": "coverage_assessment",
       "target_record_id": "senolytics-coverage-repair-2026-06-21",
-      "rationale": "DKD and AD-risk human studies now have PubMed abstract-located sample, dosing, timepoint, and effect details, and IPF has an abstract-located dosing-completion result plus corrected randomized-pilot sample size. However, durable source snapshots could not be created in this worker, the legacy IPF generic outcome/result still needs reconciliation, and the D+Q bone RCT still needs full publication table and supplement reconciliation.",
+      "rationale": "DKD, IPF, and AD-risk human studies now have retained PubMed source snapshots supporting abstract-level sample, dosing, timepoint, effect, and safety details, and the legacy IPF generic feasibility/tolerability extraction has been reconciled to the N=12 randomized pilot. Full article/table extraction for DKD, IPF, AD-risk, and D+Q bone supplements remains incomplete.",
       "inputs": [
         "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json"
       ]
     },
     {
-      "job_id": "coverage-gap-senolytics-safety-tables-followup-2",
+      "job_id": "coverage-gap-senolytics-safety-tables-followup-3",
       "job_type": "extraction_refresh",
       "priority": "high",
       "source": "coverage_gap",
       "target_record_type": "coverage_assessment",
       "target_record_id": "senolytics-coverage-repair-2026-06-21",
-      "rationale": "Aggregate adverse-event counts and the D+Q bone headache preferred-term row have been extracted for the D+Q bone RCT, and retained full-text locators now identify the safety table, withdrawal narrative, dosing cadence, and durability discussion. Event-specific structured rows beyond headache, discontinuation count fields, and source-snapshot-backed safety extraction for the DKD, IPF, and AD-risk human studies remain incomplete.",
+      "rationale": "Aggregate adverse-event counts, the D+Q bone headache preferred-term row, additional publication-table preferred-term rows, and registry/article discontinuation fields have been extracted for the D+Q bone RCT. IPF and AD-risk now have PubMed source-snapshot-backed abstract safety extraction, and DKD has a source-snapshot-backed record documenting that adverse-event counts were not reported in the retained abstract summary. Full article/table safety extraction for DKD, IPF, AD-risk, D+Q bone supplement material, and harmonized cross-human adverse-event definitions remain incomplete.",
       "inputs": [
         "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json"
+      ]
+    },
+    {
+      "job_id": "extraction-debt-dq-bone-adverse-event-discontinuations-20wk-descriptive",
+      "job_type": "extraction_refresh",
+      "priority": "high",
+      "source": "extraction_debt",
+      "target_record_type": "result",
+      "target_record_id": "dq-bone-adverse-event-discontinuations-20wk-descriptive",
+      "rationale": "Resolve missing synthesis fields: effect.uncertainty, effect.value.",
+      "inputs": [
+        "data/results/dq-bone-adverse-event-discontinuations-20wk-descriptive.json"
       ]
     },
     {
@@ -2206,6 +2649,18 @@
       ]
     },
     {
+      "job_id": "extraction-debt-dq-bone-constipation-20wk-descriptive",
+      "job_type": "extraction_refresh",
+      "priority": "high",
+      "source": "extraction_debt",
+      "target_record_type": "result",
+      "target_record_id": "dq-bone-constipation-20wk-descriptive",
+      "rationale": "Resolve missing synthesis fields: effect.uncertainty, effect.value.",
+      "inputs": [
+        "data/results/dq-bone-constipation-20wk-descriptive.json"
+      ]
+    },
+    {
       "job_id": "extraction-debt-dq-bone-ctx-20wk-null",
       "job_type": "extraction_refresh",
       "priority": "high",
@@ -2218,15 +2673,63 @@
       ]
     },
     {
+      "job_id": "extraction-debt-dq-bone-diarrhea-20wk-descriptive",
+      "job_type": "extraction_refresh",
+      "priority": "high",
+      "source": "extraction_debt",
+      "target_record_type": "result",
+      "target_record_id": "dq-bone-diarrhea-20wk-descriptive",
+      "rationale": "Resolve missing synthesis fields: effect.uncertainty, effect.value.",
+      "inputs": [
+        "data/results/dq-bone-diarrhea-20wk-descriptive.json"
+      ]
+    },
+    {
+      "job_id": "extraction-debt-dq-bone-fatigue-20wk-descriptive",
+      "job_type": "extraction_refresh",
+      "priority": "high",
+      "source": "extraction_debt",
+      "target_record_type": "result",
+      "target_record_id": "dq-bone-fatigue-20wk-descriptive",
+      "rationale": "Resolve missing synthesis fields: effect.uncertainty, effect.value.",
+      "inputs": [
+        "data/results/dq-bone-fatigue-20wk-descriptive.json"
+      ]
+    },
+    {
+      "job_id": "extraction-debt-dq-bone-gastrointestinal-reflux-20wk-descriptive",
+      "job_type": "extraction_refresh",
+      "priority": "high",
+      "source": "extraction_debt",
+      "target_record_type": "result",
+      "target_record_id": "dq-bone-gastrointestinal-reflux-20wk-descriptive",
+      "rationale": "Resolve missing synthesis fields: effect.uncertainty, effect.value.",
+      "inputs": [
+        "data/results/dq-bone-gastrointestinal-reflux-20wk-descriptive.json"
+      ]
+    },
+    {
       "job_id": "extraction-debt-dq-bone-headache-20wk-descriptive",
       "job_type": "extraction_refresh",
       "priority": "high",
       "source": "extraction_debt",
       "target_record_type": "result",
       "target_record_id": "dq-bone-headache-20wk-descriptive",
-      "rationale": "Resolve missing synthesis fields: adverse_event.event_specific_counts, effect.uncertainty, effect.value.",
+      "rationale": "Resolve missing synthesis fields: effect.uncertainty, effect.value.",
       "inputs": [
         "data/results/dq-bone-headache-20wk-descriptive.json"
+      ]
+    },
+    {
+      "job_id": "extraction-debt-dq-bone-nausea-20wk-descriptive",
+      "job_type": "extraction_refresh",
+      "priority": "high",
+      "source": "extraction_debt",
+      "target_record_type": "result",
+      "target_record_id": "dq-bone-nausea-20wk-descriptive",
+      "rationale": "Resolve missing synthesis fields: effect.uncertainty, effect.value.",
+      "inputs": [
+        "data/results/dq-bone-nausea-20wk-descriptive.json"
       ]
     },
     {
@@ -2338,25 +2841,37 @@
       ]
     },
     {
-      "job_id": "coverage-gap-senolytics-registry-surveillance-breadth",
+      "job_id": "extraction-debt-dq-bone-vertigo-20wk-descriptive",
+      "job_type": "extraction_refresh",
+      "priority": "high",
+      "source": "extraction_debt",
+      "target_record_type": "result",
+      "target_record_id": "dq-bone-vertigo-20wk-descriptive",
+      "rationale": "Resolve missing synthesis fields: effect.uncertainty, effect.value.",
+      "inputs": [
+        "data/results/dq-bone-vertigo-20wk-descriptive.json"
+      ]
+    },
+    {
+      "job_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-2",
       "job_type": "extraction_refresh",
       "priority": "medium",
       "source": "coverage_gap",
       "target_record_type": "coverage_assessment",
       "target_record_id": "senolytics-coverage-repair-2026-06-21",
-      "rationale": "Only two active no-results registry records were added in this repair pass; broader fisetin and D+Q trial surveillance remains incomplete.",
+      "rationale": "Only two active no-results registry records are present. The prior coverage-repair session also deferred fisetin frailty registry candidates NCT03430037 and NCT03675724, but this batch could not fetch ClinicalTrials.gov source snapshots for those registries, so broader current fisetin and D+Q trial surveillance remains incomplete.",
       "inputs": [
         "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json"
       ]
     },
     {
-      "job_id": "coverage-gap-senolytics-review-landscape",
+      "job_id": "coverage-gap-senolytics-review-landscape-followup-2",
       "job_type": "extraction_refresh",
       "priority": "medium",
       "source": "coverage_gap",
       "target_record_type": "coverage_assessment",
       "target_record_id": "senolytics-coverage-repair-2026-06-21",
-      "rationale": "No recent systematic-review or meta-analysis source has been screened into the knowledge base.",
+      "rationale": "No recent systematic-review or meta-analysis source has been screened into the knowledge base. This bounded batch did not close the gap because the job supplied no source row or context pack and PubMed/NLM retrieval was unavailable from the worker environment.",
       "inputs": [
         "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json"
       ]
@@ -2374,6 +2889,18 @@
       ]
     },
     {
+      "job_id": "extraction-debt-dq-ad-risk-serious-adverse-events-none",
+      "job_type": "extraction_refresh",
+      "priority": "medium",
+      "source": "extraction_debt",
+      "target_record_type": "result",
+      "target_record_id": "dq-ad-risk-serious-adverse-events-none",
+      "rationale": "Upgrade result maturity for synthesis readiness.",
+      "inputs": [
+        "data/results/dq-ad-risk-serious-adverse-events-none.json"
+      ]
+    },
+    {
       "job_id": "extraction-debt-dq-bone-turnover-mixed",
       "job_type": "extraction_refresh",
       "priority": "medium",
@@ -2383,6 +2910,18 @@
       "rationale": "Upgrade result maturity for synthesis readiness.",
       "inputs": [
         "data/results/dq-bone-turnover-mixed.json"
+      ]
+    },
+    {
+      "job_id": "extraction-debt-dq-dkd-adverse-events-abstract-not-reported",
+      "job_type": "extraction_refresh",
+      "priority": "medium",
+      "source": "extraction_debt",
+      "target_record_type": "result",
+      "target_record_id": "dq-dkd-adverse-events-abstract-not-reported",
+      "rationale": "Upgrade result maturity for synthesis readiness.",
+      "inputs": [
+        "data/results/dq-dkd-adverse-events-abstract-not-reported.json"
       ]
     },
     {

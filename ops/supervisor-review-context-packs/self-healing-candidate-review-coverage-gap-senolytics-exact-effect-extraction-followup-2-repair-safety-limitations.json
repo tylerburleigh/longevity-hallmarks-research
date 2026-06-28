@@ -1,0 +1,183 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "supervisor_review_context_pack",
+  "id": "self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-safety-limitations",
+  "pack_type": "candidate_review_lane",
+  "created_at": "2026-06-28T17:54:19Z",
+  "purpose": "Bounded supervisor review for coverage-gap-senolytics-exact-effect-extraction-followup-2-repair lane safety_limitations.",
+  "scope": {
+    "question": "candidate_review: Required review lane is missing: safety_limitations.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "target_candidate": {
+    "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+    "path": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-2-repair.json",
+    "lifecycle_status": "submitted",
+    "summary": "Updates the senolytics coverage assessment to recognize durable PubMed EFetch snapshots for DKD, IPF, and AD-risk abstract-level extraction, and reconciles the legacy IPF generic feasibility/tolerability finding, outcome, and result to the abstract-reported N=12 randomized pilot. The candidate leaves D+Q bone full publication-table and supplement reconciliation, plus full-text DKD/IPF/AD-risk extraction beyond abstracts, as explicit remaining debt.",
+    "required_review_lanes": [
+      "extraction_fidelity",
+      "safety_limitations",
+      "synthesis_boundary",
+      "taxonomy_mapping"
+    ],
+    "proposed_record_count": 5,
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+        "path": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-2-repair.json",
+        "change_type": "create",
+        "rationale": "Tracks this bounded extraction-refresh repair candidate and its changed canonical-record ledger."
+      },
+      {
+        "record_type": "coverage_assessment",
+        "record_id": "senolytics-coverage-repair-2026-06-21",
+        "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+        "change_type": "update",
+        "rationale": "Refreshes the coverage gap text and provenance to reflect source-snapshot-backed abstract extraction and the remaining full-text/table debt."
+      },
+      {
+        "record_type": "finding",
+        "record_id": "dq-ipf-randomized-feasibility-tolerability-mixed",
+        "path": "data/findings/dq-ipf-randomized-feasibility-tolerability-mixed.json",
+        "change_type": "update",
+        "rationale": "Reconciles the legacy generic IPF finding from triage-level wording to PubMed abstract-located N=12 feasibility and tolerability details."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-ipf-feasibility-tolerability",
+        "path": "data/outcomes/dq-ipf-feasibility-tolerability.json",
+        "change_type": "update",
+        "rationale": "Reconciles the legacy generic IPF outcome to the abstract-located feasibility, tolerability, dose-completion, and assessment-completion endpoint context."
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-ipf-tolerability-mixed",
+        "path": "data/results/dq-ipf-tolerability-mixed.json",
+        "change_type": "update",
+        "rationale": "Corrects the legacy IPF generic result sample size to N=12 and adds abstract-located D+Q versus placebo safety and feasibility details."
+      }
+    ]
+  },
+  "review_lane": "safety_limitations",
+  "review_context": {
+    "active_review_records": [],
+    "complete_accepting_review_lanes": [],
+    "missing_review_lanes": [
+      "extraction_fidelity",
+      "safety_limitations",
+      "synthesis_boundary",
+      "taxonomy_mapping"
+    ],
+    "open_major_or_critical_review_ids": [],
+    "lane_acceptance_criteria": [
+      "Review only the target candidate and the single review lane named by review_lane.",
+      "Use verdict accept only when the lane is complete, non-blocking, and has no open major or critical findings.",
+      "Use needs_revision or reject when the proposed records fail this lane's source, extraction, taxonomy, synthesis, or safety boundary.",
+      "When the lane is acceptable, include a passed quality_checks[] entry named supervisor_review_lanes in the final agent_run.",
+      "When outputs.proposed_records[] matches the repair candidate ledger, include a passed quality_checks[] entry named candidate_agent_run_ledger_match in the final agent_run."
+    ],
+    "relevant_input_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+        "path": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-2-repair.json",
+        "role": "target_candidate"
+      },
+      {
+        "record_type": "coverage_assessment",
+        "record_id": "senolytics-coverage-repair-2026-06-21",
+        "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "finding",
+        "record_id": "dq-ipf-randomized-feasibility-tolerability-mixed",
+        "path": "data/findings/dq-ipf-randomized-feasibility-tolerability-mixed.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-ipf-feasibility-tolerability",
+        "path": "data/outcomes/dq-ipf-feasibility-tolerability.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-ipf-tolerability-mixed",
+        "path": "data/results/dq-ipf-tolerability-mixed.json",
+        "role": "proposed_record"
+      }
+    ]
+  },
+  "schema_context": {
+    "schema_paths": [
+      "schemas/agent-run.codex-output.schema.json",
+      "schemas/agent-run.schema.json",
+      "schemas/evidence-review.schema.json",
+      "schemas/candidate-change.schema.json"
+    ],
+    "required_fields": [
+      "agent_run.outputs.candidate_change_id",
+      "agent_run.outputs.proposed_records[]",
+      "agent_run.outputs.generated_files[]",
+      "agent_run.quality_checks[]",
+      "candidate_change.proposed_records[]",
+      "evidence_review.review_lane",
+      "evidence_review.verdict",
+      "evidence_review.findings[]"
+    ],
+    "known_schema_limitations": [
+      "codex_job.expected_outputs records expected file paths, while this context pack additionally names the evidence_review_id for the lane."
+    ]
+  },
+  "expected_outputs": {
+    "candidate_change_id": "candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-safety-limitations-repair",
+    "evidence_review_id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-safety-limitations",
+    "proposed_record_paths": [
+      "data/candidate-changes/candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-safety-limitations-repair.json",
+      "data/evidence-reviews/coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-safety-limitations.json"
+    ],
+    "generated_file_paths": [
+      "data/candidate-changes/candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-safety-limitations-repair.json",
+      "data/evidence-reviews/coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-safety-limitations.json"
+    ],
+    "export_paths": [],
+    "required_review_lanes": [
+      "safety_limitations"
+    ]
+  },
+  "verification": {
+    "worker_commands": [
+      "npm run validate:records",
+      "npm run audit:references",
+      "npm run audit:agent-schemas",
+      "npm run audit:agentic-process"
+    ],
+    "coordinator_post_run": [
+      "npm run export:triage-state",
+      "npm run reconcile:parallel",
+      "npm run metrics:orchestration",
+      "npm run export:release-readiness",
+      "npm run export:latest",
+      "npm run verify:knowledge-base"
+    ]
+  },
+  "constraints": [
+    "Create only the repair candidate and evidence_review paths declared in expected_outputs.",
+    "Do not promote, apply, or directly mutate the target candidate during a lane review.",
+    "Do not add open-ended human-judgment escape hatches; make an agentic supervisor verdict from the available records.",
+    "Inspect additional files only when the pack points to them or validation reveals a pack inconsistency.",
+    "Do not perform broad repository searches or full-record dumps for pack-backed reviews; query only the specific ids and paths required by this pack."
+  ],
+  "known_limitations": [
+    "The pack is a compact routing contract, not a replacement for inspecting the target candidate's proposed records.",
+    "Prior review state is summarized from evidence_review_ids already attached to the target candidate."
+  ]
+}

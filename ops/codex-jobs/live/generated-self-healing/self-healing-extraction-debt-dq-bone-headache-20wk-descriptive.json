@@ -3,7 +3,7 @@
   "record_type": "codex_job",
   "id": "self-healing-extraction-debt-dq-bone-headache-20wk-descriptive",
   "name": "Self-healing repair: extraction-debt-dq-bone-headache-20wk-descriptive",
-  "summary": "Resolve missing synthesis fields: adverse_event.event_specific_counts, effect.uncertainty, effect.value.",
+  "summary": "Resolve missing synthesis fields: effect.uncertainty, effect.value.",
   "lifecycle_status": "ready",
   "agent_role": "extraction_agent",
   "mode": "extraction_refresh",
@@ -11,7 +11,7 @@
   "output_path": "research/agent-runs/self-healing-extraction-debt-dq-bone-headache-20wk-descriptive.json",
   "jsonl_log_path": "research/agent-runs/logs/self-healing-extraction-debt-dq-bone-headache-20wk-descriptive.jsonl",
   "scope": {
-    "question": "extraction_refresh: Resolve missing synthesis fields: adverse_event.event_specific_counts, effect.uncertainty, effect.value.",
+    "question": "extraction_refresh: Resolve missing synthesis fields: effect.uncertainty, effect.value.",
     "hallmark_ids": [
       "cellular_senescence",
       "chronic_inflammation",
@@ -49,7 +49,6 @@
     "candidate_change_id": "extraction-debt-dq-bone-headache-20wk-descriptive-repair",
     "required_review_lanes": [
       "extraction_fidelity",
-      "safety_limitations",
       "synthesis_boundary",
       "taxonomy_mapping"
     ]

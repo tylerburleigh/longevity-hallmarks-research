@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "codex_job",
+  "id": "self-healing-extraction-debt-dq-bone-diarrhea-20wk-descriptive",
+  "name": "Self-healing repair: extraction-debt-dq-bone-diarrhea-20wk-descriptive",
+  "summary": "Resolve missing synthesis fields: effect.uncertainty, effect.value.",
+  "lifecycle_status": "ready",
+  "agent_role": "extraction_agent",
+  "mode": "extraction_refresh",
+  "prompt_file": "docs/prompts/codex-agents/extraction-refresh.md",
+  "output_path": "research/agent-runs/self-healing-extraction-debt-dq-bone-diarrhea-20wk-descriptive.json",
+  "jsonl_log_path": "research/agent-runs/logs/self-healing-extraction-debt-dq-bone-diarrhea-20wk-descriptive.jsonl",
+  "scope": {
+    "question": "extraction_refresh: Resolve missing synthesis fields: effect.uncertainty, effect.value.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "chronic_inflammation",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": [
+      "dasatinib-quercetin"
+    ],
+    "source_ids": [
+      "pmid-38956196"
+    ],
+    "study_ids": [
+      "dq-postmenopausal-bone-rct"
+    ],
+    "outcome_ids": [
+      "dq-bone-adverse-events-20wk"
+    ],
+    "result_ids": [
+      "dq-bone-diarrhea-20wk-descriptive"
+    ]
+  },
+  "execution": {
+    "isolation": "git_worktree",
+    "sandbox": "workspace-write",
+    "approval_policy": "never",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "timeout_ms": 3600000,
+    "no_output_timeout_ms": 300000
+  },
+  "expected_outputs": {
+    "canonical_write_policy": "candidate_change_required",
+    "candidate_change_id": "extraction-debt-dq-bone-diarrhea-20wk-descriptive-repair",
+    "required_review_lanes": [
+      "extraction_fidelity",
+      "synthesis_boundary",
+      "taxonomy_mapping"
+    ]
+  },
+  "orchestration": {
+    "read_sets": [
+      "path:data/results/dq-bone-diarrhea-20wk-descriptive.json",
+      "path:ops/triage-state.v1.json",
+      "triage_job:extraction-debt-dq-bone-diarrhea-20wk-descriptive"
+    ],
+    "write_sets": [
+      "candidate_change:extraction-debt-dq-bone-diarrhea-20wk-descriptive-repair",
+      "path:data/candidate-changes/extraction-debt-dq-bone-diarrhea-20wk-descriptive-repair.json",
+      "path:data/results/dq-bone-diarrhea-20wk-descriptive.json",
+      "target_record:result/dq-bone-diarrhea-20wk-descriptive"
+    ],
+    "conflict_keys": [
+      "candidate_change:extraction-debt-dq-bone-diarrhea-20wk-descriptive-repair",
+      "target_record:result/dq-bone-diarrhea-20wk-descriptive",
+      "triage_job:extraction-debt-dq-bone-diarrhea-20wk-descriptive"
+    ],
+    "parallel_group": "extraction-refresh",
+    "reconciliation_required": true,
+    "expected_cost": {
+      "cost_class": "high",
+      "expected_wall_time_ms": 3600000,
+      "expected_token_budget": 100000,
+      "io_intensity": "high"
+    }
+  },
+  "post_run": {
+    "export_latest": true,
+    "verify_knowledge_base": true
+  },
+  "quality_gates": [
+    "validate_records",
+    "audit_references",
+    "audit_exports",
+    "audit_agent_schemas",
+    "audit_agentic_process",
+    "worker_output_contract",
+    "candidate_agent_run_ledger_match"
+  ],
+  "notes": [
+    "Generated from ops/triage-state.v1.json recommended_jobs[] item extraction-debt-dq-bone-diarrhea-20wk-descriptive.",
+    "Source queue: extraction_debt.",
+    "The worker should keep edits bounded to the target record, listed inputs, and the candidate repair ledger."
+  ]
+}

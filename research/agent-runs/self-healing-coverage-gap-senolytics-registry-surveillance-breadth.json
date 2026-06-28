@@ -1,0 +1,218 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "self-healing-coverage-gap-senolytics-registry-surveillance-breadth",
+  "agent_role": "extraction_agent",
+  "agent_id": "codex-cli-extraction-worker",
+  "mode": "extraction_refresh",
+  "started_at": "2026-06-28T17:51:16Z",
+  "completed_at": "2026-06-28T17:59:37Z",
+  "status": "partial",
+  "scope": {
+    "question": "extraction_refresh: Only two active no-results registry records were added in this repair pass; broader fisetin and D+Q trial surveillance remains incomplete.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "codex_exec",
+    "isolation": "git_worktree",
+    "workspace_path": "/tmp/lhr-codex-worktrees/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-20260628T175116z",
+    "prompt_file": "research/agent-runs/prompts/self-healing-coverage-gap-senolytics-registry-surveillance-breadth.md",
+    "prompt_template_file": "docs/prompts/codex-agents/extraction-refresh.md",
+    "job_file": "ops/codex-jobs/archive/self-healing-coverage-gap-senolytics-registry-surveillance-breadth.json",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "output_path": "research/agent-runs/self-healing-coverage-gap-senolytics-registry-surveillance-breadth.json",
+    "jsonl_log_path": "research/agent-runs/logs/self-healing-coverage-gap-senolytics-registry-surveillance-breadth.jsonl",
+    "sandbox": "workspace-write",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "user_request",
+      "reference": "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-registry-surveillance-breadth.json",
+      "summary": "Coordinator job spec for the bounded senolytics registry-surveillance breadth extraction-refresh repair; no context_pack_path was present."
+    },
+    {
+      "input_type": "coverage_gap",
+      "reference": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json#senolytics-registry-surveillance-breadth",
+      "summary": "Target active-trials registry coverage gap for broader fisetin and D+Q trial surveillance."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+      "summary": "Target coverage assessment updated to preserve deferred fisetin registry candidates and the source-snapshot blocker."
+    },
+    {
+      "input_type": "record",
+      "reference": "research/sessions/2026-06-21-senolytics-coverage-repair.json",
+      "summary": "Prior coverage-repair research session listing deferred fisetin frailty registry candidates NCT03430037 and NCT03675724."
+    },
+    {
+      "input_type": "export",
+      "reference": "ops/triage-state.v1.json",
+      "summary": "Triage state row recommending the coverage-gap registry-surveillance breadth repair."
+    },
+    {
+      "input_type": "other",
+      "reference": "plan.md; docs/research-runbook.md; docs/agent-run-outputs.md; docs/extraction-rules.md; docs/source-snapshot-importers.md; schemas/agent-run.codex-output.schema.json; schemas/agent-run.schema.json",
+      "summary": "Repository runbook, extraction, snapshot, and final-output contract instructions."
+    }
+  ],
+  "outputs": {
+    "summary": "Created the submitted registry-surveillance breadth repair candidate and updated the senolytics coverage assessment to name deferred fisetin frailty registries NCT03430037 and NCT03675724 while preserving the source-snapshot requirement. The extraction remains partial because ClinicalTrials.gov source snapshots could not be fetched, so no extraction-grade no-results registry records were added.",
+    "candidate_change_id": "coverage-gap-senolytics-registry-surveillance-breadth-repair",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "coverage-gap-senolytics-registry-surveillance-breadth-repair",
+        "path": "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-repair.json",
+        "change_type": "create",
+        "rationale": "Tracks the bounded self-healing registry-surveillance repair candidate and required review lanes."
+      },
+      {
+        "record_type": "coverage_assessment",
+        "record_id": "senolytics-coverage-repair-2026-06-21",
+        "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+        "change_type": "update",
+        "rationale": "Clarifies that deferred fisetin frailty registries require source-snapshot-backed surveillance and that no extraction-grade no-results records were added because snapshot ingestion was blocked."
+      }
+    ],
+    "generated_files": [
+      "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-repair.json",
+      "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+      "exports/latest/accepted-records.jsonl",
+      "exports/latest/audit-manifest.json",
+      "exports/latest/consumer-contract.json",
+      "exports/latest/coverage-status.json",
+      "exports/latest/evidence-map.json",
+      "exports/latest/findings.jsonl",
+      "exports/latest/read-model.sqlite",
+      "exports/latest/results.all.jsonl",
+      "exports/latest/results.extraction_grade.jsonl",
+      "exports/latest/results.registry_extracted.jsonl",
+      "exports/latest/results.triage.jsonl",
+      "exports/latest/source-rights.jsonl",
+      "exports/latest/sources.jsonl",
+      "exports/latest/studies.jsonl",
+      "exports/latest/synthesis-groups.jsonl",
+      "exports/latest/text-snapshots.jsonl"
+    ],
+    "export_paths": [
+      "exports/latest/accepted-records.jsonl",
+      "exports/latest/audit-manifest.json",
+      "exports/latest/consumer-contract.json",
+      "exports/latest/coverage-status.json",
+      "exports/latest/evidence-map.json",
+      "exports/latest/findings.jsonl",
+      "exports/latest/read-model.sqlite",
+      "exports/latest/results.all.jsonl",
+      "exports/latest/results.extraction_grade.jsonl",
+      "exports/latest/results.registry_extracted.jsonl",
+      "exports/latest/results.triage.jsonl",
+      "exports/latest/source-rights.jsonl",
+      "exports/latest/sources.jsonl",
+      "exports/latest/studies.jsonl",
+      "exports/latest/synthesis-groups.jsonl",
+      "exports/latest/text-snapshots.jsonl"
+    ]
+  },
+  "quality_checks": [
+    {
+      "check_name": "clinicaltrials_snapshot_ingest",
+      "status": "failed",
+      "summary": "npm run ingest:clinicaltrials for NCT03430037 and NCT03675724 failed with getaddrinfo EAI_AGAIN for clinicaltrials.gov; no source snapshots were created."
+    },
+    {
+      "check_name": "validate_records",
+      "status": "passed",
+      "summary": "npm run validate:records passed and validated 442 JSON file(s)."
+    },
+    {
+      "check_name": "audit_references",
+      "status": "passed",
+      "summary": "npm run audit:references passed for 304 record file(s)."
+    },
+    {
+      "check_name": "export_latest",
+      "status": "passed",
+      "summary": "npm run export:latest passed and wrote 16 export file(s) to exports/latest."
+    },
+    {
+      "check_name": "audit_exports",
+      "status": "passed",
+      "summary": "npm run audit:exports passed for 11 JSONL export(s) and 15 manifest file hash(es)."
+    },
+    {
+      "check_name": "audit_agent_schemas",
+      "status": "passed",
+      "summary": "npm run audit:agent-schemas passed."
+    },
+    {
+      "check_name": "audit_agentic_process",
+      "status": "passed",
+      "summary": "npm run audit:agentic-process passed for 512 file(s)."
+    },
+    {
+      "check_name": "candidate_agent_run_ledger_match",
+      "status": "passed",
+      "summary": "The final agent_run proposed_records list matches the proposed_records in data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-repair.json."
+    },
+    {
+      "check_name": "repository_verification",
+      "status": "failed",
+      "summary": "npm run verify:knowledge-base:post-run failed at audit:triage-state because ops/triage-state.v1.json is stale after the candidate and coverage-assessment update."
+    },
+    {
+      "check_name": "worker_output_contract",
+      "status": "passed",
+      "summary": "Worker emitted exactly one final JSON agent_run message, matched output_path, and avoided ad hoc schema-validation snippets."
+    },
+    {
+      "check_name": "post_triage_state_export",
+      "status": "passed",
+      "summary": "post_triage_state_export exited 0: > longevity-hallmarks-research@0.1.0 export:triage-state > node scripts/export-triage-state.mjs Wrote ops/triage-state.v1.json."
+    },
+    {
+      "check_name": "post_release_readiness_export",
+      "status": "passed",
+      "summary": "post_release_readiness_export exited 0: > longevity-hallmarks-research@0.1.0 export:release-readiness > node scripts/export-release-readiness.mjs Wrote ops/release-readiness.v1.json."
+    },
+    {
+      "check_name": "post_reconciliation_export",
+      "status": "passed",
+      "summary": "post_reconciliation_export exited 0: > longevity-hallmarks-research@0.1.0 reconcile:parallel > node scripts/reconcile-parallel-outputs.mjs Wrote ops/reconciliation/parallel-reconciliation.v1.json."
+    },
+    {
+      "check_name": "post_orchestration_metrics_export",
+      "status": "passed",
+      "summary": "post_orchestration_metrics_export exited 0: > longevity-hallmarks-research@0.1.0 metrics:orchestration > node scripts/export-orchestration-metrics.mjs Wrote ops/codex-batches/orchestration-metrics.v1.json."
+    },
+    {
+      "check_name": "post_export",
+      "status": "passed",
+      "summary": "post_export exited 0: > longevity-hallmarks-research@0.1.0 export:latest > node scripts/export-latest.mjs Wrote 16 export file(s) to exports/latest."
+    },
+    {
+      "check_name": "post_verify",
+      "status": "passed",
+      "summary": "post_verify exited 0: > longevity-hallmarks-research@0.1.0 audit:orchestration-smoke-contract > node scripts/audit-orchestration-smoke-contract.mjs Orchestration smoke contract audit passed for orchestration-smoke-budgeted-codex-worktree-2026-06-23. > longevity-hallmarks-research@0.1.0 audit:agentic-process > node scripts/audit-agentic-process.mjs Agentic process audit passed for 513 file(s)."
+    }
+  ],
+  "blocking_issues": [
+    "ClinicalTrials.gov source-snapshot ingestion for NCT03430037 and NCT03675724 failed with DNS EAI_AGAIN, so source-snapshot-backed no-results extraction could not be completed.",
+    "Broader current senolytics registry surveillance across D+Q, fisetin, and senescence-targeting terms was not run because current ClinicalTrials.gov snapshots could not be fetched in this worker.",
+    "Repository verification remains incomplete until generated triage-state and related post-run artifacts are refreshed; npm run verify:knowledge-base:post-run failed at audit:triage-state."
+  ],
+  "next_actions": [
+    "Run source-snapshot-backed ClinicalTrials.gov surveillance for NCT03430037, NCT03675724, and broader D+Q/fisetin/senescence-targeting terms when registry network access is available.",
+    "Create extraction-grade no-results registry records only after fetched ClinicalTrials.gov source snapshots support the no-results status.",
+    "Run extraction_fidelity, synthesis_boundary, and taxonomy_mapping review lanes for coverage-gap-senolytics-registry-surveillance-breadth-repair.",
+    "Refresh generated triage/release/reconciliation artifacts and rerun repository verification after the wrapper writes this agent_run output."
+  ]
+}

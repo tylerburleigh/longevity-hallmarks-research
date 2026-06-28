@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "release_readiness",
   "id": "release-readiness-v1",
-  "generated_at": "2026-06-27T21:50:03.943Z",
+  "generated_at": "2026-06-27T22:13:02.492Z",
   "source_roots": [
     "data",
     "research"
@@ -20,16 +20,20 @@
     "candidate_count": 57,
     "not_ready_candidate_count": 43,
     "promotion_ready_candidate_count": 0,
-    "release_ready_candidate_count": 9,
-    "partial_release_ready_candidate_count": 5,
-    "release_blocked_candidate_count": 5,
+    "release_ready_candidate_count": 14,
+    "partial_release_ready_candidate_count": 0,
+    "release_blocked_candidate_count": 0,
     "accepted_or_applied_candidate_count": 14,
-    "accepted_record_count": 59,
-    "blocked_accepted_record_count": 40
+    "accepted_record_count": 87,
+    "blocked_accepted_record_count": 0
   },
   "promotion_ready_candidate_ids": [],
   "release_ready_candidate_ids": [
+    "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
+    "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
     "candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair",
+    "coverage-gap-senolytics-exact-effect-extraction-repair",
+    "coverage-gap-senolytics-safety-tables-repair",
     "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair",
     "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
     "senolytics-dq-bone-headache-ae-extraction-pilot-2026-06-23",
@@ -37,15 +41,10 @@
     "senolytics-dq-bone-registry-markdown-provenance-repair-2026-06-22",
     "senolytics-dq-bone-registry-text-snapshot-2026-06-22",
     "senolytics-dq-bone-release-anchor-2026-06-22",
-    "senolytics-dq-bone-source-rights-seed-2026-06-22"
-  ],
-  "release_blocked_candidate_ids": [
-    "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
-    "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
-    "coverage-gap-senolytics-exact-effect-extraction-repair",
-    "coverage-gap-senolytics-safety-tables-repair",
+    "senolytics-dq-bone-source-rights-seed-2026-06-22",
     "senolytics-pubmed-snapshot-provenance-2026-06-27"
   ],
+  "release_blocked_candidate_ids": [],
   "candidate_release_statuses": [
     {
       "candidate_change_id": "agent-run-recovery-self-healing-candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
@@ -738,7 +737,7 @@
       "path": "data/candidate-changes/candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair.json",
       "lifecycle_status": "accepted",
       "readiness_status": "accepted",
-      "release_status": "partial_release_ready",
+      "release_status": "release_ready",
       "required_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
@@ -754,17 +753,15 @@
         "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair-taxonomy-mapping"
       ],
       "proposed_record_count": 2,
-      "release_ready_record_count": 1,
-      "blocked_record_count": 1,
+      "release_ready_record_count": 2,
+      "blocked_record_count": 0,
       "release_ready_record_ids": [
-        "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair"
-      ],
-      "blocked_record_ids": [
+        "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
         "senolytics-bone-rct-extraction-refresh-2026-06-21"
       ],
+      "blocked_record_ids": [],
       "next_actions": [
-        "Included records without blockers are eligible for accepted-record export.",
-        "Resolve blocked records before treating the whole candidate as fully released: candidate_change:senolytics-bone-rct-extraction-refresh-2026-06-21."
+        "Included in accepted-record export."
       ]
     },
     {
@@ -772,7 +769,7 @@
       "path": "data/candidate-changes/candidate-revision-senolytics-coverage-repair-2026-06-21-repair.json",
       "lifecycle_status": "accepted",
       "readiness_status": "accepted",
-      "release_status": "partial_release_ready",
+      "release_status": "release_ready",
       "required_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
@@ -788,17 +785,15 @@
         "candidate-revision-senolytics-coverage-repair-2026-06-21-repair-taxonomy-mapping-2026-06-23"
       ],
       "proposed_record_count": 2,
-      "release_ready_record_count": 1,
-      "blocked_record_count": 1,
+      "release_ready_record_count": 2,
+      "blocked_record_count": 0,
       "release_ready_record_ids": [
-        "candidate-revision-senolytics-coverage-repair-2026-06-21-repair"
-      ],
-      "blocked_record_ids": [
+        "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
         "senolytics-coverage-repair-2026-06-21"
       ],
+      "blocked_record_ids": [],
       "next_actions": [
-        "Included records without blockers are eligible for accepted-record export.",
-        "Resolve blocked records before treating the whole candidate as fully released: candidate_change:senolytics-coverage-repair-2026-06-21."
+        "Included in accepted-record export."
       ]
     },
     {
@@ -834,7 +829,7 @@
       "path": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-repair.json",
       "lifecycle_status": "accepted",
       "readiness_status": "accepted",
-      "release_status": "partial_release_ready",
+      "release_status": "release_ready",
       "required_review_lanes": [
         "extraction_fidelity",
         "synthesis_boundary",
@@ -846,12 +841,10 @@
         "coverage-gap-senolytics-exact-effect-extraction-repair-taxonomy-mapping"
       ],
       "proposed_record_count": 13,
-      "release_ready_record_count": 1,
-      "blocked_record_count": 12,
+      "release_ready_record_count": 13,
+      "blocked_record_count": 0,
       "release_ready_record_ids": [
-        "coverage-gap-senolytics-exact-effect-extraction-repair"
-      ],
-      "blocked_record_ids": [
+        "coverage-gap-senolytics-exact-effect-extraction-repair",
         "dq-ad-risk-cognition-mobility",
         "dq-ad-risk-cognition-mobility-mixed",
         "dq-ad-risk-cognition-mobility-pilot",
@@ -865,9 +858,9 @@
         "dq-ipf-randomized-pilot",
         "senolytics-coverage-repair-2026-06-21"
       ],
+      "blocked_record_ids": [],
       "next_actions": [
-        "Included records without blockers are eligible for accepted-record export.",
-        "Resolve blocked records before treating the whole candidate as fully released: coverage_assessment:senolytics-coverage-repair-2026-06-21, study:dq-diabetic-kidney-disease-pilot, outcome:dq-dkd-senescent-cell-biomarkers, result:dq-dkd-biomarker-positive, finding:dq-dkd-human-senescent-cell-biomarker-signal, study:dq-ad-risk-cognition-mobility-pilot, outcome:dq-ad-risk-cognition-mobility, result:dq-ad-risk-cognition-mobility-mixed, finding:dq-ad-risk-pilot-cognition-mobility-signal, study:dq-ipf-randomized-pilot, outcome:dq-ipf-dosing-completion-assessments, result:dq-ipf-dosing-completion-mixed."
+        "Included in accepted-record export."
       ]
     },
     {
@@ -875,7 +868,7 @@
       "path": "data/candidate-changes/coverage-gap-senolytics-safety-tables-repair.json",
       "lifecycle_status": "accepted",
       "readiness_status": "accepted",
-      "release_status": "partial_release_ready",
+      "release_status": "release_ready",
       "required_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
@@ -889,17 +882,15 @@
         "coverage-gap-senolytics-safety-tables-repair-taxonomy-mapping"
       ],
       "proposed_record_count": 2,
-      "release_ready_record_count": 1,
-      "blocked_record_count": 1,
+      "release_ready_record_count": 2,
+      "blocked_record_count": 0,
       "release_ready_record_ids": [
-        "coverage-gap-senolytics-safety-tables-repair"
-      ],
-      "blocked_record_ids": [
+        "coverage-gap-senolytics-safety-tables-repair",
         "senolytics-coverage-repair-2026-06-21"
       ],
+      "blocked_record_ids": [],
       "next_actions": [
-        "Included records without blockers are eligible for accepted-record export.",
-        "Resolve blocked records before treating the whole candidate as fully released: coverage_assessment:senolytics-coverage-repair-2026-06-21."
+        "Included in accepted-record export."
       ]
     },
     {
@@ -1326,7 +1317,7 @@
       "path": "data/candidate-changes/senolytics-pubmed-snapshot-provenance-2026-06-27.json",
       "lifecycle_status": "accepted",
       "readiness_status": "accepted",
-      "release_status": "partial_release_ready",
+      "release_status": "release_ready",
       "required_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
@@ -1342,12 +1333,9 @@
         "senolytics-pubmed-snapshot-provenance-2026-06-27-taxonomy-mapping"
       ],
       "proposed_record_count": 26,
-      "release_ready_record_count": 1,
-      "blocked_record_count": 25,
+      "release_ready_record_count": 26,
+      "blocked_record_count": 0,
       "release_ready_record_ids": [
-        "senolytics-pubmed-snapshot-provenance-2026-06-27"
-      ],
-      "blocked_record_ids": [
         "dq-ad-risk-cognition-mobility",
         "dq-ad-risk-cognition-mobility-mixed",
         "dq-ad-risk-cognition-mobility-pilot",
@@ -1370,13 +1358,14 @@
         "pmid-31542391",
         "pmid-36857968",
         "pmid-40010154",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27",
         "snapshot-pmid-31542391-pubmed-efetch-2026-06-27",
         "snapshot-pmid-36857968-pubmed-efetch-2026-06-27",
         "snapshot-pmid-40010154-pubmed-efetch-2026-06-27"
       ],
+      "blocked_record_ids": [],
       "next_actions": [
-        "Included records without blockers are eligible for accepted-record export.",
-        "Resolve blocked records before treating the whole candidate as fully released: eligibility_decision:eligibility-pmid-31542391-senolytics-2026-06-21, eligibility_decision:eligibility-pmid-36857968-senolytics-2026-06-21, finding:dq-ad-risk-pilot-cognition-mobility-signal, finding:dq-dkd-human-senescent-cell-biomarker-signal, finding:dq-ipf-randomized-feasibility-tolerability-mixed, outcome:dq-ad-risk-cognition-mobility, outcome:dq-dkd-senescent-cell-biomarkers, outcome:dq-ipf-dosing-completion-assessments, outcome:dq-ipf-feasibility-tolerability, result:dq-ad-risk-cognition-mobility-mixed, result:dq-dkd-biomarker-positive, result:dq-ipf-dosing-completion-mixed, result:dq-ipf-tolerability-mixed, risk_of_bias:dq-ad-risk-pilot-rob, risk_of_bias:dq-dkd-pilot-rob, risk_of_bias:dq-ipf-randomized-pilot-rob, source_snapshot:snapshot-pmid-31542391-pubmed-efetch-2026-06-27, source_snapshot:snapshot-pmid-36857968-pubmed-efetch-2026-06-27, source_snapshot:snapshot-pmid-40010154-pubmed-efetch-2026-06-27, source:pmid-31542391, source:pmid-36857968, source:pmid-40010154, study:dq-ad-risk-cognition-mobility-pilot, study:dq-diabetic-kidney-disease-pilot, study:dq-ipf-randomized-pilot."
+        "Included in accepted-record export."
       ]
     },
     {
@@ -1493,6 +1482,36 @@
       ],
       "change_types": [
         "create"
+      ]
+    },
+    {
+      "record_type": "candidate_change",
+      "record_id": "senolytics-bone-rct-extraction-refresh-2026-06-21",
+      "path": "data/candidate-changes/senolytics-bone-rct-extraction-refresh-2026-06-21.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "update"
+      ]
+    },
+    {
+      "record_type": "candidate_change",
+      "record_id": "senolytics-coverage-repair-2026-06-21",
+      "path": "data/candidate-changes/senolytics-coverage-repair-2026-06-21.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "candidate-revision-senolytics-coverage-repair-2026-06-21-repair"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "update"
       ]
     },
     {
@@ -1631,6 +1650,68 @@
       ]
     },
     {
+      "record_type": "coverage_assessment",
+      "record_id": "senolytics-coverage-repair-2026-06-21",
+      "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "coverage-gap-senolytics-exact-effect-extraction-repair",
+        "coverage-gap-senolytics-safety-tables-repair"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "update"
+      ]
+    },
+    {
+      "record_type": "eligibility_decision",
+      "record_id": "eligibility-pmid-31542391-senolytics-2026-06-21",
+      "path": "data/eligibility-decisions/eligibility-pmid-31542391-senolytics-2026-06-21.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "update"
+      ]
+    },
+    {
+      "record_type": "eligibility_decision",
+      "record_id": "eligibility-pmid-36857968-senolytics-2026-06-21",
+      "path": "data/eligibility-decisions/eligibility-pmid-36857968-senolytics-2026-06-21.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "update"
+      ]
+    },
+    {
+      "record_type": "finding",
+      "record_id": "dq-ad-risk-pilot-cognition-mobility-signal",
+      "path": "data/findings/dq-ad-risk-pilot-cognition-mobility-signal.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "coverage-gap-senolytics-exact-effect-extraction-repair",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "update"
+      ]
+    },
+    {
       "record_type": "finding",
       "record_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
       "path": "data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json",
@@ -1645,6 +1726,53 @@
       ],
       "change_types": [
         "release_accept",
+        "update"
+      ]
+    },
+    {
+      "record_type": "finding",
+      "record_id": "dq-dkd-human-senescent-cell-biomarker-signal",
+      "path": "data/findings/dq-dkd-human-senescent-cell-biomarker-signal.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "coverage-gap-senolytics-exact-effect-extraction-repair",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "update"
+      ]
+    },
+    {
+      "record_type": "finding",
+      "record_id": "dq-ipf-randomized-feasibility-tolerability-mixed",
+      "path": "data/findings/dq-ipf-randomized-feasibility-tolerability-mixed.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "update"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-ad-risk-cognition-mobility",
+      "path": "data/outcomes/dq-ad-risk-cognition-mobility.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "coverage-gap-senolytics-exact-effect-extraction-repair",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
         "update"
       ]
     },
@@ -1839,6 +1967,70 @@
       ],
       "change_types": [
         "release_accept",
+        "update"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-dkd-senescent-cell-biomarkers",
+      "path": "data/outcomes/dq-dkd-senescent-cell-biomarkers.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "coverage-gap-senolytics-exact-effect-extraction-repair",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "update"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-ipf-dosing-completion-assessments",
+      "path": "data/outcomes/dq-ipf-dosing-completion-assessments.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "coverage-gap-senolytics-exact-effect-extraction-repair",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create",
+        "update"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "record_id": "dq-ipf-feasibility-tolerability",
+      "path": "data/outcomes/dq-ipf-feasibility-tolerability.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "update"
+      ]
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-ad-risk-cognition-mobility-mixed",
+      "path": "data/results/dq-ad-risk-cognition-mobility-mixed.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "coverage-gap-senolytics-exact-effect-extraction-repair",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
         "update"
       ]
     },
@@ -2069,6 +2261,99 @@
       ]
     },
     {
+      "record_type": "result",
+      "record_id": "dq-dkd-biomarker-positive",
+      "path": "data/results/dq-dkd-biomarker-positive.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "coverage-gap-senolytics-exact-effect-extraction-repair",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "update"
+      ]
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-ipf-dosing-completion-mixed",
+      "path": "data/results/dq-ipf-dosing-completion-mixed.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "coverage-gap-senolytics-exact-effect-extraction-repair",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create",
+        "update"
+      ]
+    },
+    {
+      "record_type": "result",
+      "record_id": "dq-ipf-tolerability-mixed",
+      "path": "data/results/dq-ipf-tolerability-mixed.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "update"
+      ]
+    },
+    {
+      "record_type": "risk_of_bias",
+      "record_id": "dq-ad-risk-pilot-rob",
+      "path": "data/risk-of-bias/dq-ad-risk-pilot-rob.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "update"
+      ]
+    },
+    {
+      "record_type": "risk_of_bias",
+      "record_id": "dq-dkd-pilot-rob",
+      "path": "data/risk-of-bias/dq-dkd-pilot-rob.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "update"
+      ]
+    },
+    {
+      "record_type": "risk_of_bias",
+      "record_id": "dq-ipf-randomized-pilot-rob",
+      "path": "data/risk-of-bias/dq-ipf-randomized-pilot-rob.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "update"
+      ]
+    },
+    {
       "record_type": "source",
       "record_id": "nct-04313634",
       "path": "data/sources/nct-04313634.json",
@@ -2085,6 +2370,36 @@
     },
     {
       "record_type": "source",
+      "record_id": "pmid-31542391",
+      "path": "data/sources/pmid-31542391.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "update"
+      ]
+    },
+    {
+      "record_type": "source",
+      "record_id": "pmid-36857968",
+      "path": "data/sources/pmid-36857968.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "update"
+      ]
+    },
+    {
+      "record_type": "source",
       "record_id": "pmid-38956196",
       "path": "data/sources/pmid-38956196.json",
       "release_status": "accepted",
@@ -2097,6 +2412,21 @@
       ],
       "change_types": [
         "release_accept",
+        "update"
+      ]
+    },
+    {
+      "record_type": "source",
+      "record_id": "pmid-40010154",
+      "path": "data/sources/pmid-40010154.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
         "update"
       ]
     },
@@ -2151,6 +2481,36 @@
     },
     {
       "record_type": "source_snapshot",
+      "record_id": "snapshot-pmid-31542391-pubmed-efetch-2026-06-27",
+      "path": "data/source-snapshots/snapshot-pmid-31542391-pubmed-efetch-2026-06-27.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
+    },
+    {
+      "record_type": "source_snapshot",
+      "record_id": "snapshot-pmid-36857968-pubmed-efetch-2026-06-27",
+      "path": "data/source-snapshots/snapshot-pmid-36857968-pubmed-efetch-2026-06-27.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
+    },
+    {
+      "record_type": "source_snapshot",
       "record_id": "snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
       "path": "data/source-snapshots/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
       "release_status": "accepted",
@@ -2177,6 +2537,69 @@
       ],
       "change_types": [
         "release_accept"
+      ]
+    },
+    {
+      "record_type": "source_snapshot",
+      "record_id": "snapshot-pmid-40010154-pubmed-efetch-2026-06-27",
+      "path": "data/source-snapshots/snapshot-pmid-40010154-pubmed-efetch-2026-06-27.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
+    },
+    {
+      "record_type": "study",
+      "record_id": "dq-ad-risk-cognition-mobility-pilot",
+      "path": "data/studies/dq-ad-risk-cognition-mobility-pilot.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "coverage-gap-senolytics-exact-effect-extraction-repair",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "update"
+      ]
+    },
+    {
+      "record_type": "study",
+      "record_id": "dq-diabetic-kidney-disease-pilot",
+      "path": "data/studies/dq-diabetic-kidney-disease-pilot.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "coverage-gap-senolytics-exact-effect-extraction-repair",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "update"
+      ]
+    },
+    {
+      "record_type": "study",
+      "record_id": "dq-ipf-randomized-pilot",
+      "path": "data/studies/dq-ipf-randomized-pilot.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "coverage-gap-senolytics-exact-effect-extraction-repair",
+        "senolytics-pubmed-snapshot-provenance-2026-06-27"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "update"
       ]
     },
     {
@@ -2334,686 +2757,5 @@
       ]
     }
   ],
-  "blocked_accepted_records": [
-    {
-      "record_type": "candidate_change",
-      "record_id": "senolytics-bone-rct-extraction-refresh-2026-06-21",
-      "path": "data/candidate-changes/senolytics-bone-rct-extraction-refresh-2026-06-21.json",
-      "change_type": "update",
-      "candidate_change_id": "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-bone-rct-extraction-refresh-2026-06-21."
-        }
-      ]
-    },
-    {
-      "record_type": "candidate_change",
-      "record_id": "senolytics-coverage-repair-2026-06-21",
-      "path": "data/candidate-changes/senolytics-coverage-repair-2026-06-21.json",
-      "change_type": "update",
-      "candidate_change_id": "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
-        }
-      ]
-    },
-    {
-      "record_type": "coverage_assessment",
-      "record_id": "senolytics-coverage-repair-2026-06-21",
-      "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
-      "change_type": "update",
-      "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-repair",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
-        },
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "coverage_assessment:senolytics-coverage-repair-2026-06-21 depends on source:pmid-25754370 through covered_source_ids, but that record is not proposed by an accepted or applied candidate."
-        },
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "coverage_assessment:senolytics-coverage-repair-2026-06-21 depends on source:pmid-29988130 through covered_source_ids, but that record is not proposed by an accepted or applied candidate."
-        },
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "coverage_assessment:senolytics-coverage-repair-2026-06-21 depends on source:pmid-32686219 through covered_source_ids, but that record is not proposed by an accepted or applied candidate."
-        },
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "coverage_assessment:senolytics-coverage-repair-2026-06-21 depends on source:nct-06133634 through covered_source_ids, but that record is not proposed by an accepted or applied candidate."
-        },
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "coverage_assessment:senolytics-coverage-repair-2026-06-21 depends on source:nct-04685590 through covered_source_ids, but that record is not proposed by an accepted or applied candidate."
-        },
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "coverage_assessment:senolytics-coverage-repair-2026-06-21 depends on finding:dq-senolytic-drug-discovery-preclinical through covered_finding_ids, but that record is not proposed by an accepted or applied candidate."
-        },
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "coverage_assessment:senolytics-coverage-repair-2026-06-21 depends on finding:dq-old-mice-healthspan-lifespan-positive through covered_finding_ids, but that record is not proposed by an accepted or applied candidate."
-        },
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "coverage_assessment:senolytics-coverage-repair-2026-06-21 depends on finding:senolytic-translation-review-boundary through covered_finding_ids, but that record is not proposed by an accepted or applied candidate."
-        },
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "coverage_assessment:senolytics-coverage-repair-2026-06-21 depends on finding:fisetin-vascular-active-no-posted-results through covered_finding_ids, but that record is not proposed by an accepted or applied candidate."
-        },
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "coverage_assessment:senolytics-coverage-repair-2026-06-21 depends on finding:dq-stomp-ad-active-no-posted-results through covered_finding_ids, but that record is not proposed by an accepted or applied candidate."
-        },
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "coverage_assessment:senolytics-coverage-repair-2026-06-21 depends on source:pmid-25754370 through provenance[0].source_id, but that record is not proposed by an accepted or applied candidate."
-        }
-      ]
-    },
-    {
-      "record_type": "finding",
-      "record_id": "dq-ad-risk-pilot-cognition-mobility-signal",
-      "path": "data/findings/dq-ad-risk-pilot-cognition-mobility-signal.json",
-      "change_type": "update",
-      "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-repair",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
-        }
-      ]
-    },
-    {
-      "record_type": "finding",
-      "record_id": "dq-dkd-human-senescent-cell-biomarker-signal",
-      "path": "data/findings/dq-dkd-human-senescent-cell-biomarker-signal.json",
-      "change_type": "update",
-      "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-repair",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
-        }
-      ]
-    },
-    {
-      "record_type": "outcome",
-      "record_id": "dq-ad-risk-cognition-mobility",
-      "path": "data/outcomes/dq-ad-risk-cognition-mobility.json",
-      "change_type": "update",
-      "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-repair",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
-        }
-      ]
-    },
-    {
-      "record_type": "outcome",
-      "record_id": "dq-dkd-senescent-cell-biomarkers",
-      "path": "data/outcomes/dq-dkd-senescent-cell-biomarkers.json",
-      "change_type": "update",
-      "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-repair",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
-        }
-      ]
-    },
-    {
-      "record_type": "outcome",
-      "record_id": "dq-ipf-dosing-completion-assessments",
-      "path": "data/outcomes/dq-ipf-dosing-completion-assessments.json",
-      "change_type": "create",
-      "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-repair",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "outcome:dq-ipf-dosing-completion-assessments depends on source:pmid-36857968, which has release blockers."
-        },
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "outcome:dq-ipf-dosing-completion-assessments depends on study:dq-ipf-randomized-pilot, which has release blockers."
-        },
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "outcome:dq-ipf-dosing-completion-assessments depends on finding:dq-ipf-randomized-feasibility-tolerability-mixed, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "result",
-      "record_id": "dq-ad-risk-cognition-mobility-mixed",
-      "path": "data/results/dq-ad-risk-cognition-mobility-mixed.json",
-      "change_type": "update",
-      "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-repair",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
-        }
-      ]
-    },
-    {
-      "record_type": "result",
-      "record_id": "dq-dkd-biomarker-positive",
-      "path": "data/results/dq-dkd-biomarker-positive.json",
-      "change_type": "update",
-      "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-repair",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
-        }
-      ]
-    },
-    {
-      "record_type": "result",
-      "record_id": "dq-ipf-dosing-completion-mixed",
-      "path": "data/results/dq-ipf-dosing-completion-mixed.json",
-      "change_type": "create",
-      "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-repair",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "result:dq-ipf-dosing-completion-mixed depends on source:pmid-36857968, which has release blockers."
-        },
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "result:dq-ipf-dosing-completion-mixed depends on study:dq-ipf-randomized-pilot, which has release blockers."
-        },
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "result:dq-ipf-dosing-completion-mixed depends on finding:dq-ipf-randomized-feasibility-tolerability-mixed, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "study",
-      "record_id": "dq-ad-risk-cognition-mobility-pilot",
-      "path": "data/studies/dq-ad-risk-cognition-mobility-pilot.json",
-      "change_type": "update",
-      "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-repair",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
-        }
-      ]
-    },
-    {
-      "record_type": "study",
-      "record_id": "dq-diabetic-kidney-disease-pilot",
-      "path": "data/studies/dq-diabetic-kidney-disease-pilot.json",
-      "change_type": "update",
-      "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-repair",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
-        }
-      ]
-    },
-    {
-      "record_type": "study",
-      "record_id": "dq-ipf-randomized-pilot",
-      "path": "data/studies/dq-ipf-randomized-pilot.json",
-      "change_type": "update",
-      "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-repair",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
-        }
-      ]
-    },
-    {
-      "record_type": "coverage_assessment",
-      "record_id": "senolytics-coverage-repair-2026-06-21",
-      "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
-      "change_type": "update",
-      "candidate_change_id": "coverage-gap-senolytics-safety-tables-repair",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
-        },
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "coverage_assessment:senolytics-coverage-repair-2026-06-21 depends on source:pmid-25754370 through covered_source_ids, but that record is not proposed by an accepted or applied candidate."
-        },
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "coverage_assessment:senolytics-coverage-repair-2026-06-21 depends on source:pmid-29988130 through covered_source_ids, but that record is not proposed by an accepted or applied candidate."
-        },
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "coverage_assessment:senolytics-coverage-repair-2026-06-21 depends on source:pmid-32686219 through covered_source_ids, but that record is not proposed by an accepted or applied candidate."
-        },
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "coverage_assessment:senolytics-coverage-repair-2026-06-21 depends on source:nct-06133634 through covered_source_ids, but that record is not proposed by an accepted or applied candidate."
-        },
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "coverage_assessment:senolytics-coverage-repair-2026-06-21 depends on source:nct-04685590 through covered_source_ids, but that record is not proposed by an accepted or applied candidate."
-        },
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "coverage_assessment:senolytics-coverage-repair-2026-06-21 depends on finding:dq-senolytic-drug-discovery-preclinical through covered_finding_ids, but that record is not proposed by an accepted or applied candidate."
-        },
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "coverage_assessment:senolytics-coverage-repair-2026-06-21 depends on finding:dq-old-mice-healthspan-lifespan-positive through covered_finding_ids, but that record is not proposed by an accepted or applied candidate."
-        },
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "coverage_assessment:senolytics-coverage-repair-2026-06-21 depends on finding:senolytic-translation-review-boundary through covered_finding_ids, but that record is not proposed by an accepted or applied candidate."
-        },
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "coverage_assessment:senolytics-coverage-repair-2026-06-21 depends on finding:fisetin-vascular-active-no-posted-results through covered_finding_ids, but that record is not proposed by an accepted or applied candidate."
-        },
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "coverage_assessment:senolytics-coverage-repair-2026-06-21 depends on finding:dq-stomp-ad-active-no-posted-results through covered_finding_ids, but that record is not proposed by an accepted or applied candidate."
-        },
-        {
-          "blocker_type": "unaccepted_dependency",
-          "message": "coverage_assessment:senolytics-coverage-repair-2026-06-21 depends on source:pmid-25754370 through provenance[0].source_id, but that record is not proposed by an accepted or applied candidate."
-        }
-      ]
-    },
-    {
-      "record_type": "eligibility_decision",
-      "record_id": "eligibility-pmid-31542391-senolytics-2026-06-21",
-      "path": "data/eligibility-decisions/eligibility-pmid-31542391-senolytics-2026-06-21.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
-        }
-      ]
-    },
-    {
-      "record_type": "eligibility_decision",
-      "record_id": "eligibility-pmid-36857968-senolytics-2026-06-21",
-      "path": "data/eligibility-decisions/eligibility-pmid-36857968-senolytics-2026-06-21.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
-        }
-      ]
-    },
-    {
-      "record_type": "finding",
-      "record_id": "dq-ad-risk-pilot-cognition-mobility-signal",
-      "path": "data/findings/dq-ad-risk-pilot-cognition-mobility-signal.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
-        }
-      ]
-    },
-    {
-      "record_type": "finding",
-      "record_id": "dq-dkd-human-senescent-cell-biomarker-signal",
-      "path": "data/findings/dq-dkd-human-senescent-cell-biomarker-signal.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
-        }
-      ]
-    },
-    {
-      "record_type": "finding",
-      "record_id": "dq-ipf-randomized-feasibility-tolerability-mixed",
-      "path": "data/findings/dq-ipf-randomized-feasibility-tolerability-mixed.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
-        }
-      ]
-    },
-    {
-      "record_type": "outcome",
-      "record_id": "dq-ad-risk-cognition-mobility",
-      "path": "data/outcomes/dq-ad-risk-cognition-mobility.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
-        }
-      ]
-    },
-    {
-      "record_type": "outcome",
-      "record_id": "dq-dkd-senescent-cell-biomarkers",
-      "path": "data/outcomes/dq-dkd-senescent-cell-biomarkers.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
-        }
-      ]
-    },
-    {
-      "record_type": "outcome",
-      "record_id": "dq-ipf-dosing-completion-assessments",
-      "path": "data/outcomes/dq-ipf-dosing-completion-assessments.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "outcome:dq-ipf-dosing-completion-assessments depends on source:pmid-36857968, which has release blockers."
-        },
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "outcome:dq-ipf-dosing-completion-assessments depends on study:dq-ipf-randomized-pilot, which has release blockers."
-        },
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "outcome:dq-ipf-dosing-completion-assessments depends on finding:dq-ipf-randomized-feasibility-tolerability-mixed, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "outcome",
-      "record_id": "dq-ipf-feasibility-tolerability",
-      "path": "data/outcomes/dq-ipf-feasibility-tolerability.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
-        }
-      ]
-    },
-    {
-      "record_type": "result",
-      "record_id": "dq-ad-risk-cognition-mobility-mixed",
-      "path": "data/results/dq-ad-risk-cognition-mobility-mixed.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
-        }
-      ]
-    },
-    {
-      "record_type": "result",
-      "record_id": "dq-dkd-biomarker-positive",
-      "path": "data/results/dq-dkd-biomarker-positive.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
-        }
-      ]
-    },
-    {
-      "record_type": "result",
-      "record_id": "dq-ipf-dosing-completion-mixed",
-      "path": "data/results/dq-ipf-dosing-completion-mixed.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "result:dq-ipf-dosing-completion-mixed depends on source:pmid-36857968, which has release blockers."
-        },
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "result:dq-ipf-dosing-completion-mixed depends on study:dq-ipf-randomized-pilot, which has release blockers."
-        },
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "result:dq-ipf-dosing-completion-mixed depends on finding:dq-ipf-randomized-feasibility-tolerability-mixed, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "result",
-      "record_id": "dq-ipf-tolerability-mixed",
-      "path": "data/results/dq-ipf-tolerability-mixed.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
-        }
-      ]
-    },
-    {
-      "record_type": "risk_of_bias",
-      "record_id": "dq-ad-risk-pilot-rob",
-      "path": "data/risk-of-bias/dq-ad-risk-pilot-rob.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
-        }
-      ]
-    },
-    {
-      "record_type": "risk_of_bias",
-      "record_id": "dq-dkd-pilot-rob",
-      "path": "data/risk-of-bias/dq-dkd-pilot-rob.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
-        }
-      ]
-    },
-    {
-      "record_type": "risk_of_bias",
-      "record_id": "dq-ipf-randomized-pilot-rob",
-      "path": "data/risk-of-bias/dq-ipf-randomized-pilot-rob.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
-        }
-      ]
-    },
-    {
-      "record_type": "source",
-      "record_id": "pmid-31542391",
-      "path": "data/sources/pmid-31542391.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
-        }
-      ]
-    },
-    {
-      "record_type": "source",
-      "record_id": "pmid-36857968",
-      "path": "data/sources/pmid-36857968.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
-        }
-      ]
-    },
-    {
-      "record_type": "source",
-      "record_id": "pmid-40010154",
-      "path": "data/sources/pmid-40010154.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
-        }
-      ]
-    },
-    {
-      "record_type": "source_snapshot",
-      "record_id": "snapshot-pmid-31542391-pubmed-efetch-2026-06-27",
-      "path": "data/source-snapshots/snapshot-pmid-31542391-pubmed-efetch-2026-06-27.json",
-      "change_type": "create",
-      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "source_snapshot:snapshot-pmid-31542391-pubmed-efetch-2026-06-27 depends on source:pmid-31542391, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "source_snapshot",
-      "record_id": "snapshot-pmid-36857968-pubmed-efetch-2026-06-27",
-      "path": "data/source-snapshots/snapshot-pmid-36857968-pubmed-efetch-2026-06-27.json",
-      "change_type": "create",
-      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "source_snapshot:snapshot-pmid-36857968-pubmed-efetch-2026-06-27 depends on source:pmid-36857968, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "source_snapshot",
-      "record_id": "snapshot-pmid-40010154-pubmed-efetch-2026-06-27",
-      "path": "data/source-snapshots/snapshot-pmid-40010154-pubmed-efetch-2026-06-27.json",
-      "change_type": "create",
-      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "blocked_dependency",
-          "message": "source_snapshot:snapshot-pmid-40010154-pubmed-efetch-2026-06-27 depends on source:pmid-40010154, which has release blockers."
-        }
-      ]
-    },
-    {
-      "record_type": "study",
-      "record_id": "dq-ad-risk-cognition-mobility-pilot",
-      "path": "data/studies/dq-ad-risk-cognition-mobility-pilot.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
-        }
-      ]
-    },
-    {
-      "record_type": "study",
-      "record_id": "dq-diabetic-kidney-disease-pilot",
-      "path": "data/studies/dq-diabetic-kidney-disease-pilot.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
-        }
-      ]
-    },
-    {
-      "record_type": "study",
-      "record_id": "dq-ipf-randomized-pilot",
-      "path": "data/studies/dq-ipf-randomized-pilot.json",
-      "change_type": "update",
-      "candidate_change_id": "senolytics-pubmed-snapshot-provenance-2026-06-27",
-      "candidate_lifecycle_status": "accepted",
-      "blockers": [
-        {
-          "blocker_type": "unaccepted_create_dependency",
-          "message": "Update depends on create or release-accept candidate(s) that are not accepted or applied: senolytics-coverage-repair-2026-06-21."
-        }
-      ]
-    }
-  ]
+  "blocked_accepted_records": []
 }

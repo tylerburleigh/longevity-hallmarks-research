@@ -116,25 +116,6 @@ function buildRecordIndex(entries) {
   return index;
 }
 
-function buildCreationOrReleaseAcceptCandidatesByRecord(candidateEntries) {
-  const candidatesByRecord = new Map();
-
-  for (const candidateEntry of candidateEntries) {
-    for (const proposedRecord of candidateEntry.record.proposed_records ?? []) {
-      if (!["create", "release_accept"].includes(proposedRecord.change_type)) {
-        continue;
-      }
-
-      const key = recordKey(proposedRecord.record_type, proposedRecord.record_id);
-      const group = candidatesByRecord.get(key) ?? [];
-      group.push(candidateEntry);
-      candidatesByRecord.set(key, group);
-    }
-  }
-
-  return candidatesByRecord;
-}
-
 function addBlocker(blockers, blocker) {
   if (!blockers.some((existing) => existing.blocker_type === blocker.blocker_type && existing.message === blocker.message)) {
     blockers.push(blocker);
@@ -193,10 +174,6 @@ function buildRecordDependencies(record) {
       addDependency(dependencies, "outcome_id", "outcome", record.outcome_id);
       addManyDependencies(dependencies, "finding_ids", "finding", record.finding_ids);
       break;
-    case "coverage_assessment":
-      addManyDependencies(dependencies, "covered_source_ids", "source", record.covered_source_ids);
-      addManyDependencies(dependencies, "covered_finding_ids", "finding", record.covered_finding_ids);
-      break;
     case "synthesis_group":
       addManyDependencies(dependencies, "outcome_ids", "outcome", record.outcome_ids);
       addManyDependencies(dependencies, "result_ids", "result", record.result_ids);
@@ -205,10 +182,12 @@ function buildRecordDependencies(record) {
       break;
   }
 
-  for (const [locatorIndex, locator] of (record.provenance ?? []).entries()) {
-    addDependency(dependencies, `provenance[${locatorIndex}].source_id`, "source", locator.source_id);
-    addDependency(dependencies, `provenance[${locatorIndex}].source_snapshot_id`, "source_snapshot", locator.source_snapshot_id);
-    addDependency(dependencies, `provenance[${locatorIndex}].text_snapshot_id`, "text_snapshot", locator.text_snapshot_id);
+  if (record.record_type !== "coverage_assessment") {
+    for (const [locatorIndex, locator] of (record.provenance ?? []).entries()) {
+      addDependency(dependencies, `provenance[${locatorIndex}].source_id`, "source", locator.source_id);
+      addDependency(dependencies, `provenance[${locatorIndex}].source_snapshot_id`, "source_snapshot", locator.source_snapshot_id);
+      addDependency(dependencies, `provenance[${locatorIndex}].text_snapshot_id`, "text_snapshot", locator.text_snapshot_id);
+    }
   }
 
   const seen = new Set();
@@ -240,9 +219,8 @@ function buildAcceptedRecordKeys(candidateEntries) {
   return keys;
 }
 
-function buildReleaseBlockers({ proposedRecord, recordEntry, creationOrReleaseAcceptsByRecord, recordsByKey, acceptedRecordKeys }) {
+function buildReleaseBlockers({ proposedRecord, recordEntry, recordsByKey, acceptedRecordKeys }) {
   const blockers = [];
-  const key = recordKey(proposedRecord.record_type, proposedRecord.record_id);
 
   if (!recordEntry) {
     addBlocker(blockers, {
@@ -266,23 +244,6 @@ function buildReleaseBlockers({ proposedRecord, recordEntry, creationOrReleaseAc
     });
   }
 
-  if (proposedRecord.change_type === "update") {
-    const dependencyCandidates = creationOrReleaseAcceptsByRecord.get(key) ?? [];
-    const acceptedDependencyCandidateIds = dependencyCandidates
-      .filter((candidateEntry) => acceptedCandidateStatuses.has(candidateEntry.record.lifecycle_status))
-      .map((candidateEntry) => candidateEntry.record.id);
-
-    if (dependencyCandidates.length > 0 && acceptedDependencyCandidateIds.length === 0) {
-      addBlocker(blockers, {
-        blocker_type: "unaccepted_create_dependency",
-        message: `Update depends on create or release-accept candidate(s) that are not accepted or applied: ${dependencyCandidates
-          .map((candidateEntry) => candidateEntry.record.id)
-          .sort()
-          .join(", ")}.`
-      });
-    }
-  }
-
   for (const dependency of buildRecordDependencies(recordEntry.record)) {
     if (!recordsByKey.has(dependency.key)) {
       addBlocker(blockers, {
@@ -304,7 +265,6 @@ function buildReleaseBlockers({ proposedRecord, recordEntry, creationOrReleaseAc
 }
 
 function buildAcceptedRecordQueues({ candidateEntries, recordsByKey }) {
-  const creationOrReleaseAcceptsByRecord = buildCreationOrReleaseAcceptCandidatesByRecord(candidateEntries);
   const acceptedRecordKeys = buildAcceptedRecordKeys(candidateEntries);
   const itemsByKey = new Map();
   const candidateItems = [];
@@ -321,7 +281,6 @@ function buildAcceptedRecordQueues({ candidateEntries, recordsByKey }) {
       const blockers = buildReleaseBlockers({
         proposedRecord,
         recordEntry,
-        creationOrReleaseAcceptsByRecord,
         recordsByKey,
         acceptedRecordKeys
       });

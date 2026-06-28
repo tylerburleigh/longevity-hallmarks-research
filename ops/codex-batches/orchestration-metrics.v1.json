@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "orchestration_metrics",
   "id": "orchestration-metrics-v1",
-  "generated_at": "2026-06-27T21:50:04.220Z",
+  "generated_at": "2026-06-27T22:13:02.967Z",
   "source_roots": [
     "data",
     "exports/latest",
@@ -76,10 +76,10 @@
     "extraction_debt_high_priority_open_count": 41,
     "extraction_debt_resolved_candidate_count": 8,
     "extraction_debt_resolved_record_count": 55,
-    "release_ready_candidate_count": 9,
-    "release_blocked_candidate_count": 5,
+    "release_ready_candidate_count": 14,
+    "release_blocked_candidate_count": 0,
     "release_artifact_count": 16,
-    "release_ready_record_count": 59
+    "release_ready_record_count": 87
   },
   "planned_parallelism": {
     "by_parallel_group": [
@@ -760,10 +760,10 @@
       ]
     },
     "release": {
-      "release_ready_candidate_count": 9,
-      "release_blocked_candidate_count": 5,
-      "release_ready_record_count": 59,
-      "blocked_accepted_record_count": 40,
+      "release_ready_candidate_count": 14,
+      "release_blocked_candidate_count": 0,
+      "release_ready_record_count": 87,
+      "blocked_accepted_record_count": 0,
       "release_artifact_count": 16,
       "export_files": [
         "exports/latest/accepted-records.jsonl",

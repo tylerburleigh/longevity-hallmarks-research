@@ -74,6 +74,7 @@ async function auditBinaryDirtyOverlay(issues) {
     await fs.mkdir(tempRoot, { recursive: true });
     runCommand("git", ["init", "-q"], { cwd: tempRoot });
     await fs.mkdir(path.join(tempRoot, "ops/codex-jobs/live"), { recursive: true });
+    await fs.writeFile(path.join(tempRoot, ".gitignore"), "node_modules/\n.cache/\n");
     await fs.writeFile(path.join(tempRoot, "binary.dat"), Buffer.from([0, 1, 2, 3, 255, 254, 253, 252]));
     await fs.writeFile(
       path.join(tempRoot, jobPath),
@@ -103,6 +104,13 @@ async function auditBinaryDirtyOverlay(issues) {
     const updatedBinary = Buffer.from([252, 253, 254, 255, 3, 2, 1, 0]);
     await fs.writeFile(path.join(tempRoot, "binary.dat"), updatedBinary);
     await fs.writeFile(path.join(tempRoot, "untracked-note.txt"), "copied through dirty overlay\n");
+    await fs.writeFile(path.join(tempRoot, "HANDOFF.md"), "local handoff note should stay out of worker overlays\n");
+    await fs.mkdir(path.join(tempRoot, "node_modules/fixture-package"), { recursive: true });
+    await fs.writeFile(path.join(tempRoot, "node_modules/fixture-package/index.js"), "module.exports = true;\n");
+    await fs.mkdir(path.join(tempRoot, "ops/codex-batches/logs"), { recursive: true });
+    await fs.writeFile(path.join(tempRoot, "ops/codex-batches/logs/current-run.jsonl"), "{}\n");
+    await fs.mkdir(path.join(tempRoot, "research/agent-runs/logs"), { recursive: true });
+    await fs.writeFile(path.join(tempRoot, "research/agent-runs/logs/current-worker.jsonl"), "{}\n");
 
     const helperUrl = pathToFileURL(path.join(workspaceRoot, "scripts/run-codex-worktree.mjs")).href;
     const script = `
@@ -123,6 +131,19 @@ async function auditBinaryDirtyOverlay(issues) {
     }
     if (!(await exists(path.join(worktreePath, "untracked-note.txt")))) {
       issues.push("binary dirty-overlay fixture: untracked file was not copied into the worktree.");
+    }
+    if (await exists(path.join(worktreePath, "HANDOFF.md"))) {
+      issues.push("binary dirty-overlay fixture: local HANDOFF.md was copied into the worktree.");
+    }
+    if (await exists(path.join(worktreePath, "ops/codex-batches/logs/current-run.jsonl"))) {
+      issues.push("binary dirty-overlay fixture: runtime batch log was copied into the worktree.");
+    }
+    if (await exists(path.join(worktreePath, "research/agent-runs/logs/current-worker.jsonl"))) {
+      issues.push("binary dirty-overlay fixture: runtime worker log was copied into the worktree.");
+    }
+    const worktreeStatus = runCommand("git", ["status", "--short", "--untracked-files=all"], { cwd: worktreePath });
+    if (worktreeStatus.includes("node_modules")) {
+      issues.push("binary dirty-overlay fixture: node_modules symlink appeared in worktree git status.");
     }
   } finally {
     await fs.rm(tempParent, { recursive: true, force: true });

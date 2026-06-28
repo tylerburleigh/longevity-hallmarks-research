@@ -10,6 +10,18 @@ export const workspaceRoot = process.cwd();
 export const defaultWorktreeRoot = path.join(os.tmpdir(), "lhr-codex-worktrees");
 
 const runnableJobStatuses = new Set(["planned", "ready", "running"]);
+const dirtyOverlayExcludedFiles = new Set(["HANDOFF.md"]);
+const dirtyOverlayExcludedRoots = [
+  "node_modules",
+  ".cache",
+  "coverage",
+  "dist",
+  "build",
+  "ops/codex-batches/logs",
+  "ops/codex-batches/runs",
+  "research/agent-runs/logs",
+  "research/agent-runs/prompts"
+];
 
 function usage() {
   console.error(`Usage:
@@ -157,6 +169,14 @@ function runGitInput(args, input, { cwd = workspaceRoot } = {}) {
   return result.stdout.toString("utf8").trim();
 }
 
+function gitExitCode(args, { cwd = workspaceRoot } = {}) {
+  const result = spawnSync("git", args, { cwd });
+  if (result.error) {
+    throw result.error;
+  }
+  return result.status;
+}
+
 async function exists(filePath) {
   try {
     await fs.access(filePath);
@@ -206,6 +226,43 @@ function assertWorktreePathOutsideWorkspace(worktreePath) {
   if (resolvedWorktreePath === resolvedWorkspaceRoot || isInsideDirectory(resolvedWorktreePath, resolvedWorkspaceRoot)) {
     throw new Error(`Worktree path must be outside the foreground repository: ${worktreePath}`);
   }
+}
+
+function isSameOrInsidePath(relativePath, rootPath) {
+  return relativePath === rootPath || relativePath.startsWith(`${rootPath}/`);
+}
+
+function isKnownRuntimeOverlayPath(relativePath) {
+  return dirtyOverlayExcludedFiles.has(relativePath) || dirtyOverlayExcludedRoots.some((rootPath) => isSameOrInsidePath(relativePath, rootPath));
+}
+
+function isGitIgnoredPath(relativePath) {
+  return gitExitCode(["check-ignore", "-q", "--", relativePath]) === 0;
+}
+
+function isDirtyOverlayPathAllowed(relativePath) {
+  return !isKnownRuntimeOverlayPath(relativePath) && !isGitIgnoredPath(relativePath);
+}
+
+async function appendWorktreeGitExclude(worktreePath, patterns) {
+  const gitDir = runGit(["rev-parse", "--git-common-dir"], { cwd: worktreePath });
+  const resolvedGitDir = path.isAbsolute(gitDir) ? gitDir : path.resolve(worktreePath, gitDir);
+  const excludePath = path.join(resolvedGitDir, "info", "exclude");
+  await fs.mkdir(path.dirname(excludePath), { recursive: true });
+
+  let existing = "";
+  if (await exists(excludePath)) {
+    existing = await fs.readFile(excludePath, "utf8");
+  }
+
+  const existingLines = new Set(existing.split(/\r?\n/));
+  const missingPatterns = patterns.filter((pattern) => !existingLines.has(pattern));
+  if (missingPatterns.length === 0) {
+    return;
+  }
+
+  const prefix = existing && !existing.endsWith("\n") ? "\n" : "";
+  await fs.appendFile(excludePath, `${prefix}${missingPatterns.join("\n")}\n`);
 }
 
 export async function buildExecutionPlan(options) {
@@ -309,6 +366,10 @@ async function applyDirtyOverlay(plan, options) {
   const skippedPaths = [];
   let copiedPathCount = 0;
   for (const relativePath of untrackedPaths) {
+    if (!isDirtyOverlayPathAllowed(relativePath)) {
+      skippedPaths.push(relativePath);
+      continue;
+    }
     if (await copyUntrackedFileToWorktree(relativePath, plan.worktree_path, skippedPaths)) {
       copiedPathCount += 1;
     }
@@ -334,6 +395,7 @@ export async function prepareWorktree(plan, options) {
   const targetNodeModules = path.join(plan.worktree_path, "node_modules");
   if ((await exists(sourceNodeModules)) && !(await exists(targetNodeModules))) {
     await fs.symlink(sourceNodeModules, targetNodeModules, "dir");
+    await appendWorktreeGitExclude(plan.worktree_path, ["node_modules", "/node_modules"]);
   }
 }
 

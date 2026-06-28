@@ -122,6 +122,13 @@ async function main() {
   ].map((finding) => [finding.issue_id, finding]));
   const decisionIssues = [];
   const promotedDecisionRefs = await promotionDecisionReferences();
+  const decisionRoot = actual.reconciliation_policy?.decision_root;
+
+  if (!decisionRoot || !(actual.source_roots ?? []).includes(decisionRoot)) {
+    decisionIssues.push(
+      "source_roots must include reconciliation_policy.decision_root because decisions affect reconciliation state."
+    );
+  }
 
   for (const decisionEntry of await loadReconciliationDecisions()) {
     const decision = decisionEntry.record;

@@ -2,13 +2,14 @@
   "schema_version": "1.0.0",
   "record_type": "parallel_reconciliation",
   "id": "parallel-reconciliation-v1",
-  "generated_at": "2026-06-28T20:55:30.175Z",
+  "generated_at": "2026-06-28T21:15:05.313Z",
   "source_roots": [
     "data",
     "research",
     "ops/codex-jobs/live",
     "ops/codex-jobs/archive",
-    "ops/codex-batches/runs"
+    "ops/codex-batches/runs",
+    "ops/reconciliation/decisions"
   ],
   "reconciliation_policy": {
     "batch_plan_path": "ops/codex-batches/parallel-batch-plan.v1.json",

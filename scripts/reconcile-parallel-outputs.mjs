@@ -606,7 +606,7 @@ export async function buildParallelReconciliation({ generatedAt = new Date().toI
     record_type: "parallel_reconciliation",
     id: "parallel-reconciliation-v1",
     generated_at: generatedAt,
-    source_roots: [...canonicalRoots, liveJobRoot, archiveJobRoot, batchRunRoot],
+    source_roots: [...canonicalRoots, liveJobRoot, archiveJobRoot, batchRunRoot, reconciliationDecisionRoot],
     reconciliation_policy: {
       batch_plan_path: batchPlanPath,
       live_job_root: liveJobRoot,

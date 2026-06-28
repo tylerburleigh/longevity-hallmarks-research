@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "triage_state",
   "id": "triage-state-v1",
-  "generated_at": "2026-06-28T17:07:44.646Z",
+  "generated_at": "2026-06-28T17:43:31.422Z",
   "source_roots": [
     "data",
     "research"
@@ -67,11 +67,11 @@
   ],
   "summary": {
     "candidate_count": 62,
-    "promotion_ready_count": 1,
+    "promotion_ready_count": 0,
     "needs_review_count": 0,
     "needs_revision_count": 0,
     "blocked_count": 0,
-    "accepted_count": 14,
+    "accepted_count": 15,
     "applied_count": 0,
     "rejected_count": 3,
     "coverage_gap_count": 4,
@@ -79,7 +79,7 @@
     "extraction_debt_count": 39,
     "stale_snapshot_count": 0,
     "watch_snapshot_count": 0,
-    "partial_or_failed_agent_run_count": 0,
+    "partial_or_failed_agent_run_count": 1,
     "recommended_job_count": 23
   },
   "candidate_readiness": [
@@ -1107,8 +1107,8 @@
     {
       "candidate_change_id": "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
       "path": "data/candidate-changes/extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.json",
-      "lifecycle_status": "submitted",
-      "readiness_status": "promotion_ready",
+      "lifecycle_status": "accepted",
+      "readiness_status": "accepted",
       "required_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
@@ -1138,9 +1138,7 @@
       "blocking_review_ids": [],
       "open_major_or_critical_review_ids": [],
       "proposed_record_count": 4,
-      "next_actions": [
-        "Promote candidate with npm run promote:candidate -- extraction-debt-dq-bone-adverse-events-20wk-mixed-repair --status accepted after coordinator selection."
-      ]
+      "next_actions": []
     },
     {
       "candidate_change_id": "orchestration-parallel-smoke-a-candidate-2026-06-23",
@@ -1610,9 +1608,7 @@
       "next_actions": []
     }
   ],
-  "promotion_ready_candidate_ids": [
-    "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair"
-  ],
+  "promotion_ready_candidate_ids": [],
   "missing_review_lane_queue": [
     {
       "candidate_change_id": "senolytics-scaffold-bootstrap-2026-06-21",
@@ -2171,21 +2167,25 @@
     }
   ],
   "stale_snapshots": [],
-  "partial_or_failed_agent_runs": [],
-  "recommended_jobs": [
+  "partial_or_failed_agent_runs": [
     {
-      "job_id": "candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
-      "job_type": "candidate_promotion",
-      "priority": "high",
-      "source": "candidate_readiness",
-      "target_record_type": "candidate_change",
-      "target_record_id": "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
-      "rationale": "All required active review lanes are complete, accepting, non-blocking, and free of open major or critical findings.",
-      "suggested_command": "npm run promote:candidate -- extraction-debt-dq-bone-adverse-events-20wk-mixed-repair --status accepted --dry-run",
-      "inputs": [
-        "data/candidate-changes/extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.json"
-      ]
-    },
+      "agent_run_id": "self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
+      "path": "research/agent-runs/self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.json",
+      "status": "partial",
+      "agent_role": "release_agent",
+      "blocking_issues": [
+        "Full npm run verify:knowledge-base did not pass because audit:worktree-helper failed with spawnSync git EPERM in this sandbox.",
+        "npm run audit:reconciliation did not pass because ops/reconciliation/parallel-reconciliation.v1.json is stale or inconsistent with canonical records and orchestration state.",
+        "npm run audit:orchestration-metrics did not pass because ops/codex-batches/orchestration-metrics.v1.json is stale or inconsistent with orchestration state."
+      ],
+      "next_actions": [
+        "Coordinator can run the non-dry-run promotion command if choosing to accept the candidate; this worker did not promote it.",
+        "Refresh and review reconciliation and orchestration metrics artifacts, then rerun repository verification in an environment where audit:worktree-helper can initialize a temporary git repository."
+      ],
+      "mode": "agent_directed"
+    }
+  ],
+  "recommended_jobs": [
     {
       "job_id": "coverage-gap-senolytics-exact-effect-extraction-followup-2",
       "job_type": "extraction_refresh",
@@ -2352,6 +2352,18 @@
       "rationale": "Resolve missing synthesis fields: effect.uncertainty, effect.value, marker_level_identity.",
       "inputs": [
         "data/results/dq-bone-sasp-2wk-null.json"
+      ]
+    },
+    {
+      "job_id": "agent-run-recovery-self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
+      "job_type": "agent_run_recovery",
+      "priority": "medium",
+      "source": "agent_run_status",
+      "target_record_type": "agent_run",
+      "target_record_id": "self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
+      "rationale": "Full npm run verify:knowledge-base did not pass because audit:worktree-helper failed with spawnSync git EPERM in this sandbox. npm run audit:reconciliation did not pass because ops/reconciliation/parallel-reconciliation.v1.json is stale or inconsistent with canonical records and orchestration state. npm run audit:orchestration-metrics did not pass because ops/codex-batches/orchestration-metrics.v1.json is stale or inconsistent with orchestration state.",
+      "inputs": [
+        "research/agent-runs/self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.json"
       ]
     },
     {

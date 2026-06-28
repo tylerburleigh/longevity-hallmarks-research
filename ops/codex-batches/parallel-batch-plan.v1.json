@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "parallel_batch_plan",
   "id": "parallel-batch-plan-v1",
-  "generated_at": "2026-06-28T17:20:07.188Z",
+  "generated_at": "2026-06-28T17:43:31.838Z",
   "source_job_root": "ops/codex-jobs/live",
   "planner_version": "1.0.0",
   "scheduler_policy": {
@@ -21,47 +21,51 @@
     "batch_count": 7,
     "max_batch_width": 4,
     "independent_batch_count": 6,
-    "reconciliation_batch_count": 6,
-    "estimated_wall_time_ms": 21900000,
-    "estimated_token_budget": 2210000
+    "reconciliation_batch_count": 7,
+    "estimated_wall_time_ms": 23400000,
+    "estimated_token_budget": 2260000
   },
   "batches": [
     {
-      "batch_id": "parallel-batch-001-candidate-promotion",
+      "batch_id": "parallel-batch-001-agent-run-recovery",
       "sequence": 1,
-      "parallel_group": "candidate-promotion",
+      "parallel_group": "agent-run-recovery",
       "execution_class": "independent",
-      "reconciliation_required": false,
+      "reconciliation_required": true,
       "job_ids": [
-        "self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair"
+        "self-healing-agent-run-recovery-self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair"
       ],
       "job_paths": [
-        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.json"
+        "ops/codex-jobs/live/generated-self-healing/self-healing-agent-run-recovery-self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.json"
       ],
       "agent_roles": [
-        "release_agent"
+        "self_healing_agent"
       ],
       "modes": [
         "agent_directed"
       ],
       "read_sets": [
-        "path:data/candidate-changes/extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.json",
         "path:ops/triage-state.v1.json",
-        "triage_job:candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair"
+        "path:research/agent-runs/self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.json",
+        "triage_job:agent-run-recovery-self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair"
       ],
       "write_sets": [
-        "promotion_check:extraction-debt-dq-bone-adverse-events-20wk-mixed-repair"
+        "candidate_change:agent-run-recovery-self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-repair",
+        "path:data/candidate-changes/agent-run-recovery-self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-repair.json",
+        "path:research/agent-runs/self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.json",
+        "target_record:agent_run/self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair"
       ],
       "conflict_keys": [
-        "promotion:extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
-        "target_record:candidate_change/extraction-debt-dq-bone-adverse-events-20wk-mixed-repair"
+        "candidate_change:agent-run-recovery-self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-repair",
+        "target_record:agent_run/self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
+        "triage_job:agent-run-recovery-self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair"
       ],
       "overlapping_execution_keys": [],
       "expected_cost": {
-        "cost_class": "low",
-        "expected_wall_time_ms": 300000,
-        "expected_token_budget": 10000,
-        "io_intensity": "low"
+        "cost_class": "medium",
+        "expected_wall_time_ms": 1800000,
+        "expected_token_budget": 60000,
+        "io_intensity": "medium"
       },
       "commands": [
         [
@@ -70,7 +74,7 @@
           "agent:codex:worktree",
           "--",
           "--job-file",
-          "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.json",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-agent-run-recovery-self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.json",
           "--execute"
         ]
       ]

@@ -1,0 +1,230 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
+  "agent_role": "release_agent",
+  "agent_id": "codex-cli-worker",
+  "mode": "agent_directed",
+  "started_at": "2026-06-28T17:30:13Z",
+  "completed_at": "2026-06-28T17:33:52Z",
+  "status": "partial",
+  "scope": {
+    "question": "candidate_promotion: All required active review lanes are complete, accepting, non-blocking, and free of open major or critical findings.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "chronic_inflammation",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "canonical_write_policy": "no_canonical_writes",
+  "execution": {
+    "surface": "codex_exec",
+    "isolation": "git_worktree",
+    "workspace_path": "/tmp/lhr-codex-worktrees/self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-20260628T173013z",
+    "prompt_file": "research/agent-runs/prompts/self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.md",
+    "prompt_template_file": "docs/prompts/codex-agents/candidate-promotion.md",
+    "job_file": "ops/codex-jobs/archive/self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.json",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "output_path": "research/agent-runs/self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.json",
+    "jsonl_log_path": "research/agent-runs/logs/self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.jsonl",
+    "sandbox": "workspace-write",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "user_request",
+      "reference": "coordinator_job_specification",
+      "summary": "Run only a dry-run promotion readiness check for extraction-debt-dq-bone-adverse-events-20wk-mixed-repair and do not promote or mutate canonical records."
+    },
+    {
+      "input_type": "other",
+      "reference": "docs/audit-and-release.md",
+      "summary": "Release and verification workflow documentation."
+    },
+    {
+      "input_type": "other",
+      "reference": "docs/research-runbook.md",
+      "summary": "Agent output, promotion, and no-canonical-writes guidance."
+    },
+    {
+      "input_type": "other",
+      "reference": "docs/agent-run-outputs.md",
+      "summary": "Agent-run output contract and promotion flow guidance."
+    },
+    {
+      "input_type": "record",
+      "reference": "ops/triage-state.v1.json",
+      "summary": "Triage state lists the target candidate as promotion_ready with all required review lanes complete and accepting."
+    },
+    {
+      "input_type": "record",
+      "reference": "ops/release-readiness.v1.json",
+      "summary": "Release readiness lists the target candidate as promotion_ready with no blocked records."
+    },
+    {
+      "input_type": "candidate_change",
+      "reference": "data/candidate-changes/extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.json",
+      "summary": "Target candidate proposes one candidate_change create, one result update, and two synthesis_group updates."
+    },
+    {
+      "input_type": "plan_item",
+      "reference": "triage_job:candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
+      "summary": "Recommended job names the dry-run promotion command for the target candidate."
+    },
+    {
+      "input_type": "record",
+      "reference": "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.json",
+      "summary": "Runnable codex job specification for this readiness check."
+    },
+    {
+      "input_type": "other",
+      "reference": "schemas/agent-run.codex-output.schema.json",
+      "summary": "Codex worker output schema."
+    },
+    {
+      "input_type": "other",
+      "reference": "schemas/agent-run.schema.json",
+      "summary": "Canonical agent-run schema."
+    }
+  ],
+  "outputs": {
+    "summary": "Dry-run promotion passed and release-readiness audit passed for extraction-debt-dq-bone-adverse-events-20wk-mixed-repair. Record validation passed. Full repository verification was attempted but did not fully pass because audit:worktree-helper hit sandbox EPERM and operational reconciliation/metrics artifacts are stale. No promotion or canonical record mutation was performed.",
+    "generated_files": [],
+    "export_paths": []
+  },
+  "quality_checks": [
+    {
+      "check_name": "candidate_scope",
+      "status": "passed",
+      "summary": "ops/triage-state.v1.json and ops/release-readiness.v1.json identify extraction-debt-dq-bone-adverse-events-20wk-mixed-repair as the promotion-ready target."
+    },
+    {
+      "check_name": "dry_run_promote_candidate",
+      "status": "passed",
+      "summary": "npm run promote:candidate -- extraction-debt-dq-bone-adverse-events-20wk-mixed-repair --status accepted --dry-run exited 0 and reported that the promotion gate passed with files unchanged."
+    },
+    {
+      "check_name": "validate_records",
+      "status": "passed",
+      "summary": "npm run validate:records exited 0 and validated 439 JSON files."
+    },
+    {
+      "check_name": "audit_release_readiness",
+      "status": "passed",
+      "summary": "npm run audit:release-readiness exited 0 for ops/release-readiness.v1.json."
+    },
+    {
+      "check_name": "audit_references",
+      "status": "passed",
+      "summary": "npm run audit:references exited 0 for 302 record files."
+    },
+    {
+      "check_name": "audit_exports",
+      "status": "passed",
+      "summary": "npm run audit:exports exited 0 for 11 JSONL exports and 15 manifest file hashes."
+    },
+    {
+      "check_name": "audit_read_model",
+      "status": "passed",
+      "summary": "npm run audit:read-model exited 0 for 302 canonical records across 11 traced tables."
+    },
+    {
+      "check_name": "audit_triage_state",
+      "status": "passed",
+      "summary": "npm run audit:triage-state exited 0 for ops/triage-state.v1.json."
+    },
+    {
+      "check_name": "audit_reconciliation",
+      "status": "failed",
+      "summary": "npm run audit:reconciliation exited 1 because ops/reconciliation/parallel-reconciliation.v1.json is stale or inconsistent; changed top-level section: summary."
+    },
+    {
+      "check_name": "audit_self_healing_jobs",
+      "status": "passed",
+      "summary": "npm run audit:self-healing-jobs exited 0 for 23 generated live jobs."
+    },
+    {
+      "check_name": "audit_agent_schemas",
+      "status": "passed",
+      "summary": "npm run audit:agent-schemas exited 0."
+    },
+    {
+      "check_name": "audit_agentic_process",
+      "status": "passed",
+      "summary": "npm run audit:agentic-process exited 0 for 509 files."
+    },
+    {
+      "check_name": "audit_orchestration_metrics",
+      "status": "failed",
+      "summary": "npm run audit:orchestration-metrics exited 1 because ops/codex-batches/orchestration-metrics.v1.json is stale or inconsistent; changed sections: summary and worker_outcomes."
+    },
+    {
+      "check_name": "audit_orchestration_smoke_contract",
+      "status": "passed",
+      "summary": "npm run audit:orchestration-smoke-contract exited 0."
+    },
+    {
+      "check_name": "verify_knowledge_base",
+      "status": "failed",
+      "summary": "npm run verify:knowledge-base exited 1 at audit:worktree-helper because git init was not permitted in this sandbox: spawnSync git EPERM."
+    },
+    {
+      "check_name": "verify_knowledge_base_post_run",
+      "status": "failed",
+      "summary": "npm run verify:knowledge-base:post-run exited 1 at audit:reconciliation after earlier validation, reference, export, read-model, triage-state, and release-readiness checks passed."
+    },
+    {
+      "check_name": "git_status",
+      "status": "passed",
+      "summary": "git status --short reported no tracked file modifications; untracked runtime artifacts were present."
+    },
+    {
+      "check_name": "worker_output_contract",
+      "status": "passed",
+      "summary": "Worker emitted exactly one final JSON agent_run message, matched output_path, and avoided ad hoc schema-validation snippets."
+    },
+    {
+      "check_name": "post_triage_state_export",
+      "status": "passed",
+      "summary": "post_triage_state_export exited 0: > longevity-hallmarks-research@0.1.0 export:triage-state > node scripts/export-triage-state.mjs Wrote ops/triage-state.v1.json."
+    },
+    {
+      "check_name": "post_release_readiness_export",
+      "status": "passed",
+      "summary": "post_release_readiness_export exited 0: > longevity-hallmarks-research@0.1.0 export:release-readiness > node scripts/export-release-readiness.mjs Wrote ops/release-readiness.v1.json."
+    },
+    {
+      "check_name": "post_reconciliation_export",
+      "status": "passed",
+      "summary": "post_reconciliation_export exited 0: > longevity-hallmarks-research@0.1.0 reconcile:parallel > node scripts/reconcile-parallel-outputs.mjs Wrote ops/reconciliation/parallel-reconciliation.v1.json."
+    },
+    {
+      "check_name": "post_orchestration_metrics_export",
+      "status": "passed",
+      "summary": "post_orchestration_metrics_export exited 0: > longevity-hallmarks-research@0.1.0 metrics:orchestration > node scripts/export-orchestration-metrics.mjs Wrote ops/codex-batches/orchestration-metrics.v1.json."
+    },
+    {
+      "check_name": "post_export",
+      "status": "passed",
+      "summary": "post_export exited 0: > longevity-hallmarks-research@0.1.0 export:latest > node scripts/export-latest.mjs Wrote 16 export file(s) to exports/latest."
+    },
+    {
+      "check_name": "post_verify",
+      "status": "passed",
+      "summary": "post_verify exited 0: > longevity-hallmarks-research@0.1.0 audit:orchestration-smoke-contract > node scripts/audit-orchestration-smoke-contract.mjs Orchestration smoke contract audit passed for orchestration-smoke-budgeted-codex-worktree-2026-06-23. > longevity-hallmarks-research@0.1.0 audit:agentic-process > node scripts/audit-agentic-process.mjs Agentic process audit passed for 510 file(s)."
+    }
+  ],
+  "blocking_issues": [
+    "Full npm run verify:knowledge-base did not pass because audit:worktree-helper failed with spawnSync git EPERM in this sandbox.",
+    "npm run audit:reconciliation did not pass because ops/reconciliation/parallel-reconciliation.v1.json is stale or inconsistent with canonical records and orchestration state.",
+    "npm run audit:orchestration-metrics did not pass because ops/codex-batches/orchestration-metrics.v1.json is stale or inconsistent with orchestration state."
+  ],
+  "next_actions": [
+    "Coordinator can run the non-dry-run promotion command if choosing to accept the candidate; this worker did not promote it.",
+    "Refresh and review reconciliation and orchestration metrics artifacts, then rerun repository verification in an environment where audit:worktree-helper can initialize a temporary git repository."
+  ]
+}

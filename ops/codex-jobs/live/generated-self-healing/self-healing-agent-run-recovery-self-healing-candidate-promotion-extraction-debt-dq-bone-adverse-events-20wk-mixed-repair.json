@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "codex_job",
+  "id": "self-healing-agent-run-recovery-self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
+  "name": "Self-healing repair: agent-run-recovery-self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
+  "summary": "Full npm run verify:knowledge-base did not pass because audit:worktree-helper failed with spawnSync git EPERM in this sandbox. npm run audit:reconciliation did not pass because ops/reconciliation/parallel-reconciliation.v1.json is stale or inconsistent with canonical records and orchestration state. npm run audit:orchestration-metrics did not pass because ops/codex-batches/orchestration-metrics.v1.json is stale or inconsistent with orchestration state.",
+  "lifecycle_status": "ready",
+  "agent_role": "self_healing_agent",
+  "mode": "agent_directed",
+  "prompt_file": "docs/prompts/codex-agents/self-healing-repair.md",
+  "output_path": "research/agent-runs/self-healing-agent-run-recovery-self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.json",
+  "jsonl_log_path": "research/agent-runs/logs/self-healing-agent-run-recovery-self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.jsonl",
+  "scope": {
+    "question": "agent_run_recovery: Full npm run verify:knowledge-base did not pass because audit:worktree-helper failed with spawnSync git EPERM in this sandbox. npm run audit:reconciliation did not pass because ops/reconciliation/parallel-reconciliation.v1.json is stale or inconsistent with canonical records and orchestration state. npm run audit:orchestration-metrics did not pass because ops/codex-batches/orchestration-metrics.v1.json is stale or inconsistent with orchestration state.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "chronic_inflammation",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "execution": {
+    "isolation": "git_worktree",
+    "sandbox": "workspace-write",
+    "approval_policy": "never",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "timeout_ms": 1800000,
+    "no_output_timeout_ms": 300000
+  },
+  "expected_outputs": {
+    "canonical_write_policy": "candidate_change_required",
+    "candidate_change_id": "agent-run-recovery-self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-repair",
+    "required_review_lanes": [
+      "safety_limitations"
+    ]
+  },
+  "orchestration": {
+    "read_sets": [
+      "path:ops/triage-state.v1.json",
+      "path:research/agent-runs/self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.json",
+      "triage_job:agent-run-recovery-self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair"
+    ],
+    "write_sets": [
+      "candidate_change:agent-run-recovery-self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-repair",
+      "path:data/candidate-changes/agent-run-recovery-self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-repair.json",
+      "path:research/agent-runs/self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.json",
+      "target_record:agent_run/self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair"
+    ],
+    "conflict_keys": [
+      "candidate_change:agent-run-recovery-self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-repair",
+      "target_record:agent_run/self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
+      "triage_job:agent-run-recovery-self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair"
+    ],
+    "parallel_group": "agent-run-recovery",
+    "reconciliation_required": true,
+    "expected_cost": {
+      "cost_class": "medium",
+      "expected_wall_time_ms": 1800000,
+      "expected_token_budget": 60000,
+      "io_intensity": "medium"
+    }
+  },
+  "post_run": {
+    "export_latest": true,
+    "verify_knowledge_base": true
+  },
+  "quality_gates": [
+    "validate_records",
+    "audit_references",
+    "audit_exports",
+    "audit_agent_schemas",
+    "audit_agentic_process",
+    "worker_output_contract",
+    "candidate_agent_run_ledger_match"
+  ],
+  "notes": [
+    "Generated from ops/triage-state.v1.json recommended_jobs[] item agent-run-recovery-self-healing-candidate-promotion-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.",
+    "Source queue: agent_run_status.",
+    "The worker should keep edits bounded to the target record, listed inputs, and the candidate repair ledger."
+  ]
+}

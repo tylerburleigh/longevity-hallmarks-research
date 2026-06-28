@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "release_manifest",
   "id": "latest-consumer-export",
-  "generated_at": "2026-06-28T17:20:20.380Z",
+  "generated_at": "2026-06-28T17:43:32.288Z",
   "export_version": "0.1.0",
   "export_scope": {
     "description": "Consumer-facing latest export generated from canonical research and data records.",
@@ -49,8 +49,8 @@
       "path": "exports/latest/accepted-records.jsonl",
       "format": "jsonl",
       "description": "Release-boundary export of records proposed by accepted or applied candidates and not blocked by dependency checks.",
-      "record_count": 87,
-      "sha256": "31db2f40003d994fa625d9991ebb3c68dd34192781e7a0a54dcec2b5ac1596ab"
+      "record_count": 89,
+      "sha256": "f2882a5ddc1e9f11df5ea37aa2d8b6b3d5919e690742f086028ce453d42733ba"
     },
     {
       "path": "exports/latest/studies.jsonl",
@@ -113,35 +113,35 @@
       "format": "json",
       "description": "Generated graph view of source, study, finding, outcome, result, coverage, and synthesis-compatibility links.",
       "record_count": 1,
-      "sha256": "74da7b909d5880c34e63374064d6e6e89087ffc4bd87b3db972bebedfb70a43f"
+      "sha256": "58eb84893a7c204d1b1ec128b720a32fde0e75eab47d5b745f80e200a1189bd5"
     },
     {
       "path": "exports/latest/coverage-status.json",
       "format": "json",
       "description": "Consumer coverage status with current/superseded flags and known-gap warnings.",
       "record_count": 1,
-      "sha256": "a96b36342f196539e8d46ece063ccea581f78254a63116c2c1c7e5b71ee9099b"
+      "sha256": "a4be41098812d9cc401d8cce3f3d0fa54174f6a4e6c1f0e4a97532a83652a898"
     },
     {
       "path": "exports/latest/read-model.sqlite",
       "format": "sqlite",
       "description": "Generated SQLite read model for indexed joins over canonical JSON records.",
-      "record_count": 302,
-      "sha256": "daded3620249c2fc7be48f3b22227dfe02716ac6600b0a836a6dd8ab7c4df400"
+      "record_count": 303,
+      "sha256": "ad0a7eea8921e5d7d5ae8f6179e7aa57ee5bf078849b454959af7855649b95cb"
     },
     {
       "path": "exports/latest/consumer-contract.json",
       "format": "json",
       "description": "Versioned machine-readable contract for consumer-facing export artifacts.",
       "record_count": 1,
-      "sha256": "622b0465eacadd9a79850d1be126285ecc38c46a940871378f70369e1e30e5f4"
+      "sha256": "1e148b1fc14a0c49118d47d86f3ae48193b3c703ee2fd4e70482bf52e5067cad"
     }
   ],
   "record_counts": {
-    "canonical_records": 302,
+    "canonical_records": 303,
     "sources": 10,
     "source_rights": 2,
-    "accepted_records": 87,
+    "accepted_records": 89,
     "studies": 9,
     "findings": 9,
     "text_snapshots": 2,
@@ -151,7 +151,7 @@
     "results_triage": 8,
     "synthesis_groups": 8,
     "coverage_assessments": 2,
-    "read_model_records": 302,
+    "read_model_records": 303,
     "consumer_contracts": 1
   },
   "notes": [

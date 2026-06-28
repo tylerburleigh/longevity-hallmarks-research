@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "parallel_reconciliation",
   "id": "parallel-reconciliation-v1",
-  "generated_at": "2026-06-28T11:10:40.231Z",
+  "generated_at": "2026-06-28T14:12:39.167Z",
   "source_roots": [
     "data",
     "research",
@@ -71,10 +71,10 @@
       "execution_class": "reconciliation_required",
       "reconciliation_required": true,
       "job_ids": [
+        "self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-2",
         "self-healing-coverage-gap-senolytics-registry-surveillance-breadth",
         "self-healing-coverage-gap-senolytics-review-landscape",
-        "self-healing-extraction-debt-dq-ad-risk-cognition-mobility-mixed",
-        "self-healing-extraction-debt-dq-bone-adverse-events-20wk-mixed"
+        "self-healing-coverage-gap-senolytics-safety-tables-followup-2"
       ],
       "overlapping_execution_keys": [
         "path:data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
@@ -89,10 +89,10 @@
       "execution_class": "independent",
       "reconciliation_required": true,
       "job_ids": [
+        "self-healing-extraction-debt-dq-ad-risk-cognition-mobility-mixed",
+        "self-healing-extraction-debt-dq-bone-adverse-events-20wk-mixed",
         "self-healing-extraction-debt-dq-bone-bmd-20wk-inconclusive",
-        "self-healing-extraction-debt-dq-bone-ctx-20wk-null",
-        "self-healing-extraction-debt-dq-bone-headache-20wk-descriptive",
-        "self-healing-extraction-debt-dq-bone-p16-t3-ctx-2wk-positive"
+        "self-healing-extraction-debt-dq-bone-ctx-20wk-null"
       ],
       "overlapping_execution_keys": [],
       "status": "reconciliation_open",
@@ -104,10 +104,10 @@
       "execution_class": "independent",
       "reconciliation_required": true,
       "job_ids": [
+        "self-healing-extraction-debt-dq-bone-headache-20wk-descriptive",
+        "self-healing-extraction-debt-dq-bone-p16-t3-ctx-2wk-positive",
         "self-healing-extraction-debt-dq-bone-p16-t3-ctx-4wk-inconclusive",
-        "self-healing-extraction-debt-dq-bone-p16-t3-p1np-2wk-positive",
-        "self-healing-extraction-debt-dq-bone-p16-t3-p1np-4wk-inconclusive",
-        "self-healing-extraction-debt-dq-bone-p16-t3-radius-bmd-20wk-positive"
+        "self-healing-extraction-debt-dq-bone-p16-t3-p1np-2wk-positive"
       ],
       "overlapping_execution_keys": [],
       "status": "reconciliation_open",
@@ -119,10 +119,10 @@
       "execution_class": "independent",
       "reconciliation_required": true,
       "job_ids": [
+        "self-healing-extraction-debt-dq-bone-p16-t3-p1np-4wk-inconclusive",
+        "self-healing-extraction-debt-dq-bone-p16-t3-radius-bmd-20wk-positive",
         "self-healing-extraction-debt-dq-bone-p1np-20wk-null",
-        "self-healing-extraction-debt-dq-bone-p1np-2wk-positive",
-        "self-healing-extraction-debt-dq-bone-p1np-4wk-positive",
-        "self-healing-extraction-debt-dq-bone-sasp-2wk-null"
+        "self-healing-extraction-debt-dq-bone-p1np-2wk-positive"
       ],
       "overlapping_execution_keys": [],
       "status": "reconciliation_open",
@@ -134,10 +134,10 @@
       "execution_class": "independent",
       "reconciliation_required": true,
       "job_ids": [
+        "self-healing-extraction-debt-dq-bone-p1np-4wk-positive",
+        "self-healing-extraction-debt-dq-bone-sasp-2wk-null",
         "self-healing-extraction-debt-dq-bone-turnover-mixed",
-        "self-healing-extraction-debt-dq-dkd-biomarker-positive",
-        "self-healing-extraction-debt-dq-ipf-dosing-completion-mixed",
-        "self-healing-extraction-debt-dq-ipf-tolerability-mixed"
+        "self-healing-extraction-debt-dq-dkd-biomarker-positive"
       ],
       "overlapping_execution_keys": [],
       "status": "reconciliation_open",
@@ -149,6 +149,8 @@
       "execution_class": "independent",
       "reconciliation_required": true,
       "job_ids": [
+        "self-healing-extraction-debt-dq-ipf-dosing-completion-mixed",
+        "self-healing-extraction-debt-dq-ipf-tolerability-mixed",
         "self-healing-extraction-debt-dq-old-mouse-survival-positive"
       ],
       "overlapping_execution_keys": [],

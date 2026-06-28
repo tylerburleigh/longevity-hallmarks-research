@@ -240,6 +240,12 @@ async function applyOperation(root, operation) {
     return;
   }
 
+  if (operation.type === "delete_file") {
+    const operationPath = await resolveOperationPath(root, operation);
+    await fs.rm(resolveRepoPath(root, operationPath), { force: true });
+    return;
+  }
+
   if (operation.type === "write_text") {
     const filePath = resolveRepoPath(root, operation.path);
     await fs.mkdir(path.dirname(filePath), { recursive: true });

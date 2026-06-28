@@ -644,18 +644,60 @@ function addRecommendedJob(jobById, job) {
   }
 }
 
+function selfHealingAgentRunId(jobId) {
+  return makeId(["self-healing", jobId]);
+}
+
+function existingSelfHealingAgentRunIds(agentRunEntries) {
+  return new Set(
+    agentRunEntries
+      .map((entry) => entry.record.id)
+      .filter((id) => id?.startsWith("self-healing-"))
+  );
+}
+
+function runnableJobId(jobId, agentRunIds) {
+  if (!agentRunIds.has(selfHealingAgentRunId(jobId))) {
+    return jobId;
+  }
+
+  for (let attempt = 2; ; attempt += 1) {
+    const candidateJobId = makeId([jobId, "followup", String(attempt)]);
+    if (!agentRunIds.has(selfHealingAgentRunId(candidateJobId))) {
+      return candidateJobId;
+    }
+  }
+}
+
+function rerunnableRecommendedJob(job, agentRunIds) {
+  if (job.job_type === "candidate_promotion" || job.job_type === "candidate_review") {
+    return job;
+  }
+
+  return {
+    ...job,
+    job_id: runnableJobId(job.job_id, agentRunIds)
+  };
+}
+
 function buildRecommendedJobs({
   candidateReadiness,
   coverageGaps,
   extractionDebt,
   staleSnapshots,
-  partialOrFailedAgentRuns
+  partialOrFailedAgentRuns,
+  agentRunEntries
 }) {
   const jobsById = new Map();
+  const agentRunIds = existingSelfHealingAgentRunIds(agentRunEntries);
+
+  function addJob(job) {
+    addRecommendedJob(jobsById, rerunnableRecommendedJob(job, agentRunIds));
+  }
 
   for (const candidate of candidateReadiness) {
     if (candidate.readiness_status === "promotion_ready") {
-      addRecommendedJob(jobsById, {
+      addJob({
         job_id: makeId(["candidate-promotion", candidate.candidate_change_id]),
         job_type: "candidate_promotion",
         priority: "high",
@@ -667,7 +709,7 @@ function buildRecommendedJobs({
         inputs: [candidate.path]
       });
     } else if (candidate.readiness_status === "needs_review") {
-      addRecommendedJob(jobsById, {
+      addJob({
         job_id: makeId(["candidate-review", candidate.candidate_change_id]),
         job_type: "candidate_review",
         priority: "high",
@@ -678,7 +720,7 @@ function buildRecommendedJobs({
         inputs: [candidate.path]
       });
     } else if (candidate.readiness_status === "needs_revision") {
-      addRecommendedJob(jobsById, {
+      addJob({
         job_id: makeId(["candidate-revision", candidate.candidate_change_id]),
         job_type: "candidate_revision",
         priority: "high",
@@ -689,7 +731,7 @@ function buildRecommendedJobs({
         inputs: sortStrings([candidate.path, ...(candidate.active_review_paths ?? [])])
       });
     } else if (candidate.readiness_status === "blocked") {
-      addRecommendedJob(jobsById, {
+      addJob({
         job_id: makeId(["candidate-blocked", candidate.candidate_change_id]),
         job_type: "self_healing_repair",
         priority: "high",
@@ -703,7 +745,7 @@ function buildRecommendedJobs({
   }
 
   for (const gap of coverageGaps) {
-    addRecommendedJob(jobsById, {
+    addJob({
       job_id: makeId(["coverage-gap", gap.gap_id]),
       job_type: gap.next_recommended_mode === "extraction_refresh" ? "extraction_refresh" : "coverage_repair",
       priority: gap.priority,
@@ -725,7 +767,7 @@ function buildRecommendedJobs({
   for (const [resultId, debts] of debtByResultId.entries()) {
     const priority = debts.some((debt) => debt.severity === "high") ? "high" : debts.some((debt) => debt.severity === "medium") ? "medium" : "low";
     const fields = sortStrings(debts.map((debt) => debt.missing_field).filter(Boolean));
-    addRecommendedJob(jobsById, {
+    addJob({
       job_id: makeId(["extraction-debt", resultId]),
       job_type: "extraction_refresh",
       priority,
@@ -738,7 +780,7 @@ function buildRecommendedJobs({
   }
 
   for (const snapshot of staleSnapshots) {
-    addRecommendedJob(jobsById, {
+    addJob({
       job_id: makeId(["snapshot-refresh", snapshot.snapshot_id]),
       job_type: "snapshot_refresh",
       priority: snapshot.staleness_status === "stale" ? "high" : "medium",
@@ -751,7 +793,7 @@ function buildRecommendedJobs({
   }
 
   for (const agentRun of partialOrFailedAgentRuns) {
-    addRecommendedJob(jobsById, {
+    addJob({
       job_id: makeId(["agent-run-recovery", agentRun.agent_run_id]),
       job_type: "agent_run_recovery",
       priority: agentRun.status === "partial" ? "medium" : "high",
@@ -792,7 +834,8 @@ export async function buildTriageState({ generatedAt = new Date().toISOString() 
     coverageGaps,
     extractionDebt,
     staleSnapshots,
-    partialOrFailedAgentRuns
+    partialOrFailedAgentRuns,
+    agentRunEntries
   });
 
   return {

@@ -48,6 +48,13 @@ async function main() {
   const expectedJobs = await buildSelfHealingJobs({ limit: Number.POSITIVE_INFINITY });
   const expectedByPath = new Map(expectedJobs.map((job) => [generatedJobPath(job), stringifyJob(job)]));
   const generatedFiles = await walkJsonFiles(path.join(workspaceRoot, generatedJobRoot));
+  const generatedPaths = new Set(generatedFiles.map(toPosixRelative));
+
+  for (const expectedPath of expectedByPath.keys()) {
+    if (!generatedPaths.has(expectedPath)) {
+      issues.push(`${expectedPath}: expected generated self-healing job is missing; rerun npm run jobs:self-healing -- --replace.`);
+    }
+  }
 
   for (const filePath of generatedFiles) {
     const relativePath = toPosixRelative(filePath);

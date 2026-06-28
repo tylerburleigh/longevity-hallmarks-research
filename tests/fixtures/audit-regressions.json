@@ -263,6 +263,28 @@
       ]
     },
     {
+      "id": "missing-generated-self-healing-job",
+      "description": "Expected generated self-healing jobs must be present in the live generated queue.",
+      "command": [
+        "npm",
+        "run",
+        "audit:self-healing-jobs"
+      ],
+      "operations": [
+        {
+          "type": "delete_file",
+          "path_selector": {
+            "type": "first_json_file",
+            "root": "ops/codex-jobs/live/generated-self-healing"
+          }
+        }
+      ],
+      "expected_failure_substrings": [
+        "expected generated self-healing job is missing",
+        "jobs:self-healing"
+      ]
+    },
+    {
       "id": "bad-worker-output-ledger",
       "description": "A completed Codex job must match the final agent_run proposed-record ledger.",
       "command": [

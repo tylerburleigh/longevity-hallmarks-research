@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "triage_state",
   "id": "triage-state-v1",
-  "generated_at": "2026-06-28T11:05:11.310Z",
+  "generated_at": "2026-06-28T11:10:15.904Z",
   "source_roots": [
     "data",
     "research"
@@ -79,8 +79,8 @@
     "extraction_debt_count": 47,
     "stale_snapshot_count": 0,
     "watch_snapshot_count": 0,
-    "partial_or_failed_agent_run_count": 5,
-    "recommended_job_count": 28
+    "partial_or_failed_agent_run_count": 0,
+    "recommended_job_count": 23
   },
   "candidate_readiness": [
     {
@@ -2152,87 +2152,7 @@
     }
   ],
   "stale_snapshots": [],
-  "partial_or_failed_agent_runs": [
-    {
-      "agent_run_id": "dq-bone-headache-ae-extraction-pilot-2026-06-23",
-      "path": "research/agent-runs/dq-bone-headache-ae-extraction-pilot-2026-06-23.json",
-      "status": "partial",
-      "agent_role": "extraction_agent",
-      "blocking_issues": [
-        "The current result schema cannot directly encode adverse_event.preferred_term or adverse_event.event_specific_counts; the headache term and D+Q count are represented through valid result fields while the synthesis group records these structured-field blockers.",
-        "The Extended Data Table 1 control headache cell is blank under a table threshold for events reported in more than one participant, so no defensible control count, risk ratio, risk difference, or uncertainty was extracted."
-      ],
-      "next_actions": [
-        "Move the submitted candidate into in_review only when review begins, then create active evidence_review records for extraction_fidelity, taxonomy_mapping, safety_limitations, and synthesis_boundary.",
-        "Extend the result schema for structured adverse-event preferred terms and event-specific arm counts before any comparative safety pooling attempt."
-      ],
-      "mode": "extraction_refresh"
-    },
-    {
-      "agent_run_id": "self-healing-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21",
-      "path": "research/agent-runs/self-healing-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21.json",
-      "status": "partial",
-      "agent_role": "self_healing_agent",
-      "blocking_issues": [
-        "The target senolytics-bone-rct-extraction-refresh-2026-06-21 candidate still has open major review findings in extraction_fidelity and safety_limitations; this bounded repair only aligns lifecycle state and creates a repair candidate."
-      ],
-      "next_actions": [
-        "Supervisor-review candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair across its five required lanes.",
-        "Do not promote senolytics-bone-rct-extraction-refresh-2026-06-21 until full publication table/supplement reconciliation, exploratory subgroup extraction, and event-specific adverse-event extraction are completed or separately reviewed."
-      ],
-      "mode": "agent_directed"
-    },
-    {
-      "agent_run_id": "self-healing-coverage-gap-senolytics-exact-effect-extraction",
-      "path": "research/agent-runs/self-healing-coverage-gap-senolytics-exact-effect-extraction.json",
-      "status": "partial",
-      "agent_role": "extraction_agent",
-      "blocking_issues": [
-        "Durable PubMed/PMC source snapshots were not created for DKD, IPF, or AD-risk, so the updated records are PubMed abstract-located and remain below source-snapshot-backed extraction grade.",
-        "The legacy IPF generic outcome/result records still need full article reconciliation; this worker added a separate abstract-located dosing-completion result and corrected the study sample size.",
-        "The D+Q bone full publication tables and supplements remain unreconciled in this bounded pass.",
-        "Full npm run verify:knowledge-base did not complete because audit:worktree-helper timed out, although npm run verify:knowledge-base:post-run passed."
-      ],
-      "next_actions": [
-        "Run source-snapshot-backed PubMed/PMC ingestion for PMIDs 31542391, 36857968, and 40010154, then update extracted provenance with source_snapshot_id and text_snapshot_id where eligible.",
-        "Run the required extraction_fidelity, synthesis_boundary, and taxonomy_mapping review lanes for coverage-gap-senolytics-exact-effect-extraction-repair.",
-        "Reconcile the legacy IPF outcome/result records and the D+Q bone article/supplement tables before treating this coverage gap as closed."
-      ],
-      "mode": "extraction_refresh"
-    },
-    {
-      "agent_run_id": "self-healing-coverage-gap-senolytics-safety-tables",
-      "path": "research/agent-runs/self-healing-coverage-gap-senolytics-safety-tables.json",
-      "status": "partial",
-      "agent_role": "extraction_agent",
-      "blocking_issues": [
-        "Structured event-specific adverse-event rows beyond the accepted headache row were not extracted in this bounded coverage-assessment repair; remaining D+Q bone table rows and discontinuation count fields still need row-level extraction.",
-        "No retained source/text snapshots for DKD, IPF, or AD-risk safety tables were supplied in the bounded job contract, so cross-human safety extraction remains incomplete."
-      ],
-      "next_actions": [
-        "Move coverage-gap-senolytics-safety-tables-repair into review and run extraction_fidelity, safety_limitations, synthesis_boundary, and taxonomy_mapping lanes before promotion.",
-        "Create table-row extraction context packs for the remaining D+Q bone adverse-event terms and withdrawal/discontinuation details.",
-        "Ingest or retain source snapshots for DKD, IPF, and AD-risk safety extraction before any cross-human safety synthesis."
-      ],
-      "mode": "extraction_refresh"
-    },
-    {
-      "agent_run_id": "senolytics-bone-rct-extraction-refresh-2026-06-21",
-      "path": "research/agent-runs/senolytics-bone-rct-extraction-refresh-2026-06-21.json",
-      "status": "partial",
-      "agent_role": "extraction_agent",
-      "blocking_issues": [
-        "Full publication tables, supplements, and exploratory subgroup details are not fully extracted.",
-        "Promotion remains blocked until required review lanes are complete, accepting, non-blocking, and free of open major findings."
-      ],
-      "next_actions": [
-        "Extract full article tables and supplementary endpoint details where accessible.",
-        "Run supervisor-agent review lanes for extraction fidelity, taxonomy mapping, synthesis boundary, and safety limitations.",
-        "Create endpoint-specific synthesis groups before any pooling attempt."
-      ],
-      "mode": "extraction_refresh"
-    }
-  ],
+  "partial_or_failed_agent_runs": [],
   "recommended_jobs": [
     {
       "job_id": "coverage-gap-senolytics-exact-effect-extraction",
@@ -2412,66 +2332,6 @@
       "rationale": "Resolve missing synthesis fields: effect.uncertainty, effect.value, marker_level_identity.",
       "inputs": [
         "data/results/dq-bone-sasp-2wk-null.json"
-      ]
-    },
-    {
-      "job_id": "agent-run-recovery-dq-bone-headache-ae-extraction-pilot-2026-06-23",
-      "job_type": "agent_run_recovery",
-      "priority": "medium",
-      "source": "agent_run_status",
-      "target_record_type": "agent_run",
-      "target_record_id": "dq-bone-headache-ae-extraction-pilot-2026-06-23",
-      "rationale": "The current result schema cannot directly encode adverse_event.preferred_term or adverse_event.event_specific_counts; the headache term and D+Q count are represented through valid result fields while the synthesis group records these structured-field blockers. The Extended Data Table 1 control headache cell is blank under a table threshold for events reported in more than one participant, so no defensible control count, risk ratio, risk difference, or uncertainty was extracted.",
-      "inputs": [
-        "research/agent-runs/dq-bone-headache-ae-extraction-pilot-2026-06-23.json"
-      ]
-    },
-    {
-      "job_id": "agent-run-recovery-self-healing-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21",
-      "job_type": "agent_run_recovery",
-      "priority": "medium",
-      "source": "agent_run_status",
-      "target_record_type": "agent_run",
-      "target_record_id": "self-healing-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21",
-      "rationale": "The target senolytics-bone-rct-extraction-refresh-2026-06-21 candidate still has open major review findings in extraction_fidelity and safety_limitations; this bounded repair only aligns lifecycle state and creates a repair candidate.",
-      "inputs": [
-        "research/agent-runs/self-healing-candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21.json"
-      ]
-    },
-    {
-      "job_id": "agent-run-recovery-self-healing-coverage-gap-senolytics-exact-effect-extraction",
-      "job_type": "agent_run_recovery",
-      "priority": "medium",
-      "source": "agent_run_status",
-      "target_record_type": "agent_run",
-      "target_record_id": "self-healing-coverage-gap-senolytics-exact-effect-extraction",
-      "rationale": "Durable PubMed/PMC source snapshots were not created for DKD, IPF, or AD-risk, so the updated records are PubMed abstract-located and remain below source-snapshot-backed extraction grade. The legacy IPF generic outcome/result records still need full article reconciliation; this worker added a separate abstract-located dosing-completion result and corrected the study sample size. The D+Q bone full publication tables and supplements remain unreconciled in this bounded pass. Full npm run verify:knowledge-base did not complete because audit:worktree-helper timed out, although npm run verify:knowledge-base:post-run passed.",
-      "inputs": [
-        "research/agent-runs/self-healing-coverage-gap-senolytics-exact-effect-extraction.json"
-      ]
-    },
-    {
-      "job_id": "agent-run-recovery-self-healing-coverage-gap-senolytics-safety-tables",
-      "job_type": "agent_run_recovery",
-      "priority": "medium",
-      "source": "agent_run_status",
-      "target_record_type": "agent_run",
-      "target_record_id": "self-healing-coverage-gap-senolytics-safety-tables",
-      "rationale": "Structured event-specific adverse-event rows beyond the accepted headache row were not extracted in this bounded coverage-assessment repair; remaining D+Q bone table rows and discontinuation count fields still need row-level extraction. No retained source/text snapshots for DKD, IPF, or AD-risk safety tables were supplied in the bounded job contract, so cross-human safety extraction remains incomplete.",
-      "inputs": [
-        "research/agent-runs/self-healing-coverage-gap-senolytics-safety-tables.json"
-      ]
-    },
-    {
-      "job_id": "agent-run-recovery-senolytics-bone-rct-extraction-refresh-2026-06-21",
-      "job_type": "agent_run_recovery",
-      "priority": "medium",
-      "source": "agent_run_status",
-      "target_record_type": "agent_run",
-      "target_record_id": "senolytics-bone-rct-extraction-refresh-2026-06-21",
-      "rationale": "Full publication tables, supplements, and exploratory subgroup details are not fully extracted. Promotion remains blocked until required review lanes are complete, accepting, non-blocking, and free of open major findings.",
-      "inputs": [
-        "research/agent-runs/senolytics-bone-rct-extraction-refresh-2026-06-21.json"
       ]
     },
     {

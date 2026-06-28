@@ -10,6 +10,7 @@ const outputPath = "ops/triage-state.v1.json";
 
 const triageMaturityStatuses = new Set(["metadata_imported", "screened", "triage_summary", "abstract_extracted"]);
 const nonRefreshableResultTypes = new Set(["posted_no_result", "no_posted_result", "registry_status"]);
+const terminalCandidateStatuses = new Set(["accepted", "applied", "rejected"]);
 
 const extractionGradeMaturityStatuses = new Set([
   "registry_extracted",
@@ -605,9 +606,19 @@ function buildStaleSnapshots(snapshotEntries, generatedDate) {
   });
 }
 
-function buildPartialOrFailedAgentRuns(agentRunEntries) {
+function buildPartialOrFailedAgentRuns({ agentRunEntries, candidateEntries }) {
+  const candidateById = new Map(candidateEntries.map((entry) => [entry.record.id, entry.record]));
+
   return agentRunEntries
     .filter((entry) => ["partial", "failed", "blocked"].includes(entry.record.status))
+    .filter((entry) => {
+      if (entry.record.status !== "partial") {
+        return true;
+      }
+      const candidateId = entry.record.outputs?.candidate_change_id;
+      const candidate = candidateById.get(candidateId);
+      return !terminalCandidateStatuses.has(candidate?.lifecycle_status);
+    })
     .map((entry) => {
       const item = {
         agent_run_id: entry.record.id,
@@ -775,7 +786,7 @@ export async function buildTriageState({ generatedAt = new Date().toISOString() 
   const coverageGaps = buildCoverageGaps(coverageEntries);
   const extractionDebt = buildExtractionDebt({ resultEntries, synthesisGroupEntries });
   const staleSnapshots = buildStaleSnapshots([...sourceSnapshotEntries, ...textSnapshotEntries], generatedDate);
-  const partialOrFailedAgentRuns = buildPartialOrFailedAgentRuns(agentRunEntries);
+  const partialOrFailedAgentRuns = buildPartialOrFailedAgentRuns({ agentRunEntries, candidateEntries });
   const recommendedJobs = buildRecommendedJobs({
     candidateReadiness,
     coverageGaps,

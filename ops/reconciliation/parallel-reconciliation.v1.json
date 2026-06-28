@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "parallel_reconciliation",
   "id": "parallel-reconciliation-v1",
-  "generated_at": "2026-06-28T10:52:38.128Z",
+  "generated_at": "2026-06-28T11:04:55.541Z",
   "source_roots": [
     "data",
     "research",
@@ -49,8 +49,8 @@
     "study_count": 9,
     "duplicate_study_group_count": 0,
     "candidate_count": 57,
-    "active_candidate_count": 43,
-    "overlapping_candidate_group_count": 7,
+    "active_candidate_count": 40,
+    "overlapping_candidate_group_count": 0,
     "source_rights_count": 2,
     "source_rights_conflict_count": 0,
     "agent_run_count": 63,
@@ -60,8 +60,8 @@
     "pending_parallel_worker_count": 0,
     "reconciliation_decision_count": 8,
     "incomplete_ledger_count": 0,
-    "open_finding_count": 7,
-    "blocking_finding_count": 7,
+    "open_finding_count": 0,
+    "blocking_finding_count": 0,
     "warning_finding_count": 0
   },
   "parallel_batches": [
@@ -78,15 +78,7 @@
       ],
       "overlapping_execution_keys": [],
       "status": "reconciliation_open",
-      "finding_ids": [
-        "overlapping-candidate-0bae350639c4",
-        "overlapping-candidate-14fca4c24b17",
-        "overlapping-candidate-3a06e6340cfa",
-        "overlapping-candidate-8be7ee3308f9",
-        "overlapping-candidate-b3857906563f",
-        "overlapping-candidate-b443e4e5da78",
-        "overlapping-candidate-b633096216bd"
-      ]
+      "finding_ids": []
     },
     {
       "batch_id": "parallel-batch-002-agent-run-recovery",
@@ -98,15 +90,7 @@
       ],
       "overlapping_execution_keys": [],
       "status": "reconciliation_open",
-      "finding_ids": [
-        "overlapping-candidate-0bae350639c4",
-        "overlapping-candidate-14fca4c24b17",
-        "overlapping-candidate-3a06e6340cfa",
-        "overlapping-candidate-8be7ee3308f9",
-        "overlapping-candidate-b3857906563f",
-        "overlapping-candidate-b443e4e5da78",
-        "overlapping-candidate-b633096216bd"
-      ]
+      "finding_ids": []
     },
     {
       "batch_id": "parallel-batch-003-extraction-refresh",
@@ -124,15 +108,7 @@
         "target_record:coverage_assessment/senolytics-coverage-repair-2026-06-21"
       ],
       "status": "reconciliation_open",
-      "finding_ids": [
-        "overlapping-candidate-0bae350639c4",
-        "overlapping-candidate-14fca4c24b17",
-        "overlapping-candidate-3a06e6340cfa",
-        "overlapping-candidate-8be7ee3308f9",
-        "overlapping-candidate-b3857906563f",
-        "overlapping-candidate-b443e4e5da78",
-        "overlapping-candidate-b633096216bd"
-      ]
+      "finding_ids": []
     },
     {
       "batch_id": "parallel-batch-004-extraction-refresh",
@@ -147,15 +123,7 @@
       ],
       "overlapping_execution_keys": [],
       "status": "reconciliation_open",
-      "finding_ids": [
-        "overlapping-candidate-0bae350639c4",
-        "overlapping-candidate-14fca4c24b17",
-        "overlapping-candidate-3a06e6340cfa",
-        "overlapping-candidate-8be7ee3308f9",
-        "overlapping-candidate-b3857906563f",
-        "overlapping-candidate-b443e4e5da78",
-        "overlapping-candidate-b633096216bd"
-      ]
+      "finding_ids": []
     },
     {
       "batch_id": "parallel-batch-005-extraction-refresh",
@@ -170,15 +138,7 @@
       ],
       "overlapping_execution_keys": [],
       "status": "reconciliation_open",
-      "finding_ids": [
-        "overlapping-candidate-0bae350639c4",
-        "overlapping-candidate-14fca4c24b17",
-        "overlapping-candidate-3a06e6340cfa",
-        "overlapping-candidate-8be7ee3308f9",
-        "overlapping-candidate-b3857906563f",
-        "overlapping-candidate-b443e4e5da78",
-        "overlapping-candidate-b633096216bd"
-      ]
+      "finding_ids": []
     },
     {
       "batch_id": "parallel-batch-006-extraction-refresh",
@@ -193,15 +153,7 @@
       ],
       "overlapping_execution_keys": [],
       "status": "reconciliation_open",
-      "finding_ids": [
-        "overlapping-candidate-0bae350639c4",
-        "overlapping-candidate-14fca4c24b17",
-        "overlapping-candidate-3a06e6340cfa",
-        "overlapping-candidate-8be7ee3308f9",
-        "overlapping-candidate-b3857906563f",
-        "overlapping-candidate-b443e4e5da78",
-        "overlapping-candidate-b633096216bd"
-      ]
+      "finding_ids": []
     },
     {
       "batch_id": "parallel-batch-007-extraction-refresh",
@@ -216,15 +168,7 @@
       ],
       "overlapping_execution_keys": [],
       "status": "reconciliation_open",
-      "finding_ids": [
-        "overlapping-candidate-0bae350639c4",
-        "overlapping-candidate-14fca4c24b17",
-        "overlapping-candidate-3a06e6340cfa",
-        "overlapping-candidate-8be7ee3308f9",
-        "overlapping-candidate-b3857906563f",
-        "overlapping-candidate-b443e4e5da78",
-        "overlapping-candidate-b633096216bd"
-      ]
+      "finding_ids": []
     },
     {
       "batch_id": "parallel-batch-008-extraction-refresh",
@@ -236,282 +180,13 @@
       ],
       "overlapping_execution_keys": [],
       "status": "reconciliation_open",
-      "finding_ids": [
-        "overlapping-candidate-0bae350639c4",
-        "overlapping-candidate-14fca4c24b17",
-        "overlapping-candidate-3a06e6340cfa",
-        "overlapping-candidate-8be7ee3308f9",
-        "overlapping-candidate-b3857906563f",
-        "overlapping-candidate-b443e4e5da78",
-        "overlapping-candidate-b633096216bd"
-      ]
+      "finding_ids": []
     }
   ],
   "duplicate_sources": [],
   "duplicate_studies": [],
-  "overlapping_candidate_proposals": [
-    {
-      "issue_id": "overlapping-candidate-0bae350639c4",
-      "category": "overlapping_candidate_proposal",
-      "severity": "blocker",
-      "status": "open",
-      "proposal_key": "data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json",
-      "candidate_change_ids": [
-        "senolytics-bone-rct-extraction-refresh-2026-06-21",
-        "senolytics-coverage-repair-2026-06-21"
-      ],
-      "proposed_records": [
-        {
-          "candidate_change_id": "senolytics-bone-rct-extraction-refresh-2026-06-21",
-          "lifecycle_status": "needs_revision",
-          "record_type": "finding",
-          "record_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
-          "path": "data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json",
-          "change_type": "update"
-        },
-        {
-          "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
-          "lifecycle_status": "needs_revision",
-          "record_type": "finding",
-          "record_id": "dq-bone-rct-primary-null-subgroup-biomarker-signal",
-          "path": "data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json",
-          "change_type": "create"
-        }
-      ],
-      "summary": "Active candidates propose changes to the same record path: data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json."
-    },
-    {
-      "issue_id": "overlapping-candidate-b443e4e5da78",
-      "category": "overlapping_candidate_proposal",
-      "severity": "blocker",
-      "status": "open",
-      "proposal_key": "data/findings/dq-senolytic-drug-discovery-preclinical.json",
-      "candidate_change_ids": [
-        "senolytics-coverage-repair-2026-06-21",
-        "senolytics-scaffold-bootstrap-2026-06-21"
-      ],
-      "proposed_records": [
-        {
-          "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
-          "lifecycle_status": "needs_revision",
-          "record_type": "finding",
-          "record_id": "dq-senolytic-drug-discovery-preclinical",
-          "path": "data/findings/dq-senolytic-drug-discovery-preclinical.json",
-          "change_type": "update"
-        },
-        {
-          "candidate_change_id": "senolytics-scaffold-bootstrap-2026-06-21",
-          "lifecycle_status": "needs_revision",
-          "record_type": "finding",
-          "record_id": "dq-senolytic-drug-discovery-preclinical",
-          "path": "data/findings/dq-senolytic-drug-discovery-preclinical.json",
-          "change_type": "create"
-        }
-      ],
-      "summary": "Active candidates propose changes to the same record path: data/findings/dq-senolytic-drug-discovery-preclinical.json."
-    },
-    {
-      "issue_id": "overlapping-candidate-b633096216bd",
-      "category": "overlapping_candidate_proposal",
-      "severity": "blocker",
-      "status": "open",
-      "proposal_key": "data/outcomes/dq-bone-turnover-marker.json",
-      "candidate_change_ids": [
-        "senolytics-bone-rct-extraction-refresh-2026-06-21",
-        "senolytics-coverage-repair-2026-06-21"
-      ],
-      "proposed_records": [
-        {
-          "candidate_change_id": "senolytics-bone-rct-extraction-refresh-2026-06-21",
-          "lifecycle_status": "needs_revision",
-          "record_type": "outcome",
-          "record_id": "dq-bone-turnover-marker",
-          "path": "data/outcomes/dq-bone-turnover-marker.json",
-          "change_type": "update"
-        },
-        {
-          "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
-          "lifecycle_status": "needs_revision",
-          "record_type": "outcome",
-          "record_id": "dq-bone-turnover-marker",
-          "path": "data/outcomes/dq-bone-turnover-marker.json",
-          "change_type": "create"
-        }
-      ],
-      "summary": "Active candidates propose changes to the same record path: data/outcomes/dq-bone-turnover-marker.json."
-    },
-    {
-      "issue_id": "overlapping-candidate-14fca4c24b17",
-      "category": "overlapping_candidate_proposal",
-      "severity": "blocker",
-      "status": "open",
-      "proposal_key": "data/results/dq-bone-turnover-mixed.json",
-      "candidate_change_ids": [
-        "senolytics-bone-rct-extraction-refresh-2026-06-21",
-        "senolytics-coverage-repair-2026-06-21"
-      ],
-      "proposed_records": [
-        {
-          "candidate_change_id": "senolytics-bone-rct-extraction-refresh-2026-06-21",
-          "lifecycle_status": "needs_revision",
-          "record_type": "result",
-          "record_id": "dq-bone-turnover-mixed",
-          "path": "data/results/dq-bone-turnover-mixed.json",
-          "change_type": "update"
-        },
-        {
-          "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
-          "lifecycle_status": "needs_revision",
-          "record_type": "result",
-          "record_id": "dq-bone-turnover-mixed",
-          "path": "data/results/dq-bone-turnover-mixed.json",
-          "change_type": "create"
-        }
-      ],
-      "summary": "Active candidates propose changes to the same record path: data/results/dq-bone-turnover-mixed.json."
-    },
-    {
-      "issue_id": "overlapping-candidate-8be7ee3308f9",
-      "category": "overlapping_candidate_proposal",
-      "severity": "blocker",
-      "status": "open",
-      "proposal_key": "data/sources/pmid-25754370.json",
-      "candidate_change_ids": [
-        "senolytics-coverage-repair-2026-06-21",
-        "senolytics-scaffold-bootstrap-2026-06-21"
-      ],
-      "proposed_records": [
-        {
-          "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
-          "lifecycle_status": "needs_revision",
-          "record_type": "source",
-          "record_id": "pmid-25754370",
-          "path": "data/sources/pmid-25754370.json",
-          "change_type": "update"
-        },
-        {
-          "candidate_change_id": "senolytics-scaffold-bootstrap-2026-06-21",
-          "lifecycle_status": "needs_revision",
-          "record_type": "source",
-          "record_id": "pmid-25754370",
-          "path": "data/sources/pmid-25754370.json",
-          "change_type": "create"
-        }
-      ],
-      "summary": "Active candidates propose changes to the same record path: data/sources/pmid-25754370.json."
-    },
-    {
-      "issue_id": "overlapping-candidate-b3857906563f",
-      "category": "overlapping_candidate_proposal",
-      "severity": "blocker",
-      "status": "open",
-      "proposal_key": "data/studies/dq-postmenopausal-bone-rct.json",
-      "candidate_change_ids": [
-        "senolytics-bone-rct-extraction-refresh-2026-06-21",
-        "senolytics-coverage-repair-2026-06-21"
-      ],
-      "proposed_records": [
-        {
-          "candidate_change_id": "senolytics-bone-rct-extraction-refresh-2026-06-21",
-          "lifecycle_status": "needs_revision",
-          "record_type": "study",
-          "record_id": "dq-postmenopausal-bone-rct",
-          "path": "data/studies/dq-postmenopausal-bone-rct.json",
-          "change_type": "update"
-        },
-        {
-          "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
-          "lifecycle_status": "needs_revision",
-          "record_type": "study",
-          "record_id": "dq-postmenopausal-bone-rct",
-          "path": "data/studies/dq-postmenopausal-bone-rct.json",
-          "change_type": "create"
-        }
-      ],
-      "summary": "Active candidates propose changes to the same record path: data/studies/dq-postmenopausal-bone-rct.json."
-    },
-    {
-      "issue_id": "overlapping-candidate-3a06e6340cfa",
-      "category": "overlapping_candidate_proposal",
-      "severity": "blocker",
-      "status": "open",
-      "proposal_key": "data/studies/zhu-senolytic-drug-discovery.json",
-      "candidate_change_ids": [
-        "senolytics-coverage-repair-2026-06-21",
-        "senolytics-scaffold-bootstrap-2026-06-21"
-      ],
-      "proposed_records": [
-        {
-          "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
-          "lifecycle_status": "needs_revision",
-          "record_type": "study",
-          "record_id": "zhu-senolytic-drug-discovery",
-          "path": "data/studies/zhu-senolytic-drug-discovery.json",
-          "change_type": "update"
-        },
-        {
-          "candidate_change_id": "senolytics-scaffold-bootstrap-2026-06-21",
-          "lifecycle_status": "needs_revision",
-          "record_type": "study",
-          "record_id": "zhu-senolytic-drug-discovery",
-          "path": "data/studies/zhu-senolytic-drug-discovery.json",
-          "change_type": "create"
-        }
-      ],
-      "summary": "Active candidates propose changes to the same record path: data/studies/zhu-senolytic-drug-discovery.json."
-    }
-  ],
+  "overlapping_candidate_proposals": [],
   "source_rights_conflicts": [],
   "incomplete_ledgers": [],
-  "open_findings": [
-    {
-      "issue_id": "overlapping-candidate-0bae350639c4",
-      "category": "overlapping_candidate_proposal",
-      "severity": "blocker",
-      "status": "open",
-      "summary": "Active candidates propose changes to the same record path: data/findings/dq-bone-rct-primary-null-subgroup-biomarker-signal.json."
-    },
-    {
-      "issue_id": "overlapping-candidate-14fca4c24b17",
-      "category": "overlapping_candidate_proposal",
-      "severity": "blocker",
-      "status": "open",
-      "summary": "Active candidates propose changes to the same record path: data/results/dq-bone-turnover-mixed.json."
-    },
-    {
-      "issue_id": "overlapping-candidate-3a06e6340cfa",
-      "category": "overlapping_candidate_proposal",
-      "severity": "blocker",
-      "status": "open",
-      "summary": "Active candidates propose changes to the same record path: data/studies/zhu-senolytic-drug-discovery.json."
-    },
-    {
-      "issue_id": "overlapping-candidate-8be7ee3308f9",
-      "category": "overlapping_candidate_proposal",
-      "severity": "blocker",
-      "status": "open",
-      "summary": "Active candidates propose changes to the same record path: data/sources/pmid-25754370.json."
-    },
-    {
-      "issue_id": "overlapping-candidate-b3857906563f",
-      "category": "overlapping_candidate_proposal",
-      "severity": "blocker",
-      "status": "open",
-      "summary": "Active candidates propose changes to the same record path: data/studies/dq-postmenopausal-bone-rct.json."
-    },
-    {
-      "issue_id": "overlapping-candidate-b443e4e5da78",
-      "category": "overlapping_candidate_proposal",
-      "severity": "blocker",
-      "status": "open",
-      "summary": "Active candidates propose changes to the same record path: data/findings/dq-senolytic-drug-discovery-preclinical.json."
-    },
-    {
-      "issue_id": "overlapping-candidate-b633096216bd",
-      "category": "overlapping_candidate_proposal",
-      "severity": "blocker",
-      "status": "open",
-      "summary": "Active candidates propose changes to the same record path: data/outcomes/dq-bone-turnover-marker.json."
-    }
-  ]
+  "open_findings": []
 }

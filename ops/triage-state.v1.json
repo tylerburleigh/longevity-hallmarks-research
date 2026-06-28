@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "triage_state",
   "id": "triage-state-v1",
-  "generated_at": "2026-06-28T10:52:45.390Z",
+  "generated_at": "2026-06-28T11:05:11.310Z",
   "source_roots": [
     "data",
     "research"
@@ -69,18 +69,18 @@
     "candidate_count": 57,
     "promotion_ready_count": 0,
     "needs_review_count": 0,
-    "needs_revision_count": 3,
+    "needs_revision_count": 0,
     "blocked_count": 0,
     "accepted_count": 14,
     "applied_count": 0,
-    "rejected_count": 0,
+    "rejected_count": 3,
     "coverage_gap_count": 4,
     "high_priority_coverage_gap_count": 2,
     "extraction_debt_count": 47,
     "stale_snapshot_count": 0,
     "watch_snapshot_count": 0,
     "partial_or_failed_agent_run_count": 5,
-    "recommended_job_count": 31
+    "recommended_job_count": 28
   },
   "candidate_readiness": [
     {
@@ -1096,8 +1096,8 @@
     {
       "candidate_change_id": "senolytics-bone-rct-extraction-refresh-2026-06-21",
       "path": "data/candidate-changes/senolytics-bone-rct-extraction-refresh-2026-06-21.json",
-      "lifecycle_status": "needs_revision",
-      "readiness_status": "needs_revision",
+      "lifecycle_status": "rejected",
+      "readiness_status": "rejected",
       "required_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
@@ -1135,16 +1135,13 @@
         "senolytics-bone-rct-safety-limitations-2026-06-21"
       ],
       "proposed_record_count": 28,
-      "next_actions": [
-        "Create a repair candidate addressing extraction_fidelity, safety_limitations.",
-        "Resolve open major or critical review findings in senolytics-bone-rct-extraction-fidelity-2026-06-21, senolytics-bone-rct-safety-limitations-2026-06-21."
-      ]
+      "next_actions": []
     },
     {
       "candidate_change_id": "senolytics-coverage-repair-2026-06-21",
       "path": "data/candidate-changes/senolytics-coverage-repair-2026-06-21.json",
-      "lifecycle_status": "needs_revision",
-      "readiness_status": "needs_revision",
+      "lifecycle_status": "rejected",
+      "readiness_status": "rejected",
       "required_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
@@ -1184,10 +1181,7 @@
         "senolytics-coverage-repair-taxonomy-mapping-2026-06-21"
       ],
       "proposed_record_count": 62,
-      "next_actions": [
-        "Create a repair candidate addressing extraction_fidelity, safety_limitations, source_fidelity, synthesis_boundary, taxonomy_mapping.",
-        "Resolve open major or critical review findings in senolytics-coverage-repair-extraction-fidelity-2026-06-21, senolytics-coverage-repair-safety-limitations-2026-06-21, senolytics-coverage-repair-source-fidelity-2026-06-21, senolytics-coverage-repair-synthesis-boundary-2026-06-21, senolytics-coverage-repair-taxonomy-mapping-2026-06-21."
-      ]
+      "next_actions": []
     },
     {
       "candidate_change_id": "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",
@@ -1468,8 +1462,8 @@
     {
       "candidate_change_id": "senolytics-scaffold-bootstrap-2026-06-21",
       "path": "data/candidate-changes/senolytics-scaffold-bootstrap-2026-06-21.json",
-      "lifecycle_status": "needs_revision",
-      "readiness_status": "needs_revision",
+      "lifecycle_status": "rejected",
+      "readiness_status": "rejected",
       "required_review_lanes": [
         "source_fidelity",
         "synthesis_boundary",
@@ -1492,10 +1486,7 @@
       "blocking_review_ids": [],
       "open_major_or_critical_review_ids": [],
       "proposed_record_count": 6,
-      "next_actions": [
-        "Create a repair candidate addressing source_fidelity.",
-        "After repair, complete missing review lanes: synthesis_boundary, taxonomy_mapping."
-      ]
+      "next_actions": []
     }
   ],
   "promotion_ready_candidate_ids": [],
@@ -2243,53 +2234,6 @@
     }
   ],
   "recommended_jobs": [
-    {
-      "job_id": "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21",
-      "job_type": "candidate_revision",
-      "priority": "high",
-      "source": "candidate_readiness",
-      "target_record_type": "candidate_change",
-      "target_record_id": "senolytics-bone-rct-extraction-refresh-2026-06-21",
-      "rationale": "Candidate has revision lanes or open findings: extraction_fidelity, safety_limitations.",
-      "inputs": [
-        "data/candidate-changes/senolytics-bone-rct-extraction-refresh-2026-06-21.json",
-        "data/evidence-reviews/senolytics-bone-rct-extraction-fidelity-2026-06-21.json",
-        "data/evidence-reviews/senolytics-bone-rct-safety-limitations-2026-06-21.json",
-        "data/evidence-reviews/senolytics-bone-rct-source-fidelity-2026-06-21.json",
-        "data/evidence-reviews/senolytics-bone-rct-synthesis-boundary-2026-06-21.json",
-        "data/evidence-reviews/senolytics-bone-rct-taxonomy-mapping-2026-06-21.json"
-      ]
-    },
-    {
-      "job_id": "candidate-revision-senolytics-coverage-repair-2026-06-21",
-      "job_type": "candidate_revision",
-      "priority": "high",
-      "source": "candidate_readiness",
-      "target_record_type": "candidate_change",
-      "target_record_id": "senolytics-coverage-repair-2026-06-21",
-      "rationale": "Candidate has revision lanes or open findings: extraction_fidelity, safety_limitations, source_fidelity, synthesis_boundary, taxonomy_mapping.",
-      "inputs": [
-        "data/candidate-changes/senolytics-coverage-repair-2026-06-21.json",
-        "data/evidence-reviews/senolytics-coverage-repair-extraction-fidelity-2026-06-21.json",
-        "data/evidence-reviews/senolytics-coverage-repair-safety-limitations-2026-06-21.json",
-        "data/evidence-reviews/senolytics-coverage-repair-source-fidelity-2026-06-21.json",
-        "data/evidence-reviews/senolytics-coverage-repair-synthesis-boundary-2026-06-21.json",
-        "data/evidence-reviews/senolytics-coverage-repair-taxonomy-mapping-2026-06-21.json"
-      ]
-    },
-    {
-      "job_id": "candidate-revision-senolytics-scaffold-bootstrap-2026-06-21",
-      "job_type": "candidate_revision",
-      "priority": "high",
-      "source": "candidate_readiness",
-      "target_record_type": "candidate_change",
-      "target_record_id": "senolytics-scaffold-bootstrap-2026-06-21",
-      "rationale": "Candidate has revision lanes or open findings: source_fidelity.",
-      "inputs": [
-        "data/candidate-changes/senolytics-scaffold-bootstrap-2026-06-21.json",
-        "data/evidence-reviews/senolytics-scaffold-source-fidelity-2026-06-21.json"
-      ]
-    },
     {
       "job_id": "coverage-gap-senolytics-exact-effect-extraction",
       "job_type": "extraction_refresh",

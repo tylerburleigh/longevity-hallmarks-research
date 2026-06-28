@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "orchestration_metrics",
   "id": "orchestration-metrics-v1",
-  "generated_at": "2026-06-28T10:52:45.408Z",
+  "generated_at": "2026-06-28T11:05:11.326Z",
   "source_roots": [
     "data",
     "exports/latest",
@@ -65,11 +65,11 @@
     "partial_agent_run_count": 5,
     "failed_agent_run_count": 0,
     "agent_run_wall_time_ms": 24625000,
-    "duplicate_work_group_count": 7,
-    "duplicate_work_record_count": 14,
-    "conflict_finding_count": 7,
+    "duplicate_work_group_count": 0,
+    "duplicate_work_record_count": 0,
+    "conflict_finding_count": 0,
     "conflict_rate": 0.125,
-    "open_finding_rate": 0.1628,
+    "open_finding_rate": 0,
     "accepted_candidate_count": 14,
     "accepted_records_produced_count": 105,
     "extraction_debt_open_count": 47,
@@ -787,18 +787,18 @@
   },
   "quality_pressure": {
     "duplicate_work": {
-      "group_count": 7,
-      "record_count": 14,
+      "group_count": 0,
+      "record_count": 0,
       "duplicate_source_group_count": 0,
       "duplicate_study_group_count": 0,
-      "overlapping_candidate_group_count": 7
+      "overlapping_candidate_group_count": 0
     },
     "conflicts": {
-      "open_finding_count": 7,
-      "blocking_finding_count": 7,
+      "open_finding_count": 0,
+      "blocking_finding_count": 0,
       "warning_finding_count": 0,
       "conflict_rate": 0.125,
-      "open_finding_rate": 0.1628,
+      "open_finding_rate": 0,
       "reconciliation_batch_rate": 0.125
     },
     "worker_failures": {

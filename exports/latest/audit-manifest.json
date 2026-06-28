@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "release_manifest",
   "id": "latest-consumer-export",
-  "generated_at": "2026-06-28T10:52:45.420Z",
+  "generated_at": "2026-06-28T11:05:11.356Z",
   "export_version": "0.1.0",
   "export_scope": {
     "description": "Consumer-facing latest export generated from canonical research and data records.",
@@ -50,7 +50,7 @@
       "format": "jsonl",
       "description": "Release-boundary export of records proposed by accepted or applied candidates and not blocked by dependency checks.",
       "record_count": 87,
-      "sha256": "e857e086a589370b6d0a48d2cd8907d46528df144821de9e14fb85d580850edf"
+      "sha256": "6e58eb77549f2d45e410b50fef467389b694b0f6d3034707d9aafde08cc46a05"
     },
     {
       "path": "exports/latest/studies.jsonl",
@@ -113,28 +113,28 @@
       "format": "json",
       "description": "Generated graph view of source, study, finding, outcome, result, coverage, and synthesis-compatibility links.",
       "record_count": 1,
-      "sha256": "3a0536e5b71c0538d9259812d2d9ca513d7e1bdd548b927c3f839677261f272a"
+      "sha256": "751e7bea246e8ccc1d7b371f1e9bbcf0b8f796f2a1ba7820fd920cc54ca015a5"
     },
     {
       "path": "exports/latest/coverage-status.json",
       "format": "json",
       "description": "Consumer coverage status with current/superseded flags and known-gap warnings.",
       "record_count": 1,
-      "sha256": "d7a8faa155e1f24ddc612178cc1336e468788dbf107813f221dbece723491ffe"
+      "sha256": "3d6be2011b0fab3af4a32c08777d0adc948ed2fea0f8bad7b60f4925b54a8ca3"
     },
     {
       "path": "exports/latest/read-model.sqlite",
       "format": "sqlite",
       "description": "Generated SQLite read model for indexed joins over canonical JSON records.",
       "record_count": 288,
-      "sha256": "4d000d21c251d053eeffd28c0ca01dd29028ebed596e9d5633a0a780926affac"
+      "sha256": "2689661fc01fe65f97872c1bca0a3df24b664ce2d3ddb5a4000439d9f5c01f89"
     },
     {
       "path": "exports/latest/consumer-contract.json",
       "format": "json",
       "description": "Versioned machine-readable contract for consumer-facing export artifacts.",
       "record_count": 1,
-      "sha256": "eda870efcc01340cc5bf5376532ce2f98f3049ad60cda8561d382289f6a63d5c"
+      "sha256": "8b26b964c53170a7b4d5625d98628ac876153c0ea97f3f409871e41950548100"
     }
   ],
   "record_counts": {

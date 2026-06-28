@@ -171,6 +171,20 @@
         "senolytics-bone-rct-extraction-refresh-2026-06-21",
         "--dry-run"
       ],
+      "operations": [
+        {
+          "type": "set_json",
+          "path": "data/candidate-changes/senolytics-bone-rct-extraction-refresh-2026-06-21.json",
+          "pointer": "/lifecycle_status",
+          "value": "submitted"
+        },
+        {
+          "type": "set_json",
+          "path": "data/candidate-changes/senolytics-coverage-repair-2026-06-21.json",
+          "pointer": "/lifecycle_status",
+          "value": "submitted"
+        }
+      ],
       "expected_failure_substrings": [
         "unresolved reconciliation finding",
         "overlapping_candidate_proposal"

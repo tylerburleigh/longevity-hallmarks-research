@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "triage_state",
   "id": "triage-state-v1",
-  "generated_at": "2026-06-28T20:41:29.584Z",
+  "generated_at": "2026-06-28T20:55:29.553Z",
   "source_roots": [
     "data",
     "research"
@@ -80,7 +80,7 @@
     "stale_snapshot_count": 0,
     "watch_snapshot_count": 0,
     "partial_or_failed_agent_run_count": 0,
-    "recommended_job_count": 35
+    "recommended_job_count": 33
   },
   "candidate_readiness": [
     {
@@ -2996,30 +2996,6 @@
       "rationale": "Resolve missing synthesis fields: effect.uncertainty, effect.value.",
       "inputs": [
         "data/results/dq-bone-vertigo-20wk-descriptive.json"
-      ]
-    },
-    {
-      "job_id": "candidate-blocked-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
-      "job_type": "self_healing_repair",
-      "priority": "high",
-      "source": "candidate_readiness",
-      "target_record_type": "candidate_change",
-      "target_record_id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
-      "rationale": "Candidate has blocking review state or cannot advance under the lifecycle gate.",
-      "inputs": [
-        "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-2-repair.json"
-      ]
-    },
-    {
-      "job_id": "candidate-blocked-coverage-gap-senolytics-registry-surveillance-breadth-repair",
-      "job_type": "self_healing_repair",
-      "priority": "high",
-      "source": "candidate_readiness",
-      "target_record_type": "candidate_change",
-      "target_record_id": "coverage-gap-senolytics-registry-surveillance-breadth-repair",
-      "rationale": "Candidate has blocking review state or cannot advance under the lifecycle gate.",
-      "inputs": [
-        "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-repair.json"
       ]
     },
     {

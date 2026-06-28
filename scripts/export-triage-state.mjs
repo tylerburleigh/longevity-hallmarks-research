@@ -718,6 +718,10 @@ function rerunnableRecommendedJob(job, agentRunIds) {
   };
 }
 
+function isReconciliationBlockedCandidate(candidate) {
+  return (candidate.next_actions ?? []).some((action) => action.startsWith("Resolve reconciliation blocker(s) before promotion:"));
+}
+
 function buildRecommendedJobs({
   candidateReadiness,
   coverageGaps,
@@ -769,6 +773,9 @@ function buildRecommendedJobs({
         inputs: sortStrings([candidate.path, ...(candidate.active_review_paths ?? [])])
       });
     } else if (candidate.readiness_status === "blocked") {
+      if (isReconciliationBlockedCandidate(candidate)) {
+        continue;
+      }
       addJob({
         job_id: makeId(["candidate-blocked", candidate.candidate_change_id]),
         job_type: "self_healing_repair",

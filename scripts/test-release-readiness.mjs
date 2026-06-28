@@ -52,5 +52,22 @@ if (promotionJobsBlockedByReconciliation.length > 0) {
   );
 }
 
+const genericRepairJobsForReconciliationBlockers = (triageState.recommended_jobs ?? []).filter(
+  (job) =>
+    job.job_type === "self_healing_repair" &&
+    [
+      "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+      "coverage-gap-senolytics-registry-surveillance-breadth-repair"
+    ].includes(job.target_record_id)
+);
+
+if (genericRepairJobsForReconciliationBlockers.length > 0) {
+  fail(
+    `triage should not schedule generic self-healing jobs for reconciliation blockers: ${genericRepairJobsForReconciliationBlockers
+      .map((job) => job.job_id)
+      .join(", ")}`
+  );
+}
+
 console.log("PASS release-readiness accepted update dependency handling");
 console.log("PASS triage reconciliation-blocked promotion handling");

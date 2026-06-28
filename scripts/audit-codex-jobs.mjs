@@ -9,6 +9,7 @@ const liveJobPathPrefix = "ops/codex-jobs/live/";
 const archiveJobPathPrefix = "ops/codex-jobs/archive/";
 const activeJobStatuses = new Set(["planned", "ready", "running"]);
 const finalJobStatuses = new Set(["succeeded", "failed", "superseded", "archived"]);
+const safetyScopePattern = /\b(safety|adverse[-_ ]?event|adverse|harm|tolerability|toxicity)\b/i;
 const aggregateQualityGateChecks = {
   audit_exports: new Set(["verify_knowledge_base", "post_verify"]),
   audit_triage_state: new Set(["verify_knowledge_base", "post_verify"]),
@@ -89,6 +90,24 @@ function checkArrayEqual({ issues, ownerPath, field, expected, actual }) {
       return;
     }
   }
+}
+
+function expectedCandidateReviewLanesForJobCandidate(job, candidate) {
+  const expectedLanes = new Set(job.expected_outputs?.required_review_lanes ?? []);
+
+  for (const proposedRecord of candidate.proposed_records ?? []) {
+    const searchableText = [
+      proposedRecord.record_type,
+      proposedRecord.record_id,
+      proposedRecord.path,
+      proposedRecord.rationale
+    ].join(" ");
+    if (safetyScopePattern.test(searchableText)) {
+      expectedLanes.add("safety_limitations");
+    }
+  }
+
+  return [...expectedLanes].sort();
 }
 
 function checkPathExists({ issues, ownerPath, field, relativePath }) {
@@ -578,7 +597,7 @@ async function checkCodexJob({ issues, job, ownerPath }) {
         issues,
         ownerPath,
         field: "candidate_change.required_review_lanes[]",
-        expected: job.expected_outputs.required_review_lanes,
+        expected: expectedCandidateReviewLanesForJobCandidate(job, candidate),
         actual: candidate.required_review_lanes
       });
       if ((job.quality_gates ?? []).includes("candidate_agent_run_ledger_match")) {

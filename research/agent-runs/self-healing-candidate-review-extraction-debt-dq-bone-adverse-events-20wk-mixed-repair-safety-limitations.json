@@ -1,0 +1,170 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "self-healing-candidate-review-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-safety-limitations",
+  "agent_role": "supervisor_agent",
+  "agent_id": "codex-cli",
+  "mode": "agent_directed",
+  "started_at": "2026-06-28T17:00:00Z",
+  "completed_at": "2026-06-28T17:03:02Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "candidate_review: Required review lane is missing: safety_limitations.",
+    "hallmark_ids": [
+      "cellular_senescence",
+      "chronic_inflammation",
+      "stem_cell_exhaustion"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "codex_exec",
+    "isolation": "git_worktree",
+    "workspace_path": "/tmp/lhr-codex-worktrees/self-healing-candidate-review-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-safety-limitations-20260628T170018z",
+    "prompt_file": "research/agent-runs/prompts/self-healing-candidate-review-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-safety-limitations.md",
+    "prompt_template_file": "docs/prompts/codex-agents/supervisor-review.md",
+    "job_file": "ops/codex-jobs/archive/self-healing-candidate-review-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-safety-limitations.json",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "output_path": "research/agent-runs/self-healing-candidate-review-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-safety-limitations.json",
+    "jsonl_log_path": "research/agent-runs/logs/self-healing-candidate-review-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-safety-limitations.jsonl",
+    "sandbox": "workspace-write",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "user_request",
+      "reference": "coordinator-job:self-healing-candidate-review-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-safety-limitations",
+      "summary": "Supervisor review task for the missing safety_limitations lane."
+    },
+    {
+      "input_type": "other",
+      "reference": "ops/supervisor-review-context-packs/self-healing-candidate-review-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-safety-limitations.json",
+      "summary": "Bounded context pack defining the target candidate, review lane, expected generated files, and verification commands."
+    },
+    {
+      "input_type": "candidate_change",
+      "reference": "data/candidate-changes/extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.json",
+      "summary": "Submitted target candidate reviewed for safety_limitations only."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/results/dq-bone-adverse-events-20wk-mixed.json",
+      "summary": "Updated registry aggregate adverse-event result inspected for safety caveats and boundary statements."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
+      "summary": "Registry synthesis compatibility record inspected for retained pooling blockers."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+      "summary": "Safety synthesis compatibility record inspected for retained safety limitations and non-pooling rationale."
+    }
+  ],
+  "outputs": {
+    "summary": "Created the bounded repair candidate ledger and the missing safety_limitations evidence review. The review accepts the lane with only closed note-level findings and no blocking issues.",
+    "candidate_change_id": "candidate-review-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-safety-limitations-repair",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "candidate-review-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-safety-limitations-repair",
+        "path": "data/candidate-changes/candidate-review-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-safety-limitations-repair.json",
+        "change_type": "create",
+        "rationale": "Tracks the bounded supervisor review-lane repair and the exact generated review artifact."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-safety-limitations",
+        "path": "data/evidence-reviews/extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-safety-limitations.json",
+        "change_type": "create",
+        "rationale": "Adds the missing safety_limitations supervisor review for the submitted target candidate."
+      }
+    ],
+    "generated_files": [
+      "data/candidate-changes/candidate-review-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-safety-limitations-repair.json",
+      "data/evidence-reviews/extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-safety-limitations.json"
+    ],
+    "export_paths": []
+  },
+  "quality_checks": [
+    {
+      "check_name": "supervisor_review_lanes",
+      "status": "passed",
+      "summary": "Reviewed the required safety_limitations lane and recorded an accept verdict with no open major or critical findings."
+    },
+    {
+      "check_name": "candidate_agent_run_ledger_match",
+      "status": "passed",
+      "summary": "Final outputs.proposed_records exactly match the repair candidate proposed_records ledger."
+    },
+    {
+      "check_name": "validate_records",
+      "status": "passed",
+      "summary": "npm run validate:records passed, validating 427 JSON files."
+    },
+    {
+      "check_name": "audit_references",
+      "status": "passed",
+      "summary": "npm run audit:references passed for 292 record files."
+    },
+    {
+      "check_name": "audit_agent_schemas",
+      "status": "passed",
+      "summary": "npm run audit:agent-schemas passed."
+    },
+    {
+      "check_name": "audit_agentic_process",
+      "status": "passed",
+      "summary": "npm run audit:agentic-process passed for 494 files."
+    },
+    {
+      "check_name": "audit_exports",
+      "status": "not_run",
+      "summary": "Deferred because the context pack assigns export_latest and knowledge-base verification to coordinator post-run processing."
+    },
+    {
+      "check_name": "worker_output_contract",
+      "status": "passed",
+      "summary": "Worker emitted exactly one final JSON agent_run message, matched output_path, and avoided ad hoc schema-validation snippets."
+    },
+    {
+      "check_name": "post_triage_state_export",
+      "status": "passed",
+      "summary": "post_triage_state_export exited 0: > longevity-hallmarks-research@0.1.0 export:triage-state > node scripts/export-triage-state.mjs Wrote ops/triage-state.v1.json."
+    },
+    {
+      "check_name": "post_release_readiness_export",
+      "status": "passed",
+      "summary": "post_release_readiness_export exited 0: > longevity-hallmarks-research@0.1.0 export:release-readiness > node scripts/export-release-readiness.mjs Wrote ops/release-readiness.v1.json."
+    },
+    {
+      "check_name": "post_reconciliation_export",
+      "status": "passed",
+      "summary": "post_reconciliation_export exited 0: > longevity-hallmarks-research@0.1.0 reconcile:parallel > node scripts/reconcile-parallel-outputs.mjs Wrote ops/reconciliation/parallel-reconciliation.v1.json."
+    },
+    {
+      "check_name": "post_orchestration_metrics_export",
+      "status": "passed",
+      "summary": "post_orchestration_metrics_export exited 0: > longevity-hallmarks-research@0.1.0 metrics:orchestration > node scripts/export-orchestration-metrics.mjs Wrote ops/codex-batches/orchestration-metrics.v1.json."
+    },
+    {
+      "check_name": "post_export",
+      "status": "passed",
+      "summary": "post_export exited 0: > longevity-hallmarks-research@0.1.0 export:latest > node scripts/export-latest.mjs Wrote 16 export file(s) to exports/latest."
+    },
+    {
+      "check_name": "post_verify",
+      "status": "passed",
+      "summary": "post_verify exited 0: > longevity-hallmarks-research@0.1.0 audit:orchestration-smoke-contract > node scripts/audit-orchestration-smoke-contract.mjs Orchestration smoke contract audit passed for orchestration-smoke-budgeted-codex-worktree-2026-06-23. > longevity-hallmarks-research@0.1.0 audit:agentic-process > node scripts/audit-agentic-process.mjs Agentic process audit passed for 495 file(s)."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": [
+    "Coordinator post-run should run the declared export and knowledge-base verification steps."
+  ]
+}

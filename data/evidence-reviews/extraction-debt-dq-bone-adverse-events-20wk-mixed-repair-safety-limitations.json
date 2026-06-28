@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-safety-limitations",
+  "candidate_change_id": "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
+  "review_lane": "safety_limitations",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-safety-limitations",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Safety limitations are adequately bounded for this candidate. The updated result confines the calculated risk ratio to the ClinicalTrials.gov Other adverse events aggregate, keeps serious adverse events and deaths descriptive, and preserves caveats against term-level overinterpretation. The safety synthesis group keeps pooling blocked for single-trial evidence, overlapping aggregate summaries, and the unresolved headache-specific blank control-cell limitation.",
+  "findings": [
+    {
+      "finding_id": "safety-limitations-aggregate-boundary-closed",
+      "severity": "note",
+      "category": "safety_limitation",
+      "claim_or_issue": "The adverse-event result presents a calculated risk ratio only for the registry Other adverse events aggregate while retaining serious adverse events and deaths as descriptive 0/30 arm counts.",
+      "why_it_matters": "This prevents readers from treating the aggregate risk ratio as a term-specific, all-safety, serious-adverse-event, or mortality effect estimate.",
+      "recommended_action": "No revision required. Keep the existing result caveats that distinguish the registry aggregate category from individual preferred terms, serious adverse events, deaths, and publication-table rows.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "safety-limitations-pooling-blockers-closed",
+      "severity": "note",
+      "category": "endpoint_boundary",
+      "claim_or_issue": "The safety synthesis group remains pooling_blocked despite the repaired aggregate extraction because the available safety records are single-trial, partly overlapping summaries and the headache preferred-term control cell remains ambiguous.",
+      "why_it_matters": "Keeping this boundary avoids overconfident safety synthesis from incompatible or overlapping adverse-event summaries.",
+      "recommended_action": "No revision required. Retain the current safety synthesis blockers until at least two compatible safety results have explicit event counts, valid comparisons, and uncertainty.",
+      "resolution_status": "closed"
+    }
+  ]
+}

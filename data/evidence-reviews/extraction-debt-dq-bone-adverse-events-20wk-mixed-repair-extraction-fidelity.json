@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-extraction-fidelity",
+  "candidate_change_id": "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
+  "review_lane": "extraction_fidelity",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-extraction-fidelity",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Extraction-fidelity review accepts the registry aggregate adverse-event repair. The proposed result matches the ClinicalTrials.gov adverseEventsModule counts for D+Q versus untreated control, the calculated risk ratio and uncertainty are consistent with those counts, and the synthesis records preserve the endpoint-boundary caveats needed to avoid overinterpreting the aggregate safety result.",
+  "findings": [
+    {
+      "finding_id": "registry-other-ae-counts-match",
+      "severity": "note",
+      "category": "source_mismatch",
+      "claim_or_issue": "The repaired result encodes the registry other-adverse-event aggregate as 23/30 D+Q participants affected and 5/30 untreated-control participants affected.",
+      "why_it_matters": "These are the arm-level source counts that support the added adverse_event.event_specific_counts and the aggregate safety comparison.",
+      "recommended_action": "No change required; keep the provenance locator on the ClinicalTrials.gov adverse-events eventGroups section.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "risk-ratio-calculation-matches",
+      "severity": "note",
+      "category": "extraction_error",
+      "claim_or_issue": "The repaired effect reports a risk ratio of 4.60 with standard error 0.42049 and approximate 95% confidence interval 2.02 to 10.49.",
+      "why_it_matters": "The values are consistent with (23/30)/(5/30) and the standard log risk-ratio standard error calculation from the extracted arm counts.",
+      "recommended_action": "No change required; retain the calculation note that the uncertainty is derived from registry arm counts.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "aggregate-endpoint-boundary-preserved",
+      "severity": "note",
+      "category": "endpoint_boundary",
+      "claim_or_issue": "The repaired records treat Other adverse events as a registry aggregate category and keep pooling blocked for mixed endpoints, overlapping safety summaries, single-trial evidence, and remaining term-level limitations.",
+      "why_it_matters": "This prevents the extracted aggregate comparison from being misused as an individual preferred-term adverse-event effect or as a poolable safety estimate.",
+      "recommended_action": "No change required; keep term-specific safety extraction separate from this registry aggregate.",
+      "resolution_status": "closed"
+    }
+  ]
+}

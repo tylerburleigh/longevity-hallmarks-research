@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "release_readiness",
   "id": "release-readiness-v1",
-  "generated_at": "2026-06-28T16:34:13.721Z",
+  "generated_at": "2026-06-28T17:07:44.767Z",
   "source_roots": [
     "data",
     "research"
@@ -17,9 +17,9 @@
     "canonical_source_of_truth": "data/ and research/ JSON records"
   },
   "summary": {
-    "candidate_count": 58,
-    "not_ready_candidate_count": 44,
-    "promotion_ready_candidate_count": 0,
+    "candidate_count": 62,
+    "not_ready_candidate_count": 47,
+    "promotion_ready_candidate_count": 1,
     "release_ready_candidate_count": 14,
     "partial_release_ready_candidate_count": 0,
     "release_blocked_candidate_count": 0,
@@ -27,7 +27,9 @@
     "accepted_record_count": 87,
     "blocked_accepted_record_count": 0
   },
-  "promotion_ready_candidate_ids": [],
+  "promotion_ready_candidate_ids": [
+    "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair"
+  ],
   "release_ready_candidate_ids": [
     "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
     "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
@@ -543,6 +545,85 @@
       ]
     },
     {
+      "candidate_change_id": "candidate-review-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-extraction-fidelity-repair",
+      "path": "data/candidate-changes/candidate-review-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-extraction-fidelity-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "release_status": "not_ready",
+      "required_review_lanes": [
+        "extraction_fidelity",
+        "safety_limitations"
+      ],
+      "active_review_ids": [],
+      "proposed_record_count": 2,
+      "release_ready_record_count": 0,
+      "blocked_record_count": 0,
+      "release_ready_record_ids": [],
+      "blocked_record_ids": [],
+      "next_actions": [
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
+    {
+      "candidate_change_id": "candidate-review-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-safety-limitations-repair",
+      "path": "data/candidate-changes/candidate-review-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-safety-limitations-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "release_status": "not_ready",
+      "required_review_lanes": [
+        "safety_limitations"
+      ],
+      "active_review_ids": [],
+      "proposed_record_count": 2,
+      "release_ready_record_count": 0,
+      "blocked_record_count": 0,
+      "release_ready_record_ids": [],
+      "blocked_record_ids": [],
+      "next_actions": [
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
+    {
+      "candidate_change_id": "candidate-review-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-synthesis-boundary-repair",
+      "path": "data/candidate-changes/candidate-review-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-synthesis-boundary-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "release_status": "not_ready",
+      "required_review_lanes": [
+        "safety_limitations",
+        "synthesis_boundary"
+      ],
+      "active_review_ids": [],
+      "proposed_record_count": 2,
+      "release_ready_record_count": 0,
+      "blocked_record_count": 0,
+      "release_ready_record_ids": [],
+      "blocked_record_ids": [],
+      "next_actions": [
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
+    {
+      "candidate_change_id": "candidate-review-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-taxonomy-mapping-repair",
+      "path": "data/candidate-changes/candidate-review-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-taxonomy-mapping-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "release_status": "not_ready",
+      "required_review_lanes": [
+        "safety_limitations",
+        "taxonomy_mapping"
+      ],
+      "active_review_ids": [],
+      "proposed_record_count": 2,
+      "release_ready_record_count": 0,
+      "blocked_record_count": 0,
+      "release_ready_record_ids": [],
+      "blocked_record_ids": [],
+      "next_actions": [
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
+    {
       "candidate_change_id": "candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity-repair",
       "path": "data/candidate-changes/candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-extraction-fidelity-repair.json",
       "lifecycle_status": "submitted",
@@ -928,22 +1009,27 @@
       "candidate_change_id": "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
       "path": "data/candidate-changes/extraction-debt-dq-bone-adverse-events-20wk-mixed-repair.json",
       "lifecycle_status": "submitted",
-      "readiness_status": "needs_review",
-      "release_status": "not_ready",
+      "readiness_status": "promotion_ready",
+      "release_status": "promotion_ready",
       "required_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
         "synthesis_boundary",
         "taxonomy_mapping"
       ],
-      "active_review_ids": [],
+      "active_review_ids": [
+        "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-extraction-fidelity",
+        "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-safety-limitations",
+        "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-synthesis-boundary",
+        "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-taxonomy-mapping"
+      ],
       "proposed_record_count": 4,
       "release_ready_record_count": 0,
       "blocked_record_count": 0,
       "release_ready_record_ids": [],
       "blocked_record_ids": [],
       "next_actions": [
-        "Run supervisor review lanes: extraction_fidelity, safety_limitations, synthesis_boundary, taxonomy_mapping."
+        "Promote candidate extraction-debt-dq-bone-adverse-events-20wk-mixed-repair before release artifacts include its proposed records."
       ]
     },
     {

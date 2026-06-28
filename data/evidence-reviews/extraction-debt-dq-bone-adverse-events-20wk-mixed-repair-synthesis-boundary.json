@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-synthesis-boundary",
+  "candidate_change_id": "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
+  "review_lane": "synthesis_boundary",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-synthesis-boundary",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Synthesis-boundary review accepts the candidate. The proposed result repair is reflected in both synthesis groups by removing the resolved dq-bone-adverse-events-20wk-mixed missing-field blocker while retaining non-pooling decisions for mixed registry endpoints, single-trial safety evidence, overlapping aggregate summaries, and the unresolved headache preferred-term limitation.",
+  "findings": [
+    {
+      "finding_id": "registry-mixed-endpoint-boundary-retained",
+      "severity": "note",
+      "category": "endpoint_boundary",
+      "claim_or_issue": "The registry synthesis group removes dq-bone-adverse-events-20wk-mixed from missing_effect_fields_by_result after the adverse-event aggregate receives a risk ratio, uncertainty fields, and analysis comparison.",
+      "why_it_matters": "This closes the specific extraction-debt blocker without treating one repaired safety aggregate as poolable with bone turnover, BMD, SASP, and other registry endpoints across different time horizons.",
+      "recommended_action": "Accept this boundary; keep the registry group pooling_blocked until endpoint-specific compatibility groups contain at least two comparable studies with compatible effect and uncertainty fields.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "safety-overlap-and-single-trial-boundary-retained",
+      "severity": "note",
+      "category": "endpoint_boundary",
+      "claim_or_issue": "The safety synthesis group removes the resolved missing-field entry for dq-bone-adverse-events-20wk-mixed but keeps pooling blocked because the available safety records come from one trial and include overlapping aggregate summaries.",
+      "why_it_matters": "The repaired registry aggregate should improve extraction completeness, not license a pooled safety estimate from non-independent or single-study evidence.",
+      "recommended_action": "Accept this boundary and retain the non-pooling rationale until independent compatible safety results are available.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "headache-term-limitation-preserved",
+      "severity": "note",
+      "category": "missing_caveat",
+      "claim_or_issue": "The safety synthesis group continues to list dq-bone-headache-20wk-descriptive as missing effect.value, effect.uncertainty, and adverse_event.event_specific_counts because the control headache cell remains blank or ambiguous.",
+      "why_it_matters": "Preserving this limitation prevents the repaired aggregate adverse-event result from being overextended to a term-specific headache comparison.",
+      "recommended_action": "Accept the caveat; future term-level safety synthesis should require explicit arm-level event counts or explicit zero semantics before deriving comparative effects.",
+      "resolution_status": "closed"
+    }
+  ]
+}

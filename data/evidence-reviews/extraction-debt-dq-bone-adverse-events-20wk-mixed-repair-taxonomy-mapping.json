@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair-taxonomy-mapping",
+  "candidate_change_id": "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
+  "review_lane": "taxonomy_mapping",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex-supervisor-agent",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Taxonomy mapping is acceptable for the target candidate. The result keeps the registry aggregate other-adverse-event category distinct from individual preferred-term safety rows, maps the comparative risk ratio only to the non-serious registry aggregate, and leaves synthesis groups in pooling-blocked states that preserve endpoint-family and safety-boundary distinctions.",
+  "findings": [
+    {
+      "finding_id": "taxonomy-aggregate-category-preserved",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The result maps adverse_event.preferred_term to \"Other adverse events\" with term_source trial_registry and caveats that this is a ClinicalTrials.gov aggregate category rather than an individual MedDRA-style preferred term.",
+      "why_it_matters": "Preserving the aggregate registry category prevents a taxonomy overclaim and keeps this safety result separate from term-specific adverse-event extraction.",
+      "recommended_action": "No change required for this lane; keep the aggregate-category caveat with the result.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "taxonomy-effect-scope-aligned",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The effect and analysis fields scope the calculated risk ratio to the other-adverse-event aggregate while retaining serious adverse events and deaths as descriptive 0/30 group values.",
+      "why_it_matters": "This avoids mixing non-serious aggregate events, serious adverse events, and deaths under one comparative effect taxonomy.",
+      "recommended_action": "No change required for this lane; retain the current effect scope and descriptive serious-event/death handling.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "taxonomy-synthesis-boundaries-retained",
+      "severity": "note",
+      "category": "endpoint_boundary",
+      "claim_or_issue": "The registry and safety synthesis groups remove the resolved missing-field debt for dq-bone-adverse-events-20wk-mixed while continuing to mark mixed endpoint families, overlapping aggregate summaries, single-trial evidence, and headache preferred-term limitations as pooling blockers.",
+      "why_it_matters": "The synthesis taxonomy remains aligned with the result-level mapping and does not convert an extraction-debt repair into an unsupported pooled safety estimate.",
+      "recommended_action": "No change required for this lane; keep pooling blocked until compatible term- or endpoint-specific evidence is available.",
+      "resolution_status": "closed"
+    }
+  ]
+}

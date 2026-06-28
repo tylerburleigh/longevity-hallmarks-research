@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "release_manifest",
   "id": "latest-consumer-export",
-  "generated_at": "2026-06-28T19:58:00.199Z",
+  "generated_at": "2026-06-28T20:41:37.674Z",
   "export_version": "0.1.0",
   "export_scope": {
     "description": "Consumer-facing latest export generated from canonical research and data records.",
@@ -113,28 +113,28 @@
       "format": "json",
       "description": "Generated graph view of source, study, finding, outcome, result, coverage, and synthesis-compatibility links.",
       "record_count": 1,
-      "sha256": "25a7d91b9bd476193b553738976c9c724f598c6361e0399286c60d06d63168ff"
+      "sha256": "6fc710b6bca205858289f011f9b8ab5eff46e02284d660004a87d292b0d652a7"
     },
     {
       "path": "exports/latest/coverage-status.json",
       "format": "json",
       "description": "Consumer coverage status with current/superseded flags and known-gap warnings.",
       "record_count": 1,
-      "sha256": "6d0056049ca51dd68db3cef841c8aa380925fa2cb810b08cf30c8d2212dfb38d"
+      "sha256": "a42df140ed528722ba1d45167947643cf2841b309f9afcf863c3c0421666c509"
     },
     {
       "path": "exports/latest/read-model.sqlite",
       "format": "sqlite",
       "description": "Generated SQLite read model for indexed joins over canonical JSON records.",
       "record_count": 356,
-      "sha256": "6d11d3130473e08553a7130a1ce7217198c81da3f65da21ae63ed6cdf33e5872"
+      "sha256": "688b8ba568afa6d8cbd357f9920af995db29d58050597cb51d2bd4f1eb24ce0d"
     },
     {
       "path": "exports/latest/consumer-contract.json",
       "format": "json",
       "description": "Versioned machine-readable contract for consumer-facing export artifacts.",
       "record_count": 1,
-      "sha256": "bf3353cd9bae7e4dc8d63c4a3ddeb645ed105fb3d647b7b584d1949c4f592b9e"
+      "sha256": "58628fc3013f6699e1b18a20c03e151a211a220a12ae75d5f56c767903e165e8"
     }
   ],
   "record_counts": {

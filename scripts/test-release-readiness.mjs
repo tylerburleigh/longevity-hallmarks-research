@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { buildReleaseReadiness } from "./export-release-readiness.mjs";
+import { buildTriageState } from "./export-triage-state.mjs";
 
 function fail(message) {
   console.error(`FAIL ${message}`);
@@ -8,6 +9,7 @@ function fail(message) {
 }
 
 const releaseReadiness = await buildReleaseReadiness();
+const triageState = await buildTriageState();
 
 const staleCreateDependencyBlockers = (releaseReadiness.blocked_accepted_records ?? []).filter((record) =>
   (record.blockers ?? []).some((blocker) => blocker.blocker_type === "unaccepted_create_dependency")
@@ -33,4 +35,22 @@ if (blockedCoverageAssessmentUpdates.length > 0) {
   );
 }
 
+const promotionJobsBlockedByReconciliation = (triageState.recommended_jobs ?? []).filter(
+  (job) =>
+    job.job_type === "candidate_promotion" &&
+    [
+      "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+      "coverage-gap-senolytics-registry-surveillance-breadth-repair"
+    ].includes(job.target_record_id)
+);
+
+if (promotionJobsBlockedByReconciliation.length > 0) {
+  fail(
+    `triage should not recommend promotion jobs blocked by unresolved reconciliation: ${promotionJobsBlockedByReconciliation
+      .map((job) => job.job_id)
+      .join(", ")}`
+  );
+}
+
 console.log("PASS release-readiness accepted update dependency handling");
+console.log("PASS triage reconciliation-blocked promotion handling");

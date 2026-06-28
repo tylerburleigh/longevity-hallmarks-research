@@ -3,6 +3,11 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import {
+  buildParallelReconciliation,
+  loadReconciliationDecisions,
+  unresolvedPromotionFindings
+} from "./reconcile-parallel-outputs.mjs";
 
 const workspaceRoot = process.cwd();
 const sourceRoots = ["data", "research"];
@@ -286,10 +291,17 @@ function getCandidateNextActions({
   missingReviewLanes,
   revisionReviewLanes,
   openMajorOrCriticalReviewIds,
+  reconciliationBlockingIssueIds = [],
   reviewGateRequired
 }) {
   if (!reviewGateRequired) {
     return ["No recursive supervisor review required; this candidate only ledgers evidence_review records."];
+  }
+
+  if (reconciliationBlockingIssueIds.length > 0) {
+    return [
+      `Resolve reconciliation blocker(s) before promotion: ${reconciliationBlockingIssueIds.join(", ")}.`
+    ];
   }
 
   if (readinessStatus === "promotion_ready") {
@@ -323,7 +335,7 @@ function getCandidateNextActions({
   return [];
 }
 
-function buildCandidateReadiness({ candidateEntries, reviewEntries }) {
+function buildCandidateReadiness({ candidateEntries, reviewEntries, reconciliationReport, reconciliationDecisions }) {
   const reviewsByCandidate = buildReviewsByCandidate(reviewEntries);
   const candidateReadiness = [];
   const missingReviewLaneQueue = [];
@@ -351,7 +363,7 @@ function buildCandidateReadiness({ candidateEntries, reviewEntries }) {
     const blockingReviewIds = sortStrings(activeReviews.filter((review) => review.blocking).map((review) => review.id));
     const openMajorOrCriticalReviewIds = sortStrings(activeReviews.filter(hasOpenMajorOrCriticalFinding).map((review) => review.id));
 
-    const readinessStatus = getReadinessStatus({
+    let readinessStatus = getReadinessStatus({
       candidate,
       missingReviewLanes,
       revisionReviewLanes,
@@ -359,6 +371,18 @@ function buildCandidateReadiness({ candidateEntries, reviewEntries }) {
       openMajorOrCriticalReviewIds,
       reviewGateRequired
     });
+    const reconciliationBlockingIssueIds =
+      readinessStatus === "promotion_ready"
+        ? unresolvedPromotionFindings({
+            report: reconciliationReport,
+            decisions: reconciliationDecisions,
+            candidate
+          }).map((finding) => finding.issue_id)
+        : [];
+
+    if (reconciliationBlockingIssueIds.length > 0) {
+      readinessStatus = "blocked";
+    }
 
     for (const reviewLane of missingReviewLanes) {
       missingReviewLaneQueue.push({
@@ -389,6 +413,7 @@ function buildCandidateReadiness({ candidateEntries, reviewEntries }) {
         missingReviewLanes,
         revisionReviewLanes,
         openMajorOrCriticalReviewIds,
+        reconciliationBlockingIssueIds,
         reviewGateRequired
       })
     });
@@ -836,8 +861,15 @@ export async function buildTriageState({ generatedAt = new Date().toISOString() 
   const sourceSnapshotEntries = recordsOf(entries, "source_snapshot");
   const textSnapshotEntries = recordsOf(entries, "text_snapshot");
   const agentRunEntries = recordsOf(entries, "agent_run");
+  const reconciliationReport = await buildParallelReconciliation({ generatedAt });
+  const reconciliationDecisions = await loadReconciliationDecisions();
 
-  const { candidateReadiness, missingReviewLaneQueue } = buildCandidateReadiness({ candidateEntries, reviewEntries });
+  const { candidateReadiness, missingReviewLaneQueue } = buildCandidateReadiness({
+    candidateEntries,
+    reviewEntries,
+    reconciliationReport,
+    reconciliationDecisions
+  });
   const coverageGaps = buildCoverageGaps(coverageEntries);
   const extractionDebt = buildExtractionDebt({ resultEntries, synthesisGroupEntries });
   const staleSnapshots = buildStaleSnapshots([...sourceSnapshotEntries, ...textSnapshotEntries], generatedDate);

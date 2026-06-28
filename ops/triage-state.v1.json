@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "triage_state",
   "id": "triage-state-v1",
-  "generated_at": "2026-06-28T19:57:59.282Z",
+  "generated_at": "2026-06-28T20:41:29.584Z",
   "source_roots": [
     "data",
     "research"
@@ -67,10 +67,10 @@
   ],
   "summary": {
     "candidate_count": 76,
-    "promotion_ready_count": 2,
+    "promotion_ready_count": 0,
     "needs_review_count": 2,
     "needs_revision_count": 0,
-    "blocked_count": 0,
+    "blocked_count": 2,
     "accepted_count": 15,
     "applied_count": 0,
     "rejected_count": 3,
@@ -1204,7 +1204,7 @@
       "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
       "path": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-2-repair.json",
       "lifecycle_status": "submitted",
-      "readiness_status": "promotion_ready",
+      "readiness_status": "blocked",
       "required_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
@@ -1235,7 +1235,7 @@
       "open_major_or_critical_review_ids": [],
       "proposed_record_count": 5,
       "next_actions": [
-        "Promote candidate with npm run promote:candidate -- coverage-gap-senolytics-exact-effect-extraction-followup-2-repair --status accepted after coordinator selection."
+        "Resolve reconciliation blocker(s) before promotion: overlapping-candidate-8565f8a0ea32, overlapping-candidate-c921c3f9f3a1, overlapping-candidate-e7373f983b3c."
       ]
     },
     {
@@ -1274,7 +1274,7 @@
       "candidate_change_id": "coverage-gap-senolytics-registry-surveillance-breadth-repair",
       "path": "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-repair.json",
       "lifecycle_status": "submitted",
-      "readiness_status": "promotion_ready",
+      "readiness_status": "blocked",
       "required_review_lanes": [
         "extraction_fidelity",
         "synthesis_boundary",
@@ -1301,7 +1301,7 @@
       "open_major_or_critical_review_ids": [],
       "proposed_record_count": 2,
       "next_actions": [
-        "Promote candidate with npm run promote:candidate -- coverage-gap-senolytics-registry-surveillance-breadth-repair --status accepted after coordinator selection."
+        "Resolve reconciliation blocker(s) before promotion: overlapping-candidate-8565f8a0ea32."
       ]
     },
     {
@@ -1946,10 +1946,7 @@
       "next_actions": []
     }
   ],
-  "promotion_ready_candidate_ids": [
-    "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
-    "coverage-gap-senolytics-registry-surveillance-breadth-repair"
-  ],
+  "promotion_ready_candidate_ids": [],
   "missing_review_lane_queue": [
     {
       "candidate_change_id": "coverage-gap-senolytics-review-landscape-repair",
@@ -2726,32 +2723,6 @@
   "partial_or_failed_agent_runs": [],
   "recommended_jobs": [
     {
-      "job_id": "candidate-promotion-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
-      "job_type": "candidate_promotion",
-      "priority": "high",
-      "source": "candidate_readiness",
-      "target_record_type": "candidate_change",
-      "target_record_id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
-      "rationale": "All required active review lanes are complete, accepting, non-blocking, and free of open major or critical findings.",
-      "suggested_command": "npm run promote:candidate -- coverage-gap-senolytics-exact-effect-extraction-followup-2-repair --status accepted --dry-run",
-      "inputs": [
-        "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-2-repair.json"
-      ]
-    },
-    {
-      "job_id": "candidate-promotion-coverage-gap-senolytics-registry-surveillance-breadth-repair",
-      "job_type": "candidate_promotion",
-      "priority": "high",
-      "source": "candidate_readiness",
-      "target_record_type": "candidate_change",
-      "target_record_id": "coverage-gap-senolytics-registry-surveillance-breadth-repair",
-      "rationale": "All required active review lanes are complete, accepting, non-blocking, and free of open major or critical findings.",
-      "suggested_command": "npm run promote:candidate -- coverage-gap-senolytics-registry-surveillance-breadth-repair --status accepted --dry-run",
-      "inputs": [
-        "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-repair.json"
-      ]
-    },
-    {
       "job_id": "candidate-review-coverage-gap-senolytics-review-landscape-repair",
       "job_type": "candidate_review",
       "priority": "high",
@@ -3025,6 +2996,30 @@
       "rationale": "Resolve missing synthesis fields: effect.uncertainty, effect.value.",
       "inputs": [
         "data/results/dq-bone-vertigo-20wk-descriptive.json"
+      ]
+    },
+    {
+      "job_id": "candidate-blocked-coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+      "job_type": "self_healing_repair",
+      "priority": "high",
+      "source": "candidate_readiness",
+      "target_record_type": "candidate_change",
+      "target_record_id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+      "rationale": "Candidate has blocking review state or cannot advance under the lifecycle gate.",
+      "inputs": [
+        "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-2-repair.json"
+      ]
+    },
+    {
+      "job_id": "candidate-blocked-coverage-gap-senolytics-registry-surveillance-breadth-repair",
+      "job_type": "self_healing_repair",
+      "priority": "high",
+      "source": "candidate_readiness",
+      "target_record_type": "candidate_change",
+      "target_record_id": "coverage-gap-senolytics-registry-surveillance-breadth-repair",
+      "rationale": "Candidate has blocking review state or cannot advance under the lifecycle gate.",
+      "inputs": [
+        "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-repair.json"
       ]
     },
     {

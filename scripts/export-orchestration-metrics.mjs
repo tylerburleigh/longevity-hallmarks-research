@@ -481,6 +481,7 @@ export async function buildOrchestrationMetrics({ generatedAt = new Date().toISO
       extraction_debt_resolved_record_count: extractionResolvedRecords.length,
       release_ready_candidate_count: releaseReadiness?.summary?.release_ready_candidate_count ?? 0,
       release_blocked_candidate_count: releaseReadiness?.summary?.release_blocked_candidate_count ?? 0,
+      release_constrained_candidate_count: releaseReadiness?.summary?.release_constrained_candidate_count ?? 0,
       release_artifact_count: exportFiles.length,
       release_ready_record_count: releaseReadiness?.release_ready_records?.length ?? 0
     },
@@ -507,6 +508,7 @@ export async function buildOrchestrationMetrics({ generatedAt = new Date().toISO
       release: {
         release_ready_candidate_count: releaseReadiness?.summary?.release_ready_candidate_count ?? 0,
         release_blocked_candidate_count: releaseReadiness?.summary?.release_blocked_candidate_count ?? 0,
+        release_constrained_candidate_count: releaseReadiness?.summary?.release_constrained_candidate_count ?? 0,
         release_ready_record_count: releaseReadiness?.release_ready_records?.length ?? 0,
         blocked_accepted_proposal_count: releaseReadiness?.summary?.blocked_accepted_proposal_count ?? 0,
         unique_blocked_accepted_record_count: releaseReadiness?.summary?.unique_blocked_accepted_record_count ?? 0,

@@ -66,11 +66,44 @@ async function main() {
   }
 
   const issues = [];
+  const candidateReleaseStatuses = actual.candidate_release_statuses ?? [];
+  const releaseBlockedCandidates = candidateReleaseStatuses.filter((candidate) => candidate.release_status === "release_blocked");
+  const partialReleaseReadyCandidates = candidateReleaseStatuses.filter((candidate) => candidate.release_status === "partial_release_ready");
+  const releaseConstrainedCandidates = candidateReleaseStatuses.filter((candidate) =>
+    ["release_blocked", "partial_release_ready"].includes(candidate.release_status)
+  );
+  const releaseBlockedCandidateIds = new Set(releaseBlockedCandidates.map((candidate) => candidate.candidate_change_id));
+  const releaseConstrainedCandidateIds = new Set(releaseConstrainedCandidates.map((candidate) => candidate.candidate_change_id));
   const blockedRecords = actual.blocked_accepted_records ?? [];
   const blockedRecordGroups = actual.blocked_accepted_record_groups ?? [];
   const blockedRecordKeys = new Set(blockedRecords.map((record) => `${record.record_type}:${record.record_id}`));
   const blockedRecordGroupKeys = new Set(blockedRecordGroups.map((record) => `${record.record_type}:${record.record_id}`));
 
+  if (actual.summary?.partial_release_ready_candidate_count !== partialReleaseReadyCandidates.length) {
+    issues.push("summary.partial_release_ready_candidate_count must match partial_release_ready candidate_release_statuses.");
+  }
+  if (actual.summary?.release_blocked_candidate_count !== releaseBlockedCandidates.length) {
+    issues.push("summary.release_blocked_candidate_count must match strictly release_blocked candidate_release_statuses.");
+  }
+  if (actual.summary?.release_constrained_candidate_count !== releaseConstrainedCandidates.length) {
+    issues.push("summary.release_constrained_candidate_count must match partial_release_ready plus release_blocked candidate_release_statuses.");
+  }
+  if ((actual.release_blocked_candidate_ids ?? []).length !== releaseBlockedCandidateIds.size) {
+    issues.push("release_blocked_candidate_ids must contain exactly the strict release_blocked candidate ids.");
+  }
+  for (const candidateId of actual.release_blocked_candidate_ids ?? []) {
+    if (!releaseBlockedCandidateIds.has(candidateId)) {
+      issues.push(`release_blocked_candidate_ids contains non-blocked candidate ${candidateId}.`);
+    }
+  }
+  if ((actual.release_constrained_candidate_ids ?? []).length !== releaseConstrainedCandidateIds.size) {
+    issues.push("release_constrained_candidate_ids must contain exactly partial_release_ready plus release_blocked candidate ids.");
+  }
+  for (const candidateId of actual.release_constrained_candidate_ids ?? []) {
+    if (!releaseConstrainedCandidateIds.has(candidateId)) {
+      issues.push(`release_constrained_candidate_ids contains unconstrained candidate ${candidateId}.`);
+    }
+  }
   if (actual.summary?.blocked_accepted_proposal_count !== blockedRecords.length) {
     issues.push("summary.blocked_accepted_proposal_count must match blocked_accepted_records.length.");
   }

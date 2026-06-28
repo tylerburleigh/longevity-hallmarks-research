@@ -48,6 +48,31 @@ if ((releaseReadiness.blocked_accepted_record_groups ?? []).length !== uniqueBlo
   fail("release readiness should group blocked accepted records by unique record key.");
 }
 
+const strictReleaseBlockedCandidateIds = new Set(
+  (releaseReadiness.candidate_release_statuses ?? [])
+    .filter((candidate) => candidate.release_status === "release_blocked")
+    .map((candidate) => candidate.candidate_change_id)
+);
+const partialReleaseReadyCandidateIds = new Set(
+  (releaseReadiness.candidate_release_statuses ?? [])
+    .filter((candidate) => candidate.release_status === "partial_release_ready")
+    .map((candidate) => candidate.candidate_change_id)
+);
+const releaseConstrainedCandidateIds = new Set([...strictReleaseBlockedCandidateIds, ...partialReleaseReadyCandidateIds]);
+
+if (releaseReadiness.summary?.release_blocked_candidate_count !== strictReleaseBlockedCandidateIds.size) {
+  fail("release_blocked_candidate_count should count only strict release_blocked candidates.");
+}
+if (releaseReadiness.summary?.release_constrained_candidate_count !== releaseConstrainedCandidateIds.size) {
+  fail("release_constrained_candidate_count should count partial_release_ready plus release_blocked candidates.");
+}
+if ((releaseReadiness.release_blocked_candidate_ids ?? []).some((candidateId) => !strictReleaseBlockedCandidateIds.has(candidateId))) {
+  fail("release_blocked_candidate_ids should include only strict release_blocked candidates.");
+}
+if ((releaseReadiness.release_constrained_candidate_ids ?? []).some((candidateId) => !releaseConstrainedCandidateIds.has(candidateId))) {
+  fail("release_constrained_candidate_ids should include only constrained release candidates.");
+}
+
 const promotionJobsBlockedByReconciliation = (triageState.recommended_jobs ?? []).filter(
   (job) =>
     job.job_type === "candidate_promotion" &&

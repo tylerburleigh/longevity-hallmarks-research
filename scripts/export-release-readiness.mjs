@@ -537,7 +537,8 @@ export async function buildReleaseReadiness({ generatedAt = new Date().toISOStri
       promotion_ready_candidate_count: countByReleaseStatus(candidateReleaseStatuses, "promotion_ready"),
       release_ready_candidate_count: countByReleaseStatus(candidateReleaseStatuses, "release_ready"),
       partial_release_ready_candidate_count: countByReleaseStatus(candidateReleaseStatuses, "partial_release_ready"),
-      release_blocked_candidate_count: candidateReleaseStatuses.filter((candidate) =>
+      release_blocked_candidate_count: countByReleaseStatus(candidateReleaseStatuses, "release_blocked"),
+      release_constrained_candidate_count: candidateReleaseStatuses.filter((candidate) =>
         ["release_blocked", "partial_release_ready"].includes(candidate.release_status)
       ).length,
       accepted_or_applied_candidate_count: candidateReleaseStatuses.filter((candidate) =>
@@ -554,6 +555,11 @@ export async function buildReleaseReadiness({ generatedAt = new Date().toISOStri
         .map((candidate) => candidate.candidate_change_id)
     ),
     release_blocked_candidate_ids: sortStrings(
+      candidateReleaseStatuses
+        .filter((candidate) => candidate.release_status === "release_blocked")
+        .map((candidate) => candidate.candidate_change_id)
+    ),
+    release_constrained_candidate_ids: sortStrings(
       candidateReleaseStatuses
         .filter((candidate) => ["release_blocked", "partial_release_ready"].includes(candidate.release_status))
         .map((candidate) => candidate.candidate_change_id)

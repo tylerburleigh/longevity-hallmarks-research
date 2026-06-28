@@ -15,6 +15,7 @@
     "promotion_ready_candidate_ids",
     "release_ready_candidate_ids",
     "release_blocked_candidate_ids",
+    "release_constrained_candidate_ids",
     "candidate_release_statuses",
     "release_ready_records",
     "blocked_accepted_record_groups",
@@ -95,6 +96,13 @@
       },
       "uniqueItems": true
     },
+    "release_constrained_candidate_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "./common.schema.json#/$defs/candidateChangeRef"
+      },
+      "uniqueItems": true
+    },
     "candidate_release_statuses": {
       "type": "array",
       "items": {
@@ -140,6 +148,7 @@
         "release_ready_candidate_count",
         "partial_release_ready_candidate_count",
         "release_blocked_candidate_count",
+        "release_constrained_candidate_count",
         "accepted_or_applied_candidate_count",
         "accepted_record_count",
         "blocked_accepted_proposal_count",
@@ -167,6 +176,10 @@
           "minimum": 0
         },
         "release_blocked_candidate_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "release_constrained_candidate_count": {
           "type": "integer",
           "minimum": 0
         },

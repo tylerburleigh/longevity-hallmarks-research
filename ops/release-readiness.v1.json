@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "release_readiness",
   "id": "release-readiness-v1",
-  "generated_at": "2026-06-28T21:11:19.124Z",
+  "generated_at": "2026-06-28T22:03:38.860Z",
   "source_roots": [
     "data",
     "research"
@@ -22,7 +22,8 @@
     "promotion_ready_candidate_count": 0,
     "release_ready_candidate_count": 10,
     "partial_release_ready_candidate_count": 5,
-    "release_blocked_candidate_count": 5,
+    "release_blocked_candidate_count": 0,
+    "release_constrained_candidate_count": 5,
     "accepted_or_applied_candidate_count": 15,
     "accepted_record_count": 88,
     "blocked_accepted_proposal_count": 5,
@@ -41,7 +42,8 @@
     "senolytics-dq-bone-source-rights-seed-2026-06-22",
     "senolytics-pubmed-snapshot-provenance-2026-06-27"
   ],
-  "release_blocked_candidate_ids": [
+  "release_blocked_candidate_ids": [],
+  "release_constrained_candidate_ids": [
     "extraction-debt-dq-bone-adverse-event-terms-20wk-mixed-repair",
     "extraction-debt-dq-bone-adverse-events-20wk-mixed-repair",
     "senolytics-dq-bone-endpoint-synthesis-groups-2026-06-21",

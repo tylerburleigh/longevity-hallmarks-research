@@ -44,6 +44,26 @@
       ]
     },
     {
+      "id": "source-snapshot-raw-storage-missing-reason",
+      "description": "Non-retained source snapshots must explain why raw storage is absent.",
+      "command": [
+        "npm",
+        "run",
+        "validate:records"
+      ],
+      "operations": [
+        {
+          "type": "delete_json",
+          "path": "data/source-snapshots/snapshot-pmid-38956196-pubmed-efetch-2026-06-21.json",
+          "pointer": "/raw_storage/reason_not_stored"
+        }
+      ],
+      "expected_failure_substrings": [
+        "snapshot-pmid-38956196-pubmed-efetch-2026-06-21.json",
+        "reason_not_stored"
+      ]
+    },
+    {
       "id": "unsupported-accepted-candidate",
       "description": "Candidates cannot be accepted without passing promotion gates.",
       "command": [

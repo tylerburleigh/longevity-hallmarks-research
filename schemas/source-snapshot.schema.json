@@ -14,7 +14,8 @@
     "url",
     "content_type",
     "content_sha256",
-    "payload_summary"
+    "payload_summary",
+    "raw_storage"
   ],
   "properties": {
     "schema_version": {
@@ -61,6 +62,9 @@
     "raw_storage": {
       "type": "object",
       "additionalProperties": false,
+      "required": [
+        "stored"
+      ],
       "properties": {
         "stored": {
           "type": "boolean"
@@ -71,7 +75,53 @@
         "reason_not_stored": {
           "type": "string"
         }
-      }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "stored": {
+                "const": true
+              }
+            },
+            "required": [
+              "stored"
+            ]
+          },
+          "then": {
+            "properties": {
+              "path": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "path"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "stored": {
+                "const": false
+              }
+            },
+            "required": [
+              "stored"
+            ]
+          },
+          "then": {
+            "properties": {
+              "reason_not_stored": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "reason_not_stored"
+            ]
+          }
+        }
+      ]
     },
     "tags": {
       "type": "array",

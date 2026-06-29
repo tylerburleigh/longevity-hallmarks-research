@@ -126,6 +126,7 @@ async function main() {
 
   const actual = await readJson(outputPath);
   const triageState = await readJson(actual.metric_policy?.triage_state_path ?? "ops/triage-state.v1.json");
+  const reconciliation = await readJson(actual.metric_policy?.reconciliation_path ?? "ops/reconciliation/parallel-reconciliation.v1.json");
   if (Number.isNaN(new Date(actual.generated_at).getTime())) {
     console.error(`Orchestration-metrics audit failed: ${outputPath} has invalid generated_at.`);
     process.exit(1);
@@ -148,6 +149,16 @@ async function main() {
   const issues = [];
   const expectedActionableFailedWorkerCount = await actionableFailedWorkerCount(actual);
   const plannedReconciliationBatchCount = (actual.planned_parallelism?.batches ?? []).filter((batch) => batch.reconciliation_required).length;
+  const reconciliationBatches = reconciliation.parallel_batches ?? [];
+  const expectedReconciliationOpenBatchCount = reconciliationBatches.filter((batch) => batch.status === "reconciliation_open").length;
+  const expectedReconciliationPendingBatchCount = reconciliationBatches.filter((batch) => batch.status === "reconciliation_pending").length;
+  const plannedBatchCount = actual.summary?.planned_parallel_batch_count ?? 0;
+  const expectedReconciliationOpenBatchRate = plannedBatchCount
+    ? Number((expectedReconciliationOpenBatchCount / plannedBatchCount).toFixed(4))
+    : 0;
+  const expectedReconciliationPendingBatchRate = plannedBatchCount
+    ? Number((expectedReconciliationPendingBatchCount / plannedBatchCount).toFixed(4))
+    : 0;
   if (actual.summary?.conflict_finding_count === 0 && actual.summary?.conflict_rate !== 0) {
     issues.push("summary.conflict_rate must be 0 when summary.conflict_finding_count is 0.");
   }
@@ -177,6 +188,24 @@ async function main() {
   }
   if (actual.summary?.planned_reconciliation_batch_count !== plannedReconciliationBatchCount) {
     issues.push("summary.planned_reconciliation_batch_count must match planned batches with reconciliation_required=true.");
+  }
+  if (actual.summary?.reconciliation_open_batch_count !== expectedReconciliationOpenBatchCount) {
+    issues.push("summary.reconciliation_open_batch_count must match reconciliation batches with status=reconciliation_open.");
+  }
+  if (actual.summary?.reconciliation_pending_batch_count !== expectedReconciliationPendingBatchCount) {
+    issues.push("summary.reconciliation_pending_batch_count must match reconciliation batches with status=reconciliation_pending.");
+  }
+  if (
+    actual.quality_pressure?.conflicts?.reconciliation_open_batch_rate !==
+    expectedReconciliationOpenBatchRate
+  ) {
+    issues.push("quality_pressure.conflicts.reconciliation_open_batch_rate must be based on open reconciliation batches.");
+  }
+  if (
+    actual.quality_pressure?.conflicts?.reconciliation_pending_batch_rate !==
+    expectedReconciliationPendingBatchRate
+  ) {
+    issues.push("quality_pressure.conflicts.reconciliation_pending_batch_rate must be based on pending reconciliation batches.");
   }
   if (issues.length > 0) {
     console.error(`Orchestration-metrics audit failed with ${issues.length} semantic issue(s):`);

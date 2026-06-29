@@ -403,7 +403,10 @@ export async function buildOrchestrationMetrics({ generatedAt = new Date().toISO
   const agentRunDurations = agentRunEntries.map((entry) => durationMs(entry.record.started_at, entry.record.completed_at));
   const openFindingCount = reconciliation?.summary?.open_finding_count ?? 0;
   const activeCandidateCount = reconciliation?.summary?.active_candidate_count ?? candidateEntries.length;
+  const reconciliationBatches = reconciliation?.parallel_batches ?? [];
   const plannedReconciliationBatchCount = batchPlan?.summary?.reconciliation_batch_count ?? 0;
+  const reconciliationOpenBatchCount = reconciliationBatches.filter((batch) => batch.status === "reconciliation_open").length;
+  const reconciliationPendingBatchCount = reconciliationBatches.filter((batch) => batch.status === "reconciliation_pending").length;
   const plannedBatchCount = batchPlan?.summary?.batch_count ?? plannedBatches.length;
   const conflictRate = ratio(openFindingCount, activeCandidateCount);
   const actionablePartialOrFailedAgentRunCount = triageState?.summary?.partial_or_failed_agent_run_count ?? 0;
@@ -446,6 +449,8 @@ export async function buildOrchestrationMetrics({ generatedAt = new Date().toISO
       planned_parallel_worker_count: plannedParallelWorkerCount,
       planned_independent_batch_count: batchPlan?.summary?.independent_batch_count ?? 0,
       planned_reconciliation_batch_count: plannedReconciliationBatchCount,
+      reconciliation_open_batch_count: reconciliationOpenBatchCount,
+      reconciliation_pending_batch_count: reconciliationPendingBatchCount,
       max_planned_batch_width: batchPlan?.summary?.max_batch_width ?? 0,
       planned_serial_wall_time_ms: plannedSerialWallTimeMs,
       planned_parallel_wall_time_ms: plannedParallelWallTimeMs,
@@ -532,7 +537,8 @@ export async function buildOrchestrationMetrics({ generatedAt = new Date().toISO
         warning_finding_count: reconciliation?.summary?.warning_finding_count ?? 0,
         conflict_rate: conflictRate,
         open_finding_rate: ratio(openFindingCount, activeCandidateCount),
-        reconciliation_batch_rate: ratio(plannedReconciliationBatchCount, plannedBatchCount)
+        reconciliation_open_batch_rate: ratio(reconciliationOpenBatchCount, plannedBatchCount),
+        reconciliation_pending_batch_rate: ratio(reconciliationPendingBatchCount, plannedBatchCount)
       },
       worker_failures: {
         failed_worker_count: actionableFailedWorkerCountValue,

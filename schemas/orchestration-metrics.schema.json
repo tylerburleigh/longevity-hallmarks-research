@@ -111,6 +111,8 @@
         "planned_parallel_worker_count",
         "planned_independent_batch_count",
         "planned_reconciliation_batch_count",
+        "reconciliation_open_batch_count",
+        "reconciliation_pending_batch_count",
         "max_planned_batch_width",
         "planned_serial_wall_time_ms",
         "planned_parallel_wall_time_ms",
@@ -170,6 +172,14 @@
           "minimum": 0
         },
         "planned_reconciliation_batch_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reconciliation_open_batch_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reconciliation_pending_batch_count": {
           "type": "integer",
           "minimum": 0
         },
@@ -779,7 +789,8 @@
         "warning_finding_count",
         "conflict_rate",
         "open_finding_rate",
-        "reconciliation_batch_rate"
+        "reconciliation_open_batch_rate",
+        "reconciliation_pending_batch_rate"
       ],
       "properties": {
         "open_finding_count": {
@@ -802,7 +813,11 @@
           "type": "number",
           "minimum": 0
         },
-        "reconciliation_batch_rate": {
+        "reconciliation_open_batch_rate": {
+          "type": "number",
+          "minimum": 0
+        },
+        "reconciliation_pending_batch_rate": {
           "type": "number",
           "minimum": 0
         }

@@ -6,7 +6,7 @@
   "created_at": "2026-06-28T00:00:00Z",
   "purpose": "Bounded extraction refresh for coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair.",
   "scope": {
-    "question": "extraction_refresh: Only two active no-results registry records are present. The prior coverage-repair session also deferred fisetin frailty registry candidates NCT03430037 and NCT03675724, but this batch could not fetch ClinicalTrials.gov source snapshots for those registries, so broader current fisetin and D+Q trial surveillance remains incomplete.",
+    "question": "extraction_refresh: Only two active no-results registry records are present. The prior coverage-repair session also deferred fisetin frailty registry candidates NCT03430037 and NCT03675724, but this batch could not fetch ClinicalTrials.gov source snapshots for those registries, so broader current fisetin and D+Q trial surveillance remains incomplete. Suggested action: Run a source-snapshot-backed ClinicalTrials.gov surveillance pass for NCT03430037, NCT03675724, senolytics, D+Q, fisetin, and senescence-targeting terms; add no-results status records only when fetched registry snapshots support them.",
     "hallmark_ids": [
       "cellular_senescence"
     ],
@@ -85,7 +85,7 @@
   },
   "extraction_targets": [
     {
-      "target_label": "extraction_refresh: Only two active no-results registry records are present. The prior coverage-repair session also deferred fisetin frailty registry candidates NCT03430037 and NCT03675724, but this batch could not fetch ClinicalTrials.gov source snapshots for those registries, so broader current fisetin and D+Q trial surveillance remains incomplete.",
+      "target_label": "extraction_refresh: Only two active no-results registry records are present. The prior coverage-repair session also deferred fisetin frailty registry candidates NCT03430037 and NCT03675724, but this batch could not fetch ClinicalTrials.gov source snapshots for those registries, so broader current fisetin and D+Q trial surveillance remains incomplete. Suggested action: Run a source-snapshot-backed ClinicalTrials.gov surveillance pass for NCT03430037, NCT03675724, senolytics, D+Q, fisetin, and senescence-targeting terms; add no-results status records only when fetched registry snapshots support them.",
       "interpretation_rules": [
         "Use only the scoped input records and any retained source or text snapshots named by those records unless validation exposes a concrete inconsistency.",
         "Preserve missing, ambiguous, or not-reported source cells as uncertainty rather than inventing exact effects.",

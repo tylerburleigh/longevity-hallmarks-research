@@ -660,6 +660,19 @@
         "rationale": {
           "type": "string"
         },
+        "gap_type": {
+          "enum": [
+            "coverage_gap",
+            "evidence_gap",
+            "operational_gap"
+          ]
+        },
+        "category": {
+          "type": "string"
+        },
+        "suggested_action": {
+          "type": "string"
+        },
         "suggested_command": {
           "type": "string"
         },

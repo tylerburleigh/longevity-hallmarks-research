@@ -528,6 +528,14 @@ function summarizeExtractionDebtRationale(debts) {
   return parts.join(" ");
 }
 
+function summarizeCoverageGapRationale(gap) {
+  const parts = [gap.description];
+  if (gap.suggested_action) {
+    parts.push(`Suggested action: ${gap.suggested_action}`);
+  }
+  return parts.join(" ");
+}
+
 function buildExtractionDebt({ resultEntries, synthesisGroupEntries }) {
   const resultById = indexById(resultEntries);
   const extractionDebtById = new Map();
@@ -846,7 +854,10 @@ function buildRecommendedJobs({
       source: "coverage_gap",
       target_record_type: "coverage_assessment",
       target_record_id: gap.coverage_assessment_id,
-      rationale: gap.description,
+      rationale: summarizeCoverageGapRationale(gap),
+      gap_type: gap.gap_type,
+      category: gap.category,
+      suggested_action: gap.suggested_action,
       inputs: [gap.path]
     });
   }

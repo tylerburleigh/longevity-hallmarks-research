@@ -3,7 +3,7 @@
   "record_type": "codex_job",
   "id": "self-healing-coverage-gap-senolytics-review-landscape-followup-2",
   "name": "Self-healing repair: coverage-gap-senolytics-review-landscape-followup-2",
-  "summary": "No recent systematic-review or meta-analysis source has been screened into the knowledge base. This bounded batch did not close the gap because the job supplied no source row or context pack and PubMed/NLM retrieval was unavailable from the worker environment.",
+  "summary": "No recent systematic-review or meta-analysis source has been screened into the knowledge base. This bounded batch did not close the gap because the job supplied no source row or context pack and PubMed/NLM retrieval was unavailable from the worker environment. Suggested action: Run a bounded search/screening job for recent systematic reviews, meta-analyses, and trial-landscape reviews; create or refresh PubMed source snapshots before upgrading any review source beyond screened or triage-summary maturity.",
   "lifecycle_status": "ready",
   "agent_role": "extraction_agent",
   "mode": "extraction_refresh",
@@ -12,7 +12,7 @@
   "output_path": "research/agent-runs/self-healing-coverage-gap-senolytics-review-landscape-followup-2.json",
   "jsonl_log_path": "research/agent-runs/logs/self-healing-coverage-gap-senolytics-review-landscape-followup-2.jsonl",
   "scope": {
-    "question": "extraction_refresh: No recent systematic-review or meta-analysis source has been screened into the knowledge base. This bounded batch did not close the gap because the job supplied no source row or context pack and PubMed/NLM retrieval was unavailable from the worker environment.",
+    "question": "extraction_refresh: No recent systematic-review or meta-analysis source has been screened into the knowledge base. This bounded batch did not close the gap because the job supplied no source row or context pack and PubMed/NLM retrieval was unavailable from the worker environment. Suggested action: Run a bounded search/screening job for recent systematic reviews, meta-analyses, and trial-landscape reviews; create or refresh PubMed source snapshots before upgrading any review source beyond screened or triage-summary maturity.",
     "hallmark_ids": [
       "cellular_senescence"
     ],

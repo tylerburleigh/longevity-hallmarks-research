@@ -6,7 +6,7 @@
   "created_at": "2026-06-28T00:00:00Z",
   "purpose": "Bounded extraction refresh for coverage-gap-senolytics-exact-effect-extraction-followup-3-repair.",
   "scope": {
-    "question": "extraction_refresh: DKD, IPF, and AD-risk human studies now have retained PubMed source snapshots supporting abstract-level sample, dosing, timepoint, effect, and safety details, and the legacy IPF generic feasibility/tolerability extraction has been reconciled to the N=12 randomized pilot. Full article/table extraction for DKD, IPF, AD-risk, and D+Q bone supplements remains incomplete.",
+    "question": "extraction_refresh: DKD, IPF, and AD-risk human studies now have retained PubMed source snapshots supporting abstract-level sample, dosing, timepoint, effect, and safety details, and the legacy IPF generic feasibility/tolerability extraction has been reconciled to the N=12 randomized pilot. Full article/table extraction for DKD, IPF, AD-risk, and D+Q bone supplements remains incomplete. Suggested action: Retain or ingest full-text/table source snapshots for DKD, IPF, AD-risk, and D+Q bone supplements, then reconcile abstract-level extraction against article tables before formal synthesis.",
     "hallmark_ids": [
       "cellular_senescence"
     ],
@@ -85,7 +85,7 @@
   },
   "extraction_targets": [
     {
-      "target_label": "extraction_refresh: DKD, IPF, and AD-risk human studies now have retained PubMed source snapshots supporting abstract-level sample, dosing, timepoint, effect, and safety details, and the legacy IPF generic feasibility/tolerability extraction has been reconciled to the N=12 randomized pilot. Full article/table extraction for DKD, IPF, AD-risk, and D+Q bone supplements remains incomplete.",
+      "target_label": "extraction_refresh: DKD, IPF, and AD-risk human studies now have retained PubMed source snapshots supporting abstract-level sample, dosing, timepoint, effect, and safety details, and the legacy IPF generic feasibility/tolerability extraction has been reconciled to the N=12 randomized pilot. Full article/table extraction for DKD, IPF, AD-risk, and D+Q bone supplements remains incomplete. Suggested action: Retain or ingest full-text/table source snapshots for DKD, IPF, AD-risk, and D+Q bone supplements, then reconcile abstract-level extraction against article tables before formal synthesis.",
       "interpretation_rules": [
         "Use only the scoped input records and any retained source or text snapshots named by those records unless validation exposes a concrete inconsistency.",
         "Preserve missing, ambiguous, or not-reported source cells as uncertainty rather than inventing exact effects.",

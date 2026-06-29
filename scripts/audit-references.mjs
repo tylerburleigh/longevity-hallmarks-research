@@ -2,6 +2,7 @@
 
 import { promises as fs } from "node:fs";
 import { execFileSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import path from "node:path";
 
 const workspaceRoot = process.cwd();
@@ -474,6 +475,25 @@ async function checkRepoPathExists({ issues, ownerPath, field, relativePath }) {
 
   if (!(await exists(resolvedPath))) {
     issues.push(`${ownerPath}: ${field} path does not exist: ${relativePath}.`);
+  }
+}
+
+async function checkRepoPathHash({ issues, ownerPath, field, relativePath, expectedSha256 }) {
+  if (!relativePath || !expectedSha256) {
+    return;
+  }
+
+  const resolvedPath = path.resolve(workspaceRoot, relativePath);
+  const normalizedPath = toPosixRelative(resolvedPath);
+  if (!normalizedPath || normalizedPath.startsWith("..") || !(await exists(resolvedPath))) {
+    return;
+  }
+
+  const actualSha256 = createHash("sha256")
+    .update(await fs.readFile(resolvedPath))
+    .digest("hex");
+  if (actualSha256 !== expectedSha256) {
+    issues.push(`${ownerPath}: ${field}.sha256 does not match artifact content for ${relativePath}.`);
   }
 }
 
@@ -1246,6 +1266,13 @@ async function audit() {
           ownerPath: relativePath,
           field: `artifacts[${artifactIndex}].path`,
           relativePath: artifact.path
+        });
+        await checkRepoPathHash({
+          issues,
+          ownerPath: relativePath,
+          field: `artifacts[${artifactIndex}]`,
+          relativePath: artifact.path,
+          expectedSha256: artifact.sha256
         });
       }
 

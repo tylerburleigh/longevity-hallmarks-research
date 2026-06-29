@@ -372,6 +372,27 @@
       ]
     },
     {
+      "id": "stale-text-snapshot-artifact-hash",
+      "description": "Text snapshot artifact hashes must match retained artifact content.",
+      "command": [
+        "npm",
+        "run",
+        "audit:references"
+      ],
+      "operations": [
+        {
+          "type": "set_json",
+          "path": "data/text-snapshots/text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
+          "pointer": "/artifacts/1/sha256",
+          "value": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ],
+      "expected_failure_substrings": [
+        "artifacts[1].sha256 does not match artifact content",
+        "text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json"
+      ]
+    },
+    {
       "id": "invalid-pooling-allowed-with-missing-fields",
       "description": "Poolable synthesis groups cannot claim pooling is allowed while retaining missing effect fields.",
       "command": [

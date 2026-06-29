@@ -112,6 +112,40 @@ function checkSetEqual({ issues, ownerPath, field, expected, actual }) {
   }
 }
 
+function sourceContexts(pack) {
+  return [
+    ...(pack.source_context ? [{ label: "source_context", context: pack.source_context }] : []),
+    ...(pack.source_contexts ?? []).map((context, index) => ({
+      label: `source_contexts[${index}]`,
+      context
+    }))
+  ];
+}
+
+async function checkSourceContext({ issues, ownerPath, label, context }) {
+  for (const [index, artifact] of (context.artifact_paths ?? []).entries()) {
+    await checkRelativePath({
+      issues,
+      ownerPath,
+      field: `${label}.artifact_paths[${index}].path`,
+      relativePath: artifact.path
+    });
+    await checkArtifactHash({
+      issues,
+      ownerPath,
+      field: `${label}.artifact_paths[${index}]`,
+      artifact
+    });
+  }
+
+  const artifactPaths = new Set((context.artifact_paths ?? []).map((artifact) => artifact.path));
+  for (const [index, locator] of (context.primary_locators ?? []).entries()) {
+    checkLocator({ issues, ownerPath, artifactPaths, field: `${label}.primary_locators[${index}]`, locator });
+  }
+
+  return artifactPaths;
+}
+
 async function checkPack({ issues, pack, ownerPath }) {
   if (pack.record_type !== "extraction_context_pack") {
     issues.push(`${ownerPath}: expected record_type "extraction_context_pack".`);
@@ -123,28 +157,15 @@ async function checkPack({ issues, pack, ownerPath }) {
     issues.push(`${ownerPath}: context pack path must be ${expectedPath}.`);
   }
 
-  for (const [index, artifact] of (pack.source_context?.artifact_paths ?? []).entries()) {
-    await checkRelativePath({
-      issues,
-      ownerPath,
-      field: `source_context.artifact_paths[${index}].path`,
-      relativePath: artifact.path
-    });
-    await checkArtifactHash({
-      issues,
-      ownerPath,
-      field: `source_context.artifact_paths[${index}]`,
-      artifact
-    });
-  }
-
-  const artifactPaths = new Set((pack.source_context?.artifact_paths ?? []).map((artifact) => artifact.path));
-  for (const [index, locator] of (pack.source_context?.primary_locators ?? []).entries()) {
-    checkLocator({ issues, ownerPath, artifactPaths, field: `source_context.primary_locators[${index}]`, locator });
+  const sourceArtifactPaths = new Set();
+  for (const { label, context } of sourceContexts(pack)) {
+    for (const artifactPath of await checkSourceContext({ issues, ownerPath, label, context })) {
+      sourceArtifactPaths.add(artifactPath);
+    }
   }
 
   for (const [index, target] of (pack.extraction_targets ?? []).entries()) {
-    checkLocator({ issues, ownerPath, artifactPaths, field: `extraction_targets[${index}].source_locator`, locator: target.source_locator });
+    checkLocator({ issues, ownerPath, artifactPaths: sourceArtifactPaths, field: `extraction_targets[${index}].source_locator`, locator: target.source_locator });
   }
 
   for (const [index, record] of (pack.target_context?.input_records ?? []).entries()) {

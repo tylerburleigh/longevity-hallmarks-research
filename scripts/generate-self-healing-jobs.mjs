@@ -782,7 +782,64 @@ function targetRecordPointers(recordIndex, job) {
     .filter(Boolean);
 }
 
+function locatorTypeForSection(section) {
+  const label = `${section.section_id ?? ""} ${section.title ?? ""}`.toLowerCase();
+  if (label.includes("table")) {
+    return "table";
+  }
+  if (label.includes("registry")) {
+    return "registry_section";
+  }
+  return "full_text_section";
+}
+
+function textSnapshotArtifactPaths(textSnapshot) {
+  return (textSnapshot.artifacts ?? []).map((artifact) => ({
+    artifact_type: artifact.artifact_type,
+    path: artifact.path,
+    ...(artifact.sha256 ? { sha256: artifact.sha256 } : {}),
+    ...(artifact.content_type ? { content_type: artifact.content_type } : {})
+  }));
+}
+
+function primaryLocatorsForTextSnapshot(textSnapshot) {
+  const markdownArtifact = (textSnapshot.artifacts ?? []).find((artifact) => artifact.artifact_type === "normalized_markdown");
+  if (!markdownArtifact?.path) {
+    return [];
+  }
+
+  return (textSnapshot.section_index ?? []).map((section) => ({
+    artifact_path: markdownArtifact.path,
+    locator_type: locatorTypeForSection(section),
+    locator: section.source_locator ? `section:${section.section_id}; source:${section.source_locator}` : `section:${section.section_id}`,
+    section_id: section.section_id,
+    start_line: section.start_line,
+    end_line: section.end_line,
+    evidence_role: "scoped_source_section"
+  }));
+}
+
+function sourceContextsForJob(recordIndex, job) {
+  const textSnapshotPaths = (job.orchestration?.read_sets ?? [])
+    .map((readSet) => readSet.match(/^path:(data\/text-snapshots\/.+\.json)$/)?.[1])
+    .filter(Boolean);
+
+  return sortStrings(textSnapshotPaths)
+    .map((recordPath) => recordIndex.byPath.get(recordPath))
+    .filter((textSnapshot) => textSnapshot?.record_type === "text_snapshot")
+    .map((textSnapshot) => ({
+      source_id: textSnapshot.source_id,
+      source_snapshot_id: textSnapshot.source_snapshot_id,
+      text_snapshot_id: textSnapshot.id,
+      artifact_paths: textSnapshotArtifactPaths(textSnapshot),
+      primary_locators: primaryLocatorsForTextSnapshot(textSnapshot)
+    }))
+    .filter((sourceContext) => sourceContext.artifact_paths.length > 0 && sourceContext.primary_locators.length > 0);
+}
+
 export function buildExtractionContextPack(recordIndex, job) {
+  const sourceContexts = sourceContextsForJob(recordIndex, job);
+
   return {
     schema_version: "1.0.0",
     record_type: "extraction_context_pack",
@@ -791,6 +848,7 @@ export function buildExtractionContextPack(recordIndex, job) {
     created_at: "2026-06-28T00:00:00Z",
     purpose: `Bounded extraction refresh for ${job.expected_outputs.candidate_change_id}.`,
     scope: job.scope,
+    ...(sourceContexts.length > 0 ? { source_contexts: sourceContexts } : {}),
     target_context: {
       input_records: scopedInputRecords(recordIndex, job),
       target_records: targetRecordPointers(recordIndex, job)
@@ -824,7 +882,9 @@ export function buildExtractionContextPack(recordIndex, job) {
         "candidate_change.required_review_lanes[] equals expected_outputs.required_review_lanes[]"
       ],
       known_schema_limitations: [
-        "This generated pack scopes records and schemas; it does not preselect retained artifact line locators."
+        sourceContexts.length > 0
+          ? "Generated source_contexts list retained artifacts and section-level locators; workers still need to inspect the named sections to extract exact table rows or cells."
+          : "This generated pack scopes records and schemas; it does not preselect retained artifact line locators."
       ]
     },
     exemplar_records: [],
@@ -854,7 +914,9 @@ export function buildExtractionContextPack(recordIndex, job) {
       "Do not perform broad repository searches or full-record dumps unless validation identifies a specific missing path or schema inconsistency."
     ],
     known_limitations: [
-      "Source artifact locators may need to be discovered from scoped source_snapshot or text_snapshot records when present.",
+      sourceContexts.length > 0
+        ? "Section-level locators are generated from retained text snapshots and may be broader than the exact result row or cell."
+        : "Source artifact locators may need to be discovered from scoped source_snapshot or text_snapshot records when present.",
       "The pack is a routing contract for extraction repair, not a source-fidelity review."
     ]
   };

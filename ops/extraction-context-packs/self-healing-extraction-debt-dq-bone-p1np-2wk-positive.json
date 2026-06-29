@@ -43,6 +43,107 @@
       "dq-bone-sasp-2wk-null"
     ]
   },
+  "source_contexts": [
+    {
+      "source_id": "nct-04313634",
+      "source_snapshot_id": "snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+      "text_snapshot_id": "text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+      "artifact_paths": [
+        {
+          "artifact_type": "raw_payload",
+          "path": "artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/raw.json",
+          "sha256": "3b2a5e094062fb8b16156c58dfaae082a473537da6961ebacf48b06bb19d0cb3",
+          "content_type": "application/json"
+        },
+        {
+          "artifact_type": "normalized_markdown",
+          "path": "artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/registry.md",
+          "sha256": "2d018708d2c705f2461b809864d2c7abd4d0ddaef39c39a5e7790576a6242ea2",
+          "content_type": "text/markdown"
+        },
+        {
+          "artifact_type": "section_index",
+          "path": "artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/sections.json",
+          "sha256": "528f897d1ef1a764a66eed3f54a22476526962c19175895704dfb0dfc40c9c96",
+          "content_type": "application/json"
+        }
+      ],
+      "primary_locators": [
+        {
+          "artifact_path": "artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/registry.md",
+          "locator_type": "full_text_section",
+          "locator": "section:trial-overview; source:protocolSection.identificationModule; protocolSection.statusModule",
+          "section_id": "trial-overview",
+          "start_line": 3,
+          "end_line": 13,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/registry.md",
+          "locator_type": "full_text_section",
+          "locator": "section:study-design; source:protocolSection.designModule",
+          "section_id": "study-design",
+          "start_line": 15,
+          "end_line": 24,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/registry.md",
+          "locator_type": "full_text_section",
+          "locator": "section:conditions-and-keywords; source:protocolSection.conditionsModule",
+          "section_id": "conditions-and-keywords",
+          "start_line": 26,
+          "end_line": 28,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/registry.md",
+          "locator_type": "full_text_section",
+          "locator": "section:arms-and-interventions; source:protocolSection.armsInterventionsModule",
+          "section_id": "arms-and-interventions",
+          "start_line": 30,
+          "end_line": 51,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/registry.md",
+          "locator_type": "full_text_section",
+          "locator": "section:eligibility; source:protocolSection.eligibilityModule",
+          "section_id": "eligibility",
+          "start_line": 53,
+          "end_line": 58,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/registry.md",
+          "locator_type": "full_text_section",
+          "locator": "section:protocol-outcomes; source:protocolSection.outcomesModule",
+          "section_id": "protocol-outcomes",
+          "start_line": 60,
+          "end_line": 67,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/registry.md",
+          "locator_type": "full_text_section",
+          "locator": "section:posted-results-outcomes; source:resultsSection.outcomeMeasuresModule.outcomeMeasures",
+          "section_id": "posted-results-outcomes",
+          "start_line": 69,
+          "end_line": 147,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/registry.md",
+          "locator_type": "full_text_section",
+          "locator": "section:adverse-events; source:resultsSection.adverseEventsModule",
+          "section_id": "adverse-events",
+          "start_line": 149,
+          "end_line": 338,
+          "evidence_role": "scoped_source_section"
+        }
+      ]
+    }
+  ],
   "target_context": {
     "input_records": [
       {
@@ -218,7 +319,7 @@
       "candidate_change.required_review_lanes[] equals expected_outputs.required_review_lanes[]"
     ],
     "known_schema_limitations": [
-      "This generated pack scopes records and schemas; it does not preselect retained artifact line locators."
+      "Generated source_contexts list retained artifacts and section-level locators; workers still need to inspect the named sections to extract exact table rows or cells."
     ]
   },
   "exemplar_records": [],
@@ -267,7 +368,7 @@
     "Do not perform broad repository searches or full-record dumps unless validation identifies a specific missing path or schema inconsistency."
   ],
   "known_limitations": [
-    "Source artifact locators may need to be discovered from scoped source_snapshot or text_snapshot records when present.",
+    "Section-level locators are generated from retained text snapshots and may be broader than the exact result row or cell.",
     "The pack is a routing contract for extraction repair, not a source-fidelity review."
   ]
 }

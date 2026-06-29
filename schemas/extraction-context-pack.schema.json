@@ -105,40 +105,14 @@
       }
     },
     "source_context": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "source_id",
-        "source_snapshot_id",
-        "text_snapshot_id",
-        "artifact_paths",
-        "primary_locators"
-      ],
-      "properties": {
-        "source_id": {
-          "$ref": "./common.schema.json#/$defs/sourceRef"
-        },
-        "source_snapshot_id": {
-          "$ref": "./common.schema.json#/$defs/sourceSnapshotRef"
-        },
-        "text_snapshot_id": {
-          "$ref": "./common.schema.json#/$defs/textSnapshotRef"
-        },
-        "artifact_paths": {
-          "type": "array",
-          "items": {
-            "$ref": "#/$defs/artifactPath"
-          },
-          "minItems": 1
-        },
-        "primary_locators": {
-          "type": "array",
-          "items": {
-            "$ref": "#/$defs/sourceLocator"
-          },
-          "minItems": 1
-        }
-      }
+      "$ref": "#/$defs/sourceContext"
+    },
+    "source_contexts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/sourceContext"
+      },
+      "uniqueItems": true
     },
     "target_context": {
       "type": "object",
@@ -289,6 +263,42 @@
     }
   },
   "$defs": {
+    "sourceContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "source_snapshot_id",
+        "text_snapshot_id",
+        "artifact_paths",
+        "primary_locators"
+      ],
+      "properties": {
+        "source_id": {
+          "$ref": "./common.schema.json#/$defs/sourceRef"
+        },
+        "source_snapshot_id": {
+          "$ref": "./common.schema.json#/$defs/sourceSnapshotRef"
+        },
+        "text_snapshot_id": {
+          "$ref": "./common.schema.json#/$defs/textSnapshotRef"
+        },
+        "artifact_paths": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/artifactPath"
+          },
+          "minItems": 1
+        },
+        "primary_locators": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/sourceLocator"
+          },
+          "minItems": 1
+        }
+      }
+    },
     "artifactPath": {
       "type": "object",
       "additionalProperties": false,

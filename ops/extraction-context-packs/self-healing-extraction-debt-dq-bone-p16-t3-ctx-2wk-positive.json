@@ -648,6 +648,8 @@
     "Set the repair candidate required_review_lanes[] exactly to expected_outputs.required_review_lanes[].",
     "If source_availability shows metadata-only snapshots, leave a blocking issue or source-retention follow-up instead of fabricating table-level extraction.",
     "If source_availability has raw_storage_path but no source_context locators, inspect only the named raw artifact paths needed for the target extraction.",
+    "Run the listed worker_commands for in-worker checks; leave full export refresh and npm run verify:knowledge-base to coordinator_post_run unless you refresh exports in the same worker.",
+    "If listed worker_commands pass and only exports, triage, release-readiness, reconciliation, metrics, or read-model state is stale, keep the worker status succeeded and note coordinator_post_run refresh rather than marking the run partial.",
     "Do not perform broad repository searches or full-record dumps unless validation identifies a specific missing path or schema inconsistency."
   ],
   "known_limitations": [

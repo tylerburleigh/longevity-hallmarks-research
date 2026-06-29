@@ -25,7 +25,7 @@ Task:
 5. Keep no-results status records source-snapshot-backed. Do not close a registry, PubMed, or review-landscape gap from memory or unsaved browsing output.
 6. List every changed canonical record in both the candidate_change and final agent_run outputs.
 7. Do not promote any candidate.
-8. Run validation and repository verification when feasible.
+8. Run the context-pack `verification.worker_commands` or equivalent scoped checks. Do not run full `npm run verify:knowledge-base` after creating or updating records unless you first refresh exports in the same worker; full verification is normally owned by coordinator post-run steps.
 
 Inspection discipline:
 
@@ -34,6 +34,7 @@ Inspection discipline:
 - Use broad searches only when the coverage gap itself requires bounded discovery, and record exact queries, dates, result counts, and source decisions in durable records.
 - If external retrieval is unavailable, leave an explicit blocking issue and keep the gap open.
 - If exports, triage state, release readiness, reconciliation, or metrics are stale before wrapper post-run refresh, record that as deferred to coordinator post-run refresh rather than investigating unrelated orchestration code.
+- If scoped validation passes and only export, triage, release-readiness, reconciliation, metrics, or read-model state is stale, keep the run status `succeeded`; do not mark the worker `partial` solely for coordinator-owned post-run refresh work.
 
 Final response:
 

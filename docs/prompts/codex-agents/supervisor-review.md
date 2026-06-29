@@ -32,7 +32,7 @@ Task:
 6. When creating a repair `candidate_change`, set its `required_review_lanes[]` exactly to the coordinator job's `expected_outputs.required_review_lanes[]`.
 7. Include a passed `quality_checks[]` entry named `supervisor_review_lanes` when the lane review is complete and acceptable.
 8. Include a passed `quality_checks[]` entry named `candidate_agent_run_ledger_match` when the final `outputs.proposed_records[]` matches the repair candidate ledger.
-9. Run validation and repository verification when feasible.
+9. Run the context-pack `verification.worker_commands` or equivalent scoped checks. Do not run full `npm run verify:knowledge-base` after creating or updating records unless you first refresh exports in the same worker; full verification is normally owned by coordinator post-run steps.
 
 Inspection discipline:
 
@@ -42,6 +42,7 @@ Inspection discipline:
 - Keep non-validation command output compact. Prefer targeted `jq` projections, ids, summaries, and counts over dumping many complete records in one command; split large context-pack record reads when needed.
 - Do not inspect broad orchestration, wrapper, export, or audit implementation files unless a concrete validation failure points there.
 - If repository exports are stale before the wrapper post-run phase, record that as deferred to coordinator post-run export rather than chasing unrelated implementation files.
+- If scoped validation passes and only export, triage, release-readiness, reconciliation, metrics, or read-model state is stale, keep the run status `succeeded`; do not mark the worker `partial` solely for coordinator-owned post-run refresh work.
 
 Final response:
 

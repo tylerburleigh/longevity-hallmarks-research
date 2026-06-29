@@ -1051,6 +1051,8 @@ export function buildExtractionContextPack(recordIndex, job) {
       ...(hasRetainedSourcesWithoutLocatorContext
         ? ["If source_availability has raw_storage_path but no source_context locators, inspect only the named raw artifact paths needed for the target extraction."]
         : []),
+      "Run the listed worker_commands for in-worker checks; leave full export refresh and npm run verify:knowledge-base to coordinator_post_run unless you refresh exports in the same worker.",
+      "If listed worker_commands pass and only exports, triage, release-readiness, reconciliation, metrics, or read-model state is stale, keep the worker status succeeded and note coordinator_post_run refresh rather than marking the run partial.",
       "Do not perform broad repository searches or full-record dumps unless validation identifies a specific missing path or schema inconsistency."
     ],
     known_limitations: [
@@ -1159,6 +1161,8 @@ export function buildCoverageRepairContextPack(recordIndex, job) {
       "Create only the repair candidate and target coverage-assessment paths declared in expected_outputs.",
       "Record durable search, screening, source-snapshot, or coverage-assessment changes through the declared candidate_change ledger.",
       "Do not close the gap unless retained source snapshots, search logs, screening runs, or updated coverage assessment text support closure.",
+      "Run the listed worker_commands for in-worker checks; leave full export refresh and npm run verify:knowledge-base to coordinator_post_run unless you refresh exports in the same worker.",
+      "If listed worker_commands pass and only exports, triage, release-readiness, reconciliation, metrics, or read-model state is stale, keep the worker status succeeded and note coordinator_post_run refresh rather than marking the run partial.",
       "Do not promote any candidate."
     ],
     known_limitations: [
@@ -1287,6 +1291,8 @@ export function buildSupervisorReviewContextPack(recordIndex, job) {
       "Do not promote, apply, or directly mutate the target candidate during a lane review.",
       "Do not add open-ended human-judgment escape hatches; make an agentic supervisor verdict from the available records.",
       "Inspect additional files only when the pack points to them or validation reveals a pack inconsistency.",
+      "Run the listed worker_commands for in-worker checks; leave full export refresh and npm run verify:knowledge-base to coordinator_post_run unless you refresh exports in the same worker.",
+      "If listed worker_commands pass and only exports, triage, release-readiness, reconciliation, metrics, or read-model state is stale, keep the worker status succeeded and note coordinator_post_run refresh rather than marking the run partial.",
       "Do not perform broad repository searches or full-record dumps for pack-backed reviews; query only the specific ids and paths required by this pack."
     ],
     known_limitations: [

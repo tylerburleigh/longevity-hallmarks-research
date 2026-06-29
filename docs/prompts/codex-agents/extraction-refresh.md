@@ -29,7 +29,7 @@ Task:
 5. If canonical records change, create or update a candidate_change and list every changed canonical record in both the candidate_change and final agent_run outputs.
 6. Create or update evidence_review lane records when the candidate is in_review.
 7. Do not promote any candidate.
-8. Run validation and repository verification when feasible.
+8. Run the context-pack `verification.worker_commands` or equivalent scoped checks. Do not run full `npm run verify:knowledge-base` after creating or updating records unless you first refresh exports in the same worker; full verification is normally owned by coordinator post-run steps.
 
 Inspection discipline:
 
@@ -38,6 +38,7 @@ Inspection discipline:
 - Do not run broad `rg`, `find`, `rg --files`, or full-directory `ls` sweeps across `data`, `research`, `ops`, `docs`, `schemas`, or `taxonomies`.
 - Do not dump whole generated exports, batch logs, worker logs, or broad schema directories unless a concrete validation failure requires that exact file.
 - If exports, triage state, release readiness, reconciliation, or metrics are stale before wrapper post-run refresh, record that as deferred to coordinator post-run refresh rather than investigating unrelated orchestration code.
+- If scoped validation passes and only export, triage, release-readiness, reconciliation, metrics, or read-model state is stale, keep the run status `succeeded`; do not mark the worker `partial` solely for coordinator-owned post-run refresh work.
 - If a command emits oversized or redacted output, rerun a narrower command and cite the narrower result in your final quality checks or blocking issues.
 
 Final response:

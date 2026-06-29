@@ -449,6 +449,9 @@
         "synthesis_group_id": {
           "$ref": "./common.schema.json#/$defs/synthesisGroupRef"
         },
+        "synthesis_group_path": {
+          "type": "string"
+        },
         "missing_field": {
           "type": "string"
         },

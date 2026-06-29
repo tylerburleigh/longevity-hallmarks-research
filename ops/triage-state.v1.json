@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "triage_state",
   "id": "triage-state-v1",
-  "generated_at": "2026-06-29T13:44:17.092Z",
+  "generated_at": "2026-06-29T15:19:48.693Z",
   "source_roots": [
     "data",
     "research"
@@ -2015,6 +2015,7 @@
       "result_id": "dq-bone-bmd-20wk-inconclusive",
       "path": "data/results/dq-bone-bmd-20wk-inconclusive.json",
       "synthesis_group_id": "senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21",
+      "synthesis_group_path": "data/synthesis-groups/senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21.json",
       "missing_field": "effect.uncertainty",
       "debt_type": "missing_effect_uncertainty",
       "severity": "high",
@@ -2028,6 +2029,7 @@
       "result_id": "dq-bone-bmd-20wk-inconclusive",
       "path": "data/results/dq-bone-bmd-20wk-inconclusive.json",
       "synthesis_group_id": "senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21",
+      "synthesis_group_path": "data/synthesis-groups/senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21.json",
       "missing_field": "effect.value",
       "debt_type": "missing_effect_value",
       "severity": "high",
@@ -2041,6 +2043,7 @@
       "result_id": "dq-bone-bmd-20wk-inconclusive",
       "path": "data/results/dq-bone-bmd-20wk-inconclusive.json",
       "synthesis_group_id": "senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21",
+      "synthesis_group_path": "data/synthesis-groups/senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21.json",
       "missing_field": "site_specific_effect.uncertainty",
       "debt_type": "missing_site_specific_effect_uncertainty",
       "severity": "high",
@@ -2054,6 +2057,7 @@
       "result_id": "dq-bone-bmd-20wk-inconclusive",
       "path": "data/results/dq-bone-bmd-20wk-inconclusive.json",
       "synthesis_group_id": "senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21",
+      "synthesis_group_path": "data/synthesis-groups/senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21.json",
       "missing_field": "site_specific_effect.value",
       "debt_type": "missing_site_specific_effect_value",
       "severity": "high",
@@ -2067,6 +2071,7 @@
       "result_id": "dq-bone-bmd-20wk-inconclusive",
       "path": "data/results/dq-bone-bmd-20wk-inconclusive.json",
       "synthesis_group_id": "senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21",
+      "synthesis_group_path": "data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
       "missing_field": "effect.uncertainty",
       "debt_type": "missing_effect_uncertainty",
       "severity": "high",
@@ -2080,6 +2085,7 @@
       "result_id": "dq-bone-bmd-20wk-inconclusive",
       "path": "data/results/dq-bone-bmd-20wk-inconclusive.json",
       "synthesis_group_id": "senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21",
+      "synthesis_group_path": "data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
       "missing_field": "effect.value",
       "debt_type": "missing_effect_value",
       "severity": "high",
@@ -2093,6 +2099,7 @@
       "result_id": "dq-bone-ctx-20wk-null",
       "path": "data/results/dq-bone-ctx-20wk-null.json",
       "synthesis_group_id": "senolytics-dq-bone-ctx-20wk-synthesis-compatibility-2026-06-21",
+      "synthesis_group_path": "data/synthesis-groups/senolytics-dq-bone-ctx-20wk-synthesis-compatibility-2026-06-21.json",
       "missing_field": "effect.uncertainty",
       "debt_type": "missing_effect_uncertainty",
       "severity": "high",
@@ -2106,6 +2113,7 @@
       "result_id": "dq-bone-ctx-20wk-null",
       "path": "data/results/dq-bone-ctx-20wk-null.json",
       "synthesis_group_id": "senolytics-dq-bone-ctx-20wk-synthesis-compatibility-2026-06-21",
+      "synthesis_group_path": "data/synthesis-groups/senolytics-dq-bone-ctx-20wk-synthesis-compatibility-2026-06-21.json",
       "missing_field": "effect.value",
       "debt_type": "missing_effect_value",
       "severity": "high",
@@ -2119,6 +2127,7 @@
       "result_id": "dq-bone-ctx-20wk-null",
       "path": "data/results/dq-bone-ctx-20wk-null.json",
       "synthesis_group_id": "senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21",
+      "synthesis_group_path": "data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
       "missing_field": "effect.uncertainty",
       "debt_type": "missing_effect_uncertainty",
       "severity": "high",
@@ -2132,6 +2141,7 @@
       "result_id": "dq-bone-ctx-20wk-null",
       "path": "data/results/dq-bone-ctx-20wk-null.json",
       "synthesis_group_id": "senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21",
+      "synthesis_group_path": "data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
       "missing_field": "effect.value",
       "debt_type": "missing_effect_value",
       "severity": "high",
@@ -2145,6 +2155,7 @@
       "result_id": "dq-bone-p16-t3-ctx-2wk-positive",
       "path": "data/results/dq-bone-p16-t3-ctx-2wk-positive.json",
       "synthesis_group_id": "senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22",
+      "synthesis_group_path": "data/synthesis-groups/senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22.json",
       "missing_field": "effect.uncertainty",
       "debt_type": "missing_effect_uncertainty",
       "severity": "high",
@@ -2158,6 +2169,7 @@
       "result_id": "dq-bone-p16-t3-ctx-4wk-inconclusive",
       "path": "data/results/dq-bone-p16-t3-ctx-4wk-inconclusive.json",
       "synthesis_group_id": "senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22",
+      "synthesis_group_path": "data/synthesis-groups/senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22.json",
       "missing_field": "effect.uncertainty",
       "debt_type": "missing_effect_uncertainty",
       "severity": "high",
@@ -2171,6 +2183,7 @@
       "result_id": "dq-bone-p16-t3-p1np-2wk-positive",
       "path": "data/results/dq-bone-p16-t3-p1np-2wk-positive.json",
       "synthesis_group_id": "senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22",
+      "synthesis_group_path": "data/synthesis-groups/senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22.json",
       "missing_field": "effect.uncertainty",
       "debt_type": "missing_effect_uncertainty",
       "severity": "high",
@@ -2184,6 +2197,7 @@
       "result_id": "dq-bone-p16-t3-p1np-4wk-inconclusive",
       "path": "data/results/dq-bone-p16-t3-p1np-4wk-inconclusive.json",
       "synthesis_group_id": "senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22",
+      "synthesis_group_path": "data/synthesis-groups/senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22.json",
       "missing_field": "effect.uncertainty",
       "debt_type": "missing_effect_uncertainty",
       "severity": "high",
@@ -2197,6 +2211,7 @@
       "result_id": "dq-bone-p16-t3-radius-bmd-20wk-positive",
       "path": "data/results/dq-bone-p16-t3-radius-bmd-20wk-positive.json",
       "synthesis_group_id": "senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22",
+      "synthesis_group_path": "data/synthesis-groups/senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22.json",
       "missing_field": "effect.uncertainty",
       "debt_type": "missing_effect_uncertainty",
       "severity": "high",
@@ -2210,6 +2225,7 @@
       "result_id": "dq-bone-p1np-20wk-null",
       "path": "data/results/dq-bone-p1np-20wk-null.json",
       "synthesis_group_id": "senolytics-dq-bone-p1np-20wk-synthesis-compatibility-2026-06-21",
+      "synthesis_group_path": "data/synthesis-groups/senolytics-dq-bone-p1np-20wk-synthesis-compatibility-2026-06-21.json",
       "missing_field": "effect.uncertainty",
       "debt_type": "missing_effect_uncertainty",
       "severity": "high",
@@ -2223,6 +2239,7 @@
       "result_id": "dq-bone-p1np-20wk-null",
       "path": "data/results/dq-bone-p1np-20wk-null.json",
       "synthesis_group_id": "senolytics-dq-bone-p1np-20wk-synthesis-compatibility-2026-06-21",
+      "synthesis_group_path": "data/synthesis-groups/senolytics-dq-bone-p1np-20wk-synthesis-compatibility-2026-06-21.json",
       "missing_field": "effect.value",
       "debt_type": "missing_effect_value",
       "severity": "high",
@@ -2236,6 +2253,7 @@
       "result_id": "dq-bone-p1np-20wk-null",
       "path": "data/results/dq-bone-p1np-20wk-null.json",
       "synthesis_group_id": "senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21",
+      "synthesis_group_path": "data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
       "missing_field": "effect.uncertainty",
       "debt_type": "missing_effect_uncertainty",
       "severity": "high",
@@ -2249,6 +2267,7 @@
       "result_id": "dq-bone-p1np-20wk-null",
       "path": "data/results/dq-bone-p1np-20wk-null.json",
       "synthesis_group_id": "senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21",
+      "synthesis_group_path": "data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
       "missing_field": "effect.value",
       "debt_type": "missing_effect_value",
       "severity": "high",
@@ -2262,6 +2281,7 @@
       "result_id": "dq-bone-p1np-2wk-positive",
       "path": "data/results/dq-bone-p1np-2wk-positive.json",
       "synthesis_group_id": "senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21",
+      "synthesis_group_path": "data/synthesis-groups/senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21.json",
       "missing_field": "effect.uncertainty",
       "debt_type": "missing_effect_uncertainty",
       "severity": "high",
@@ -2275,6 +2295,7 @@
       "result_id": "dq-bone-p1np-2wk-positive",
       "path": "data/results/dq-bone-p1np-2wk-positive.json",
       "synthesis_group_id": "senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21",
+      "synthesis_group_path": "data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
       "missing_field": "effect.uncertainty",
       "debt_type": "missing_effect_uncertainty",
       "severity": "high",
@@ -2288,6 +2309,7 @@
       "result_id": "dq-bone-p1np-4wk-positive",
       "path": "data/results/dq-bone-p1np-4wk-positive.json",
       "synthesis_group_id": "senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21",
+      "synthesis_group_path": "data/synthesis-groups/senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21.json",
       "missing_field": "effect.uncertainty",
       "debt_type": "missing_effect_uncertainty",
       "severity": "high",
@@ -2301,6 +2323,7 @@
       "result_id": "dq-bone-p1np-4wk-positive",
       "path": "data/results/dq-bone-p1np-4wk-positive.json",
       "synthesis_group_id": "senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21",
+      "synthesis_group_path": "data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
       "missing_field": "effect.uncertainty",
       "debt_type": "missing_effect_uncertainty",
       "severity": "high",
@@ -2314,6 +2337,7 @@
       "result_id": "dq-bone-sasp-2wk-null",
       "path": "data/results/dq-bone-sasp-2wk-null.json",
       "synthesis_group_id": "senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21",
+      "synthesis_group_path": "data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
       "missing_field": "effect.uncertainty",
       "debt_type": "missing_effect_uncertainty",
       "severity": "high",
@@ -2327,6 +2351,7 @@
       "result_id": "dq-bone-sasp-2wk-null",
       "path": "data/results/dq-bone-sasp-2wk-null.json",
       "synthesis_group_id": "senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21",
+      "synthesis_group_path": "data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
       "missing_field": "effect.value",
       "debt_type": "missing_effect_value",
       "severity": "high",
@@ -2340,6 +2365,7 @@
       "result_id": "dq-bone-sasp-2wk-null",
       "path": "data/results/dq-bone-sasp-2wk-null.json",
       "synthesis_group_id": "senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21",
+      "synthesis_group_path": "data/synthesis-groups/senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21.json",
       "missing_field": "effect.uncertainty",
       "debt_type": "missing_effect_uncertainty",
       "severity": "high",
@@ -2353,6 +2379,7 @@
       "result_id": "dq-bone-sasp-2wk-null",
       "path": "data/results/dq-bone-sasp-2wk-null.json",
       "synthesis_group_id": "senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21",
+      "synthesis_group_path": "data/synthesis-groups/senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21.json",
       "missing_field": "effect.value",
       "debt_type": "missing_effect_value",
       "severity": "high",
@@ -2366,6 +2393,7 @@
       "result_id": "dq-bone-sasp-2wk-null",
       "path": "data/results/dq-bone-sasp-2wk-null.json",
       "synthesis_group_id": "senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21",
+      "synthesis_group_path": "data/synthesis-groups/senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21.json",
       "missing_field": "marker_level_identity",
       "debt_type": "missing_marker_identity",
       "severity": "high",
@@ -2499,7 +2527,9 @@
       "target_record_id": "dq-bone-bmd-20wk-inconclusive",
       "rationale": "Resolve missing synthesis fields: effect.uncertainty, effect.value, site_specific_effect.uncertainty, site_specific_effect.value. Synthesis blocker context: The BMD record is descriptive and combines multiple DXA sites rather than one compatible endpoint metric. The result is descriptive-only: it has site-stratified group summaries but no pairwise overall or site-specific D+Q effect value with variance-compatible uncertainty. Next actions: Run extraction refresh for dq-bone-bmd-20wk-inconclusive to resolve CI, standard error, or variance. Run extraction refresh for dq-bone-bmd-20wk-inconclusive to resolve effect.value. Run extraction refresh for dq-bone-bmd-20wk-inconclusive to resolve site_specific_effect.uncertainty. Run extraction refresh for dq-bone-bmd-20wk-inconclusive to resolve site_specific_effect.value.",
       "inputs": [
-        "data/results/dq-bone-bmd-20wk-inconclusive.json"
+        "data/results/dq-bone-bmd-20wk-inconclusive.json",
+        "data/synthesis-groups/senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21.json",
+        "data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json"
       ]
     },
     {
@@ -2511,7 +2541,9 @@
       "target_record_id": "dq-bone-ctx-20wk-null",
       "rationale": "Resolve missing synthesis fields: effect.uncertainty, effect.value. Synthesis blocker context: The registry record has group medians and a p-value, but no extractable effect value or variance estimate. The result is a p-value-only overall CTx comparison with group medians and full ranges; full range is not a variance estimate, and only one endpoint result is available. Next actions: Run extraction refresh for dq-bone-ctx-20wk-null to resolve CI, standard error, or variance. Run extraction refresh for dq-bone-ctx-20wk-null to resolve effect.value.",
       "inputs": [
-        "data/results/dq-bone-ctx-20wk-null.json"
+        "data/results/dq-bone-ctx-20wk-null.json",
+        "data/synthesis-groups/senolytics-dq-bone-ctx-20wk-synthesis-compatibility-2026-06-21.json",
+        "data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json"
       ]
     },
     {
@@ -2523,7 +2555,8 @@
       "target_record_id": "dq-bone-p16-t3-ctx-2wk-positive",
       "rationale": "Resolve missing synthesis fields: effect.uncertainty. Synthesis blocker context: The result reports effect value and p-value, but no CI, standard error, or variance. Next actions: Run extraction refresh for dq-bone-p16-t3-ctx-2wk-positive to resolve CI, standard error, or variance.",
       "inputs": [
-        "data/results/dq-bone-p16-t3-ctx-2wk-positive.json"
+        "data/results/dq-bone-p16-t3-ctx-2wk-positive.json",
+        "data/synthesis-groups/senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22.json"
       ]
     },
     {
@@ -2535,7 +2568,8 @@
       "target_record_id": "dq-bone-p16-t3-ctx-4wk-inconclusive",
       "rationale": "Resolve missing synthesis fields: effect.uncertainty. Synthesis blocker context: The result reports effect value and p-value, but no CI, standard error, or variance. Next actions: Run extraction refresh for dq-bone-p16-t3-ctx-4wk-inconclusive to resolve CI, standard error, or variance.",
       "inputs": [
-        "data/results/dq-bone-p16-t3-ctx-4wk-inconclusive.json"
+        "data/results/dq-bone-p16-t3-ctx-4wk-inconclusive.json",
+        "data/synthesis-groups/senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22.json"
       ]
     },
     {
@@ -2547,7 +2581,8 @@
       "target_record_id": "dq-bone-p16-t3-p1np-2wk-positive",
       "rationale": "Resolve missing synthesis fields: effect.uncertainty. Synthesis blocker context: The result reports effect value and p-value, but no CI, standard error, or variance. Next actions: Run extraction refresh for dq-bone-p16-t3-p1np-2wk-positive to resolve CI, standard error, or variance.",
       "inputs": [
-        "data/results/dq-bone-p16-t3-p1np-2wk-positive.json"
+        "data/results/dq-bone-p16-t3-p1np-2wk-positive.json",
+        "data/synthesis-groups/senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22.json"
       ]
     },
     {
@@ -2559,7 +2594,8 @@
       "target_record_id": "dq-bone-p16-t3-p1np-4wk-inconclusive",
       "rationale": "Resolve missing synthesis fields: effect.uncertainty. Synthesis blocker context: The result reports effect value and p-value, but no CI, standard error, or variance. Next actions: Run extraction refresh for dq-bone-p16-t3-p1np-4wk-inconclusive to resolve CI, standard error, or variance.",
       "inputs": [
-        "data/results/dq-bone-p16-t3-p1np-4wk-inconclusive.json"
+        "data/results/dq-bone-p16-t3-p1np-4wk-inconclusive.json",
+        "data/synthesis-groups/senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22.json"
       ]
     },
     {
@@ -2571,7 +2607,8 @@
       "target_record_id": "dq-bone-p16-t3-radius-bmd-20wk-positive",
       "rationale": "Resolve missing synthesis fields: effect.uncertainty. Synthesis blocker context: The result reports effect value and p-value, but no CI, standard error, or variance. Next actions: Run extraction refresh for dq-bone-p16-t3-radius-bmd-20wk-positive to resolve CI, standard error, or variance.",
       "inputs": [
-        "data/results/dq-bone-p16-t3-radius-bmd-20wk-positive.json"
+        "data/results/dq-bone-p16-t3-radius-bmd-20wk-positive.json",
+        "data/synthesis-groups/senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22.json"
       ]
     },
     {
@@ -2583,7 +2620,9 @@
       "target_record_id": "dq-bone-p1np-20wk-null",
       "rationale": "Resolve missing synthesis fields: effect.uncertainty, effect.value. Synthesis blocker context: The 20-week P1NP result is p-value-only with group medians and full ranges; it lacks a between-group effect value and variance-compatible uncertainty. The registry record has group medians and a p-value, but no extractable effect value or variance estimate. Next actions: Run extraction refresh for dq-bone-p1np-20wk-null to resolve CI, standard error, or variance. Run extraction refresh for dq-bone-p1np-20wk-null to resolve effect.value.",
       "inputs": [
-        "data/results/dq-bone-p1np-20wk-null.json"
+        "data/results/dq-bone-p1np-20wk-null.json",
+        "data/synthesis-groups/senolytics-dq-bone-p1np-20wk-synthesis-compatibility-2026-06-21.json",
+        "data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json"
       ]
     },
     {
@@ -2595,7 +2634,9 @@
       "target_record_id": "dq-bone-p1np-2wk-positive",
       "rationale": "Resolve missing synthesis fields: effect.uncertainty. Synthesis blocker context: The 2-week result has an effect value but no CI, standard error, or variance, and it should not be pooled directly with the 4-week timepoint as the same horizon. The effect value is available, but no CI, standard error, or variance is encoded. Next actions: Run extraction refresh for dq-bone-p1np-2wk-positive to resolve CI, standard error, or variance.",
       "inputs": [
-        "data/results/dq-bone-p1np-2wk-positive.json"
+        "data/results/dq-bone-p1np-2wk-positive.json",
+        "data/synthesis-groups/senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21.json",
+        "data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json"
       ]
     },
     {
@@ -2607,7 +2648,9 @@
       "target_record_id": "dq-bone-p1np-4wk-positive",
       "rationale": "Resolve missing synthesis fields: effect.uncertainty. Synthesis blocker context: The 4-week result has an effect value but no CI, standard error, or variance, and it should not be pooled directly with the 2-week timepoint as the same horizon. The effect value is available, but no CI, standard error, or variance is encoded. Next actions: Run extraction refresh for dq-bone-p1np-4wk-positive to resolve CI, standard error, or variance.",
       "inputs": [
-        "data/results/dq-bone-p1np-4wk-positive.json"
+        "data/results/dq-bone-p1np-4wk-positive.json",
+        "data/synthesis-groups/senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21.json",
+        "data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json"
       ]
     },
     {
@@ -2619,7 +2662,9 @@
       "target_record_id": "dq-bone-sasp-2wk-null",
       "rationale": "Resolve missing synthesis fields: effect.uncertainty, effect.value, marker_level_identity. Synthesis blocker context: The registry record has group medians and a p-value, but no extractable effect value or variance estimate. The SASP result is a broad p-value-only measure without marker-level identity, effect value, or CI, standard error, or variance. Next actions: Run extraction refresh for dq-bone-sasp-2wk-null to resolve CI, standard error, or variance. Run extraction refresh for dq-bone-sasp-2wk-null to resolve effect.value. Run extraction refresh for dq-bone-sasp-2wk-null to resolve marker_level_identity.",
       "inputs": [
-        "data/results/dq-bone-sasp-2wk-null.json"
+        "data/results/dq-bone-sasp-2wk-null.json",
+        "data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
+        "data/synthesis-groups/senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21.json"
       ]
     },
     {

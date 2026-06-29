@@ -25,9 +25,21 @@
       "dq-postmenopausal-bone-rct"
     ],
     "outcome_ids": [
+      "dq-bone-adverse-events-20wk",
+      "dq-bone-bmd-20wk",
+      "dq-bone-ctx-20wk",
+      "dq-bone-p1np-20wk",
+      "dq-bone-p1np-2wk",
+      "dq-bone-p1np-4wk",
       "dq-bone-sasp-2wk"
     ],
     "result_ids": [
+      "dq-bone-adverse-events-20wk-mixed",
+      "dq-bone-bmd-20wk-inconclusive",
+      "dq-bone-ctx-20wk-null",
+      "dq-bone-p1np-20wk-null",
+      "dq-bone-p1np-2wk-positive",
+      "dq-bone-p1np-4wk-positive",
       "dq-bone-sasp-2wk-null"
     ]
   },
@@ -35,8 +47,80 @@
     "input_records": [
       {
         "record_type": "outcome",
+        "record_id": "dq-bone-adverse-events-20wk",
+        "path": "data/outcomes/dq-bone-adverse-events-20wk.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-bone-bmd-20wk",
+        "path": "data/outcomes/dq-bone-bmd-20wk.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-bone-ctx-20wk",
+        "path": "data/outcomes/dq-bone-ctx-20wk.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-bone-p1np-20wk",
+        "path": "data/outcomes/dq-bone-p1np-20wk.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-bone-p1np-2wk",
+        "path": "data/outcomes/dq-bone-p1np-2wk.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "dq-bone-p1np-4wk",
+        "path": "data/outcomes/dq-bone-p1np-4wk.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "outcome",
         "record_id": "dq-bone-sasp-2wk",
         "path": "data/outcomes/dq-bone-sasp-2wk.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-adverse-events-20wk-mixed",
+        "path": "data/results/dq-bone-adverse-events-20wk-mixed.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-bmd-20wk-inconclusive",
+        "path": "data/results/dq-bone-bmd-20wk-inconclusive.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-ctx-20wk-null",
+        "path": "data/results/dq-bone-ctx-20wk-null.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-p1np-20wk-null",
+        "path": "data/results/dq-bone-p1np-20wk-null.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-p1np-2wk-positive",
+        "path": "data/results/dq-bone-p1np-2wk-positive.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "result",
+        "record_id": "dq-bone-p1np-4wk-positive",
+        "path": "data/results/dq-bone-p1np-4wk-positive.json",
         "role": "scoped_input"
       },
       {
@@ -67,6 +151,18 @@
         "record_type": "study",
         "record_id": "dq-postmenopausal-bone-rct",
         "path": "data/studies/dq-postmenopausal-bone-rct.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "synthesis_group",
+        "record_id": "senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21",
+        "path": "data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "synthesis_group",
+        "record_id": "senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21",
+        "path": "data/synthesis-groups/senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21.json",
         "role": "scoped_input"
       },
       {

@@ -31,9 +31,17 @@
       "dq-postmenopausal-bone-rct"
     ],
     "outcome_ids": [
+      "dq-bone-p16-t3-ctx-2wk",
+      "dq-bone-p16-t3-ctx-4wk",
+      "dq-bone-p16-t3-p1np-2wk",
+      "dq-bone-p16-t3-p1np-4wk",
       "dq-bone-p16-t3-radius-bmd-20wk"
     ],
     "result_ids": [
+      "dq-bone-p16-t3-ctx-2wk-positive",
+      "dq-bone-p16-t3-ctx-4wk-inconclusive",
+      "dq-bone-p16-t3-p1np-2wk-positive",
+      "dq-bone-p16-t3-p1np-4wk-inconclusive",
       "dq-bone-p16-t3-radius-bmd-20wk-positive"
     ]
   },
@@ -75,13 +83,22 @@
   "orchestration": {
     "read_sets": [
       "context_pack:self-healing-extraction-debt-dq-bone-p16-t3-radius-bmd-20wk-positive",
+      "path:data/outcomes/dq-bone-p16-t3-ctx-2wk.json",
+      "path:data/outcomes/dq-bone-p16-t3-ctx-4wk.json",
+      "path:data/outcomes/dq-bone-p16-t3-p1np-2wk.json",
+      "path:data/outcomes/dq-bone-p16-t3-p1np-4wk.json",
       "path:data/outcomes/dq-bone-p16-t3-radius-bmd-20wk.json",
+      "path:data/results/dq-bone-p16-t3-ctx-2wk-positive.json",
+      "path:data/results/dq-bone-p16-t3-ctx-4wk-inconclusive.json",
+      "path:data/results/dq-bone-p16-t3-p1np-2wk-positive.json",
+      "path:data/results/dq-bone-p16-t3-p1np-4wk-inconclusive.json",
       "path:data/results/dq-bone-p16-t3-radius-bmd-20wk-positive.json",
       "path:data/source-snapshots/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
       "path:data/source-snapshots/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
       "path:data/source-snapshots/snapshot-pmid-38956196-pubmed-efetch-2026-06-21.json",
       "path:data/sources/pmid-38956196.json",
       "path:data/studies/dq-postmenopausal-bone-rct.json",
+      "path:data/synthesis-groups/senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22.json",
       "path:data/text-snapshots/text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
       "path:ops/triage-state.v1.json",
       "triage_job:extraction-debt-dq-bone-p16-t3-radius-bmd-20wk-positive"
@@ -90,6 +107,7 @@
       "candidate_change:extraction-debt-dq-bone-p16-t3-radius-bmd-20wk-positive-repair",
       "path:data/candidate-changes/extraction-debt-dq-bone-p16-t3-radius-bmd-20wk-positive-repair.json",
       "path:data/results/dq-bone-p16-t3-radius-bmd-20wk-positive.json",
+      "path:data/synthesis-groups/senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22.json",
       "target_record:result/dq-bone-p16-t3-radius-bmd-20wk-positive"
     ],
     "conflict_keys": [

@@ -560,6 +560,7 @@ function buildExtractionDebt({ resultEntries, synthesisGroupEntries }) {
           result_id: missing.result_id,
           path: resultPath,
           synthesis_group_id: synthesisGroup.id,
+          synthesis_group_path: entry.path,
           missing_field: missingField,
           debt_type: fieldDebtTypes.get(missingField) ?? "other",
           severity: severityFromImpact(missing.impact),
@@ -867,7 +868,7 @@ function buildRecommendedJobs({
       target_record_type: "result",
       target_record_id: resultId,
       rationale: summarizeExtractionDebtRationale(debts),
-      inputs: sortStrings(debts.map((debt) => debt.path))
+      inputs: sortStrings(debts.flatMap((debt) => [debt.path, debt.synthesis_group_path]).filter(Boolean))
     });
   }
 

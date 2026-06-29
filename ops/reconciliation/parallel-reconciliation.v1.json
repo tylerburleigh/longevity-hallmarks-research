@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "parallel_reconciliation",
   "id": "parallel-reconciliation-v1",
-  "generated_at": "2026-06-29T13:44:17.506Z",
+  "generated_at": "2026-06-29T15:19:49.110Z",
   "source_roots": [
     "data",
     "research",
@@ -87,7 +87,7 @@
     {
       "batch_id": "parallel-batch-002-extraction-refresh",
       "parallel_group": "extraction-refresh",
-      "execution_class": "independent",
+      "execution_class": "reconciliation_required",
       "reconciliation_required": true,
       "job_ids": [
         "self-healing-extraction-debt-dq-ad-risk-cognition-mobility-mixed",
@@ -95,14 +95,18 @@
         "self-healing-extraction-debt-dq-bone-bmd-20wk-inconclusive",
         "self-healing-extraction-debt-dq-bone-ctx-20wk-null"
       ],
-      "overlapping_execution_keys": [],
-      "status": "reconciliation_pending",
+      "overlapping_execution_keys": [
+        "path:data/results/dq-bone-bmd-20wk-inconclusive.json",
+        "path:data/results/dq-bone-ctx-20wk-null.json",
+        "path:data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json"
+      ],
+      "status": "reconciliation_open",
       "finding_ids": []
     },
     {
       "batch_id": "parallel-batch-003-extraction-refresh",
       "parallel_group": "extraction-refresh",
-      "execution_class": "independent",
+      "execution_class": "reconciliation_required",
       "reconciliation_required": true,
       "job_ids": [
         "self-healing-extraction-debt-dq-bone-p16-t3-ctx-2wk-positive",
@@ -110,14 +114,20 @@
         "self-healing-extraction-debt-dq-bone-p16-t3-p1np-2wk-positive",
         "self-healing-extraction-debt-dq-bone-p16-t3-p1np-4wk-inconclusive"
       ],
-      "overlapping_execution_keys": [],
-      "status": "reconciliation_pending",
+      "overlapping_execution_keys": [
+        "path:data/results/dq-bone-p16-t3-ctx-2wk-positive.json",
+        "path:data/results/dq-bone-p16-t3-ctx-4wk-inconclusive.json",
+        "path:data/results/dq-bone-p16-t3-p1np-2wk-positive.json",
+        "path:data/results/dq-bone-p16-t3-p1np-4wk-inconclusive.json",
+        "path:data/synthesis-groups/senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22.json"
+      ],
+      "status": "reconciliation_open",
       "finding_ids": []
     },
     {
       "batch_id": "parallel-batch-004-extraction-refresh",
       "parallel_group": "extraction-refresh",
-      "execution_class": "independent",
+      "execution_class": "reconciliation_required",
       "reconciliation_required": true,
       "job_ids": [
         "self-healing-extraction-debt-dq-bone-p16-t3-radius-bmd-20wk-positive",
@@ -125,8 +135,14 @@
         "self-healing-extraction-debt-dq-bone-p1np-2wk-positive",
         "self-healing-extraction-debt-dq-bone-p1np-4wk-positive"
       ],
-      "overlapping_execution_keys": [],
-      "status": "reconciliation_pending",
+      "overlapping_execution_keys": [
+        "path:data/results/dq-bone-p1np-20wk-null.json",
+        "path:data/results/dq-bone-p1np-2wk-positive.json",
+        "path:data/results/dq-bone-p1np-4wk-positive.json",
+        "path:data/synthesis-groups/senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21.json",
+        "path:data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json"
+      ],
+      "status": "reconciliation_open",
       "finding_ids": []
     },
     {

@@ -59,6 +59,13 @@ const partialReleaseReadyCandidateIds = new Set(
     .map((candidate) => candidate.candidate_change_id)
 );
 const releaseConstrainedCandidateIds = new Set([...strictReleaseBlockedCandidateIds, ...partialReleaseReadyCandidateIds]);
+const reconciliationBlockedCandidateIds = new Set(
+  (triageState.candidate_readiness ?? [])
+    .filter((candidate) =>
+      (candidate.next_actions ?? []).some((action) => action.startsWith("Resolve reconciliation blocker(s) before promotion:"))
+    )
+    .map((candidate) => candidate.candidate_change_id)
+);
 
 if (releaseReadiness.summary?.release_blocked_candidate_count !== strictReleaseBlockedCandidateIds.size) {
   fail("release_blocked_candidate_count should count only strict release_blocked candidates.");
@@ -76,10 +83,7 @@ if ((releaseReadiness.release_constrained_candidate_ids ?? []).some((candidateId
 const promotionJobsBlockedByReconciliation = (triageState.recommended_jobs ?? []).filter(
   (job) =>
     job.job_type === "candidate_promotion" &&
-    [
-      "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
-      "coverage-gap-senolytics-registry-surveillance-breadth-repair"
-    ].includes(job.target_record_id)
+    reconciliationBlockedCandidateIds.has(job.target_record_id)
 );
 
 if (promotionJobsBlockedByReconciliation.length > 0) {

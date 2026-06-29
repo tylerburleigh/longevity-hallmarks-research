@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "reconciliation_decision",
+  "id": "resolve-exact-effect-registry-surveillance-overlap-2026-06-29",
+  "created_at": "2026-06-29T00:00:00Z",
+  "reconciled_by_agent": "codex",
+  "reconciliation_report_id": "parallel-reconciliation-v1",
+  "issue_ids": [
+    "overlapping-candidate-f77610d955f4"
+  ],
+  "issue_categories": [
+    "overlapping_candidate_proposal"
+  ],
+  "candidate_change_ids": [
+    "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+    "coverage-gap-senolytics-registry-surveillance-breadth-repair"
+  ],
+  "compatible_candidate_change_ids": [
+    "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+    "coverage-gap-senolytics-registry-surveillance-breadth-repair"
+  ],
+  "resolution_status": "resolved",
+  "resolution_summary": "The exact-effect follow-up and registry-surveillance repairs are compatible for promotion despite sharing the senolytics coverage-assessment path. The exact-effect candidate reconciles abstract-located DKD, IPF, and AD-risk extraction progress and legacy IPF feasibility/tolerability records while preserving full-text/table debt. The registry-surveillance candidate only clarifies deferred fisetin frailty registry surveillance and preserves the ClinicalTrials.gov snapshot-ingestion blocker without adding extraction-grade registry records. Neither candidate supersedes the other.",
+  "evidence": [
+    {
+      "path": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-2-repair.json",
+      "summary": "The candidate updates coverage and IPF-related records for abstract-backed exact-effect and feasibility/tolerability extraction while leaving full article/table extraction and D+Q bone supplement reconciliation as remaining debt."
+    },
+    {
+      "path": "data/evidence-reviews/coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-extraction-fidelity.json",
+      "summary": "The extraction-fidelity review accepts the abstract-backed IPF, DKD, AD-risk, and D+Q bone coverage boundaries and finds no correction required."
+    },
+    {
+      "path": "data/evidence-reviews/coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-safety-limitations.json",
+      "summary": "The safety-limitations review accepts the abstract-level safety boundary and preserves full-text/table and harmonized cross-human safety debt."
+    },
+    {
+      "path": "data/evidence-reviews/coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-synthesis-boundary.json",
+      "summary": "The synthesis-boundary review accepts the pilot efficacy limits and keeps remaining extraction debt visible."
+    },
+    {
+      "path": "data/evidence-reviews/coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-taxonomy-mapping.json",
+      "summary": "The taxonomy-mapping review accepts the senolytics/cellular-senescence scope and endpoint-tier boundaries."
+    },
+    {
+      "path": "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-repair.json",
+      "summary": "The candidate updates only the coverage assessment to name deferred fisetin registry candidates and preserves the source-snapshot requirement before adding any registry-status records."
+    },
+    {
+      "path": "data/evidence-reviews/coverage-gap-senolytics-registry-surveillance-breadth-repair-extraction-fidelity.json",
+      "summary": "The extraction-fidelity review accepts that no unsourced registry extraction was added and no endpoint values were introduced."
+    },
+    {
+      "path": "data/evidence-reviews/coverage-gap-senolytics-registry-surveillance-breadth-repair-synthesis-boundary.json",
+      "summary": "The synthesis-boundary review accepts that the deferred registry candidates remain a surveillance gap until source snapshots are fetched."
+    },
+    {
+      "path": "data/evidence-reviews/coverage-gap-senolytics-registry-surveillance-breadth-repair-taxonomy-mapping.json",
+      "summary": "The taxonomy-mapping review accepts the senolytics registry-surveillance scope and keeps registry status separate from clinical effect claims."
+    }
+  ]
+}

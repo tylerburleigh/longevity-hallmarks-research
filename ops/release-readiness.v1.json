@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "release_readiness",
   "id": "release-readiness-v1",
-  "generated_at": "2026-06-29T12:22:27.294Z",
+  "generated_at": "2026-06-29T16:36:44.784Z",
   "source_roots": [
     "data",
     "research"
@@ -18,8 +18,8 @@
   },
   "summary": {
     "candidate_count": 76,
-    "not_ready_candidate_count": 59,
-    "promotion_ready_candidate_count": 0,
+    "not_ready_candidate_count": 57,
+    "promotion_ready_candidate_count": 2,
     "release_ready_candidate_count": 17,
     "partial_release_ready_candidate_count": 0,
     "release_blocked_candidate_count": 0,
@@ -29,7 +29,10 @@
     "blocked_accepted_proposal_count": 0,
     "unique_blocked_accepted_record_count": 0
   },
-  "promotion_ready_candidate_ids": [],
+  "promotion_ready_candidate_ids": [
+    "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+    "coverage-gap-senolytics-registry-surveillance-breadth-repair"
+  ],
   "release_ready_candidate_ids": [
     "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
     "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
@@ -1103,8 +1106,8 @@
       "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
       "path": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-2-repair.json",
       "lifecycle_status": "submitted",
-      "readiness_status": "blocked",
-      "release_status": "not_ready",
+      "readiness_status": "promotion_ready",
+      "release_status": "promotion_ready",
       "required_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
@@ -1123,7 +1126,7 @@
       "release_ready_record_ids": [],
       "blocked_record_ids": [],
       "next_actions": [
-        "Resolve reconciliation blocker(s) before promotion: overlapping-candidate-f77610d955f4."
+        "Promote candidate coverage-gap-senolytics-exact-effect-extraction-followup-2-repair before release artifacts include its proposed records."
       ]
     },
     {
@@ -1169,8 +1172,8 @@
       "candidate_change_id": "coverage-gap-senolytics-registry-surveillance-breadth-repair",
       "path": "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-repair.json",
       "lifecycle_status": "submitted",
-      "readiness_status": "blocked",
-      "release_status": "not_ready",
+      "readiness_status": "promotion_ready",
+      "release_status": "promotion_ready",
       "required_review_lanes": [
         "extraction_fidelity",
         "synthesis_boundary",
@@ -1187,7 +1190,7 @@
       "release_ready_record_ids": [],
       "blocked_record_ids": [],
       "next_actions": [
-        "Resolve reconciliation blocker(s) before promotion: overlapping-candidate-f77610d955f4."
+        "Promote candidate coverage-gap-senolytics-registry-surveillance-breadth-repair before release artifacts include its proposed records."
       ]
     },
     {

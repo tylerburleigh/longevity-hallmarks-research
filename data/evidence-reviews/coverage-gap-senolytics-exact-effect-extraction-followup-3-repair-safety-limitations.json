@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-safety-limitations",
+  "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-followup-3-repair",
+  "review_lane": "safety_limitations",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-safety-limitations",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Safety limitations are explicit and non-blocking for this lane: the proposed coverage assessment preserves thin cross-human safety coverage, metadata-only abstract boundaries for DKD, IPF, and AD-risk, full article/table extraction debt, D+Q supplement incompleteness, and a block on cross-human safety synthesis until adverse-event definitions and denominators are harmonized.",
+  "findings": [
+    {
+      "finding_id": "safety-thinness-explicit",
+      "severity": "note",
+      "category": "safety_limitation",
+      "claim_or_issue": "The proposed coverage assessment marks safety_durability coverage as thin and states that cross-human safety remains thin despite improved D+Q bone registry and publication-table extraction.",
+      "why_it_matters": "This prevents the coverage repair from being read as a mature or harmonized human safety synthesis.",
+      "recommended_action": "Keep the safety_durability thin label and associated gap note through promotion unless later full-text/table extraction closes the stated limitations.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "metadata-only-safety-boundary",
+      "severity": "note",
+      "category": "missing_caveat",
+      "claim_or_issue": "DKD, IPF, and AD-risk safety details are bounded to metadata-only PubMed EFetch abstract snapshots, not retained full-text or table sources.",
+      "why_it_matters": "Abstract-only safety statements cannot support detailed adverse-event term, seriousness, relatedness, zero-semantics, or denominator harmonization.",
+      "recommended_action": "Preserve the full article/table extraction debt for DKD, IPF, AD-risk, and D+Q supplement material before upgrading the safety evidence tier.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "cross-human-safety-synthesis-blocked",
+      "severity": "note",
+      "category": "interpretation_overreach",
+      "claim_or_issue": "The proposed assessment explicitly blocks cross-human safety synthesis until event definitions, denominators, zero semantics, relatedness, and seriousness fields are harmonized.",
+      "why_it_matters": "The boundary avoids pooling heterogeneous pilot, registry, abstract, and table-derived safety data into an unsupported quantitative or comparative safety claim.",
+      "recommended_action": "Do not create a cross-human safety compatibility group until the named harmonization conditions are source-backed and reviewed.",
+      "resolution_status": "closed"
+    }
+  ]
+}

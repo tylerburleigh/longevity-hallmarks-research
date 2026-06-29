@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "parallel_batch_plan",
   "id": "parallel-batch-plan-v1",
-  "generated_at": "2026-06-29T20:23:59.575Z",
+  "generated_at": "2026-06-29T21:23:18.208Z",
   "source_job_root": "ops/codex-jobs/live",
   "planner_version": "1.0.0",
   "scheduler_policy": {
@@ -15,84 +15,53 @@
     "conflict_policy": "same_group_no_overlap_or_reconciliation"
   },
   "summary": {
-    "live_job_count": 26,
-    "schedulable_job_count": 26,
+    "live_job_count": 23,
+    "schedulable_job_count": 23,
     "deferred_job_count": 0,
     "batch_count": 9,
     "max_batch_width": 4,
     "independent_batch_count": 9,
     "reconciliation_batch_count": 8,
-    "estimated_wall_time_ms": 32400000,
-    "estimated_token_budget": 2600000
+    "estimated_wall_time_ms": 29100000,
+    "estimated_token_budget": 2210000
   },
   "batches": [
     {
-      "batch_id": "parallel-batch-001-candidate-review",
+      "batch_id": "parallel-batch-001-candidate-promotion",
       "sequence": 1,
-      "parallel_group": "candidate-review",
+      "parallel_group": "candidate-promotion",
       "execution_class": "independent",
       "reconciliation_required": false,
       "job_ids": [
-        "self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-extraction-fidelity",
-        "self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-safety-limitations",
-        "self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-synthesis-boundary",
-        "self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-taxonomy-mapping"
+        "self-healing-candidate-promotion-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair"
       ],
       "job_paths": [
-        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-extraction-fidelity.json",
-        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-safety-limitations.json",
-        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-synthesis-boundary.json",
-        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-taxonomy-mapping.json"
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-promotion-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair.json"
       ],
       "agent_roles": [
-        "supervisor_agent"
+        "release_agent"
       ],
       "modes": [
         "agent_directed"
       ],
       "read_sets": [
-        "context_pack:self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-extraction-fidelity",
-        "context_pack:self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-safety-limitations",
-        "context_pack:self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-synthesis-boundary",
-        "context_pack:self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-taxonomy-mapping",
         "path:data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-3-repair.json",
         "path:ops/triage-state.v1.json",
-        "triage_job:candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair"
+        "triage_job:candidate-promotion-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair"
       ],
       "write_sets": [
-        "candidate_change:candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-extraction-fidelity-repair",
-        "candidate_change:candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-safety-limitations-repair",
-        "candidate_change:candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-synthesis-boundary-repair",
-        "candidate_change:candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-taxonomy-mapping-repair",
-        "candidate_review:coverage-gap-senolytics-exact-effect-extraction-followup-3-repair/extraction_fidelity",
-        "candidate_review:coverage-gap-senolytics-exact-effect-extraction-followup-3-repair/safety_limitations",
-        "candidate_review:coverage-gap-senolytics-exact-effect-extraction-followup-3-repair/synthesis_boundary",
-        "candidate_review:coverage-gap-senolytics-exact-effect-extraction-followup-3-repair/taxonomy_mapping",
-        "path:data/candidate-changes/candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-extraction-fidelity-repair.json",
-        "path:data/candidate-changes/candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-safety-limitations-repair.json",
-        "path:data/candidate-changes/candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-synthesis-boundary-repair.json",
-        "path:data/candidate-changes/candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-taxonomy-mapping-repair.json",
-        "path:data/evidence-reviews/coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-extraction-fidelity.json",
-        "path:data/evidence-reviews/coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-safety-limitations.json",
-        "path:data/evidence-reviews/coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-synthesis-boundary.json",
-        "path:data/evidence-reviews/coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-taxonomy-mapping.json"
+        "promotion_check:coverage-gap-senolytics-exact-effect-extraction-followup-3-repair"
       ],
       "conflict_keys": [
-        "candidate_change:candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-extraction-fidelity-repair",
-        "candidate_change:candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-safety-limitations-repair",
-        "candidate_change:candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-synthesis-boundary-repair",
-        "candidate_change:candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-taxonomy-mapping-repair",
-        "candidate_review:coverage-gap-senolytics-exact-effect-extraction-followup-3-repair/extraction_fidelity",
-        "candidate_review:coverage-gap-senolytics-exact-effect-extraction-followup-3-repair/safety_limitations",
-        "candidate_review:coverage-gap-senolytics-exact-effect-extraction-followup-3-repair/synthesis_boundary",
-        "candidate_review:coverage-gap-senolytics-exact-effect-extraction-followup-3-repair/taxonomy_mapping"
+        "promotion:coverage-gap-senolytics-exact-effect-extraction-followup-3-repair",
+        "target_record:candidate_change/coverage-gap-senolytics-exact-effect-extraction-followup-3-repair"
       ],
       "overlapping_execution_keys": [],
       "expected_cost": {
-        "cost_class": "high",
-        "expected_wall_time_ms": 3600000,
-        "expected_token_budget": 400000,
-        "io_intensity": "medium"
+        "cost_class": "low",
+        "expected_wall_time_ms": 300000,
+        "expected_token_budget": 10000,
+        "io_intensity": "low"
       },
       "commands": [
         [
@@ -101,34 +70,7 @@
           "agent:codex:worktree",
           "--",
           "--job-file",
-          "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-extraction-fidelity.json",
-          "--execute"
-        ],
-        [
-          "npm",
-          "run",
-          "agent:codex:worktree",
-          "--",
-          "--job-file",
-          "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-safety-limitations.json",
-          "--execute"
-        ],
-        [
-          "npm",
-          "run",
-          "agent:codex:worktree",
-          "--",
-          "--job-file",
-          "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-synthesis-boundary.json",
-          "--execute"
-        ],
-        [
-          "npm",
-          "run",
-          "agent:codex:worktree",
-          "--",
-          "--job-file",
-          "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-taxonomy-mapping.json",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-promotion-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair.json",
           "--execute"
         ]
       ]

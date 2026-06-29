@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-synthesis-boundary-repair",
+  "name": "Synthesis boundary review lane repair for senolytics extraction follow-up",
+  "summary": "Adds the missing synthesis_boundary supervisor review for coverage-gap-senolytics-exact-effect-extraction-followup-3-repair without promoting or mutating the target candidate.",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-29T21:19:53Z",
+  "scope": {
+    "question": "Repair the missing synthesis_boundary supervisor review lane for coverage-gap-senolytics-exact-effect-extraction-followup-3-repair.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-synthesis-boundary-repair",
+      "path": "data/candidate-changes/candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-synthesis-boundary-repair.json",
+      "change_type": "create",
+      "rationale": "Tracks this bounded repair candidate and its required synthesis_boundary review lane."
+    },
+    {
+      "record_type": "evidence_review",
+      "record_id": "coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-synthesis-boundary",
+      "path": "data/evidence-reviews/coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-synthesis-boundary.json",
+      "change_type": "create",
+      "rationale": "Records the supervisor synthesis_boundary verdict for the target senolytics extraction follow-up repair candidate."
+    }
+  ],
+  "required_review_lanes": [
+    "synthesis_boundary"
+  ]
+}

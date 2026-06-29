@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-synthesis-boundary",
+  "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-followup-3-repair",
+  "review_lane": "synthesis_boundary",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-synthesis-boundary",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "The proposed coverage-assessment update stays within synthesis boundaries. It distinguishes abstract-level PubMed metadata from retained full-text, table, and registry extraction; preserves explicit extraction debt; and blocks cross-human safety synthesis until event definitions, denominators, zero semantics, relatedness, and seriousness fields are harmonized.",
+  "findings": [
+    {
+      "finding_id": "synthesis-boundary-coverage-assessment-only",
+      "severity": "note",
+      "category": "endpoint_boundary",
+      "claim_or_issue": "The target candidate updates a coverage_assessment and does not create a synthesis_group, meta-analysis stratum, or pooled-effect record.",
+      "why_it_matters": "Track-level coverage status should not be treated as evidence that DKD, IPF, AD-risk, bone, registry, animal, and mechanistic records are poolable.",
+      "recommended_action": "Keep this record as coverage and extraction-debt state; create synthesis groups only after intervention, comparator, population or model, endpoint, duration, design, effect fields, and risk-of-bias compatibility are established.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "synthesis-boundary-source-maturity-retained",
+      "severity": "note",
+      "category": "missing_caveat",
+      "claim_or_issue": "The proposed assessment labels DKD, IPF, and AD-risk PubMed EFetch support as metadata-only abstract extraction and keeps full article/table extraction debt open.",
+      "why_it_matters": "This prevents abstract-level sample, dosing, effect, and safety statements from being upgraded into full-text/table-derived exact effects for synthesis.",
+      "recommended_action": "Retain maturity_status triage_summary and require full-text or table-row source snapshots before formal synthesis or exact-effect upgrades for DKD, IPF, AD-risk, and D+Q supplement material.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "synthesis-boundary-human-safety-blocked",
+      "severity": "note",
+      "category": "safety_limitation",
+      "claim_or_issue": "The proposed assessment explicitly keeps cross-human D+Q safety synthesis blocked until adverse-event terms, denominators, zero semantics, relatedness, and seriousness fields are harmonized.",
+      "why_it_matters": "The included safety material spans registry aggregates, publication-table preferred terms, abstract-only safety statements, and missing DKD adverse-event counts.",
+      "recommended_action": "Do not combine human safety records across DKD, IPF, AD-risk, and bone until the stated harmonization work and source retention are complete.",
+      "resolution_status": "closed"
+    }
+  ]
+}

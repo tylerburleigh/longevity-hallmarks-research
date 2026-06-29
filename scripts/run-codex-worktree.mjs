@@ -19,8 +19,7 @@ const dirtyOverlayExcludedRoots = [
   "build",
   "ops/codex-batches/logs",
   "ops/codex-batches/runs",
-  "research/agent-runs/logs",
-  "research/agent-runs/prompts"
+  "research/agent-runs/logs"
 ];
 
 function usage() {

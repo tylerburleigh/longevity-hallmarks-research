@@ -126,6 +126,14 @@ function isContextPackCommand(command, contextPackPath) {
   return command.includes(contextPackPath) || command.includes(path.basename(contextPackPath));
 }
 
+function isNonContentStateCommand(command) {
+  return /\bgit\s+status\s+(?:--short|--porcelain)(?:\s|['"]|$)/.test(command);
+}
+
+function firstContentCommand(events) {
+  return events.find((event) => !isNonContentStateCommand(event.command))?.command;
+}
+
 function isValidationCommand(command) {
   return /\bnpm\s+run\s+(validate:records|audit:references|audit:agent-schemas|audit:agentic-process|verify:knowledge-base)/.test(command);
 }
@@ -227,7 +235,7 @@ async function readCommandEvents(logPath) {
 
 function commandFindings({ job, events, contextPack }) {
   const findings = [];
-  const firstCommand = events[0]?.command;
+  const firstCommand = firstContentCommand(events);
 
   if (!firstCommand || !isContextPackCommand(firstCommand, job.context_pack_path)) {
     findings.push({
@@ -242,9 +250,10 @@ function commandFindings({ job, events, contextPack }) {
     if (isContextPackCommand(command, job.context_pack_path)) {
       continue;
     }
+    const boundedContextRecordCommand = isBoundedContextRecordCommand({ command, contextPack });
 
     for (const pattern of broadReadPatterns) {
-      if (pattern.matches(command)) {
+      if (pattern.matches(command) && !boundedContextRecordCommand) {
         findings.push({
           type: "broad_command",
           label: pattern.label,
@@ -258,7 +267,7 @@ function commandFindings({ job, events, contextPack }) {
       event.aggregated_output_chars > policy.max_non_context_output_chars &&
       !isValidationCommand(command) &&
       !(
-        isBoundedContextRecordCommand({ command, contextPack }) &&
+        boundedContextRecordCommand &&
         event.aggregated_output_chars <= policy.max_context_record_output_chars
       )
     ) {
@@ -276,7 +285,7 @@ function commandFindings({ job, events, contextPack }) {
 
 function extractionCommandFindings({ job, events, contextPack }) {
   const findings = [];
-  const firstCommand = events[0]?.command;
+  const firstCommand = firstContentCommand(events);
 
   if (job.context_pack_path && (!firstCommand || !isContextPackCommand(firstCommand, job.context_pack_path))) {
     findings.push({
@@ -291,9 +300,10 @@ function extractionCommandFindings({ job, events, contextPack }) {
     if (job.context_pack_path && isContextPackCommand(command, job.context_pack_path)) {
       continue;
     }
+    const boundedContextRecordCommand = isBoundedContextRecordCommand({ command, contextPack });
 
     for (const pattern of broadReadPatterns) {
-      if (pattern.matches(command)) {
+      if (pattern.matches(command) && !boundedContextRecordCommand) {
         findings.push({
           type: "broad_command",
           label: pattern.label,
@@ -307,7 +317,7 @@ function extractionCommandFindings({ job, events, contextPack }) {
       event.aggregated_output_chars > policy.max_non_context_output_chars &&
       !isValidationCommand(command) &&
       !(
-        isBoundedContextRecordCommand({ command, contextPack }) &&
+        boundedContextRecordCommand &&
         event.aggregated_output_chars <= policy.max_context_record_output_chars
       )
     ) {
@@ -325,7 +335,7 @@ function extractionCommandFindings({ job, events, contextPack }) {
 
 function coverageRepairCommandFindings({ job, events, contextPack }) {
   const findings = [];
-  const firstCommand = events[0]?.command;
+  const firstCommand = firstContentCommand(events);
 
   if (job.context_pack_path && (!firstCommand || !isContextPackCommand(firstCommand, job.context_pack_path))) {
     findings.push({
@@ -340,9 +350,10 @@ function coverageRepairCommandFindings({ job, events, contextPack }) {
     if (job.context_pack_path && isContextPackCommand(command, job.context_pack_path)) {
       continue;
     }
+    const boundedContextRecordCommand = isBoundedContextRecordCommand({ command, contextPack });
 
     for (const pattern of broadReadPatterns) {
-      if (pattern.matches(command)) {
+      if (pattern.matches(command) && !boundedContextRecordCommand) {
         findings.push({
           type: "broad_command",
           label: pattern.label,
@@ -356,7 +367,7 @@ function coverageRepairCommandFindings({ job, events, contextPack }) {
       event.aggregated_output_chars > policy.max_non_context_output_chars &&
       !isValidationCommand(command) &&
       !(
-        isBoundedContextRecordCommand({ command, contextPack }) &&
+        boundedContextRecordCommand &&
         event.aggregated_output_chars <= policy.max_context_record_output_chars
       )
     ) {

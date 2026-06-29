@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-taxonomy-mapping",
+  "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-followup-3-repair",
+  "review_lane": "taxonomy_mapping",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-taxonomy-mapping",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "The target candidate's proposed coverage assessment preserves the senolytics track and cellular_senescence hallmark mapping while keeping evidence tier, clinical indication, registry status, extraction maturity, and synthesis readiness separate. The taxonomy_mapping lane is complete and has no blocking findings.",
+  "findings": [
+    {
+      "finding_id": "taxonomy-scope-consistent",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The proposed coverage assessment maps to track_id senolytics and hallmark_id cellular_senescence while labeling the record as a coverage_repair assessment rather than a synthesis or efficacy claim.",
+      "why_it_matters": "This keeps the senolytics track as an evidence-organization boundary and avoids turning the track into a pooled intervention-effect stratum.",
+      "recommended_action": "Accept the taxonomy mapping as written and leave poolability decisions to future synthesis_group records.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "evidence-tier-boundaries-retained",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The evidence_categories array separates human interventional, animal healthspan, mechanistic, safety durability, active registry, review landscape, null or limiting, and taxonomy-boundary evidence instead of merging those tiers.",
+      "why_it_matters": "Keeping study tiers distinct prevents animal, mechanistic, registry-only, or pilot human evidence from being recast as generalized human longevity efficacy.",
+      "recommended_action": "No taxonomy repair is required; preserve these evidence-tier boundaries during downstream synthesis or release review.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "gap-taxonomy-remains-operational",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The known_gaps entries distinguish extraction debt, safety-table coverage, registry-surveillance breadth, and review-landscape coverage instead of treating those gaps as intervention effects.",
+      "why_it_matters": "The taxonomy remains suitable for coverage repair and does not imply resolved source fidelity, safety harmonization, or meta-analysis readiness.",
+      "recommended_action": "Accept the lane and keep the listed gaps as operational follow-up items.",
+      "resolution_status": "closed"
+    }
+  ]
+}

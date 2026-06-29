@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-extraction-fidelity",
+  "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-followup-3-repair",
+  "review_lane": "extraction_fidelity",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-extraction-fidelity",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Accepted for extraction_fidelity. The proposed coverage assessment keeps DKD, IPF, and AD-risk claims at metadata-only abstract extraction, preserves source-located D+Q bone registry and full-text safety extraction, and leaves full article/table and supplement extraction debt explicit.",
+  "findings": [
+    {
+      "finding_id": "metadata-only-boundary-preserved",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "The coverage assessment describes DKD, IPF, and AD-risk PubMed EFetch artifacts as metadata-only abstract-level support for sample, dosing, timing, effect, and safety details.",
+      "why_it_matters": "This matches the bounded source support and prevents abstract snapshots from being treated as full-text or table extraction.",
+      "recommended_action": "No revision required for this lane; keep the abstract-only boundary in downstream synthesis readiness checks.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "source-located-dq-bone-details-retained",
+      "severity": "note",
+      "category": "other",
+      "claim_or_issue": "The D+Q bone safety update is limited to registry aggregates, retained full-text adverse-event table rows, and registry/article discontinuation fields.",
+      "why_it_matters": "The proposed assessment ties extracted safety details to retained registry and PMC article locations instead of inventing unsupported harmonized safety outcomes.",
+      "recommended_action": "No revision required for this lane; full-text/table supplement extraction remains a separate open gap.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "extraction-debt-explicit",
+      "severity": "note",
+      "category": "missing_caveat",
+      "claim_or_issue": "Known gaps and next actions state that full article/table extraction remains incomplete for DKD, IPF, AD-risk, and D+Q supplement material.",
+      "why_it_matters": "The candidate does not upgrade triage or abstract-backed material into synthesis-ready exact-effect evidence.",
+      "recommended_action": "No revision required for this lane; retain the extraction debt until full-text or table-row snapshots are ingested and reconciled.",
+      "resolution_status": "closed"
+    }
+  ]
+}

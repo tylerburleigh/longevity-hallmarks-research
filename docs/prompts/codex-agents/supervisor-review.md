@@ -2,6 +2,8 @@ You are a Codex CLI worker running an isolated supervisor-agent review task for 
 
 If the coordinator job declares `context_pack_path`, read that context pack first and treat it as the bounded task contract.
 
+For context-pack jobs, your first shell command must read the declared context pack. Do not run `git status`, inspect schemas, or read any other repository path before reading the context pack.
+
 For context-pack jobs, read only:
 
 - the declared context pack

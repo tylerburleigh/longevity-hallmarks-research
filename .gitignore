@@ -1,21 +1,89 @@
+# Dependencies
 node_modules/
-.DS_Store
+.pnp.*
+.npm/
+.pnpm-store/
+.yarn/*
+!.yarn/patches/
+!.yarn/plugins/
+!.yarn/releases/
+!.yarn/sdks/
+!.yarn/versions/
 
-# Logs
+# Logs and diagnostics
+/logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+lerna-debug.log*
 
 # Local env files
 .env
 .env.*
+!.env.example
+!.env.sample
+!.env.template
 
-# Build and cache output
+# Build, coverage, and cache output
 dist/
 build/
-.cache/
-.next/
+out/
 coverage/
+.nyc_output/
+.cache/
+.parcel-cache/
+.turbo/
+.vite/
+.next/
+*.tsbuildinfo
+.eslintcache
 
+# Temporary and editor swap files
+tmp/
+temp/
+.tmp/
+.temp/
+*.tmp
+*.temp
+*.bak
+*.orig
+*.rej
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100/
+.Trashes/
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Local editor and assistant configuration
+/.idea
+/.vscode
+/.claude
+/.codex
+/.agents
+/.mcp.json
+
+# Local shell/profile files materialized by managed workspaces
+/.bash_profile
+/.bashrc
+/.profile
+/.zprofile
+/.zshrc
+/.gitconfig
+/.gitmodules
+/.ripgreprc
+
+# Local agent/worktree scratch
+/.codex-worktrees/
+/.worktrees/

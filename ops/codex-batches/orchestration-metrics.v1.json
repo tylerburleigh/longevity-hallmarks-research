@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "orchestration_metrics",
   "id": "orchestration-metrics-v1",
-  "generated_at": "2026-06-29T12:42:56.285Z",
+  "generated_at": "2026-06-29T12:45:56.693Z",
   "source_roots": [
     "data",
     "exports/latest",

@@ -22,6 +22,48 @@
         "record_id": "senolytics-coverage-repair-2026-06-21",
         "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
         "role": "scoped_input"
+      },
+      {
+        "record_type": "source_snapshot",
+        "record_id": "snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+        "path": "data/source-snapshots/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "source_snapshot",
+        "record_id": "snapshot-pmid-31542391-pubmed-efetch-2026-06-27",
+        "path": "data/source-snapshots/snapshot-pmid-31542391-pubmed-efetch-2026-06-27.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "source_snapshot",
+        "record_id": "snapshot-pmid-36857968-pubmed-efetch-2026-06-27",
+        "path": "data/source-snapshots/snapshot-pmid-36857968-pubmed-efetch-2026-06-27.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "source_snapshot",
+        "record_id": "snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+        "path": "data/source-snapshots/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "source_snapshot",
+        "record_id": "snapshot-pmid-40010154-pubmed-efetch-2026-06-27",
+        "path": "data/source-snapshots/snapshot-pmid-40010154-pubmed-efetch-2026-06-27.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "text_snapshot",
+        "record_id": "text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+        "path": "data/text-snapshots/text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "text_snapshot",
+        "record_id": "text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+        "path": "data/text-snapshots/text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
+        "role": "scoped_input"
       }
     ],
     "target_records": [

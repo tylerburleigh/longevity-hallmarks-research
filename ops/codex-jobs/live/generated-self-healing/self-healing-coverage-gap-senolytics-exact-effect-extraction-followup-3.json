@@ -61,6 +61,13 @@
     "read_sets": [
       "context_pack:self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-3",
       "path:data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+      "path:data/source-snapshots/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+      "path:data/source-snapshots/snapshot-pmid-31542391-pubmed-efetch-2026-06-27.json",
+      "path:data/source-snapshots/snapshot-pmid-36857968-pubmed-efetch-2026-06-27.json",
+      "path:data/source-snapshots/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
+      "path:data/source-snapshots/snapshot-pmid-40010154-pubmed-efetch-2026-06-27.json",
+      "path:data/text-snapshots/text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+      "path:data/text-snapshots/text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
       "path:ops/triage-state.v1.json",
       "triage_job:coverage-gap-senolytics-exact-effect-extraction-followup-3"
     ],

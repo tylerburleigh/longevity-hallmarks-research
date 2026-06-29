@@ -374,13 +374,41 @@ function scopedRecordReadPaths(recordIndex, scope) {
   return sortStrings(paths);
 }
 
+function provenanceSnapshotReadPaths(recordIndex, recordPaths) {
+  const paths = [];
+
+  for (const recordPath of recordPaths) {
+    const record = recordIndex.byPath.get(recordPath);
+    for (const locator of record?.provenance ?? []) {
+      const sourceSnapshotPath = getRecordPath(recordIndex, "source_snapshot", locator.source_snapshot_id);
+      if (sourceSnapshotPath) {
+        paths.push(sourceSnapshotPath);
+      }
+
+      const textSnapshotPath = getRecordPath(recordIndex, "text_snapshot", locator.text_snapshot_id);
+      if (textSnapshotPath) {
+        paths.push(textSnapshotPath);
+      }
+    }
+  }
+
+  return sortStrings(paths);
+}
+
 function buildReadSets(recordIndex, recommendedJob, { contextPackId, scope } = {}) {
+  const inputPaths = recommendedJob.inputs ?? [];
+  const scopedPaths = scopedRecordReadPaths(recordIndex, scope);
+  const snapshotPaths = recommendedJob.job_type === "extraction_refresh"
+    ? provenanceSnapshotReadPaths(recordIndex, [...inputPaths, ...scopedPaths])
+    : [];
+
   return sortStrings([
     `path:${triageStatePath}`,
     `triage_job:${sourceJobId(recommendedJob)}`,
     ...(contextPackId ? [`context_pack:${contextPackId}`] : []),
-    ...((recommendedJob.inputs ?? []).map((inputPath) => `path:${inputPath}`)),
-    ...scopedRecordReadPaths(recordIndex, scope).map((recordPath) => `path:${recordPath}`)
+    ...inputPaths.map((inputPath) => `path:${inputPath}`),
+    ...scopedPaths.map((recordPath) => `path:${recordPath}`),
+    ...snapshotPaths.map((recordPath) => `path:${recordPath}`)
   ]);
 }
 

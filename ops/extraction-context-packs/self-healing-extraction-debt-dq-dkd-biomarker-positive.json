@@ -45,6 +45,12 @@
         "role": "scoped_input"
       },
       {
+        "record_type": "source_snapshot",
+        "record_id": "snapshot-pmid-31542391-pubmed-efetch-2026-06-27",
+        "path": "data/source-snapshots/snapshot-pmid-31542391-pubmed-efetch-2026-06-27.json",
+        "role": "scoped_input"
+      },
+      {
         "record_type": "source",
         "record_id": "pmid-31542391",
         "path": "data/sources/pmid-31542391.json",

@@ -77,6 +77,7 @@
       "context_pack:self-healing-extraction-debt-dq-ad-risk-serious-adverse-events-none",
       "path:data/outcomes/dq-ad-risk-safety-tolerability.json",
       "path:data/results/dq-ad-risk-serious-adverse-events-none.json",
+      "path:data/source-snapshots/snapshot-pmid-40010154-pubmed-efetch-2026-06-27.json",
       "path:data/sources/pmid-40010154.json",
       "path:data/studies/dq-ad-risk-cognition-mobility-pilot.json",
       "path:ops/triage-state.v1.json",

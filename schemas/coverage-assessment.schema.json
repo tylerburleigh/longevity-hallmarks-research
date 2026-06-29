@@ -162,6 +162,9 @@
           },
           "suggested_action": {
             "type": "string"
+          },
+          "next_recommended_mode": {
+            "$ref": "./common.schema.json#/$defs/researchMode"
           }
         }
       }

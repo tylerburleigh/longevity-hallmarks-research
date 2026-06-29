@@ -473,7 +473,7 @@ function buildCoverageGaps(coverageEntries) {
         priority: gap.priority,
         description: gap.description,
         suggested_action: gap.suggested_action,
-        next_recommended_mode: assessment.next_recommended_mode
+        next_recommended_mode: gap.next_recommended_mode ?? assessment.next_recommended_mode
       });
     }
   }

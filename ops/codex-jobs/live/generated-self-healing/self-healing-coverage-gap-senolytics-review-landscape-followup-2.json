@@ -5,14 +5,13 @@
   "name": "Self-healing repair: coverage-gap-senolytics-review-landscape-followup-2",
   "summary": "No recent systematic-review or meta-analysis source has been screened into the knowledge base. This bounded batch did not close the gap because the job supplied no source row or context pack and PubMed/NLM retrieval was unavailable from the worker environment. Suggested action: Run a bounded search/screening job for recent systematic reviews, meta-analyses, and trial-landscape reviews; create or refresh PubMed source snapshots before upgrading any review source beyond screened or triage-summary maturity.",
   "lifecycle_status": "ready",
-  "agent_role": "extraction_agent",
-  "mode": "extraction_refresh",
-  "prompt_file": "docs/prompts/codex-agents/extraction-refresh.md",
-  "context_pack_path": "ops/extraction-context-packs/self-healing-coverage-gap-senolytics-review-landscape-followup-2.json",
+  "agent_role": "self_healing_agent",
+  "mode": "coverage_repair",
+  "prompt_file": "docs/prompts/codex-agents/self-healing-repair.md",
   "output_path": "research/agent-runs/self-healing-coverage-gap-senolytics-review-landscape-followup-2.json",
   "jsonl_log_path": "research/agent-runs/logs/self-healing-coverage-gap-senolytics-review-landscape-followup-2.jsonl",
   "scope": {
-    "question": "extraction_refresh: No recent systematic-review or meta-analysis source has been screened into the knowledge base. This bounded batch did not close the gap because the job supplied no source row or context pack and PubMed/NLM retrieval was unavailable from the worker environment. Suggested action: Run a bounded search/screening job for recent systematic reviews, meta-analyses, and trial-landscape reviews; create or refresh PubMed source snapshots before upgrading any review source beyond screened or triage-summary maturity.",
+    "question": "coverage_repair: No recent systematic-review or meta-analysis source has been screened into the knowledge base. This bounded batch did not close the gap because the job supplied no source row or context pack and PubMed/NLM retrieval was unavailable from the worker environment. Suggested action: Run a bounded search/screening job for recent systematic reviews, meta-analyses, and trial-landscape reviews; create or refresh PubMed source snapshots before upgrading any review source beyond screened or triage-summary maturity.",
     "hallmark_ids": [
       "cellular_senescence"
     ],
@@ -33,40 +32,13 @@
     "canonical_write_policy": "candidate_change_required",
     "candidate_change_id": "coverage-gap-senolytics-review-landscape-followup-2-repair",
     "required_review_lanes": [
-      "extraction_fidelity",
       "synthesis_boundary",
       "taxonomy_mapping"
-    ],
-    "proposed_record_paths": [
-      "data/candidate-changes/coverage-gap-senolytics-review-landscape-followup-2-repair.json",
-      "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json"
-    ],
-    "generated_file_paths": [
-      "data/candidate-changes/coverage-gap-senolytics-review-landscape-followup-2-repair.json",
-      "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json"
-    ],
-    "export_paths": [
-      "exports/latest/audit-manifest.json",
-      "exports/latest/coverage-status.json",
-      "exports/latest/evidence-map.json",
-      "exports/latest/read-model.sqlite",
-      "ops/release-readiness.v1.json",
-      "ops/reconciliation/parallel-reconciliation.v1.json",
-      "ops/triage-state.v1.json",
-      "ops/codex-batches/orchestration-metrics.v1.json"
     ]
   },
   "orchestration": {
     "read_sets": [
-      "context_pack:self-healing-coverage-gap-senolytics-review-landscape-followup-2",
       "path:data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
-      "path:data/source-snapshots/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
-      "path:data/source-snapshots/snapshot-pmid-31542391-pubmed-efetch-2026-06-27.json",
-      "path:data/source-snapshots/snapshot-pmid-36857968-pubmed-efetch-2026-06-27.json",
-      "path:data/source-snapshots/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
-      "path:data/source-snapshots/snapshot-pmid-40010154-pubmed-efetch-2026-06-27.json",
-      "path:data/text-snapshots/text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
-      "path:data/text-snapshots/text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
       "path:ops/triage-state.v1.json",
       "triage_job:coverage-gap-senolytics-review-landscape-followup-2"
     ],
@@ -81,7 +53,7 @@
       "target_record:coverage_assessment/senolytics-coverage-repair-2026-06-21",
       "triage_job:coverage-gap-senolytics-review-landscape-followup-2"
     ],
-    "parallel_group": "extraction-refresh",
+    "parallel_group": "coverage-repair",
     "reconciliation_required": true,
     "expected_cost": {
       "cost_class": "high",

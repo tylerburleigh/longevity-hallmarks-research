@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "triage_state",
   "id": "triage-state-v1",
-  "generated_at": "2026-06-29T16:41:11.765Z",
+  "generated_at": "2026-06-29T17:23:27.683Z",
   "source_roots": [
     "data",
     "research"
@@ -1991,7 +1991,7 @@
       "priority": "medium",
       "description": "Only two active no-results registry records are present. The prior coverage-repair session also deferred fisetin frailty registry candidates NCT03430037 and NCT03675724, but this batch could not fetch ClinicalTrials.gov source snapshots for those registries, so broader current fisetin and D+Q trial surveillance remains incomplete.",
       "suggested_action": "Run a source-snapshot-backed ClinicalTrials.gov surveillance pass for NCT03430037, NCT03675724, senolytics, D+Q, fisetin, and senescence-targeting terms; add no-results status records only when fetched registry snapshots support them.",
-      "next_recommended_mode": "extraction_refresh"
+      "next_recommended_mode": "coverage_repair"
     },
     {
       "coverage_assessment_id": "senolytics-coverage-repair-2026-06-21",
@@ -2002,7 +2002,7 @@
       "priority": "medium",
       "description": "No recent systematic-review or meta-analysis source has been screened into the knowledge base. This bounded batch did not close the gap because the job supplied no source row or context pack and PubMed/NLM retrieval was unavailable from the worker environment.",
       "suggested_action": "Run a bounded search/screening job for recent systematic reviews, meta-analyses, and trial-landscape reviews; create or refresh PubMed source snapshots before upgrading any review source beyond screened or triage-summary maturity.",
-      "next_recommended_mode": "extraction_refresh"
+      "next_recommended_mode": "coverage_repair"
     }
   ],
   "extraction_debt": [
@@ -2671,7 +2671,7 @@
     },
     {
       "job_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-2",
-      "job_type": "extraction_refresh",
+      "job_type": "coverage_repair",
       "priority": "medium",
       "source": "coverage_gap",
       "target_record_type": "coverage_assessment",
@@ -2686,7 +2686,7 @@
     },
     {
       "job_id": "coverage-gap-senolytics-review-landscape-followup-2",
-      "job_type": "extraction_refresh",
+      "job_type": "coverage_repair",
       "priority": "medium",
       "source": "coverage_gap",
       "target_record_type": "coverage_assessment",

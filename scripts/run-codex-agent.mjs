@@ -953,6 +953,8 @@ async function runPostSteps(options) {
     await appendOutputQualityCheck(options, orchestrationMetricsEvent);
     const exportEvent = await runCoordinatorCommand(options, "post_export", "npm", ["run", "export:latest"]);
     await appendOutputQualityCheck(options, exportEvent);
+    const readModelEvent = await runCoordinatorCommand(options, "post_read_model_export", "npm", ["run", "export:read-model"]);
+    await appendOutputQualityCheck(options, readModelEvent);
     await runCoordinatorCommand(options, "post_export_refresh", "npm", ["run", "export:latest"]);
   }
   if (options.postVerify) {
@@ -965,6 +967,7 @@ async function runPostSteps(options) {
       await appendOutputQualityCheck(options, jobAuditEvent);
     }
     if (options.postExport) {
+      await runCoordinatorCommand(options, "post_verify_read_model_export_refresh", "npm", ["run", "export:read-model"]);
       await runCoordinatorCommand(options, "post_verify_export_refresh", "npm", ["run", "export:latest"]);
     }
   }

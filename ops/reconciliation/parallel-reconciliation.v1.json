@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "parallel_reconciliation",
   "id": "parallel-reconciliation-v1",
-  "generated_at": "2026-06-29T19:29:52.606Z",
+  "generated_at": "2026-06-29T20:23:59.669Z",
   "source_roots": [
     "data",
     "research",
@@ -49,13 +49,13 @@
     "duplicate_source_group_count": 0,
     "study_count": 9,
     "duplicate_study_group_count": 0,
-    "candidate_count": 76,
-    "active_candidate_count": 54,
+    "candidate_count": 77,
+    "active_candidate_count": 55,
     "overlapping_candidate_group_count": 0,
     "source_rights_count": 2,
     "source_rights_conflict_count": 0,
-    "agent_run_count": 87,
-    "parallel_batch_count": 8,
+    "agent_run_count": 88,
+    "parallel_batch_count": 9,
     "reconciliation_batch_count": 8,
     "parallel_batch_run_count": 26,
     "pending_parallel_worker_count": 0,
@@ -67,7 +67,22 @@
   },
   "parallel_batches": [
     {
-      "batch_id": "parallel-batch-001-coverage-repair",
+      "batch_id": "parallel-batch-001-candidate-review",
+      "parallel_group": "candidate-review",
+      "execution_class": "independent",
+      "reconciliation_required": false,
+      "job_ids": [
+        "self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-extraction-fidelity",
+        "self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-safety-limitations",
+        "self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-synthesis-boundary",
+        "self-healing-candidate-review-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-taxonomy-mapping"
+      ],
+      "overlapping_execution_keys": [],
+      "status": "no_reconciliation_needed",
+      "finding_ids": []
+    },
+    {
+      "batch_id": "parallel-batch-002-coverage-repair",
       "parallel_group": "coverage-repair",
       "execution_class": "independent",
       "reconciliation_required": true,
@@ -79,27 +94,12 @@
       "finding_ids": []
     },
     {
-      "batch_id": "parallel-batch-002-coverage-repair",
+      "batch_id": "parallel-batch-003-coverage-repair",
       "parallel_group": "coverage-repair",
       "execution_class": "independent",
       "reconciliation_required": true,
       "job_ids": [
         "self-healing-coverage-gap-senolytics-review-landscape-followup-2"
-      ],
-      "overlapping_execution_keys": [],
-      "status": "reconciliation_pending",
-      "finding_ids": []
-    },
-    {
-      "batch_id": "parallel-batch-003-extraction-refresh",
-      "parallel_group": "extraction-refresh",
-      "execution_class": "independent",
-      "reconciliation_required": true,
-      "job_ids": [
-        "self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-3",
-        "self-healing-extraction-debt-dq-ad-risk-cognition-mobility-mixed",
-        "self-healing-extraction-debt-dq-ad-risk-serious-adverse-events-none",
-        "self-healing-extraction-debt-dq-bone-bmd-20wk-inconclusive"
       ],
       "overlapping_execution_keys": [],
       "status": "reconciliation_pending",
@@ -112,9 +112,9 @@
       "reconciliation_required": true,
       "job_ids": [
         "self-healing-coverage-gap-senolytics-safety-tables-followup-3",
-        "self-healing-extraction-debt-dq-bone-ctx-20wk-null",
-        "self-healing-extraction-debt-dq-bone-p16-t3-ctx-2wk-positive",
-        "self-healing-extraction-debt-dq-bone-turnover-mixed"
+        "self-healing-extraction-debt-dq-ad-risk-cognition-mobility-mixed",
+        "self-healing-extraction-debt-dq-ad-risk-serious-adverse-events-none",
+        "self-healing-extraction-debt-dq-bone-bmd-20wk-inconclusive"
       ],
       "overlapping_execution_keys": [],
       "status": "reconciliation_pending",
@@ -126,10 +126,10 @@
       "execution_class": "independent",
       "reconciliation_required": true,
       "job_ids": [
-        "self-healing-extraction-debt-dq-bone-p16-t3-ctx-4wk-inconclusive",
-        "self-healing-extraction-debt-dq-bone-p1np-20wk-null",
-        "self-healing-extraction-debt-dq-dkd-adverse-events-abstract-not-reported",
-        "self-healing-extraction-debt-dq-dkd-biomarker-positive"
+        "self-healing-extraction-debt-dq-bone-ctx-20wk-null",
+        "self-healing-extraction-debt-dq-bone-p16-t3-ctx-2wk-positive",
+        "self-healing-extraction-debt-dq-bone-turnover-mixed",
+        "self-healing-extraction-debt-dq-dkd-adverse-events-abstract-not-reported"
       ],
       "overlapping_execution_keys": [],
       "status": "reconciliation_pending",
@@ -141,10 +141,10 @@
       "execution_class": "independent",
       "reconciliation_required": true,
       "job_ids": [
-        "self-healing-extraction-debt-dq-bone-p16-t3-p1np-2wk-positive",
-        "self-healing-extraction-debt-dq-bone-p1np-2wk-positive",
-        "self-healing-extraction-debt-dq-ipf-dosing-completion-mixed",
-        "self-healing-extraction-debt-dq-ipf-tolerability-mixed"
+        "self-healing-extraction-debt-dq-bone-p16-t3-ctx-4wk-inconclusive",
+        "self-healing-extraction-debt-dq-bone-p1np-20wk-null",
+        "self-healing-extraction-debt-dq-dkd-biomarker-positive",
+        "self-healing-extraction-debt-dq-ipf-dosing-completion-mixed"
       ],
       "overlapping_execution_keys": [],
       "status": "reconciliation_pending",
@@ -156,8 +156,9 @@
       "execution_class": "independent",
       "reconciliation_required": true,
       "job_ids": [
-        "self-healing-extraction-debt-dq-bone-p16-t3-p1np-4wk-inconclusive",
-        "self-healing-extraction-debt-dq-bone-p1np-4wk-positive",
+        "self-healing-extraction-debt-dq-bone-p16-t3-p1np-2wk-positive",
+        "self-healing-extraction-debt-dq-bone-p1np-2wk-positive",
+        "self-healing-extraction-debt-dq-ipf-tolerability-mixed",
         "self-healing-extraction-debt-dq-old-mouse-survival-positive"
       ],
       "overlapping_execution_keys": [],
@@ -166,6 +167,19 @@
     },
     {
       "batch_id": "parallel-batch-008-extraction-refresh",
+      "parallel_group": "extraction-refresh",
+      "execution_class": "independent",
+      "reconciliation_required": true,
+      "job_ids": [
+        "self-healing-extraction-debt-dq-bone-p16-t3-p1np-4wk-inconclusive",
+        "self-healing-extraction-debt-dq-bone-p1np-4wk-positive"
+      ],
+      "overlapping_execution_keys": [],
+      "status": "reconciliation_pending",
+      "finding_ids": []
+    },
+    {
+      "batch_id": "parallel-batch-009-extraction-refresh",
       "parallel_group": "extraction-refresh",
       "execution_class": "independent",
       "reconciliation_required": true,

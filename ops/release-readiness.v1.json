@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "release_readiness",
   "id": "release-readiness-v1",
-  "generated_at": "2026-06-29T19:29:52.879Z",
+  "generated_at": "2026-06-29T20:23:59.945Z",
   "source_roots": [
     "data",
     "research"
@@ -17,8 +17,8 @@
     "canonical_source_of_truth": "data/ and research/ JSON records"
   },
   "summary": {
-    "candidate_count": 76,
-    "not_ready_candidate_count": 57,
+    "candidate_count": 77,
+    "not_ready_candidate_count": 58,
     "promotion_ready_candidate_count": 0,
     "release_ready_candidate_count": 19,
     "partial_release_ready_candidate_count": 0,
@@ -1132,6 +1132,28 @@
       "blocked_record_ids": [],
       "next_actions": [
         "Included in accepted-record export."
+      ]
+    },
+    {
+      "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-followup-3-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-3-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "needs_review",
+      "release_status": "not_ready",
+      "required_review_lanes": [
+        "extraction_fidelity",
+        "safety_limitations",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "active_review_ids": [],
+      "proposed_record_count": 2,
+      "release_ready_record_count": 0,
+      "blocked_record_count": 0,
+      "release_ready_record_ids": [],
+      "blocked_record_ids": [],
+      "next_actions": [
+        "Run supervisor review lanes: extraction_fidelity, safety_limitations, synthesis_boundary, taxonomy_mapping."
       ]
     },
     {

@@ -1,8 +1,17 @@
 You are a Codex CLI worker running an isolated extraction-refresh task for the longevity hallmarks evidence repository.
 
-Read:
+If the coordinator job declares `context_pack_path`, read that context pack first and treat it as the bounded task contract.
 
-- The `context_pack_path` declared in the `codex_job`, when present. Read it before broader repository discovery and use it as the primary source of scoped source rows, target records, schema slices, exemplars, and verification commands.
+For context-pack jobs, read only:
+
+- the declared context pack
+- the schema files named by the context pack or coordinator metadata
+- the source snapshots, text snapshots, target records, and exemplar records named by the context pack
+
+Read `plan.md`, broad runbooks, repo-local skills, or broad repository indexes only when the context pack is absent, conflicts with a required schema, or validation exposes a concrete inconsistency that cannot be resolved from the pack and named records.
+
+For jobs without `context_pack_path`, read:
+
 - plan.md
 - docs/research-runbook.md
 - docs/agent-run-outputs.md

@@ -1,0 +1,232 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-3",
+  "agent_role": "extraction_agent",
+  "agent_id": "codex-cli-worker",
+  "mode": "extraction_refresh",
+  "started_at": "2026-06-29T20:16:32Z",
+  "completed_at": "2026-06-29T20:21:53Z",
+  "status": "partial",
+  "scope": {
+    "question": "extraction_refresh: DKD, IPF, and AD-risk human studies now have retained PubMed source snapshots supporting abstract-level sample, dosing, timepoint, effect, and safety details, and the legacy IPF generic feasibility/tolerability extraction has been reconciled to the N=12 randomized pilot. Full article/table extraction for DKD, IPF, AD-risk, and D+Q bone supplements remains incomplete. Suggested action: Retain or ingest full-text/table source snapshots for DKD, IPF, AD-risk, and D+Q bone supplements, then reconcile abstract-level extraction against article tables before formal synthesis.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "codex_exec",
+    "isolation": "git_worktree",
+    "workspace_path": "/tmp/lhr-codex-worktrees/self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-3-20260629T201632z",
+    "prompt_file": "research/agent-runs/prompts/self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-3.md",
+    "prompt_template_file": "docs/prompts/codex-agents/extraction-refresh.md",
+    "job_file": "ops/codex-jobs/archive/self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-3.json",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "output_path": "research/agent-runs/self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-3.json",
+    "jsonl_log_path": "research/agent-runs/logs/self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-3.jsonl",
+    "sandbox": "workspace-write",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "user_request",
+      "reference": "coordinator_job:self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-3",
+      "summary": "Coordinator job metadata and bounded extraction-refresh instructions."
+    },
+    {
+      "input_type": "other",
+      "reference": "ops/extraction-context-packs/self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-3.json",
+      "summary": "Context pack read first and used as the bounded task contract."
+    },
+    {
+      "input_type": "other",
+      "reference": "schemas/agent-run.codex-output.schema.json; schemas/agent-run.schema.json; schemas/candidate-change.schema.json; schemas/result.schema.json; schemas/outcome.schema.json; schemas/study.schema.json; schemas/source.schema.json",
+      "summary": "Schema context named by the context pack."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+      "summary": "Target coverage assessment updated to preserve metadata-only PubMed limits and exact abstract-level extraction notes."
+    },
+    {
+      "input_type": "candidate_change",
+      "reference": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-3-repair.json",
+      "summary": "Repair candidate ledger with required review lanes and proposed records."
+    },
+    {
+      "input_type": "source_snapshot",
+      "reference": "data/source-snapshots/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+      "summary": "ClinicalTrials.gov public registry source snapshot for the D+Q bone RCT."
+    },
+    {
+      "input_type": "source_snapshot",
+      "reference": "data/source-snapshots/snapshot-pmid-31542391-pubmed-efetch-2026-06-27.json",
+      "summary": "Metadata-only PubMed EFetch snapshot for the DKD D+Q pilot."
+    },
+    {
+      "input_type": "source_snapshot",
+      "reference": "data/source-snapshots/snapshot-pmid-36857968-pubmed-efetch-2026-06-27.json",
+      "summary": "Metadata-only PubMed EFetch snapshot for the randomized IPF pilot."
+    },
+    {
+      "input_type": "source_snapshot",
+      "reference": "data/source-snapshots/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
+      "summary": "Retained PMC author-manuscript source snapshot for the D+Q bone RCT."
+    },
+    {
+      "input_type": "source_snapshot",
+      "reference": "data/source-snapshots/snapshot-pmid-40010154-pubmed-efetch-2026-06-27.json",
+      "summary": "Metadata-only PubMed EFetch snapshot for the AD-risk pilot."
+    },
+    {
+      "input_type": "text_snapshot",
+      "reference": "data/text-snapshots/text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+      "summary": "Normalized registry text snapshot and section index for NCT04313634."
+    },
+    {
+      "input_type": "text_snapshot",
+      "reference": "data/text-snapshots/text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
+      "summary": "Normalized PMC author-manuscript text snapshot and section index for PMID 38956196."
+    },
+    {
+      "input_type": "other",
+      "reference": "artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/registry.md",
+      "summary": "Scoped registry sections reviewed for arms, outcomes, and adverse-event aggregates."
+    },
+    {
+      "input_type": "other",
+      "reference": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+      "summary": "Scoped article sections reviewed for D+Q dosing, safety, adverse-event table rows, and supplement-link limitations."
+    }
+  ],
+  "outputs": {
+    "summary": "Created or retained the repair candidate and updated the senolytics coverage assessment. The assessment now distinguishes metadata-only PubMed EFetch abstract extraction for DKD, IPF, and AD-risk from retained registry/PMC full-text support for D+Q bone, and keeps full article/table and supplement extraction debt open. No evidence_review lane records were created because the candidate lifecycle_status is submitted, not in_review.",
+    "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-followup-3-repair",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "coverage-gap-senolytics-exact-effect-extraction-followup-3-repair",
+        "path": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-3-repair.json",
+        "change_type": "create",
+        "rationale": "Tracks this bounded extraction-refresh repair candidate and its required review lanes."
+      },
+      {
+        "record_type": "coverage_assessment",
+        "record_id": "senolytics-coverage-repair-2026-06-21",
+        "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+        "change_type": "update",
+        "rationale": "Clarifies that the DKD, IPF, and AD-risk PubMed EFetch snapshots are metadata-only abstract sources, preserves the D+Q retained registry/PMC article support, and keeps full article/table and supplement extraction debt explicit."
+      }
+    ],
+    "generated_files": [
+      "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-3-repair.json",
+      "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json"
+    ],
+    "export_paths": [
+      "exports/latest/audit-manifest.json",
+      "exports/latest/coverage-status.json",
+      "exports/latest/evidence-map.json",
+      "exports/latest/read-model.sqlite",
+      "ops/release-readiness.v1.json",
+      "ops/reconciliation/parallel-reconciliation.v1.json",
+      "ops/triage-state.v1.json",
+      "ops/codex-batches/orchestration-metrics.v1.json"
+    ]
+  },
+  "quality_checks": [
+    {
+      "check_name": "context_pack_contract",
+      "status": "passed",
+      "summary": "Read the context pack first and kept inspection bounded to named schemas, target records, source snapshots, text snapshots, and scoped artifacts."
+    },
+    {
+      "check_name": "source_availability_review",
+      "status": "passed",
+      "summary": "Confirmed DKD, IPF, and AD-risk PubMed snapshots are metadata-only; NCT04313634 registry and PMID 38956196 PMC author-manuscript artifacts are retained; the D+Q bone supplement PDF is linked but not normalized into retained tables."
+    },
+    {
+      "check_name": "candidate_change_ledger",
+      "status": "passed",
+      "summary": "Candidate proposed_records lists the candidate_change create and coverage_assessment update; required_review_lanes exactly match extraction_fidelity, safety_limitations, synthesis_boundary, and taxonomy_mapping."
+    },
+    {
+      "check_name": "validate_records",
+      "status": "passed",
+      "summary": "npm run validate:records completed successfully and validated 568 JSON file(s)."
+    },
+    {
+      "check_name": "audit_references",
+      "status": "passed",
+      "summary": "npm run audit:references completed successfully for 366 record file(s)."
+    },
+    {
+      "check_name": "audit_agent_schemas",
+      "status": "passed",
+      "summary": "npm run audit:agent-schemas completed successfully."
+    },
+    {
+      "check_name": "audit_agentic_process",
+      "status": "passed",
+      "summary": "npm run audit:agentic-process completed successfully for 591 file(s)."
+    },
+    {
+      "check_name": "deferred_generated_state_refresh",
+      "status": "not_run",
+      "summary": "export:latest and verify:knowledge-base are assigned to coordinator_post_run in the context pack and were not run inside this worker."
+    },
+    {
+      "check_name": "worker_output_contract",
+      "status": "passed",
+      "summary": "Worker emitted exactly one final JSON agent_run message, matched output_path, and avoided ad hoc schema-validation snippets."
+    },
+    {
+      "check_name": "post_triage_state_export",
+      "status": "passed",
+      "summary": "post_triage_state_export exited 0: > longevity-hallmarks-research@0.1.0 export:triage-state > node scripts/export-triage-state.mjs Wrote ops/triage-state.v1.json."
+    },
+    {
+      "check_name": "post_release_readiness_export",
+      "status": "passed",
+      "summary": "post_release_readiness_export exited 0: > longevity-hallmarks-research@0.1.0 export:release-readiness > node scripts/export-release-readiness.mjs Wrote ops/release-readiness.v1.json."
+    },
+    {
+      "check_name": "post_reconciliation_export",
+      "status": "passed",
+      "summary": "post_reconciliation_export exited 0: > longevity-hallmarks-research@0.1.0 reconcile:parallel > node scripts/reconcile-parallel-outputs.mjs Wrote ops/reconciliation/parallel-reconciliation.v1.json."
+    },
+    {
+      "check_name": "post_orchestration_metrics_export",
+      "status": "passed",
+      "summary": "post_orchestration_metrics_export exited 0: > longevity-hallmarks-research@0.1.0 metrics:orchestration > node scripts/export-orchestration-metrics.mjs Wrote ops/codex-batches/orchestration-metrics.v1.json."
+    },
+    {
+      "check_name": "post_export",
+      "status": "passed",
+      "summary": "post_export exited 0: > longevity-hallmarks-research@0.1.0 export:latest > node scripts/export-latest.mjs Wrote 16 export file(s) to exports/latest."
+    },
+    {
+      "check_name": "post_read_model_export",
+      "status": "passed",
+      "summary": "post_read_model_export exited 0: > longevity-hallmarks-research@0.1.0 export:read-model > node scripts/export-read-model.mjs Wrote exports/latest/read-model.sqlite."
+    },
+    {
+      "check_name": "post_verify",
+      "status": "passed",
+      "summary": "post_verify exited 0: > longevity-hallmarks-research@0.1.0 audit:orchestration-smoke-contract > node scripts/audit-orchestration-smoke-contract.mjs Orchestration smoke contract audit passed for orchestration-smoke-budgeted-codex-worktree-2026-06-23. > longevity-hallmarks-research@0.1.0 audit:agentic-process > node scripts/audit-agentic-process.mjs Agentic process audit passed for 591 file(s)."
+    }
+  ],
+  "blocking_issues": [
+    "PMID 31542391, PMID 36857968, and PMID 40010154 are retained only as metadata-only PubMed EFetch snapshots, so DKD, IPF, and AD-risk cannot be upgraded beyond abstract-level extraction or reconciled against article tables in this bounded pass.",
+    "The retained PMID 38956196 PMC article identifies a supplement PDF link, but supplement tables are not retained as normalized source artifacts, so D+Q bone supplement extraction remains incomplete."
+  ],
+  "next_actions": [
+    "Retain or ingest full-text/table source snapshots for DKD, IPF, and AD-risk, then reconcile abstract-level extraction against article tables before formal synthesis.",
+    "Retain and normalize D+Q bone supplement tables before extracting supplement safety or efficacy details.",
+    "Let coordinator post-run regenerate exports and run verify:knowledge-base after writing this agent_run output."
+  ]
+}

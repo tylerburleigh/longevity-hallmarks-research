@@ -243,6 +243,14 @@ function recordKey(recordType, recordId) {
 function sortRows(rows, fields) {
   return rows.toSorted((left, right) => {
     for (const field of fields) {
+      if (typeof left[field] === "number" && typeof right[field] === "number") {
+        const comparison = left[field] - right[field];
+        if (comparison !== 0) {
+          return comparison;
+        }
+        continue;
+      }
+
       const comparison = String(left[field] ?? "").localeCompare(String(right[field] ?? ""));
       if (comparison !== 0) {
         return comparison;

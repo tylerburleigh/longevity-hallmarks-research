@@ -8,7 +8,8 @@ description: Validate, maintain, and audit the longevity hallmarks evidence know
 ## Workflow
 
 1. Work from the repository root.
-2. Read `plan.md`, `docs/audit-and-release.md`, and relevant schemas.
+2. When running as the interactive coordinator, read `AGENTS.md`, then read
+   `plan.md`, `docs/audit-and-release.md`, and relevant schemas.
 3. Run the baseline verification command:
 
 ```bash
@@ -49,7 +50,7 @@ find data research taxonomies schemas -name '*.json' | sort
 rg -n '"record_type"|"source_id"|"source_ids"|"study_id"|"finding_ids"|"track_ids"|"hallmark_ids"' data research taxonomies
 ```
 
-Prefer adding or tightening scripts when the same audit would otherwise be repeated through ad hoc agent checks.
+Prefer adding or tightening scripts when the same audit would otherwise be repeated through one-off agent checks.
 
 ## Maintenance Rules
 

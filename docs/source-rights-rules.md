@@ -36,7 +36,16 @@ Retained raw payloads, normalized markdown, and section indexes are allowed only
 - the source has an active `source_rights` record with the same retained artifact class in `allowed_artifact_classes`;
 - the retained artifact is represented by a `text_snapshot` with a SHA-256 hash.
 
-For `metadata_only`, `read_only_access`, `blocked`, or `unknown`, retain only metadata summaries, content hashes, provenance locators, and structured extraction records.
+For `metadata_only` and `read_only_access`, retain only metadata summaries,
+content hashes, provenance locators, and structured extraction records allowed by
+the source-access policy.
+
+For `unknown`, resolve access before retaining raw text, normalized markdown, or
+full-text-derived extraction-grade records.
+
+For `blocked`, do not create new extraction records from the blocked content.
+Preserve only the minimal identifiers, hashes, provenance locators, and
+remediation records needed to audit and repair existing state.
 
 ## Public Export Rules
 
@@ -54,7 +63,7 @@ If an agent detects a rights conflict or receives a source-removal notice:
 - remove retained artifacts from public exports;
 - preserve hashes, source identifiers, and provenance locators when allowed;
 - create a scoped repair candidate for affected `text_snapshot`, `result`, `finding`, and synthesis records;
-- regenerate exports and run `npm run verify:knowledge-base`.
+- run the standard generated-state closeout from `docs/audit-and-release.md`.
 
 ## Agent Rules
 

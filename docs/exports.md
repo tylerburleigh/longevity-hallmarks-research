@@ -2,12 +2,12 @@
 
 `exports/latest/` is the first consumer-facing contract for downstream apps, notebooks, audits, and reports.
 
-Regenerate it from canonical records:
+After canonical changes, use the standard generated-state closeout from
+`docs/audit-and-release.md`. To regenerate only the consumer exports from
+already-current canonical and operational state:
 
 ```bash
 npm run export:latest
-npm run export:triage-state
-npm run export:release-readiness
 ```
 
 Validate after generation:

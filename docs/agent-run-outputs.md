@@ -63,7 +63,9 @@ Use `change_type: "release_accept"` when a narrow reviewed candidate accepts an 
 
 ## Promotion Flow
 
-Use the promotion command only after supervisor-agent review lanes are complete:
+Use the promotion command only after supervisor-agent review lanes are complete.
+This is a coordinator action; workers should report readiness or blockers, not
+promote:
 
 ```bash
 npm run promote:candidate -- <candidate_change_id> --status accepted
@@ -78,10 +80,13 @@ The command refuses promotion unless:
 - no active review has an open major or critical finding
 - every proposed record path exists and matches its declared type and ID
 
-After promotion:
+After promotion, run the standard generated-state closeout:
 
 ```bash
-npm run export:latest
 npm run export:triage-state
+npm run export:release-readiness
+npm run reconcile:parallel
+npm run metrics:orchestration
+npm run export:latest
 npm run verify:knowledge-base
 ```

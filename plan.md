@@ -1,5 +1,10 @@
 # Living Evidence Synthesis Development Plan
 
+Status note: this is a living development plan and historical changelog. Use
+`README.md` and `AGENTS.md` for startup orientation, use `docs/` for current
+operating runbooks, and treat the phase/checklist sections below as roadmap plus
+implementation history rather than a complete real-time queue.
+
 ## Purpose
 
 Build a maintainable, expandable, auditable research system for the hallmarks of aging.
@@ -73,7 +78,8 @@ This project should extract and harden the research substrate, while leaving beh
 
 ## Current Implementation State
 
-As of 2026-06-22, the repository has an initial JSON-file-backed scaffold:
+As of 2026-06-29, the repository has a JSON-file-backed evidence store and an
+audited Codex-based research-control plane:
 
 - Node package setup with AJV validation.
 - `npm run validate:records`.
@@ -85,7 +91,7 @@ As of 2026-06-22, the repository has an initial JSON-file-backed scaffold:
 - Added a stricter track taxonomy schema with `primary_axis`, `definition`, `inclusion_criteria`, `exclusion_criteria`, `boundary_notes`, `rationale_source_ids`, and `lifecycle_status`.
 - Added a provisional `senolytics` track as the first work scope.
 - Added a minimal senolytics vertical slice with one source, one study, one finding, one research session, one coverage assessment, one candidate change, and one evidence review.
-- Added repo-local Codex skill sources under `codex-skills/` for bounded research runs, evidence extraction, and knowledge-base auditing.
+- Added repo-local Codex skill sources under `codex-skills/` for bounded research runs, evidence extraction, and knowledge-base auditing; these are coordinator guidance, while spawned workers are governed by job specs, prompts, schemas, and context packs.
 - Added a senolytics coverage-repair slice across preclinical, human, review, and trial-watch evidence.
 - Added maturity-status and provenance-locator fields for evidence-facing records.
 - Hardened reference audits with semantic checks for candidate completeness, registry-only evidence, provisional risk-of-bias records, and coverage-scope overclaiming.
@@ -117,6 +123,8 @@ As of 2026-06-22, the repository has an initial JSON-file-backed scaffold:
 - Completed the first post-policy pack-backed supervisor-review worker proof: a real source-fidelity review read its context pack first, stayed bounded under the context-discipline audit, produced accepting review output, archived the live job, refreshed generated state, and passed full verification.
 - Completed the remaining four post-policy pack-backed supervisor-review lanes for the D+Q bone RCT lifecycle-repair candidate as a parallel batch; all five post-policy supervisor runs now pass the context-discipline audit, generated state is refreshed, and full verification passes.
 - Promoted the D+Q bone RCT lifecycle-repair candidate to accepted after scoped reconciliation; the original extraction-refresh candidate remains in `needs_revision`, and full verification passes.
+- Added `README.md` and `AGENTS.md` so human-facing use is framed around engaging Codex, while the root agent guidance is scoped to interactive coordinator sessions rather than generic `codex exec` workers.
+- Retired command-event caps as the main boundedness mechanism for new jobs; bounded context packs, read/write sets, timeout guards, focused prompts, and worker context-discipline audits now carry that responsibility.
 
 ## Current System Assessment
 
@@ -135,7 +143,9 @@ Current strengths:
 Current weaknesses and hardening priorities:
 
 - Evidence breadth is still narrow, with most depth concentrated in the senolytics/D+Q vertical slice.
-- Discovery and screening are not autonomous enough: durable search sessions, no-op searches, excluded-source decisions, and coverage updates still need stronger generation templates and runnable jobs.
+- Discovery and screening record support exists, including durable search logs,
+  screening runs, templates, and agent-run output IDs, but it still needs more
+  repeated real runs outside the initial senolytics/D+Q work.
 - Extraction depth is uneven: useful records exist, but many are not yet synthesis-ready because effect values, uncertainty, group denominators, subgroup details, safety event counts, or full-text locators are missing.
 - Endpoint and effect normalization are underdeveloped, limiting cross-study comparability and formal synthesis.
 - The query surface is improving through generated SQLite read models, but agents and downstream consumers still need broader query examples and contract tests over common meta-analysis questions.
@@ -403,7 +413,13 @@ Initial skills:
 - `evidence-extraction`: turn sources into structured source, study, finding, and candidate-change records.
 - `knowledge-base-audit`: validate and audit schema/data health.
 
-These skills should stay procedural and concise. They should point agents to `plan.md`, `docs/`, `schemas/`, `taxonomies/`, and validation scripts instead of duplicating the repository model.
+These skills should stay procedural and concise. They should point coordinator
+agents to `AGENTS.md`, `plan.md`, `docs/`, `schemas/`, `taxonomies/`, and
+validation scripts instead of duplicating the repository model.
+
+The skills are not the default contract for spawned `codex exec` workers. Worker
+scope should be supplied through durable job specs, generated prompts, output
+schemas, and context packs, with only compatible repo-wide guidance included.
 
 The repo-local skill folders are source artifacts. To make them auto-discoverable by Codex outside this repo, copy or install them into the active Codex skills directory after review.
 
@@ -672,7 +688,9 @@ Tasks:
 - [x] Add regression coverage for battle-test weaknesses discovered so far: forwarded runner options, placeholder output references, stale pending reconciliation, missing imported output, batch-run summary drift, and failed-worker issue loss.
 - [x] Add or extend audits and regression fixtures for remaining injected failure modes as they are exercised.
 - [x] Add a readiness gate for real extraction-refresh pilots: smoke job passes, parallel batch passes, failure fixtures pass, metrics refresh passes, reconciliation state has no unresolved orchestration blocker caused by the test run, and the clean pre-pilot command confirms no pending file changes.
-- [x] Add command-event budget policy for runnable live Codex jobs, with audited budget ranges by job class and generator defaults for self-healing jobs.
+- [x] Retire command-event caps for new runnable live Codex jobs after they
+  proved brittle; use context packs, read/write sets, timeout guards, focused
+  prompts, and context-discipline audits to keep workers bounded.
 - [x] Execute the first bounded real extraction-refresh pilot through `jobs:run-batch`, import the declared outputs, archive the completed job, refresh generated state, and pass full verification.
 - [x] Add compact extraction context packs so bounded workers receive the exact source rows, schema slices, expected exemplars, and verification commands needed for the job class.
 - [x] Add compact supervisor-review context packs so candidate-review workers receive the target candidate, proposed record excerpts, active review-lane state, relevant schema slices, and lane-specific acceptance criteria without broad repository inspection.
@@ -698,24 +716,55 @@ Exit criteria:
 - The first real extraction-refresh pilot is allowed only after the battle-test readiness gate passes.
 - Broad unattended research campaigns wait until repeated real runs complete without new schema, audit, reconciliation, ledger, or generated-state process fixes.
 
-## Initial Open Questions
+## Resolved And Remaining Open Questions
 
-- Should this be JSON-file-backed first, or should we introduce SQLite/DuckDB early for queries?
-- Should schemas be JSON Schema only, or generated from TypeScript/Python models?
-- What is the first track to bootstrap?
-- Should we import existing `lev-tracker` records or start clean and selectively port?
-- How strict should agent review gates be before the first real data release?
-- What output contract should downstream consumers rely on first: JSONL, JSON graph, SQLite, or static API?
-- What concurrency limits should the orchestrator enforce by default for search, extraction, review, and release jobs?
+Resolved working decisions:
+
+- JSON-file-backed canonical records remain the source of truth; generated
+  SQLite is a query index, not an authority.
+- JSON Schema plus AJV is the validation stack for now.
+- `senolytics` is the first bootstrap track.
+- Existing `lev-tracker` patterns are selectively ported rather than imported
+  wholesale.
+- Agent output remains proposed state until schema checks, audits,
+  supervisor-review lanes, reconciliation, and promotion gates allow release.
+- The first consumer contract is `exports/latest/`: JSONL exports,
+  evidence-map JSON, `read-model.sqlite`, `consumer-contract.json`, and an audit
+  manifest.
+- Parallelism is governed by job read/write/conflict metadata, context packs,
+  reconciliation, and coordinator-controlled promotion/release gates.
+
+Still open:
+
+- Which endpoint taxonomy and normalization rules should become stable first?
+- What threshold of repeated clean extraction-refresh runs is enough before
+  broader concurrent extraction campaigns?
+- When should the project add immutable versioned release packages instead of
+  only `exports/latest/`?
+- How aggressively should the read model support common meta-analysis questions
+  before the evidence base is broader?
 
 ## Immediate Next Actions
 
-1. Retry the generated self-healing repair job for `senolytics-scaffold-bootstrap-2026-06-21` after Codex capacity is available; the first batch-run attempt was blocked by a Codex usage limit before task work began.
-2. Add an automated import/reconciliation helper for successful isolated batch worker outputs so artifact transfer is a first-class orchestration step.
-3. Continue broadening extraction only after repeated real worker runs complete without new schema, audit, reconciliation, ledger, fixture, runner, or generated-state process fixes.
+1. Use the current live self-healing queue to continue bounded extraction-debt
+   and coverage-gap repair, importing isolated-worker outputs through the batch
+   import/reconciliation path and archiving completed job snapshots.
+2. Keep hardening `jobs:import-batch`, reconciliation decisions, generated-state
+   refresh order, and runbook clarity whenever real worker runs expose recurring
+   coordinator-only steps or brittle process.
+3. Broaden beyond the senolytics/D+Q vertical slice with small search,
+   screening, and extraction passes only when the current generated state,
+   reconciliation state, orchestration metrics, exports, and full verification
+   are clean.
 
 ## Change Log
 
+- 2026-06-29: Reviewed the public README, root `AGENTS.md`, runbooks, and
+  repo-local skills. The docs now frame Codex as the human-facing interface,
+  scope `AGENTS.md` to interactive coordinator sessions, keep spawned
+  `codex exec` workers governed by job specs/prompts/schemas/context packs,
+  replace stale smoke/self-healing examples with template/current-job guidance,
+  expand screening rules, and standardize generated-state closeout.
 - 2026-06-23: Attempted the remaining generated self-healing repair job for `senolytics-scaffold-bootstrap-2026-06-21` through the batch runner. The worker did not reach task execution because `codex exec` returned a usage-limit error before producing any records. The failed batch-run record is retained as orchestration evidence, and the parallel batch runner now preserves Codex usage-limit diagnostics from stdout as worker issues with regression coverage.
 - 2026-06-23: Promoted `candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair` to accepted after the post-policy review batch and scoped lifecycle-overlap reconciliation. The promotion records the five accepted supervisor review lanes and keeps the original `senolytics-bone-rct-extraction-refresh-2026-06-21` candidate in `needs_revision` for its unresolved publication-table, supplement/subgroup, and event-specific safety extraction debt. Generated state, exports, reconciliation, orchestration metrics, and full verification all pass after promotion.
 - 2026-06-23: Completed the remaining four post-policy pack-backed supervisor-review lanes for `candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair` as `parallel-batch-001-candidate-review-20260623t192729z`. All four workers succeeded in isolated worktrees, their artifacts were imported, the live job specs were archived, generated state was refreshed, and `audit:worker-context-discipline` now enforces five post-policy supervisor runs with no violations. The promotion dry-run initially blocked on the expected lifecycle-repair overlap with `senolytics-bone-rct-extraction-refresh-2026-06-21`; a scoped reconciliation decision resolved that overlap for the repair candidate only, and the dry-run now passes. Full `npm run verify:knowledge-base` passes. The run exposed two process debts: successful batch outputs still require an explicit import/reconciliation step from worker worktrees, and worker-local full verification can report stale exports before wrapper-owned post-run export refreshes.

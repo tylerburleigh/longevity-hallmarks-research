@@ -81,8 +81,10 @@ Search for duplicates first:
 rg -n "<PMID>|<DOI>|<NCT>|<title words>" data research taxonomies
 ```
 
-After adding records, run:
+After adding or changing canonical records, run the standard generated-state
+closeout from `docs/audit-and-release.md`. For a source-only draft that does not
+change generated state, at least validate records before handoff.
 
 ```bash
-npm run verify:knowledge-base
+npm run validate:records
 ```

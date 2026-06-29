@@ -10,9 +10,25 @@ Expected outputs for a bounded pass:
 - zero or more `screening_run` records for screened search hits or source sets
 - zero or one `candidate_change`
 - zero or one `coverage_assessment`
-- source, study, and finding records only when they materially improve the evidence graph
+- source, study, outcome, result, finding, eligibility, risk-of-bias, snapshot,
+  source-rights, text-snapshot, and synthesis-group records only when they
+  materially improve the evidence graph or repair its provenance
 
 No-op searches are valid when the search was properly scoped and recorded as a `search_log` with exact queries, result counts, retrieved counts, coverage effect, and no-op rationale.
+
+## Skill Routing
+
+For interactive coordinator sessions, load the relevant repo-local skill before
+starting a run:
+
+- `codex-skills/hallmarks-research-run/SKILL.md` for track-level research passes.
+- `codex-skills/evidence-extraction/SKILL.md` for evidence extraction.
+- `codex-skills/knowledge-base-audit/SKILL.md` for audit, repair, and release
+  readiness.
+
+Do not make spawned `codex exec` workers read these skills unless their job file
+or prompt explicitly includes them. Pack-backed workers should read their context
+pack first.
 
 ## Transactional Agent Output
 
@@ -36,7 +52,8 @@ Review records may remain `draft` with `verdict: "needs_revision"` when the lane
 
 Do not mark a candidate `accepted` or `applied` unless every required active review lane is complete, accepting, non-blocking, and has no open major or critical findings.
 
-Use the promotion command for lifecycle advancement:
+Use the promotion command for lifecycle advancement. This is a coordinator
+action; workers should not promote candidates:
 
 ```bash
 npm run promote:candidate -- <candidate_change_id> --status accepted
@@ -47,9 +64,13 @@ npm run promote:candidate -- <candidate_change_id> --status applied
 
 Use source-snapshot importers before creating extraction-grade PubMed or ClinicalTrials.gov records. Extraction-grade provenance should cite the relevant `source_snapshot_id`.
 
-After canonical record changes, regenerate exports:
+After canonical record changes, run the standard generated-state closeout:
 
 ```bash
+npm run export:triage-state
+npm run export:release-readiness
+npm run reconcile:parallel
+npm run metrics:orchestration
 npm run export:latest
 npm run verify:knowledge-base
 ```

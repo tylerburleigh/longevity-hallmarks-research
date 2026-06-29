@@ -8,7 +8,8 @@ description: Run bounded research passes for the longevity hallmarks evidence kn
 ## Workflow
 
 1. Work from the repository root.
-2. Read `plan.md`, then read the relevant docs for the requested mode:
+2. Read `AGENTS.md` when running as the interactive coordinator. Read
+   `plan.md`, then read the relevant docs for the requested mode:
    - `docs/research-runbook.md`
    - `docs/agent-run-outputs.md`
    - `docs/codex-cli-agents.md`
@@ -49,15 +50,16 @@ Choose one outcome and record the rationale:
 
 - Do not let agent output directly imply publication or release.
 - Write an `agent_run` record for the pass. Use `canonical_write_policy: "candidate_change_required"` when canonical records are created or updated.
-- Prefer `npm run agent:codex -- ...` for delegated bounded worker runs; keep the interactive session as coordinator/supervisor.
+- Prefer isolated `npm run agent:codex:worktree -- ...` or batch-runner execution for delegated mutable worker runs; keep the interactive session as coordinator/supervisor.
 - Keep `research_session.search_log[]` specific enough that another reviewer can reproduce the search.
 - Put close-but-excluded sources in `research_session.excluded_sources[]`.
 - Keep candidate changes small and scoped to material records.
 - If a candidate is `in_review`, create or link an active `evidence_review` record for every `required_review_lanes[]` entry. Use `status: "draft"` and `verdict: "needs_revision"` for lanes that still need agent-supervisor review.
 - Use `npm run promote:candidate -- <candidate_change_id> --status accepted` or `--status applied` for lifecycle promotion after review gates pass.
 - Use `synthesis_group` records for poolability decisions; do not leave meta-analysis readiness only in prose.
-- Regenerate exports after canonical data changes with `npm run export:latest`.
-- Run `npm run verify:knowledge-base` after edits.
+- After canonical data changes, refresh generated state, exports,
+  reconciliation, orchestration metrics, and verification as described in
+  `docs/audit-and-release.md`.
 
 ## Handoff
 

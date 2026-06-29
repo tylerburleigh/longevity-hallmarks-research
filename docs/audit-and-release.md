@@ -2,13 +2,20 @@
 
 Every release artifact should be reproducible from canonical records.
 
-Before release:
+For interactive coordinator sessions, use
+`codex-skills/knowledge-base-audit/SKILL.md` when the task is validation, audit,
+release readiness, or data-health maintenance. Spawned workers should receive
+only the audit scope needed for their job.
+
+The standard generated-state closeout after canonical changes, promotion,
+parallel import/reconciliation, or release work is:
 
 ```bash
-npm run export:latest
 npm run export:triage-state
 npm run export:release-readiness
 npm run reconcile:parallel
+npm run metrics:orchestration
+npm run export:latest
 npm run verify:knowledge-base
 ```
 

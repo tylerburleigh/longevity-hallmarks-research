@@ -22,7 +22,10 @@ Worker responsibilities:
 
 ## Recommended Invocation
 
-Use the wrapper so command shape and logs are consistent:
+Use the wrapper so command shape and logs are consistent. Direct `agent:codex`
+execution is appropriate for dry-run plans and for workers that already have an
+isolated `--workdir`. Mutable execution should normally use
+`agent:codex:worktree` or the batch runner.
 
 ```bash
 npm run agent:codex -- \
@@ -46,6 +49,12 @@ Job execution guards may include `timeout_ms` and `no_output_timeout_ms`. Comman
 Extraction-refresh jobs declare `context_pack_path` pointing at an `extraction_context_pack` record under `ops/extraction-context-packs/`. Live extraction-refresh jobs must declare one. The worker reads the pack first and uses its scoped input records, target records, schema slices, expected outputs, constraints, and verification commands as the bounded task contract. Table-row packs may also include retained artifact locators and extracted cells.
 
 Candidate-review supervisor jobs may declare `context_pack_path` pointing at a `supervisor_review_context_pack` record under `ops/supervisor-review-context-packs/`. Runnable generated candidate-review lane jobs must declare one. The worker reads the pack first and uses its target candidate, single review lane, prior review state, proposed record pointers, expected evidence-review path, and verification commands as the bounded review contract.
+
+`AGENTS.md` is coordinator guidance by default. Spawned `codex exec` workers are
+governed by their job file, generated prompt, output schema, sandbox, and context
+pack. Do not require workers to read `AGENTS.md`, `plan.md`, repo-local skills,
+or broad runbooks unless the prompt or job file explicitly makes that compatible
+with the worker scope.
 
 By default, the wrapper writes a dry-run command plan under `research/agent-runs/logs/`. Add `--execute` only when the worktree is ready for the worker to run.
 
@@ -139,7 +148,7 @@ Every worker final output must pass two schema gates:
 - `npm run audit:release-readiness` checks that the generated release-boundary queue still matches candidate lifecycle state and accepted-record export eligibility.
 - `npm run audit:codex-jobs` checks that persisted `codex_job` specs match their final `agent_run` records, candidate records, expected paths, required review lanes, quality gates, orchestration metadata, logs, and post-run checks.
 - `npm run audit:worker-context-discipline` checks pack-backed supervisor-review and extraction worker logs. It measures legacy broad-context reads and, for post-policy archived runs, fails broad runbook reads, broad repository searches/listings, missing first context-pack reads, and oversized non-context command output.
-- `worker_output_contract` checks the JSONL worker stream for a single final JSON `agent_run` and rejects ad hoc schema-validation snippets.
+- `worker_output_contract` checks the JSONL worker stream for a single final JSON `agent_run` and rejects one-off schema-validation snippets.
 
 When `canonical_write_policy` is `candidate_change_required`, the output must include:
 
@@ -150,7 +159,7 @@ When `canonical_write_policy` is `candidate_change_required`, the output must in
 
 Search workers that write durable output should also include `outputs.research_session_id` and `outputs.search_log_id`. Screening workers that write durable output should include `outputs.research_session_id` and `outputs.screening_run_id`.
 
-Workers must not run ad hoc schema validators for their final response. The wrapper owns structured-output validation, and repository scripts own persisted-record validation. Use repository commands instead:
+Workers must not run one-off schema validators for their final response. The wrapper owns structured-output validation, and repository scripts own persisted-record validation. Use repository commands instead:
 
 ```bash
 npm run validate:records
@@ -230,21 +239,22 @@ Use `npm run metrics:orchestration` after planning, running, or reconciling batc
 
 ## Orchestration Smoke Jobs
 
-Use `ops/codex-jobs/live/orchestration-smoke-codex-worktree-2026-06-22.json` as the current synthetic worktree smoke job. It writes only `data/candidate-changes/orchestration-smoke-candidate-2026-06-22.json` and is checked against `tests/fixtures/orchestration-smoke-output-contract.json` by:
+Previous smoke jobs live under `ops/codex-jobs/archive/`. Do not assume a
+historical smoke job path is still runnable from `ops/codex-jobs/live/`.
+
+For a new smoke run, start from `docs/templates/codex-jobs/orchestration-smoke.json`, fill unique IDs, place the job under `ops/codex-jobs/live/`, and update the smoke contract fixture. The smoke job should write only the candidate path declared by `tests/fixtures/orchestration-smoke-output-contract.json` and is checked by:
 
 ```bash
 npm run audit:orchestration-smoke-contract
 ```
 
-The smoke-contract audit resolves the live job before execution and the archived completed job snapshot after archival.
-
-For the next smoke run, start from `docs/templates/codex-jobs/orchestration-smoke.json`, fill unique IDs, and update the smoke contract fixture. Run it only from a committed coordinator checkout. The expected sequence is isolated execution, candidate/output import, post-run export and verification, completed-job archival, then a full `npm run verify:knowledge-base`.
+The smoke-contract audit resolves the live job before execution and the archived completed job snapshot after archival. Run smoke jobs only from a committed coordinator checkout. The expected sequence is isolated execution, candidate/output import, standard generated-state closeout, completed-job archival, then a final full verification.
 
 For a completed single-job run whose output has been imported into the coordinator checkout, archive the live job with:
 
 ```bash
 npm run jobs:archive -- \
-  --job-file ops/codex-jobs/live/orchestration-smoke-codex-worktree-2026-06-22.json
+  --job-file ops/codex-jobs/live/<smoke-job-id>.json
 ```
 
 ## Promotion Boundary

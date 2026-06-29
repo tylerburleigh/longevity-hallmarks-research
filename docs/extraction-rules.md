@@ -11,6 +11,12 @@ Extraction should preserve the distinction between:
 
 Do not encode pooled interpretation in source records.
 
+For interactive coordinator sessions, use
+`codex-skills/evidence-extraction/SKILL.md` as the extraction workflow guide.
+For spawned workers, pass only the relevant extraction instructions through the
+job prompt or context pack; do not require broad skill or runbook reads when a
+bounded context pack is the task contract.
+
 ## Record Boundaries
 
 - `source`: citation, registry, or primary-document metadata only.

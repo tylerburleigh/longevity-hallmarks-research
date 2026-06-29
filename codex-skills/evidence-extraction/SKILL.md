@@ -8,7 +8,9 @@ description: Extract source-backed evidence into the longevity hallmarks knowled
 ## Workflow
 
 1. Work from the repository root.
-2. Read `docs/extraction-rules.md`, `docs/screening-rules.md`, `docs/source-rights-rules.md`, and `docs/text-ingestion-rules.md`.
+2. When running as the interactive coordinator, read `AGENTS.md`, then read
+   `docs/extraction-rules.md`, `docs/screening-rules.md`,
+   `docs/source-rights-rules.md`, and `docs/text-ingestion-rules.md`.
 3. Read the relevant schemas before writing:
    - `schemas/source.schema.json`
    - `schemas/source-rights.schema.json` when classifying attribution, terms, artifact retention, or export permissions
@@ -54,13 +56,14 @@ Use stable IDs:
 - Add or reuse `source_rights` before retained text artifact ingestion. Attribution is required metadata, but it is not permission to retain or redistribute protected expression.
 - Add `candidate_change` and `evidence_review` records when the extraction is intended to become durable canonical state.
 - Add an `agent_run` record with `canonical_write_policy: "candidate_change_required"` when extraction creates or updates canonical records.
-- Prefer isolated Codex CLI worker execution through `npm run agent:codex -- ...` when the extraction scope is bounded enough to delegate.
+- Prefer isolated Codex CLI worker execution through `agent:codex:worktree` or the batch runner when the extraction scope is bounded enough to delegate.
 - If a candidate is `in_review`, add active review records for every required lane, using draft `needs_revision` records for lanes that remain incomplete.
 - Add or update `synthesis_group` records when extracted results change poolability, missing effect fields, or endpoint compatibility.
 
 ## Validation
 
-Run:
+Run the standard generated-state closeout from `docs/audit-and-release.md`.
+For draft-only extraction notes that do not change durable records, at least run:
 
 ```bash
 npm run verify:knowledge-base

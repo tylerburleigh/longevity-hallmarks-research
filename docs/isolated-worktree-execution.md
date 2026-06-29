@@ -4,7 +4,7 @@ Use the worktree helper for mutable Codex jobs:
 
 ```bash
 npm run agent:codex:worktree -- \
-  --job-file ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-safety-tables.json
+  --job-file ops/codex-jobs/live/<job-id>.json
 ```
 
 Without `--execute`, the helper creates a detached Git worktree under `/tmp/lhr-codex-worktrees/`, symlinks `node_modules` when available, and runs the existing `agent:codex` wrapper in dry-run mode inside that checkout.
@@ -13,7 +13,7 @@ For a side-effect-free coordinator check:
 
 ```bash
 npm run agent:codex:worktree -- \
-  --job-file ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-safety-tables.json \
+  --job-file ops/codex-jobs/live/<job-id>.json \
   --plan-only
 ```
 
@@ -21,17 +21,19 @@ To execute:
 
 ```bash
 npm run agent:codex:worktree -- \
-  --job-file ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-safety-tables.json \
+  --job-file ops/codex-jobs/live/<job-id>.json \
   --execute
 ```
 
 The helper refuses to create a worktree from a dirty foreground checkout unless `--allow-dirty` is supplied. When `--allow-dirty` is used, the new worktree starts from the selected Git ref and then overlays the coordinator checkout's tracked diff plus untracked files before the wrapper starts. Use this for test runs of uncommitted orchestration fixes; use a committed checkout for release-grade runs.
 
-Use the synthetic smoke job before production extraction-refresh work:
+Use a synthetic smoke job before production extraction-refresh work. Historical
+smoke jobs may already be archived, so create a fresh job from
+`docs/templates/codex-jobs/orchestration-smoke.json` when a new proof is needed:
 
 ```bash
 npm run agent:codex:worktree -- \
-  --job-file ops/codex-jobs/live/orchestration-smoke-codex-worktree-2026-06-22.json \
+  --job-file ops/codex-jobs/live/<smoke-job-id>.json \
   --plan-only
 ```
 
@@ -41,7 +43,7 @@ After importing the worker output into the coordinator checkout, archive the liv
 
 ```bash
 npm run jobs:archive -- \
-  --job-file ops/codex-jobs/live/orchestration-smoke-codex-worktree-2026-06-22.json
+  --job-file ops/codex-jobs/live/<job-id>.json
 ```
 
 Useful options:

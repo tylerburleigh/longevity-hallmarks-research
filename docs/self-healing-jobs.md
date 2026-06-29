@@ -17,7 +17,7 @@ npm run jobs:self-healing -- --job-type extraction_refresh
 npm run jobs:self-healing -- --replace
 ```
 
-Generated jobs are written under `ops/codex-jobs/live/generated-self-healing/`. Candidate-review supervisor context packs are written under `ops/supervisor-review-context-packs/`. Each job records:
+Generated jobs are written under `ops/codex-jobs/live/generated-self-healing/`. Candidate-review supervisor context packs are written under `ops/supervisor-review-context-packs/`, extraction-refresh packs under `ops/extraction-context-packs/`, and coverage-repair packs under `ops/coverage-repair-context-packs/`. Each job records:
 
 - the triage-state recommended job ID
 - input record paths
@@ -30,7 +30,7 @@ For `candidate_promotion` recommendations, the generator emits a low-cost releas
 
 For `candidate_review` recommendations, the generator emits one supervisor-agent job per missing review lane. Each lane job reads the source candidate, writes a lane-scoped repair candidate plus one evidence-review record, and declares `candidate_review:<candidate_change_id>/<review_lane>` write/conflict keys. Different lanes for the same candidate can therefore share independent parallel batches without broad writes to the source candidate record.
 
-Each generated candidate-review lane job includes a `supervisor_review_context_pack`. The pack names the target candidate, the single review lane, existing review state, proposed record pointers, the deterministic evidence-review output path, and worker/coordinator verification commands. Each generated extraction-refresh job includes an `extraction_context_pack` that scopes the input records, target records, expected outputs, constraints, and verification commands. `audit:codex-jobs` requires runnable live candidate-review lane and extraction-refresh jobs to declare their packs, and the context-pack audits check the pack records themselves.
+Each generated candidate-review lane job includes a `supervisor_review_context_pack`. The pack names the target candidate, the single review lane, existing review state, proposed record pointers, the deterministic evidence-review output path, and worker/coordinator verification commands. Each generated extraction-refresh job includes an `extraction_context_pack` that scopes the input records, target records, expected outputs, constraints, and verification commands. Each generated coverage-repair job includes a `coverage_repair_context_pack` that scopes the coverage assessment, gap metadata, input records, target records, expected outputs, and verification commands. `audit:codex-jobs` requires runnable live candidate-review lane, extraction-refresh, and coverage-repair jobs to declare their packs, and the context-pack audits check the pack records themselves.
 
 Candidate-review repair candidates are ledger artifacts for evidence-review records. Triage does not recursively generate review jobs for candidates whose proposed records are limited to their own candidate ledger plus `evidence_review` records.
 

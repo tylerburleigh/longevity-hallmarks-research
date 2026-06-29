@@ -9,6 +9,7 @@ export const triageStatePath = "ops/triage-state.v1.json";
 export const generatedJobRoot = "ops/codex-jobs/live/generated-self-healing";
 export const supervisorReviewContextPackRoot = "ops/supervisor-review-context-packs";
 export const extractionContextPackRoot = "ops/extraction-context-packs";
+export const coverageRepairContextPackRoot = "ops/coverage-repair-context-packs";
 export const defaultLimit = 5;
 
 const highCostJobTypes = new Set(["extraction_refresh", "coverage_repair", "snapshot_refresh"]);
@@ -166,6 +167,10 @@ async function loadCanonicalRecords() {
     if (record.record_type && record.id) {
       byTypeAndId.set(`${record.record_type}:${record.id}`, { record, path: relativePath });
     }
+  }
+
+  if (await exists(path.join(workspaceRoot, triageStatePath))) {
+    byPath.set(triageStatePath, await readJson(triageStatePath));
   }
 
   return { byPath, byTypeAndId };
@@ -460,6 +465,29 @@ function extractionOutputSpec(recordIndex, recommendedJob, candidateChangeId) {
   };
 }
 
+function coverageRepairOutputSpec(recommendedJob, candidateChangeId) {
+  if (recommendedJob.job_type !== "coverage_repair") {
+    return {};
+  }
+
+  return {
+    proposedRecordPaths: sortStrings([
+      `data/candidate-changes/${candidateChangeId}.json`,
+      ...(recommendedJob.inputs ?? [])
+    ]),
+    generatedFilePaths: [],
+    exportPaths: [
+      "exports/latest/coverage-status.json",
+      "exports/latest/audit-manifest.json",
+      "exports/latest/read-model.sqlite",
+      "ops/triage-state.v1.json",
+      "ops/release-readiness.v1.json",
+      "ops/reconciliation/parallel-reconciliation.v1.json",
+      "ops/codex-batches/orchestration-metrics.v1.json"
+    ]
+  };
+}
+
 function buildWriteSets({ recommendedJob, candidateChangeId, requiredReviewLanes = [], proposedRecordPaths = [] }) {
   if (recommendedJob.job_type === "candidate_promotion") {
     return sortStrings([
@@ -561,14 +589,17 @@ function buildJob(recordIndex, recommendedJob) {
   const requiredReviewLanes = reviewLanesForJob(recordIndex, recommendedJob);
   const outputSpec = {
     ...extractionOutputSpec(recordIndex, recommendedJob, candidateChangeId),
+    ...coverageRepairOutputSpec(recommendedJob, candidateChangeId),
     ...candidateReviewOutputSpec({ recommendedJob, candidateChangeId, requiredReviewLanes })
   };
-  const contextPackId = ["candidate_review", "extraction_refresh"].includes(recommendedJob.job_type) ? jobId : undefined;
+  const contextPackId = ["candidate_review", "extraction_refresh", "coverage_repair"].includes(recommendedJob.job_type) ? jobId : undefined;
   const contextPackPath = recommendedJob.job_type === "candidate_review"
     ? `${supervisorReviewContextPackRoot}/${contextPackId}.json`
     : recommendedJob.job_type === "extraction_refresh"
       ? `${extractionContextPackRoot}/${contextPackId}.json`
-      : undefined;
+      : recommendedJob.job_type === "coverage_repair"
+        ? `${coverageRepairContextPackRoot}/${contextPackId}.json`
+        : undefined;
   const scope = scopeFromRecommendedJob(recordIndex, recommendedJob);
 
   return {
@@ -755,6 +786,13 @@ export function supervisorReviewContextPackPath(job) {
 
 export function extractionContextPackPath(job) {
   if (job.agent_role !== "extraction_agent") {
+    return undefined;
+  }
+  return job.context_pack_path;
+}
+
+export function coverageRepairContextPackPath(job) {
+  if (job.mode !== "coverage_repair" || job.agent_role !== "self_healing_agent") {
     return undefined;
   }
   return job.context_pack_path;
@@ -980,6 +1018,106 @@ export function buildExtractionContextPack(recordIndex, job) {
         ? ["One or more scoped source snapshots have retained raw artifacts but no generated section-level locators in this pack."]
         : []),
       "The pack is a routing contract for extraction repair, not a source-fidelity review."
+    ]
+  };
+}
+
+function coverageGapFromJob(recordIndex, job) {
+  const triageState = recordIndex.byPath.get(triageStatePath);
+  const sourceJobIdValue = sourceJobIdFromGeneratedJob(job);
+  return (triageState?.coverage_gaps ?? []).find((gap) =>
+    `coverage-gap-${gap.gap_id}${gap.priority === "high" ? "-followup-3" : "-followup-2"}` === sourceJobIdValue ||
+    job.orchestration?.read_sets?.includes(`triage_job:coverage-gap-${gap.gap_id}-followup-2`) ||
+    job.orchestration?.read_sets?.includes(`triage_job:coverage-gap-${gap.gap_id}-followup-3`)
+  );
+}
+
+function sourceJobIdFromGeneratedJob(job) {
+  return job.notes?.[0]?.match(/recommended_jobs\[\] item ([^.]+)\./)?.[1];
+}
+
+export function buildCoverageRepairContextPack(recordIndex, job) {
+  const coverageGap = coverageGapFromJob(recordIndex, job);
+
+  return {
+    schema_version: "1.0.0",
+    record_type: "coverage_repair_context_pack",
+    id: job.id,
+    pack_type: "coverage_gap_repair",
+    created_at: "2026-06-29T00:00:00Z",
+    purpose: `Bounded coverage repair for ${job.expected_outputs.candidate_change_id}.`,
+    scope: job.scope,
+    gap_context: {
+      coverage_assessment_id: coverageGap?.coverage_assessment_id ?? job.orchestration?.write_sets?.find((key) => key.startsWith("target_record:coverage_assessment/"))?.split("/").at(-1),
+      coverage_assessment_path: coverageGap?.path ?? job.orchestration?.read_sets?.find((key) => key.startsWith("path:data/coverage-assessments/"))?.replace(/^path:/, ""),
+      gap_id: coverageGap?.gap_id ?? sourceJobIdFromGeneratedJob(job)?.replace(/^coverage-gap-/, "").replace(/-followup-\d+$/, ""),
+      gap_type: coverageGap?.gap_type ?? "coverage_gap",
+      category: coverageGap?.category ?? "unknown",
+      priority: coverageGap?.priority ?? "medium",
+      description: coverageGap?.description ?? job.summary,
+      suggested_action: coverageGap?.suggested_action ?? job.summary,
+      next_recommended_mode: coverageGap?.next_recommended_mode ?? job.mode
+    },
+    target_context: {
+      input_records: scopedInputRecords(recordIndex, job),
+      target_records: targetRecordPointers(recordIndex, job)
+    },
+    schema_context: {
+      schema_paths: [
+        "schemas/agent-run.codex-output.schema.json",
+        "schemas/agent-run.schema.json",
+        "schemas/candidate-change.schema.json",
+        "schemas/coverage-assessment.schema.json",
+        "schemas/search-log.schema.json",
+        "schemas/screening-run.schema.json",
+        "schemas/source-snapshot.schema.json"
+      ],
+      required_fields: [
+        "agent_run.outputs.candidate_change_id",
+        "agent_run.outputs.proposed_records[]",
+        "agent_run.outputs.generated_files[]",
+        "agent_run.quality_checks[]",
+        "candidate_change.proposed_records[]",
+        "candidate_change.required_review_lanes[] equals expected_outputs.required_review_lanes[]",
+        "coverage_assessment.known_gaps[] remains open unless durable source-backed records close it"
+      ],
+      known_schema_limitations: [
+        "Coverage repair packs route bounded gap repair; they do not pre-authorize broad unlogged search or unsaved source use."
+      ]
+    },
+    expected_outputs: {
+      candidate_change_id: job.expected_outputs.candidate_change_id,
+      proposed_record_paths: job.expected_outputs.proposed_record_paths,
+      generated_file_paths: job.expected_outputs.generated_file_paths,
+      export_paths: job.expected_outputs.export_paths,
+      required_review_lanes: job.expected_outputs.required_review_lanes
+    },
+    verification: {
+      worker_commands: [
+        "npm run validate:records",
+        "npm run audit:references",
+        "npm run audit:agent-schemas",
+        "npm run audit:agentic-process"
+      ],
+      coordinator_post_run: [
+        "npm run export:triage-state",
+        "npm run reconcile:parallel",
+        "npm run metrics:orchestration",
+        "npm run export:release-readiness",
+        "npm run export:latest",
+        "npm run verify:knowledge-base"
+      ]
+    },
+    constraints: [
+      "Read the context pack first and keep repository inspection bounded to the named coverage gap, scoped read_sets, and listed verification commands.",
+      "Create only the repair candidate and target coverage-assessment paths declared in expected_outputs.",
+      "Record durable search, screening, source-snapshot, or coverage-assessment changes through the declared candidate_change ledger.",
+      "Do not close the gap unless retained source snapshots, search logs, screening runs, or updated coverage assessment text support closure.",
+      "Do not promote any candidate."
+    ],
+    known_limitations: [
+      "The pack is a routing contract for coverage repair, not a substitute for source retrieval or screening records.",
+      "External retrieval failures should remain explicit blocking issues rather than being converted into gap closure."
     ]
   };
 }
@@ -1239,12 +1377,14 @@ async function main() {
     const written = options.dryRun || (alreadyExists && !options.replace)
       ? false
       : await writeJson(relativePath, job, { replace: options.replace });
-    const contextPackPath = supervisorReviewContextPackPath(job) ?? extractionContextPackPath(job);
+    const contextPackPath = supervisorReviewContextPackPath(job) ?? extractionContextPackPath(job) ?? coverageRepairContextPackPath(job);
     const contextPack = supervisorReviewContextPackPath(job)
       ? buildSupervisorReviewContextPack(recordIndex, job)
       : extractionContextPackPath(job)
         ? buildExtractionContextPack(recordIndex, job)
-        : undefined;
+        : coverageRepairContextPackPath(job)
+          ? buildCoverageRepairContextPack(recordIndex, job)
+          : undefined;
     const contextPackWritten = options.dryRun || !contextPackPath || (alreadyExists && !options.replace)
       ? false
       : await writeJson(contextPackPath, contextPack, { replace: options.replace });
@@ -1284,6 +1424,13 @@ async function main() {
           root: extractionContextPackRoot,
           expectedJobs: expectedJobsForPrune,
           contextPackPathForJob: extractionContextPackPath,
+          preservePaths: preservedContextPackPaths,
+          generatedIdPrefix: "self-healing-"
+        })),
+        ...(await pruneObsoleteContextPacks({
+          root: coverageRepairContextPackRoot,
+          expectedJobs: expectedJobsForPrune,
+          contextPackPathForJob: coverageRepairContextPackPath,
           preservePaths: preservedContextPackPaths,
           generatedIdPrefix: "self-healing-"
         }))

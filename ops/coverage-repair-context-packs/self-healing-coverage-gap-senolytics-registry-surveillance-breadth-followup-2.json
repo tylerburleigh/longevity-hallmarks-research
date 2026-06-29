@@ -1,0 +1,126 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "coverage_repair_context_pack",
+  "id": "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-2",
+  "pack_type": "coverage_gap_repair",
+  "created_at": "2026-06-29T00:00:00Z",
+  "purpose": "Bounded coverage repair for coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair.",
+  "scope": {
+    "question": "coverage_repair: Only two active no-results registry records are present. The prior coverage-repair session also deferred fisetin frailty registry candidates NCT03430037 and NCT03675724, but this batch could not fetch ClinicalTrials.gov source snapshots for those registries, so broader current fisetin and D+Q trial surveillance remains incomplete. Suggested action: Run a source-snapshot-backed ClinicalTrials.gov surveillance pass for NCT03430037, NCT03675724, senolytics, D+Q, fisetin, and senescence-targeting terms; add no-results status records only when fetched registry snapshots support them.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "gap_context": {
+    "coverage_assessment_id": "senolytics-coverage-repair-2026-06-21",
+    "coverage_assessment_path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+    "gap_id": "senolytics-registry-surveillance-breadth",
+    "gap_type": "coverage_gap",
+    "category": "active_trials_registries",
+    "priority": "medium",
+    "description": "Only two active no-results registry records are present. The prior coverage-repair session also deferred fisetin frailty registry candidates NCT03430037 and NCT03675724, but this batch could not fetch ClinicalTrials.gov source snapshots for those registries, so broader current fisetin and D+Q trial surveillance remains incomplete.",
+    "suggested_action": "Run a source-snapshot-backed ClinicalTrials.gov surveillance pass for NCT03430037, NCT03675724, senolytics, D+Q, fisetin, and senescence-targeting terms; add no-results status records only when fetched registry snapshots support them.",
+    "next_recommended_mode": "coverage_repair"
+  },
+  "target_context": {
+    "input_records": [
+      {
+        "record_type": "coverage_assessment",
+        "record_id": "senolytics-coverage-repair-2026-06-21",
+        "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+        "role": "scoped_input"
+      }
+    ],
+    "target_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair",
+        "path": "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair.json",
+        "role": "candidate_ledger",
+        "record_state": "proposed"
+      },
+      {
+        "record_type": "coverage_assessment",
+        "record_id": "senolytics-coverage-repair-2026-06-21",
+        "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+        "role": "target_record",
+        "record_state": "existing"
+      }
+    ]
+  },
+  "schema_context": {
+    "schema_paths": [
+      "schemas/agent-run.codex-output.schema.json",
+      "schemas/agent-run.schema.json",
+      "schemas/candidate-change.schema.json",
+      "schemas/coverage-assessment.schema.json",
+      "schemas/search-log.schema.json",
+      "schemas/screening-run.schema.json",
+      "schemas/source-snapshot.schema.json"
+    ],
+    "required_fields": [
+      "agent_run.outputs.candidate_change_id",
+      "agent_run.outputs.proposed_records[]",
+      "agent_run.outputs.generated_files[]",
+      "agent_run.quality_checks[]",
+      "candidate_change.proposed_records[]",
+      "candidate_change.required_review_lanes[] equals expected_outputs.required_review_lanes[]",
+      "coverage_assessment.known_gaps[] remains open unless durable source-backed records close it"
+    ],
+    "known_schema_limitations": [
+      "Coverage repair packs route bounded gap repair; they do not pre-authorize broad unlogged search or unsaved source use."
+    ]
+  },
+  "expected_outputs": {
+    "candidate_change_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair",
+    "proposed_record_paths": [
+      "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair.json",
+      "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json"
+    ],
+    "generated_file_paths": [],
+    "export_paths": [
+      "exports/latest/coverage-status.json",
+      "exports/latest/audit-manifest.json",
+      "exports/latest/read-model.sqlite",
+      "ops/triage-state.v1.json",
+      "ops/release-readiness.v1.json",
+      "ops/reconciliation/parallel-reconciliation.v1.json",
+      "ops/codex-batches/orchestration-metrics.v1.json"
+    ],
+    "required_review_lanes": [
+      "synthesis_boundary",
+      "taxonomy_mapping"
+    ]
+  },
+  "verification": {
+    "worker_commands": [
+      "npm run validate:records",
+      "npm run audit:references",
+      "npm run audit:agent-schemas",
+      "npm run audit:agentic-process"
+    ],
+    "coordinator_post_run": [
+      "npm run export:triage-state",
+      "npm run reconcile:parallel",
+      "npm run metrics:orchestration",
+      "npm run export:release-readiness",
+      "npm run export:latest",
+      "npm run verify:knowledge-base"
+    ]
+  },
+  "constraints": [
+    "Read the context pack first and keep repository inspection bounded to the named coverage gap, scoped read_sets, and listed verification commands.",
+    "Create only the repair candidate and target coverage-assessment paths declared in expected_outputs.",
+    "Record durable search, screening, source-snapshot, or coverage-assessment changes through the declared candidate_change ledger.",
+    "Do not close the gap unless retained source snapshots, search logs, screening runs, or updated coverage assessment text support closure.",
+    "Do not promote any candidate."
+  ],
+  "known_limitations": [
+    "The pack is a routing contract for coverage repair, not a substitute for source retrieval or screening records.",
+    "External retrieval failures should remain explicit blocking issues rather than being converted into gap closure."
+  ]
+}

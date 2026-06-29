@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "parallel_batch_plan",
   "id": "parallel-batch-plan-v1",
-  "generated_at": "2026-06-29T19:04:43.964Z",
+  "generated_at": "2026-06-29T19:29:52.500Z",
   "source_job_root": "ops/codex-jobs/live",
   "planner_version": "1.0.0",
   "scheduler_policy": {
@@ -45,6 +45,7 @@
         "coverage_repair"
       ],
       "read_sets": [
+        "context_pack:self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-2",
         "path:data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
         "path:ops/triage-state.v1.json",
         "triage_job:coverage-gap-senolytics-registry-surveillance-breadth-followup-2"
@@ -98,6 +99,7 @@
         "coverage_repair"
       ],
       "read_sets": [
+        "context_pack:self-healing-coverage-gap-senolytics-review-landscape-followup-2",
         "path:data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
         "path:ops/triage-state.v1.json",
         "triage_job:coverage-gap-senolytics-review-landscape-followup-2"

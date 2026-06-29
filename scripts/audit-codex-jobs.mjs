@@ -539,10 +539,20 @@ function checkSupervisorReviewContextPack({ issues, job, ownerPath, contextPack 
   }
 }
 
+function checkCoverageRepairContextPack({ issues, job, ownerPath, contextPack }) {
+  if (job.mode !== "coverage_repair" || job.agent_role !== "self_healing_agent") {
+    issues.push(`${ownerPath}: coverage_repair_context_pack can only be used by coverage-repair self-healing jobs.`);
+    return;
+  }
+
+  checkContextPackCommon({ issues, job, ownerPath, contextPack });
+}
+
 async function checkContextPack({ issues, job, ownerPath }) {
   const isRunnableLiveJob = ownerPath.startsWith(liveJobPathPrefix) && activeJobStatuses.has(job.lifecycle_status);
   const isExtractionRefresh = job.mode === "extraction_refresh" && job.agent_role === "extraction_agent";
   const isSupervisorCandidateReview = isCandidateReviewLaneJob(job);
+  const isCoverageRepair = job.mode === "coverage_repair" && job.agent_role === "self_healing_agent";
 
   if (isRunnableLiveJob && isExtractionRefresh && !job.context_pack_path) {
     issues.push(`${ownerPath}: live extraction-refresh jobs must declare context_pack_path.`);
@@ -551,6 +561,11 @@ async function checkContextPack({ issues, job, ownerPath }) {
 
   if (isRunnableLiveJob && isSupervisorCandidateReview && !job.context_pack_path) {
     issues.push(`${ownerPath}: live candidate-review supervisor lane jobs must declare context_pack_path.`);
+    return;
+  }
+
+  if (isRunnableLiveJob && isCoverageRepair && !job.context_pack_path) {
+    issues.push(`${ownerPath}: live coverage-repair jobs must declare context_pack_path.`);
     return;
   }
 
@@ -576,6 +591,11 @@ async function checkContextPack({ issues, job, ownerPath }) {
 
   if (contextPack.record_type === "supervisor_review_context_pack") {
     checkSupervisorReviewContextPack({ issues, job, ownerPath, contextPack });
+    return;
+  }
+
+  if (contextPack.record_type === "coverage_repair_context_pack") {
+    checkCoverageRepairContextPack({ issues, job, ownerPath, contextPack });
     return;
   }
 

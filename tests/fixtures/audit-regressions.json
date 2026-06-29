@@ -761,6 +761,26 @@
       ]
     },
     {
+      "id": "live-coverage-repair-job-missing-context-pack",
+      "description": "Runnable live coverage-repair jobs must declare a context pack.",
+      "command": [
+        "npm",
+        "run",
+        "audit:codex-jobs"
+      ],
+      "operations": [
+        {
+          "type": "delete_json",
+          "path": "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-2.json",
+          "pointer": "/context_pack_path"
+        }
+      ],
+      "expected_failure_substrings": [
+        "live coverage-repair jobs must declare context_pack_path",
+        "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-2.json"
+      ]
+    },
+    {
       "id": "live-supervisor-job-missing-context-pack",
       "description": "Runnable live candidate-review supervisor lane jobs must declare a context pack.",
       "command": [

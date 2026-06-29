@@ -1,0 +1,173 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "./coverage-repair-context-pack.schema.json",
+  "title": "Coverage repair context pack",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "id",
+    "pack_type",
+    "created_at",
+    "purpose",
+    "scope",
+    "gap_context",
+    "target_context",
+    "schema_context",
+    "expected_outputs",
+    "verification",
+    "constraints",
+    "known_limitations"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "record_type": {
+      "const": "coverage_repair_context_pack"
+    },
+    "id": {
+      "$ref": "./common.schema.json#/$defs/identifier"
+    },
+    "pack_type": {
+      "enum": [
+        "coverage_gap_repair"
+      ]
+    },
+    "created_at": {
+      "$ref": "./common.schema.json#/$defs/dateTime"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "scope": {
+      "$ref": "./codex-job.schema.json#/properties/scope"
+    },
+    "gap_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "coverage_assessment_id",
+        "coverage_assessment_path",
+        "gap_id",
+        "gap_type",
+        "category",
+        "priority",
+        "description",
+        "suggested_action",
+        "next_recommended_mode"
+      ],
+      "properties": {
+        "coverage_assessment_id": {
+          "$ref": "./common.schema.json#/$defs/identifier"
+        },
+        "coverage_assessment_path": {
+          "type": "string"
+        },
+        "gap_id": {
+          "$ref": "./common.schema.json#/$defs/identifier"
+        },
+        "gap_type": {
+          "enum": [
+            "coverage_gap",
+            "evidence_gap",
+            "operational_gap"
+          ]
+        },
+        "category": {
+          "type": "string"
+        },
+        "priority": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "description": {
+          "type": "string"
+        },
+        "suggested_action": {
+          "type": "string"
+        },
+        "next_recommended_mode": {
+          "type": "string"
+        }
+      }
+    },
+    "target_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "input_records",
+        "target_records"
+      ],
+      "properties": {
+        "input_records": {
+          "type": "array",
+          "items": {
+            "$ref": "./extraction-context-pack.schema.json#/$defs/recordPointer"
+          }
+        },
+        "target_records": {
+          "type": "array",
+          "items": {
+            "$ref": "./extraction-context-pack.schema.json#/$defs/targetRecordPointer"
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "schema_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_paths",
+        "required_fields",
+        "known_schema_limitations"
+      ],
+      "properties": {
+        "schema_paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "required_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "known_schema_limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "expected_outputs": {
+      "$ref": "./extraction-context-pack.schema.json#/properties/expected_outputs"
+    },
+    "verification": {
+      "$ref": "./extraction-context-pack.schema.json#/properties/verification"
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "known_limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

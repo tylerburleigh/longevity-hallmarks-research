@@ -34,6 +34,7 @@ const schemaByRecordType = {
   agent_run: "./agent-run.schema.json",
   codex_job: "./codex-job.schema.json",
   extraction_context_pack: "./extraction-context-pack.schema.json",
+  coverage_repair_context_pack: "./coverage-repair-context-pack.schema.json",
   supervisor_review_context_pack: "./supervisor-review-context-pack.schema.json",
   parallel_batch_plan: "./parallel-batch-plan.schema.json",
   parallel_batch_run: "./parallel-batch-run.schema.json",

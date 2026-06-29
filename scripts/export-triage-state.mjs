@@ -516,6 +516,29 @@ function suppressUnsupportedComparativeEffectDebt(result, missingField) {
   );
 }
 
+function summarizeExtractionDebtRationale(debts) {
+  const fields = sortStrings(debts.map((debt) => debt.missing_field).filter(Boolean));
+  const notes = sortStrings(debts.map((debt) => debt.note).filter(Boolean));
+  const nextActions = sortStrings(debts.map((debt) => debt.next_action).filter(Boolean));
+  const parts = [];
+
+  if (fields.length > 0) {
+    parts.push(`Resolve missing synthesis fields: ${fields.join(", ")}.`);
+  } else {
+    parts.push("Upgrade result maturity for synthesis readiness.");
+  }
+
+  if (notes.length > 0) {
+    parts.push(`Synthesis blocker context: ${notes.join(" ")}`);
+  }
+
+  if (nextActions.length > 0) {
+    parts.push(`Next actions: ${nextActions.join(" ")}`);
+  }
+
+  return parts.join(" ");
+}
+
 function buildExtractionDebt({ resultEntries, synthesisGroupEntries }) {
   const resultById = indexById(resultEntries);
   const extractionDebtById = new Map();
@@ -843,7 +866,6 @@ function buildRecommendedJobs({
 
   for (const [resultId, debts] of debtByResultId.entries()) {
     const priority = debts.some((debt) => debt.severity === "high") ? "high" : debts.some((debt) => debt.severity === "medium") ? "medium" : "low";
-    const fields = sortStrings(debts.map((debt) => debt.missing_field).filter(Boolean));
     addJob({
       job_id: makeId(["extraction-debt", resultId]),
       job_type: "extraction_refresh",
@@ -851,7 +873,7 @@ function buildRecommendedJobs({
       source: "extraction_debt",
       target_record_type: "result",
       target_record_id: resultId,
-      rationale: fields.length > 0 ? `Resolve missing synthesis fields: ${fields.join(", ")}.` : "Upgrade result maturity for synthesis readiness.",
+      rationale: summarizeExtractionDebtRationale(debts),
       inputs: sortStrings(debts.map((debt) => debt.path))
     });
   }

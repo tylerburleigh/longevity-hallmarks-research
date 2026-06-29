@@ -3,7 +3,7 @@
   "record_type": "codex_job",
   "id": "self-healing-extraction-debt-dq-bone-sasp-2wk-null",
   "name": "Self-healing repair: extraction-debt-dq-bone-sasp-2wk-null",
-  "summary": "Resolve missing synthesis fields: effect.uncertainty, effect.value, marker_level_identity.",
+  "summary": "Resolve missing synthesis fields: effect.uncertainty, effect.value, marker_level_identity. Synthesis blocker context: The registry record has group medians and a p-value, but no extractable effect value or variance estimate. The SASP result is a broad p-value-only measure without marker-level identity, effect value, or CI, standard error, or variance. Next actions: Run extraction refresh for dq-bone-sasp-2wk-null to resolve CI, standard error, or variance. Run extraction refresh for dq-bone-sasp-2wk-null to resolve effect.value. Run extraction refresh for dq-bone-sasp-2wk-null to resolve marker_level_identity.",
   "lifecycle_status": "ready",
   "agent_role": "extraction_agent",
   "mode": "extraction_refresh",
@@ -12,7 +12,7 @@
   "output_path": "research/agent-runs/self-healing-extraction-debt-dq-bone-sasp-2wk-null.json",
   "jsonl_log_path": "research/agent-runs/logs/self-healing-extraction-debt-dq-bone-sasp-2wk-null.jsonl",
   "scope": {
-    "question": "extraction_refresh: Resolve missing synthesis fields: effect.uncertainty, effect.value, marker_level_identity.",
+    "question": "extraction_refresh: Resolve missing synthesis fields: effect.uncertainty, effect.value, marker_level_identity. Synthesis blocker context: The registry record has group medians and a p-value, but no extractable effect value or variance estimate. The SASP result is a broad p-value-only measure without marker-level identity, effect value, or CI, standard error, or variance. Next actions: Run extraction refresh for dq-bone-sasp-2wk-null to resolve CI, standard error, or variance. Run extraction refresh for dq-bone-sasp-2wk-null to resolve effect.value. Run extraction refresh for dq-bone-sasp-2wk-null to resolve marker_level_identity.",
     "hallmark_ids": [
       "cellular_senescence",
       "chronic_inflammation",

@@ -6,7 +6,7 @@
   "created_at": "2026-06-28T00:00:00Z",
   "purpose": "Bounded extraction refresh for extraction-debt-dq-bone-vertigo-20wk-descriptive-repair.",
   "scope": {
-    "question": "extraction_refresh: Resolve missing synthesis fields: effect.uncertainty, effect.value.",
+    "question": "extraction_refresh: Resolve missing synthesis fields: effect.uncertainty, effect.value. Synthesis blocker context: The D+Q vertigo count is explicit, but the control cell is blank/ambiguous and cannot support a comparative effect without unsupported zero handling. Next actions: Run extraction refresh for dq-bone-vertigo-20wk-descriptive to resolve CI, standard error, or variance. Run extraction refresh for dq-bone-vertigo-20wk-descriptive to resolve effect.value.",
     "hallmark_ids": [
       "cellular_senescence",
       "chronic_inflammation",
@@ -77,7 +77,7 @@
   },
   "extraction_targets": [
     {
-      "target_label": "extraction_refresh: Resolve missing synthesis fields: effect.uncertainty, effect.value.",
+      "target_label": "extraction_refresh: Resolve missing synthesis fields: effect.uncertainty, effect.value. Synthesis blocker context: The D+Q vertigo count is explicit, but the control cell is blank/ambiguous and cannot support a comparative effect without unsupported zero handling. Next actions: Run extraction refresh for dq-bone-vertigo-20wk-descriptive to resolve CI, standard error, or variance. Run extraction refresh for dq-bone-vertigo-20wk-descriptive to resolve effect.value.",
       "interpretation_rules": [
         "Use only the scoped input records and any retained source or text snapshots named by those records unless validation exposes a concrete inconsistency.",
         "Preserve missing, ambiguous, or not-reported source cells as uncertainty rather than inventing exact effects.",

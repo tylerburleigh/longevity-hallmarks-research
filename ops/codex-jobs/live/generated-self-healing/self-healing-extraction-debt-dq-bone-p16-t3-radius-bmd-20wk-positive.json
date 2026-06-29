@@ -3,7 +3,7 @@
   "record_type": "codex_job",
   "id": "self-healing-extraction-debt-dq-bone-p16-t3-radius-bmd-20wk-positive",
   "name": "Self-healing repair: extraction-debt-dq-bone-p16-t3-radius-bmd-20wk-positive",
-  "summary": "Resolve missing synthesis fields: effect.uncertainty.",
+  "summary": "Resolve missing synthesis fields: effect.uncertainty. Synthesis blocker context: The result reports effect value and p-value, but no CI, standard error, or variance. Next actions: Run extraction refresh for dq-bone-p16-t3-radius-bmd-20wk-positive to resolve CI, standard error, or variance.",
   "lifecycle_status": "ready",
   "agent_role": "extraction_agent",
   "mode": "extraction_refresh",
@@ -12,7 +12,7 @@
   "output_path": "research/agent-runs/self-healing-extraction-debt-dq-bone-p16-t3-radius-bmd-20wk-positive.json",
   "jsonl_log_path": "research/agent-runs/logs/self-healing-extraction-debt-dq-bone-p16-t3-radius-bmd-20wk-positive.jsonl",
   "scope": {
-    "question": "extraction_refresh: Resolve missing synthesis fields: effect.uncertainty.",
+    "question": "extraction_refresh: Resolve missing synthesis fields: effect.uncertainty. Synthesis blocker context: The result reports effect value and p-value, but no CI, standard error, or variance. Next actions: Run extraction refresh for dq-bone-p16-t3-radius-bmd-20wk-positive to resolve CI, standard error, or variance.",
     "hallmark_ids": [
       "cellular_senescence",
       "chronic_inflammation",

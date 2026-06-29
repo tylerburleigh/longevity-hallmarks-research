@@ -3,7 +3,7 @@
   "record_type": "codex_job",
   "id": "self-healing-extraction-debt-dq-ad-risk-serious-adverse-events-none",
   "name": "Self-healing repair: extraction-debt-dq-ad-risk-serious-adverse-events-none",
-  "summary": "Upgrade result maturity for synthesis readiness.",
+  "summary": "Upgrade result maturity for synthesis readiness. Synthesis blocker context: Result maturity is abstract_extracted; it is useful for triage but not synthesis-ready. Next actions: Run extraction refresh for dq-ad-risk-serious-adverse-events-none.",
   "lifecycle_status": "ready",
   "agent_role": "extraction_agent",
   "mode": "extraction_refresh",
@@ -12,7 +12,7 @@
   "output_path": "research/agent-runs/self-healing-extraction-debt-dq-ad-risk-serious-adverse-events-none.json",
   "jsonl_log_path": "research/agent-runs/logs/self-healing-extraction-debt-dq-ad-risk-serious-adverse-events-none.jsonl",
   "scope": {
-    "question": "extraction_refresh: Upgrade result maturity for synthesis readiness.",
+    "question": "extraction_refresh: Upgrade result maturity for synthesis readiness. Synthesis blocker context: Result maturity is abstract_extracted; it is useful for triage but not synthesis-ready. Next actions: Run extraction refresh for dq-ad-risk-serious-adverse-events-none.",
     "hallmark_ids": [
       "cellular_senescence",
       "chronic_inflammation"

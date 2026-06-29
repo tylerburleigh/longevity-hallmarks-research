@@ -3,7 +3,7 @@
   "record_type": "codex_job",
   "id": "self-healing-extraction-debt-dq-bone-ctx-20wk-null",
   "name": "Self-healing repair: extraction-debt-dq-bone-ctx-20wk-null",
-  "summary": "Resolve missing synthesis fields: effect.uncertainty, effect.value.",
+  "summary": "Resolve missing synthesis fields: effect.uncertainty, effect.value. Synthesis blocker context: The registry record has group medians and a p-value, but no extractable effect value or variance estimate. The result is a p-value-only overall CTx comparison with group medians and full ranges; full range is not a variance estimate, and only one endpoint result is available. Next actions: Run extraction refresh for dq-bone-ctx-20wk-null to resolve CI, standard error, or variance. Run extraction refresh for dq-bone-ctx-20wk-null to resolve effect.value.",
   "lifecycle_status": "ready",
   "agent_role": "extraction_agent",
   "mode": "extraction_refresh",
@@ -12,7 +12,7 @@
   "output_path": "research/agent-runs/self-healing-extraction-debt-dq-bone-ctx-20wk-null.json",
   "jsonl_log_path": "research/agent-runs/logs/self-healing-extraction-debt-dq-bone-ctx-20wk-null.jsonl",
   "scope": {
-    "question": "extraction_refresh: Resolve missing synthesis fields: effect.uncertainty, effect.value.",
+    "question": "extraction_refresh: Resolve missing synthesis fields: effect.uncertainty, effect.value. Synthesis blocker context: The registry record has group medians and a p-value, but no extractable effect value or variance estimate. The result is a p-value-only overall CTx comparison with group medians and full ranges; full range is not a variance estimate, and only one endpoint result is available. Next actions: Run extraction refresh for dq-bone-ctx-20wk-null to resolve CI, standard error, or variance. Run extraction refresh for dq-bone-ctx-20wk-null to resolve effect.value.",
     "hallmark_ids": [
       "cellular_senescence",
       "chronic_inflammation",

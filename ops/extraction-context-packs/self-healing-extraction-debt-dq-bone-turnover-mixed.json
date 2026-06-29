@@ -6,7 +6,7 @@
   "created_at": "2026-06-28T00:00:00Z",
   "purpose": "Bounded extraction refresh for extraction-debt-dq-bone-turnover-mixed-repair.",
   "scope": {
-    "question": "extraction_refresh: Upgrade result maturity for synthesis readiness.",
+    "question": "extraction_refresh: Upgrade result maturity for synthesis readiness. Synthesis blocker context: Result maturity is triage_summary; it is useful for triage but not synthesis-ready. Next actions: Run extraction refresh for dq-bone-turnover-mixed.",
     "hallmark_ids": [
       "cellular_senescence",
       "chronic_inflammation",
@@ -77,7 +77,7 @@
   },
   "extraction_targets": [
     {
-      "target_label": "extraction_refresh: Upgrade result maturity for synthesis readiness.",
+      "target_label": "extraction_refresh: Upgrade result maturity for synthesis readiness. Synthesis blocker context: Result maturity is triage_summary; it is useful for triage but not synthesis-ready. Next actions: Run extraction refresh for dq-bone-turnover-mixed.",
       "interpretation_rules": [
         "Use only the scoped input records and any retained source or text snapshots named by those records unless validation exposes a concrete inconsistency.",
         "Preserve missing, ambiguous, or not-reported source cells as uncertainty rather than inventing exact effects.",

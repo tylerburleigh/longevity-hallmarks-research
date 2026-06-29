@@ -3,7 +3,7 @@
   "record_type": "codex_job",
   "id": "self-healing-extraction-debt-dq-bone-diarrhea-20wk-descriptive",
   "name": "Self-healing repair: extraction-debt-dq-bone-diarrhea-20wk-descriptive",
-  "summary": "Resolve missing synthesis fields: effect.uncertainty, effect.value.",
+  "summary": "Resolve missing synthesis fields: effect.uncertainty, effect.value. Synthesis blocker context: The D+Q diarrhea count is explicit, but the control cell is blank/ambiguous and cannot support a comparative effect without unsupported zero handling. Next actions: Run extraction refresh for dq-bone-diarrhea-20wk-descriptive to resolve CI, standard error, or variance. Run extraction refresh for dq-bone-diarrhea-20wk-descriptive to resolve effect.value.",
   "lifecycle_status": "ready",
   "agent_role": "extraction_agent",
   "mode": "extraction_refresh",
@@ -12,7 +12,7 @@
   "output_path": "research/agent-runs/self-healing-extraction-debt-dq-bone-diarrhea-20wk-descriptive.json",
   "jsonl_log_path": "research/agent-runs/logs/self-healing-extraction-debt-dq-bone-diarrhea-20wk-descriptive.jsonl",
   "scope": {
-    "question": "extraction_refresh: Resolve missing synthesis fields: effect.uncertainty, effect.value.",
+    "question": "extraction_refresh: Resolve missing synthesis fields: effect.uncertainty, effect.value. Synthesis blocker context: The D+Q diarrhea count is explicit, but the control cell is blank/ambiguous and cannot support a comparative effect without unsupported zero handling. Next actions: Run extraction refresh for dq-bone-diarrhea-20wk-descriptive to resolve CI, standard error, or variance. Run extraction refresh for dq-bone-diarrhea-20wk-descriptive to resolve effect.value.",
     "hallmark_ids": [
       "cellular_senescence",
       "chronic_inflammation",

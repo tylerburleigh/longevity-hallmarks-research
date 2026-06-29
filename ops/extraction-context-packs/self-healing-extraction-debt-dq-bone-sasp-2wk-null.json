@@ -6,7 +6,7 @@
   "created_at": "2026-06-28T00:00:00Z",
   "purpose": "Bounded extraction refresh for extraction-debt-dq-bone-sasp-2wk-null-repair.",
   "scope": {
-    "question": "extraction_refresh: Resolve missing synthesis fields: effect.uncertainty, effect.value, marker_level_identity.",
+    "question": "extraction_refresh: Resolve missing synthesis fields: effect.uncertainty, effect.value, marker_level_identity. Synthesis blocker context: The registry record has group medians and a p-value, but no extractable effect value or variance estimate. The SASP result is a broad p-value-only measure without marker-level identity, effect value, or CI, standard error, or variance. Next actions: Run extraction refresh for dq-bone-sasp-2wk-null to resolve CI, standard error, or variance. Run extraction refresh for dq-bone-sasp-2wk-null to resolve effect.value. Run extraction refresh for dq-bone-sasp-2wk-null to resolve marker_level_identity.",
     "hallmark_ids": [
       "cellular_senescence",
       "chronic_inflammation",
@@ -77,7 +77,7 @@
   },
   "extraction_targets": [
     {
-      "target_label": "extraction_refresh: Resolve missing synthesis fields: effect.uncertainty, effect.value, marker_level_identity.",
+      "target_label": "extraction_refresh: Resolve missing synthesis fields: effect.uncertainty, effect.value, marker_level_identity. Synthesis blocker context: The registry record has group medians and a p-value, but no extractable effect value or variance estimate. The SASP result is a broad p-value-only measure without marker-level identity, effect value, or CI, standard error, or variance. Next actions: Run extraction refresh for dq-bone-sasp-2wk-null to resolve CI, standard error, or variance. Run extraction refresh for dq-bone-sasp-2wk-null to resolve effect.value. Run extraction refresh for dq-bone-sasp-2wk-null to resolve marker_level_identity.",
       "interpretation_rules": [
         "Use only the scoped input records and any retained source or text snapshots named by those records unless validation exposes a concrete inconsistency.",
         "Preserve missing, ambiguous, or not-reported source cells as uncertainty rather than inventing exact effects.",

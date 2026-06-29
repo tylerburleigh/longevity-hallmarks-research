@@ -6,7 +6,7 @@
   "created_at": "2026-06-28T00:00:00Z",
   "purpose": "Bounded extraction refresh for extraction-debt-dq-dkd-adverse-events-abstract-not-reported-repair.",
   "scope": {
-    "question": "extraction_refresh: Upgrade result maturity for synthesis readiness.",
+    "question": "extraction_refresh: Upgrade result maturity for synthesis readiness. Synthesis blocker context: Result maturity is abstract_extracted; it is useful for triage but not synthesis-ready. Next actions: Run extraction refresh for dq-dkd-adverse-events-abstract-not-reported.",
     "hallmark_ids": [
       "cellular_senescence",
       "chronic_inflammation"
@@ -76,7 +76,7 @@
   },
   "extraction_targets": [
     {
-      "target_label": "extraction_refresh: Upgrade result maturity for synthesis readiness.",
+      "target_label": "extraction_refresh: Upgrade result maturity for synthesis readiness. Synthesis blocker context: Result maturity is abstract_extracted; it is useful for triage but not synthesis-ready. Next actions: Run extraction refresh for dq-dkd-adverse-events-abstract-not-reported.",
       "interpretation_rules": [
         "Use only the scoped input records and any retained source or text snapshots named by those records unless validation exposes a concrete inconsistency.",
         "Preserve missing, ambiguous, or not-reported source cells as uncertainty rather than inventing exact effects.",

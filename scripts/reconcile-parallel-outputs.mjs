@@ -487,11 +487,21 @@ function incompleteLedgerFindings(candidateEntries, agentRunEntries, batchRuns) 
   return findings.toSorted((left, right) => left.issue_id.localeCompare(right.issue_id));
 }
 
-function parallelBatchReconciliations(batchPlan, findings) {
-  const findingIds = new Set(findings.map((finding) => finding.issue_id));
+function batchReconciliationStatus(batch) {
+  if (!batch.reconciliation_required) {
+    return "no_reconciliation_needed";
+  }
+  if ((batch.overlapping_execution_keys ?? []).length > 0) {
+    return "reconciliation_open";
+  }
+  return "reconciliation_pending";
+}
+
+function parallelBatchReconciliations(batchPlan) {
   return (batchPlan?.batches ?? [])
     .map((batch) => {
       const needsReconciliation = Boolean(batch.reconciliation_required);
+      const status = batchReconciliationStatus(batch);
       return {
         batch_id: batch.batch_id,
         parallel_group: batch.parallel_group,
@@ -499,8 +509,8 @@ function parallelBatchReconciliations(batchPlan, findings) {
         reconciliation_required: needsReconciliation,
         job_ids: sortStrings(batch.job_ids),
         overlapping_execution_keys: sortStrings(batch.overlapping_execution_keys),
-        status: needsReconciliation ? "reconciliation_open" : "no_reconciliation_needed",
-        finding_ids: needsReconciliation ? sortStrings([...findingIds]) : []
+        status,
+        finding_ids: []
       };
     })
     .toSorted((left, right) => left.batch_id.localeCompare(right.batch_id));
@@ -641,7 +651,7 @@ export async function buildParallelReconciliation({ generatedAt = new Date().toI
       blocking_finding_count: allOpenFindings.filter((finding) => finding.severity === "blocker").length,
       warning_finding_count: allOpenFindings.filter((finding) => finding.severity === "warning").length
     },
-    parallel_batches: parallelBatchReconciliations(batchPlan, allOpenFindings),
+    parallel_batches: parallelBatchReconciliations(batchPlan),
     duplicate_sources: duplicateSourceFindings,
     duplicate_studies: duplicateStudyFindings,
     overlapping_candidate_proposals: overlappingCandidateFindings,

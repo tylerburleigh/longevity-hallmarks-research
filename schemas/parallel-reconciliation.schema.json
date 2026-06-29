@@ -351,6 +351,7 @@
           "enum": [
             "no_reconciliation_needed",
             "reconciliation_open",
+            "reconciliation_pending",
             "reconciled"
           ]
         },

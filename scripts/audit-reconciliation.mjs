@@ -121,6 +121,7 @@ async function main() {
     ...(actual.incomplete_ledgers ?? [])
   ].map((finding) => [finding.issue_id, finding]));
   const decisionIssues = [];
+  const batchIssues = [];
   const promotedDecisionRefs = await promotionDecisionReferences();
   const decisionRoot = actual.reconciliation_policy?.decision_root;
 
@@ -157,6 +158,34 @@ async function main() {
         );
       }
     }
+  }
+
+  for (const batch of actual.parallel_batches ?? []) {
+    if (!batch.reconciliation_required && batch.status !== "no_reconciliation_needed") {
+      batchIssues.push(`${batch.batch_id}: non-reconciliation batch must use status no_reconciliation_needed.`);
+    }
+    if (batch.status === "reconciliation_pending") {
+      if (!batch.reconciliation_required) {
+        batchIssues.push(`${batch.batch_id}: reconciliation_pending requires reconciliation_required=true.`);
+      }
+      if ((batch.overlapping_execution_keys ?? []).length > 0) {
+        batchIssues.push(`${batch.batch_id}: reconciliation_pending batch must not have overlapping_execution_keys.`);
+      }
+      if ((batch.finding_ids ?? []).length > 0) {
+        batchIssues.push(`${batch.batch_id}: reconciliation_pending batch must not inherit unrelated finding_ids.`);
+      }
+    }
+    if (batch.status === "reconciliation_open" && (batch.overlapping_execution_keys ?? []).length === 0 && (batch.finding_ids ?? []).length === 0) {
+      batchIssues.push(`${batch.batch_id}: reconciliation_open requires batch-specific overlapping_execution_keys or finding_ids.`);
+    }
+  }
+
+  if (batchIssues.length > 0) {
+    console.error(`Parallel-reconciliation audit failed with ${batchIssues.length} batch issue(s):`);
+    for (const issue of batchIssues) {
+      console.error(`- ${issue}`);
+    }
+    process.exit(1);
   }
 
   if (decisionIssues.length > 0) {

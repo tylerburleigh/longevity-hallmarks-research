@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "triage_state",
   "id": "triage-state-v1",
-  "generated_at": "2026-06-29T22:47:53.918Z",
+  "generated_at": "2026-06-29T23:12:08.864Z",
   "source_roots": [
     "data",
     "research"
@@ -66,7 +66,7 @@
     }
   ],
   "summary": {
-    "candidate_count": 82,
+    "candidate_count": 83,
     "promotion_ready_count": 0,
     "needs_review_count": 1,
     "needs_revision_count": 0,
@@ -586,6 +586,26 @@
       "readiness_status": "submitted",
       "required_review_lanes": [
         "taxonomy_mapping"
+      ],
+      "active_review_ids": [],
+      "active_review_paths": [],
+      "complete_accepting_review_lanes": [],
+      "missing_review_lanes": [],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 2,
+      "next_actions": [
+        "No recursive supervisor review required; this candidate only ledgers evidence_review records."
+      ]
+    },
+    {
+      "candidate_change_id": "candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary-repair",
+      "path": "data/candidate-changes/candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "submitted",
+      "required_review_lanes": [
+        "synthesis_boundary"
       ],
       "active_review_ids": [],
       "active_review_paths": [],
@@ -1393,11 +1413,16 @@
         "synthesis_boundary",
         "taxonomy_mapping"
       ],
-      "active_review_ids": [],
-      "active_review_paths": [],
-      "complete_accepting_review_lanes": [],
+      "active_review_ids": [
+        "coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary"
+      ],
+      "active_review_paths": [
+        "data/evidence-reviews/coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary.json"
+      ],
+      "complete_accepting_review_lanes": [
+        "synthesis_boundary"
+      ],
       "missing_review_lanes": [
-        "synthesis_boundary",
         "taxonomy_mapping"
       ],
       "revision_review_lanes": [],
@@ -1405,7 +1430,7 @@
       "open_major_or_critical_review_ids": [],
       "proposed_record_count": 2,
       "next_actions": [
-        "Run supervisor review lanes: synthesis_boundary, taxonomy_mapping."
+        "Run supervisor review lanes: taxonomy_mapping."
       ]
     },
     {
@@ -2089,12 +2114,6 @@
     {
       "candidate_change_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair",
       "path": "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair.json",
-      "review_lane": "synthesis_boundary",
-      "next_action": "Run synthesis_boundary supervisor review for coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair."
-    },
-    {
-      "candidate_change_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair",
-      "path": "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair.json",
       "review_lane": "taxonomy_mapping",
       "next_action": "Run taxonomy_mapping supervisor review for coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair."
     },
@@ -2649,7 +2668,7 @@
       "source": "candidate_readiness",
       "target_record_type": "candidate_change",
       "target_record_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair",
-      "rationale": "Required review lanes are missing: synthesis_boundary, taxonomy_mapping.",
+      "rationale": "Required review lanes are missing: taxonomy_mapping.",
       "inputs": [
         "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair.json"
       ]

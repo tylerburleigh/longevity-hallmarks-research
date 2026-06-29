@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "candidate_change",
+  "id": "candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary-repair",
+  "name": "Synthesis-boundary review repair for senolytics registry-surveillance follow-up",
+  "summary": "Adds the missing synthesis_boundary supervisor review for the senolytics registry-surveillance breadth follow-up repair candidate. The review accepts the lane because the proposed change records importer failures and preserves the open registry-surveillance gap without creating synthesis-ready effect claims, registry evidence records, or pooled analysis boundaries.",
+  "lifecycle_status": "submitted",
+  "submitted_at": "2026-06-29T23:08:46Z",
+  "scope": {
+    "question": "Repair the missing synthesis_boundary review lane for candidate coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ]
+  },
+  "proposed_records": [
+    {
+      "record_type": "candidate_change",
+      "record_id": "candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary-repair",
+      "path": "data/candidate-changes/candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary-repair.json",
+      "change_type": "create",
+      "rationale": "Tracks the bounded repair candidate for the missing synthesis_boundary supervisor review lane."
+    },
+    {
+      "record_type": "evidence_review",
+      "record_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary",
+      "path": "data/evidence-reviews/coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary.json",
+      "change_type": "create",
+      "rationale": "Adds the missing complete synthesis_boundary review for the target senolytics registry-surveillance breadth follow-up repair candidate."
+    }
+  ],
+  "required_review_lanes": [
+    "synthesis_boundary"
+  ]
+}

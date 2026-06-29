@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary",
+  "candidate_change_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair",
+  "review_lane": "synthesis_boundary",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Synthesis-boundary review accepted. The candidate records a bounded ClinicalTrials.gov retrieval failure follow-up and updates the senolytics coverage assessment while keeping the registry-surveillance and review-landscape gaps open. It does not create source-backed registry evidence, findings, results, synthesis groups, pooled estimates, or human longevity efficacy claims from the failed importer attempts.",
+  "findings": [
+    {
+      "finding_id": "registry-failure-not-treated-as-evidence",
+      "severity": "note",
+      "category": "interpretation_overreach",
+      "claim_or_issue": "The proposed coverage assessment describes ClinicalTrials.gov DNS/importer failures for deferred fisetin and senolytics registry candidates.",
+      "why_it_matters": "A failed retrieval attempt is operational provenance, not evidence that a registry is active, completed, or has no posted results.",
+      "recommended_action": "Accept the lane because the candidate does not create registry evidence records from the failures and explicitly keeps the registry-surveillance gap open until retained source snapshots support extraction.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "no-synthesis-group-or-pooling-added",
+      "severity": "note",
+      "category": "endpoint_boundary",
+      "claim_or_issue": "The candidate proposes only its own candidate_change record and an update to a coverage_assessment record.",
+      "why_it_matters": "Registry-surveillance breadth and coverage maturity are not poolable intervention, comparator, population, endpoint, duration, design, effect, or risk-of-bias strata.",
+      "recommended_action": "Accept the lane because no synthesis_group, result, effect-size record, meta-analysis readiness claim, or pooled analysis boundary is proposed.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "human-longevity-efficacy-boundary-preserved",
+      "severity": "note",
+      "category": "interpretation_overreach",
+      "claim_or_issue": "The coverage assessment remains a vertical-slice triage summary with open registry, review-landscape, and full-text safety extraction gaps.",
+      "why_it_matters": "Senolytics evidence includes preclinical, pilot, disease-specific, and registry-only slices that must not be converted into generalized human longevity efficacy claims.",
+      "recommended_action": "Accept the lane because the proposed text preserves thin and triage-summary limitations and does not infer human longevity efficacy from operational retrieval failures or incomplete registry surveillance.",
+      "resolution_status": "closed"
+    }
+  ]
+}

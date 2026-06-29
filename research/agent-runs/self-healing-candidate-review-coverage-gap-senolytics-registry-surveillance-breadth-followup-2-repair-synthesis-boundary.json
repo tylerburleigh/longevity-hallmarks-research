@@ -1,0 +1,183 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary",
+  "agent_role": "supervisor_agent",
+  "agent_id": "codex-cli",
+  "mode": "agent_directed",
+  "started_at": "2026-06-29T23:07:31Z",
+  "completed_at": "2026-06-29T23:10:47Z",
+  "status": "partial",
+  "scope": {
+    "question": "candidate_review: Required review lane is missing: synthesis_boundary.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "codex_exec",
+    "isolation": "git_worktree",
+    "workspace_path": "/tmp/lhr-codex-worktrees/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary-20260629T230731z",
+    "prompt_file": "research/agent-runs/prompts/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary.md",
+    "prompt_template_file": "docs/prompts/codex-agents/supervisor-review.md",
+    "job_file": "ops/codex-jobs/archive/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary.json",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "output_path": "research/agent-runs/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary.json",
+    "jsonl_log_path": "research/agent-runs/logs/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary.jsonl",
+    "sandbox": "danger-full-access",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "other",
+      "reference": "ops/supervisor-review-context-packs/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary.json",
+      "summary": "Bounded context pack for the missing synthesis_boundary review lane."
+    },
+    {
+      "input_type": "candidate_change",
+      "reference": "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair.json",
+      "summary": "Target candidate_change under synthesis_boundary review."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+      "summary": "Proposed coverage_assessment update inspected for synthesis-boundary risks."
+    },
+    {
+      "input_type": "other",
+      "reference": "schemas/evidence-review.schema.json",
+      "summary": "Evidence review schema used for the created lane review."
+    },
+    {
+      "input_type": "other",
+      "reference": "schemas/candidate-change.schema.json",
+      "summary": "Candidate change schema used for the repair candidate ledger."
+    }
+  ],
+  "outputs": {
+    "summary": "Created the repair candidate_change and the missing complete synthesis_boundary evidence_review. The lane verdict is accept with no blocking findings and no open major or critical findings; repository verification was attempted but stopped at stale generated exports that the coordinator post-run export step is expected to refresh.",
+    "candidate_change_id": "candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary-repair",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary-repair",
+        "path": "data/candidate-changes/candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary-repair.json",
+        "change_type": "create",
+        "rationale": "Tracks the bounded repair candidate for the missing synthesis_boundary supervisor review lane."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary",
+        "path": "data/evidence-reviews/coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary.json",
+        "change_type": "create",
+        "rationale": "Adds the missing complete synthesis_boundary review for the target senolytics registry-surveillance breadth follow-up repair candidate."
+      }
+    ],
+    "generated_files": [
+      "data/candidate-changes/candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary-repair.json",
+      "data/evidence-reviews/coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary.json"
+    ],
+    "export_paths": []
+  },
+  "quality_checks": [
+    {
+      "check_name": "supervisor_review_lanes",
+      "status": "passed",
+      "summary": "The synthesis_boundary lane is complete, non-blocking, accepted, and has zero open major or critical findings."
+    },
+    {
+      "check_name": "candidate_agent_run_ledger_match",
+      "status": "passed",
+      "summary": "outputs.proposed_records exactly matches the repair candidate proposed_records ledger."
+    },
+    {
+      "check_name": "validate_records",
+      "status": "passed",
+      "summary": "npm run validate:records passed; 588 JSON files validated."
+    },
+    {
+      "check_name": "audit_references",
+      "status": "passed",
+      "summary": "npm run audit:references passed for 382 record files."
+    },
+    {
+      "check_name": "audit_agent_schemas",
+      "status": "passed",
+      "summary": "npm run audit:agent-schemas passed."
+    },
+    {
+      "check_name": "audit_agentic_process",
+      "status": "passed",
+      "summary": "npm run audit:agentic-process passed for 613 files."
+    },
+    {
+      "check_name": "verify_knowledge_base",
+      "status": "failed",
+      "summary": "npm run verify:knowledge-base was attempted and stopped at audit:exports because exports/latest/audit-manifest.json record_counts are stale; the coordinator job declares post-run export_latest and verify_knowledge_base."
+    },
+    {
+      "check_name": "worker_output_contract",
+      "status": "passed",
+      "summary": "Worker emitted exactly one final JSON agent_run message, matched output_path, and avoided ad hoc schema-validation snippets."
+    },
+    {
+      "check_name": "post_triage_state_export",
+      "status": "passed",
+      "summary": "post_triage_state_export exited 0: > longevity-hallmarks-research@0.1.0 export:triage-state > node scripts/export-triage-state.mjs Wrote ops/triage-state.v1.json."
+    },
+    {
+      "check_name": "post_release_readiness_export",
+      "status": "passed",
+      "summary": "post_release_readiness_export exited 0: > longevity-hallmarks-research@0.1.0 export:release-readiness > node scripts/export-release-readiness.mjs Wrote ops/release-readiness.v1.json."
+    },
+    {
+      "check_name": "post_job_archive",
+      "status": "passed",
+      "summary": "post_job_archive exited 0: > longevity-hallmarks-research@0.1.0 jobs:archive > node scripts/archive-codex-job.mjs --job-file ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary.json {\"type\":\"codex_job.archived\",\"schema_version\":\"1.0.0\",\"job_id\":\"self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary\",\"job_file\":\"ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary.json\",\"archive_path\":\"ops/codex-jobs/archive/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary.json\",\"output_path\":\"research/agent-runs/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary.json\",\"status\":\"succeeded\",\"archived_at\":\"2026-06-29T23:11:22.977Z\",\"dry_run\":false,\"updated_batch_run_paths\":[]}"
+    },
+    {
+      "check_name": "post_self_healing_jobs",
+      "status": "passed",
+      "summary": "post_self_healing_jobs exited 0: \"context_pack_status\": \"written\" } ], \"removed_obsolete_paths\": [], \"removed_obsolete_context_pack_paths\": [] }"
+    },
+    {
+      "check_name": "post_parallel_batch_plan",
+      "status": "passed",
+      "summary": "post_parallel_batch_plan exited 0: > longevity-hallmarks-research@0.1.0 jobs:plan-parallel > node scripts/plan-parallel-codex-batches.mjs Wrote ops/codex-batches/parallel-batch-plan.v1.json."
+    },
+    {
+      "check_name": "post_reconciliation_export",
+      "status": "passed",
+      "summary": "post_reconciliation_export exited 0: > longevity-hallmarks-research@0.1.0 reconcile:parallel > node scripts/reconcile-parallel-outputs.mjs Wrote ops/reconciliation/parallel-reconciliation.v1.json."
+    },
+    {
+      "check_name": "post_orchestration_metrics_export",
+      "status": "passed",
+      "summary": "post_orchestration_metrics_export exited 0: > longevity-hallmarks-research@0.1.0 metrics:orchestration > node scripts/export-orchestration-metrics.mjs Wrote ops/codex-batches/orchestration-metrics.v1.json."
+    },
+    {
+      "check_name": "post_export",
+      "status": "passed",
+      "summary": "post_export exited 0: > longevity-hallmarks-research@0.1.0 export:latest > node scripts/export-latest.mjs Wrote 16 export file(s) to exports/latest."
+    },
+    {
+      "check_name": "post_read_model_export",
+      "status": "passed",
+      "summary": "post_read_model_export exited 0: > longevity-hallmarks-research@0.1.0 export:read-model > node scripts/export-read-model.mjs Wrote exports/latest/read-model.sqlite."
+    },
+    {
+      "check_name": "post_verify",
+      "status": "passed",
+      "summary": "post_verify exited 0: > longevity-hallmarks-research@0.1.0 audit:orchestration-smoke-contract > node scripts/audit-orchestration-smoke-contract.mjs Orchestration smoke contract audit passed for orchestration-smoke-budgeted-codex-worktree-2026-06-23. > longevity-hallmarks-research@0.1.0 audit:agentic-process > node scripts/audit-agentic-process.mjs Agentic process audit passed for 614 file(s)."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": [
+    "Run the coordinator post-run export refresh and knowledge-base verification so exports/latest/audit-manifest.json reflects the new canonical review records."
+  ]
+}

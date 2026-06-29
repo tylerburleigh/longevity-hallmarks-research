@@ -146,6 +146,23 @@ async function checkSourceContext({ issues, ownerPath, label, context }) {
   return artifactPaths;
 }
 
+function checkSourceAvailability({ issues, ownerPath, pack, sourceContextSnapshotIds }) {
+  for (const [index, source] of (pack.source_availability ?? []).entries()) {
+    const expectedArtifactContextAvailable = sourceContextSnapshotIds.has(source.source_snapshot_id);
+    if (source.artifact_context_available !== expectedArtifactContextAvailable) {
+      issues.push(
+        `${ownerPath}: source_availability[${index}].artifact_context_available expected ${expectedArtifactContextAvailable} for ${source.source_snapshot_id}.`
+      );
+    }
+    if (source.raw_storage_stored && !source.raw_storage_path) {
+      issues.push(`${ownerPath}: source_availability[${index}].raw_storage_path is required when raw_storage_stored is true.`);
+    }
+    if (!source.raw_storage_stored && !source.reason_not_stored) {
+      issues.push(`${ownerPath}: source_availability[${index}].reason_not_stored is required when raw_storage_stored is false.`);
+    }
+  }
+}
+
 async function checkPack({ issues, pack, ownerPath }) {
   if (pack.record_type !== "extraction_context_pack") {
     issues.push(`${ownerPath}: expected record_type "extraction_context_pack".`);
@@ -158,11 +175,14 @@ async function checkPack({ issues, pack, ownerPath }) {
   }
 
   const sourceArtifactPaths = new Set();
+  const sourceContextSnapshotIds = new Set();
   for (const { label, context } of sourceContexts(pack)) {
+    sourceContextSnapshotIds.add(context.source_snapshot_id);
     for (const artifactPath of await checkSourceContext({ issues, ownerPath, label, context })) {
       sourceArtifactPaths.add(artifactPath);
     }
   }
+  checkSourceAvailability({ issues, ownerPath, pack, sourceContextSnapshotIds });
 
   for (const [index, target] of (pack.extraction_targets ?? []).entries()) {
     checkLocator({ issues, ownerPath, artifactPaths: sourceArtifactPaths, field: `extraction_targets[${index}].source_locator`, locator: target.source_locator });

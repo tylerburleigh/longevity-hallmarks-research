@@ -31,6 +31,24 @@
       "dq-bone-turnover-mixed"
     ]
   },
+  "source_availability": [
+    {
+      "source_id": "nct-04313634",
+      "source_snapshot_id": "snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+      "raw_storage_stored": true,
+      "raw_storage_path": "artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/raw.json",
+      "artifact_context_available": false,
+      "access_tier": "public_registry",
+      "artifact_policy": "retain_raw_and_markdown"
+    },
+    {
+      "source_id": "pmid-38956196",
+      "source_snapshot_id": "snapshot-pmid-38956196-pubmed-efetch-2026-06-21",
+      "raw_storage_stored": false,
+      "reason_not_stored": "Snapshot stores retrieval URL, content hash, and extracted metadata summary; raw XML can be refetched from NCBI EFetch.",
+      "artifact_context_available": false
+    }
+  ],
   "target_context": {
     "input_records": [
       {
@@ -116,7 +134,9 @@
       "candidate_change.required_review_lanes[] equals expected_outputs.required_review_lanes[]"
     ],
     "known_schema_limitations": [
-      "This generated pack scopes records and schemas; it does not preselect retained artifact line locators."
+      "This generated pack scopes records and schemas; it does not preselect retained artifact line locators.",
+      "source_availability marks metadata-only scoped snapshots; workers must not treat those snapshots as full-text/table evidence.",
+      "source_availability marks scoped snapshots without generated source_context locators; workers must use retained raw_storage_path values only within the bounded job scope."
     ]
   },
   "exemplar_records": [],
@@ -162,10 +182,14 @@
     "Read the context pack first and keep repository inspection bounded to the pack, scoped read_sets, and listed verification commands.",
     "Create only the repair candidate and target record paths declared in expected_outputs.",
     "Set the repair candidate required_review_lanes[] exactly to expected_outputs.required_review_lanes[].",
+    "If source_availability shows metadata-only snapshots, leave a blocking issue or source-retention follow-up instead of fabricating table-level extraction.",
+    "If source_availability has raw_storage_path but no source_context locators, inspect only the named raw artifact paths needed for the target extraction.",
     "Do not perform broad repository searches or full-record dumps unless validation identifies a specific missing path or schema inconsistency."
   ],
   "known_limitations": [
     "Source artifact locators may need to be discovered from scoped source_snapshot or text_snapshot records when present.",
+    "One or more scoped source snapshots are metadata-only and lack retained raw/full-text artifacts for extraction-grade upgrades.",
+    "One or more scoped source snapshots have retained raw artifacts but no generated section-level locators in this pack.",
     "The pack is a routing contract for extraction repair, not a source-fidelity review."
   ]
 }

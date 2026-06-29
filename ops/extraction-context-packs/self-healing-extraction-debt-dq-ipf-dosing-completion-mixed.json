@@ -30,6 +30,17 @@
       "dq-ipf-dosing-completion-mixed"
     ]
   },
+  "source_availability": [
+    {
+      "source_id": "pmid-36857968",
+      "source_snapshot_id": "snapshot-pmid-36857968-pubmed-efetch-2026-06-27",
+      "raw_storage_stored": false,
+      "reason_not_stored": "Snapshot stores retrieval URL, content hash, and parsed metadata summary; raw XML can be refetched from NCBI EFetch.",
+      "artifact_context_available": false,
+      "access_tier": "metadata_only",
+      "artifact_policy": "retain_metadata_hashes_and_locators"
+    }
+  ],
   "target_context": {
     "input_records": [
       {
@@ -109,7 +120,8 @@
       "candidate_change.required_review_lanes[] equals expected_outputs.required_review_lanes[]"
     ],
     "known_schema_limitations": [
-      "This generated pack scopes records and schemas; it does not preselect retained artifact line locators."
+      "This generated pack scopes records and schemas; it does not preselect retained artifact line locators.",
+      "source_availability marks metadata-only scoped snapshots; workers must not treat those snapshots as full-text/table evidence."
     ]
   },
   "exemplar_records": [],
@@ -155,10 +167,12 @@
     "Read the context pack first and keep repository inspection bounded to the pack, scoped read_sets, and listed verification commands.",
     "Create only the repair candidate and target record paths declared in expected_outputs.",
     "Set the repair candidate required_review_lanes[] exactly to expected_outputs.required_review_lanes[].",
+    "If source_availability shows metadata-only snapshots, leave a blocking issue or source-retention follow-up instead of fabricating table-level extraction.",
     "Do not perform broad repository searches or full-record dumps unless validation identifies a specific missing path or schema inconsistency."
   ],
   "known_limitations": [
     "Source artifact locators may need to be discovered from scoped source_snapshot or text_snapshot records when present.",
+    "One or more scoped source snapshots are metadata-only and lack retained raw/full-text artifacts for extraction-grade upgrades.",
     "The pack is a routing contract for extraction repair, not a source-fidelity review."
   ]
 }

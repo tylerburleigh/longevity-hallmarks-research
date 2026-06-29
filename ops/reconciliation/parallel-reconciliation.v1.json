@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "parallel_reconciliation",
   "id": "parallel-reconciliation-v1",
-  "generated_at": "2026-06-29T18:48:18.791Z",
+  "generated_at": "2026-06-29T19:04:44.058Z",
   "source_roots": [
     "data",
     "research",

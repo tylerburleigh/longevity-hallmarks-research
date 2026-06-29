@@ -114,6 +114,13 @@
       },
       "uniqueItems": true
     },
+    "source_availability": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/sourceAvailability"
+      },
+      "uniqueItems": true
+    },
     "target_context": {
       "type": "object",
       "additionalProperties": false,
@@ -296,6 +303,45 @@
             "$ref": "#/$defs/sourceLocator"
           },
           "minItems": 1
+        }
+      }
+    },
+    "sourceAvailability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "source_snapshot_id",
+        "raw_storage_stored",
+        "artifact_context_available"
+      ],
+      "properties": {
+        "source_id": {
+          "$ref": "./common.schema.json#/$defs/sourceRef"
+        },
+        "source_snapshot_id": {
+          "$ref": "./common.schema.json#/$defs/sourceSnapshotRef"
+        },
+        "text_snapshot_id": {
+          "$ref": "./common.schema.json#/$defs/textSnapshotRef"
+        },
+        "raw_storage_stored": {
+          "type": "boolean"
+        },
+        "raw_storage_path": {
+          "type": "string"
+        },
+        "reason_not_stored": {
+          "type": "string"
+        },
+        "artifact_context_available": {
+          "type": "boolean"
+        },
+        "access_tier": {
+          "type": "string"
+        },
+        "artifact_policy": {
+          "type": "string"
         }
       }
     },

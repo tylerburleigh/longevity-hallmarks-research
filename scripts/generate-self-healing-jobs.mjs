@@ -837,8 +837,47 @@ function sourceContextsForJob(recordIndex, job) {
     .filter((sourceContext) => sourceContext.artifact_paths.length > 0 && sourceContext.primary_locators.length > 0);
 }
 
+function recordPathsForReadSet(job, directory) {
+  return (job.orchestration?.read_sets ?? [])
+    .map((readSet) => readSet.match(new RegExp(`^path:(${directory}/.+\\.json)$`))?.[1])
+    .filter(Boolean);
+}
+
+function sourceAvailabilityForJob(recordIndex, job, sourceContexts) {
+  const textSnapshotsBySourceSnapshotId = new Map(
+    recordPathsForReadSet(job, "data/text-snapshots")
+      .map((recordPath) => recordIndex.byPath.get(recordPath))
+      .filter((record) => record?.record_type === "text_snapshot")
+      .map((textSnapshot) => [textSnapshot.source_snapshot_id, textSnapshot])
+  );
+  const sourceContextSnapshotIds = new Set(sourceContexts.map((context) => context.source_snapshot_id));
+
+  return sortStrings(recordPathsForReadSet(job, "data/source-snapshots"))
+    .map((recordPath) => recordIndex.byPath.get(recordPath))
+    .filter((record) => record?.record_type === "source_snapshot")
+    .map((sourceSnapshot) => {
+      const textSnapshot = textSnapshotsBySourceSnapshotId.get(sourceSnapshot.id);
+      return {
+        source_id: sourceSnapshot.source_id,
+        source_snapshot_id: sourceSnapshot.id,
+        ...(textSnapshot?.id ? { text_snapshot_id: textSnapshot.id } : {}),
+        raw_storage_stored: Boolean(sourceSnapshot.raw_storage?.stored),
+        ...(sourceSnapshot.raw_storage?.path ? { raw_storage_path: sourceSnapshot.raw_storage.path } : {}),
+        ...(sourceSnapshot.raw_storage?.reason_not_stored ? { reason_not_stored: sourceSnapshot.raw_storage.reason_not_stored } : {}),
+        artifact_context_available: sourceContextSnapshotIds.has(sourceSnapshot.id),
+        ...(sourceSnapshot.access_policy?.access_tier ? { access_tier: sourceSnapshot.access_policy.access_tier } : {}),
+        ...(sourceSnapshot.access_policy?.artifact_policy ? { artifact_policy: sourceSnapshot.access_policy.artifact_policy } : {})
+      };
+    });
+}
+
 export function buildExtractionContextPack(recordIndex, job) {
   const sourceContexts = sourceContextsForJob(recordIndex, job);
+  const sourceAvailability = sourceAvailabilityForJob(recordIndex, job, sourceContexts);
+  const hasRetainedSourcesWithoutLocatorContext = sourceAvailability.some(
+    (source) => !source.artifact_context_available && source.raw_storage_stored
+  );
+  const hasMetadataOnlySources = sourceAvailability.some((source) => !source.raw_storage_stored);
 
   return {
     schema_version: "1.0.0",
@@ -849,6 +888,7 @@ export function buildExtractionContextPack(recordIndex, job) {
     purpose: `Bounded extraction refresh for ${job.expected_outputs.candidate_change_id}.`,
     scope: job.scope,
     ...(sourceContexts.length > 0 ? { source_contexts: sourceContexts } : {}),
+    ...(sourceAvailability.length > 0 ? { source_availability: sourceAvailability } : {}),
     target_context: {
       input_records: scopedInputRecords(recordIndex, job),
       target_records: targetRecordPointers(recordIndex, job)
@@ -884,7 +924,17 @@ export function buildExtractionContextPack(recordIndex, job) {
       known_schema_limitations: [
         sourceContexts.length > 0
           ? "Generated source_contexts list retained artifacts and section-level locators; workers still need to inspect the named sections to extract exact table rows or cells."
-          : "This generated pack scopes records and schemas; it does not preselect retained artifact line locators."
+          : "This generated pack scopes records and schemas; it does not preselect retained artifact line locators.",
+        ...(hasMetadataOnlySources
+          ? [
+              "source_availability marks metadata-only scoped snapshots; workers must not treat those snapshots as full-text/table evidence."
+            ]
+          : []),
+        ...(hasRetainedSourcesWithoutLocatorContext
+          ? [
+              "source_availability marks scoped snapshots without generated source_context locators; workers must use retained raw_storage_path values only within the bounded job scope."
+            ]
+          : [])
       ]
     },
     exemplar_records: [],
@@ -911,12 +961,24 @@ export function buildExtractionContextPack(recordIndex, job) {
       "Read the context pack first and keep repository inspection bounded to the pack, scoped read_sets, and listed verification commands.",
       "Create only the repair candidate and target record paths declared in expected_outputs.",
       "Set the repair candidate required_review_lanes[] exactly to expected_outputs.required_review_lanes[].",
+      ...(hasMetadataOnlySources
+        ? ["If source_availability shows metadata-only snapshots, leave a blocking issue or source-retention follow-up instead of fabricating table-level extraction."]
+        : []),
+      ...(hasRetainedSourcesWithoutLocatorContext
+        ? ["If source_availability has raw_storage_path but no source_context locators, inspect only the named raw artifact paths needed for the target extraction."]
+        : []),
       "Do not perform broad repository searches or full-record dumps unless validation identifies a specific missing path or schema inconsistency."
     ],
     known_limitations: [
       sourceContexts.length > 0
         ? "Section-level locators are generated from retained text snapshots and may be broader than the exact result row or cell."
         : "Source artifact locators may need to be discovered from scoped source_snapshot or text_snapshot records when present.",
+      ...(hasMetadataOnlySources
+        ? ["One or more scoped source snapshots are metadata-only and lack retained raw/full-text artifacts for extraction-grade upgrades."]
+        : []),
+      ...(hasRetainedSourcesWithoutLocatorContext
+        ? ["One or more scoped source snapshots have retained raw artifacts but no generated section-level locators in this pack."]
+        : []),
       "The pack is a routing contract for extraction repair, not a source-fidelity review."
     ]
   };

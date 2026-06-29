@@ -1107,19 +1107,19 @@ async function main() {
     });
   }
 
-  const expectedJobsForPrune = options.replace && !options.dryRun
+  const expectedJobsForPrune = !options.dryRun
     ? await buildSelfHealingJobs({ limit: Number.POSITIVE_INFINITY, recordIndex })
     : [];
-  const preservedContextPackPaths = options.replace && !options.dryRun
-    ? await referencedContextPackPaths()
-    : new Set();
-  const removedObsoletePaths = options.replace && !options.dryRun
+  const removedObsoletePaths = !options.dryRun
     ? await pruneObsoleteGeneratedJobs({
         outputDir: options.outputDir,
         expectedJobs: expectedJobsForPrune
       })
     : [];
-  const removedObsoleteContextPackPaths = options.replace && !options.dryRun
+  const preservedContextPackPaths = !options.dryRun
+    ? await referencedContextPackPaths()
+    : new Set();
+  const removedObsoleteContextPackPaths = !options.dryRun
     ? [
         ...(await pruneObsoleteContextPacks({
           root: supervisorReviewContextPackRoot,

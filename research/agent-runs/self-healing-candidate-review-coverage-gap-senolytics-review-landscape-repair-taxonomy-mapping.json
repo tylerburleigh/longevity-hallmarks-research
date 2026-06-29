@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "self-healing-candidate-review-coverage-gap-senolytics-review-landscape-repair-taxonomy-mapping",
+  "agent_role": "supervisor_agent",
+  "agent_id": "codex",
+  "mode": "agent_directed",
+  "started_at": "2026-06-29T00:00:00Z",
+  "completed_at": "2026-06-29T00:00:00Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "candidate_review: complete the missing taxonomy_mapping lane for coverage-gap-senolytics-review-landscape-repair.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "inputs": [
+    {
+      "input_type": "candidate_change",
+      "reference": "data/candidate-changes/coverage-gap-senolytics-review-landscape-repair.json",
+      "summary": "Target no-op review-landscape repair candidate under review."
+    },
+    {
+      "input_type": "record",
+      "reference": "research/sessions/2026-06-28-senolytics-review-landscape-repair.json; research/search-logs/2026-06-28-senolytics-review-landscape.json; research/screening-runs/2026-06-28-senolytics-review-landscape.json",
+      "summary": "Workflow records documenting senolytics/cellular-senescence search and screening scope."
+    },
+    {
+      "input_type": "coverage_gap",
+      "reference": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json#senolytics-review-landscape",
+      "summary": "Coverage assessment section preserving the review/meta-analysis category as thin."
+    }
+  ],
+  "outputs": {
+    "summary": "Created a complete non-blocking taxonomy_mapping evidence review accepting the blocked no-op review-landscape repair.",
+    "candidate_change_id": "coverage-gap-senolytics-review-landscape-repair",
+    "proposed_records": [
+      {
+        "record_type": "evidence_review",
+        "record_id": "coverage-gap-senolytics-review-landscape-repair-taxonomy-mapping",
+        "path": "data/evidence-reviews/coverage-gap-senolytics-review-landscape-repair-taxonomy-mapping.json",
+        "change_type": "create",
+        "rationale": "Adds a complete non-blocking taxonomy_mapping supervisor review for the target candidate."
+      }
+    ],
+    "generated_files": [
+      "data/evidence-reviews/coverage-gap-senolytics-review-landscape-repair-taxonomy-mapping.json"
+    ],
+    "export_paths": []
+  },
+  "quality_checks": [
+    {
+      "check_name": "supervisor_review_lanes",
+      "status": "passed",
+      "summary": "Taxonomy-mapping lane is complete with verdict accept, blocking false, and no open major or critical findings."
+    },
+    {
+      "check_name": "candidate_agent_run_ledger_match",
+      "status": "passed",
+      "summary": "Agent-run proposed_records ledger names the created taxonomy_mapping evidence review."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": []
+}

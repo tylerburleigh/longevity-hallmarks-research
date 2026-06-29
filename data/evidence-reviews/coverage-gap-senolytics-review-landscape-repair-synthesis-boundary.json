@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "coverage-gap-senolytics-review-landscape-repair-synthesis-boundary",
+  "candidate_change_id": "coverage-gap-senolytics-review-landscape-repair",
+  "review_lane": "synthesis_boundary",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Synthesis-boundary review accepts this candidate as a blocked no-op repair. The proposed records preserve the recent systematic-review/meta-analysis gap, record that no source-snapshot-backed review source was screened, and do not add review-derived findings, synthesis groups, or poolability claims.",
+  "findings": [
+    {
+      "finding_id": "review-landscape-gap-not-closed",
+      "severity": "note",
+      "category": "endpoint_boundary",
+      "claim_or_issue": "The candidate updates coverage state and durable search/screening trail records but does not claim that the senolytics review-landscape gap has been closed.",
+      "why_it_matters": "A no-op search repair should improve auditability without converting an unavailable PubMed search into review evidence or synthesis support.",
+      "recommended_action": "Accept this lane while keeping the review-landscape gap open until a network-enabled search/screening pass creates source-snapshot-backed review records.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "no-synthesis-claim-added",
+      "severity": "note",
+      "category": "interpretation_overreach",
+      "claim_or_issue": "The proposed records do not add or update synthesis groups, findings, eligibility decisions, source records, or extracted review conclusions.",
+      "why_it_matters": "This prevents a failed review-landscape search from being mistaken for evidence synthesis or coverage closure.",
+      "recommended_action": "No revision required; preserve the blocked coverage effect and next-action language in the search log, screening run, research session, and coverage assessment.",
+      "resolution_status": "closed"
+    }
+  ]
+}

@@ -749,14 +749,53 @@
       ],
       "operations": [
         {
-          "type": "delete_json",
-          "path": "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-review-landscape-repair-synthesis-boundary.json",
-          "pointer": "/context_pack_path"
+          "type": "copy_json",
+          "from": "ops/codex-jobs/archive/self-healing-candidate-review-senolytics-dq-bone-pmc-fulltext-extraction-2026-06-22-taxonomy-mapping.json",
+          "to": "ops/codex-jobs/live/generated-self-healing/regression-live-supervisor-missing-context-pack.json",
+          "mutations": [
+            {
+              "type": "set_json",
+              "pointer": "/id",
+              "value": "regression-live-supervisor-missing-context-pack"
+            },
+            {
+              "type": "set_json",
+              "pointer": "/name",
+              "value": "Regression live supervisor missing context pack"
+            },
+            {
+              "type": "set_json",
+              "pointer": "/lifecycle_status",
+              "value": "ready"
+            },
+            {
+              "type": "set_json",
+              "pointer": "/output_path",
+              "value": "research/agent-runs/regression-live-supervisor-missing-context-pack.json"
+            },
+            {
+              "type": "set_json",
+              "pointer": "/jsonl_log_path",
+              "value": "research/agent-runs/logs/regression-live-supervisor-missing-context-pack.jsonl"
+            },
+            {
+              "type": "delete_json",
+              "pointer": "/context_pack_path"
+            },
+            {
+              "type": "delete_json",
+              "pointer": "/final_agent_run_id"
+            },
+            {
+              "type": "delete_json",
+              "pointer": "/archived_at"
+            }
+          ]
         }
       ],
       "expected_failure_substrings": [
         "live candidate-review supervisor lane jobs must declare context_pack_path",
-        "self-healing-candidate-review-coverage-gap-senolytics-review-landscape-repair-synthesis-boundary.json"
+        "regression-live-supervisor-missing-context-pack.json"
       ]
     },
     {

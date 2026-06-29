@@ -38,7 +38,7 @@ For `candidate_revision` recommendations, triage inputs include the source candi
 
 The generator skips a recommended job when its final `research/agent-runs/<job-id>.json` output already exists. Follow-up work should get a new job ID rather than recreating a live spec for an archived run.
 
-When `--replace` is used, the generator also removes obsolete generated self-healing specs and obsolete supervisor-review context packs that no longer map to the current triage-state recommended jobs. Current generated specs that still map to triage state remain freshness-checked by `audit:self-healing-jobs`.
+On non-dry-run execution, the generator removes obsolete generated self-healing specs and obsolete generated context packs that no longer map to the current triage-state recommended jobs. Current generated specs that still map to triage state remain freshness-checked by `audit:self-healing-jobs`. Use `--replace` when current expected job specs or context packs should also be overwritten with freshly generated content.
 
 Run freshness and conformance checks:
 
@@ -47,7 +47,7 @@ npm run audit:self-healing-jobs
 npm run audit:codex-jobs
 ```
 
-`audit:self-healing-jobs` compares generated live specs against current triage state. If triage state changes, regenerate the batch with `--replace`.
+`audit:self-healing-jobs` compares generated live specs against current triage state. If triage state changes, regenerate the batch with `npm run jobs:self-healing`; add `-- --replace` when expected live specs should be overwritten rather than only pruning obsolete files and filling missing ones.
 
 Execute generated jobs through the isolated worktree helper:
 

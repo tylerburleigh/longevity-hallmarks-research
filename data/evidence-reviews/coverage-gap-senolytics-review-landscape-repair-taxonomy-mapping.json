@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "coverage-gap-senolytics-review-landscape-repair-taxonomy-mapping",
+  "candidate_change_id": "coverage-gap-senolytics-review-landscape-repair",
+  "review_lane": "taxonomy_mapping",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Taxonomy-mapping review accepts the candidate. The no-op review-landscape records stay scoped to the senolytics track and cellular-senescence hallmark, use research-session/search-log/screening-run records for workflow evidence, and leave the coverage-assessment review/meta-analysis category marked thin rather than adding a new evidence source.",
+  "findings": [
+    {
+      "finding_id": "workflow-record-taxonomy-is-bounded",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The proposed research session, search log, and screening run are scoped to senolytics and cellular senescence and do not introduce intervention-specific or unrelated hallmark mappings.",
+      "why_it_matters": "The repair should route future work to the right track without expanding the evidence map beyond the failed search scope.",
+      "recommended_action": "No taxonomy revision required; keep the no-op workflow records under senolytics/cellular_senescence.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "coverage-category-remains-review-landscape",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The coverage update keeps the unresolved item in the recent_reviews_meta_analyses/review-landscape gap rather than classifying it as a screened source, clinical result, or synthesis-ready review.",
+      "why_it_matters": "Accurate category mapping prevents downstream consumers and triage agents from treating a blocked no-op search as included review evidence.",
+      "recommended_action": "Accept this lane and require a later search/screening candidate to add concrete review source, eligibility, and source-snapshot records before changing the coverage category.",
+      "resolution_status": "closed"
+    }
+  ]
+}

@@ -7,7 +7,7 @@
   "lifecycle_status": "ready",
   "agent_role": "self_healing_agent",
   "mode": "coverage_repair",
-  "prompt_file": "docs/prompts/codex-agents/self-healing-repair.md",
+  "prompt_file": "docs/prompts/codex-agents/coverage-repair.md",
   "output_path": "research/agent-runs/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-2.json",
   "jsonl_log_path": "research/agent-runs/logs/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-2.jsonl",
   "scope": {

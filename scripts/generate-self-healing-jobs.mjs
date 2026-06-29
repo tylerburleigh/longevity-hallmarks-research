@@ -17,6 +17,7 @@ const safetyPattern = /\b(safety|adverse[-_ ]?event|adverse|harm|tolerability|to
 const promptByJobType = {
   candidate_review: "docs/prompts/codex-agents/supervisor-review.md",
   candidate_promotion: "docs/prompts/codex-agents/candidate-promotion.md",
+  coverage_repair: "docs/prompts/codex-agents/coverage-repair.md",
   extraction_refresh: "docs/prompts/codex-agents/extraction-refresh.md"
 };
 

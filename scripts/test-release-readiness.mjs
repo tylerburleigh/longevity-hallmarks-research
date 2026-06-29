@@ -2,6 +2,7 @@
 
 import { buildReleaseReadiness } from "./export-release-readiness.mjs";
 import { buildTriageState } from "./export-triage-state.mjs";
+import { buildSelfHealingJobs } from "./generate-self-healing-jobs.mjs";
 
 function fail(message) {
   console.error(`FAIL ${message}`);
@@ -10,6 +11,7 @@ function fail(message) {
 
 const releaseReadiness = await buildReleaseReadiness();
 const triageState = await buildTriageState();
+const generatedJobs = await buildSelfHealingJobs({ triageState });
 
 const staleCreateDependencyBlockers = (releaseReadiness.blocked_accepted_records ?? []).filter((record) =>
   (record.blockers ?? []).some((blocker) => blocker.blocker_type === "unaccepted_create_dependency")
@@ -130,7 +132,20 @@ if (duplicateCoverageGapJobsForActiveCandidates.length > 0) {
   );
 }
 
+const coverageRepairJobsWithGenericPrompt = generatedJobs.filter(
+  (job) => job.mode === "coverage_repair" && job.prompt_file !== "docs/prompts/codex-agents/coverage-repair.md"
+);
+
+if (coverageRepairJobsWithGenericPrompt.length > 0) {
+  fail(
+    `coverage-repair jobs should use the coverage repair prompt: ${coverageRepairJobsWithGenericPrompt
+      .map((job) => `${job.id}:${job.prompt_file}`)
+      .join(", ")}`
+  );
+}
+
 console.log("PASS release-readiness accepted update dependency handling");
 console.log("PASS release-readiness blocked record grouping");
 console.log("PASS triage reconciliation-blocked promotion handling");
 console.log("PASS triage active coverage-gap suppression");
+console.log("PASS coverage-repair prompt routing");

@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "release_readiness",
   "id": "release-readiness-v1",
-  "generated_at": "2026-06-29T17:23:28.369Z",
+  "generated_at": "2026-06-29T17:30:38.769Z",
   "source_roots": [
     "data",
     "research"

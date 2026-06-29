@@ -17,6 +17,7 @@ Task:
 3. Do not promote, apply, or mutate any candidate or canonical evidence record.
 4. Report whether the dry-run promotion command and release-readiness checks pass.
 5. Run validation and repository verification when feasible.
+6. When a full repository verification command passes, include passed quality checks for the job's individual quality gates that the command covered, such as audit_references, audit_exports, audit_triage_state, audit_reconciliation, audit_agent_schemas, and audit_agentic_process.
 
 Final response:
 

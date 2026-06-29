@@ -19,6 +19,7 @@ const safetyLaneGovernanceRecordTypes = new Set([
   "search_log"
 ]);
 const aggregateQualityGateChecks = {
+  audit_references: new Set(["verify_knowledge_base", "post_verify"]),
   audit_exports: new Set(["verify_knowledge_base", "post_verify"]),
   audit_triage_state: new Set(["verify_knowledge_base", "post_verify"]),
   audit_reconciliation: new Set(["verify_knowledge_base", "post_verify"]),

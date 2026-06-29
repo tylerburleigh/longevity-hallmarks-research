@@ -1,0 +1,153 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "self-healing-candidate-promotion-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair",
+  "agent_role": "release_agent",
+  "agent_id": "codex-cli-worker",
+  "mode": "agent_directed",
+  "started_at": "2026-06-29T23:51:09Z",
+  "completed_at": "2026-06-29T23:53:40Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "candidate_promotion: All required active review lanes are complete, accepting, non-blocking, and free of open major or critical findings.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "canonical_write_policy": "no_canonical_writes",
+  "execution": {
+    "surface": "codex_exec",
+    "isolation": "git_worktree",
+    "workspace_path": "/tmp/lhr-codex-worktrees/self-healing-candidate-promotion-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-20260629T235109z",
+    "prompt_file": "research/agent-runs/prompts/self-healing-candidate-promotion-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair.md",
+    "prompt_template_file": "docs/prompts/codex-agents/candidate-promotion.md",
+    "job_file": "ops/codex-jobs/archive/self-healing-candidate-promotion-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair.json",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "output_path": "research/agent-runs/self-healing-candidate-promotion-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair.json",
+    "jsonl_log_path": "research/agent-runs/logs/self-healing-candidate-promotion-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair.jsonl",
+    "sandbox": "danger-full-access",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "candidate_change",
+      "reference": "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair.json",
+      "summary": "Target promotion-readiness candidate; lifecycle_status is submitted with synthesis_boundary and taxonomy_mapping required review lanes."
+    },
+    {
+      "input_type": "export",
+      "reference": "ops/triage-state.v1.json",
+      "summary": "Triage state lists the target candidate as promotion_ready with both active review lanes complete, accepting, non-blocking, and without open major or critical findings."
+    },
+    {
+      "input_type": "export",
+      "reference": "ops/release-readiness.v1.json",
+      "summary": "Release-readiness state lists the target candidate as promotion_ready and not release-blocked."
+    },
+    {
+      "input_type": "record",
+      "reference": "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-promotion-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair.json",
+      "summary": "Job spec provided the dry-run promotion command and no-canonical-writes output contract."
+    }
+  ],
+  "outputs": {
+    "summary": "Dry-run promotion for coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair passed and left files unchanged. Release-readiness, triage-state, record validation, and full knowledge-base verification all passed. No canonical evidence records were promoted, applied, or mutated.",
+    "generated_files": [],
+    "export_paths": []
+  },
+  "quality_checks": [
+    {
+      "check_name": "dry_run_promotion",
+      "status": "passed",
+      "summary": "npm run promote:candidate -- coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair --status accepted --dry-run exited 0; promotion gate passed and dry run left file unchanged."
+    },
+    {
+      "check_name": "validate_records",
+      "status": "passed",
+      "summary": "npm run validate:records exited 0 and validated 593 JSON files."
+    },
+    {
+      "check_name": "audit_release_readiness",
+      "status": "passed",
+      "summary": "npm run audit:release-readiness exited 0; ops/release-readiness.v1.json passed."
+    },
+    {
+      "check_name": "audit_triage_state",
+      "status": "passed",
+      "summary": "npm run audit:triage-state exited 0; ops/triage-state.v1.json passed."
+    },
+    {
+      "check_name": "verify_knowledge_base",
+      "status": "passed",
+      "summary": "npm run verify:knowledge-base exited 0, including references, exports, read model, generated-state freshness, agent schemas, Codex jobs, agentic process audits, and regression fixtures."
+    },
+    {
+      "check_name": "tracked_diff_check",
+      "status": "passed",
+      "summary": "git diff --stat produced no tracked-file changes after the dry run and verification commands."
+    },
+    {
+      "check_name": "worker_output_contract",
+      "status": "passed",
+      "summary": "Worker emitted exactly one final JSON agent_run message, matched output_path, and avoided ad hoc schema-validation snippets."
+    },
+    {
+      "check_name": "post_triage_state_export",
+      "status": "passed",
+      "summary": "post_triage_state_export exited 0: > longevity-hallmarks-research@0.1.0 export:triage-state > node scripts/export-triage-state.mjs Wrote ops/triage-state.v1.json."
+    },
+    {
+      "check_name": "post_release_readiness_export",
+      "status": "passed",
+      "summary": "post_release_readiness_export exited 0: > longevity-hallmarks-research@0.1.0 export:release-readiness > node scripts/export-release-readiness.mjs Wrote ops/release-readiness.v1.json."
+    },
+    {
+      "check_name": "post_job_archive",
+      "status": "passed",
+      "summary": "post_job_archive exited 0: > longevity-hallmarks-research@0.1.0 jobs:archive > node scripts/archive-codex-job.mjs --job-file ops/codex-jobs/live/generated-self-healing/self-healing-candidate-promotion-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair.json {\"type\":\"codex_job.archived\",\"schema_version\":\"1.0.0\",\"job_id\":\"self-healing-candidate-promotion-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair\",\"job_file\":\"ops/codex-jobs/live/generated-self-healing/self-healing-candidate-promotion-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair.json\",\"archive_path\":\"ops/codex-jobs/archive/self-healing-candidate-promotion-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair.json\",\"output_path\":\"research/agent-runs/self-healing-candidate-promotion-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair.json\",\"status\":\"succeeded\",\"archived_at\":\"2026-06-29T23:54:38.925Z\",\"dry_run\":false,\"updated_batch_run_paths\":[]}"
+    },
+    {
+      "check_name": "post_self_healing_jobs",
+      "status": "passed",
+      "summary": "post_self_healing_jobs exited 0: \"context_pack_status\": \"written\" } ], \"removed_obsolete_paths\": [], \"removed_obsolete_context_pack_paths\": [] }"
+    },
+    {
+      "check_name": "post_parallel_batch_plan",
+      "status": "passed",
+      "summary": "post_parallel_batch_plan exited 0: > longevity-hallmarks-research@0.1.0 jobs:plan-parallel > node scripts/plan-parallel-codex-batches.mjs Wrote ops/codex-batches/parallel-batch-plan.v1.json."
+    },
+    {
+      "check_name": "post_reconciliation_export",
+      "status": "passed",
+      "summary": "post_reconciliation_export exited 0: > longevity-hallmarks-research@0.1.0 reconcile:parallel > node scripts/reconcile-parallel-outputs.mjs Wrote ops/reconciliation/parallel-reconciliation.v1.json."
+    },
+    {
+      "check_name": "post_orchestration_metrics_export",
+      "status": "passed",
+      "summary": "post_orchestration_metrics_export exited 0: > longevity-hallmarks-research@0.1.0 metrics:orchestration > node scripts/export-orchestration-metrics.mjs Wrote ops/codex-batches/orchestration-metrics.v1.json."
+    },
+    {
+      "check_name": "post_export",
+      "status": "passed",
+      "summary": "post_export exited 0: > longevity-hallmarks-research@0.1.0 export:latest > node scripts/export-latest.mjs Wrote 16 export file(s) to exports/latest."
+    },
+    {
+      "check_name": "post_read_model_export",
+      "status": "passed",
+      "summary": "post_read_model_export exited 0: > longevity-hallmarks-research@0.1.0 export:read-model > node scripts/export-read-model.mjs Wrote exports/latest/read-model.sqlite."
+    },
+    {
+      "check_name": "post_verify",
+      "status": "passed",
+      "summary": "post_verify exited 0: > longevity-hallmarks-research@0.1.0 audit:orchestration-smoke-contract > node scripts/audit-orchestration-smoke-contract.mjs Orchestration smoke contract audit passed for orchestration-smoke-budgeted-codex-worktree-2026-06-23. > longevity-hallmarks-research@0.1.0 audit:agentic-process > node scripts/audit-agentic-process.mjs Agentic process audit passed for 620 file(s)."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": [
+    "Coordinator may explicitly promote the candidate with npm run promote:candidate -- coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair --status accepted, then run the standard generated-state closeout."
+  ]
+}

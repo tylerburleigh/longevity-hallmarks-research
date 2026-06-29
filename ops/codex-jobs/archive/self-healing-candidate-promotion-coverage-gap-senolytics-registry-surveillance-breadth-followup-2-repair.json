@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "codex_job",
+  "id": "self-healing-candidate-promotion-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair",
+  "name": "Self-healing repair: candidate-promotion-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair",
+  "summary": "All required active review lanes are complete, accepting, non-blocking, and free of open major or critical findings.",
+  "lifecycle_status": "succeeded",
+  "agent_role": "release_agent",
+  "mode": "agent_directed",
+  "prompt_file": "docs/prompts/codex-agents/candidate-promotion.md",
+  "output_path": "research/agent-runs/self-healing-candidate-promotion-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair.json",
+  "jsonl_log_path": "research/agent-runs/logs/self-healing-candidate-promotion-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair.jsonl",
+  "scope": {
+    "question": "candidate_promotion: All required active review lanes are complete, accepting, non-blocking, and free of open major or critical findings.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "execution": {
+    "isolation": "git_worktree",
+    "sandbox": "danger-full-access",
+    "approval_policy": "never",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "timeout_ms": 300000,
+    "no_output_timeout_ms": 300000
+  },
+  "expected_outputs": {
+    "canonical_write_policy": "no_canonical_writes",
+    "required_review_lanes": []
+  },
+  "orchestration": {
+    "read_sets": [
+      "path:data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair.json",
+      "path:ops/triage-state.v1.json",
+      "triage_job:candidate-promotion-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair"
+    ],
+    "write_sets": [
+      "promotion_check:coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair"
+    ],
+    "conflict_keys": [
+      "promotion:coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair",
+      "target_record:candidate_change/coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair"
+    ],
+    "parallel_group": "candidate-promotion",
+    "reconciliation_required": false,
+    "expected_cost": {
+      "cost_class": "low",
+      "expected_wall_time_ms": 300000,
+      "expected_token_budget": 10000,
+      "io_intensity": "low"
+    }
+  },
+  "post_run": {
+    "export_latest": true,
+    "verify_knowledge_base": true
+  },
+  "quality_gates": [
+    "validate_records",
+    "audit_references",
+    "audit_exports",
+    "audit_triage_state",
+    "audit_reconciliation",
+    "audit_agent_schemas",
+    "audit_agentic_process",
+    "worker_output_contract"
+  ],
+  "notes": [
+    "Generated from ops/triage-state.v1.json recommended_jobs[] item candidate-promotion-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair.",
+    "Source queue: candidate_readiness.",
+    "Dry-run promotion command: npm run promote:candidate -- coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair --status accepted --dry-run.",
+    "This job verifies promotion readiness only; coordinator promotion remains explicit through npm run promote:candidate.",
+    "The worker should keep edits bounded to the target record, listed inputs, and the candidate repair ledger."
+  ],
+  "final_agent_run_id": "self-healing-candidate-promotion-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair",
+  "archived_at": "2026-06-29T23:54:38.925Z"
+}

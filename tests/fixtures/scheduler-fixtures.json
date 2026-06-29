@@ -165,7 +165,7 @@
     },
     {
       "id": "extraction-refresh-batch",
-      "description": "Overlapping extraction refresh jobs can share a reconciliation-required batch when every overlapping job opts into reconciliation.",
+      "description": "Extraction refresh jobs with the same write target are serialized even when they require reconciliation.",
       "max_workers": 4,
       "parallel_group": "extraction-refresh-batch",
       "jobs": [
@@ -207,6 +207,75 @@
           "live_job_count": 2,
           "schedulable_job_count": 2,
           "deferred_job_count": 0,
+          "batch_count": 2,
+          "max_batch_width": 1,
+          "independent_batch_count": 2,
+          "reconciliation_batch_count": 2
+        },
+        "batches": [
+          {
+            "parallel_group": "extraction-refresh-batch",
+            "execution_class": "independent",
+            "reconciliation_required": true,
+            "job_ids": [
+              "fixture-extraction-result-a-effect"
+            ],
+            "overlapping_execution_keys": []
+          },
+          {
+            "parallel_group": "extraction-refresh-batch",
+            "execution_class": "independent",
+            "reconciliation_required": true,
+            "job_ids": [
+              "fixture-extraction-result-a-safety"
+            ],
+            "overlapping_execution_keys": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "read-write-reconciliation-required-batch",
+      "description": "Read/write overlaps can share a reconciliation-required batch when every overlapping job opts into reconciliation.",
+      "max_workers": 4,
+      "parallel_group": "read-write-reconciliation-required",
+      "jobs": [
+        {
+          "id": "fixture-read-write-producer",
+          "agent_role": "extraction_agent",
+          "mode": "extraction_refresh",
+          "read_sets": [
+            "path:data/results/fixture-source.json"
+          ],
+          "write_sets": [
+            "path:data/results/fixture-derived.json"
+          ],
+          "conflict_keys": [
+            "target_record:result/fixture-derived"
+          ],
+          "reconciliation_required": true
+        },
+        {
+          "id": "fixture-read-write-consumer",
+          "agent_role": "supervisor_agent",
+          "mode": "agent_directed",
+          "read_sets": [
+            "path:data/results/fixture-derived.json"
+          ],
+          "write_sets": [
+            "path:data/evidence-reviews/fixture-derived-review.json"
+          ],
+          "conflict_keys": [
+            "candidate_review:fixture-derived/synthesis_boundary"
+          ],
+          "reconciliation_required": true
+        }
+      ],
+      "expected": {
+        "summary": {
+          "live_job_count": 2,
+          "schedulable_job_count": 2,
+          "deferred_job_count": 0,
           "batch_count": 1,
           "max_batch_width": 2,
           "independent_batch_count": 0,
@@ -214,16 +283,15 @@
         },
         "batches": [
           {
-            "parallel_group": "extraction-refresh-batch",
+            "parallel_group": "read-write-reconciliation-required",
             "execution_class": "reconciliation_required",
             "reconciliation_required": true,
             "job_ids": [
-              "fixture-extraction-result-a-effect",
-              "fixture-extraction-result-a-safety"
+              "fixture-read-write-consumer",
+              "fixture-read-write-producer"
             ],
             "overlapping_execution_keys": [
-              "path:data/results/fixture-result-a.json",
-              "target_record:result/fixture-result-a"
+              "path:data/results/fixture-derived.json"
             ]
           }
         ]

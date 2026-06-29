@@ -143,11 +143,26 @@ function overlappingExecutionKeys(job, batch) {
   ]);
 }
 
+function hardOverlappingExecutionKeys(job, batch) {
+  const orchestration = job.record.orchestration ?? {};
+  const batchWriteSets = batchKeys(batch, "write_sets");
+  const batchConflictKeys = batchKeys(batch, "conflict_keys");
+
+  return sortStrings([
+    ...intersect(orchestration.conflict_keys, batchConflictKeys),
+    ...intersect(orchestration.write_sets, batchWriteSets)
+  ]);
+}
+
 function canShareBatch(job, batch, maxWorkers) {
   if (batch.jobs.length >= maxWorkers) {
     return false;
   }
   if (job.record.orchestration?.parallel_group !== batch.parallelGroup) {
+    return false;
+  }
+
+  if (hardOverlappingExecutionKeys(job, batch).length > 0) {
     return false;
   }
 

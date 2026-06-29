@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "orchestration_metrics",
   "id": "orchestration-metrics-v1",
-  "generated_at": "2026-06-29T16:41:12.299Z",
+  "generated_at": "2026-06-29T16:49:31.267Z",
   "source_roots": [
     "data",
     "exports/latest",
@@ -46,10 +46,10 @@
     "archived_job_count": 63,
     "planned_parallel_batch_count": 6,
     "planned_parallel_worker_count": 23,
-    "planned_independent_batch_count": 2,
+    "planned_independent_batch_count": 6,
     "planned_reconciliation_batch_count": 6,
-    "reconciliation_open_batch_count": 4,
-    "reconciliation_pending_batch_count": 2,
+    "reconciliation_open_batch_count": 0,
+    "reconciliation_pending_batch_count": 6,
     "max_planned_batch_width": 4,
     "planned_serial_wall_time_ms": 82800000,
     "planned_parallel_wall_time_ms": 21600000,
@@ -93,54 +93,54 @@
         "parallel_group": "extraction-refresh",
         "batch_count": 6,
         "job_count": 23,
-        "independent_batch_count": 2,
+        "independent_batch_count": 6,
         "reconciliation_batch_count": 6,
         "max_batch_width": 4,
         "expected_wall_time_ms": 21600000,
         "expected_token_budget": 2300000,
-        "overlapping_execution_key_count": 15
+        "overlapping_execution_key_count": 0
       }
     ],
     "batches": [
       {
         "batch_id": "parallel-batch-001-extraction-refresh",
         "parallel_group": "extraction-refresh",
-        "execution_class": "reconciliation_required",
+        "execution_class": "independent",
         "reconciliation_required": true,
         "job_count": 4,
         "expected_wall_time_ms": 3600000,
         "expected_token_budget": 400000,
-        "overlapping_execution_key_count": 2
+        "overlapping_execution_key_count": 0
       },
       {
         "batch_id": "parallel-batch-002-extraction-refresh",
         "parallel_group": "extraction-refresh",
-        "execution_class": "reconciliation_required",
+        "execution_class": "independent",
         "reconciliation_required": true,
         "job_count": 4,
         "expected_wall_time_ms": 3600000,
         "expected_token_budget": 400000,
-        "overlapping_execution_key_count": 3
+        "overlapping_execution_key_count": 0
       },
       {
         "batch_id": "parallel-batch-003-extraction-refresh",
         "parallel_group": "extraction-refresh",
-        "execution_class": "reconciliation_required",
+        "execution_class": "independent",
         "reconciliation_required": true,
         "job_count": 4,
         "expected_wall_time_ms": 3600000,
         "expected_token_budget": 400000,
-        "overlapping_execution_key_count": 5
+        "overlapping_execution_key_count": 0
       },
       {
         "batch_id": "parallel-batch-004-extraction-refresh",
         "parallel_group": "extraction-refresh",
-        "execution_class": "reconciliation_required",
+        "execution_class": "independent",
         "reconciliation_required": true,
         "job_count": 4,
         "expected_wall_time_ms": 3600000,
         "expected_token_budget": 400000,
-        "overlapping_execution_key_count": 5
+        "overlapping_execution_key_count": 0
       },
       {
         "batch_id": "parallel-batch-005-extraction-refresh",
@@ -947,8 +947,8 @@
       "warning_finding_count": 0,
       "conflict_rate": 0,
       "open_finding_rate": 0,
-      "reconciliation_open_batch_rate": 0.6667,
-      "reconciliation_pending_batch_rate": 0.3333
+      "reconciliation_open_batch_rate": 0,
+      "reconciliation_pending_batch_rate": 1
     },
     "worker_failures": {
       "failed_worker_count": 0,

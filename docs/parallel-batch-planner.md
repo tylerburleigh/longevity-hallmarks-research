@@ -18,7 +18,8 @@ Batching policy:
 
 - Jobs are considered within their `orchestration.parallel_group`.
 - Jobs with no overlapping conflict, read/write, or write/write keys can share an independent batch.
-- Jobs with overlapping execution keys can share a batch only when every overlapping job declares `reconciliation_required: true`.
+- Jobs with overlapping write or conflict keys are serialized, even when they declare `reconciliation_required: true`.
+- Jobs with read/write overlaps can share a batch only when every overlapping job declares `reconciliation_required: true`.
 - Batch commands use `npm run agent:codex:worktree -- --job-file <job> --execute`.
 
 Supervisor review lane jobs generated from candidate-readiness triage use lane-scoped `candidate_review:<candidate_change_id>/<review_lane>` write and conflict keys. They may read the same source candidate and still share an independent batch when they cover different review lanes, because read/read overlap does not create a write conflict. Candidate-review lane jobs must not declare broad writes to the source candidate record.
@@ -39,7 +40,7 @@ Run scheduler fixtures:
 npm run test:scheduler-fixtures
 ```
 
-The fixture manifest at `tests/fixtures/scheduler-fixtures.json` exercises search, registry refresh, extraction refresh, supervisor review, and self-healing repair batches against the same planner used for live jobs. These fixtures cover width limits, running-job deferral, reconciliation-required overlaps, lane-scoped supervisor review keys, and same-target serialization.
+The fixture manifest at `tests/fixtures/scheduler-fixtures.json` exercises search, registry refresh, extraction refresh, supervisor review, and self-healing repair batches against the same planner used for live jobs. These fixtures cover width limits, running-job deferral, reconciliation-required read/write overlaps, lane-scoped supervisor review keys, and same-target serialization.
 
 ## Batch Runner
 

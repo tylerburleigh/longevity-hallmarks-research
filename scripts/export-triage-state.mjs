@@ -498,22 +498,7 @@ function suppressUnsupportedComparativeEffectDebt(result, missingField) {
     return false;
   }
 
-  const eventSpecificCounts = result?.adverse_event?.event_specific_counts;
-  const eventCountsAreExplicit =
-    Array.isArray(eventSpecificCounts) &&
-    eventSpecificCounts.length >= 2 &&
-    eventSpecificCounts.every(
-      (count) =>
-        (count.count_status === "reported_count" || count.count_status === "explicit_zero") &&
-        typeof count.event_count === "number" &&
-        typeof count.sample_size === "number"
-    );
-
-  return (
-    result?.result_type === "safety_event" &&
-    result.adverse_event?.zero_handling?.supports_comparative_effect === false &&
-    eventCountsAreExplicit
-  );
+  return result?.result_type === "safety_event" && result.adverse_event?.zero_handling?.supports_comparative_effect === false;
 }
 
 function summarizeExtractionDebtRationale(debts) {

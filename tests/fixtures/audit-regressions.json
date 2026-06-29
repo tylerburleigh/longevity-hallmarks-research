@@ -186,6 +186,27 @@
       ]
     },
     {
+      "id": "stale-orchestration-metrics",
+      "description": "Generated orchestration metrics must preserve current reconciliation-pressure counts.",
+      "command": [
+        "npm",
+        "run",
+        "audit:orchestration-metrics"
+      ],
+      "operations": [
+        {
+          "type": "set_json",
+          "path": "ops/codex-batches/orchestration-metrics.v1.json",
+          "pointer": "/summary/reconciliation_open_batch_count",
+          "value": 999
+        }
+      ],
+      "expected_failure_substrings": [
+        "Orchestration-metrics audit failed",
+        "summary"
+      ]
+    },
+    {
       "id": "promotion-blocked-by-unresolved-reconciliation",
       "description": "Promotion must fail when the candidate has unresolved reconciliation blockers.",
       "command": [

@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "reconciliation_decision",
+  "id": "resolve-safety-tables-followup-2-overlaps-2026-06-29",
+  "created_at": "2026-06-29T00:00:00Z",
+  "reconciled_by_agent": "codex",
+  "reconciliation_report_id": "parallel-reconciliation-v1",
+  "issue_ids": [
+    "overlapping-candidate-8565f8a0ea32",
+    "overlapping-candidate-c921c3f9f3a1",
+    "overlapping-candidate-e7373f983b3c"
+  ],
+  "issue_categories": [
+    "overlapping_candidate_proposal"
+  ],
+  "candidate_change_ids": [
+    "coverage-gap-senolytics-safety-tables-followup-2-repair"
+  ],
+  "compatible_candidate_change_ids": [
+    "coverage-gap-senolytics-safety-tables-followup-2-repair"
+  ],
+  "resolution_status": "resolved",
+  "resolution_summary": "The safety-table follow-up 2 repair is compatible for promotion despite overlapping coverage-assessment, IPF outcome, and IPF tolerability result paths because it is the reviewed safety-specific candidate that source-locates D+Q bone preferred-term rows, registry discontinuation extraction, and abstract-limited human safety records while preserving pooling blockers. The overlapping exact-effect, registry-surveillance, and review-landscape candidates remain active and are not accepted, applied, or superseded by this decision.",
+  "evidence": [
+    {
+      "path": "data/candidate-changes/coverage-gap-senolytics-safety-tables-followup-2-repair.json",
+      "summary": "The candidate ledger is bounded to row-level D+Q bone safety extraction, registry/article discontinuation extraction, abstract-level DKD/IPF/AD-risk safety records, and the corresponding safety coverage and synthesis-boundary updates."
+    },
+    {
+      "path": "data/evidence-reviews/coverage-gap-senolytics-safety-tables-followup-2-repair-extraction-fidelity.json",
+      "summary": "The extraction-fidelity review accepts the candidate because the proposed safety rows and abstract-level records are source-located and retain maturity/provenance distinctions."
+    },
+    {
+      "path": "data/evidence-reviews/coverage-gap-senolytics-safety-tables-followup-2-repair-safety-limitations.json",
+      "summary": "The safety-limitations review accepts the candidate while preserving blank-cell, zero-handling, discontinuation, and cross-human safety synthesis caveats."
+    },
+    {
+      "path": "data/evidence-reviews/coverage-gap-senolytics-safety-tables-followup-2-repair-synthesis-boundary.json",
+      "summary": "The synthesis-boundary review accepts the candidate because the D+Q bone safety group remains pooling_blocked and cross-human safety synthesis remains blocked."
+    },
+    {
+      "path": "data/evidence-reviews/coverage-gap-senolytics-safety-tables-followup-2-repair-taxonomy-mapping.json",
+      "summary": "The taxonomy-mapping review accepts the candidate's safety endpoint and adverse-event mappings."
+    },
+    {
+      "path": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-2-repair.json",
+      "summary": "The overlapping exact-effect follow-up candidate remains active and is not accepted, applied, or superseded by this decision."
+    },
+    {
+      "path": "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-repair.json",
+      "summary": "The overlapping registry-surveillance candidate remains active and is not accepted, applied, or superseded by this decision."
+    },
+    {
+      "path": "data/candidate-changes/coverage-gap-senolytics-review-landscape-repair.json",
+      "summary": "The overlapping review-landscape candidate remains active and is not accepted, applied, or superseded by this decision."
+    }
+  ]
+}

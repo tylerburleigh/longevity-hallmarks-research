@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "triage_state",
   "id": "triage-state-v1",
-  "generated_at": "2026-06-28T20:55:29.553Z",
+  "generated_at": "2026-06-29T12:14:39.407Z",
   "source_roots": [
     "data",
     "research"
@@ -68,10 +68,10 @@
   "summary": {
     "candidate_count": 76,
     "promotion_ready_count": 0,
-    "needs_review_count": 2,
+    "needs_review_count": 1,
     "needs_revision_count": 0,
     "blocked_count": 2,
-    "accepted_count": 15,
+    "accepted_count": 16,
     "applied_count": 0,
     "rejected_count": 3,
     "coverage_gap_count": 4,
@@ -80,7 +80,7 @@
     "stale_snapshot_count": 0,
     "watch_snapshot_count": 0,
     "partial_or_failed_agent_run_count": 0,
-    "recommended_job_count": 33
+    "recommended_job_count": 32
   },
   "candidate_readiness": [
     {
@@ -1235,7 +1235,7 @@
       "open_major_or_critical_review_ids": [],
       "proposed_record_count": 5,
       "next_actions": [
-        "Resolve reconciliation blocker(s) before promotion: overlapping-candidate-8565f8a0ea32, overlapping-candidate-c921c3f9f3a1, overlapping-candidate-e7373f983b3c."
+        "Resolve reconciliation blocker(s) before promotion: overlapping-candidate-556f590f449b."
       ]
     },
     {
@@ -1301,7 +1301,7 @@
       "open_major_or_critical_review_ids": [],
       "proposed_record_count": 2,
       "next_actions": [
-        "Resolve reconciliation blocker(s) before promotion: overlapping-candidate-8565f8a0ea32."
+        "Resolve reconciliation blocker(s) before promotion: overlapping-candidate-556f590f449b."
       ]
     },
     {
@@ -1338,8 +1338,8 @@
     {
       "candidate_change_id": "coverage-gap-senolytics-safety-tables-followup-2-repair",
       "path": "data/candidate-changes/coverage-gap-senolytics-safety-tables-followup-2-repair.json",
-      "lifecycle_status": "submitted",
-      "readiness_status": "needs_review",
+      "lifecycle_status": "accepted",
+      "readiness_status": "accepted",
       "required_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
@@ -1347,28 +1347,29 @@
         "taxonomy_mapping"
       ],
       "active_review_ids": [
+        "coverage-gap-senolytics-safety-tables-followup-2-repair-extraction-fidelity",
+        "coverage-gap-senolytics-safety-tables-followup-2-repair-safety-limitations",
         "coverage-gap-senolytics-safety-tables-followup-2-repair-synthesis-boundary",
         "coverage-gap-senolytics-safety-tables-followup-2-repair-taxonomy-mapping"
       ],
       "active_review_paths": [
+        "data/evidence-reviews/coverage-gap-senolytics-safety-tables-followup-2-repair-extraction-fidelity.json",
+        "data/evidence-reviews/coverage-gap-senolytics-safety-tables-followup-2-repair-safety-limitations.json",
         "data/evidence-reviews/coverage-gap-senolytics-safety-tables-followup-2-repair-synthesis-boundary.json",
         "data/evidence-reviews/coverage-gap-senolytics-safety-tables-followup-2-repair-taxonomy-mapping.json"
       ],
       "complete_accepting_review_lanes": [
+        "extraction_fidelity",
+        "safety_limitations",
         "synthesis_boundary",
         "taxonomy_mapping"
       ],
-      "missing_review_lanes": [
-        "extraction_fidelity",
-        "safety_limitations"
-      ],
+      "missing_review_lanes": [],
       "revision_review_lanes": [],
       "blocking_review_ids": [],
       "open_major_or_critical_review_ids": [],
       "proposed_record_count": 17,
-      "next_actions": [
-        "Run supervisor review lanes: extraction_fidelity, safety_limitations."
-      ]
+      "next_actions": []
     },
     {
       "candidate_change_id": "coverage-gap-senolytics-safety-tables-repair",
@@ -1959,18 +1960,6 @@
       "path": "data/candidate-changes/coverage-gap-senolytics-review-landscape-repair.json",
       "review_lane": "taxonomy_mapping",
       "next_action": "Run taxonomy_mapping supervisor review for coverage-gap-senolytics-review-landscape-repair."
-    },
-    {
-      "candidate_change_id": "coverage-gap-senolytics-safety-tables-followup-2-repair",
-      "path": "data/candidate-changes/coverage-gap-senolytics-safety-tables-followup-2-repair.json",
-      "review_lane": "extraction_fidelity",
-      "next_action": "Run extraction_fidelity supervisor review for coverage-gap-senolytics-safety-tables-followup-2-repair."
-    },
-    {
-      "candidate_change_id": "coverage-gap-senolytics-safety-tables-followup-2-repair",
-      "path": "data/candidate-changes/coverage-gap-senolytics-safety-tables-followup-2-repair.json",
-      "review_lane": "safety_limitations",
-      "next_action": "Run safety_limitations supervisor review for coverage-gap-senolytics-safety-tables-followup-2-repair."
     },
     {
       "candidate_change_id": "senolytics-scaffold-bootstrap-2026-06-21",
@@ -2732,18 +2721,6 @@
       "rationale": "Required review lanes are missing: synthesis_boundary, taxonomy_mapping.",
       "inputs": [
         "data/candidate-changes/coverage-gap-senolytics-review-landscape-repair.json"
-      ]
-    },
-    {
-      "job_id": "candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair",
-      "job_type": "candidate_review",
-      "priority": "high",
-      "source": "candidate_readiness",
-      "target_record_type": "candidate_change",
-      "target_record_id": "coverage-gap-senolytics-safety-tables-followup-2-repair",
-      "rationale": "Required review lanes are missing: extraction_fidelity, safety_limitations.",
-      "inputs": [
-        "data/candidate-changes/coverage-gap-senolytics-safety-tables-followup-2-repair.json"
       ]
     },
     {

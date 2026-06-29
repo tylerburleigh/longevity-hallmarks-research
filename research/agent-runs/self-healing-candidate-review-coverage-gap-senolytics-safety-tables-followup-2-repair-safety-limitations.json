@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-safety-limitations",
+  "agent_role": "supervisor_agent",
+  "agent_id": "codex",
+  "mode": "agent_directed",
+  "started_at": "2026-06-29T00:00:00Z",
+  "completed_at": "2026-06-29T00:00:00Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "candidate_review: complete the missing safety_limitations lane for coverage-gap-senolytics-safety-tables-followup-2-repair.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": [
+      "dasatinib-quercetin"
+    ]
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "inputs": [
+    {
+      "input_type": "candidate_change",
+      "reference": "data/candidate-changes/coverage-gap-senolytics-safety-tables-followup-2-repair.json",
+      "summary": "Target safety-table follow-up repair candidate under review."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/synthesis-groups/senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21.json",
+      "summary": "D+Q bone safety synthesis group retaining pooling blockers and missing-effect-field caveats."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/results/dq-bone-diarrhea-20wk-descriptive.json; data/results/dq-bone-nausea-20wk-descriptive.json; data/results/dq-bone-constipation-20wk-descriptive.json; data/results/dq-bone-gastrointestinal-reflux-20wk-descriptive.json; data/results/dq-bone-vertigo-20wk-descriptive.json; data/results/dq-bone-fatigue-20wk-descriptive.json; data/results/dq-bone-body-pain-20wk-descriptive.json; data/results/dq-bone-adverse-event-discontinuations-20wk-descriptive.json",
+      "summary": "D+Q bone event-specific and discontinuation safety results added by the reviewed candidate."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/results/dq-dkd-adverse-events-abstract-not-reported.json; data/results/dq-ipf-tolerability-mixed.json; data/results/dq-ad-risk-serious-adverse-events-none.json",
+      "summary": "Abstract-limited human safety records added or updated by the reviewed candidate."
+    }
+  ],
+  "outputs": {
+    "summary": "Created a complete non-blocking safety_limitations evidence review accepting the bounded safety-table follow-up repair while preserving safety synthesis caveats.",
+    "candidate_change_id": "coverage-gap-senolytics-safety-tables-followup-2-repair",
+    "proposed_records": [
+      {
+        "record_type": "evidence_review",
+        "record_id": "coverage-gap-senolytics-safety-tables-followup-2-repair-safety-limitations",
+        "path": "data/evidence-reviews/coverage-gap-senolytics-safety-tables-followup-2-repair-safety-limitations.json",
+        "change_type": "create",
+        "rationale": "Adds a complete non-blocking safety_limitations supervisor review for the target candidate."
+      }
+    ],
+    "generated_files": [
+      "data/evidence-reviews/coverage-gap-senolytics-safety-tables-followup-2-repair-safety-limitations.json"
+    ],
+    "export_paths": []
+  },
+  "quality_checks": [
+    {
+      "check_name": "safety_boundary_review",
+      "status": "passed",
+      "summary": "Confirmed the reviewed candidate keeps blank-cell, zero-handling, discontinuation, abstract-level, and cross-human safety synthesis limitations explicit."
+    },
+    {
+      "check_name": "candidate_review_lane",
+      "status": "passed",
+      "summary": "Safety-limitations lane is complete with verdict accept, blocking false, and no open major or critical findings."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": []
+}

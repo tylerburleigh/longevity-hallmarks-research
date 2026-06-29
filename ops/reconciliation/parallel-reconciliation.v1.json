@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "parallel_reconciliation",
   "id": "parallel-reconciliation-v1",
-  "generated_at": "2026-06-28T23:54:24.543Z",
+  "generated_at": "2026-06-29T12:14:58.167Z",
   "source_roots": [
     "data",
     "research",
@@ -50,19 +50,19 @@
     "study_count": 9,
     "duplicate_study_group_count": 0,
     "candidate_count": 76,
-    "active_candidate_count": 58,
-    "overlapping_candidate_group_count": 3,
+    "active_candidate_count": 57,
+    "overlapping_candidate_group_count": 1,
     "source_rights_count": 2,
     "source_rights_conflict_count": 0,
-    "agent_run_count": 83,
+    "agent_run_count": 85,
     "parallel_batch_count": 9,
     "reconciliation_batch_count": 8,
     "parallel_batch_run_count": 26,
     "pending_parallel_worker_count": 0,
-    "reconciliation_decision_count": 8,
+    "reconciliation_decision_count": 9,
     "incomplete_ledger_count": 0,
-    "open_finding_count": 3,
-    "blocking_finding_count": 3,
+    "open_finding_count": 1,
+    "blocking_finding_count": 1,
     "warning_finding_count": 0
   },
   "parallel_batches": [
@@ -73,9 +73,7 @@
       "reconciliation_required": false,
       "job_ids": [
         "self-healing-candidate-review-coverage-gap-senolytics-review-landscape-repair-synthesis-boundary",
-        "self-healing-candidate-review-coverage-gap-senolytics-review-landscape-repair-taxonomy-mapping",
-        "self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-extraction-fidelity",
-        "self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-safety-limitations"
+        "self-healing-candidate-review-coverage-gap-senolytics-review-landscape-repair-taxonomy-mapping"
       ],
       "overlapping_execution_keys": [],
       "status": "no_reconciliation_needed",
@@ -208,7 +206,7 @@
   "duplicate_studies": [],
   "overlapping_candidate_proposals": [
     {
-      "issue_id": "overlapping-candidate-8565f8a0ea32",
+      "issue_id": "overlapping-candidate-556f590f449b",
       "category": "overlapping_candidate_proposal",
       "severity": "blocker",
       "status": "open",
@@ -216,8 +214,7 @@
       "candidate_change_ids": [
         "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
         "coverage-gap-senolytics-registry-surveillance-breadth-repair",
-        "coverage-gap-senolytics-review-landscape-repair",
-        "coverage-gap-senolytics-safety-tables-followup-2-repair"
+        "coverage-gap-senolytics-review-landscape-repair"
       ],
       "proposed_records": [
         {
@@ -243,102 +240,20 @@
           "record_id": "senolytics-coverage-repair-2026-06-21",
           "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
           "change_type": "update"
-        },
-        {
-          "candidate_change_id": "coverage-gap-senolytics-safety-tables-followup-2-repair",
-          "lifecycle_status": "submitted",
-          "record_type": "coverage_assessment",
-          "record_id": "senolytics-coverage-repair-2026-06-21",
-          "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
-          "change_type": "update"
         }
       ],
       "summary": "Active candidates propose changes to the same record path: data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json."
-    },
-    {
-      "issue_id": "overlapping-candidate-e7373f983b3c",
-      "category": "overlapping_candidate_proposal",
-      "severity": "blocker",
-      "status": "open",
-      "proposal_key": "data/outcomes/dq-ipf-feasibility-tolerability.json",
-      "candidate_change_ids": [
-        "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
-        "coverage-gap-senolytics-safety-tables-followup-2-repair"
-      ],
-      "proposed_records": [
-        {
-          "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
-          "lifecycle_status": "submitted",
-          "record_type": "outcome",
-          "record_id": "dq-ipf-feasibility-tolerability",
-          "path": "data/outcomes/dq-ipf-feasibility-tolerability.json",
-          "change_type": "update"
-        },
-        {
-          "candidate_change_id": "coverage-gap-senolytics-safety-tables-followup-2-repair",
-          "lifecycle_status": "submitted",
-          "record_type": "outcome",
-          "record_id": "dq-ipf-feasibility-tolerability",
-          "path": "data/outcomes/dq-ipf-feasibility-tolerability.json",
-          "change_type": "update"
-        }
-      ],
-      "summary": "Active candidates propose changes to the same record path: data/outcomes/dq-ipf-feasibility-tolerability.json."
-    },
-    {
-      "issue_id": "overlapping-candidate-c921c3f9f3a1",
-      "category": "overlapping_candidate_proposal",
-      "severity": "blocker",
-      "status": "open",
-      "proposal_key": "data/results/dq-ipf-tolerability-mixed.json",
-      "candidate_change_ids": [
-        "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
-        "coverage-gap-senolytics-safety-tables-followup-2-repair"
-      ],
-      "proposed_records": [
-        {
-          "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
-          "lifecycle_status": "submitted",
-          "record_type": "result",
-          "record_id": "dq-ipf-tolerability-mixed",
-          "path": "data/results/dq-ipf-tolerability-mixed.json",
-          "change_type": "update"
-        },
-        {
-          "candidate_change_id": "coverage-gap-senolytics-safety-tables-followup-2-repair",
-          "lifecycle_status": "submitted",
-          "record_type": "result",
-          "record_id": "dq-ipf-tolerability-mixed",
-          "path": "data/results/dq-ipf-tolerability-mixed.json",
-          "change_type": "update"
-        }
-      ],
-      "summary": "Active candidates propose changes to the same record path: data/results/dq-ipf-tolerability-mixed.json."
     }
   ],
   "source_rights_conflicts": [],
   "incomplete_ledgers": [],
   "open_findings": [
     {
-      "issue_id": "overlapping-candidate-8565f8a0ea32",
+      "issue_id": "overlapping-candidate-556f590f449b",
       "category": "overlapping_candidate_proposal",
       "severity": "blocker",
       "status": "open",
       "summary": "Active candidates propose changes to the same record path: data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json."
-    },
-    {
-      "issue_id": "overlapping-candidate-c921c3f9f3a1",
-      "category": "overlapping_candidate_proposal",
-      "severity": "blocker",
-      "status": "open",
-      "summary": "Active candidates propose changes to the same record path: data/results/dq-ipf-tolerability-mixed.json."
-    },
-    {
-      "issue_id": "overlapping-candidate-e7373f983b3c",
-      "category": "overlapping_candidate_proposal",
-      "severity": "blocker",
-      "status": "open",
-      "summary": "Active candidates propose changes to the same record path: data/outcomes/dq-ipf-feasibility-tolerability.json."
     }
   ]
 }

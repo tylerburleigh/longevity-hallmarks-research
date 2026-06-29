@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "coverage-gap-senolytics-safety-tables-followup-2-repair-safety-limitations",
+  "candidate_change_id": "coverage-gap-senolytics-safety-tables-followup-2-repair",
+  "review_lane": "safety_limitations",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Safety-limitations review is accepted. The candidate adds useful row-level and abstract-level safety extraction, but it keeps adverse-event rows descriptive where control cells are blank or sparse, keeps registry discontinuations distinct from preferred-term adverse events, and leaves cross-human safety synthesis blocked until compatible full article/table extraction and uncertainty fields are available.",
+  "findings": [
+    {
+      "finding_id": "blank-cell-and-zero-caveats-retained",
+      "severity": "note",
+      "category": "safety_limitation",
+      "claim_or_issue": "Most D+Q bone publication-table preferred-term rows have blank untreated-control cells, while the registry contains separate adverse-event event groups and participant-flow data with different semantics.",
+      "why_it_matters": "Blank table cells and registry zeroes cannot be freely interchanged without overstating comparative safety effects.",
+      "recommended_action": "Accept this lane while preserving the current zero_handling fields and the pooling_blocked synthesis-group state.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "cross-study-safety-synthesis-still-blocked",
+      "severity": "note",
+      "category": "interpretation_overreach",
+      "claim_or_issue": "The candidate updates coverage and safety records but does not claim harmonized cross-human senolytics safety evidence for DKD, IPF, AD-risk, and D+Q bone studies.",
+      "why_it_matters": "The release boundary can include accepted extracted records without implying that safety evidence is mature enough for a pooled estimate.",
+      "recommended_action": "No revision required; continue using future extraction-refresh work to resolve full article/table safety details, compatible denominators, relatedness, seriousness, and uncertainty.",
+      "resolution_status": "closed"
+    }
+  ]
+}

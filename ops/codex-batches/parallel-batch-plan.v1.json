@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "parallel_batch_plan",
   "id": "parallel-batch-plan-v1",
-  "generated_at": "2026-06-28T23:14:46.570Z",
+  "generated_at": "2026-06-29T12:14:48.694Z",
   "source_job_root": "ops/codex-jobs/live",
   "planner_version": "1.0.0",
   "scheduler_policy": {
@@ -15,15 +15,15 @@
     "conflict_policy": "same_group_no_overlap_or_reconciliation"
   },
   "summary": {
-    "live_job_count": 35,
-    "schedulable_job_count": 35,
+    "live_job_count": 33,
+    "schedulable_job_count": 33,
     "deferred_job_count": 0,
     "batch_count": 9,
     "max_batch_width": 4,
     "independent_batch_count": 8,
     "reconciliation_batch_count": 8,
     "estimated_wall_time_ms": 32400000,
-    "estimated_token_budget": 3500000
+    "estimated_token_budget": 3300000
   },
   "batches": [
     {
@@ -34,15 +34,11 @@
       "reconciliation_required": false,
       "job_ids": [
         "self-healing-candidate-review-coverage-gap-senolytics-review-landscape-repair-synthesis-boundary",
-        "self-healing-candidate-review-coverage-gap-senolytics-review-landscape-repair-taxonomy-mapping",
-        "self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-extraction-fidelity",
-        "self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-safety-limitations"
+        "self-healing-candidate-review-coverage-gap-senolytics-review-landscape-repair-taxonomy-mapping"
       ],
       "job_paths": [
         "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-review-landscape-repair-synthesis-boundary.json",
-        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-review-landscape-repair-taxonomy-mapping.json",
-        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-extraction-fidelity.json",
-        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-safety-limitations.json"
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-review-landscape-repair-taxonomy-mapping.json"
       ],
       "agent_roles": [
         "supervisor_agent"
@@ -53,47 +49,31 @@
       "read_sets": [
         "context_pack:self-healing-candidate-review-coverage-gap-senolytics-review-landscape-repair-synthesis-boundary",
         "context_pack:self-healing-candidate-review-coverage-gap-senolytics-review-landscape-repair-taxonomy-mapping",
-        "context_pack:self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-extraction-fidelity",
-        "context_pack:self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-safety-limitations",
         "path:data/candidate-changes/coverage-gap-senolytics-review-landscape-repair.json",
-        "path:data/candidate-changes/coverage-gap-senolytics-safety-tables-followup-2-repair.json",
         "path:ops/triage-state.v1.json",
-        "triage_job:candidate-review-coverage-gap-senolytics-review-landscape-repair",
-        "triage_job:candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair"
+        "triage_job:candidate-review-coverage-gap-senolytics-review-landscape-repair"
       ],
       "write_sets": [
         "candidate_change:candidate-review-coverage-gap-senolytics-review-landscape-repair-synthesis-boundary-repair",
         "candidate_change:candidate-review-coverage-gap-senolytics-review-landscape-repair-taxonomy-mapping-repair",
-        "candidate_change:candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-extraction-fidelity-repair",
-        "candidate_change:candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-safety-limitations-repair",
         "candidate_review:coverage-gap-senolytics-review-landscape-repair/synthesis_boundary",
         "candidate_review:coverage-gap-senolytics-review-landscape-repair/taxonomy_mapping",
-        "candidate_review:coverage-gap-senolytics-safety-tables-followup-2-repair/extraction_fidelity",
-        "candidate_review:coverage-gap-senolytics-safety-tables-followup-2-repair/safety_limitations",
         "path:data/candidate-changes/candidate-review-coverage-gap-senolytics-review-landscape-repair-synthesis-boundary-repair.json",
         "path:data/candidate-changes/candidate-review-coverage-gap-senolytics-review-landscape-repair-taxonomy-mapping-repair.json",
-        "path:data/candidate-changes/candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-extraction-fidelity-repair.json",
-        "path:data/candidate-changes/candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-safety-limitations-repair.json",
         "path:data/evidence-reviews/coverage-gap-senolytics-review-landscape-repair-synthesis-boundary.json",
-        "path:data/evidence-reviews/coverage-gap-senolytics-review-landscape-repair-taxonomy-mapping.json",
-        "path:data/evidence-reviews/coverage-gap-senolytics-safety-tables-followup-2-repair-extraction-fidelity.json",
-        "path:data/evidence-reviews/coverage-gap-senolytics-safety-tables-followup-2-repair-safety-limitations.json"
+        "path:data/evidence-reviews/coverage-gap-senolytics-review-landscape-repair-taxonomy-mapping.json"
       ],
       "conflict_keys": [
         "candidate_change:candidate-review-coverage-gap-senolytics-review-landscape-repair-synthesis-boundary-repair",
         "candidate_change:candidate-review-coverage-gap-senolytics-review-landscape-repair-taxonomy-mapping-repair",
-        "candidate_change:candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-extraction-fidelity-repair",
-        "candidate_change:candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-safety-limitations-repair",
         "candidate_review:coverage-gap-senolytics-review-landscape-repair/synthesis_boundary",
-        "candidate_review:coverage-gap-senolytics-review-landscape-repair/taxonomy_mapping",
-        "candidate_review:coverage-gap-senolytics-safety-tables-followup-2-repair/extraction_fidelity",
-        "candidate_review:coverage-gap-senolytics-safety-tables-followup-2-repair/safety_limitations"
+        "candidate_review:coverage-gap-senolytics-review-landscape-repair/taxonomy_mapping"
       ],
       "overlapping_execution_keys": [],
       "expected_cost": {
         "cost_class": "high",
         "expected_wall_time_ms": 3600000,
-        "expected_token_budget": 400000,
+        "expected_token_budget": 200000,
         "io_intensity": "medium"
       },
       "commands": [
@@ -113,24 +93,6 @@
           "--",
           "--job-file",
           "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-review-landscape-repair-taxonomy-mapping.json",
-          "--execute"
-        ],
-        [
-          "npm",
-          "run",
-          "agent:codex:worktree",
-          "--",
-          "--job-file",
-          "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-extraction-fidelity.json",
-          "--execute"
-        ],
-        [
-          "npm",
-          "run",
-          "agent:codex:worktree",
-          "--",
-          "--job-file",
-          "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-safety-limitations.json",
           "--execute"
         ]
       ]

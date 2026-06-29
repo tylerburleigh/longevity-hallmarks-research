@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "self-healing-candidate-review-coverage-gap-senolytics-safety-tables-followup-2-repair-extraction-fidelity",
+  "agent_role": "supervisor_agent",
+  "agent_id": "codex",
+  "mode": "agent_directed",
+  "started_at": "2026-06-29T00:00:00Z",
+  "completed_at": "2026-06-29T00:00:00Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "candidate_review: complete the missing extraction_fidelity lane for coverage-gap-senolytics-safety-tables-followup-2-repair.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": [
+      "dasatinib-quercetin"
+    ]
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "inputs": [
+    {
+      "input_type": "candidate_change",
+      "reference": "data/candidate-changes/coverage-gap-senolytics-safety-tables-followup-2-repair.json",
+      "summary": "Target safety-table follow-up repair candidate under review."
+    },
+    {
+      "input_type": "text_snapshot",
+      "reference": "data/text-snapshots/text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
+      "summary": "Retained D+Q bone RCT full-text snapshot with safety section and Extended Data Table 1 locators."
+    },
+    {
+      "input_type": "text_snapshot",
+      "reference": "data/text-snapshots/text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+      "summary": "Retained ClinicalTrials.gov registry text snapshot with participant-flow and adverse-event modules."
+    },
+    {
+      "input_type": "source_snapshot",
+      "reference": "data/source-snapshots/snapshot-pmid-31542391-pubmed-efetch-2026-06-27.json; data/source-snapshots/snapshot-pmid-36857968-pubmed-efetch-2026-06-27.json; data/source-snapshots/snapshot-pmid-40010154-pubmed-efetch-2026-06-27.json",
+      "summary": "PubMed source snapshots supporting abstract-limited DKD, IPF, and AD-risk safety extraction boundaries."
+    }
+  ],
+  "outputs": {
+    "summary": "Created a complete non-blocking extraction_fidelity evidence review accepting the bounded safety-table follow-up repair.",
+    "candidate_change_id": "coverage-gap-senolytics-safety-tables-followup-2-repair",
+    "proposed_records": [
+      {
+        "record_type": "evidence_review",
+        "record_id": "coverage-gap-senolytics-safety-tables-followup-2-repair-extraction-fidelity",
+        "path": "data/evidence-reviews/coverage-gap-senolytics-safety-tables-followup-2-repair-extraction-fidelity.json",
+        "change_type": "create",
+        "rationale": "Adds a complete non-blocking extraction_fidelity supervisor review for the target candidate."
+      }
+    ],
+    "generated_files": [
+      "data/evidence-reviews/coverage-gap-senolytics-safety-tables-followup-2-repair-extraction-fidelity.json"
+    ],
+    "export_paths": []
+  },
+  "quality_checks": [
+    {
+      "check_name": "source_locator_review",
+      "status": "passed",
+      "summary": "Compared the proposed D+Q bone preferred-term rows and discontinuation record against retained article, registry, and source-snapshot locators."
+    },
+    {
+      "check_name": "candidate_review_lane",
+      "status": "passed",
+      "summary": "Extraction-fidelity lane is complete with verdict accept, blocking false, and no open major or critical findings."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": []
+}

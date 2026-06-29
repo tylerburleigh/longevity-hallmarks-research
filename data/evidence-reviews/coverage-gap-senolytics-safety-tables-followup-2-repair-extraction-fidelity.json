@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "coverage-gap-senolytics-safety-tables-followup-2-repair-extraction-fidelity",
+  "candidate_change_id": "coverage-gap-senolytics-safety-tables-followup-2-repair",
+  "review_lane": "extraction_fidelity",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "codex",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "Extraction fidelity is accepted for this bounded safety-table repair. The proposed D+Q bone preferred-term rows match the retained PMC author-manuscript table and safety narrative, the registry discontinuation record stays tied to the retained ClinicalTrials.gov participant-flow source, and DKD, IPF, and AD-risk safety records remain limited to PubMed source-snapshot-backed abstract extraction.",
+  "findings": [
+    {
+      "finding_id": "dq-bone-preferred-term-counts-source-located",
+      "severity": "note",
+      "category": "extraction_error",
+      "claim_or_issue": "The proposed D+Q bone adverse-event preferred-term rows preserve the publication-table counts for diarrhea, nausea, constipation, gastrointestinal reflux, vertigo, fatigue, and body pain, with retained text locators to Extended Data Table 1 and the safety/adverse-events narrative.",
+      "why_it_matters": "Release-boundary acceptance should only include the new result rows if their counts and caveats are traceable to retained local source text.",
+      "recommended_action": "No revision required; keep the publication-table rows source-located and keep blank control cells encoded as not_reported_or_below_threshold rather than zero.",
+      "resolution_status": "closed"
+    },
+    {
+      "finding_id": "discontinuation-and-abstract-safety-scope-preserved",
+      "severity": "note",
+      "category": "endpoint_boundary",
+      "claim_or_issue": "The discontinuation result is explicitly registry/article descriptive, and the DKD, IPF, and AD-risk safety records do not claim full-text extraction where only PubMed source-snapshot abstract summaries are retained.",
+      "why_it_matters": "This prevents registry participant-flow reasons and abstract-level safety statements from being promoted as synthesis-ready full safety tables.",
+      "recommended_action": "No revision required; retain the maturity_status and provenance distinctions already present on the proposed result records.",
+      "resolution_status": "closed"
+    }
+  ]
+}

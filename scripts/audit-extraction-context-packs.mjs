@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { promises as fs } from "node:fs";
+import { createHash } from "node:crypto";
 import path from "node:path";
 
 const workspaceRoot = process.cwd();
@@ -62,6 +63,24 @@ async function checkRelativePath({ issues, ownerPath, field, relativePath, requi
   }
 }
 
+async function checkArtifactHash({ issues, ownerPath, field, artifact }) {
+  if (!artifact?.path || !artifact.sha256) {
+    return;
+  }
+
+  const artifactPath = path.join(workspaceRoot, artifact.path);
+  if (!(await exists(artifactPath))) {
+    return;
+  }
+
+  const actualSha256 = createHash("sha256")
+    .update(await fs.readFile(artifactPath))
+    .digest("hex");
+  if (actualSha256 !== artifact.sha256) {
+    issues.push(`${ownerPath}: ${field}.sha256 does not match artifact content for ${artifact.path}.`);
+  }
+}
+
 function checkLocator({ issues, ownerPath, artifactPaths, field, locator }) {
   if (!locator) {
     return;
@@ -110,6 +129,12 @@ async function checkPack({ issues, pack, ownerPath }) {
       ownerPath,
       field: `source_context.artifact_paths[${index}].path`,
       relativePath: artifact.path
+    });
+    await checkArtifactHash({
+      issues,
+      ownerPath,
+      field: `source_context.artifact_paths[${index}]`,
+      artifact
     });
   }
 

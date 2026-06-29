@@ -637,6 +637,67 @@
       ]
     },
     {
+      "id": "stale-extraction-context-pack-artifact-hash",
+      "description": "Extraction context packs must retain source artifact hashes that match artifact content.",
+      "command": [
+        "npm",
+        "run",
+        "audit:extraction-context-packs"
+      ],
+      "operations": [
+        {
+          "type": "set_json",
+          "path": "ops/extraction-context-packs/dq-bone-headache-ae-table-row-2026-06-23.json",
+          "pointer": "/source_context/artifact_paths/0/sha256",
+          "value": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ],
+      "expected_failure_substrings": [
+        "Extraction context-pack audit failed",
+        "source_context.artifact_paths[0].sha256 does not match artifact content"
+      ]
+    },
+    {
+      "id": "live-extraction-job-missing-context-pack",
+      "description": "Runnable live extraction-refresh jobs must declare a context pack.",
+      "command": [
+        "npm",
+        "run",
+        "audit:codex-jobs"
+      ],
+      "operations": [
+        {
+          "type": "delete_json",
+          "path": "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-ad-risk-cognition-mobility-mixed.json",
+          "pointer": "/context_pack_path"
+        }
+      ],
+      "expected_failure_substrings": [
+        "live extraction-refresh jobs must declare context_pack_path",
+        "self-healing-extraction-debt-dq-ad-risk-cognition-mobility-mixed.json"
+      ]
+    },
+    {
+      "id": "live-supervisor-job-missing-context-pack",
+      "description": "Runnable live candidate-review supervisor lane jobs must declare a context pack.",
+      "command": [
+        "npm",
+        "run",
+        "audit:codex-jobs"
+      ],
+      "operations": [
+        {
+          "type": "delete_json",
+          "path": "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-review-landscape-repair-synthesis-boundary.json",
+          "pointer": "/context_pack_path"
+        }
+      ],
+      "expected_failure_substrings": [
+        "live candidate-review supervisor lane jobs must declare context_pack_path",
+        "self-healing-candidate-review-coverage-gap-senolytics-review-landscape-repair-synthesis-boundary.json"
+      ]
+    },
+    {
       "id": "adverse-event-zero-handling-blocks-effect",
       "description": "Safety-event results cannot encode comparative effects when adverse-event zero handling blocks them.",
       "command": [

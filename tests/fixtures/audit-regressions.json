@@ -720,6 +720,27 @@
       ]
     },
     {
+      "id": "stale-extraction-context-pack-source-availability",
+      "description": "Extraction context packs must keep source availability aligned with generated source contexts.",
+      "command": [
+        "npm",
+        "run",
+        "audit:extraction-context-packs"
+      ],
+      "operations": [
+        {
+          "type": "set_json",
+          "path": "ops/extraction-context-packs/self-healing-extraction-debt-dq-bone-p16-t3-ctx-2wk-positive.json",
+          "pointer": "/source_availability/1/artifact_context_available",
+          "value": false
+        }
+      ],
+      "expected_failure_substrings": [
+        "Extraction context-pack audit failed",
+        "source_availability[1].artifact_context_available expected true"
+      ]
+    },
+    {
       "id": "live-extraction-job-missing-context-pack",
       "description": "Runnable live extraction-refresh jobs must declare a context pack.",
       "command": [

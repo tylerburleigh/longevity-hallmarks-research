@@ -1,0 +1,188 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-taxonomy-mapping",
+  "agent_role": "supervisor_agent",
+  "agent_id": "codex-cli",
+  "mode": "agent_directed",
+  "started_at": "2026-06-29T23:32:18Z",
+  "completed_at": "2026-06-29T23:34:38Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "candidate_review: Required review lane is missing: taxonomy_mapping.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "codex_exec",
+    "isolation": "git_worktree",
+    "workspace_path": "/tmp/lhr-codex-worktrees/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-taxonomy-mapping-20260629T233218z",
+    "prompt_file": "research/agent-runs/prompts/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-taxonomy-mapping.md",
+    "prompt_template_file": "docs/prompts/codex-agents/supervisor-review.md",
+    "job_file": "ops/codex-jobs/archive/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-taxonomy-mapping.json",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "output_path": "research/agent-runs/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-taxonomy-mapping.json",
+    "jsonl_log_path": "research/agent-runs/logs/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-taxonomy-mapping.jsonl",
+    "sandbox": "danger-full-access",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "other",
+      "reference": "ops/supervisor-review-context-packs/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-taxonomy-mapping.json",
+      "summary": "Context pack for bounded taxonomy_mapping supervisor review."
+    },
+    {
+      "input_type": "candidate_change",
+      "reference": "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair.json",
+      "summary": "Target candidate_change under review."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+      "summary": "Proposed coverage_assessment update inspected for taxonomy mapping."
+    },
+    {
+      "input_type": "record",
+      "reference": "schemas/evidence-review.schema.json",
+      "summary": "Schema used for the evidence_review record."
+    },
+    {
+      "input_type": "record",
+      "reference": "schemas/candidate-change.schema.json",
+      "summary": "Schema used for the repair candidate_change record."
+    },
+    {
+      "input_type": "record",
+      "reference": "schemas/agent-run.codex-output.schema.json",
+      "summary": "Schema used for final worker output contract."
+    },
+    {
+      "input_type": "record",
+      "reference": "schemas/agent-run.schema.json",
+      "summary": "Schema inspected for agent_run output fields."
+    }
+  ],
+  "outputs": {
+    "summary": "Created a repair candidate_change and a complete accepting taxonomy_mapping evidence_review for coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair. The review found no blocking taxonomy issue: the proposed coverage assessment remains scoped to cellular_senescence/senolytics coverage repair and preserves registry retrieval failures as an open active_trials_registries gap, not efficacy evidence.",
+    "candidate_change_id": "candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-taxonomy-mapping-repair",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-taxonomy-mapping-repair",
+        "path": "data/candidate-changes/candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-taxonomy-mapping-repair.json",
+        "change_type": "create",
+        "rationale": "Tracks the bounded self-healing repair candidate and preserves the coordinator-required taxonomy_mapping review lane."
+      },
+      {
+        "record_type": "evidence_review",
+        "record_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-taxonomy-mapping",
+        "path": "data/evidence-reviews/coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-taxonomy-mapping.json",
+        "change_type": "create",
+        "rationale": "Records a complete taxonomy_mapping supervisor verdict for the target candidate."
+      }
+    ],
+    "generated_files": [
+      "data/candidate-changes/candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-taxonomy-mapping-repair.json",
+      "data/evidence-reviews/coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-taxonomy-mapping.json"
+    ],
+    "export_paths": []
+  },
+  "quality_checks": [
+    {
+      "check_name": "supervisor_review_lanes",
+      "status": "passed",
+      "summary": "The taxonomy_mapping lane review is complete, non-blocking, and has no open major or critical findings; verdict is accept."
+    },
+    {
+      "check_name": "candidate_agent_run_ledger_match",
+      "status": "passed",
+      "summary": "outputs.proposed_records matches the repair candidate ledger in record ids, paths, change types, and rationales."
+    },
+    {
+      "check_name": "validate_records",
+      "status": "passed",
+      "summary": "npm run validate:records passed; 591 JSON files validated."
+    },
+    {
+      "check_name": "audit_references",
+      "status": "passed",
+      "summary": "npm run audit:references passed for 385 record files."
+    },
+    {
+      "check_name": "audit_agent_schemas",
+      "status": "passed",
+      "summary": "npm run audit:agent-schemas passed."
+    },
+    {
+      "check_name": "audit_agentic_process",
+      "status": "passed",
+      "summary": "npm run audit:agentic-process passed for 617 files."
+    },
+    {
+      "check_name": "worker_output_contract",
+      "status": "passed",
+      "summary": "Worker emitted exactly one final JSON agent_run message, matched output_path, and avoided ad hoc schema-validation snippets."
+    },
+    {
+      "check_name": "post_triage_state_export",
+      "status": "passed",
+      "summary": "post_triage_state_export exited 0: > longevity-hallmarks-research@0.1.0 export:triage-state > node scripts/export-triage-state.mjs Wrote ops/triage-state.v1.json."
+    },
+    {
+      "check_name": "post_release_readiness_export",
+      "status": "passed",
+      "summary": "post_release_readiness_export exited 0: > longevity-hallmarks-research@0.1.0 export:release-readiness > node scripts/export-release-readiness.mjs Wrote ops/release-readiness.v1.json."
+    },
+    {
+      "check_name": "post_job_archive",
+      "status": "passed",
+      "summary": "post_job_archive exited 0: > longevity-hallmarks-research@0.1.0 jobs:archive > node scripts/archive-codex-job.mjs --job-file ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-taxonomy-mapping.json {\"type\":\"codex_job.archived\",\"schema_version\":\"1.0.0\",\"job_id\":\"self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-taxonomy-mapping\",\"job_file\":\"ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-taxonomy-mapping.json\",\"archive_path\":\"ops/codex-jobs/archive/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-taxonomy-mapping.json\",\"output_path\":\"research/agent-runs/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-taxonomy-mapping.json\",\"status\":\"succeeded\",\"archived_at\":\"2026-06-29T23:35:23.342Z\",\"dry_run\":false,\"updated_batch_run_paths\":[]}"
+    },
+    {
+      "check_name": "post_self_healing_jobs",
+      "status": "passed",
+      "summary": "post_self_healing_jobs exited 0: \"context_pack_status\": \"written\" } ], \"removed_obsolete_paths\": [], \"removed_obsolete_context_pack_paths\": [] }"
+    },
+    {
+      "check_name": "post_parallel_batch_plan",
+      "status": "passed",
+      "summary": "post_parallel_batch_plan exited 0: > longevity-hallmarks-research@0.1.0 jobs:plan-parallel > node scripts/plan-parallel-codex-batches.mjs Wrote ops/codex-batches/parallel-batch-plan.v1.json."
+    },
+    {
+      "check_name": "post_reconciliation_export",
+      "status": "passed",
+      "summary": "post_reconciliation_export exited 0: > longevity-hallmarks-research@0.1.0 reconcile:parallel > node scripts/reconcile-parallel-outputs.mjs Wrote ops/reconciliation/parallel-reconciliation.v1.json."
+    },
+    {
+      "check_name": "post_orchestration_metrics_export",
+      "status": "passed",
+      "summary": "post_orchestration_metrics_export exited 0: > longevity-hallmarks-research@0.1.0 metrics:orchestration > node scripts/export-orchestration-metrics.mjs Wrote ops/codex-batches/orchestration-metrics.v1.json."
+    },
+    {
+      "check_name": "post_export",
+      "status": "passed",
+      "summary": "post_export exited 0: > longevity-hallmarks-research@0.1.0 export:latest > node scripts/export-latest.mjs Wrote 16 export file(s) to exports/latest."
+    },
+    {
+      "check_name": "post_read_model_export",
+      "status": "passed",
+      "summary": "post_read_model_export exited 0: > longevity-hallmarks-research@0.1.0 export:read-model > node scripts/export-read-model.mjs Wrote exports/latest/read-model.sqlite."
+    },
+    {
+      "check_name": "post_verify",
+      "status": "passed",
+      "summary": "post_verify exited 0: > longevity-hallmarks-research@0.1.0 audit:orchestration-smoke-contract > node scripts/audit-orchestration-smoke-contract.mjs Orchestration smoke contract audit passed for orchestration-smoke-budgeted-codex-worktree-2026-06-23. > longevity-hallmarks-research@0.1.0 audit:agentic-process > node scripts/audit-agentic-process.mjs Agentic process audit passed for 618 file(s)."
+    }
+  ],
+  "blocking_issues": [],
+  "next_actions": [
+    "Coordinator post-run should refresh generated exports and run full knowledge-base verification per the job post_run contract."
+  ]
+}

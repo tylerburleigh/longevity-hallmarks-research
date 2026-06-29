@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "evidence_review",
+  "id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-taxonomy-mapping",
+  "candidate_change_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair",
+  "review_lane": "taxonomy_mapping",
+  "reviewer_kind": "supervisor_agent",
+  "reviewer_id": "self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-taxonomy-mapping",
+  "status": "complete",
+  "verdict": "accept",
+  "blocking": false,
+  "summary": "The target candidate's taxonomy mapping is acceptable. The proposed coverage assessment update remains scoped to cellular_senescence/senolytics coverage repair, preserves active_trials_registries as an open registry-surveillance gap, and does not reclassify registry retrieval failures as intervention efficacy evidence.",
+  "findings": [
+    {
+      "finding_id": "taxonomy-mapping-senolytics-registry-gap-closed",
+      "severity": "note",
+      "category": "taxonomy_mapping",
+      "claim_or_issue": "The candidate proposes a coverage_assessment update for the senolytics registry-surveillance breadth gap and a candidate_change ledger entry; it does not create source, finding, result, synthesis_group, or intervention-efficacy records.",
+      "why_it_matters": "Keeping the failed ClinicalTrials.gov retrieval attempt in coverage-repair taxonomy prevents no-results registry surveillance from being promoted into human efficacy, safety, or synthesis evidence.",
+      "recommended_action": "Accept the taxonomy_mapping lane and keep the remaining synthesis_boundary review lane separate for the target candidate.",
+      "resolution_status": "closed"
+    }
+  ]
+}

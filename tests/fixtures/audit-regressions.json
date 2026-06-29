@@ -23,6 +23,27 @@
       ]
     },
     {
+      "id": "stale-source-snapshot-raw-storage-hash",
+      "description": "Stored source snapshot raw payload hashes must match retained artifact content.",
+      "command": [
+        "npm",
+        "run",
+        "audit:references"
+      ],
+      "operations": [
+        {
+          "type": "set_json",
+          "path": "data/source-snapshots/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
+          "pointer": "/content_sha256",
+          "value": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ],
+      "expected_failure_substrings": [
+        "content_sha256.sha256 does not match artifact content",
+        "snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json"
+      ]
+    },
+    {
       "id": "unsupported-accepted-candidate",
       "description": "Candidates cannot be accepted without passing promotion gates.",
       "command": [

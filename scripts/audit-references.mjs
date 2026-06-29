@@ -1177,6 +1177,19 @@ async function audit() {
         if (!record.raw_storage.path) {
           issues.push(`${relativePath}: raw_storage.stored snapshots must include raw_storage.path.`);
         }
+        await checkRepoPathExists({
+          issues,
+          ownerPath: relativePath,
+          field: "raw_storage.path",
+          relativePath: record.raw_storage.path
+        });
+        await checkRepoPathHash({
+          issues,
+          ownerPath: relativePath,
+          field: "content_sha256",
+          relativePath: record.raw_storage.path,
+          expectedSha256: record.content_sha256
+        });
         if (!sourceAccessAllowsRetainedArtifacts(record.access_policy, ["raw_payload"])) {
           issues.push(
             `${relativePath}: raw_storage.stored snapshots must declare a safe raw_payload access_policy tier.`

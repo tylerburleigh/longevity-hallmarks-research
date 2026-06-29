@@ -46,4 +46,6 @@ Current blocker fields:
 
 When `result.adverse_event.zero_handling.supports_comparative_effect` is `false`, missing `effect.value` or `effect.uncertainty` should remain a pooling blocker but should not be routed as extraction debt. Create comparative safety effects only when source semantics support the estimate without unsupported zero handling.
 
+`compatible_time_horizon` is a synthesis-compatibility blocker. It should not be routed as extraction debt when records already have concrete but incompatible `time_horizon` values.
+
 The reference audit also checks that each result-level blocker references a result already listed in the synthesis group and that each result belongs to one of the group's outcome IDs.

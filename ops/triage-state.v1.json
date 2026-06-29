@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "triage_state",
   "id": "triage-state-v1",
-  "generated_at": "2026-06-29T13:33:14.240Z",
+  "generated_at": "2026-06-29T13:44:17.092Z",
   "source_roots": [
     "data",
     "research"
@@ -76,7 +76,7 @@
     "rejected_count": 3,
     "coverage_gap_count": 4,
     "high_priority_coverage_gap_count": 2,
-    "extraction_debt_count": 38,
+    "extraction_debt_count": 36,
     "stale_snapshot_count": 0,
     "watch_snapshot_count": 0,
     "partial_or_failed_agent_run_count": 0,
@@ -2258,19 +2258,6 @@
       "next_action": "Run extraction refresh for dq-bone-p1np-20wk-null to resolve effect.value."
     },
     {
-      "debt_id": "debt-senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21-dq-bone-p1np-2wk-positive-compatible_time_horizon",
-      "result_id": "dq-bone-p1np-2wk-positive",
-      "path": "data/results/dq-bone-p1np-2wk-positive.json",
-      "synthesis_group_id": "senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21",
-      "missing_field": "compatible_time_horizon",
-      "debt_type": "incompatible_time_horizon",
-      "severity": "high",
-      "source": "synthesis_group_missing_effect_fields",
-      "impact": "blocks_pooling",
-      "note": "The 2-week result has an effect value but no CI, standard error, or variance, and it should not be pooled directly with the 4-week timepoint as the same horizon.",
-      "next_action": "Run extraction refresh for dq-bone-p1np-2wk-positive to resolve compatible_time_horizon."
-    },
-    {
       "debt_id": "debt-senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21-dq-bone-p1np-2wk-positive-effect.uncertainty",
       "result_id": "dq-bone-p1np-2wk-positive",
       "path": "data/results/dq-bone-p1np-2wk-positive.json",
@@ -2295,19 +2282,6 @@
       "impact": "blocks_pooling",
       "note": "The effect value is available, but no CI, standard error, or variance is encoded.",
       "next_action": "Run extraction refresh for dq-bone-p1np-2wk-positive to resolve CI, standard error, or variance."
-    },
-    {
-      "debt_id": "debt-senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21-dq-bone-p1np-4wk-positive-compatible_time_horizon",
-      "result_id": "dq-bone-p1np-4wk-positive",
-      "path": "data/results/dq-bone-p1np-4wk-positive.json",
-      "synthesis_group_id": "senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21",
-      "missing_field": "compatible_time_horizon",
-      "debt_type": "incompatible_time_horizon",
-      "severity": "high",
-      "source": "synthesis_group_missing_effect_fields",
-      "impact": "blocks_pooling",
-      "note": "The 4-week result has an effect value but no CI, standard error, or variance, and it should not be pooled directly with the 2-week timepoint as the same horizon.",
-      "next_action": "Run extraction refresh for dq-bone-p1np-4wk-positive to resolve compatible_time_horizon."
     },
     {
       "debt_id": "debt-senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21-dq-bone-p1np-4wk-positive-effect.uncertainty",
@@ -2619,7 +2593,7 @@
       "source": "extraction_debt",
       "target_record_type": "result",
       "target_record_id": "dq-bone-p1np-2wk-positive",
-      "rationale": "Resolve missing synthesis fields: compatible_time_horizon, effect.uncertainty. Synthesis blocker context: The 2-week result has an effect value but no CI, standard error, or variance, and it should not be pooled directly with the 4-week timepoint as the same horizon. The effect value is available, but no CI, standard error, or variance is encoded. Next actions: Run extraction refresh for dq-bone-p1np-2wk-positive to resolve CI, standard error, or variance. Run extraction refresh for dq-bone-p1np-2wk-positive to resolve compatible_time_horizon.",
+      "rationale": "Resolve missing synthesis fields: effect.uncertainty. Synthesis blocker context: The 2-week result has an effect value but no CI, standard error, or variance, and it should not be pooled directly with the 4-week timepoint as the same horizon. The effect value is available, but no CI, standard error, or variance is encoded. Next actions: Run extraction refresh for dq-bone-p1np-2wk-positive to resolve CI, standard error, or variance.",
       "inputs": [
         "data/results/dq-bone-p1np-2wk-positive.json"
       ]
@@ -2631,7 +2605,7 @@
       "source": "extraction_debt",
       "target_record_type": "result",
       "target_record_id": "dq-bone-p1np-4wk-positive",
-      "rationale": "Resolve missing synthesis fields: compatible_time_horizon, effect.uncertainty. Synthesis blocker context: The 4-week result has an effect value but no CI, standard error, or variance, and it should not be pooled directly with the 2-week timepoint as the same horizon. The effect value is available, but no CI, standard error, or variance is encoded. Next actions: Run extraction refresh for dq-bone-p1np-4wk-positive to resolve CI, standard error, or variance. Run extraction refresh for dq-bone-p1np-4wk-positive to resolve compatible_time_horizon.",
+      "rationale": "Resolve missing synthesis fields: effect.uncertainty. Synthesis blocker context: The 4-week result has an effect value but no CI, standard error, or variance, and it should not be pooled directly with the 2-week timepoint as the same horizon. The effect value is available, but no CI, standard error, or variance is encoded. Next actions: Run extraction refresh for dq-bone-p1np-4wk-positive to resolve CI, standard error, or variance.",
       "inputs": [
         "data/results/dq-bone-p1np-4wk-positive.json"
       ]

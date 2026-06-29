@@ -501,6 +501,10 @@ function suppressUnsupportedComparativeEffectDebt(result, missingField) {
   return result?.result_type === "safety_event" && result.adverse_event?.zero_handling?.supports_comparative_effect === false;
 }
 
+function suppressNonExtractableSynthesisDebt(missingField) {
+  return missingField === "compatible_time_horizon";
+}
+
 function summarizeExtractionDebtRationale(debts) {
   const fields = sortStrings(debts.map((debt) => debt.missing_field).filter(Boolean));
   const notes = sortStrings(debts.map((debt) => debt.note).filter(Boolean));
@@ -542,6 +546,10 @@ function buildExtractionDebt({ resultEntries, synthesisGroupEntries }) {
       const resultPath = resultEntry?.path ?? `data/results/${missing.result_id}.json`;
 
       for (const missingField of missing.missing_fields ?? []) {
+        if (suppressNonExtractableSynthesisDebt(missingField)) {
+          continue;
+        }
+
         if (suppressUnsupportedComparativeEffectDebt(resultEntry?.record, missingField)) {
           continue;
         }

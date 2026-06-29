@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "orchestration_metrics",
   "id": "orchestration-metrics-v1",
-  "generated_at": "2026-06-29T13:33:14.793Z",
+  "generated_at": "2026-06-29T13:44:17.641Z",
   "source_roots": [
     "data",
     "exports/latest",
@@ -77,8 +77,8 @@
     "open_finding_rate": 0.0179,
     "accepted_candidate_count": 17,
     "accepted_records_produced_count": 127,
-    "extraction_debt_open_count": 38,
-    "extraction_debt_high_priority_open_count": 30,
+    "extraction_debt_open_count": 36,
+    "extraction_debt_high_priority_open_count": 28,
     "extraction_debt_resolved_candidate_count": 11,
     "extraction_debt_resolved_record_count": 70,
     "release_ready_candidate_count": 17,
@@ -854,8 +854,8 @@
       }
     ],
     "extraction_debt": {
-      "open_count": 38,
-      "high_priority_open_count": 30,
+      "open_count": 36,
+      "high_priority_open_count": 28,
       "resolved_candidate_count": 11,
       "resolved_record_count": 70,
       "resolved_records_by_type": [

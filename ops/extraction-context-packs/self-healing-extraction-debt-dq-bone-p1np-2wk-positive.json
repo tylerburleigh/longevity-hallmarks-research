@@ -6,7 +6,7 @@
   "created_at": "2026-06-28T00:00:00Z",
   "purpose": "Bounded extraction refresh for extraction-debt-dq-bone-p1np-2wk-positive-repair.",
   "scope": {
-    "question": "extraction_refresh: Resolve missing synthesis fields: compatible_time_horizon, effect.uncertainty. Synthesis blocker context: The 2-week result has an effect value but no CI, standard error, or variance, and it should not be pooled directly with the 4-week timepoint as the same horizon. The effect value is available, but no CI, standard error, or variance is encoded. Next actions: Run extraction refresh for dq-bone-p1np-2wk-positive to resolve CI, standard error, or variance. Run extraction refresh for dq-bone-p1np-2wk-positive to resolve compatible_time_horizon.",
+    "question": "extraction_refresh: Resolve missing synthesis fields: effect.uncertainty. Synthesis blocker context: The 2-week result has an effect value but no CI, standard error, or variance, and it should not be pooled directly with the 4-week timepoint as the same horizon. The effect value is available, but no CI, standard error, or variance is encoded. Next actions: Run extraction refresh for dq-bone-p1np-2wk-positive to resolve CI, standard error, or variance.",
     "hallmark_ids": [
       "cellular_senescence",
       "chronic_inflammation",
@@ -95,7 +95,7 @@
   },
   "extraction_targets": [
     {
-      "target_label": "extraction_refresh: Resolve missing synthesis fields: compatible_time_horizon, effect.uncertainty. Synthesis blocker context: The 2-week result has an effect value but no CI, standard error, or variance, and it should not be pooled directly with the 4-week timepoint as the same horizon. The effect value is available, but no CI, standard error, or variance is encoded. Next actions: Run extraction refresh for dq-bone-p1np-2wk-positive to resolve CI, standard error, or variance. Run extraction refresh for dq-bone-p1np-2wk-positive to resolve compatible_time_horizon.",
+      "target_label": "extraction_refresh: Resolve missing synthesis fields: effect.uncertainty. Synthesis blocker context: The 2-week result has an effect value but no CI, standard error, or variance, and it should not be pooled directly with the 4-week timepoint as the same horizon. The effect value is available, but no CI, standard error, or variance is encoded. Next actions: Run extraction refresh for dq-bone-p1np-2wk-positive to resolve CI, standard error, or variance.",
       "interpretation_rules": [
         "Use only the scoped input records and any retained source or text snapshots named by those records unless validation exposes a concrete inconsistency.",
         "Preserve missing, ambiguous, or not-reported source cells as uncertainty rather than inventing exact effects.",

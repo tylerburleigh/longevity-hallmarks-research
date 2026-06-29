@@ -954,6 +954,54 @@
       ]
     },
     {
+      "id": "coverage-repair-worker-broad-context-read",
+      "description": "Post-policy coverage-repair workers must read the context pack first and avoid broad runbook reads.",
+      "command": [
+        "npm",
+        "run",
+        "audit:worker-context-discipline"
+      ],
+      "operations": [
+        {
+          "type": "copy_json",
+          "from": "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-2.json",
+          "to": "ops/codex-jobs/archive/fixture-coverage-repair-worker-broad-context-read.json",
+          "mutations": [
+            {
+              "type": "set_json",
+              "pointer": "/id",
+              "value": "fixture-coverage-repair-worker-broad-context-read"
+            },
+            {
+              "type": "set_json",
+              "pointer": "/lifecycle_status",
+              "value": "succeeded"
+            },
+            {
+              "type": "set_json",
+              "pointer": "/archived_at",
+              "value": "2026-06-29T20:00:00.000Z"
+            },
+            {
+              "type": "set_json",
+              "pointer": "/jsonl_log_path",
+              "value": "research/agent-runs/logs/fixture-coverage-repair-worker-broad-context-read.jsonl"
+            }
+          ]
+        },
+        {
+          "type": "write_text",
+          "path": "research/agent-runs/logs/fixture-coverage-repair-worker-broad-context-read.jsonl",
+          "content": "{\"type\":\"item.started\",\"item\":{\"id\":\"item_0\",\"type\":\"command_execution\",\"command\":\"/usr/bin/zsh -lc \\\"sed -n '1,220p' ops/coverage-repair-context-packs/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-2.json\\\"\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"command_execution\",\"command\":\"/usr/bin/zsh -lc \\\"sed -n '1,220p' ops/coverage-repair-context-packs/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-2.json\\\"\",\"aggregated_output\":\"{}\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_1\",\"type\":\"command_execution\",\"command\":\"/usr/bin/zsh -lc 'cat docs/research-runbook.md'\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_1\",\"type\":\"command_execution\",\"command\":\"/usr/bin/zsh -lc 'cat docs/research-runbook.md'\",\"aggregated_output\":\"broad runbook output\",\"exit_code\":0,\"status\":\"completed\"}}\n"
+        }
+      ],
+      "expected_failure_substrings": [
+        "Worker context-discipline audit failed",
+        "coverage-repair workers must use the declared gap context",
+        "docs/research-runbook.md"
+      ]
+    },
+    {
       "id": "deprecated-non-agentic-process-vocabulary",
       "description": "Agentic process audit must reject deprecated process vocabulary.",
       "command": [

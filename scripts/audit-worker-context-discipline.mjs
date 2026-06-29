@@ -8,6 +8,7 @@ const jobRoots = ["ops/codex-jobs/live", "ops/codex-jobs/archive"];
 const policy = {
   enforced_after: "2026-06-23T18:00:00.000Z",
   extraction_enforced_after: "2026-06-28T19:00:00.000Z",
+  coverage_repair_enforced_after: "2026-06-29T00:00:00.000Z",
   max_non_context_output_chars: 30000,
   max_context_record_output_chars: 50000,
   required_first_command: "context_pack_read"
@@ -109,6 +110,15 @@ function isExtractionWorkerJob(job) {
     job?.record_type === "codex_job" &&
     job.agent_role === "extraction_agent" &&
     job.prompt_file === "docs/prompts/codex-agents/extraction-refresh.md"
+  );
+}
+
+function isCoverageRepairWorkerJob(job) {
+  return (
+    job?.record_type === "codex_job" &&
+    job.agent_role === "self_healing_agent" &&
+    job.mode === "coverage_repair" &&
+    job.prompt_file === "docs/prompts/codex-agents/coverage-repair.md"
   );
 }
 
@@ -313,6 +323,55 @@ function extractionCommandFindings({ job, events, contextPack }) {
   return findings;
 }
 
+function coverageRepairCommandFindings({ job, events, contextPack }) {
+  const findings = [];
+  const firstCommand = events[0]?.command;
+
+  if (job.context_pack_path && (!firstCommand || !isContextPackCommand(firstCommand, job.context_pack_path))) {
+    findings.push({
+      type: "context_pack_not_first",
+      command: firstCommand ?? "(no command events)",
+      detail: "pack-backed coverage-repair jobs must read their context pack before other repository inspection"
+    });
+  }
+
+  for (const event of events) {
+    const command = event.command;
+    if (job.context_pack_path && isContextPackCommand(command, job.context_pack_path)) {
+      continue;
+    }
+
+    for (const pattern of broadReadPatterns) {
+      if (pattern.matches(command)) {
+        findings.push({
+          type: "broad_command",
+          label: pattern.label,
+          command,
+          detail: "coverage-repair workers must use the declared gap context, targeted ids, explicit paths, or context-pack supplied records instead of broad repository inspection"
+        });
+      }
+    }
+
+    if (
+      event.aggregated_output_chars > policy.max_non_context_output_chars &&
+      !isValidationCommand(command) &&
+      !(
+        isBoundedContextRecordCommand({ command, contextPack }) &&
+        event.aggregated_output_chars <= policy.max_context_record_output_chars
+      )
+    ) {
+      findings.push({
+        type: event.aggregated_output_redacted ? "redacted_large_output" : "large_non_context_output",
+        command,
+        output_chars: event.aggregated_output_chars,
+        detail: `non-validation command output exceeds ${policy.max_non_context_output_chars} chars`
+      });
+    }
+  }
+
+  return findings;
+}
+
 async function main() {
   const options = parseArgs(process.argv.slice(2));
   const jobFiles = (await Promise.all(jobRoots.map((root) => walkJsonFiles(path.join(workspaceRoot, root))))).flat();
@@ -321,8 +380,11 @@ async function main() {
   const telemetry = {
     pack_backed_supervisor_job_count: 0,
     extraction_worker_job_count: 0,
+    coverage_repair_worker_job_count: 0,
     enforced_extraction_job_count: 0,
+    enforced_coverage_repair_job_count: 0,
     enforced_job_count: 0,
+    active_pending_job_count: 0,
     legacy_exempt_job_count: 0,
     legacy_exempt_finding_count: 0
   };
@@ -331,6 +393,46 @@ async function main() {
     const jobPath = toPosixRelative(jobFile);
     const job = await readJson(jobPath);
     if (!isPackBackedSupervisorJob(job)) {
+      if (isCoverageRepairWorkerJob(job)) {
+        telemetry.coverage_repair_worker_job_count += 1;
+        const enforced = isEnforced(job) && Date.parse(job.archived_at ?? "") >= Date.parse(policy.coverage_repair_enforced_after);
+        if (enforced) {
+          telemetry.enforced_coverage_repair_job_count += 1;
+        } else if (activeJobStatuses.has(job.lifecycle_status)) {
+          telemetry.active_pending_job_count += 1;
+        } else {
+          telemetry.legacy_exempt_job_count += 1;
+        }
+
+        const { events, missing } = await readCommandEvents(job.jsonl_log_path);
+        if (missing) {
+          if (enforced) {
+            issues.push(`${jobPath}: command stream log path does not exist: ${job.jsonl_log_path}.`);
+          }
+          continue;
+        }
+
+        const contextPack = job.context_pack_path ? await readJson(job.context_pack_path) : undefined;
+        const findings = coverageRepairCommandFindings({ job, events, contextPack });
+        if (!enforced) {
+          telemetry.legacy_exempt_finding_count += findings.length;
+          for (const finding of findings) {
+            legacyFindings.push({
+              job_path: jobPath,
+              job_id: job.id,
+              finding
+            });
+          }
+          continue;
+        }
+
+        for (const finding of findings) {
+          const outputSuffix = finding.output_chars ? ` (${finding.output_chars} chars)` : "";
+          issues.push(`${jobPath}: ${finding.type}${outputSuffix}: ${finding.detail}: ${finding.command}`);
+        }
+        continue;
+      }
+
       if (!isExtractionWorkerJob(job)) {
         continue;
       }
@@ -339,6 +441,8 @@ async function main() {
       const enforced = isEnforced(job) && Date.parse(job.archived_at ?? "") >= Date.parse(policy.extraction_enforced_after);
       if (enforced) {
         telemetry.enforced_extraction_job_count += 1;
+      } else if (activeJobStatuses.has(job.lifecycle_status)) {
+        telemetry.active_pending_job_count += 1;
       } else {
         telemetry.legacy_exempt_job_count += 1;
       }
@@ -376,6 +480,8 @@ async function main() {
     const enforced = isEnforced(job);
     if (enforced) {
       telemetry.enforced_job_count += 1;
+    } else if (activeJobStatuses.has(job.lifecycle_status)) {
+      telemetry.active_pending_job_count += 1;
     } else {
       telemetry.legacy_exempt_job_count += 1;
     }
@@ -441,6 +547,10 @@ async function main() {
   }
 
   if (!options.json) {
+    const pendingSuffix =
+      telemetry.active_pending_job_count > 0
+        ? `, ${telemetry.active_pending_job_count} active pending`
+        : "";
     const legacySuffix =
       telemetry.legacy_exempt_job_count > 0
         ? `, ${telemetry.legacy_exempt_job_count} historical exempt (${telemetry.legacy_exempt_finding_count} finding(s) available in --json output)`
@@ -448,7 +558,8 @@ async function main() {
     console.log(
       `Worker context-discipline audit passed for ${telemetry.pack_backed_supervisor_job_count} pack-backed supervisor job(s); ` +
         `${telemetry.enforced_job_count} enforced; ${telemetry.extraction_worker_job_count} extraction worker job(s), ` +
-        `${telemetry.enforced_extraction_job_count} extraction enforced${legacySuffix}.`
+        `${telemetry.enforced_extraction_job_count} extraction enforced; ${telemetry.coverage_repair_worker_job_count} ` +
+        `coverage-repair worker job(s), ${telemetry.enforced_coverage_repair_job_count} coverage-repair enforced${pendingSuffix}${legacySuffix}.`
     );
   }
 }

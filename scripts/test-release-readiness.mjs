@@ -107,6 +107,24 @@ if (genericRepairJobsForReconciliationBlockers.length > 0) {
   );
 }
 
+const duplicateCoverageGapJobsForActiveCandidates = (triageState.recommended_jobs ?? []).filter(
+  (job) =>
+    job.source === "coverage_gap" &&
+    [
+      "coverage-gap-senolytics-exact-effect-extraction-followup-3",
+      "coverage-gap-senolytics-registry-surveillance-breadth-followup-2"
+    ].includes(job.job_id)
+);
+
+if (duplicateCoverageGapJobsForActiveCandidates.length > 0) {
+  fail(
+    `triage should not schedule duplicate coverage-gap jobs when active candidates already own those gaps: ${duplicateCoverageGapJobsForActiveCandidates
+      .map((job) => job.job_id)
+      .join(", ")}`
+  );
+}
+
 console.log("PASS release-readiness accepted update dependency handling");
 console.log("PASS release-readiness blocked record grouping");
 console.log("PASS triage reconciliation-blocked promotion handling");
+console.log("PASS triage active coverage-gap suppression");

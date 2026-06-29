@@ -15,6 +15,7 @@ const outputPath = "ops/triage-state.v1.json";
 
 const triageMaturityStatuses = new Set(["metadata_imported", "screened", "triage_summary", "abstract_extracted"]);
 const nonRefreshableResultTypes = new Set(["posted_no_result", "no_posted_result", "registry_status"]);
+const activeCandidateStatuses = new Set(["draft", "submitted", "in_review", "needs_revision"]);
 const terminalCandidateStatuses = new Set(["accepted", "applied", "rejected"]);
 
 const extractionGradeMaturityStatuses = new Set([
@@ -739,6 +740,24 @@ function addRecommendedJob(jobById, job) {
   }
 }
 
+function activeCoverageGapIds(candidateEntries) {
+  const gapIds = new Set();
+
+  for (const entry of candidateEntries) {
+    const candidate = entry.record;
+    if (!activeCandidateStatuses.has(candidate.lifecycle_status)) {
+      continue;
+    }
+
+    const match = candidate.id.match(/^coverage-gap-(.+?)(?:-followup-\d+)?-repair$/);
+    if (match?.[1]) {
+      gapIds.add(match[1]);
+    }
+  }
+
+  return gapIds;
+}
+
 function selfHealingAgentRunId(jobId) {
   return makeId(["self-healing", jobId]);
 }
@@ -785,10 +804,12 @@ function buildRecommendedJobs({
   extractionDebt,
   staleSnapshots,
   partialOrFailedAgentRuns,
-  agentRunEntries
+  agentRunEntries,
+  candidateEntries
 }) {
   const jobsById = new Map();
   const agentRunIds = existingSelfHealingAgentRunIds(agentRunEntries);
+  const activeCoverageGaps = activeCoverageGapIds(candidateEntries);
 
   function addJob(job) {
     addRecommendedJob(jobsById, rerunnableRecommendedJob(job, agentRunIds));
@@ -847,6 +868,10 @@ function buildRecommendedJobs({
   }
 
   for (const gap of coverageGaps) {
+    if (activeCoverageGaps.has(gap.gap_id)) {
+      continue;
+    }
+
     addJob({
       job_id: makeId(["coverage-gap", gap.gap_id]),
       job_type: gap.next_recommended_mode === "extraction_refresh" ? "extraction_refresh" : "coverage_repair",
@@ -946,7 +971,8 @@ export async function buildTriageState({ generatedAt = new Date().toISOString() 
     extractionDebt,
     staleSnapshots,
     partialOrFailedAgentRuns,
-    agentRunEntries
+    agentRunEntries,
+    candidateEntries
   });
 
   return {

@@ -66,6 +66,13 @@ const reconciliationBlockedCandidateIds = new Set(
     )
     .map((candidate) => candidate.candidate_change_id)
 );
+const activeCandidateStatuses = new Set(["draft", "submitted", "in_review", "needs_revision"]);
+const activeCoverageGapIds = new Set(
+  (triageState.candidate_readiness ?? [])
+    .filter((candidate) => activeCandidateStatuses.has(candidate.lifecycle_status))
+    .map((candidate) => candidate.candidate_change_id.match(/^coverage-gap-(.+?)(?:-followup-\d+)?-repair$/)?.[1])
+    .filter(Boolean)
+);
 
 if (releaseReadiness.summary?.release_blocked_candidate_count !== strictReleaseBlockedCandidateIds.size) {
   fail("release_blocked_candidate_count should count only strict release_blocked candidates.");
@@ -112,12 +119,7 @@ if (genericRepairJobsForReconciliationBlockers.length > 0) {
 }
 
 const duplicateCoverageGapJobsForActiveCandidates = (triageState.recommended_jobs ?? []).filter(
-  (job) =>
-    job.source === "coverage_gap" &&
-    [
-      "coverage-gap-senolytics-exact-effect-extraction-followup-3",
-      "coverage-gap-senolytics-registry-surveillance-breadth-followup-2"
-    ].includes(job.job_id)
+  (job) => job.source === "coverage_gap" && activeCoverageGapIds.has(job.job_id.replace(/^coverage-gap-/, "").replace(/-followup-\d+$/, ""))
 );
 
 if (duplicateCoverageGapJobsForActiveCandidates.length > 0) {

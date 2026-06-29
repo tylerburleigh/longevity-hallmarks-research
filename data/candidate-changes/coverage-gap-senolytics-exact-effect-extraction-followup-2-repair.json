@@ -4,7 +4,7 @@
   "id": "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
   "name": "Repair senolytics exact-effect extraction follow-up coverage state",
   "summary": "Updates the senolytics coverage assessment to recognize durable PubMed EFetch snapshots for DKD, IPF, and AD-risk abstract-level extraction, and reconciles the legacy IPF generic feasibility/tolerability finding, outcome, and result to the abstract-reported N=12 randomized pilot. The candidate leaves D+Q bone full publication-table and supplement reconciliation, plus full-text DKD/IPF/AD-risk extraction beyond abstracts, as explicit remaining debt.",
-  "lifecycle_status": "submitted",
+  "lifecycle_status": "accepted",
   "submitted_at": "2026-06-28T17:54:19Z",
   "scope": {
     "question": "Refresh the senolytics exact-effect extraction coverage gap after durable PubMed abstract snapshots became available, reconcile the legacy IPF generic outcome/result, and keep D+Q bone publication-table and supplement debt visible.",
@@ -57,5 +57,26 @@
     "safety_limitations",
     "synthesis_boundary",
     "taxonomy_mapping"
-  ]
+  ],
+  "evidence_review_ids": [
+    "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-extraction-fidelity",
+    "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-safety-limitations",
+    "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-synthesis-boundary",
+    "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-taxonomy-mapping"
+  ],
+  "promotion": {
+    "target_status": "accepted",
+    "promoted_at": "2026-06-29T16:40:31.084Z",
+    "promoted_by_agent": "promote-candidate",
+    "reviewed_review_ids": [
+      "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-extraction-fidelity",
+      "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-safety-limitations",
+      "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-synthesis-boundary",
+      "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair-taxonomy-mapping"
+    ],
+    "reconciliation_decision_ids": [
+      "resolve-exact-effect-registry-surveillance-overlap-2026-06-29"
+    ],
+    "summary": "Promoted to accepted after all required active review lanes passed."
+  }
 }

@@ -4,7 +4,7 @@
   "id": "coverage-gap-senolytics-registry-surveillance-breadth-repair",
   "name": "Senolytics registry-surveillance breadth repair",
   "summary": "Updates the senolytics coverage assessment to name the deferred fisetin frailty registry candidates NCT03430037 and NCT03675724 and to preserve the blocker that ClinicalTrials.gov source snapshots could not be fetched in this worker. No new extraction-grade registry records were created.",
-  "lifecycle_status": "submitted",
+  "lifecycle_status": "accepted",
   "submitted_at": "2026-06-28T17:57:08Z",
   "scope": {
     "question": "Repair the senolytics active-trials registry breadth gap by sharpening the deferred fisetin and D+Q surveillance boundary while preserving source-snapshot requirements.",
@@ -35,5 +35,21 @@
     "extraction_fidelity",
     "synthesis_boundary",
     "taxonomy_mapping"
-  ]
+  ],
+  "evidence_review_ids": [
+    "coverage-gap-senolytics-registry-surveillance-breadth-repair-extraction-fidelity",
+    "coverage-gap-senolytics-registry-surveillance-breadth-repair-synthesis-boundary",
+    "coverage-gap-senolytics-registry-surveillance-breadth-repair-taxonomy-mapping"
+  ],
+  "promotion": {
+    "target_status": "accepted",
+    "promoted_at": "2026-06-29T16:40:31.123Z",
+    "promoted_by_agent": "promote-candidate",
+    "reviewed_review_ids": [
+      "coverage-gap-senolytics-registry-surveillance-breadth-repair-extraction-fidelity",
+      "coverage-gap-senolytics-registry-surveillance-breadth-repair-synthesis-boundary",
+      "coverage-gap-senolytics-registry-surveillance-breadth-repair-taxonomy-mapping"
+    ],
+    "summary": "Promoted to accepted after all required active review lanes passed."
+  }
 }

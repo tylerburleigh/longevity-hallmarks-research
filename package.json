@@ -18,6 +18,7 @@
     "jobs:run-batch": "node scripts/run-parallel-codex-batch.mjs",
     "jobs:import-batch": "node scripts/import-parallel-batch-run.mjs",
     "jobs:archive": "node scripts/archive-codex-job.mjs",
+    "smoke:codex-network": "node scripts/smoke-codex-network.mjs",
     "reconcile:parallel": "node scripts/reconcile-parallel-outputs.mjs",
     "metrics:orchestration": "node scripts/export-orchestration-metrics.mjs",
     "agent:codex": "node scripts/run-codex-agent.mjs",

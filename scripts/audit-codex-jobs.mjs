@@ -25,6 +25,14 @@ const aggregateQualityGateChecks = {
   audit_agent_schemas: new Set(["verify_knowledge_base", "post_verify"]),
   audit_agentic_process: new Set(["verify_knowledge_base", "post_verify"])
 };
+const externalRetrievalPromptFiles = new Set([
+  "docs/prompts/codex-agents/search-pass.md",
+  "docs/prompts/codex-agents/screening-pass.md",
+  "docs/prompts/codex-agents/coverage-repair.md",
+  "docs/prompts/codex-agents/clinicaltrials-text-snapshot-ingestion.md"
+]);
+const explicitExternalRetrievalPattern =
+  /\b(?:ingest:(?:clinicaltrials|clinicaltrials-text|pubmed|pmc-text)|refresh:source-snapshot|ClinicalTrials\.gov|eutils\.ncbi\.nlm\.nih\.gov|pmc\.ncbi\.nlm\.nih\.gov|external retrieval)\b/i;
 async function exists(filePath) {
   try {
     await fs.access(filePath);
@@ -453,6 +461,30 @@ function checkOrchestrationMetadata({ issues, job, ownerPath, recordIndex }) {
   }
 }
 
+function checkExternalRetrievalSandbox({ issues, job, ownerPath }) {
+  const isRunnableLiveJob = ownerPath.startsWith(liveJobPathPrefix) && activeJobStatuses.has(job.lifecycle_status);
+  if (!isRunnableLiveJob || job.execution?.sandbox !== "workspace-write") {
+    return;
+  }
+
+  const searchable = [
+    job.id,
+    job.name,
+    job.summary,
+    job.prompt_file,
+    job.scope?.question,
+    ...(job.notes ?? []),
+    ...(job.orchestration?.read_sets ?? []),
+    ...(job.orchestration?.write_sets ?? [])
+  ].join(" ");
+
+  if (externalRetrievalPromptFiles.has(job.prompt_file) || explicitExternalRetrievalPattern.test(searchable)) {
+    issues.push(
+      `${ownerPath}: live external-retrieval job uses workspace-write; use danger-full-access because codex exec workspace-write can fail DNS for network-backed retrieval.`
+    );
+  }
+}
+
 function isCandidateReviewLaneJob(job) {
   return job.agent_role === "supervisor_agent" && job.orchestration?.parallel_group === "candidate-review";
 }
@@ -609,6 +641,7 @@ async function checkCodexJob({ issues, job, ownerPath, recordIndex }) {
 
   checkJobLifecycle({ issues, job, ownerPath, outputExists });
   checkOrchestrationMetadata({ issues, job, ownerPath, recordIndex });
+  checkExternalRetrievalSandbox({ issues, job, ownerPath });
   await checkContextPack({ issues, job, ownerPath });
 
   if (job.post_run?.verify_knowledge_base && !job.post_run?.export_latest) {

@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "parallel_batch_plan",
   "id": "parallel-batch-plan-v1",
-  "generated_at": "2026-06-29T22:07:35.158Z",
+  "generated_at": "2026-06-29T22:47:54.444Z",
   "source_job_root": "ops/codex-jobs/live",
   "planner_version": "1.0.0",
   "scheduler_policy": {
@@ -15,58 +15,66 @@
     "conflict_policy": "same_group_no_overlap_or_reconciliation"
   },
   "summary": {
-    "live_job_count": 23,
-    "schedulable_job_count": 23,
+    "live_job_count": 24,
+    "schedulable_job_count": 24,
     "deferred_job_count": 0,
     "batch_count": 8,
     "max_batch_width": 4,
     "independent_batch_count": 8,
-    "reconciliation_batch_count": 8,
+    "reconciliation_batch_count": 7,
     "estimated_wall_time_ms": 28800000,
-    "estimated_token_budget": 2300000
+    "estimated_token_budget": 2400000
   },
   "batches": [
     {
-      "batch_id": "parallel-batch-001-coverage-repair",
+      "batch_id": "parallel-batch-001-candidate-review",
       "sequence": 1,
-      "parallel_group": "coverage-repair",
+      "parallel_group": "candidate-review",
       "execution_class": "independent",
-      "reconciliation_required": true,
+      "reconciliation_required": false,
       "job_ids": [
-        "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-2"
+        "self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary",
+        "self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-taxonomy-mapping"
       ],
       "job_paths": [
-        "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-2.json"
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary.json",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-taxonomy-mapping.json"
       ],
       "agent_roles": [
-        "self_healing_agent"
+        "supervisor_agent"
       ],
       "modes": [
-        "coverage_repair"
+        "agent_directed"
       ],
       "read_sets": [
-        "context_pack:self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-2",
-        "path:data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+        "context_pack:self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary",
+        "context_pack:self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-taxonomy-mapping",
+        "path:data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair.json",
         "path:ops/triage-state.v1.json",
-        "triage_job:coverage-gap-senolytics-registry-surveillance-breadth-followup-2"
+        "triage_job:candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair"
       ],
       "write_sets": [
-        "candidate_change:coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair",
-        "path:data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair.json",
-        "path:data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
-        "target_record:coverage_assessment/senolytics-coverage-repair-2026-06-21"
+        "candidate_change:candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary-repair",
+        "candidate_change:candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-taxonomy-mapping-repair",
+        "candidate_review:coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair/synthesis_boundary",
+        "candidate_review:coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair/taxonomy_mapping",
+        "path:data/candidate-changes/candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary-repair.json",
+        "path:data/candidate-changes/candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-taxonomy-mapping-repair.json",
+        "path:data/evidence-reviews/coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary.json",
+        "path:data/evidence-reviews/coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-taxonomy-mapping.json"
       ],
       "conflict_keys": [
-        "candidate_change:coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair",
-        "target_record:coverage_assessment/senolytics-coverage-repair-2026-06-21",
-        "triage_job:coverage-gap-senolytics-registry-surveillance-breadth-followup-2"
+        "candidate_change:candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary-repair",
+        "candidate_change:candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-taxonomy-mapping-repair",
+        "candidate_review:coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair/synthesis_boundary",
+        "candidate_review:coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair/taxonomy_mapping"
       ],
       "overlapping_execution_keys": [],
       "expected_cost": {
         "cost_class": "high",
         "expected_wall_time_ms": 3600000,
-        "expected_token_budget": 100000,
-        "io_intensity": "high"
+        "expected_token_budget": 200000,
+        "io_intensity": "medium"
       },
       "commands": [
         [
@@ -75,7 +83,16 @@
           "agent:codex:worktree",
           "--",
           "--job-file",
-          "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-2.json",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary.json",
+          "--execute"
+        ],
+        [
+          "npm",
+          "run",
+          "agent:codex:worktree",
+          "--",
+          "--job-file",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-taxonomy-mapping.json",
           "--execute"
         ]
       ]

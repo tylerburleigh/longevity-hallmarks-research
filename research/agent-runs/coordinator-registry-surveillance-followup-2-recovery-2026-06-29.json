@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "coordinator-registry-surveillance-followup-2-recovery-2026-06-29",
+  "agent_role": "self_healing_agent",
+  "agent_id": "codex-coordinator",
+  "mode": "coverage_repair",
+  "started_at": "2026-06-29T22:40:00Z",
+  "completed_at": "2026-06-29T22:55:00Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "Recover the bounded senolytics registry-surveillance follow-up after rejecting a non-compliant isolated worker log, preserving only the candidate ledger and coverage-assessment update that keep the gap open after ClinicalTrials.gov DNS failures.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "interactive_session",
+    "isolation": "foreground_checkout",
+    "sandbox": "danger-full-access",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "coverage_gap",
+      "reference": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json#senolytics-registry-surveillance-breadth",
+      "summary": "Target active-trials registry gap for deferred fisetin frailty registries and broader source-snapshot-backed ClinicalTrials.gov surveillance."
+    },
+    {
+      "input_type": "other",
+      "reference": "ops/coverage-repair-context-packs/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-2.json",
+      "summary": "Original bounded context pack for the rejected isolated worker run."
+    }
+  ],
+  "outputs": {
+    "summary": "Successfully recorded a submitted repair candidate and coverage-assessment update documenting that ClinicalTrials.gov importer attempts for NCT03430037, NCT03675724, NCT06133634, and NCT04685590 failed with DNS EAI_AGAIN before source snapshots could be retained. No registry no-results records were added, and the registry-surveillance breadth gap remains open.",
+    "candidate_change_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair",
+        "path": "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair.json",
+        "change_type": "create",
+        "rationale": "Tracks the bounded follow-up repair attempt and preserves required review lanes without promoting the candidate."
+      },
+      {
+        "record_type": "coverage_assessment",
+        "record_id": "senolytics-coverage-repair-2026-06-21",
+        "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+        "change_type": "update",
+        "rationale": "Updates the active-trials registry gap with the 2026-06-29 ClinicalTrials.gov importer failures and keeps the no-results registry gap open until retained source snapshots support closure."
+      }
+    ],
+    "generated_files": [],
+    "export_paths": [
+      "exports/latest/coverage-status.json",
+      "exports/latest/audit-manifest.json",
+      "exports/latest/read-model.sqlite",
+      "ops/triage-state.v1.json",
+      "ops/release-readiness.v1.json",
+      "ops/reconciliation/parallel-reconciliation.v1.json",
+      "ops/codex-batches/orchestration-metrics.v1.json"
+    ]
+  },
+  "quality_checks": [
+    {
+      "check_name": "validate_records",
+      "status": "passed",
+      "summary": "npm run validate:records passed after importing the candidate ledger."
+    },
+    {
+      "check_name": "audit_references",
+      "status": "passed",
+      "summary": "npm run audit:references passed after adding this coordinator recovery ledger."
+    }
+  ],
+  "blocking_issues": [
+    "ClinicalTrials.gov source-snapshot retrieval was unavailable during the attempted follow-up: importer attempts for NCT03430037, NCT03675724, NCT06133634, and NCT04685590 failed with getaddrinfo EAI_AGAIN for clinicaltrials.gov.",
+    "No retained ClinicalTrials.gov source snapshots were created, so no no-results status records were added and the senolytics registry-surveillance breadth gap remains open.",
+    "The original isolated worker execution log was rejected because it violated coverage-repair context-discipline requirements with broad repository reads and redacted large command output."
+  ],
+  "next_actions": [
+    "Run the generated synthesis_boundary and taxonomy_mapping supervisor-review jobs for coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair.",
+    "Retry source-snapshot-backed ClinicalTrials.gov surveillance in a network-enabled environment before creating any no-results registry records.",
+    "Keep worker post-export closeout on the corrected archive-before-regenerate and --all self-healing job refresh path."
+  ]
+}

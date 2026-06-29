@@ -109,7 +109,15 @@ The wrapper audits the captured `codex exec` stdout event stream and restores th
 
 On success, the wrapper appends a `worker_output_contract` quality check to the persisted `agent_run`.
 
-Use `--sandbox read-only` for review and audit-only runs that should not edit files. Use `workspace-write` for search, screening, extraction, synthesis, and repair workers that write candidate-tracked records. Use `danger-full-access` only in an externally isolated runner.
+Use `--sandbox read-only` for review and audit-only runs that should not edit files. Use `workspace-write` for extraction, synthesis, supervisor-review, and release workers that only need repository-local reads and candidate-tracked writes. Use `danger-full-access` for live search, screening, coverage-repair, registry ingestion, source-snapshot refresh, and any worker expected to run network-backed retrieval commands; `codex exec --sandbox workspace-write` has reproduced DNS failures for ClinicalTrials.gov retrieval. Run those jobs only in an externally isolated runner.
+
+When diagnosing worker network behavior, run the opt-in smoke test:
+
+```bash
+npm run smoke:codex-network
+```
+
+The smoke test compares `workspace-write` and `danger-full-access` by resolving and fetching ClinicalTrials.gov, PubMed EFetch, and PMC through `codex exec`. It is intentionally not part of `verify:knowledge-base` because it depends on live network and Codex availability. `audit:codex-jobs` provides the deterministic release guard by rejecting active live external-retrieval jobs that still use `workspace-write`.
 
 For release/export runs or any run whose persisted `agent_run` should be included in current export manifests, add:
 
@@ -117,7 +125,7 @@ For release/export runs or any run whose persisted `agent_run` should be include
 --post-export-verify
 ```
 
-This runs `npm run export:triage-state`, `npm run export:release-readiness`, `npm run jobs:self-healing -- --replace`, `npm run jobs:plan-parallel`, `npm run reconcile:parallel`, `npm run metrics:orchestration`, `npm run export:latest`, and `npm run verify:knowledge-base` after `codex exec` has written the final `agent_run` JSON. `export:latest` owns the generated SQLite read model and audit-manifest hashes, so the wrapper refreshes `export:latest` again after coordinator annotations that mutate the persisted `agent_run`. The post-step results are appended to the worker JSONL log as coordinator events and summarized back into the `agent_run.quality_checks[]` array. The wrapper then runs `npm run validate:records` so the persisted output record is schema-checked after coordinator annotations.
+This runs `npm run export:triage-state`, `npm run export:release-readiness`, `npm run jobs:self-healing -- --all --replace`, `npm run jobs:plan-parallel`, `npm run reconcile:parallel`, `npm run metrics:orchestration`, `npm run export:latest`, and `npm run verify:knowledge-base` after `codex exec` has written the final `agent_run` JSON. `export:latest` owns the generated SQLite read model and audit-manifest hashes, so the wrapper refreshes `export:latest` again after coordinator annotations that mutate the persisted `agent_run`. The post-step results are appended to the worker JSONL log as coordinator events and summarized back into the `agent_run.quality_checks[]` array. The wrapper then runs `npm run validate:records` so the persisted output record is schema-checked after coordinator annotations.
 
 The wrapper runs post-run verification in two parts to avoid a self-referential `post_verify` audit loop: core repository verification first, then `audit:codex-jobs` after the wrapper appends the `post_verify` quality check. If the job file is still a live `ops/codex-jobs/live/` spec with a completed output, the wrapper defers `post_job_audit` until the coordinator archives the job snapshot and the final `agent_run.execution.job_file` points at the archive path.
 

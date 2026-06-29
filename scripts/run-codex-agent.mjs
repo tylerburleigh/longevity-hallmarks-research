@@ -11,6 +11,7 @@ const wrapperOwnedQualityCheckNames = [
   "post_export",
   "post_triage_state_export",
   "post_release_readiness_export",
+  "post_job_archive",
   "post_reconciliation_export",
   "post_orchestration_metrics_export",
   "post_verify",
@@ -944,10 +945,21 @@ async function runPostSteps(options) {
       "export:release-readiness"
     ]);
     await appendOutputQualityCheck(options, releaseReadinessEvent);
+    if (options.jobFile && isLiveCodexJobPath(options.jobFile) && (await exists(resolveRepoPath(options.jobFile)))) {
+      const archiveEvent = await runCoordinatorCommand(options, "post_job_archive", "npm", [
+        "run",
+        "jobs:archive",
+        "--",
+        "--job-file",
+        toRepoRelative(options.jobFile)
+      ]);
+      await appendOutputQualityCheck(options, archiveEvent);
+    }
     const selfHealingJobsEvent = await runCoordinatorCommand(options, "post_self_healing_jobs", "npm", [
       "run",
       "jobs:self-healing",
       "--",
+      "--all",
       "--replace"
     ]);
     await appendOutputQualityCheck(options, selfHealingJobsEvent);

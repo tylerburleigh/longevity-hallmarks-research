@@ -771,13 +771,13 @@
       "operations": [
         {
           "type": "delete_json",
-          "path": "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-2.json",
+          "path": "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-review-landscape-followup-2.json",
           "pointer": "/context_pack_path"
         }
       ],
       "expected_failure_substrings": [
         "live coverage-repair jobs must declare context_pack_path",
-        "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-2.json"
+        "self-healing-coverage-gap-senolytics-review-landscape-followup-2.json"
       ]
     },
     {
@@ -964,7 +964,7 @@
       "operations": [
         {
           "type": "copy_json",
-          "from": "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-2.json",
+          "from": "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-review-landscape-followup-2.json",
           "to": "ops/codex-jobs/archive/fixture-coverage-repair-worker-broad-context-read.json",
           "mutations": [
             {
@@ -992,13 +992,34 @@
         {
           "type": "write_text",
           "path": "research/agent-runs/logs/fixture-coverage-repair-worker-broad-context-read.jsonl",
-          "content": "{\"type\":\"item.started\",\"item\":{\"id\":\"item_0\",\"type\":\"command_execution\",\"command\":\"/usr/bin/zsh -lc \\\"sed -n '1,220p' ops/coverage-repair-context-packs/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-2.json\\\"\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"command_execution\",\"command\":\"/usr/bin/zsh -lc \\\"sed -n '1,220p' ops/coverage-repair-context-packs/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-2.json\\\"\",\"aggregated_output\":\"{}\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_1\",\"type\":\"command_execution\",\"command\":\"/usr/bin/zsh -lc 'cat docs/research-runbook.md'\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_1\",\"type\":\"command_execution\",\"command\":\"/usr/bin/zsh -lc 'cat docs/research-runbook.md'\",\"aggregated_output\":\"broad runbook output\",\"exit_code\":0,\"status\":\"completed\"}}\n"
+          "content": "{\"type\":\"item.started\",\"item\":{\"id\":\"item_0\",\"type\":\"command_execution\",\"command\":\"/usr/bin/zsh -lc \\\"sed -n '1,220p' ops/coverage-repair-context-packs/self-healing-coverage-gap-senolytics-review-landscape-followup-2.json\\\"\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_0\",\"type\":\"command_execution\",\"command\":\"/usr/bin/zsh -lc \\\"sed -n '1,220p' ops/coverage-repair-context-packs/self-healing-coverage-gap-senolytics-review-landscape-followup-2.json\\\"\",\"aggregated_output\":\"{}\",\"exit_code\":0,\"status\":\"completed\"}}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_1\",\"type\":\"command_execution\",\"command\":\"/usr/bin/zsh -lc 'cat docs/research-runbook.md'\"}}\n{\"type\":\"item.completed\",\"item\":{\"id\":\"item_1\",\"type\":\"command_execution\",\"command\":\"/usr/bin/zsh -lc 'cat docs/research-runbook.md'\",\"aggregated_output\":\"broad runbook output\",\"exit_code\":0,\"status\":\"completed\"}}\n"
         }
       ],
       "expected_failure_substrings": [
         "Worker context-discipline audit failed",
         "coverage-repair workers must use the declared gap context",
         "docs/research-runbook.md"
+      ]
+    },
+    {
+      "id": "external-retrieval-job-workspace-write",
+      "description": "Live external-retrieval Codex jobs must not use the workspace-write sandbox after DNS failures were reproduced there.",
+      "command": [
+        "npm",
+        "run",
+        "audit:codex-jobs"
+      ],
+      "operations": [
+        {
+          "type": "set_json",
+          "path": "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-ad-risk-cognition-mobility-mixed.json",
+          "pointer": "/prompt_file",
+          "value": "docs/prompts/codex-agents/search-pass.md"
+        }
+      ],
+      "expected_failure_substrings": [
+        "live external-retrieval job uses workspace-write",
+        "use danger-full-access"
       ]
     },
     {

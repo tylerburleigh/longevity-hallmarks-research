@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "parallel_reconciliation",
   "id": "parallel-reconciliation-v1",
-  "generated_at": "2026-06-29T22:07:46.821Z",
+  "generated_at": "2026-06-29T22:47:54.537Z",
   "source_roots": [
     "data",
     "research",
@@ -49,14 +49,14 @@
     "duplicate_source_group_count": 0,
     "study_count": 9,
     "duplicate_study_group_count": 0,
-    "candidate_count": 81,
-    "active_candidate_count": 58,
+    "candidate_count": 82,
+    "active_candidate_count": 59,
     "overlapping_candidate_group_count": 0,
     "source_rights_count": 2,
     "source_rights_conflict_count": 0,
-    "agent_run_count": 92,
+    "agent_run_count": 93,
     "parallel_batch_count": 8,
-    "reconciliation_batch_count": 8,
+    "reconciliation_batch_count": 7,
     "parallel_batch_run_count": 27,
     "pending_parallel_worker_count": 0,
     "reconciliation_decision_count": 11,
@@ -67,15 +67,16 @@
   },
   "parallel_batches": [
     {
-      "batch_id": "parallel-batch-001-coverage-repair",
-      "parallel_group": "coverage-repair",
+      "batch_id": "parallel-batch-001-candidate-review",
+      "parallel_group": "candidate-review",
       "execution_class": "independent",
-      "reconciliation_required": true,
+      "reconciliation_required": false,
       "job_ids": [
-        "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-2"
+        "self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary",
+        "self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-taxonomy-mapping"
       ],
       "overlapping_execution_keys": [],
-      "status": "reconciliation_pending",
+      "status": "no_reconciliation_needed",
       "finding_ids": []
     },
     {

@@ -347,6 +347,52 @@ function promptForJob(recommendedJob) {
   return promptByJobType[recommendedJob.job_type] ?? "docs/prompts/codex-agents/self-healing-repair.md";
 }
 
+function recordLooksRegistryBacked(record) {
+  if (!record) {
+    return false;
+  }
+
+  return (
+    record.snapshot_type === "clinicaltrials_v2_study" ||
+    record.text_scope === "registry_record" ||
+    record.access_policy?.access_tier === "public_registry" ||
+    record.source_type === "trial_registry" ||
+    record.source_kind === "trial_registry" ||
+    /^nct-\d{8}$/i.test(String(record.source_id ?? record.id ?? "")) ||
+    (record.registry_ids ?? []).some((registryId) => /^NCT\d{8}$/i.test(String(registryId)))
+  );
+}
+
+function registryBackedSandboxForJob(recordIndex, recommendedJob) {
+  const searchable = [
+    recommendedJob.job_id,
+    recommendedJob.job_type,
+    recommendedJob.rationale,
+    recommendedJob.target_record_type,
+    recommendedJob.target_record_id,
+    ...(recommendedJob.inputs ?? [])
+  ].join(" ");
+
+  if (/\b(registry|clinicaltrials|clinicaltrials\.gov|public_registry|trial[-_ ]?registry|NCT\d{8})\b/i.test(searchable)) {
+    return "danger-full-access";
+  }
+
+  const targetRecord = getRecord(recordIndex, recommendedJob.target_record_type, recommendedJob.target_record_id);
+  const records = [targetRecord, ...getInputRecords(recordIndex, recommendedJob)].filter(Boolean);
+  if (records.some(recordLooksRegistryBacked)) {
+    return "danger-full-access";
+  }
+
+  const provenanceSnapshotIds = records.flatMap((record) =>
+    (record.provenance ?? []).map((locator) => locator.source_snapshot_id).filter(Boolean)
+  );
+  const provenanceSnapshots = provenanceSnapshotIds
+    .map((sourceSnapshotId) => getRecord(recordIndex, "source_snapshot", sourceSnapshotId))
+    .filter(Boolean);
+
+  return provenanceSnapshots.some(recordLooksRegistryBacked) ? "danger-full-access" : "workspace-write";
+}
+
 function parallelGroupForJob(recommendedJob) {
   return recommendedJob.job_type.replace(/_/g, "-");
 }
@@ -618,7 +664,7 @@ function buildJob(recordIndex, recommendedJob) {
     scope,
     execution: {
       isolation: "git_worktree",
-      sandbox: "workspace-write",
+      sandbox: registryBackedSandboxForJob(recordIndex, recommendedJob),
       approval_policy: "never",
       output_schema_path: "schemas/agent-run.codex-output.schema.json",
       timeout_ms: jobCost(recommendedJob).expected_wall_time_ms,

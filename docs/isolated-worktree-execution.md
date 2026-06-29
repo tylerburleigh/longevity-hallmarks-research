@@ -63,3 +63,11 @@ npm run audit:worktree-helper
 The audit checks that mutable live jobs can be planned through an isolated worktree command and that the wrapper receives the isolated `--workdir`.
 
 Use `jobs:run-batch` for real runnable jobs when practical, even when a batch has one worker. The batch runner keeps a durable failed-worker record if `codex exec` exits early, while the single worktree helper is best for previews and targeted diagnostics.
+
+For network-backed worker diagnostics, run:
+
+```bash
+npm run smoke:codex-network
+```
+
+The smoke test exercises DNS and fetch behavior through `codex exec` for both `workspace-write` and `danger-full-access`. It should be run when external retrieval workers fail unexpectedly, not as a release verification prerequisite.

@@ -30,7 +30,7 @@
   },
   "execution": {
     "isolation": "git_worktree",
-    "sandbox": "workspace-write",
+    "sandbox": "danger-full-access",
     "approval_policy": "never",
     "output_schema_path": "schemas/agent-run.codex-output.schema.json",
     "timeout_ms": 1800000,

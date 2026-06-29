@@ -85,7 +85,7 @@ After promotion, run the standard generated-state closeout:
 ```bash
 npm run export:triage-state
 npm run export:release-readiness
-npm run jobs:self-healing -- --replace
+npm run jobs:self-healing -- --all --replace
 npm run jobs:plan-parallel
 npm run reconcile:parallel
 npm run metrics:orchestration

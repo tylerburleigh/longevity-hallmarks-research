@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "release_readiness",
   "id": "release-readiness-v1",
-  "generated_at": "2026-06-29T21:23:17.854Z",
+  "generated_at": "2026-06-29T22:07:14.784Z",
   "source_roots": [
     "data",
     "research"
@@ -19,24 +19,23 @@
   "summary": {
     "candidate_count": 81,
     "not_ready_candidate_count": 61,
-    "promotion_ready_candidate_count": 1,
-    "release_ready_candidate_count": 19,
+    "promotion_ready_candidate_count": 0,
+    "release_ready_candidate_count": 20,
     "partial_release_ready_candidate_count": 0,
     "release_blocked_candidate_count": 0,
     "release_constrained_candidate_count": 0,
-    "accepted_or_applied_candidate_count": 19,
-    "accepted_record_count": 108,
+    "accepted_or_applied_candidate_count": 20,
+    "accepted_record_count": 109,
     "blocked_accepted_proposal_count": 0,
     "unique_blocked_accepted_record_count": 0
   },
-  "promotion_ready_candidate_ids": [
-    "coverage-gap-senolytics-exact-effect-extraction-followup-3-repair"
-  ],
+  "promotion_ready_candidate_ids": [],
   "release_ready_candidate_ids": [
     "candidate-revision-senolytics-bone-rct-extraction-refresh-2026-06-21-repair",
     "candidate-revision-senolytics-coverage-repair-2026-06-21-repair",
     "candidate-revision-senolytics-scaffold-bootstrap-2026-06-21-repair",
     "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+    "coverage-gap-senolytics-exact-effect-extraction-followup-3-repair",
     "coverage-gap-senolytics-exact-effect-extraction-repair",
     "coverage-gap-senolytics-registry-surveillance-breadth-repair",
     "coverage-gap-senolytics-review-landscape-repair",
@@ -1215,9 +1214,9 @@
     {
       "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-followup-3-repair",
       "path": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-3-repair.json",
-      "lifecycle_status": "submitted",
-      "readiness_status": "promotion_ready",
-      "release_status": "promotion_ready",
+      "lifecycle_status": "accepted",
+      "readiness_status": "accepted",
+      "release_status": "release_ready",
       "required_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
@@ -1231,12 +1230,15 @@
         "coverage-gap-senolytics-exact-effect-extraction-followup-3-repair-taxonomy-mapping"
       ],
       "proposed_record_count": 2,
-      "release_ready_record_count": 0,
+      "release_ready_record_count": 2,
       "blocked_record_count": 0,
-      "release_ready_record_ids": [],
+      "release_ready_record_ids": [
+        "coverage-gap-senolytics-exact-effect-extraction-followup-3-repair",
+        "senolytics-coverage-repair-2026-06-21"
+      ],
       "blocked_record_ids": [],
       "next_actions": [
-        "Promote candidate coverage-gap-senolytics-exact-effect-extraction-followup-3-repair before release artifacts include its proposed records."
+        "Included in accepted-record export."
       ]
     },
     {
@@ -1998,6 +2000,21 @@
     },
     {
       "record_type": "candidate_change",
+      "record_id": "coverage-gap-senolytics-exact-effect-extraction-followup-3-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-3-repair.json",
+      "release_status": "accepted",
+      "candidate_change_ids": [
+        "coverage-gap-senolytics-exact-effect-extraction-followup-3-repair"
+      ],
+      "candidate_lifecycle_statuses": [
+        "accepted"
+      ],
+      "change_types": [
+        "create"
+      ]
+    },
+    {
+      "record_type": "candidate_change",
       "record_id": "coverage-gap-senolytics-exact-effect-extraction-repair",
       "path": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-repair.json",
       "release_status": "accepted",
@@ -2273,6 +2290,7 @@
       "release_status": "accepted",
       "candidate_change_ids": [
         "coverage-gap-senolytics-exact-effect-extraction-followup-2-repair",
+        "coverage-gap-senolytics-exact-effect-extraction-followup-3-repair",
         "coverage-gap-senolytics-exact-effect-extraction-repair",
         "coverage-gap-senolytics-registry-surveillance-breadth-repair",
         "coverage-gap-senolytics-review-landscape-repair",

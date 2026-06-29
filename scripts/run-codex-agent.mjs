@@ -944,6 +944,15 @@ async function runPostSteps(options) {
       "export:release-readiness"
     ]);
     await appendOutputQualityCheck(options, releaseReadinessEvent);
+    const selfHealingJobsEvent = await runCoordinatorCommand(options, "post_self_healing_jobs", "npm", [
+      "run",
+      "jobs:self-healing",
+      "--",
+      "--replace"
+    ]);
+    await appendOutputQualityCheck(options, selfHealingJobsEvent);
+    const parallelBatchPlanEvent = await runCoordinatorCommand(options, "post_parallel_batch_plan", "npm", ["run", "jobs:plan-parallel"]);
+    await appendOutputQualityCheck(options, parallelBatchPlanEvent);
     const reconciliationEvent = await runCoordinatorCommand(options, "post_reconciliation_export", "npm", ["run", "reconcile:parallel"]);
     await appendOutputQualityCheck(options, reconciliationEvent);
     const orchestrationMetricsEvent = await runCoordinatorCommand(options, "post_orchestration_metrics_export", "npm", [

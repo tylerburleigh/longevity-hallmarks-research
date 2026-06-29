@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "triage_state",
   "id": "triage-state-v1",
-  "generated_at": "2026-06-29T21:23:17.681Z",
+  "generated_at": "2026-06-29T22:07:14.615Z",
   "source_roots": [
     "data",
     "research"
@@ -67,11 +67,11 @@
   ],
   "summary": {
     "candidate_count": 81,
-    "promotion_ready_count": 1,
+    "promotion_ready_count": 0,
     "needs_review_count": 0,
     "needs_revision_count": 0,
     "blocked_count": 0,
-    "accepted_count": 19,
+    "accepted_count": 20,
     "applied_count": 0,
     "rejected_count": 3,
     "coverage_gap_count": 4,
@@ -1319,8 +1319,8 @@
     {
       "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-followup-3-repair",
       "path": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-3-repair.json",
-      "lifecycle_status": "submitted",
-      "readiness_status": "promotion_ready",
+      "lifecycle_status": "accepted",
+      "readiness_status": "accepted",
       "required_review_lanes": [
         "extraction_fidelity",
         "safety_limitations",
@@ -1350,9 +1350,7 @@
       "blocking_review_ids": [],
       "open_major_or_critical_review_ids": [],
       "proposed_record_count": 2,
-      "next_actions": [
-        "Promote candidate with npm run promote:candidate -- coverage-gap-senolytics-exact-effect-extraction-followup-3-repair --status accepted after coordinator selection."
-      ]
+      "next_actions": []
     },
     {
       "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-repair",
@@ -2062,9 +2060,7 @@
       "next_actions": []
     }
   ],
-  "promotion_ready_candidate_ids": [
-    "coverage-gap-senolytics-exact-effect-extraction-followup-3-repair"
-  ],
+  "promotion_ready_candidate_ids": [],
   "missing_review_lane_queue": [
     {
       "candidate_change_id": "senolytics-scaffold-bootstrap-2026-06-21",
@@ -2611,16 +2607,18 @@
   "partial_or_failed_agent_runs": [],
   "recommended_jobs": [
     {
-      "job_id": "candidate-promotion-coverage-gap-senolytics-exact-effect-extraction-followup-3-repair",
-      "job_type": "candidate_promotion",
+      "job_id": "coverage-gap-senolytics-exact-effect-extraction-followup-4",
+      "job_type": "extraction_refresh",
       "priority": "high",
-      "source": "candidate_readiness",
-      "target_record_type": "candidate_change",
-      "target_record_id": "coverage-gap-senolytics-exact-effect-extraction-followup-3-repair",
-      "rationale": "All required active review lanes are complete, accepting, non-blocking, and free of open major or critical findings.",
-      "suggested_command": "npm run promote:candidate -- coverage-gap-senolytics-exact-effect-extraction-followup-3-repair --status accepted --dry-run",
+      "source": "coverage_gap",
+      "target_record_type": "coverage_assessment",
+      "target_record_id": "senolytics-coverage-repair-2026-06-21",
+      "rationale": "DKD, IPF, and AD-risk human studies now have PubMed EFetch source snapshots supporting metadata-only abstract-level sample, dosing, timepoint, effect, and safety details, and the legacy IPF generic feasibility/tolerability extraction has been reconciled to the N=12 randomized pilot. These snapshots do not support full-text/table extraction. Full article/table extraction for DKD, IPF, AD-risk, and D+Q bone supplements remains incomplete. Suggested action: Retain or ingest full-text/table source snapshots for DKD, IPF, AD-risk, and D+Q bone supplements, then reconcile abstract-level extraction against article tables before formal synthesis.",
+      "gap_type": "operational_gap",
+      "category": "human_interventional",
+      "suggested_action": "Retain or ingest full-text/table source snapshots for DKD, IPF, AD-risk, and D+Q bone supplements, then reconcile abstract-level extraction against article tables before formal synthesis.",
       "inputs": [
-        "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-3-repair.json"
+        "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json"
       ]
     },
     {

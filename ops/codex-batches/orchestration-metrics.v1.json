@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "orchestration_metrics",
   "id": "orchestration-metrics-v1",
-  "generated_at": "2026-06-29T21:23:19.103Z",
+  "generated_at": "2026-06-29T22:07:46.954Z",
   "source_roots": [
     "data",
     "exports/latest",
@@ -44,17 +44,17 @@
   "summary": {
     "planned_live_job_count": 23,
     "archived_job_count": 68,
-    "planned_parallel_batch_count": 9,
+    "planned_parallel_batch_count": 8,
     "planned_parallel_worker_count": 23,
-    "planned_independent_batch_count": 9,
+    "planned_independent_batch_count": 8,
     "planned_reconciliation_batch_count": 8,
     "reconciliation_open_batch_count": 0,
     "reconciliation_pending_batch_count": 8,
     "max_planned_batch_width": 4,
-    "planned_serial_wall_time_ms": 79500000,
-    "planned_parallel_wall_time_ms": 29100000,
-    "planned_wall_time_savings_ms": 50400000,
-    "planned_speedup_ratio": 2.732,
+    "planned_serial_wall_time_ms": 82800000,
+    "planned_parallel_wall_time_ms": 28800000,
+    "planned_wall_time_savings_ms": 54000000,
+    "planned_speedup_ratio": 2.875,
     "executed_parallel_batch_run_count": 27,
     "executed_worker_count": 76,
     "failed_worker_count": 21,
@@ -75,31 +75,20 @@
     "conflict_finding_count": 0,
     "conflict_rate": 0,
     "open_finding_rate": 0,
-    "accepted_candidate_count": 19,
-    "accepted_records_produced_count": 132,
+    "accepted_candidate_count": 20,
+    "accepted_records_produced_count": 133,
     "extraction_debt_open_count": 36,
     "extraction_debt_high_priority_open_count": 28,
-    "extraction_debt_resolved_candidate_count": 13,
+    "extraction_debt_resolved_candidate_count": 14,
     "extraction_debt_resolved_record_count": 73,
-    "release_ready_candidate_count": 19,
+    "release_ready_candidate_count": 20,
     "release_blocked_candidate_count": 0,
     "release_constrained_candidate_count": 0,
     "release_artifact_count": 16,
-    "release_ready_record_count": 108
+    "release_ready_record_count": 109
   },
   "planned_parallelism": {
     "by_parallel_group": [
-      {
-        "parallel_group": "candidate-promotion",
-        "batch_count": 1,
-        "job_count": 1,
-        "independent_batch_count": 1,
-        "reconciliation_batch_count": 0,
-        "max_batch_width": 1,
-        "expected_wall_time_ms": 300000,
-        "expected_token_budget": 10000,
-        "overlapping_execution_key_count": 0
-      },
       {
         "parallel_group": "coverage-repair",
         "batch_count": 2,
@@ -114,24 +103,24 @@
       {
         "parallel_group": "extraction-refresh",
         "batch_count": 6,
-        "job_count": 20,
+        "job_count": 21,
         "independent_batch_count": 6,
         "reconciliation_batch_count": 6,
         "max_batch_width": 4,
         "expected_wall_time_ms": 21600000,
-        "expected_token_budget": 2000000,
+        "expected_token_budget": 2100000,
         "overlapping_execution_key_count": 0
       }
     ],
     "batches": [
       {
-        "batch_id": "parallel-batch-001-candidate-promotion",
-        "parallel_group": "candidate-promotion",
+        "batch_id": "parallel-batch-001-coverage-repair",
+        "parallel_group": "coverage-repair",
         "execution_class": "independent",
-        "reconciliation_required": false,
+        "reconciliation_required": true,
         "job_count": 1,
-        "expected_wall_time_ms": 300000,
-        "expected_token_budget": 10000,
+        "expected_wall_time_ms": 3600000,
+        "expected_token_budget": 100000,
         "overlapping_execution_key_count": 0
       },
       {
@@ -145,13 +134,13 @@
         "overlapping_execution_key_count": 0
       },
       {
-        "batch_id": "parallel-batch-003-coverage-repair",
-        "parallel_group": "coverage-repair",
+        "batch_id": "parallel-batch-003-extraction-refresh",
+        "parallel_group": "extraction-refresh",
         "execution_class": "independent",
         "reconciliation_required": true,
-        "job_count": 1,
+        "job_count": 4,
         "expected_wall_time_ms": 3600000,
-        "expected_token_budget": 100000,
+        "expected_token_budget": 400000,
         "overlapping_execution_key_count": 0
       },
       {
@@ -189,23 +178,13 @@
         "parallel_group": "extraction-refresh",
         "execution_class": "independent",
         "reconciliation_required": true,
-        "job_count": 4,
+        "job_count": 3,
         "expected_wall_time_ms": 3600000,
-        "expected_token_budget": 400000,
+        "expected_token_budget": 300000,
         "overlapping_execution_key_count": 0
       },
       {
         "batch_id": "parallel-batch-008-extraction-refresh",
-        "parallel_group": "extraction-refresh",
-        "execution_class": "independent",
-        "reconciliation_required": true,
-        "job_count": 2,
-        "expected_wall_time_ms": 3600000,
-        "expected_token_budget": 200000,
-        "overlapping_execution_key_count": 0
-      },
-      {
-        "batch_id": "parallel-batch-009-extraction-refresh",
         "parallel_group": "extraction-refresh",
         "execution_class": "independent",
         "reconciliation_required": true,
@@ -648,7 +627,7 @@
     "accepted_records_by_type": [
       {
         "key": "coverage_assessment",
-        "count": 6
+        "count": 7
       },
       {
         "key": "eligibility_decision",
@@ -750,6 +729,18 @@
         "extraction_debt_record_count": 3,
         "related_agent_run_ids": [
           "self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-2"
+        ]
+      },
+      {
+        "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-followup-3-repair",
+        "lifecycle_status": "accepted",
+        "submitted_at": "2026-06-29T20:07:12Z",
+        "promoted_at": "2026-06-29T22:07:08.889Z",
+        "proposed_record_count": 2,
+        "accepted_record_count": 1,
+        "extraction_debt_record_count": 0,
+        "related_agent_run_ids": [
+          "self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-3"
         ]
       },
       {
@@ -946,7 +937,7 @@
     "extraction_debt": {
       "open_count": 36,
       "high_priority_open_count": 28,
-      "resolved_candidate_count": 13,
+      "resolved_candidate_count": 14,
       "resolved_record_count": 73,
       "resolved_records_by_type": [
         {
@@ -972,10 +963,10 @@
       ]
     },
     "release": {
-      "release_ready_candidate_count": 19,
+      "release_ready_candidate_count": 20,
       "release_blocked_candidate_count": 0,
       "release_constrained_candidate_count": 0,
-      "release_ready_record_count": 108,
+      "release_ready_record_count": 109,
       "blocked_accepted_proposal_count": 0,
       "unique_blocked_accepted_record_count": 0,
       "release_artifact_count": 16,
@@ -1014,7 +1005,7 @@
       "conflict_rate": 0,
       "open_finding_rate": 0,
       "reconciliation_open_batch_rate": 0,
-      "reconciliation_pending_batch_rate": 0.8889
+      "reconciliation_pending_batch_rate": 1
     },
     "worker_failures": {
       "failed_worker_count": 0,

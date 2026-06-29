@@ -13,6 +13,8 @@ parallel import/reconciliation, or release work is:
 ```bash
 npm run export:triage-state
 npm run export:release-readiness
+npm run jobs:self-healing -- --replace
+npm run jobs:plan-parallel
 npm run reconcile:parallel
 npm run metrics:orchestration
 npm run export:latest
@@ -28,6 +30,10 @@ npm run verify:knowledge-base
 `export:triage-state` regenerates `ops/triage-state.v1.json`, the operational control-plane view over candidate readiness, extraction debt, snapshot staleness, partial agent runs, coverage gaps, and recommended jobs.
 
 `export:release-readiness` regenerates `ops/release-readiness.v1.json`, the release-boundary view over promotion-ready candidates, accepted or applied candidate outputs, and accepted records blocked by release-dependency checks. Dependency checks include unreleased create or release-accept candidates and referenced graph records such as sources, studies, findings, outcomes, results, source snapshots, and text snapshots.
+
+`jobs:self-healing -- --replace` regenerates bounded live job specs and generated context packs from the current triage state, replacing stale specs when a promotion or canonical change changes the recommended-job queue.
+
+`jobs:plan-parallel` refreshes `ops/codex-batches/parallel-batch-plan.v1.json` after live generated jobs change so reconciliation and orchestration metrics use the current scheduler view.
 
 `audit:exports` checks manifest hashes, verifies JSONL exports against current canonical records, checks the consumer contract against the manifest, checks coverage status flags, and requires snapshot-linked provenance for extraction-grade exported results.
 

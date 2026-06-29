@@ -1,0 +1,699 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "extraction_context_pack",
+  "id": "self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-4",
+  "pack_type": "record_scoped_extraction",
+  "created_at": "2026-06-28T00:00:00Z",
+  "purpose": "Bounded extraction refresh for coverage-gap-senolytics-exact-effect-extraction-followup-4-repair.",
+  "scope": {
+    "question": "extraction_refresh: DKD, IPF, and AD-risk human studies now have PubMed EFetch source snapshots supporting metadata-only abstract-level sample, dosing, timepoint, effect, and safety details, and the legacy IPF generic feasibility/tolerability extraction has been reconciled to the N=12 randomized pilot. These snapshots do not support full-text/table extraction. Full article/table extraction for DKD, IPF, AD-risk, and D+Q bone supplements remains incomplete. Suggested action: Retain or ingest full-text/table source snapshots for DKD, IPF, AD-risk, and D+Q bone supplements, then reconcile abstract-level extraction against article tables before formal synthesis.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "source_contexts": [
+    {
+      "source_id": "nct-04313634",
+      "source_snapshot_id": "snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+      "text_snapshot_id": "text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+      "artifact_paths": [
+        {
+          "artifact_type": "raw_payload",
+          "path": "artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/raw.json",
+          "sha256": "3b2a5e094062fb8b16156c58dfaae082a473537da6961ebacf48b06bb19d0cb3",
+          "content_type": "application/json"
+        },
+        {
+          "artifact_type": "normalized_markdown",
+          "path": "artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/registry.md",
+          "sha256": "2d018708d2c705f2461b809864d2c7abd4d0ddaef39c39a5e7790576a6242ea2",
+          "content_type": "text/markdown"
+        },
+        {
+          "artifact_type": "section_index",
+          "path": "artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/sections.json",
+          "sha256": "528f897d1ef1a764a66eed3f54a22476526962c19175895704dfb0dfc40c9c96",
+          "content_type": "application/json"
+        }
+      ],
+      "primary_locators": [
+        {
+          "artifact_path": "artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/registry.md",
+          "locator_type": "full_text_section",
+          "locator": "section:trial-overview; source:protocolSection.identificationModule; protocolSection.statusModule",
+          "section_id": "trial-overview",
+          "start_line": 3,
+          "end_line": 13,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/registry.md",
+          "locator_type": "full_text_section",
+          "locator": "section:study-design; source:protocolSection.designModule",
+          "section_id": "study-design",
+          "start_line": 15,
+          "end_line": 24,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/registry.md",
+          "locator_type": "full_text_section",
+          "locator": "section:conditions-and-keywords; source:protocolSection.conditionsModule",
+          "section_id": "conditions-and-keywords",
+          "start_line": 26,
+          "end_line": 28,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/registry.md",
+          "locator_type": "full_text_section",
+          "locator": "section:arms-and-interventions; source:protocolSection.armsInterventionsModule",
+          "section_id": "arms-and-interventions",
+          "start_line": 30,
+          "end_line": 51,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/registry.md",
+          "locator_type": "full_text_section",
+          "locator": "section:eligibility; source:protocolSection.eligibilityModule",
+          "section_id": "eligibility",
+          "start_line": 53,
+          "end_line": 58,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/registry.md",
+          "locator_type": "full_text_section",
+          "locator": "section:protocol-outcomes; source:protocolSection.outcomesModule",
+          "section_id": "protocol-outcomes",
+          "start_line": 60,
+          "end_line": 67,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/registry.md",
+          "locator_type": "full_text_section",
+          "locator": "section:posted-results-outcomes; source:resultsSection.outcomeMeasuresModule.outcomeMeasures",
+          "section_id": "posted-results-outcomes",
+          "start_line": 69,
+          "end_line": 147,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/registry.md",
+          "locator_type": "full_text_section",
+          "locator": "section:adverse-events; source:resultsSection.adverseEventsModule",
+          "section_id": "adverse-events",
+          "start_line": 149,
+          "end_line": 338,
+          "evidence_role": "scoped_source_section"
+        }
+      ]
+    },
+    {
+      "source_id": "pmid-38956196",
+      "source_snapshot_id": "snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+      "text_snapshot_id": "text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+      "artifact_paths": [
+        {
+          "artifact_type": "raw_payload",
+          "path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/raw.html",
+          "sha256": "18ba76cf013096fd1208c8c8ff4142f4159d8548ecdca8e19d2dcb9a54be9ea0",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "artifact_type": "normalized_markdown",
+          "path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "sha256": "571c53ecd402c35c3f957bcf4f8448515a7ccc78731f569e7c1768c8e97513f0",
+          "content_type": "text/markdown"
+        },
+        {
+          "artifact_type": "section_index",
+          "path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/sections.json",
+          "sha256": "bcc38af36ea297608ef6ca6cceafcd14add2c240fb6b8718c5813dceadead634",
+          "content_type": "application/json"
+        }
+      ],
+      "primary_locators": [
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-abs1-abstract; source:PMC section ABS1",
+          "section_id": "pmc-abs1-abstract",
+          "start_line": 7,
+          "end_line": 138,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-s1-results; source:PMC section S1",
+          "section_id": "pmc-s1-results",
+          "start_line": 139,
+          "end_line": 142,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-s2-p16-expression-in-t-cells-as-a-senescence-biomarker; source:PMC section S2",
+          "section_id": "pmc-s2-p16-expression-in-t-cells-as-a-senescence-biomarker",
+          "start_line": 143,
+          "end_line": 200,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-s3-study-participants-and-study-design; source:PMC section S3",
+          "section_id": "pmc-s3-study-participants-and-study-design",
+          "start_line": 201,
+          "end_line": 244,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "table",
+          "locator": "section:pmc-t1-table-1; source:PMC section T1",
+          "section_id": "pmc-t1-table-1",
+          "start_line": 245,
+          "end_line": 338,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-s4-primary-endpoint; source:PMC section S4",
+          "section_id": "pmc-s4-primary-endpoint",
+          "start_line": 339,
+          "end_line": 370,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-s5-secondary-endpoints; source:PMC section S5",
+          "section_id": "pmc-s5-secondary-endpoints",
+          "start_line": 371,
+          "end_line": 391,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-s6-safety-and-adverse-events; source:PMC section S6",
+          "section_id": "pmc-s6-safety-and-adverse-events",
+          "start_line": 392,
+          "end_line": 413,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-s7-exploratory-and-post-hoc-analyses; source:PMC section S7",
+          "section_id": "pmc-s7-exploratory-and-post-hoc-analyses",
+          "start_line": 414,
+          "end_line": 526,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-s8-assessment-of-sasp-factors; source:PMC section S8",
+          "section_id": "pmc-s8-assessment-of-sasp-factors",
+          "start_line": 527,
+          "end_line": 547,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-s9-discussion; source:PMC section S9",
+          "section_id": "pmc-s9-discussion",
+          "start_line": 548,
+          "end_line": 833,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-s10-online-content; source:PMC section S10",
+          "section_id": "pmc-s10-online-content",
+          "start_line": 834,
+          "end_line": 849,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-s11-methods; source:PMC section S11",
+          "section_id": "pmc-s11-methods",
+          "start_line": 850,
+          "end_line": 853,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-s12-study-design; source:PMC section S12",
+          "section_id": "pmc-s12-study-design",
+          "start_line": 854,
+          "end_line": 903,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-s13-selection-of-study-participants; source:PMC section S13",
+          "section_id": "pmc-s13-selection-of-study-participants",
+          "start_line": 904,
+          "end_line": 945,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-s14-screen-visit; source:PMC section S14",
+          "section_id": "pmc-s14-screen-visit",
+          "start_line": 946,
+          "end_line": 956,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-s15-dosages-of-d-q; source:PMC section S15",
+          "section_id": "pmc-s15-dosages-of-d-q",
+          "start_line": 957,
+          "end_line": 980,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-s16-evaluation-of-safety-and-tolerability; source:PMC section S16",
+          "section_id": "pmc-s16-evaluation-of-safety-and-tolerability",
+          "start_line": 981,
+          "end_line": 994,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-s17-study-endpoints; source:PMC section S17",
+          "section_id": "pmc-s17-study-endpoints",
+          "start_line": 995,
+          "end_line": 1007,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-s18-measurement-of-t-cell-p16-mrna-levels; source:PMC section S18",
+          "section_id": "pmc-s18-measurement-of-t-cell-p16-mrna-levels",
+          "start_line": 1008,
+          "end_line": 1041,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-s19-population-cohort-for-analyses-of-t-cell-p16-mrna-level; source:PMC section S19",
+          "section_id": "pmc-s19-population-cohort-for-analyses-of-t-cell-p16-mrna-level",
+          "start_line": 1042,
+          "end_line": 1052,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-s20-serum-biochemical-and-sasp-assays; source:PMC section S20",
+          "section_id": "pmc-s20-serum-biochemical-and-sasp-assays",
+          "start_line": 1053,
+          "end_line": 1073,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-s21-dxa-measurements; source:PMC section S21",
+          "section_id": "pmc-s21-dxa-measurements",
+          "start_line": 1074,
+          "end_line": 1087,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-s22-statistical-analyses; source:PMC section S22",
+          "section_id": "pmc-s22-statistical-analyses",
+          "start_line": 1088,
+          "end_line": 1110,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-s23-statistics-and-reproducibility; source:PMC section S23",
+          "section_id": "pmc-s23-statistics-and-reproducibility",
+          "start_line": 1111,
+          "end_line": 1119,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-s24-reporting-summary; source:PMC section S24",
+          "section_id": "pmc-s24-reporting-summary",
+          "start_line": 1120,
+          "end_line": 1130,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-s25-extended-data; source:PMC section S25",
+          "section_id": "pmc-s25-extended-data",
+          "start_line": 1131,
+          "end_line": 1275,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "table",
+          "locator": "section:pmc-t2-extended-data-table-1; source:PMC section T2",
+          "section_id": "pmc-t2-extended-data-table-1",
+          "start_line": 1276,
+          "end_line": 1370,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "table",
+          "locator": "section:pmc-t3-extended-data-table-2; source:PMC section T3",
+          "section_id": "pmc-t3-extended-data-table-2",
+          "start_line": 1371,
+          "end_line": 1670,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "table",
+          "locator": "section:pmc-t4-extended-data-table-3; source:PMC section T4",
+          "section_id": "pmc-t4-extended-data-table-3",
+          "start_line": 1671,
+          "end_line": 2010,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "table",
+          "locator": "section:pmc-t5-extended-data-table-4; source:PMC section T5",
+          "section_id": "pmc-t5-extended-data-table-4",
+          "start_line": 2011,
+          "end_line": 2041,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-sm1-supplementary-material; source:PMC section SM1",
+          "section_id": "pmc-sm1-supplementary-material",
+          "start_line": 2042,
+          "end_line": 2071,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-s26-acknowledgements; source:PMC section S26",
+          "section_id": "pmc-s26-acknowledgements",
+          "start_line": 2072,
+          "end_line": 2085,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-fn-group1-footnotes; source:PMC section fn-group1",
+          "section_id": "pmc-fn-group1-footnotes",
+          "start_line": 2086,
+          "end_line": 2145,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-s27-data-availability; source:PMC section S27",
+          "section_id": "pmc-s27-data-availability",
+          "start_line": 2146,
+          "end_line": 2163,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-ref-list1-references; source:PMC section ref-list1",
+          "section_id": "pmc-ref-list1-references",
+          "start_line": 2164,
+          "end_line": 2638,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-_ad93_-associated-data; source:PMC section _ad93_",
+          "section_id": "pmc-_ad93_-associated-data",
+          "start_line": 2639,
+          "end_line": 2645,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-_adsm93_-supplementary-materials; source:PMC section _adsm93_",
+          "section_id": "pmc-_adsm93_-supplementary-materials",
+          "start_line": 2646,
+          "end_line": 2677,
+          "evidence_role": "scoped_source_section"
+        },
+        {
+          "artifact_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/article.md",
+          "locator_type": "full_text_section",
+          "locator": "section:pmc-_adda93_-data-availability-statement; source:PMC section _adda93_",
+          "section_id": "pmc-_adda93_-data-availability-statement",
+          "start_line": 2678,
+          "end_line": 2699,
+          "evidence_role": "scoped_source_section"
+        }
+      ]
+    }
+  ],
+  "source_availability": [
+    {
+      "source_id": "nct-04313634",
+      "source_snapshot_id": "snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+      "text_snapshot_id": "text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+      "raw_storage_stored": true,
+      "raw_storage_path": "artifacts/sources/nct-04313634/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21/raw.json",
+      "artifact_context_available": true,
+      "access_tier": "public_registry",
+      "artifact_policy": "retain_raw_and_markdown"
+    },
+    {
+      "source_id": "pmid-31542391",
+      "source_snapshot_id": "snapshot-pmid-31542391-pubmed-efetch-2026-06-27",
+      "raw_storage_stored": false,
+      "reason_not_stored": "Snapshot stores retrieval URL, content hash, and parsed metadata summary; raw XML can be refetched from NCBI EFetch.",
+      "artifact_context_available": false,
+      "access_tier": "metadata_only",
+      "artifact_policy": "retain_metadata_hashes_and_locators"
+    },
+    {
+      "source_id": "pmid-36857968",
+      "source_snapshot_id": "snapshot-pmid-36857968-pubmed-efetch-2026-06-27",
+      "raw_storage_stored": false,
+      "reason_not_stored": "Snapshot stores retrieval URL, content hash, and parsed metadata summary; raw XML can be refetched from NCBI EFetch.",
+      "artifact_context_available": false,
+      "access_tier": "metadata_only",
+      "artifact_policy": "retain_metadata_hashes_and_locators"
+    },
+    {
+      "source_id": "pmid-38956196",
+      "source_snapshot_id": "snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+      "text_snapshot_id": "text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+      "raw_storage_stored": true,
+      "raw_storage_path": "artifacts/sources/pmid-38956196/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22/raw.html",
+      "artifact_context_available": true,
+      "access_tier": "author_manuscript_or_preprint_repository",
+      "artifact_policy": "retain_raw_and_markdown"
+    },
+    {
+      "source_id": "pmid-40010154",
+      "source_snapshot_id": "snapshot-pmid-40010154-pubmed-efetch-2026-06-27",
+      "raw_storage_stored": false,
+      "reason_not_stored": "Snapshot stores retrieval URL, content hash, and parsed metadata summary; raw XML can be refetched from NCBI EFetch.",
+      "artifact_context_available": false,
+      "access_tier": "metadata_only",
+      "artifact_policy": "retain_metadata_hashes_and_locators"
+    }
+  ],
+  "target_context": {
+    "input_records": [
+      {
+        "record_type": "coverage_assessment",
+        "record_id": "senolytics-coverage-repair-2026-06-21",
+        "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "source_snapshot",
+        "record_id": "snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+        "path": "data/source-snapshots/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "source_snapshot",
+        "record_id": "snapshot-pmid-31542391-pubmed-efetch-2026-06-27",
+        "path": "data/source-snapshots/snapshot-pmid-31542391-pubmed-efetch-2026-06-27.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "source_snapshot",
+        "record_id": "snapshot-pmid-36857968-pubmed-efetch-2026-06-27",
+        "path": "data/source-snapshots/snapshot-pmid-36857968-pubmed-efetch-2026-06-27.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "source_snapshot",
+        "record_id": "snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+        "path": "data/source-snapshots/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "source_snapshot",
+        "record_id": "snapshot-pmid-40010154-pubmed-efetch-2026-06-27",
+        "path": "data/source-snapshots/snapshot-pmid-40010154-pubmed-efetch-2026-06-27.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "text_snapshot",
+        "record_id": "text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21",
+        "path": "data/text-snapshots/text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+        "role": "scoped_input"
+      },
+      {
+        "record_type": "text_snapshot",
+        "record_id": "text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22",
+        "path": "data/text-snapshots/text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
+        "role": "scoped_input"
+      }
+    ],
+    "target_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "coverage-gap-senolytics-exact-effect-extraction-followup-4-repair",
+        "path": "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-4-repair.json",
+        "role": "candidate_ledger",
+        "record_state": "proposed"
+      },
+      {
+        "record_type": "coverage_assessment",
+        "record_id": "senolytics-coverage-repair-2026-06-21",
+        "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+        "role": "target_record",
+        "record_state": "existing"
+      }
+    ]
+  },
+  "extraction_targets": [
+    {
+      "target_label": "extraction_refresh: DKD, IPF, and AD-risk human studies now have PubMed EFetch source snapshots supporting metadata-only abstract-level sample, dosing, timepoint, effect, and safety details, and the legacy IPF generic feasibility/tolerability extraction has been reconciled to the N=12 randomized pilot. These snapshots do not support full-text/table extraction. Full article/table extraction for DKD, IPF, AD-risk, and D+Q bone supplements remains incomplete. Suggested action: Retain or ingest full-text/table source snapshots for DKD, IPF, AD-risk, and D+Q bone supplements, then reconcile abstract-level extraction against article tables before formal synthesis.",
+      "interpretation_rules": [
+        "Use only the scoped input records and any retained source or text snapshots named by those records unless validation exposes a concrete inconsistency.",
+        "Preserve missing, ambiguous, or not-reported source cells as uncertainty rather than inventing exact effects.",
+        "Write changes through the declared candidate_change ledger; do not directly promote or apply the candidate."
+      ]
+    }
+  ],
+  "schema_context": {
+    "schema_paths": [
+      "schemas/agent-run.codex-output.schema.json",
+      "schemas/agent-run.schema.json",
+      "schemas/candidate-change.schema.json",
+      "schemas/result.schema.json",
+      "schemas/outcome.schema.json",
+      "schemas/study.schema.json",
+      "schemas/source.schema.json"
+    ],
+    "required_fields": [
+      "agent_run.outputs.candidate_change_id",
+      "agent_run.outputs.proposed_records[]",
+      "agent_run.outputs.generated_files[]",
+      "agent_run.quality_checks[]",
+      "candidate_change.proposed_records[]",
+      "candidate_change.required_review_lanes[] equals expected_outputs.required_review_lanes[]"
+    ],
+    "known_schema_limitations": [
+      "Generated source_contexts list retained artifacts and section-level locators; workers still need to inspect the named sections to extract exact table rows or cells.",
+      "source_availability marks metadata-only scoped snapshots; workers must not treat those snapshots as full-text/table evidence."
+    ]
+  },
+  "exemplar_records": [],
+  "expected_outputs": {
+    "candidate_change_id": "coverage-gap-senolytics-exact-effect-extraction-followup-4-repair",
+    "proposed_record_paths": [
+      "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-4-repair.json",
+      "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json"
+    ],
+    "generated_file_paths": [
+      "data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-4-repair.json",
+      "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json"
+    ],
+    "export_paths": [
+      "exports/latest/audit-manifest.json",
+      "exports/latest/coverage-status.json",
+      "exports/latest/evidence-map.json",
+      "exports/latest/read-model.sqlite",
+      "ops/release-readiness.v1.json",
+      "ops/reconciliation/parallel-reconciliation.v1.json",
+      "ops/triage-state.v1.json",
+      "ops/codex-batches/orchestration-metrics.v1.json"
+    ],
+    "required_review_lanes": [
+      "extraction_fidelity",
+      "safety_limitations",
+      "synthesis_boundary",
+      "taxonomy_mapping"
+    ]
+  },
+  "verification": {
+    "worker_commands": [
+      "npm run validate:records",
+      "npm run audit:references",
+      "npm run audit:agent-schemas",
+      "npm run audit:agentic-process"
+    ],
+    "coordinator_post_run": [
+      "npm run export:latest",
+      "npm run verify:knowledge-base"
+    ]
+  },
+  "constraints": [
+    "Read the context pack first and keep repository inspection bounded to the pack, scoped read_sets, and listed verification commands.",
+    "Create only the repair candidate and target record paths declared in expected_outputs.",
+    "Set the repair candidate required_review_lanes[] exactly to expected_outputs.required_review_lanes[].",
+    "If source_availability shows metadata-only snapshots, leave a blocking issue or source-retention follow-up instead of fabricating table-level extraction.",
+    "Do not perform broad repository searches or full-record dumps unless validation identifies a specific missing path or schema inconsistency."
+  ],
+  "known_limitations": [
+    "Section-level locators are generated from retained text snapshots and may be broader than the exact result row or cell.",
+    "One or more scoped source snapshots are metadata-only and lack retained raw/full-text artifacts for extraction-grade upgrades.",
+    "The pack is a routing contract for extraction repair, not a source-fidelity review."
+  ]
+}

@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "triage_state",
   "id": "triage-state-v1",
-  "generated_at": "2026-06-29T12:22:27.120Z",
+  "generated_at": "2026-06-29T12:31:53.997Z",
   "source_roots": [
     "data",
     "research"
@@ -76,11 +76,11 @@
     "rejected_count": 3,
     "coverage_gap_count": 4,
     "high_priority_coverage_gap_count": 2,
-    "extraction_debt_count": 54,
+    "extraction_debt_count": 52,
     "stale_snapshot_count": 0,
     "watch_snapshot_count": 0,
     "partial_or_failed_agent_run_count": 0,
-    "recommended_job_count": 31
+    "recommended_job_count": 30
   },
   "candidate_readiness": [
     {
@@ -2011,32 +2011,6 @@
   ],
   "extraction_debt": [
     {
-      "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-adverse-event-discontinuations-20wk-descriptive-effect.uncertainty",
-      "result_id": "dq-bone-adverse-event-discontinuations-20wk-descriptive",
-      "path": "data/results/dq-bone-adverse-event-discontinuations-20wk-descriptive.json",
-      "synthesis_group_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
-      "missing_field": "effect.uncertainty",
-      "debt_type": "missing_effect_uncertainty",
-      "severity": "high",
-      "source": "synthesis_group_missing_effect_fields",
-      "impact": "blocks_pooling",
-      "note": "The registry provides explicit adverse-event discontinuation counts, but the result is kept descriptive because control count is zero and discontinuation reasons are heterogeneous.",
-      "next_action": "Run extraction refresh for dq-bone-adverse-event-discontinuations-20wk-descriptive to resolve effect.uncertainty."
-    },
-    {
-      "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-adverse-event-discontinuations-20wk-descriptive-effect.value",
-      "result_id": "dq-bone-adverse-event-discontinuations-20wk-descriptive",
-      "path": "data/results/dq-bone-adverse-event-discontinuations-20wk-descriptive.json",
-      "synthesis_group_id": "senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21",
-      "missing_field": "effect.value",
-      "debt_type": "missing_effect_value",
-      "severity": "high",
-      "source": "synthesis_group_missing_effect_fields",
-      "impact": "blocks_pooling",
-      "note": "The registry provides explicit adverse-event discontinuation counts, but the result is kept descriptive because control count is zero and discontinuation reasons are heterogeneous.",
-      "next_action": "Run extraction refresh for dq-bone-adverse-event-discontinuations-20wk-descriptive to resolve effect.value."
-    },
-    {
       "debt_id": "debt-senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21-dq-bone-bmd-20wk-inconclusive-effect.uncertainty",
       "result_id": "dq-bone-bmd-20wk-inconclusive",
       "path": "data/results/dq-bone-bmd-20wk-inconclusive.json",
@@ -2047,7 +2021,7 @@
       "source": "synthesis_group_missing_effect_fields",
       "impact": "blocks_pooling",
       "note": "The result is descriptive-only: it has site-stratified group summaries but no pairwise overall or site-specific D+Q effect value with variance-compatible uncertainty.",
-      "next_action": "Run extraction refresh for dq-bone-bmd-20wk-inconclusive to resolve effect.uncertainty."
+      "next_action": "Run extraction refresh for dq-bone-bmd-20wk-inconclusive to resolve CI, standard error, or variance."
     },
     {
       "debt_id": "debt-senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21-dq-bone-bmd-20wk-inconclusive-effect.value",
@@ -2099,7 +2073,7 @@
       "source": "synthesis_group_missing_effect_fields",
       "impact": "blocks_pooling",
       "note": "The BMD record is descriptive and combines multiple DXA sites rather than one compatible endpoint metric.",
-      "next_action": "Run extraction refresh for dq-bone-bmd-20wk-inconclusive to resolve effect.uncertainty."
+      "next_action": "Run extraction refresh for dq-bone-bmd-20wk-inconclusive to resolve CI, standard error, or variance."
     },
     {
       "debt_id": "debt-senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21-dq-bone-bmd-20wk-inconclusive-effect.value",
@@ -2125,7 +2099,7 @@
       "source": "synthesis_group_missing_effect_fields",
       "impact": "blocks_pooling",
       "note": "The D+Q constipation count is explicit, but the control cell is blank/ambiguous and cannot support a comparative effect without unsupported zero handling.",
-      "next_action": "Run extraction refresh for dq-bone-constipation-20wk-descriptive to resolve effect.uncertainty."
+      "next_action": "Run extraction refresh for dq-bone-constipation-20wk-descriptive to resolve CI, standard error, or variance."
     },
     {
       "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-constipation-20wk-descriptive-effect.value",
@@ -2151,7 +2125,7 @@
       "source": "synthesis_group_missing_effect_fields",
       "impact": "blocks_pooling",
       "note": "The result is a p-value-only overall CTx comparison with group medians and full ranges; full range is not a variance estimate, and only one endpoint result is available.",
-      "next_action": "Run extraction refresh for dq-bone-ctx-20wk-null to resolve effect.uncertainty."
+      "next_action": "Run extraction refresh for dq-bone-ctx-20wk-null to resolve CI, standard error, or variance."
     },
     {
       "debt_id": "debt-senolytics-dq-bone-ctx-20wk-synthesis-compatibility-2026-06-21-dq-bone-ctx-20wk-null-effect.value",
@@ -2177,7 +2151,7 @@
       "source": "synthesis_group_missing_effect_fields",
       "impact": "blocks_pooling",
       "note": "The registry record has group medians and a p-value, but no extractable effect value or variance estimate.",
-      "next_action": "Run extraction refresh for dq-bone-ctx-20wk-null to resolve effect.uncertainty."
+      "next_action": "Run extraction refresh for dq-bone-ctx-20wk-null to resolve CI, standard error, or variance."
     },
     {
       "debt_id": "debt-senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21-dq-bone-ctx-20wk-null-effect.value",
@@ -2203,7 +2177,7 @@
       "source": "synthesis_group_missing_effect_fields",
       "impact": "blocks_pooling",
       "note": "The D+Q diarrhea count is explicit, but the control cell is blank/ambiguous and cannot support a comparative effect without unsupported zero handling.",
-      "next_action": "Run extraction refresh for dq-bone-diarrhea-20wk-descriptive to resolve effect.uncertainty."
+      "next_action": "Run extraction refresh for dq-bone-diarrhea-20wk-descriptive to resolve CI, standard error, or variance."
     },
     {
       "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-diarrhea-20wk-descriptive-effect.value",
@@ -2229,7 +2203,7 @@
       "source": "synthesis_group_missing_effect_fields",
       "impact": "blocks_pooling",
       "note": "The D+Q fatigue count is explicit, but the control cell is blank/ambiguous and cannot support a comparative effect without unsupported zero handling; the separate fatigue-related withdrawal narrative should not be double-counted.",
-      "next_action": "Run extraction refresh for dq-bone-fatigue-20wk-descriptive to resolve effect.uncertainty."
+      "next_action": "Run extraction refresh for dq-bone-fatigue-20wk-descriptive to resolve CI, standard error, or variance."
     },
     {
       "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-fatigue-20wk-descriptive-effect.value",
@@ -2255,7 +2229,7 @@
       "source": "synthesis_group_missing_effect_fields",
       "impact": "blocks_pooling",
       "note": "The D+Q gastrointestinal reflux count is explicit, but the control cell is blank/ambiguous and cannot support a comparative effect without unsupported zero handling.",
-      "next_action": "Run extraction refresh for dq-bone-gastrointestinal-reflux-20wk-descriptive to resolve effect.uncertainty."
+      "next_action": "Run extraction refresh for dq-bone-gastrointestinal-reflux-20wk-descriptive to resolve CI, standard error, or variance."
     },
     {
       "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-gastrointestinal-reflux-20wk-descriptive-effect.value",
@@ -2281,7 +2255,7 @@
       "source": "synthesis_group_missing_effect_fields",
       "impact": "blocks_pooling",
       "note": "The term-specific result now has structured adverse_event.preferred_term and arm-level count-status fields. Pooling remains blocked because the control headache cell is blank/ambiguous rather than an explicit event count, and no comparative effect or uncertainty is available.",
-      "next_action": "Run extraction refresh for dq-bone-headache-20wk-descriptive to resolve effect.uncertainty."
+      "next_action": "Run extraction refresh for dq-bone-headache-20wk-descriptive to resolve CI, standard error, or variance."
     },
     {
       "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-headache-20wk-descriptive-effect.value",
@@ -2307,7 +2281,7 @@
       "source": "synthesis_group_missing_effect_fields",
       "impact": "blocks_pooling",
       "note": "The D+Q nausea count is explicit, but the control cell is blank/ambiguous and cannot support a comparative effect without unsupported zero handling.",
-      "next_action": "Run extraction refresh for dq-bone-nausea-20wk-descriptive to resolve effect.uncertainty."
+      "next_action": "Run extraction refresh for dq-bone-nausea-20wk-descriptive to resolve CI, standard error, or variance."
     },
     {
       "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-nausea-20wk-descriptive-effect.value",
@@ -2333,7 +2307,7 @@
       "source": "synthesis_group_missing_effect_fields",
       "impact": "blocks_pooling",
       "note": "The result reports effect value and p-value, but no CI, standard error, or variance.",
-      "next_action": "Run extraction refresh for dq-bone-p16-t3-ctx-2wk-positive to resolve effect.uncertainty."
+      "next_action": "Run extraction refresh for dq-bone-p16-t3-ctx-2wk-positive to resolve CI, standard error, or variance."
     },
     {
       "debt_id": "debt-senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22-dq-bone-p16-t3-ctx-4wk-inconclusive-effect.uncertainty",
@@ -2346,7 +2320,7 @@
       "source": "synthesis_group_missing_effect_fields",
       "impact": "blocks_pooling",
       "note": "The result reports effect value and p-value, but no CI, standard error, or variance.",
-      "next_action": "Run extraction refresh for dq-bone-p16-t3-ctx-4wk-inconclusive to resolve effect.uncertainty."
+      "next_action": "Run extraction refresh for dq-bone-p16-t3-ctx-4wk-inconclusive to resolve CI, standard error, or variance."
     },
     {
       "debt_id": "debt-senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22-dq-bone-p16-t3-p1np-2wk-positive-effect.uncertainty",
@@ -2359,7 +2333,7 @@
       "source": "synthesis_group_missing_effect_fields",
       "impact": "blocks_pooling",
       "note": "The result reports effect value and p-value, but no CI, standard error, or variance.",
-      "next_action": "Run extraction refresh for dq-bone-p16-t3-p1np-2wk-positive to resolve effect.uncertainty."
+      "next_action": "Run extraction refresh for dq-bone-p16-t3-p1np-2wk-positive to resolve CI, standard error, or variance."
     },
     {
       "debt_id": "debt-senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22-dq-bone-p16-t3-p1np-4wk-inconclusive-effect.uncertainty",
@@ -2372,7 +2346,7 @@
       "source": "synthesis_group_missing_effect_fields",
       "impact": "blocks_pooling",
       "note": "The result reports effect value and p-value, but no CI, standard error, or variance.",
-      "next_action": "Run extraction refresh for dq-bone-p16-t3-p1np-4wk-inconclusive to resolve effect.uncertainty."
+      "next_action": "Run extraction refresh for dq-bone-p16-t3-p1np-4wk-inconclusive to resolve CI, standard error, or variance."
     },
     {
       "debt_id": "debt-senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22-dq-bone-p16-t3-radius-bmd-20wk-positive-effect.uncertainty",
@@ -2385,7 +2359,7 @@
       "source": "synthesis_group_missing_effect_fields",
       "impact": "blocks_pooling",
       "note": "The result reports effect value and p-value, but no CI, standard error, or variance.",
-      "next_action": "Run extraction refresh for dq-bone-p16-t3-radius-bmd-20wk-positive to resolve effect.uncertainty."
+      "next_action": "Run extraction refresh for dq-bone-p16-t3-radius-bmd-20wk-positive to resolve CI, standard error, or variance."
     },
     {
       "debt_id": "debt-senolytics-dq-bone-p1np-20wk-synthesis-compatibility-2026-06-21-dq-bone-p1np-20wk-null-effect.uncertainty",
@@ -2398,7 +2372,7 @@
       "source": "synthesis_group_missing_effect_fields",
       "impact": "blocks_pooling",
       "note": "The 20-week P1NP result is p-value-only with group medians and full ranges; it lacks a between-group effect value and variance-compatible uncertainty.",
-      "next_action": "Run extraction refresh for dq-bone-p1np-20wk-null to resolve effect.uncertainty."
+      "next_action": "Run extraction refresh for dq-bone-p1np-20wk-null to resolve CI, standard error, or variance."
     },
     {
       "debt_id": "debt-senolytics-dq-bone-p1np-20wk-synthesis-compatibility-2026-06-21-dq-bone-p1np-20wk-null-effect.value",
@@ -2424,7 +2398,7 @@
       "source": "synthesis_group_missing_effect_fields",
       "impact": "blocks_pooling",
       "note": "The registry record has group medians and a p-value, but no extractable effect value or variance estimate.",
-      "next_action": "Run extraction refresh for dq-bone-p1np-20wk-null to resolve effect.uncertainty."
+      "next_action": "Run extraction refresh for dq-bone-p1np-20wk-null to resolve CI, standard error, or variance."
     },
     {
       "debt_id": "debt-senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21-dq-bone-p1np-20wk-null-effect.value",
@@ -2463,7 +2437,7 @@
       "source": "synthesis_group_missing_effect_fields",
       "impact": "blocks_pooling",
       "note": "The 2-week result has an effect value but no CI, standard error, or variance, and it should not be pooled directly with the 4-week timepoint as the same horizon.",
-      "next_action": "Run extraction refresh for dq-bone-p1np-2wk-positive to resolve effect.uncertainty."
+      "next_action": "Run extraction refresh for dq-bone-p1np-2wk-positive to resolve CI, standard error, or variance."
     },
     {
       "debt_id": "debt-senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21-dq-bone-p1np-2wk-positive-effect.uncertainty",
@@ -2476,7 +2450,7 @@
       "source": "synthesis_group_missing_effect_fields",
       "impact": "blocks_pooling",
       "note": "The effect value is available, but no CI, standard error, or variance is encoded.",
-      "next_action": "Run extraction refresh for dq-bone-p1np-2wk-positive to resolve effect.uncertainty."
+      "next_action": "Run extraction refresh for dq-bone-p1np-2wk-positive to resolve CI, standard error, or variance."
     },
     {
       "debt_id": "debt-senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21-dq-bone-p1np-4wk-positive-compatible_time_horizon",
@@ -2502,7 +2476,7 @@
       "source": "synthesis_group_missing_effect_fields",
       "impact": "blocks_pooling",
       "note": "The 4-week result has an effect value but no CI, standard error, or variance, and it should not be pooled directly with the 2-week timepoint as the same horizon.",
-      "next_action": "Run extraction refresh for dq-bone-p1np-4wk-positive to resolve effect.uncertainty."
+      "next_action": "Run extraction refresh for dq-bone-p1np-4wk-positive to resolve CI, standard error, or variance."
     },
     {
       "debt_id": "debt-senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21-dq-bone-p1np-4wk-positive-effect.uncertainty",
@@ -2515,7 +2489,7 @@
       "source": "synthesis_group_missing_effect_fields",
       "impact": "blocks_pooling",
       "note": "The effect value is available, but no CI, standard error, or variance is encoded.",
-      "next_action": "Run extraction refresh for dq-bone-p1np-4wk-positive to resolve effect.uncertainty."
+      "next_action": "Run extraction refresh for dq-bone-p1np-4wk-positive to resolve CI, standard error, or variance."
     },
     {
       "debt_id": "debt-senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21-dq-bone-sasp-2wk-null-effect.uncertainty",
@@ -2528,7 +2502,7 @@
       "source": "synthesis_group_missing_effect_fields",
       "impact": "blocks_pooling",
       "note": "The registry record has group medians and a p-value, but no extractable effect value or variance estimate.",
-      "next_action": "Run extraction refresh for dq-bone-sasp-2wk-null to resolve effect.uncertainty."
+      "next_action": "Run extraction refresh for dq-bone-sasp-2wk-null to resolve CI, standard error, or variance."
     },
     {
       "debt_id": "debt-senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21-dq-bone-sasp-2wk-null-effect.value",
@@ -2554,7 +2528,7 @@
       "source": "synthesis_group_missing_effect_fields",
       "impact": "blocks_pooling",
       "note": "The SASP result is a broad p-value-only measure without marker-level identity, effect value, or CI, standard error, or variance.",
-      "next_action": "Run extraction refresh for dq-bone-sasp-2wk-null to resolve effect.uncertainty."
+      "next_action": "Run extraction refresh for dq-bone-sasp-2wk-null to resolve CI, standard error, or variance."
     },
     {
       "debt_id": "debt-senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21-dq-bone-sasp-2wk-null-effect.value",
@@ -2593,7 +2567,7 @@
       "source": "synthesis_group_missing_effect_fields",
       "impact": "blocks_pooling",
       "note": "The D+Q vertigo count is explicit, but the control cell is blank/ambiguous and cannot support a comparative effect without unsupported zero handling.",
-      "next_action": "Run extraction refresh for dq-bone-vertigo-20wk-descriptive to resolve effect.uncertainty."
+      "next_action": "Run extraction refresh for dq-bone-vertigo-20wk-descriptive to resolve CI, standard error, or variance."
     },
     {
       "debt_id": "debt-senolytics-dq-bone-safety-20wk-synthesis-compatibility-2026-06-21-dq-bone-vertigo-20wk-descriptive-effect.value",
@@ -2722,18 +2696,6 @@
       "rationale": "Aggregate adverse-event counts, the D+Q bone headache preferred-term row, additional publication-table preferred-term rows, and registry/article discontinuation fields have been extracted for the D+Q bone RCT. IPF and AD-risk now have PubMed source-snapshot-backed abstract safety extraction, and DKD has a source-snapshot-backed record documenting that adverse-event counts were not reported in the retained abstract summary. Full article/table safety extraction for DKD, IPF, AD-risk, D+Q bone supplement material, and harmonized cross-human adverse-event definitions remain incomplete.",
       "inputs": [
         "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json"
-      ]
-    },
-    {
-      "job_id": "extraction-debt-dq-bone-adverse-event-discontinuations-20wk-descriptive",
-      "job_type": "extraction_refresh",
-      "priority": "high",
-      "source": "extraction_debt",
-      "target_record_type": "result",
-      "target_record_id": "dq-bone-adverse-event-discontinuations-20wk-descriptive",
-      "rationale": "Resolve missing synthesis fields: effect.uncertainty, effect.value.",
-      "inputs": [
-        "data/results/dq-bone-adverse-event-discontinuations-20wk-descriptive.json"
       ]
     },
     {

@@ -18,6 +18,8 @@ Required decisions:
 
 For `pooling_decision: "pooling_allowed"`, every referenced result must satisfy the required maturity statuses and carry the required effect fields. The reference audit currently checks `effect.value`, `effect.uncertainty`, `analysis.comparison`, `sample_size`, group-value fields, and adverse-event preferred term/count readiness.
 
+`effect.uncertainty` is a pooling-readiness blocker label, not a literal `result.effect.uncertainty` property. A result satisfies it by carrying a numeric confidence interval (`effect.ci_lower` and `effect.ci_upper`), standard error (`effect.standard_error`), or variance (`effect.variance`).
+
 Use `pooling_blocked` rather than prose-only caveats when a consumer should not compute a pooled estimate.
 
 ## Controlled Blocker Vocabulary
@@ -41,5 +43,7 @@ Current blocker fields:
 - `adverse_event.event_specific_counts`
 
 `adverse_event.event_specific_counts` is synthesis-ready only when every compared arm has a sample size and an explicit event count or explicit zero. Ambiguous blank cells should remain structured in `result.adverse_event`, but they still block comparative pooling.
+
+When `result.adverse_event.zero_handling.supports_comparative_effect` is `false`, missing `effect.value` or `effect.uncertainty` should remain a pooling blocker but should not be routed as extraction debt. Create comparative safety effects only when source semantics support the estimate without unsupported zero handling.
 
 The reference audit also checks that each result-level blocker references a result already listed in the synthesis group and that each result belongs to one of the group's outcome IDs.

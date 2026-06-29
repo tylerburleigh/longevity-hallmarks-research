@@ -100,6 +100,10 @@ const fieldDebtTypes = new Map([
   ["adverse_event.event_specific_counts", "missing_adverse_event_event_specific_counts"]
 ]);
 
+const fieldResolutionLabels = new Map([
+  ["effect.uncertainty", "CI, standard error, or variance"]
+]);
+
 const priorityRank = new Map([
   ["high", 0],
   ["medium", 1],
@@ -489,6 +493,29 @@ function severityFromImpact(impact) {
   return "low";
 }
 
+function suppressUnsupportedComparativeEffectDebt(result, missingField) {
+  if (missingField !== "effect.value" && missingField !== "effect.uncertainty") {
+    return false;
+  }
+
+  const eventSpecificCounts = result?.adverse_event?.event_specific_counts;
+  const eventCountsAreExplicit =
+    Array.isArray(eventSpecificCounts) &&
+    eventSpecificCounts.length >= 2 &&
+    eventSpecificCounts.every(
+      (count) =>
+        (count.count_status === "reported_count" || count.count_status === "explicit_zero") &&
+        typeof count.event_count === "number" &&
+        typeof count.sample_size === "number"
+    );
+
+  return (
+    result?.result_type === "safety_event" &&
+    result.adverse_event?.zero_handling?.supports_comparative_effect === false &&
+    eventCountsAreExplicit
+  );
+}
+
 function buildExtractionDebt({ resultEntries, synthesisGroupEntries }) {
   const resultById = indexById(resultEntries);
   const extractionDebtById = new Map();
@@ -507,6 +534,11 @@ function buildExtractionDebt({ resultEntries, synthesisGroupEntries }) {
       const resultPath = resultEntry?.path ?? `data/results/${missing.result_id}.json`;
 
       for (const missingField of missing.missing_fields ?? []) {
+        if (suppressUnsupportedComparativeEffectDebt(resultEntry?.record, missingField)) {
+          continue;
+        }
+
+        const resolutionLabel = fieldResolutionLabels.get(missingField) ?? missingField;
         addDebt({
           debt_id: makeId(["debt", synthesisGroup.id, missing.result_id, missingField]),
           result_id: missing.result_id,
@@ -518,7 +550,7 @@ function buildExtractionDebt({ resultEntries, synthesisGroupEntries }) {
           source: "synthesis_group_missing_effect_fields",
           impact: missing.impact,
           note: missing.note,
-          next_action: `Run extraction refresh for ${missing.result_id} to resolve ${missingField}.`
+          next_action: `Run extraction refresh for ${missing.result_id} to resolve ${resolutionLabel}.`
         });
       }
     }

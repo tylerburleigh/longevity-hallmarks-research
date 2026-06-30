@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "parallel_reconciliation",
   "id": "parallel-reconciliation-v1",
-  "generated_at": "2026-06-30T00:07:07.479Z",
+  "generated_at": "2026-06-30T00:46:11.671Z",
   "source_roots": [
     "data",
     "research",
@@ -54,10 +54,10 @@
     "overlapping_candidate_group_count": 0,
     "source_rights_count": 2,
     "source_rights_conflict_count": 0,
-    "agent_run_count": 96,
+    "agent_run_count": 97,
     "parallel_batch_count": 8,
     "reconciliation_batch_count": 8,
-    "parallel_batch_run_count": 27,
+    "parallel_batch_run_count": 28,
     "pending_parallel_worker_count": 0,
     "reconciliation_decision_count": 11,
     "incomplete_ledger_count": 0,
@@ -72,7 +72,7 @@
       "execution_class": "independent",
       "reconciliation_required": true,
       "job_ids": [
-        "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-2"
+        "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3"
       ],
       "overlapping_execution_keys": [],
       "status": "reconciliation_pending",

@@ -14,6 +14,34 @@ export const defaultLimit = 5;
 
 const highCostJobTypes = new Set(["extraction_refresh", "coverage_repair", "snapshot_refresh"]);
 const safetyPattern = /\b(safety|adverse[-_ ]?event|adverse|harm|tolerability|toxicity)\b/i;
+const registrySurveillancePattern = /\b(active[_ -]?trials?[_ -]?registr(?:y|ies)|clinicaltrials(?:\.gov)?|trial[_ -]?registr(?:y|ies)|registry[_ -]?surveillance|nct\d{8})\b/i;
+
+const registrySurveillanceTrialPathHints = {
+  NCT03430037: {
+    study: "fisetin-frailty-older-women-registry",
+    outcome: "fisetin-frailty-older-women-registry-status",
+    result: "fisetin-frailty-older-women-no-posted-results",
+    finding: "fisetin-frailty-older-women-active-no-posted-results"
+  },
+  NCT03675724: {
+    study: "fisetin-frailty-older-adults-registry",
+    outcome: "fisetin-frailty-older-adults-registry-status",
+    result: "fisetin-frailty-older-adults-no-posted-results",
+    finding: "fisetin-frailty-older-adults-active-no-posted-results"
+  }
+};
+const proposedRecordTypeByDirectory = new Map([
+  ["data/candidate-changes", "candidate_change"],
+  ["data/findings", "finding"],
+  ["data/outcomes", "outcome"],
+  ["data/results", "result"],
+  ["data/source-snapshots", "source_snapshot"],
+  ["data/sources", "source"],
+  ["data/studies", "study"],
+  ["research/screening-runs", "screening_run"],
+  ["research/search-logs", "search_log"],
+  ["research/sessions", "research_session"]
+]);
 
 const promptByJobType = {
   candidate_review: "docs/prompts/codex-agents/supervisor-review.md",
@@ -51,6 +79,88 @@ function idSlug(value) {
 
 function sortStrings(values) {
   return [...new Set((values ?? []).filter(Boolean))].sort((left, right) => left.localeCompare(right));
+}
+
+function todayIsoDate() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+function textFromRecommendedJob(recommendedJob) {
+  return [
+    recommendedJob.job_id,
+    recommendedJob.source,
+    recommendedJob.job_type,
+    recommendedJob.target_record_type,
+    recommendedJob.target_record_id,
+    recommendedJob.category,
+    recommendedJob.gap_type,
+    recommendedJob.rationale,
+    recommendedJob.suggested_action,
+    ...(recommendedJob.inputs ?? [])
+  ].filter(Boolean).join("\n");
+}
+
+function isRegistrySurveillanceCoverageRepair(recommendedJob) {
+  return recommendedJob.job_type === "coverage_repair" && registrySurveillancePattern.test(textFromRecommendedJob(recommendedJob));
+}
+
+function nctIdsFromRecommendedJob(recommendedJob) {
+  return sortStrings((textFromRecommendedJob(recommendedJob).match(/\bNCT\d{8}\b/gi) ?? []).map((id) => id.toUpperCase()));
+}
+
+function nctSourceId(nctId) {
+  return `nct-${nctId.replace(/^NCT/i, "")}`;
+}
+
+function registryTrialPaths(nctId, date = todayIsoDate()) {
+  const sourceId = nctSourceId(nctId);
+  const pathHints = registrySurveillanceTrialPathHints[nctId] ?? {
+    study: `${sourceId}-registry`,
+    outcome: `${sourceId}-registry-status`,
+    result: `${sourceId}-no-posted-results`,
+    finding: `${sourceId}-active-no-posted-results`
+  };
+
+  return [
+    `data/sources/${sourceId}.json`,
+    `data/source-snapshots/snapshot-${sourceId}-clinicaltrials-v2-${date}.json`,
+    `data/studies/${pathHints.study}.json`,
+    `data/outcomes/${pathHints.outcome}.json`,
+    `data/results/${pathHints.result}.json`,
+    `data/findings/${pathHints.finding}.json`
+  ];
+}
+
+function registrySurveillanceOutputPaths(recommendedJob) {
+  if (!isRegistrySurveillanceCoverageRepair(recommendedJob)) {
+    return [];
+  }
+
+  const jobId = idSlug(`self-healing-${recommendedJob.job_id}`);
+  return sortStrings([
+    `research/sessions/${jobId}.json`,
+    `research/search-logs/${jobId}.json`,
+    `research/screening-runs/${jobId}.json`,
+    ...nctIdsFromRecommendedJob(recommendedJob).flatMap((nctId) => registryTrialPaths(nctId))
+  ]);
+}
+
+function registrySurveillanceConflictKeys(recommendedJob) {
+  if (!isRegistrySurveillanceCoverageRepair(recommendedJob)) {
+    return [];
+  }
+
+  return sortStrings([
+    `registry_surveillance:${sourceJobId(recommendedJob)}`,
+    ...nctIdsFromRecommendedJob(recommendedJob).flatMap((nctId) => {
+      const sourceId = nctSourceId(nctId);
+      return [
+        `source:${sourceId}`,
+        `source_snapshot:${sourceId}`,
+        `trial_registry:${nctId.toLowerCase()}`
+      ];
+    })
+  ]);
 }
 
 function arrayFrom(value) {
@@ -519,7 +629,8 @@ function coverageRepairOutputSpec(recommendedJob, candidateChangeId) {
   return {
     proposedRecordPaths: sortStrings([
       `data/candidate-changes/${candidateChangeId}.json`,
-      ...(recommendedJob.inputs ?? [])
+      ...(recommendedJob.inputs ?? []),
+      ...registrySurveillanceOutputPaths(recommendedJob)
     ]),
     generatedFilePaths: [],
     exportPaths: [
@@ -556,6 +667,7 @@ function buildWriteSets({ recommendedJob, candidateChangeId, requiredReviewLanes
 
   return sortStrings([
     ...candidateChangeKeys,
+    ...proposedRecordPaths.map((recordPath) => `path:${recordPath}`),
     `target_record:${recommendedJob.target_record_type}/${recommendedJob.target_record_id}`,
     ...((recommendedJob.inputs ?? []).map((inputPath) => `path:${inputPath}`))
   ]);
@@ -584,6 +696,7 @@ function buildConflictKeys({ recommendedJob, candidateChangeId, requiredReviewLa
     `candidate_change:${candidateChangeId}`,
     `target_record:${recommendedJob.target_record_type}/${recommendedJob.target_record_id}`,
     `triage_job:${sourceJobId(recommendedJob)}`,
+    ...registrySurveillanceConflictKeys(recommendedJob),
     ...(agentRoleForJob(recommendedJob) === "supervisor_agent"
       ? requiredReviewLanes.map((lane) => `review_lane:${lane}`)
       : [])
@@ -706,7 +819,7 @@ function buildJob(recordIndex, recommendedJob) {
           ]
         : []),
       ...(recommendedJob.review_lane ? [`Supervisor review lane: ${recommendedJob.review_lane}.`] : []),
-      "The worker should keep edits bounded to the target record, listed inputs, and the candidate repair ledger."
+      "The worker should keep edits bounded to the target record, listed inputs, and expected_outputs paths."
     ]
   };
 }
@@ -770,14 +883,15 @@ function targetRecordPointerFromPath(recordIndex, recordPath, role) {
     };
   }
 
-  const candidateMatch = recordPath.match(/^data\/candidate-changes\/([^/]+)\.json$/);
-  if (!candidateMatch) {
+  const proposedMatch = recordPath.match(/^(.+)\/([^/]+)\.json$/);
+  const proposedRecordType = proposedMatch ? proposedRecordTypeByDirectory.get(proposedMatch[1]) : undefined;
+  if (!proposedMatch || !proposedRecordType) {
     return undefined;
   }
 
   return {
-    record_type: "candidate_change",
-    record_id: candidateMatch[1],
+    record_type: proposedRecordType,
+    record_id: proposedMatch[2],
     path: recordPath,
     ...(role ? { role } : {}),
     record_state: "proposed"
@@ -1084,6 +1198,36 @@ function sourceJobIdFromGeneratedJob(job) {
   return job.notes?.[0]?.match(/recommended_jobs\[\] item ([^.]+)\./)?.[1];
 }
 
+function coverageRepairSchemaPathsForJob(job) {
+  const proposedRecordPaths = job.expected_outputs?.proposed_record_paths ?? [];
+  const schemaPaths = [
+    "schemas/agent-run.codex-output.schema.json",
+    "schemas/agent-run.schema.json",
+    "schemas/candidate-change.schema.json",
+    "schemas/coverage-assessment.schema.json",
+    "schemas/search-log.schema.json",
+    "schemas/screening-run.schema.json",
+    "schemas/source-snapshot.schema.json"
+  ];
+
+  const pathSchemaPairs = [
+    [/^research\/sessions\//, "schemas/research-session.schema.json"],
+    [/^data\/sources\//, "schemas/source.schema.json"],
+    [/^data\/studies\//, "schemas/study.schema.json"],
+    [/^data\/outcomes\//, "schemas/outcome.schema.json"],
+    [/^data\/results\//, "schemas/result.schema.json"],
+    [/^data\/findings\//, "schemas/finding.schema.json"]
+  ];
+
+  for (const [pathPattern, schemaPath] of pathSchemaPairs) {
+    if (proposedRecordPaths.some((recordPath) => pathPattern.test(recordPath))) {
+      schemaPaths.push(schemaPath);
+    }
+  }
+
+  return sortStrings(schemaPaths);
+}
+
 export function buildCoverageRepairContextPack(recordIndex, job) {
   const coverageGap = coverageGapFromJob(recordIndex, job);
 
@@ -1111,15 +1255,7 @@ export function buildCoverageRepairContextPack(recordIndex, job) {
       target_records: targetRecordPointers(recordIndex, job)
     },
     schema_context: {
-      schema_paths: [
-        "schemas/agent-run.codex-output.schema.json",
-        "schemas/agent-run.schema.json",
-        "schemas/candidate-change.schema.json",
-        "schemas/coverage-assessment.schema.json",
-        "schemas/search-log.schema.json",
-        "schemas/screening-run.schema.json",
-        "schemas/source-snapshot.schema.json"
-      ],
+      schema_paths: coverageRepairSchemaPathsForJob(job),
       required_fields: [
         "agent_run.outputs.candidate_change_id",
         "agent_run.outputs.proposed_records[]",
@@ -1127,7 +1263,9 @@ export function buildCoverageRepairContextPack(recordIndex, job) {
         "agent_run.quality_checks[]",
         "candidate_change.proposed_records[]",
         "candidate_change.required_review_lanes[] equals expected_outputs.required_review_lanes[]",
-        "coverage_assessment.known_gaps[] remains open unless durable source-backed records close it"
+        "coverage_assessment.known_gaps[] remains open unless durable source-backed records close it",
+        "search_log.query_records[] or screening_run.screened_records[] captures registry-surveillance term screening when those paths are declared",
+        "source_snapshot.source_id and retained_artifact fields support any no-posted-results source, study, result, outcome, or finding record"
       ],
       known_schema_limitations: [
         "Coverage repair packs route bounded gap repair; they do not pre-authorize broad unlogged search or unsaved source use."
@@ -1158,8 +1296,9 @@ export function buildCoverageRepairContextPack(recordIndex, job) {
     },
     constraints: [
       "Read the context pack first and keep repository inspection bounded to the named coverage gap, scoped read_sets, and listed verification commands.",
-      "Create only the repair candidate and target coverage-assessment paths declared in expected_outputs.",
+      "Create only the repair candidate, target coverage-assessment, durable surveillance, and source-backed paths declared in expected_outputs.",
       "Record durable search, screening, source-snapshot, or coverage-assessment changes through the declared candidate_change ledger.",
+      "For registry-surveillance repairs, write declared search logs, screening runs, and source snapshots before proposing no-posted-results source, study, result, outcome, or finding records.",
       "Do not close the gap unless retained source snapshots, search logs, screening runs, or updated coverage assessment text support closure.",
       "Run the listed worker_commands for in-worker checks; leave full export refresh and npm run verify:knowledge-base to coordinator_post_run unless you refresh exports in the same worker.",
       "If listed worker_commands pass and only exports, triage, release-readiness, reconciliation, metrics, or read-model state is stale, keep the worker status succeeded and note coordinator_post_run refresh rather than marking the run partial.",

@@ -1,0 +1,101 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "codex_job",
+  "id": "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-2",
+  "name": "Self-healing repair: coverage-gap-senolytics-registry-surveillance-breadth-followup-2",
+  "summary": "Only two active no-results registry records are present. The prior coverage-repair session also deferred fisetin frailty registry candidates NCT03430037 and NCT03675724, but this batch could not fetch ClinicalTrials.gov source snapshots for those registries, so broader current fisetin and D+Q trial surveillance remains incomplete. Suggested action: Run a source-snapshot-backed ClinicalTrials.gov surveillance pass for NCT03430037, NCT03675724, senolytics, D+Q, fisetin, and senescence-targeting terms; add no-results status records only when fetched registry snapshots support them.",
+  "lifecycle_status": "succeeded",
+  "agent_role": "self_healing_agent",
+  "mode": "coverage_repair",
+  "prompt_file": "docs/prompts/codex-agents/coverage-repair.md",
+  "context_pack_path": "ops/coverage-repair-context-packs/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-2.json",
+  "output_path": "research/agent-runs/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-2.json",
+  "jsonl_log_path": "research/agent-runs/logs/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-2.jsonl",
+  "scope": {
+    "question": "coverage_repair: Only two active no-results registry records are present. The prior coverage-repair session also deferred fisetin frailty registry candidates NCT03430037 and NCT03675724, but this batch could not fetch ClinicalTrials.gov source snapshots for those registries, so broader current fisetin and D+Q trial surveillance remains incomplete. Suggested action: Run a source-snapshot-backed ClinicalTrials.gov surveillance pass for NCT03430037, NCT03675724, senolytics, D+Q, fisetin, and senescence-targeting terms; add no-results status records only when fetched registry snapshots support them.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "execution": {
+    "isolation": "git_worktree",
+    "sandbox": "danger-full-access",
+    "approval_policy": "never",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "timeout_ms": 3600000,
+    "no_output_timeout_ms": 300000
+  },
+  "expected_outputs": {
+    "canonical_write_policy": "candidate_change_required",
+    "candidate_change_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair",
+    "required_review_lanes": [
+      "synthesis_boundary",
+      "taxonomy_mapping"
+    ],
+    "proposed_record_paths": [
+      "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair.json",
+      "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json"
+    ],
+    "generated_file_paths": [],
+    "export_paths": [
+      "exports/latest/coverage-status.json",
+      "exports/latest/audit-manifest.json",
+      "exports/latest/read-model.sqlite",
+      "ops/triage-state.v1.json",
+      "ops/release-readiness.v1.json",
+      "ops/reconciliation/parallel-reconciliation.v1.json",
+      "ops/codex-batches/orchestration-metrics.v1.json"
+    ]
+  },
+  "orchestration": {
+    "read_sets": [
+      "context_pack:self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-2",
+      "path:data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+      "path:ops/triage-state.v1.json",
+      "triage_job:coverage-gap-senolytics-registry-surveillance-breadth-followup-2"
+    ],
+    "write_sets": [
+      "candidate_change:coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair",
+      "path:data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair.json",
+      "path:data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+      "target_record:coverage_assessment/senolytics-coverage-repair-2026-06-21"
+    ],
+    "conflict_keys": [
+      "candidate_change:coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair",
+      "target_record:coverage_assessment/senolytics-coverage-repair-2026-06-21",
+      "triage_job:coverage-gap-senolytics-registry-surveillance-breadth-followup-2"
+    ],
+    "parallel_group": "coverage-repair",
+    "reconciliation_required": true,
+    "expected_cost": {
+      "cost_class": "high",
+      "expected_wall_time_ms": 3600000,
+      "expected_token_budget": 100000,
+      "io_intensity": "high"
+    }
+  },
+  "post_run": {
+    "export_latest": true,
+    "verify_knowledge_base": true
+  },
+  "quality_gates": [
+    "validate_records",
+    "audit_references",
+    "audit_exports",
+    "audit_agent_schemas",
+    "audit_agentic_process",
+    "worker_output_contract",
+    "candidate_agent_run_ledger_match"
+  ],
+  "notes": [
+    "Generated from ops/triage-state.v1.json recommended_jobs[] item coverage-gap-senolytics-registry-surveillance-breadth-followup-2.",
+    "Source queue: coverage_gap.",
+    "The worker should keep edits bounded to the target record, listed inputs, and the candidate repair ledger."
+  ],
+  "final_agent_run_id": "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-2",
+  "archived_at": "2026-06-30T00:34:33.518Z"
+}

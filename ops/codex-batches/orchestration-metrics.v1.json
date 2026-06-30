@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "orchestration_metrics",
   "id": "orchestration-metrics-v1",
-  "generated_at": "2026-06-30T00:07:07.615Z",
+  "generated_at": "2026-06-30T00:46:11.806Z",
   "source_roots": [
     "data",
     "exports/latest",
@@ -43,7 +43,7 @@
   },
   "summary": {
     "planned_live_job_count": 23,
-    "archived_job_count": 71,
+    "archived_job_count": 72,
     "planned_parallel_batch_count": 8,
     "planned_parallel_worker_count": 23,
     "planned_independent_batch_count": 8,
@@ -55,21 +55,21 @@
     "planned_parallel_wall_time_ms": 28800000,
     "planned_wall_time_savings_ms": 54000000,
     "planned_speedup_ratio": 2.875,
-    "executed_parallel_batch_run_count": 27,
-    "executed_worker_count": 76,
+    "executed_parallel_batch_run_count": 28,
+    "executed_worker_count": 77,
     "failed_worker_count": 21,
     "actionable_failed_worker_count": 0,
     "historical_failed_worker_count": 21,
     "pending_reconciliation_worker_count": 0,
-    "succeeded_worker_count": 55,
-    "actual_worker_wall_time_ms": 23187005,
-    "actual_batch_wall_time_ms": 11032499,
-    "agent_run_count": 96,
+    "succeeded_worker_count": 56,
+    "actual_worker_wall_time_ms": 23561110,
+    "actual_batch_wall_time_ms": 11406606,
+    "agent_run_count": 97,
     "succeeded_agent_run_count": 82,
-    "partial_agent_run_count": 14,
+    "partial_agent_run_count": 15,
     "failed_agent_run_count": 0,
     "actionable_partial_or_failed_agent_run_count": 0,
-    "agent_run_wall_time_ms": 33366000,
+    "agent_run_wall_time_ms": 33671000,
     "duplicate_work_group_count": 0,
     "duplicate_work_record_count": 0,
     "conflict_finding_count": 0,
@@ -408,6 +408,20 @@
         "succeeded_worker_count": 1
       },
       {
+        "batch_run_id": "parallel-batch-001-coverage-repair-20260630t002824z",
+        "path": "ops/codex-batches/runs/parallel-batch-001-coverage-repair-20260630t002824z.json",
+        "batch_id": "parallel-batch-001-coverage-repair",
+        "parallel_group": "coverage-repair",
+        "status": "succeeded",
+        "started_at": "2026-06-30T00:28:24.839Z",
+        "completed_at": "2026-06-30T00:34:38.946Z",
+        "wall_time_ms": 374107,
+        "worker_count": 1,
+        "failed_worker_count": 0,
+        "pending_reconciliation_worker_count": 0,
+        "succeeded_worker_count": 1
+      },
+      {
         "batch_run_id": "parallel-batch-001-extraction-refresh-20260627t162847z",
         "path": "ops/codex-batches/runs/parallel-batch-001-extraction-refresh-20260627t162847z.json",
         "batch_id": "parallel-batch-001-extraction-refresh",
@@ -583,13 +597,13 @@
       },
       {
         "key": "succeeded",
-        "count": 55
+        "count": 56
       }
     ],
     "agent_run_status_counts": [
       {
         "key": "partial",
-        "count": 14
+        "count": 15
       },
       {
         "key": "succeeded",
@@ -611,7 +625,7 @@
       },
       {
         "key": "self_healing_agent",
-        "count": 10
+        "count": 11
       },
       {
         "key": "supervisor_agent",
@@ -764,7 +778,8 @@
         "accepted_record_count": 1,
         "extraction_debt_record_count": 0,
         "related_agent_run_ids": [
-          "coordinator-registry-surveillance-followup-2-recovery-2026-06-29"
+          "coordinator-registry-surveillance-followup-2-recovery-2026-06-29",
+          "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-2"
         ]
       },
       {

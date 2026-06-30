@@ -119,6 +119,6 @@
   "notes": [
     "Generated from ops/triage-state.v1.json recommended_jobs[] item extraction-debt-dq-ipf-tolerability-mixed.",
     "Source queue: extraction_debt.",
-    "The worker should keep edits bounded to the target record, listed inputs, and the candidate repair ledger."
+    "The worker should keep edits bounded to the target record, listed inputs, and expected_outputs paths."
   ]
 }

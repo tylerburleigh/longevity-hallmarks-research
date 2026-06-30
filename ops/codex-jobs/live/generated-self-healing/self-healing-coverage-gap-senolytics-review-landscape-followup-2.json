@@ -94,6 +94,6 @@
   "notes": [
     "Generated from ops/triage-state.v1.json recommended_jobs[] item coverage-gap-senolytics-review-landscape-followup-2.",
     "Source queue: coverage_gap.",
-    "The worker should keep edits bounded to the target record, listed inputs, and the candidate repair ledger."
+    "The worker should keep edits bounded to the target record, listed inputs, and expected_outputs paths."
   ]
 }

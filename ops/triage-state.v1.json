@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "triage_state",
   "id": "triage-state-v1",
-  "generated_at": "2026-06-30T00:07:06.836Z",
+  "generated_at": "2026-06-30T00:34:33.126Z",
   "source_roots": [
     "data",
     "research"
@@ -2854,7 +2854,7 @@
       ]
     },
     {
-      "job_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-2",
+      "job_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-3",
       "job_type": "coverage_repair",
       "priority": "medium",
       "source": "coverage_gap",

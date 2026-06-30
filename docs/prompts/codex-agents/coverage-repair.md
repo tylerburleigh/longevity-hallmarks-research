@@ -2,19 +2,9 @@ You are a Codex CLI worker running an isolated coverage-repair task for the long
 
 Read:
 
-- The `context_pack_path` declared in the `codex_job`, when present. Read it before broader repository discovery and use it as the primary source for scope, target records, expected outputs, constraints, and verification commands.
-- plan.md
-- docs/research-runbook.md
-- docs/agent-run-outputs.md
-- docs/screening-rules.md
-- docs/source-snapshot-importers.md
-- ops/triage-state.v1.json
-- schemas/agent-run.codex-output.schema.json
-- schemas/agent-run.schema.json
-- schemas/candidate-change.schema.json
-- schemas/coverage-assessment.schema.json
-- schemas/search-log.schema.json
-- schemas/screening-run.schema.json
+- If the job declares `context_pack_path`, read that context pack first and treat it as the bounded task contract. Then read only the schemas and records named by the context pack, plus exact source IDs, registry IDs, or search terms required by `gap_context.suggested_action`.
+- If no context pack is declared, read plan.md, docs/research-runbook.md, docs/agent-run-outputs.md, docs/screening-rules.md, docs/source-snapshot-importers.md, ops/triage-state.v1.json, and the required schemas.
+- For context-pack jobs, read broad docs, broad repo indexes, or orchestration scripts only when the context pack conflicts with a required schema or validation exposes a concrete inconsistency that cannot be resolved from the pack and named records.
 
 Task:
 
@@ -30,8 +20,9 @@ Task:
 Inspection discipline:
 
 - Start from the target coverage_assessment, the triage-state recommended job, and the exact ids or search terms named in the suggested action.
-- Prefer targeted reads of named records and snapshots before broader repository discovery.
-- Use broad searches only when the coverage gap itself requires bounded discovery, and record exact queries, dates, result counts, and source decisions in durable records.
+- For context-pack jobs, do not inspect broad repository files such as plan.md, broad runbooks, or repository-wide `rg`/`find` output unless a concrete pack or validation inconsistency requires it.
+- Prefer targeted reads of named records and snapshots before any broader repository discovery.
+- Use external source searches only when the coverage gap itself requires bounded discovery, and record exact queries, dates, result counts, and source decisions in durable records.
 - If external retrieval is unavailable, leave an explicit blocking issue and keep the gap open.
 - If exports, triage state, release readiness, reconciliation, or metrics are stale before wrapper post-run refresh, record that as deferred to coordinator post-run refresh rather than investigating unrelated orchestration code.
 - If scoped validation passes and only export, triage, release-readiness, reconciliation, metrics, or read-model state is stale, keep the run status `succeeded`; do not mark the worker `partial` solely for coordinator-owned post-run refresh work.

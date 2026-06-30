@@ -394,6 +394,16 @@ function reviewLanesForJob(recordIndex, recommendedJob) {
     return sortStrings(candidate?.required_review_lanes);
   }
 
+  if (isRegistrySurveillanceCoverageRepair(recommendedJob)) {
+    return [
+      "extraction_fidelity",
+      "safety_limitations",
+      "source_fidelity",
+      "synthesis_boundary",
+      "taxonomy_mapping"
+    ];
+  }
+
   const lanes = [];
   if (recommendedJob.target_record_type === "source_snapshot" || recommendedJob.target_record_type === "text_snapshot") {
     lanes.push("source_fidelity");

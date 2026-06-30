@@ -220,6 +220,9 @@
       "ops/codex-batches/orchestration-metrics.v1.json"
     ],
     "required_review_lanes": [
+      "extraction_fidelity",
+      "safety_limitations",
+      "source_fidelity",
       "synthesis_boundary",
       "taxonomy_mapping"
     ]

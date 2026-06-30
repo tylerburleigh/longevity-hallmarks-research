@@ -1,0 +1,279 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "agent_run",
+  "id": "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3",
+  "agent_role": "self_healing_agent",
+  "agent_id": "codex-cli-self-healing-agent",
+  "mode": "coverage_repair",
+  "started_at": "2026-06-30T01:26:23Z",
+  "completed_at": "2026-06-30T01:40:26Z",
+  "status": "succeeded",
+  "scope": {
+    "question": "coverage_repair: Only two active no-results registry records are present. The prior coverage-repair session also deferred fisetin frailty registry candidates NCT03430037 and NCT03675724, but this batch could not fetch ClinicalTrials.gov source snapshots for those registries, so broader current fisetin and D+Q trial surveillance remains incomplete. Suggested action: Run a source-snapshot-backed ClinicalTrials.gov surveillance pass for NCT03430037, NCT03675724, senolytics, D+Q, fisetin, and senescence-targeting terms; add no-results status records only when fetched registry snapshots support them.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "canonical_write_policy": "candidate_change_required",
+  "execution": {
+    "surface": "codex_exec",
+    "isolation": "git_worktree",
+    "workspace_path": "/tmp/lhr-codex-worktrees/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-20260630T012623z",
+    "prompt_file": "research/agent-runs/prompts/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3.md",
+    "prompt_template_file": "docs/prompts/codex-agents/coverage-repair.md",
+    "job_file": "ops/codex-jobs/archive/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3.json",
+    "output_schema_path": "schemas/agent-run.codex-output.schema.json",
+    "output_path": "research/agent-runs/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3.json",
+    "jsonl_log_path": "research/agent-runs/logs/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3.jsonl",
+    "sandbox": "danger-full-access",
+    "approval_policy": "never"
+  },
+  "inputs": [
+    {
+      "input_type": "other",
+      "reference": "ops/coverage-repair-context-packs/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3.json",
+      "summary": "Bounded context pack for the senolytics registry-surveillance coverage gap repair."
+    },
+    {
+      "input_type": "coverage_gap",
+      "reference": "coverage_assessment/senolytics-coverage-repair-2026-06-21#senolytics-registry-surveillance-breadth",
+      "summary": "Active-trials registry gap requiring ClinicalTrials.gov surveillance for NCT03430037, NCT03675724, senolytics, D+Q, fisetin, and senescence-targeting terms."
+    },
+    {
+      "input_type": "record",
+      "reference": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+      "summary": "Target coverage assessment updated to add the two source-snapshot-backed fisetin frailty trial-watch records while keeping broader registry surveillance open."
+    },
+    {
+      "input_type": "record",
+      "reference": "ops/triage-state.v1.json#recommended_jobs.coverage-gap-senolytics-registry-surveillance-breadth-followup-3",
+      "summary": "Coordinator-recommended coverage-repair job for the senolytics registry-surveillance breadth gap."
+    }
+  ],
+  "outputs": {
+    "summary": "Fetched ClinicalTrials.gov v2 snapshots for NCT03430037 and NCT03675724, created source/study/outcome/result/finding records documenting active no-posted-results status for both, logged exact registry surveillance queries and screening decisions, and submitted candidate_change coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair. The active-trials registry gap remains open for additional direct active/recruiting senolytic hits found in the bounded search but not source-snapshotted in this job.",
+    "research_session_id": "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3",
+    "search_log_id": "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3",
+    "screening_run_id": "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3",
+    "candidate_change_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair",
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair",
+        "path": "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair.json",
+        "change_type": "create",
+        "rationale": "Creates the submitted candidate-change ledger required for this coverage-repair proposal."
+      },
+      {
+        "record_type": "coverage_assessment",
+        "record_id": "senolytics-coverage-repair-2026-06-21",
+        "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+        "change_type": "update",
+        "rationale": "Updates the active-trials registry category to include source-snapshot-backed NCT03430037 and NCT03675724 no-posted-results records while preserving an open follow-up gap for additional ClinicalTrials.gov hits."
+      },
+      {
+        "record_type": "finding",
+        "record_id": "fisetin-frailty-older-adults-active-no-posted-results",
+        "path": "data/findings/fisetin-frailty-older-adults-active-no-posted-results.json",
+        "change_type": "create",
+        "rationale": "Adds a source-snapshot-backed registry finding that NCT03675724 is enrolling by invitation with no posted results section."
+      },
+      {
+        "record_type": "finding",
+        "record_id": "fisetin-frailty-older-women-active-no-posted-results",
+        "path": "data/findings/fisetin-frailty-older-women-active-no-posted-results.json",
+        "change_type": "create",
+        "rationale": "Adds a source-snapshot-backed registry finding that NCT03430037 is enrolling by invitation with no posted results section."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "fisetin-frailty-older-adults-registry-status",
+        "path": "data/outcomes/fisetin-frailty-older-adults-registry-status.json",
+        "change_type": "create",
+        "rationale": "Creates the registry-status outcome for the NCT03675724 ClinicalTrials.gov status/results-section check."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "fisetin-frailty-older-women-registry-status",
+        "path": "data/outcomes/fisetin-frailty-older-women-registry-status.json",
+        "change_type": "create",
+        "rationale": "Creates the registry-status outcome for the NCT03430037 ClinicalTrials.gov status/results-section check."
+      },
+      {
+        "record_type": "result",
+        "record_id": "fisetin-frailty-older-adults-no-posted-results",
+        "path": "data/results/fisetin-frailty-older-adults-no-posted-results.json",
+        "change_type": "create",
+        "rationale": "Adds a no-posted-result registry result for NCT03675724 derived only from the retained ClinicalTrials.gov v2 snapshot."
+      },
+      {
+        "record_type": "result",
+        "record_id": "fisetin-frailty-older-women-no-posted-results",
+        "path": "data/results/fisetin-frailty-older-women-no-posted-results.json",
+        "change_type": "create",
+        "rationale": "Adds a no-posted-result registry result for NCT03430037 derived only from the retained ClinicalTrials.gov v2 snapshot."
+      },
+      {
+        "record_type": "source_snapshot",
+        "record_id": "snapshot-nct-03430037-clinicaltrials-v2-2026-06-30",
+        "path": "data/source-snapshots/snapshot-nct-03430037-clinicaltrials-v2-2026-06-30.json",
+        "change_type": "create",
+        "rationale": "Retains the ClinicalTrials.gov v2 API retrieval metadata, hash, and status/results summary supporting the NCT03430037 no-posted-results records."
+      },
+      {
+        "record_type": "source_snapshot",
+        "record_id": "snapshot-nct-03675724-clinicaltrials-v2-2026-06-30",
+        "path": "data/source-snapshots/snapshot-nct-03675724-clinicaltrials-v2-2026-06-30.json",
+        "change_type": "create",
+        "rationale": "Retains the ClinicalTrials.gov v2 API retrieval metadata, hash, and status/results summary supporting the NCT03675724 no-posted-results records."
+      },
+      {
+        "record_type": "source",
+        "record_id": "nct-03430037",
+        "path": "data/sources/nct-03430037.json",
+        "change_type": "create",
+        "rationale": "Creates the canonical source record for the NCT03430037 ClinicalTrials.gov registry."
+      },
+      {
+        "record_type": "source",
+        "record_id": "nct-03675724",
+        "path": "data/sources/nct-03675724.json",
+        "change_type": "create",
+        "rationale": "Creates the canonical source record for the NCT03675724 ClinicalTrials.gov registry."
+      },
+      {
+        "record_type": "study",
+        "record_id": "fisetin-frailty-older-adults-registry",
+        "path": "data/studies/fisetin-frailty-older-adults-registry.json",
+        "change_type": "create",
+        "rationale": "Creates the registry-only study record for the NCT03675724 AFFIRM-LITE fisetin frailty trial."
+      },
+      {
+        "record_type": "study",
+        "record_id": "fisetin-frailty-older-women-registry",
+        "path": "data/studies/fisetin-frailty-older-women-registry.json",
+        "change_type": "create",
+        "rationale": "Creates the registry-only study record for the NCT03430037 AFFIRM fisetin frailty trial."
+      },
+      {
+        "record_type": "research_session",
+        "record_id": "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3",
+        "path": "research/sessions/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3.json",
+        "change_type": "create",
+        "rationale": "Records the bounded coverage-repair session and its outcome."
+      },
+      {
+        "record_type": "search_log",
+        "record_id": "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3",
+        "path": "research/search-logs/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3.json",
+        "change_type": "create",
+        "rationale": "Records exact ClinicalTrials.gov v2 queries, dates, result counts, retrieved counts, and selected hit decisions for the surveillance pass."
+      },
+      {
+        "record_type": "screening_run",
+        "record_id": "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3",
+        "path": "research/screening-runs/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3.json",
+        "change_type": "create",
+        "rationale": "Records inclusion, duplicate, and deferred decisions for registry hits discovered during the bounded surveillance pass."
+      }
+    ],
+    "generated_files": [],
+    "export_paths": [
+      "exports/latest/coverage-status.json",
+      "exports/latest/audit-manifest.json",
+      "exports/latest/read-model.sqlite",
+      "ops/triage-state.v1.json",
+      "ops/release-readiness.v1.json",
+      "ops/reconciliation/parallel-reconciliation.v1.json",
+      "ops/codex-batches/orchestration-metrics.v1.json"
+    ]
+  },
+  "quality_checks": [
+    {
+      "check_name": "validate_records",
+      "status": "passed",
+      "summary": "npm run validate:records passed after record creation and coverage-assessment update; validated 616 JSON files."
+    },
+    {
+      "check_name": "audit_references",
+      "status": "passed",
+      "summary": "npm run audit:references passed after repairing no_posted_result maturity and candidate ledger coverage; reference audit passed for 404 record files."
+    },
+    {
+      "check_name": "audit_agent_schemas",
+      "status": "passed",
+      "summary": "npm run audit:agent-schemas passed."
+    },
+    {
+      "check_name": "audit_agentic_process",
+      "status": "passed",
+      "summary": "npm run audit:agentic-process passed for 639 files."
+    },
+    {
+      "check_name": "worker_output_contract",
+      "status": "passed",
+      "summary": "Worker emitted exactly one final JSON agent_run message, matched output_path, and avoided ad hoc schema-validation snippets."
+    },
+    {
+      "check_name": "post_triage_state_export",
+      "status": "passed",
+      "summary": "post_triage_state_export exited 0: > longevity-hallmarks-research@0.1.0 export:triage-state > node scripts/export-triage-state.mjs Wrote ops/triage-state.v1.json."
+    },
+    {
+      "check_name": "post_release_readiness_export",
+      "status": "passed",
+      "summary": "post_release_readiness_export exited 0: > longevity-hallmarks-research@0.1.0 export:release-readiness > node scripts/export-release-readiness.mjs Wrote ops/release-readiness.v1.json."
+    },
+    {
+      "check_name": "post_job_archive",
+      "status": "passed",
+      "summary": "post_job_archive exited 0: > longevity-hallmarks-research@0.1.0 jobs:archive > node scripts/archive-codex-job.mjs --job-file ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3.json {\"type\":\"codex_job.archived\",\"schema_version\":\"1.0.0\",\"job_id\":\"self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3\",\"job_file\":\"ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3.json\",\"archive_path\":\"ops/codex-jobs/archive/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3.json\",\"output_path\":\"research/agent-runs/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3.json\",\"status\":\"succeeded\",\"archived_at\":\"2026-06-30T01:41:37.466Z\",\"dry_run\":false,\"updated_batch_run_paths\":[]}"
+    },
+    {
+      "check_name": "post_self_healing_jobs",
+      "status": "passed",
+      "summary": "post_self_healing_jobs exited 0: \"removed_obsolete_paths\": [], \"removed_obsolete_context_pack_paths\": [ \"ops/extraction-context-packs/self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-4.json\", \"ops/extraction-context-packs/self-healing-coverage-gap-senolytics-safety-tables-followup-3.json\" ] }"
+    },
+    {
+      "check_name": "post_parallel_batch_plan",
+      "status": "passed",
+      "summary": "post_parallel_batch_plan exited 0: > longevity-hallmarks-research@0.1.0 jobs:plan-parallel > node scripts/plan-parallel-codex-batches.mjs Wrote ops/codex-batches/parallel-batch-plan.v1.json."
+    },
+    {
+      "check_name": "post_reconciliation_export",
+      "status": "passed",
+      "summary": "post_reconciliation_export exited 0: > longevity-hallmarks-research@0.1.0 reconcile:parallel > node scripts/reconcile-parallel-outputs.mjs Wrote ops/reconciliation/parallel-reconciliation.v1.json."
+    },
+    {
+      "check_name": "post_orchestration_metrics_export",
+      "status": "passed",
+      "summary": "post_orchestration_metrics_export exited 0: > longevity-hallmarks-research@0.1.0 metrics:orchestration > node scripts/export-orchestration-metrics.mjs Wrote ops/codex-batches/orchestration-metrics.v1.json."
+    },
+    {
+      "check_name": "post_export",
+      "status": "passed",
+      "summary": "post_export exited 0: > longevity-hallmarks-research@0.1.0 export:latest > node scripts/export-latest.mjs Wrote 16 export file(s) to exports/latest."
+    },
+    {
+      "check_name": "post_read_model_export",
+      "status": "passed",
+      "summary": "post_read_model_export exited 0: > longevity-hallmarks-research@0.1.0 export:read-model > node scripts/export-read-model.mjs Wrote exports/latest/read-model.sqlite."
+    },
+    {
+      "check_name": "post_verify",
+      "status": "passed",
+      "summary": "post_verify exited 0: > longevity-hallmarks-research@0.1.0 audit:orchestration-smoke-contract > node scripts/audit-orchestration-smoke-contract.mjs Orchestration smoke contract audit passed for orchestration-smoke-budgeted-codex-worktree-2026-06-23. > longevity-hallmarks-research@0.1.0 audit:agentic-process > node scripts/audit-agentic-process.mjs Agentic process audit passed for 640 file(s)."
+    }
+  ],
+  "blocking_issues": [
+    "Broader ClinicalTrials.gov term surveillance found additional direct active/recruiting senolytic, fisetin, and D+Q candidates, but this bounded worker only retained source snapshots for NCT03430037 and NCT03675724; those additional hits must remain deferred until source-snapshot-backed follow-up."
+  ],
+  "next_actions": [
+    "Coordinator post-run should refresh exports, triage state, release readiness, reconciliation, orchestration metrics, and then run full knowledge-base verification as declared by the job.",
+    "Create a follow-up ClinicalTrials.gov source-snapshot context pack for deferred direct hits from the screening run, prioritizing NCT02848131, NCT04733534, NCT04785300, NCT05593588, NCT05758246, and NCT06018467."
+  ]
+}

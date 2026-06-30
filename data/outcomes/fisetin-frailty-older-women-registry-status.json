@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "outcome",
+  "id": "fisetin-frailty-older-women-registry-status",
+  "name": "NCT03430037 registry status and results posting",
+  "summary": "Registry-status outcome capturing that the 2026-06-30 ClinicalTrials.gov v2 snapshot for NCT03430037 lists enrolling-by-invitation status and no posted results section.",
+  "source_id": "nct-03430037",
+  "study_id": "fisetin-frailty-older-women-registry",
+  "finding_ids": [
+    "fisetin-frailty-older-women-active-no-posted-results"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence"
+  ],
+  "track_ids": [
+    "senolytics"
+  ],
+  "endpoint_category": "registry_status",
+  "measurement_type": "registry_status",
+  "measurement_method": "ClinicalTrials.gov v2 API statusModule and resultsSection presence check",
+  "analysis_role": "registry",
+  "maturity_status": "registry_extracted",
+  "provenance": [
+    {
+      "source_id": "nct-03430037",
+      "source_snapshot_id": "snapshot-nct-03430037-clinicaltrials-v2-2026-06-30",
+      "locator_type": "clinicaltrials_module",
+      "locator": "protocolSection.statusModule.overallStatus; resultsSection",
+      "status": "registry_extracted",
+      "note": "The retained snapshot has overallStatus ENROLLING_BY_INVITATION and no resultsSection object."
+    }
+  ],
+  "population_or_model": "Healthy postmenopausal women age 70 years or older",
+  "directionality_preferred": "not_applicable",
+  "tags": [
+    "clinicaltrials-v2",
+    "trial-watch",
+    "no-posted-results"
+  ]
+}

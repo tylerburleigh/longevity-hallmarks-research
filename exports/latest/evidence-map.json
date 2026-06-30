@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "evidence_map",
   "id": "latest-consumer-evidence-map",
-  "generated_at": "2026-06-30T00:46:11.959Z",
+  "generated_at": "2026-06-30T01:43:25.915Z",
   "scope": {
     "description": "Generated consumer evidence graph over canonical source, study, finding, outcome, result, coverage-assessment, and synthesis-group records.",
     "record_types": [
@@ -17,19 +17,19 @@
   },
   "node_counts": {
     "coverage_assessment": 2,
-    "finding": 9,
-    "outcome": 22,
-    "result": 32,
-    "source": 10,
-    "study": 9,
+    "finding": 11,
+    "outcome": 24,
+    "result": 34,
+    "source": 12,
+    "study": 11,
     "synthesis_group": 8
   },
   "maturity_counts": {
     "abstract_extracted": 18,
     "agent_reviewed": 8,
     "full_text_extracted": 20,
-    "metadata_imported": 18,
-    "registry_extracted": 16,
+    "metadata_imported": 20,
+    "registry_extracted": 24,
     "screened": 6,
     "triage_summary": 17
   },
@@ -150,6 +150,34 @@
       "hallmark_ids": [
         "cellular_senescence",
         "chronic_inflammation"
+      ]
+    },
+    {
+      "record_type": "finding",
+      "id": "fisetin-frailty-older-adults-active-no-posted-results",
+      "name": "NCT03675724 active fisetin frailty registry with no posted results",
+      "maturity_status": "registry_extracted",
+      "evidence_tier": "registry",
+      "direction": "not_applicable",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence"
+      ]
+    },
+    {
+      "record_type": "finding",
+      "id": "fisetin-frailty-older-women-active-no-posted-results",
+      "name": "NCT03430037 active fisetin frailty registry with no posted results",
+      "maturity_status": "registry_extracted",
+      "evidence_tier": "registry",
+      "direction": "not_applicable",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence"
       ]
     },
     {
@@ -454,6 +482,30 @@
     },
     {
       "record_type": "outcome",
+      "id": "fisetin-frailty-older-adults-registry-status",
+      "name": "NCT03675724 registry status and results posting",
+      "maturity_status": "registry_extracted",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence"
+      ]
+    },
+    {
+      "record_type": "outcome",
+      "id": "fisetin-frailty-older-women-registry-status",
+      "name": "NCT03430037 registry status and results posting",
+      "maturity_status": "registry_extracted",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence"
+      ]
+    },
+    {
+      "record_type": "outcome",
       "id": "fisetin-vascular-registry-status",
       "name": "Fisetin vascular function registry result status",
       "maturity_status": "metadata_imported",
@@ -714,11 +766,39 @@
     },
     {
       "record_type": "result",
+      "id": "fisetin-frailty-older-adults-no-posted-results",
+      "name": "NCT03675724 no posted results status",
+      "maturity_status": "metadata_imported",
+      "evidence_tier": "registry",
+      "direction": "not_applicable"
+    },
+    {
+      "record_type": "result",
+      "id": "fisetin-frailty-older-women-no-posted-results",
+      "name": "NCT03430037 no posted results status",
+      "maturity_status": "metadata_imported",
+      "evidence_tier": "registry",
+      "direction": "not_applicable"
+    },
+    {
+      "record_type": "result",
       "id": "fisetin-vascular-no-posted-results",
       "name": "Fisetin vascular trial no posted results",
       "maturity_status": "metadata_imported",
       "evidence_tier": "registry",
       "direction": "inconclusive"
+    },
+    {
+      "record_type": "source",
+      "id": "nct-03430037",
+      "name": "NCT03430037: Alleviation by Fisetin of Frailty, Inflammation, and Related Measures in Older Women",
+      "maturity_status": "registry_extracted"
+    },
+    {
+      "record_type": "source",
+      "id": "nct-03675724",
+      "name": "NCT03675724: Alleviation by Fisetin of Frailty, Inflammation, and Related Measures in Older Adults",
+      "maturity_status": "registry_extracted"
     },
     {
       "record_type": "source",
@@ -857,6 +937,30 @@
       "hallmark_ids": [
         "cellular_senescence",
         "chronic_inflammation"
+      ]
+    },
+    {
+      "record_type": "study",
+      "id": "fisetin-frailty-older-adults-registry",
+      "name": "AFFIRM-LITE fisetin frailty trial in older adults registry",
+      "maturity_status": "registry_extracted",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence"
+      ]
+    },
+    {
+      "record_type": "study",
+      "id": "fisetin-frailty-older-women-registry",
+      "name": "AFFIRM fisetin frailty trial in older women registry",
+      "maturity_status": "registry_extracted",
+      "track_ids": [
+        "senolytics"
+      ],
+      "hallmark_ids": [
+        "cellular_senescence"
       ]
     },
     {
@@ -1073,6 +1177,20 @@
       "from_type": "coverage_assessment",
       "from_id": "senolytics-coverage-repair-2026-06-21",
       "to_type": "finding",
+      "to_id": "fisetin-frailty-older-adults-active-no-posted-results",
+      "relationship": "covers_finding"
+    },
+    {
+      "from_type": "coverage_assessment",
+      "from_id": "senolytics-coverage-repair-2026-06-21",
+      "to_type": "finding",
+      "to_id": "fisetin-frailty-older-women-active-no-posted-results",
+      "relationship": "covers_finding"
+    },
+    {
+      "from_type": "coverage_assessment",
+      "from_id": "senolytics-coverage-repair-2026-06-21",
+      "to_type": "finding",
       "to_id": "fisetin-vascular-active-no-posted-results",
       "relationship": "covers_finding"
     },
@@ -1082,6 +1200,20 @@
       "to_type": "finding",
       "to_id": "senolytic-translation-review-boundary",
       "relationship": "covers_finding"
+    },
+    {
+      "from_type": "coverage_assessment",
+      "from_id": "senolytics-coverage-repair-2026-06-21",
+      "to_type": "source",
+      "to_id": "nct-03430037",
+      "relationship": "covers_source"
+    },
+    {
+      "from_type": "coverage_assessment",
+      "from_id": "senolytics-coverage-repair-2026-06-21",
+      "to_type": "source",
+      "to_id": "nct-03675724",
+      "relationship": "covers_source"
     },
     {
       "from_type": "coverage_assessment",
@@ -1256,6 +1388,34 @@
       "from_id": "dq-stomp-ad-active-no-posted-results",
       "to_type": "source",
       "to_id": "nct-04685590",
+      "relationship": "supported_by"
+    },
+    {
+      "from_type": "finding",
+      "from_id": "fisetin-frailty-older-adults-active-no-posted-results",
+      "to_type": "study",
+      "to_id": "fisetin-frailty-older-adults-registry",
+      "relationship": "describes_study"
+    },
+    {
+      "from_type": "finding",
+      "from_id": "fisetin-frailty-older-adults-active-no-posted-results",
+      "to_type": "source",
+      "to_id": "nct-03675724",
+      "relationship": "supported_by"
+    },
+    {
+      "from_type": "finding",
+      "from_id": "fisetin-frailty-older-women-active-no-posted-results",
+      "to_type": "study",
+      "to_id": "fisetin-frailty-older-women-registry",
+      "relationship": "describes_study"
+    },
+    {
+      "from_type": "finding",
+      "from_id": "fisetin-frailty-older-women-active-no-posted-results",
+      "to_type": "source",
+      "to_id": "nct-03430037",
       "relationship": "supported_by"
     },
     {
@@ -1725,6 +1885,48 @@
       "from_id": "dq-stomp-ad-registry-status",
       "to_type": "finding",
       "to_id": "dq-stomp-ad-active-no-posted-results",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "fisetin-frailty-older-adults-registry-status",
+      "to_type": "source",
+      "to_id": "nct-03675724",
+      "relationship": "defined_from"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "fisetin-frailty-older-adults-registry-status",
+      "to_type": "study",
+      "to_id": "fisetin-frailty-older-adults-registry",
+      "relationship": "measured_in"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "fisetin-frailty-older-adults-registry-status",
+      "to_type": "finding",
+      "to_id": "fisetin-frailty-older-adults-active-no-posted-results",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "fisetin-frailty-older-women-registry-status",
+      "to_type": "source",
+      "to_id": "nct-03430037",
+      "relationship": "defined_from"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "fisetin-frailty-older-women-registry-status",
+      "to_type": "study",
+      "to_id": "fisetin-frailty-older-women-registry",
+      "relationship": "measured_in"
+    },
+    {
+      "from_type": "outcome",
+      "from_id": "fisetin-frailty-older-women-registry-status",
+      "to_type": "finding",
+      "to_id": "fisetin-frailty-older-women-active-no-posted-results",
       "relationship": "supports_finding"
     },
     {
@@ -2618,6 +2820,62 @@
     },
     {
       "from_type": "result",
+      "from_id": "fisetin-frailty-older-adults-no-posted-results",
+      "to_type": "study",
+      "to_id": "fisetin-frailty-older-adults-registry",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "fisetin-frailty-older-adults-no-posted-results",
+      "to_type": "source",
+      "to_id": "nct-03675724",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "fisetin-frailty-older-adults-no-posted-results",
+      "to_type": "outcome",
+      "to_id": "fisetin-frailty-older-adults-registry-status",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "fisetin-frailty-older-adults-no-posted-results",
+      "to_type": "finding",
+      "to_id": "fisetin-frailty-older-adults-active-no-posted-results",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
+      "from_id": "fisetin-frailty-older-women-no-posted-results",
+      "to_type": "study",
+      "to_id": "fisetin-frailty-older-women-registry",
+      "relationship": "belongs_to_study"
+    },
+    {
+      "from_type": "result",
+      "from_id": "fisetin-frailty-older-women-no-posted-results",
+      "to_type": "source",
+      "to_id": "nct-03430037",
+      "relationship": "extracted_from"
+    },
+    {
+      "from_type": "result",
+      "from_id": "fisetin-frailty-older-women-no-posted-results",
+      "to_type": "outcome",
+      "to_id": "fisetin-frailty-older-women-registry-status",
+      "relationship": "quantifies_outcome"
+    },
+    {
+      "from_type": "result",
+      "from_id": "fisetin-frailty-older-women-no-posted-results",
+      "to_type": "finding",
+      "to_id": "fisetin-frailty-older-women-active-no-posted-results",
+      "relationship": "supports_finding"
+    },
+    {
+      "from_type": "result",
       "from_id": "fisetin-vascular-no-posted-results",
       "to_type": "study",
       "to_id": "fisetin-vascular-function-older-adults-registry",
@@ -2691,6 +2949,20 @@
       "from_id": "dq-stomp-ad-phase2-registry",
       "to_type": "source",
       "to_id": "nct-04685590",
+      "relationship": "uses_source"
+    },
+    {
+      "from_type": "study",
+      "from_id": "fisetin-frailty-older-adults-registry",
+      "to_type": "source",
+      "to_id": "nct-03675724",
+      "relationship": "uses_source"
+    },
+    {
+      "from_type": "study",
+      "from_id": "fisetin-frailty-older-women-registry",
+      "to_type": "source",
+      "to_id": "nct-03430037",
       "relationship": "uses_source"
     },
     {

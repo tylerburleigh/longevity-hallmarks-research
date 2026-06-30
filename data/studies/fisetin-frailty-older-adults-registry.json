@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "study",
+  "id": "fisetin-frailty-older-adults-registry",
+  "name": "AFFIRM-LITE fisetin frailty trial in older adults registry",
+  "summary": "ClinicalTrials.gov registry-only record for NCT03675724, a phase 2 randomized placebo-controlled fisetin trial in adults age 70 years or older; the retained v2 API snapshot lists enrolling-by-invitation status and no posted results section.",
+  "study_type": "trial_registry",
+  "status": "recruiting",
+  "maturity_status": "registry_extracted",
+  "provenance": [
+    {
+      "source_id": "nct-03675724",
+      "source_snapshot_id": "snapshot-nct-03675724-clinicaltrials-v2-2026-06-30",
+      "locator_type": "clinicaltrials_module",
+      "locator": "protocolSection.statusModule.overallStatus; protocolSection.designModule; protocolSection.eligibilityModule",
+      "status": "registry_extracted",
+      "note": "Registry status, phase, enrollment, population, and no-results interpretation come from the retained ClinicalTrials.gov v2 snapshot."
+    }
+  ],
+  "phase": "phase_2",
+  "population": "Adults age 70 years or older; registry condition is Frail Elderly Syndrome.",
+  "sample_size": 40,
+  "hallmark_ids": [
+    "cellular_senescence"
+  ],
+  "track_ids": [
+    "senolytics"
+  ],
+  "endpoint_categories": [
+    "biomarker",
+    "functional",
+    "registry_status"
+  ],
+  "source_ids": [
+    "nct-03675724"
+  ],
+  "registry_ids": [
+    "NCT03675724"
+  ],
+  "tags": [
+    "fisetin",
+    "frailty",
+    "older-adults",
+    "registry-only",
+    "no-posted-results"
+  ]
+}

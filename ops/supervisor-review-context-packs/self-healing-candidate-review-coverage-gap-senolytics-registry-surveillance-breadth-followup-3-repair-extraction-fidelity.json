@@ -1,0 +1,345 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "supervisor_review_context_pack",
+  "id": "self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-extraction-fidelity",
+  "pack_type": "candidate_review_lane",
+  "created_at": "2026-06-30T01:39:50Z",
+  "purpose": "Bounded supervisor review for coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair lane extraction_fidelity.",
+  "scope": {
+    "question": "candidate_review: Required review lane is missing: extraction_fidelity.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "target_candidate": {
+    "candidate_change_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair",
+    "path": "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair.json",
+    "lifecycle_status": "submitted",
+    "summary": "Proposes a source-snapshot-backed registry surveillance repair for deferred fisetin frailty registries NCT03430037 and NCT03675724, plus durable search and screening records documenting broader ClinicalTrials.gov senolytics, D+Q, fisetin, and senescence-targeting term surveillance. The candidate keeps the active-trials registry gap open for additional deferred hits that still need their own source snapshots.",
+    "required_review_lanes": [
+      "extraction_fidelity",
+      "safety_limitations",
+      "source_fidelity",
+      "synthesis_boundary",
+      "taxonomy_mapping"
+    ],
+    "proposed_record_count": 17,
+    "proposed_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair",
+        "path": "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair.json",
+        "change_type": "create",
+        "rationale": "Creates the submitted candidate-change ledger required for this coverage-repair proposal."
+      },
+      {
+        "record_type": "coverage_assessment",
+        "record_id": "senolytics-coverage-repair-2026-06-21",
+        "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+        "change_type": "update",
+        "rationale": "Updates the active-trials registry category to include source-snapshot-backed NCT03430037 and NCT03675724 no-posted-results records while preserving an open follow-up gap for additional deferred ClinicalTrials.gov hits."
+      },
+      {
+        "record_type": "finding",
+        "record_id": "fisetin-frailty-older-adults-active-no-posted-results",
+        "path": "data/findings/fisetin-frailty-older-adults-active-no-posted-results.json",
+        "change_type": "create",
+        "rationale": "Adds a source-snapshot-backed registry finding that NCT03675724 is enrolling by invitation with no posted results section."
+      },
+      {
+        "record_type": "finding",
+        "record_id": "fisetin-frailty-older-women-active-no-posted-results",
+        "path": "data/findings/fisetin-frailty-older-women-active-no-posted-results.json",
+        "change_type": "create",
+        "rationale": "Adds a source-snapshot-backed registry finding that NCT03430037 is enrolling by invitation with no posted results section."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "fisetin-frailty-older-adults-registry-status",
+        "path": "data/outcomes/fisetin-frailty-older-adults-registry-status.json",
+        "change_type": "create",
+        "rationale": "Creates the registry-status outcome for the NCT03675724 ClinicalTrials.gov status/results-section check."
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "fisetin-frailty-older-women-registry-status",
+        "path": "data/outcomes/fisetin-frailty-older-women-registry-status.json",
+        "change_type": "create",
+        "rationale": "Creates the registry-status outcome for the NCT03430037 ClinicalTrials.gov status/results-section check."
+      },
+      {
+        "record_type": "result",
+        "record_id": "fisetin-frailty-older-adults-no-posted-results",
+        "path": "data/results/fisetin-frailty-older-adults-no-posted-results.json",
+        "change_type": "create",
+        "rationale": "Adds a no-posted-result registry result for NCT03675724 derived only from the retained ClinicalTrials.gov v2 snapshot."
+      },
+      {
+        "record_type": "result",
+        "record_id": "fisetin-frailty-older-women-no-posted-results",
+        "path": "data/results/fisetin-frailty-older-women-no-posted-results.json",
+        "change_type": "create",
+        "rationale": "Adds a no-posted-result registry result for NCT03430037 derived only from the retained ClinicalTrials.gov v2 snapshot."
+      },
+      {
+        "record_type": "source_snapshot",
+        "record_id": "snapshot-nct-03430037-clinicaltrials-v2-2026-06-30",
+        "path": "data/source-snapshots/snapshot-nct-03430037-clinicaltrials-v2-2026-06-30.json",
+        "change_type": "create",
+        "rationale": "Retains the ClinicalTrials.gov v2 API retrieval metadata, hash, and status/results summary supporting the NCT03430037 no-posted-results records."
+      },
+      {
+        "record_type": "source_snapshot",
+        "record_id": "snapshot-nct-03675724-clinicaltrials-v2-2026-06-30",
+        "path": "data/source-snapshots/snapshot-nct-03675724-clinicaltrials-v2-2026-06-30.json",
+        "change_type": "create",
+        "rationale": "Retains the ClinicalTrials.gov v2 API retrieval metadata, hash, and status/results summary supporting the NCT03675724 no-posted-results records."
+      },
+      {
+        "record_type": "source",
+        "record_id": "nct-03430037",
+        "path": "data/sources/nct-03430037.json",
+        "change_type": "create",
+        "rationale": "Creates the canonical source record for the NCT03430037 ClinicalTrials.gov registry."
+      },
+      {
+        "record_type": "source",
+        "record_id": "nct-03675724",
+        "path": "data/sources/nct-03675724.json",
+        "change_type": "create",
+        "rationale": "Creates the canonical source record for the NCT03675724 ClinicalTrials.gov registry."
+      },
+      {
+        "record_type": "study",
+        "record_id": "fisetin-frailty-older-adults-registry",
+        "path": "data/studies/fisetin-frailty-older-adults-registry.json",
+        "change_type": "create",
+        "rationale": "Creates the registry-only study record for the NCT03675724 AFFIRM-LITE fisetin frailty trial."
+      },
+      {
+        "record_type": "study",
+        "record_id": "fisetin-frailty-older-women-registry",
+        "path": "data/studies/fisetin-frailty-older-women-registry.json",
+        "change_type": "create",
+        "rationale": "Creates the registry-only study record for the NCT03430037 AFFIRM fisetin frailty trial."
+      },
+      {
+        "record_type": "research_session",
+        "record_id": "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3",
+        "path": "research/sessions/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3.json",
+        "change_type": "create",
+        "rationale": "Records the bounded coverage-repair session and its outcome."
+      },
+      {
+        "record_type": "search_log",
+        "record_id": "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3",
+        "path": "research/search-logs/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3.json",
+        "change_type": "create",
+        "rationale": "Records exact ClinicalTrials.gov v2 queries, dates, result counts, retrieved counts, and selected hit decisions for the surveillance pass."
+      },
+      {
+        "record_type": "screening_run",
+        "record_id": "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3",
+        "path": "research/screening-runs/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3.json",
+        "change_type": "create",
+        "rationale": "Records inclusion, duplicate, and deferred decisions for registry hits discovered during the bounded surveillance pass."
+      }
+    ]
+  },
+  "review_lane": "extraction_fidelity",
+  "review_context": {
+    "active_review_records": [],
+    "complete_accepting_review_lanes": [],
+    "missing_review_lanes": [
+      "extraction_fidelity",
+      "safety_limitations",
+      "source_fidelity",
+      "synthesis_boundary",
+      "taxonomy_mapping"
+    ],
+    "open_major_or_critical_review_ids": [],
+    "lane_acceptance_criteria": [
+      "Review only the target candidate and the single review lane named by review_lane.",
+      "Use verdict accept only when the lane is complete, non-blocking, and has no open major or critical findings.",
+      "Use needs_revision or reject when the proposed records fail this lane's source, extraction, taxonomy, synthesis, or safety boundary.",
+      "When the lane is acceptable, include a passed quality_checks[] entry named supervisor_review_lanes in the final agent_run.",
+      "When outputs.proposed_records[] matches the repair candidate ledger, include a passed quality_checks[] entry named candidate_agent_run_ledger_match in the final agent_run."
+    ],
+    "relevant_input_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair",
+        "path": "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair.json",
+        "role": "target_candidate"
+      },
+      {
+        "record_type": "coverage_assessment",
+        "record_id": "senolytics-coverage-repair-2026-06-21",
+        "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "finding",
+        "record_id": "fisetin-frailty-older-adults-active-no-posted-results",
+        "path": "data/findings/fisetin-frailty-older-adults-active-no-posted-results.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "finding",
+        "record_id": "fisetin-frailty-older-women-active-no-posted-results",
+        "path": "data/findings/fisetin-frailty-older-women-active-no-posted-results.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "fisetin-frailty-older-adults-registry-status",
+        "path": "data/outcomes/fisetin-frailty-older-adults-registry-status.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "outcome",
+        "record_id": "fisetin-frailty-older-women-registry-status",
+        "path": "data/outcomes/fisetin-frailty-older-women-registry-status.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "result",
+        "record_id": "fisetin-frailty-older-adults-no-posted-results",
+        "path": "data/results/fisetin-frailty-older-adults-no-posted-results.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "result",
+        "record_id": "fisetin-frailty-older-women-no-posted-results",
+        "path": "data/results/fisetin-frailty-older-women-no-posted-results.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "source_snapshot",
+        "record_id": "snapshot-nct-03430037-clinicaltrials-v2-2026-06-30",
+        "path": "data/source-snapshots/snapshot-nct-03430037-clinicaltrials-v2-2026-06-30.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "source_snapshot",
+        "record_id": "snapshot-nct-03675724-clinicaltrials-v2-2026-06-30",
+        "path": "data/source-snapshots/snapshot-nct-03675724-clinicaltrials-v2-2026-06-30.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "source",
+        "record_id": "nct-03430037",
+        "path": "data/sources/nct-03430037.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "source",
+        "record_id": "nct-03675724",
+        "path": "data/sources/nct-03675724.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "study",
+        "record_id": "fisetin-frailty-older-adults-registry",
+        "path": "data/studies/fisetin-frailty-older-adults-registry.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "study",
+        "record_id": "fisetin-frailty-older-women-registry",
+        "path": "data/studies/fisetin-frailty-older-women-registry.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "screening_run",
+        "record_id": "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3",
+        "path": "research/screening-runs/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "search_log",
+        "record_id": "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3",
+        "path": "research/search-logs/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3.json",
+        "role": "proposed_record"
+      },
+      {
+        "record_type": "research_session",
+        "record_id": "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3",
+        "path": "research/sessions/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3.json",
+        "role": "proposed_record"
+      }
+    ]
+  },
+  "schema_context": {
+    "schema_paths": [
+      "schemas/agent-run.codex-output.schema.json",
+      "schemas/agent-run.schema.json",
+      "schemas/evidence-review.schema.json",
+      "schemas/candidate-change.schema.json"
+    ],
+    "required_fields": [
+      "agent_run.outputs.candidate_change_id",
+      "agent_run.outputs.proposed_records[]",
+      "agent_run.outputs.generated_files[]",
+      "agent_run.quality_checks[]",
+      "candidate_change.proposed_records[]",
+      "candidate_change.required_review_lanes[] equals expected_outputs.required_review_lanes[]",
+      "evidence_review.review_lane",
+      "evidence_review.verdict",
+      "evidence_review.findings[]"
+    ],
+    "known_schema_limitations": [
+      "codex_job.expected_outputs records expected file paths, while this context pack additionally names the evidence_review_id for the lane."
+    ]
+  },
+  "expected_outputs": {
+    "candidate_change_id": "candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-extraction-fidelity-repair",
+    "evidence_review_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-extraction-fidelity",
+    "proposed_record_paths": [
+      "data/candidate-changes/candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-extraction-fidelity-repair.json",
+      "data/evidence-reviews/coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-extraction-fidelity.json"
+    ],
+    "generated_file_paths": [
+      "data/candidate-changes/candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-extraction-fidelity-repair.json",
+      "data/evidence-reviews/coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-extraction-fidelity.json"
+    ],
+    "export_paths": [],
+    "required_review_lanes": [
+      "extraction_fidelity"
+    ]
+  },
+  "verification": {
+    "worker_commands": [
+      "npm run validate:records",
+      "npm run audit:references",
+      "npm run audit:agent-schemas",
+      "npm run audit:agentic-process"
+    ],
+    "coordinator_post_run": [
+      "npm run export:triage-state",
+      "npm run reconcile:parallel",
+      "npm run metrics:orchestration",
+      "npm run export:release-readiness",
+      "npm run export:latest",
+      "npm run verify:knowledge-base"
+    ]
+  },
+  "constraints": [
+    "Create only the repair candidate and evidence_review paths declared in expected_outputs.",
+    "Set the repair candidate required_review_lanes[] exactly to expected_outputs.required_review_lanes[].",
+    "Do not promote, apply, or directly mutate the target candidate during a lane review.",
+    "Do not add open-ended human-judgment escape hatches; make an agentic supervisor verdict from the available records.",
+    "Inspect additional files only when the pack points to them or validation reveals a pack inconsistency.",
+    "Run the listed worker_commands for in-worker checks; leave full export refresh and npm run verify:knowledge-base to coordinator_post_run unless you refresh exports in the same worker.",
+    "If listed worker_commands pass and only exports, triage, release-readiness, reconciliation, metrics, or read-model state is stale, keep the worker status succeeded and note coordinator_post_run refresh rather than marking the run partial.",
+    "Do not perform broad repository searches or full-record dumps for pack-backed reviews; query only the specific ids and paths required by this pack."
+  ],
+  "known_limitations": [
+    "The pack is a compact routing contract, not a replacement for inspecting the target candidate's proposed records.",
+    "Prior review state is summarized from evidence_review_ids already attached to the target candidate."
+  ]
+}

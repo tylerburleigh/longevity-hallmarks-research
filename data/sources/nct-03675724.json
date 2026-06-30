@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "source",
+  "id": "nct-03675724",
+  "name": "NCT03675724: Alleviation by Fisetin of Frailty, Inflammation, and Related Measures in Older Adults",
+  "short_name": "NCT03675724 AFFIRM-LITE fisetin older adults",
+  "summary": "ClinicalTrials.gov registry record for a phase 2 randomized, placebo-controlled fisetin study in older adults; the 2026-06-30 v2 API snapshot lists enrolling-by-invitation status and no posted results section.",
+  "source_type": "trial_registry",
+  "maturity_status": "registry_extracted",
+  "provenance": [
+    {
+      "source_id": "nct-03675724",
+      "source_snapshot_id": "snapshot-nct-03675724-clinicaltrials-v2-2026-06-30",
+      "locator_type": "registry_record",
+      "locator": "ClinicalTrials.gov v2 study record NCT03675724",
+      "status": "registry_extracted",
+      "note": "Registry source created from the retained ClinicalTrials.gov v2 API snapshot."
+    }
+  ],
+  "registry_ids": [
+    "NCT03675724"
+  ],
+  "urls": [
+    "https://clinicaltrials.gov/study/NCT03675724",
+    "https://clinicaltrials.gov/api/v2/studies/NCT03675724"
+  ],
+  "tags": [
+    "senolytics",
+    "fisetin",
+    "trial-watch",
+    "no-posted-results"
+  ]
+}

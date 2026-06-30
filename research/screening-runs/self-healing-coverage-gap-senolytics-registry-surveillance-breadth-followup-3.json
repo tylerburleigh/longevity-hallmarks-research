@@ -1,0 +1,155 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "screening_run",
+  "id": "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3",
+  "name": "Senolytics ClinicalTrials.gov registry surveillance screening follow-up 3",
+  "research_session_id": "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3",
+  "screened_at": "2026-06-30T01:36:00Z",
+  "agent_id": "codex-cli-self-healing-agent",
+  "scope": {
+    "question": "Screen ClinicalTrials.gov registry hits for the senolytics active-trials coverage gap, bounded to NCT03430037, NCT03675724, senolytics, D+Q, fisetin, and senescence-targeting terms.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "screening_rule_set": "coverage-repair registry surveillance: include exact deferred fisetin frailty NCTs only when retained ClinicalTrials.gov snapshots support active no-posted-results status; defer other hits without source snapshots.",
+  "search_log_ids": [
+    "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3"
+  ],
+  "decisions": [
+    {
+      "decision_id": "screen-nct03430037",
+      "reference": "NCT03430037",
+      "source_id": "nct-03430037",
+      "source_title": "Alleviation by Fisetin of Frailty, Inflammation, and Related Measures in Older Women",
+      "url": "https://clinicaltrials.gov/study/NCT03430037",
+      "search_hit_id": "hit-nct03430037",
+      "decision": "included",
+      "reason_category": "registry_only",
+      "next_action": "create_source_record",
+      "rationale": "Declared deferred fisetin frailty registry; the retained ClinicalTrials.gov v2 snapshot shows ENROLLING_BY_INVITATION status and no resultsSection."
+    },
+    {
+      "decision_id": "screen-nct03675724",
+      "reference": "NCT03675724",
+      "source_id": "nct-03675724",
+      "source_title": "Alleviation by Fisetin of Frailty, Inflammation, and Related Measures in Older Adults",
+      "url": "https://clinicaltrials.gov/study/NCT03675724",
+      "search_hit_id": "hit-nct03675724",
+      "decision": "included",
+      "reason_category": "registry_only",
+      "next_action": "create_source_record",
+      "rationale": "Declared deferred fisetin frailty registry; the retained ClinicalTrials.gov v2 snapshot shows ENROLLING_BY_INVITATION status and no resultsSection."
+    },
+    {
+      "decision_id": "screen-nct06133634",
+      "reference": "NCT06133634",
+      "source_id": "nct-06133634",
+      "source_title": "Fisetin to Improve Vascular Function in Older Adults",
+      "url": "https://clinicaltrials.gov/study/NCT06133634",
+      "search_hit_id": "hit-nct06133634",
+      "decision": "duplicate",
+      "reason_category": "duplicate",
+      "duplicate_of_source_id": "nct-06133634",
+      "next_action": "none",
+      "rationale": "The target coverage assessment already lists this active no-posted-results trial-watch source."
+    },
+    {
+      "decision_id": "screen-nct04685590",
+      "reference": "NCT04685590",
+      "source_id": "nct-04685590",
+      "source_title": "Senolytic Therapy to Modulate the Progression of Alzheimer's Disease (SToMP-AD) Study",
+      "url": "https://clinicaltrials.gov/study/NCT04685590",
+      "search_hit_id": "hit-nct04685590",
+      "decision": "duplicate",
+      "reason_category": "duplicate",
+      "duplicate_of_source_id": "nct-04685590",
+      "next_action": "none",
+      "rationale": "The target coverage assessment already lists this active no-posted-results trial-watch source."
+    },
+    {
+      "decision_id": "screen-nct02848131",
+      "reference": "NCT02848131",
+      "source_title": "Senescence in Chronic Kidney Disease",
+      "url": "https://clinicaltrials.gov/study/NCT02848131",
+      "search_hit_id": "hit-nct02848131",
+      "decision": "deferred",
+      "reason_category": "registry_only",
+      "next_action": "defer",
+      "rationale": "Direct D+Q senolytics hit discovered by term surveillance, but this bounded context pack did not declare a source-snapshot path for this registry."
+    },
+    {
+      "decision_id": "screen-nct04733534",
+      "reference": "NCT04733534",
+      "source_title": "An Open-Label Intervention Trial to Reduce Senescence and Improve Frailty in Adult Survivors of Childhood Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT04733534",
+      "search_hit_id": "hit-nct04733534",
+      "decision": "deferred",
+      "reason_category": "registry_only",
+      "next_action": "defer",
+      "rationale": "Active direct senolytic hit discovered by term surveillance; source-snapshot-backed status extraction is needed before proposing any no-results record."
+    },
+    {
+      "decision_id": "screen-nct04785300",
+      "reference": "NCT04785300",
+      "source_title": "ALSENLITE: Senolytics for Alzheimer's Disease",
+      "url": "https://clinicaltrials.gov/study/NCT04785300",
+      "search_hit_id": "hit-nct04785300",
+      "decision": "deferred",
+      "reason_category": "registry_only",
+      "next_action": "defer",
+      "rationale": "Active D+Q Alzheimer's registry hit discovered by term surveillance; source-snapshot-backed status extraction is needed before proposing any no-results record."
+    },
+    {
+      "decision_id": "screen-nct05593588",
+      "reference": "NCT05593588",
+      "source_title": "Senolytics Treatment of Interstitial Lung Disease in Common Variable Immunodeficiency",
+      "url": "https://clinicaltrials.gov/study/NCT05593588",
+      "search_hit_id": "hit-nct05593588",
+      "decision": "deferred",
+      "reason_category": "registry_only",
+      "next_action": "defer",
+      "rationale": "Enrolling-by-invitation fisetin senolytics hit discovered by term surveillance; source-snapshot-backed status extraction is needed before proposing any no-results record."
+    },
+    {
+      "decision_id": "screen-nct05758246",
+      "reference": "NCT05758246",
+      "source_title": "Senolytics To slOw Progression of Sepsis (STOP-Sepsis) Trial",
+      "url": "https://clinicaltrials.gov/study/NCT05758246",
+      "search_hit_id": "hit-nct05758246",
+      "decision": "deferred",
+      "reason_category": "registry_only",
+      "next_action": "defer",
+      "rationale": "Recruiting fisetin senolytics hit discovered by term surveillance; source-snapshot-backed status extraction is needed before proposing any no-results record."
+    },
+    {
+      "decision_id": "screen-nct06018467",
+      "reference": "NCT06018467",
+      "source_title": "Senolytics to Improve Osteoporosis Therapy",
+      "url": "https://clinicaltrials.gov/study/NCT06018467",
+      "search_hit_id": "hit-nct06018467",
+      "decision": "deferred",
+      "reason_category": "registry_only",
+      "next_action": "defer",
+      "rationale": "Active D+Q senolytics hit discovered by term surveillance; source-snapshot-backed status extraction is needed before proposing any no-results record."
+    }
+  ],
+  "included_source_ids": [
+    "nct-03430037",
+    "nct-03675724"
+  ],
+  "candidate_change_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair",
+  "coverage_assessment_id": "senolytics-coverage-repair-2026-06-21",
+  "blocking_issues": [
+    "Additional active/recruiting senolytic registry hits were identified but not converted into no-results records because no retained source snapshots were declared or created for those registries in this bounded worker."
+  ],
+  "summary": "Included NCT03430037 and NCT03675724 because retained ClinicalTrials.gov v2 snapshots support active/enrolling-by-invitation no-posted-results status. Marked existing NCT06133634 and NCT04685590 as duplicates of the target coverage assessment. Deferred additional active/recruiting senolytic, fisetin, and D+Q hits until source-snapshot-backed follow-up.",
+  "next_actions": [
+    "Create a follow-up context pack for deferred direct active/recruiting ClinicalTrials.gov hits from this screening run.",
+    "Do not add no-results records for deferred hits until their own ClinicalTrials.gov source snapshots are retained."
+  ]
+}

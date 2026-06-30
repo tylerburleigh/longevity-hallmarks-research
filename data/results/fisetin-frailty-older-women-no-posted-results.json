@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "result",
+  "id": "fisetin-frailty-older-women-no-posted-results",
+  "name": "NCT03430037 no posted results status",
+  "source_id": "nct-03430037",
+  "study_id": "fisetin-frailty-older-women-registry",
+  "outcome_id": "fisetin-frailty-older-women-registry-status",
+  "finding_ids": [
+    "fisetin-frailty-older-women-active-no-posted-results"
+  ],
+  "sample_size": 40,
+  "result_type": "no_posted_result",
+  "effect": {
+    "measure": "not_reported",
+    "raw_text": "ClinicalTrials.gov v2 study record NCT03430037 retrieved on 2026-06-30 has overallStatus ENROLLING_BY_INVITATION and no resultsSection object."
+  },
+  "direction": "not_applicable",
+  "evidence_tier": "registry",
+  "confidence": "high",
+  "maturity_status": "metadata_imported",
+  "provenance": [
+    {
+      "source_id": "nct-03430037",
+      "source_snapshot_id": "snapshot-nct-03430037-clinicaltrials-v2-2026-06-30",
+      "locator_type": "clinicaltrials_module",
+      "locator": "protocolSection.statusModule.overallStatus; resultsSection",
+      "status": "registry_extracted",
+      "note": "No-results status is derived only from the retained ClinicalTrials.gov v2 snapshot."
+    }
+  ],
+  "statement": "NCT03430037 was enrolling by invitation with no posted ClinicalTrials.gov results section in the 2026-06-30 v2 API snapshot.",
+  "time_horizon": "Registry snapshot retrieved 2026-06-30; estimated completion date listed as 2027-11.",
+  "caveats": [
+    "Registry-only status record; it does not provide efficacy, safety, or durability estimates.",
+    "No human longevity efficacy can be inferred from an active no-posted-results registry entry."
+  ],
+  "tags": [
+    "fisetin",
+    "frailty",
+    "trial-watch",
+    "no-posted-results"
+  ]
+}

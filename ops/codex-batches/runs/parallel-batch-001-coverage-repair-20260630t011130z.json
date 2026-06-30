@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "parallel_batch_run",
+  "id": "parallel-batch-001-coverage-repair-20260630t011130z",
+  "batch_plan_id": "parallel-batch-plan-v1",
+  "batch_plan_path": "ops/codex-batches/parallel-batch-plan.v1.json",
+  "batch_id": "parallel-batch-001-coverage-repair",
+  "batch_sequence": 1,
+  "parallel_group": "coverage-repair",
+  "execution_class": "independent",
+  "reconciliation_required": true,
+  "started_at": "2026-06-30T01:11:30.033Z",
+  "status": "failed",
+  "log_path": "ops/codex-batches/logs/parallel-batch-001-coverage-repair-20260630t011130z.jsonl",
+  "worker_states": [
+    {
+      "job_id": "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3",
+      "job_path": "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3.json",
+      "command": [
+        "npm",
+        "run",
+        "agent:codex:worktree",
+        "--",
+        "--job-file",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3.json",
+        "--execute",
+        "--allow-dirty",
+        "--post-export-verify"
+      ],
+      "status": "failed",
+      "started_at": "2026-06-30T01:11:30.035Z",
+      "worktree_path": "/tmp/lhr-codex-worktrees/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-20260630T011130z",
+      "issues": [
+        "Error: isolated Codex wrapper exited with code 1",
+        "Worker exited with code 1."
+      ],
+      "completed_at": "2026-06-30T01:25:21.940Z",
+      "exit_code": 1,
+      "output_path": "research/agent-runs/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3.json",
+      "worker_log_path": "research/agent-runs/logs/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3.jsonl"
+    }
+  ],
+  "summary": {
+    "planned_count": 0,
+    "running_count": 0,
+    "succeeded_count": 0,
+    "pending_reconciliation_count": 0,
+    "failed_count": 1,
+    "archived_count": 0
+  },
+  "next_actions": [
+    "Inspect batch log events and failed worker logs before rerunning failed jobs."
+  ],
+  "completed_at": "2026-06-30T01:25:21.940Z"
+}

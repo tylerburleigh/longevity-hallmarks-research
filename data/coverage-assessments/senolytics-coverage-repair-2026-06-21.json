@@ -6,10 +6,10 @@
   "track_id": "senolytics",
   "hallmark_id": "cellular_senescence",
   "assessment_type": "coverage_repair",
-  "assessed_at": "2026-06-29T20:07:12Z",
+  "assessed_at": "2026-06-30T01:39:50Z",
   "coverage_verdict": "adequate",
   "coverage_confidence": "moderate",
-  "summary": "The senolytics track has an auditable vertical slice across preclinical D+Q discovery/healthspan evidence, early human biomarker and pilot human studies, a phase 2 randomized bone trial, a 2025 cognition/mobility pilot, translation-review context, risk-of-bias records, and registry-only active trial-watch records. D+Q bone safety extraction now includes registry aggregates, full-text publication-table preferred-term rows beyond headache, and registry/article discontinuation fields. DKD, IPF, and AD-risk records now cite PubMed EFetch source snapshots for metadata-only abstract-level sample, dosing, timepoint, effect, and safety details, with the legacy IPF tolerability result reconciled to the N=12 randomized pilot; those snapshots are not full-text/table sources. Registry surveillance remains incomplete because ClinicalTrials.gov snapshots for deferred fisetin frailty registries could not be fetched in the worker, and the review landscape remains incomplete because no systematic-review or meta-analysis source was screened. Full article/table safety and efficacy extraction for DKD, IPF, AD-risk, and D+Q bone supplement material remains incomplete.",
+  "summary": "The senolytics track has an auditable vertical slice across preclinical D+Q discovery/healthspan evidence, early human biomarker and pilot human studies, a phase 2 randomized bone trial, a 2025 cognition/mobility pilot, translation-review context, risk-of-bias records, and registry-only active trial-watch records. D+Q bone safety extraction now includes registry aggregates, full-text publication-table preferred-term rows beyond headache, and registry/article discontinuation fields. DKD, IPF, and AD-risk records now cite PubMed EFetch source snapshots for metadata-only abstract-level sample, dosing, timepoint, effect, and safety details, with the legacy IPF tolerability result reconciled to the N=12 randomized pilot; those snapshots are not full-text/table sources. Registry surveillance now includes retained ClinicalTrials.gov v2 snapshots for deferred fisetin frailty registries NCT03430037 and NCT03675724, both active/enrolling-by-invitation with no posted results, but broader term screening found additional current senolytic/fisetin/D+Q candidates that remain deferred until their own snapshots are retained. The review landscape remains incomplete because no systematic-review or meta-analysis source was screened. Full article/table safety and efficacy extraction for DKD, IPF, AD-risk, and D+Q bone supplement material remains incomplete.",
   "evidence_categories": [
     {
       "category": "human_interventional",
@@ -92,16 +92,20 @@
     {
       "category": "active_trials_registries",
       "coverage_level": "thin",
-      "rationale": "Two active no-results trial-watch records were added, but the full senolytics registry surface still needs a broader surveillance pass.",
+      "rationale": "Four active no-results trial-watch records are now present, including source-snapshot-backed fisetin frailty registry records for NCT03430037 and NCT03675724. A bounded ClinicalTrials.gov term surveillance pass also logged additional direct active/recruiting senolytic hits that still need source snapshots before no-results records can be proposed.",
       "source_ids": [
         "nct-06133634",
-        "nct-04685590"
+        "nct-04685590",
+        "nct-03430037",
+        "nct-03675724"
       ],
       "finding_ids": [
         "fisetin-vascular-active-no-posted-results",
-        "dq-stomp-ad-active-no-posted-results"
+        "dq-stomp-ad-active-no-posted-results",
+        "fisetin-frailty-older-women-active-no-posted-results",
+        "fisetin-frailty-older-adults-active-no-posted-results"
       ],
-      "gap_note": "Add deferred fisetin frailty registries and associated no-results status records in the next surveillance pass."
+      "gap_note": "Follow-up source snapshots are still needed for additional active/recruiting hits identified in the 2026-06-30 screening run, including direct D+Q and fisetin senolytic registries outside the two declared snapshot paths."
     },
     {
       "category": "recent_reviews_meta_analyses",
@@ -122,12 +126,16 @@
       "source_ids": [
         "pmid-32686219",
         "nct-06133634",
-        "nct-04685590"
+        "nct-04685590",
+        "nct-03430037",
+        "nct-03675724"
       ],
       "finding_ids": [
         "senolytic-translation-review-boundary",
         "fisetin-vascular-active-no-posted-results",
-        "dq-stomp-ad-active-no-posted-results"
+        "dq-stomp-ad-active-no-posted-results",
+        "fisetin-frailty-older-women-active-no-posted-results",
+        "fisetin-frailty-older-adults-active-no-posted-results"
       ]
     }
   ],
@@ -140,7 +148,9 @@
     "pmid-40010154",
     "pmid-32686219",
     "nct-06133634",
-    "nct-04685590"
+    "nct-04685590",
+    "nct-03430037",
+    "nct-03675724"
   ],
   "covered_finding_ids": [
     "dq-senolytic-drug-discovery-preclinical",
@@ -151,7 +161,9 @@
     "dq-ad-risk-pilot-cognition-mobility-signal",
     "senolytic-translation-review-boundary",
     "fisetin-vascular-active-no-posted-results",
-    "dq-stomp-ad-active-no-posted-results"
+    "dq-stomp-ad-active-no-posted-results",
+    "fisetin-frailty-older-women-active-no-posted-results",
+    "fisetin-frailty-older-adults-active-no-posted-results"
   ],
   "known_gaps": [
     {
@@ -174,9 +186,9 @@
       "gap_id": "senolytics-registry-surveillance-breadth",
       "gap_type": "coverage_gap",
       "category": "active_trials_registries",
-      "description": "Only two active no-results registry records are present. The prior coverage-repair session also deferred fisetin frailty registry candidates NCT03430037 and NCT03675724, but this batch could not fetch ClinicalTrials.gov source snapshots for those registries, so broader current fisetin and D+Q trial surveillance remains incomplete.",
+      "description": "Four active no-results registry records are now present, including source-snapshot-backed fisetin frailty registry records for NCT03430037 and NCT03675724. The 2026-06-30 ClinicalTrials.gov surveillance pass also found additional direct active/recruiting senolytic, fisetin, and D+Q candidates, but those records remain deferred because this bounded job retained snapshots only for the two declared fisetin frailty registries.",
       "priority": "medium",
-      "suggested_action": "Run a source-snapshot-backed ClinicalTrials.gov surveillance pass for NCT03430037, NCT03675724, senolytics, D+Q, fisetin, and senescence-targeting terms; add no-results status records only when fetched registry snapshots support them.",
+      "suggested_action": "Run a follow-up source-snapshot-backed ClinicalTrials.gov pass for additional active/recruiting senolytic hits identified in research/screening-runs/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3.json, prioritizing NCT02848131, NCT04733534, NCT04785300, NCT05593588, NCT05758246, and NCT06018467; add no-results status records only when retained registry snapshots support them.",
       "next_recommended_mode": "coverage_repair"
     },
     {
@@ -189,8 +201,8 @@
       "next_recommended_mode": "coverage_repair"
     }
   ],
-  "next_coverage_action": "Run source-snapshot-backed ClinicalTrials.gov surveillance for deferred fisetin frailty registries NCT03430037 and NCT03675724, run a dedicated review-landscape search/screening pass, retain full-text or table-row source snapshots for DKD, IPF, and AD-risk before upgrading beyond PubMed abstract extraction, reconcile any D+Q bone supplement safety material, and keep cross-human safety synthesis blocked until event definitions, denominators, zero semantics, relatedness, and seriousness are harmonized.",
-  "next_recommended_mode": "extraction_refresh",
+  "next_coverage_action": "Run follow-up source-snapshot-backed ClinicalTrials.gov surveillance for additional deferred active/recruiting senolytic hits from the 2026-06-30 screening run, run a dedicated review-landscape search/screening pass, retain full-text or table-row source snapshots for DKD, IPF, and AD-risk before upgrading beyond PubMed abstract extraction, reconcile any D+Q bone supplement safety material, and keep cross-human safety synthesis blocked until event definitions, denominators, zero semantics, relatedness, and seriousness are harmonized.",
+  "next_recommended_mode": "coverage_repair",
   "tags": [
     "senolytics",
     "coverage-repair",
@@ -280,7 +292,23 @@
       "locator_type": "agent_note",
       "locator": "self-healing-coverage-gap-senolytics-registry-surveillance-breadth 2026-06-28",
       "status": "triage_summary",
-      "note": "Bounded registry-surveillance worker preserved the deferred NCT03430037 and NCT03675724 fisetin registry gap because ClinicalTrials.gov source snapshots could not be fetched in the worker."
+      "note": "Prior bounded registry-surveillance worker preserved the deferred NCT03430037 and NCT03675724 fisetin registry gap because ClinicalTrials.gov source snapshots could not be fetched in that worker."
+    },
+    {
+      "source_id": "nct-03430037",
+      "source_snapshot_id": "snapshot-nct-03430037-clinicaltrials-v2-2026-06-30",
+      "locator_type": "registry_record",
+      "locator": "protocolSection.statusModule.overallStatus; resultsSection",
+      "status": "registry_extracted",
+      "note": "ClinicalTrials.gov v2 snapshot fetched for follow-up registry surveillance lists NCT03430037 as ENROLLING_BY_INVITATION and contains no resultsSection object."
+    },
+    {
+      "source_id": "nct-03675724",
+      "source_snapshot_id": "snapshot-nct-03675724-clinicaltrials-v2-2026-06-30",
+      "locator_type": "registry_record",
+      "locator": "protocolSection.statusModule.overallStatus; resultsSection",
+      "status": "registry_extracted",
+      "note": "ClinicalTrials.gov v2 snapshot fetched for follow-up registry surveillance lists NCT03675724 as ENROLLING_BY_INVITATION and contains no resultsSection object."
     },
     {
       "source_id": "pmid-32686219",

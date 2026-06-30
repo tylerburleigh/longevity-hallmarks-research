@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "source",
+  "id": "nct-03430037",
+  "name": "NCT03430037: Alleviation by Fisetin of Frailty, Inflammation, and Related Measures in Older Women",
+  "short_name": "NCT03430037 AFFIRM fisetin older women",
+  "summary": "ClinicalTrials.gov registry record for a phase 2 randomized, placebo-controlled fisetin study in older women; the 2026-06-30 v2 API snapshot lists enrolling-by-invitation status and no posted results section.",
+  "source_type": "trial_registry",
+  "maturity_status": "registry_extracted",
+  "provenance": [
+    {
+      "source_id": "nct-03430037",
+      "source_snapshot_id": "snapshot-nct-03430037-clinicaltrials-v2-2026-06-30",
+      "locator_type": "registry_record",
+      "locator": "ClinicalTrials.gov v2 study record NCT03430037",
+      "status": "registry_extracted",
+      "note": "Registry source created from the retained ClinicalTrials.gov v2 API snapshot."
+    }
+  ],
+  "registry_ids": [
+    "NCT03430037"
+  ],
+  "urls": [
+    "https://clinicaltrials.gov/study/NCT03430037",
+    "https://clinicaltrials.gov/api/v2/studies/NCT03430037"
+  ],
+  "tags": [
+    "senolytics",
+    "fisetin",
+    "trial-watch",
+    "no-posted-results"
+  ]
+}

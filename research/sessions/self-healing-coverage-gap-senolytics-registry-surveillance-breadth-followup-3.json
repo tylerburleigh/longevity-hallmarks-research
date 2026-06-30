@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "research_session",
+  "id": "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3",
+  "name": "Senolytics registry surveillance coverage repair follow-up 3",
+  "mode": "coverage_repair",
+  "started_at": "2026-06-30T01:26:23Z",
+  "completed_at": "2026-06-30T01:39:50Z",
+  "scope": {
+    "question": "coverage_repair: ClinicalTrials.gov surveillance for deferred fisetin frailty registries NCT03430037 and NCT03675724 plus bounded senolytics, D+Q, fisetin, and senescence-targeting term checks.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "selected_via": "queue_default",
+  "outcome": "candidate_change_submitted",
+  "summary": "Retrieved ClinicalTrials.gov v2 source snapshots for NCT03430037 and NCT03675724, confirmed both are enrolling by invitation with no posted results section, and proposed source, study, outcome, result, finding, search-log, screening-run, and coverage-assessment updates through the coverage-gap candidate change. Broader term surveillance was logged and screened enough to identify additional deferred active/recruiting senolytic candidates that still require source snapshots before no-results records can be added.",
+  "candidate_change_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair",
+  "next_recommended_mode": "coverage_repair",
+  "search_log": [
+    {
+      "source_name": "ClinicalTrials.gov v2 API",
+      "query": "NCT03430037",
+      "checked_at": "2026-06-30T01:30:00Z",
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=NCT03430037&pageSize=100&countTotal=true",
+      "summary": "Returned one registry hit, NCT03430037; the study-specific v2 snapshot was fetched and retained as snapshot-nct-03430037-clinicaltrials-v2-2026-06-30."
+    },
+    {
+      "source_name": "ClinicalTrials.gov v2 API",
+      "query": "NCT03675724",
+      "checked_at": "2026-06-30T01:30:00Z",
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=NCT03675724&pageSize=100&countTotal=true",
+      "summary": "Returned one registry hit, NCT03675724; the study-specific v2 snapshot was fetched and retained as snapshot-nct-03675724-clinicaltrials-v2-2026-06-30."
+    },
+    {
+      "source_name": "ClinicalTrials.gov v2 API",
+      "query": "senolytics; senolytic; dasatinib quercetin; D+Q; fisetin; senescence targeting; cellular senescence",
+      "checked_at": "2026-06-30T01:31:00Z",
+      "url": "https://clinicaltrials.gov/api/v2/studies",
+      "summary": "Bounded term checks logged exact counts and screened direct senolytic/fisetin/D+Q hits; additional current candidates were deferred because this context pack only declared source-snapshot output paths for NCT03430037 and NCT03675724."
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "source_snapshot",
+  "id": "snapshot-nct-03675724-clinicaltrials-v2-2026-06-30",
+  "source_id": "nct-03675724",
+  "snapshot_type": "clinicaltrials_v2_study",
+  "retrieved_at": "2026-06-30T01:28:00Z",
+  "url": "https://clinicaltrials.gov/api/v2/studies/NCT03675724",
+  "content_type": "application/json",
+  "content_sha256": "70c0e4f6a8b16848847b08d3ab399d784dd1677b137c3926b4f7970a7e4ae6c1",
+  "payload_summary": {
+    "registry_id": "NCT03675724",
+    "brief_title": "Alleviation by Fisetin of Frailty, Inflammation, and Related Measures in Older Adults",
+    "official_title": "AFFIRM-LITE: A Phase 2 Randomized, Placebo-Controlled Study of Alleviation by Fisetin of Frailty, Inflammation, and Related Measures in Older Adults",
+    "overall_status": "ENROLLING_BY_INVITATION",
+    "last_update_submit_date": "2026-05-19",
+    "start_date": "2018-11-15",
+    "completion_date": "2027-11",
+    "conditions": [
+      "Frail Elderly Syndrome"
+    ],
+    "interventions": [
+      "Fisetin",
+      "Placebo oral capsule"
+    ],
+    "phase": "PHASE2",
+    "enrollment": {
+      "count": 40,
+      "type": "ESTIMATED"
+    },
+    "population": "Adults age 70 years or older with frailty and inflammation-related eligibility context.",
+    "primary_outcome": "Decrease in blood inflammation markers at seven days",
+    "results_section_present": false,
+    "supports_no_posted_results_record": true
+  },
+  "access_policy": {
+    "access_tier": "public_registry",
+    "artifact_policy": "retain_metadata_hashes_and_locators",
+    "safe_artifact_classes": [
+      "metadata_summary",
+      "content_hash",
+      "provenance_locator",
+      "structured_extraction"
+    ],
+    "basis": "ClinicalTrials.gov v2 public registry API was queried for a bounded surveillance pass; the retained snapshot record preserves the API URL, content hash, and registry status/results summary.",
+    "license_or_terms": "ClinicalTrials.gov public registry API",
+    "checked_at": "2026-06-30T01:28:00Z"
+  },
+  "raw_storage": {
+    "stored": false,
+    "reason_not_stored": "No separate raw-payload artifact path was declared for this bounded coverage-repair job; the source snapshot record retains the API URL, SHA-256 hash, and source-backed status/results summary."
+  },
+  "tags": [
+    "clinicaltrials-v2",
+    "senolytics",
+    "fisetin",
+    "registry-surveillance"
+  ]
+}

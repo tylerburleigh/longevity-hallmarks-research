@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "parallel_batch_plan",
   "id": "parallel-batch-plan-v1",
-  "generated_at": "2026-06-30T00:46:11.571Z",
+  "generated_at": "2026-06-30T01:43:25.409Z",
   "source_job_root": "ops/codex-jobs/live",
   "planner_version": "1.0.0",
   "scheduler_policy": {
@@ -15,28 +15,188 @@
     "conflict_policy": "same_group_no_overlap_or_reconciliation"
   },
   "summary": {
-    "live_job_count": 23,
-    "schedulable_job_count": 23,
+    "live_job_count": 27,
+    "schedulable_job_count": 27,
     "deferred_job_count": 0,
-    "batch_count": 8,
+    "batch_count": 11,
     "max_batch_width": 4,
-    "independent_batch_count": 8,
-    "reconciliation_batch_count": 8,
-    "estimated_wall_time_ms": 28800000,
-    "estimated_token_budget": 2300000
+    "independent_batch_count": 11,
+    "reconciliation_batch_count": 9,
+    "estimated_wall_time_ms": 39600000,
+    "estimated_token_budget": 2700000
   },
   "batches": [
     {
-      "batch_id": "parallel-batch-001-coverage-repair",
+      "batch_id": "parallel-batch-001-candidate-review",
       "sequence": 1,
+      "parallel_group": "candidate-review",
+      "execution_class": "independent",
+      "reconciliation_required": false,
+      "job_ids": [
+        "self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-extraction-fidelity",
+        "self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-safety-limitations",
+        "self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-source-fidelity",
+        "self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-synthesis-boundary"
+      ],
+      "job_paths": [
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-extraction-fidelity.json",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-safety-limitations.json",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-source-fidelity.json",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-synthesis-boundary.json"
+      ],
+      "agent_roles": [
+        "supervisor_agent"
+      ],
+      "modes": [
+        "agent_directed"
+      ],
+      "read_sets": [
+        "context_pack:self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-extraction-fidelity",
+        "context_pack:self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-safety-limitations",
+        "context_pack:self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-source-fidelity",
+        "context_pack:self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-synthesis-boundary",
+        "path:data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair.json",
+        "path:ops/triage-state.v1.json",
+        "triage_job:candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair"
+      ],
+      "write_sets": [
+        "candidate_change:candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-extraction-fidelity-repair",
+        "candidate_change:candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-safety-limitations-repair",
+        "candidate_change:candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-source-fidelity-repair",
+        "candidate_change:candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-synthesis-boundary-repair",
+        "candidate_review:coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair/extraction_fidelity",
+        "candidate_review:coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair/safety_limitations",
+        "candidate_review:coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair/source_fidelity",
+        "candidate_review:coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair/synthesis_boundary",
+        "path:data/candidate-changes/candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-extraction-fidelity-repair.json",
+        "path:data/candidate-changes/candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-safety-limitations-repair.json",
+        "path:data/candidate-changes/candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-source-fidelity-repair.json",
+        "path:data/candidate-changes/candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-synthesis-boundary-repair.json",
+        "path:data/evidence-reviews/coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-extraction-fidelity.json",
+        "path:data/evidence-reviews/coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-safety-limitations.json",
+        "path:data/evidence-reviews/coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-source-fidelity.json",
+        "path:data/evidence-reviews/coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-synthesis-boundary.json"
+      ],
+      "conflict_keys": [
+        "candidate_change:candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-extraction-fidelity-repair",
+        "candidate_change:candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-safety-limitations-repair",
+        "candidate_change:candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-source-fidelity-repair",
+        "candidate_change:candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-synthesis-boundary-repair",
+        "candidate_review:coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair/extraction_fidelity",
+        "candidate_review:coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair/safety_limitations",
+        "candidate_review:coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair/source_fidelity",
+        "candidate_review:coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair/synthesis_boundary"
+      ],
+      "overlapping_execution_keys": [],
+      "expected_cost": {
+        "cost_class": "high",
+        "expected_wall_time_ms": 3600000,
+        "expected_token_budget": 400000,
+        "io_intensity": "medium"
+      },
+      "commands": [
+        [
+          "npm",
+          "run",
+          "agent:codex:worktree",
+          "--",
+          "--job-file",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-extraction-fidelity.json",
+          "--execute"
+        ],
+        [
+          "npm",
+          "run",
+          "agent:codex:worktree",
+          "--",
+          "--job-file",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-safety-limitations.json",
+          "--execute"
+        ],
+        [
+          "npm",
+          "run",
+          "agent:codex:worktree",
+          "--",
+          "--job-file",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-source-fidelity.json",
+          "--execute"
+        ],
+        [
+          "npm",
+          "run",
+          "agent:codex:worktree",
+          "--",
+          "--job-file",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-synthesis-boundary.json",
+          "--execute"
+        ]
+      ]
+    },
+    {
+      "batch_id": "parallel-batch-002-candidate-review",
+      "sequence": 2,
+      "parallel_group": "candidate-review",
+      "execution_class": "independent",
+      "reconciliation_required": false,
+      "job_ids": [
+        "self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-taxonomy-mapping"
+      ],
+      "job_paths": [
+        "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-taxonomy-mapping.json"
+      ],
+      "agent_roles": [
+        "supervisor_agent"
+      ],
+      "modes": [
+        "agent_directed"
+      ],
+      "read_sets": [
+        "context_pack:self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-taxonomy-mapping",
+        "path:data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair.json",
+        "path:ops/triage-state.v1.json",
+        "triage_job:candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair"
+      ],
+      "write_sets": [
+        "candidate_change:candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-taxonomy-mapping-repair",
+        "candidate_review:coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair/taxonomy_mapping",
+        "path:data/candidate-changes/candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-taxonomy-mapping-repair.json",
+        "path:data/evidence-reviews/coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-taxonomy-mapping.json"
+      ],
+      "conflict_keys": [
+        "candidate_change:candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-taxonomy-mapping-repair",
+        "candidate_review:coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair/taxonomy_mapping"
+      ],
+      "overlapping_execution_keys": [],
+      "expected_cost": {
+        "cost_class": "high",
+        "expected_wall_time_ms": 3600000,
+        "expected_token_budget": 100000,
+        "io_intensity": "medium"
+      },
+      "commands": [
+        [
+          "npm",
+          "run",
+          "agent:codex:worktree",
+          "--",
+          "--job-file",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair-taxonomy-mapping.json",
+          "--execute"
+        ]
+      ]
+    },
+    {
+      "batch_id": "parallel-batch-003-coverage-repair",
+      "sequence": 3,
       "parallel_group": "coverage-repair",
       "execution_class": "independent",
       "reconciliation_required": true,
       "job_ids": [
-        "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3"
+        "self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-4"
       ],
       "job_paths": [
-        "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3.json"
+        "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-4.json"
       ],
       "agent_roles": [
         "self_healing_agent"
@@ -45,43 +205,21 @@
         "coverage_repair"
       ],
       "read_sets": [
-        "context_pack:self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3",
+        "context_pack:self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-4",
         "path:data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
         "path:ops/triage-state.v1.json",
-        "triage_job:coverage-gap-senolytics-registry-surveillance-breadth-followup-3"
+        "triage_job:coverage-gap-senolytics-exact-effect-extraction-followup-4"
       ],
       "write_sets": [
-        "candidate_change:coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair",
-        "path:data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair.json",
+        "candidate_change:coverage-gap-senolytics-exact-effect-extraction-followup-4-repair",
+        "path:data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-4-repair.json",
         "path:data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
-        "path:data/findings/fisetin-frailty-older-adults-active-no-posted-results.json",
-        "path:data/findings/fisetin-frailty-older-women-active-no-posted-results.json",
-        "path:data/outcomes/fisetin-frailty-older-adults-registry-status.json",
-        "path:data/outcomes/fisetin-frailty-older-women-registry-status.json",
-        "path:data/results/fisetin-frailty-older-adults-no-posted-results.json",
-        "path:data/results/fisetin-frailty-older-women-no-posted-results.json",
-        "path:data/source-snapshots/snapshot-nct-03430037-clinicaltrials-v2-2026-06-30.json",
-        "path:data/source-snapshots/snapshot-nct-03675724-clinicaltrials-v2-2026-06-30.json",
-        "path:data/sources/nct-03430037.json",
-        "path:data/sources/nct-03675724.json",
-        "path:data/studies/fisetin-frailty-older-adults-registry.json",
-        "path:data/studies/fisetin-frailty-older-women-registry.json",
-        "path:research/screening-runs/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3.json",
-        "path:research/search-logs/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3.json",
-        "path:research/sessions/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3.json",
         "target_record:coverage_assessment/senolytics-coverage-repair-2026-06-21"
       ],
       "conflict_keys": [
-        "candidate_change:coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair",
-        "registry_surveillance:coverage-gap-senolytics-registry-surveillance-breadth-followup-3",
-        "source_snapshot:nct-03430037",
-        "source_snapshot:nct-03675724",
-        "source:nct-03430037",
-        "source:nct-03675724",
+        "candidate_change:coverage-gap-senolytics-exact-effect-extraction-followup-4-repair",
         "target_record:coverage_assessment/senolytics-coverage-repair-2026-06-21",
-        "triage_job:coverage-gap-senolytics-registry-surveillance-breadth-followup-3",
-        "trial_registry:nct03430037",
-        "trial_registry:nct03675724"
+        "triage_job:coverage-gap-senolytics-exact-effect-extraction-followup-4"
       ],
       "overlapping_execution_keys": [],
       "expected_cost": {
@@ -97,14 +235,14 @@
           "agent:codex:worktree",
           "--",
           "--job-file",
-          "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3.json",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-4.json",
           "--execute"
         ]
       ]
     },
     {
-      "batch_id": "parallel-batch-002-coverage-repair",
-      "sequence": 2,
+      "batch_id": "parallel-batch-004-coverage-repair",
+      "sequence": 4,
       "parallel_group": "coverage-repair",
       "execution_class": "independent",
       "reconciliation_required": true,
@@ -157,112 +295,45 @@
       ]
     },
     {
-      "batch_id": "parallel-batch-003-extraction-refresh",
-      "sequence": 3,
-      "parallel_group": "extraction-refresh",
+      "batch_id": "parallel-batch-005-coverage-repair",
+      "sequence": 5,
+      "parallel_group": "coverage-repair",
       "execution_class": "independent",
       "reconciliation_required": true,
       "job_ids": [
-        "self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-4",
-        "self-healing-extraction-debt-dq-ad-risk-cognition-mobility-mixed",
-        "self-healing-extraction-debt-dq-ad-risk-serious-adverse-events-none",
-        "self-healing-extraction-debt-dq-bone-bmd-20wk-inconclusive"
+        "self-healing-coverage-gap-senolytics-safety-tables-followup-3"
       ],
       "job_paths": [
-        "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-4.json",
-        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-ad-risk-cognition-mobility-mixed.json",
-        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-ad-risk-serious-adverse-events-none.json",
-        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-bmd-20wk-inconclusive.json"
+        "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-safety-tables-followup-3.json"
       ],
       "agent_roles": [
-        "extraction_agent"
+        "self_healing_agent"
       ],
       "modes": [
-        "extraction_refresh"
+        "coverage_repair"
       ],
       "read_sets": [
-        "context_pack:self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-4",
-        "context_pack:self-healing-extraction-debt-dq-ad-risk-cognition-mobility-mixed",
-        "context_pack:self-healing-extraction-debt-dq-ad-risk-serious-adverse-events-none",
-        "context_pack:self-healing-extraction-debt-dq-bone-bmd-20wk-inconclusive",
+        "context_pack:self-healing-coverage-gap-senolytics-safety-tables-followup-3",
         "path:data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
-        "path:data/outcomes/dq-ad-risk-cognition-mobility.json",
-        "path:data/outcomes/dq-ad-risk-safety-tolerability.json",
-        "path:data/outcomes/dq-bone-adverse-events-20wk.json",
-        "path:data/outcomes/dq-bone-bmd-20wk.json",
-        "path:data/outcomes/dq-bone-ctx-20wk.json",
-        "path:data/outcomes/dq-bone-p1np-20wk.json",
-        "path:data/outcomes/dq-bone-p1np-2wk.json",
-        "path:data/outcomes/dq-bone-p1np-4wk.json",
-        "path:data/outcomes/dq-bone-sasp-2wk.json",
-        "path:data/results/dq-ad-risk-cognition-mobility-mixed.json",
-        "path:data/results/dq-ad-risk-serious-adverse-events-none.json",
-        "path:data/results/dq-bone-adverse-events-20wk-mixed.json",
-        "path:data/results/dq-bone-bmd-20wk-inconclusive.json",
-        "path:data/results/dq-bone-ctx-20wk-null.json",
-        "path:data/results/dq-bone-p1np-20wk-null.json",
-        "path:data/results/dq-bone-p1np-2wk-positive.json",
-        "path:data/results/dq-bone-p1np-4wk-positive.json",
-        "path:data/results/dq-bone-sasp-2wk-null.json",
-        "path:data/source-snapshots/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
-        "path:data/source-snapshots/snapshot-pmid-31542391-pubmed-efetch-2026-06-27.json",
-        "path:data/source-snapshots/snapshot-pmid-36857968-pubmed-efetch-2026-06-27.json",
-        "path:data/source-snapshots/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
-        "path:data/source-snapshots/snapshot-pmid-38956196-pubmed-efetch-2026-06-21.json",
-        "path:data/source-snapshots/snapshot-pmid-40010154-pubmed-efetch-2026-06-27.json",
-        "path:data/sources/nct-04313634.json",
-        "path:data/sources/pmid-40010154.json",
-        "path:data/studies/dq-ad-risk-cognition-mobility-pilot.json",
-        "path:data/studies/dq-postmenopausal-bone-rct.json",
-        "path:data/synthesis-groups/senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21.json",
-        "path:data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
-        "path:data/text-snapshots/text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
-        "path:data/text-snapshots/text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
         "path:ops/triage-state.v1.json",
-        "triage_job:coverage-gap-senolytics-exact-effect-extraction-followup-4",
-        "triage_job:extraction-debt-dq-ad-risk-cognition-mobility-mixed",
-        "triage_job:extraction-debt-dq-ad-risk-serious-adverse-events-none",
-        "triage_job:extraction-debt-dq-bone-bmd-20wk-inconclusive"
+        "triage_job:coverage-gap-senolytics-safety-tables-followup-3"
       ],
       "write_sets": [
-        "candidate_change:coverage-gap-senolytics-exact-effect-extraction-followup-4-repair",
-        "candidate_change:extraction-debt-dq-ad-risk-cognition-mobility-mixed-repair",
-        "candidate_change:extraction-debt-dq-ad-risk-serious-adverse-events-none-repair",
-        "candidate_change:extraction-debt-dq-bone-bmd-20wk-inconclusive-repair",
-        "path:data/candidate-changes/coverage-gap-senolytics-exact-effect-extraction-followup-4-repair.json",
-        "path:data/candidate-changes/extraction-debt-dq-ad-risk-cognition-mobility-mixed-repair.json",
-        "path:data/candidate-changes/extraction-debt-dq-ad-risk-serious-adverse-events-none-repair.json",
-        "path:data/candidate-changes/extraction-debt-dq-bone-bmd-20wk-inconclusive-repair.json",
+        "candidate_change:coverage-gap-senolytics-safety-tables-followup-3-repair",
+        "path:data/candidate-changes/coverage-gap-senolytics-safety-tables-followup-3-repair.json",
         "path:data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
-        "path:data/results/dq-ad-risk-cognition-mobility-mixed.json",
-        "path:data/results/dq-ad-risk-serious-adverse-events-none.json",
-        "path:data/results/dq-bone-bmd-20wk-inconclusive.json",
-        "path:data/synthesis-groups/senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21.json",
-        "path:data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
-        "target_record:coverage_assessment/senolytics-coverage-repair-2026-06-21",
-        "target_record:result/dq-ad-risk-cognition-mobility-mixed",
-        "target_record:result/dq-ad-risk-serious-adverse-events-none",
-        "target_record:result/dq-bone-bmd-20wk-inconclusive"
+        "target_record:coverage_assessment/senolytics-coverage-repair-2026-06-21"
       ],
       "conflict_keys": [
-        "candidate_change:coverage-gap-senolytics-exact-effect-extraction-followup-4-repair",
-        "candidate_change:extraction-debt-dq-ad-risk-cognition-mobility-mixed-repair",
-        "candidate_change:extraction-debt-dq-ad-risk-serious-adverse-events-none-repair",
-        "candidate_change:extraction-debt-dq-bone-bmd-20wk-inconclusive-repair",
+        "candidate_change:coverage-gap-senolytics-safety-tables-followup-3-repair",
         "target_record:coverage_assessment/senolytics-coverage-repair-2026-06-21",
-        "target_record:result/dq-ad-risk-cognition-mobility-mixed",
-        "target_record:result/dq-ad-risk-serious-adverse-events-none",
-        "target_record:result/dq-bone-bmd-20wk-inconclusive",
-        "triage_job:coverage-gap-senolytics-exact-effect-extraction-followup-4",
-        "triage_job:extraction-debt-dq-ad-risk-cognition-mobility-mixed",
-        "triage_job:extraction-debt-dq-ad-risk-serious-adverse-events-none",
-        "triage_job:extraction-debt-dq-bone-bmd-20wk-inconclusive"
+        "triage_job:coverage-gap-senolytics-safety-tables-followup-3"
       ],
       "overlapping_execution_keys": [],
       "expected_cost": {
         "cost_class": "high",
         "expected_wall_time_ms": 3600000,
-        "expected_token_budget": 400000,
+        "expected_token_budget": 100000,
         "io_intensity": "high"
       },
       "commands": [
@@ -272,9 +343,131 @@
           "agent:codex:worktree",
           "--",
           "--job-file",
-          "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-exact-effect-extraction-followup-4.json",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-safety-tables-followup-3.json",
           "--execute"
-        ],
+        ]
+      ]
+    },
+    {
+      "batch_id": "parallel-batch-006-extraction-refresh",
+      "sequence": 6,
+      "parallel_group": "extraction-refresh",
+      "execution_class": "independent",
+      "reconciliation_required": true,
+      "job_ids": [
+        "self-healing-extraction-debt-dq-ad-risk-cognition-mobility-mixed",
+        "self-healing-extraction-debt-dq-ad-risk-serious-adverse-events-none",
+        "self-healing-extraction-debt-dq-bone-bmd-20wk-inconclusive",
+        "self-healing-extraction-debt-dq-bone-p16-t3-ctx-2wk-positive"
+      ],
+      "job_paths": [
+        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-ad-risk-cognition-mobility-mixed.json",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-ad-risk-serious-adverse-events-none.json",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-bmd-20wk-inconclusive.json",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-p16-t3-ctx-2wk-positive.json"
+      ],
+      "agent_roles": [
+        "extraction_agent"
+      ],
+      "modes": [
+        "extraction_refresh"
+      ],
+      "read_sets": [
+        "context_pack:self-healing-extraction-debt-dq-ad-risk-cognition-mobility-mixed",
+        "context_pack:self-healing-extraction-debt-dq-ad-risk-serious-adverse-events-none",
+        "context_pack:self-healing-extraction-debt-dq-bone-bmd-20wk-inconclusive",
+        "context_pack:self-healing-extraction-debt-dq-bone-p16-t3-ctx-2wk-positive",
+        "path:data/outcomes/dq-ad-risk-cognition-mobility.json",
+        "path:data/outcomes/dq-ad-risk-safety-tolerability.json",
+        "path:data/outcomes/dq-bone-adverse-events-20wk.json",
+        "path:data/outcomes/dq-bone-bmd-20wk.json",
+        "path:data/outcomes/dq-bone-ctx-20wk.json",
+        "path:data/outcomes/dq-bone-p16-t3-ctx-2wk.json",
+        "path:data/outcomes/dq-bone-p16-t3-ctx-4wk.json",
+        "path:data/outcomes/dq-bone-p16-t3-p1np-2wk.json",
+        "path:data/outcomes/dq-bone-p16-t3-p1np-4wk.json",
+        "path:data/outcomes/dq-bone-p16-t3-radius-bmd-20wk.json",
+        "path:data/outcomes/dq-bone-p1np-20wk.json",
+        "path:data/outcomes/dq-bone-p1np-2wk.json",
+        "path:data/outcomes/dq-bone-p1np-4wk.json",
+        "path:data/outcomes/dq-bone-sasp-2wk.json",
+        "path:data/results/dq-ad-risk-cognition-mobility-mixed.json",
+        "path:data/results/dq-ad-risk-serious-adverse-events-none.json",
+        "path:data/results/dq-bone-adverse-events-20wk-mixed.json",
+        "path:data/results/dq-bone-bmd-20wk-inconclusive.json",
+        "path:data/results/dq-bone-ctx-20wk-null.json",
+        "path:data/results/dq-bone-p16-t3-ctx-2wk-positive.json",
+        "path:data/results/dq-bone-p16-t3-ctx-4wk-inconclusive.json",
+        "path:data/results/dq-bone-p16-t3-p1np-2wk-positive.json",
+        "path:data/results/dq-bone-p16-t3-p1np-4wk-inconclusive.json",
+        "path:data/results/dq-bone-p16-t3-radius-bmd-20wk-positive.json",
+        "path:data/results/dq-bone-p1np-20wk-null.json",
+        "path:data/results/dq-bone-p1np-2wk-positive.json",
+        "path:data/results/dq-bone-p1np-4wk-positive.json",
+        "path:data/results/dq-bone-sasp-2wk-null.json",
+        "path:data/source-snapshots/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+        "path:data/source-snapshots/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
+        "path:data/source-snapshots/snapshot-pmid-38956196-pubmed-efetch-2026-06-21.json",
+        "path:data/source-snapshots/snapshot-pmid-40010154-pubmed-efetch-2026-06-27.json",
+        "path:data/sources/nct-04313634.json",
+        "path:data/sources/pmid-38956196.json",
+        "path:data/sources/pmid-40010154.json",
+        "path:data/studies/dq-ad-risk-cognition-mobility-pilot.json",
+        "path:data/studies/dq-postmenopausal-bone-rct.json",
+        "path:data/synthesis-groups/senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21.json",
+        "path:data/synthesis-groups/senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22.json",
+        "path:data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
+        "path:data/text-snapshots/text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+        "path:data/text-snapshots/text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
+        "path:ops/triage-state.v1.json",
+        "triage_job:extraction-debt-dq-ad-risk-cognition-mobility-mixed",
+        "triage_job:extraction-debt-dq-ad-risk-serious-adverse-events-none",
+        "triage_job:extraction-debt-dq-bone-bmd-20wk-inconclusive",
+        "triage_job:extraction-debt-dq-bone-p16-t3-ctx-2wk-positive"
+      ],
+      "write_sets": [
+        "candidate_change:extraction-debt-dq-ad-risk-cognition-mobility-mixed-repair",
+        "candidate_change:extraction-debt-dq-ad-risk-serious-adverse-events-none-repair",
+        "candidate_change:extraction-debt-dq-bone-bmd-20wk-inconclusive-repair",
+        "candidate_change:extraction-debt-dq-bone-p16-t3-ctx-2wk-positive-repair",
+        "path:data/candidate-changes/extraction-debt-dq-ad-risk-cognition-mobility-mixed-repair.json",
+        "path:data/candidate-changes/extraction-debt-dq-ad-risk-serious-adverse-events-none-repair.json",
+        "path:data/candidate-changes/extraction-debt-dq-bone-bmd-20wk-inconclusive-repair.json",
+        "path:data/candidate-changes/extraction-debt-dq-bone-p16-t3-ctx-2wk-positive-repair.json",
+        "path:data/results/dq-ad-risk-cognition-mobility-mixed.json",
+        "path:data/results/dq-ad-risk-serious-adverse-events-none.json",
+        "path:data/results/dq-bone-bmd-20wk-inconclusive.json",
+        "path:data/results/dq-bone-p16-t3-ctx-2wk-positive.json",
+        "path:data/synthesis-groups/senolytics-dq-bone-bmd-20wk-synthesis-compatibility-2026-06-21.json",
+        "path:data/synthesis-groups/senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22.json",
+        "path:data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
+        "target_record:result/dq-ad-risk-cognition-mobility-mixed",
+        "target_record:result/dq-ad-risk-serious-adverse-events-none",
+        "target_record:result/dq-bone-bmd-20wk-inconclusive",
+        "target_record:result/dq-bone-p16-t3-ctx-2wk-positive"
+      ],
+      "conflict_keys": [
+        "candidate_change:extraction-debt-dq-ad-risk-cognition-mobility-mixed-repair",
+        "candidate_change:extraction-debt-dq-ad-risk-serious-adverse-events-none-repair",
+        "candidate_change:extraction-debt-dq-bone-bmd-20wk-inconclusive-repair",
+        "candidate_change:extraction-debt-dq-bone-p16-t3-ctx-2wk-positive-repair",
+        "target_record:result/dq-ad-risk-cognition-mobility-mixed",
+        "target_record:result/dq-ad-risk-serious-adverse-events-none",
+        "target_record:result/dq-bone-bmd-20wk-inconclusive",
+        "target_record:result/dq-bone-p16-t3-ctx-2wk-positive",
+        "triage_job:extraction-debt-dq-ad-risk-cognition-mobility-mixed",
+        "triage_job:extraction-debt-dq-ad-risk-serious-adverse-events-none",
+        "triage_job:extraction-debt-dq-bone-bmd-20wk-inconclusive",
+        "triage_job:extraction-debt-dq-bone-p16-t3-ctx-2wk-positive"
+      ],
+      "overlapping_execution_keys": [],
+      "expected_cost": {
+        "cost_class": "high",
+        "expected_wall_time_ms": 3600000,
+        "expected_token_budget": 400000,
+        "io_intensity": "high"
+      },
+      "commands": [
         [
           "npm",
           "run",
@@ -301,26 +494,35 @@
           "--job-file",
           "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-bmd-20wk-inconclusive.json",
           "--execute"
+        ],
+        [
+          "npm",
+          "run",
+          "agent:codex:worktree",
+          "--",
+          "--job-file",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-p16-t3-ctx-2wk-positive.json",
+          "--execute"
         ]
       ]
     },
     {
-      "batch_id": "parallel-batch-004-extraction-refresh",
-      "sequence": 4,
+      "batch_id": "parallel-batch-007-extraction-refresh",
+      "sequence": 7,
       "parallel_group": "extraction-refresh",
       "execution_class": "independent",
       "reconciliation_required": true,
       "job_ids": [
-        "self-healing-coverage-gap-senolytics-safety-tables-followup-3",
         "self-healing-extraction-debt-dq-bone-ctx-20wk-null",
-        "self-healing-extraction-debt-dq-bone-p16-t3-ctx-2wk-positive",
-        "self-healing-extraction-debt-dq-bone-turnover-mixed"
+        "self-healing-extraction-debt-dq-bone-p16-t3-ctx-4wk-inconclusive",
+        "self-healing-extraction-debt-dq-bone-turnover-mixed",
+        "self-healing-extraction-debt-dq-dkd-adverse-events-abstract-not-reported"
       ],
       "job_paths": [
-        "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-safety-tables-followup-3.json",
         "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-ctx-20wk-null.json",
-        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-p16-t3-ctx-2wk-positive.json",
-        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-turnover-mixed.json"
+        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-p16-t3-ctx-4wk-inconclusive.json",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-turnover-mixed.json",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-dkd-adverse-events-abstract-not-reported.json"
       ],
       "agent_roles": [
         "extraction_agent"
@@ -329,11 +531,10 @@
         "extraction_refresh"
       ],
       "read_sets": [
-        "context_pack:self-healing-coverage-gap-senolytics-safety-tables-followup-3",
         "context_pack:self-healing-extraction-debt-dq-bone-ctx-20wk-null",
-        "context_pack:self-healing-extraction-debt-dq-bone-p16-t3-ctx-2wk-positive",
+        "context_pack:self-healing-extraction-debt-dq-bone-p16-t3-ctx-4wk-inconclusive",
         "context_pack:self-healing-extraction-debt-dq-bone-turnover-mixed",
-        "path:data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+        "context_pack:self-healing-extraction-debt-dq-dkd-adverse-events-abstract-not-reported",
         "path:data/outcomes/dq-bone-adverse-events-20wk.json",
         "path:data/outcomes/dq-bone-bmd-20wk.json",
         "path:data/outcomes/dq-bone-ctx-20wk.json",
@@ -347,6 +548,7 @@
         "path:data/outcomes/dq-bone-p1np-4wk.json",
         "path:data/outcomes/dq-bone-sasp-2wk.json",
         "path:data/outcomes/dq-bone-turnover-marker.json",
+        "path:data/outcomes/dq-dkd-safety-tolerability.json",
         "path:data/results/dq-bone-adverse-events-20wk-mixed.json",
         "path:data/results/dq-bone-bmd-20wk-inconclusive.json",
         "path:data/results/dq-bone-ctx-20wk-null.json",
@@ -360,14 +562,15 @@
         "path:data/results/dq-bone-p1np-4wk-positive.json",
         "path:data/results/dq-bone-sasp-2wk-null.json",
         "path:data/results/dq-bone-turnover-mixed.json",
+        "path:data/results/dq-dkd-adverse-events-abstract-not-reported.json",
         "path:data/source-snapshots/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
         "path:data/source-snapshots/snapshot-pmid-31542391-pubmed-efetch-2026-06-27.json",
-        "path:data/source-snapshots/snapshot-pmid-36857968-pubmed-efetch-2026-06-27.json",
         "path:data/source-snapshots/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
         "path:data/source-snapshots/snapshot-pmid-38956196-pubmed-efetch-2026-06-21.json",
-        "path:data/source-snapshots/snapshot-pmid-40010154-pubmed-efetch-2026-06-27.json",
         "path:data/sources/nct-04313634.json",
+        "path:data/sources/pmid-31542391.json",
         "path:data/sources/pmid-38956196.json",
+        "path:data/studies/dq-diabetic-kidney-disease-pilot.json",
         "path:data/studies/dq-postmenopausal-bone-rct.json",
         "path:data/synthesis-groups/senolytics-dq-bone-ctx-20wk-synthesis-compatibility-2026-06-21.json",
         "path:data/synthesis-groups/senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22.json",
@@ -375,45 +578,45 @@
         "path:data/text-snapshots/text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
         "path:data/text-snapshots/text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
         "path:ops/triage-state.v1.json",
-        "triage_job:coverage-gap-senolytics-safety-tables-followup-3",
         "triage_job:extraction-debt-dq-bone-ctx-20wk-null",
-        "triage_job:extraction-debt-dq-bone-p16-t3-ctx-2wk-positive",
-        "triage_job:extraction-debt-dq-bone-turnover-mixed"
+        "triage_job:extraction-debt-dq-bone-p16-t3-ctx-4wk-inconclusive",
+        "triage_job:extraction-debt-dq-bone-turnover-mixed",
+        "triage_job:extraction-debt-dq-dkd-adverse-events-abstract-not-reported"
       ],
       "write_sets": [
-        "candidate_change:coverage-gap-senolytics-safety-tables-followup-3-repair",
         "candidate_change:extraction-debt-dq-bone-ctx-20wk-null-repair",
-        "candidate_change:extraction-debt-dq-bone-p16-t3-ctx-2wk-positive-repair",
+        "candidate_change:extraction-debt-dq-bone-p16-t3-ctx-4wk-inconclusive-repair",
         "candidate_change:extraction-debt-dq-bone-turnover-mixed-repair",
-        "path:data/candidate-changes/coverage-gap-senolytics-safety-tables-followup-3-repair.json",
+        "candidate_change:extraction-debt-dq-dkd-adverse-events-abstract-not-reported-repair",
         "path:data/candidate-changes/extraction-debt-dq-bone-ctx-20wk-null-repair.json",
-        "path:data/candidate-changes/extraction-debt-dq-bone-p16-t3-ctx-2wk-positive-repair.json",
+        "path:data/candidate-changes/extraction-debt-dq-bone-p16-t3-ctx-4wk-inconclusive-repair.json",
         "path:data/candidate-changes/extraction-debt-dq-bone-turnover-mixed-repair.json",
-        "path:data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+        "path:data/candidate-changes/extraction-debt-dq-dkd-adverse-events-abstract-not-reported-repair.json",
         "path:data/results/dq-bone-ctx-20wk-null.json",
-        "path:data/results/dq-bone-p16-t3-ctx-2wk-positive.json",
+        "path:data/results/dq-bone-p16-t3-ctx-4wk-inconclusive.json",
         "path:data/results/dq-bone-turnover-mixed.json",
+        "path:data/results/dq-dkd-adverse-events-abstract-not-reported.json",
         "path:data/synthesis-groups/senolytics-dq-bone-ctx-20wk-synthesis-compatibility-2026-06-21.json",
         "path:data/synthesis-groups/senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22.json",
         "path:data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
-        "target_record:coverage_assessment/senolytics-coverage-repair-2026-06-21",
         "target_record:result/dq-bone-ctx-20wk-null",
-        "target_record:result/dq-bone-p16-t3-ctx-2wk-positive",
-        "target_record:result/dq-bone-turnover-mixed"
+        "target_record:result/dq-bone-p16-t3-ctx-4wk-inconclusive",
+        "target_record:result/dq-bone-turnover-mixed",
+        "target_record:result/dq-dkd-adverse-events-abstract-not-reported"
       ],
       "conflict_keys": [
-        "candidate_change:coverage-gap-senolytics-safety-tables-followup-3-repair",
         "candidate_change:extraction-debt-dq-bone-ctx-20wk-null-repair",
-        "candidate_change:extraction-debt-dq-bone-p16-t3-ctx-2wk-positive-repair",
+        "candidate_change:extraction-debt-dq-bone-p16-t3-ctx-4wk-inconclusive-repair",
         "candidate_change:extraction-debt-dq-bone-turnover-mixed-repair",
-        "target_record:coverage_assessment/senolytics-coverage-repair-2026-06-21",
+        "candidate_change:extraction-debt-dq-dkd-adverse-events-abstract-not-reported-repair",
         "target_record:result/dq-bone-ctx-20wk-null",
-        "target_record:result/dq-bone-p16-t3-ctx-2wk-positive",
+        "target_record:result/dq-bone-p16-t3-ctx-4wk-inconclusive",
         "target_record:result/dq-bone-turnover-mixed",
-        "triage_job:coverage-gap-senolytics-safety-tables-followup-3",
+        "target_record:result/dq-dkd-adverse-events-abstract-not-reported",
         "triage_job:extraction-debt-dq-bone-ctx-20wk-null",
-        "triage_job:extraction-debt-dq-bone-p16-t3-ctx-2wk-positive",
-        "triage_job:extraction-debt-dq-bone-turnover-mixed"
+        "triage_job:extraction-debt-dq-bone-p16-t3-ctx-4wk-inconclusive",
+        "triage_job:extraction-debt-dq-bone-turnover-mixed",
+        "triage_job:extraction-debt-dq-dkd-adverse-events-abstract-not-reported"
       ],
       "overlapping_execution_keys": [],
       "expected_cost": {
@@ -423,15 +626,6 @@
         "io_intensity": "high"
       },
       "commands": [
-        [
-          "npm",
-          "run",
-          "agent:codex:worktree",
-          "--",
-          "--job-file",
-          "ops/codex-jobs/live/generated-self-healing/self-healing-coverage-gap-senolytics-safety-tables-followup-3.json",
-          "--execute"
-        ],
         [
           "npm",
           "run",
@@ -447,7 +641,7 @@
           "agent:codex:worktree",
           "--",
           "--job-file",
-          "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-p16-t3-ctx-2wk-positive.json",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-p16-t3-ctx-4wk-inconclusive.json",
           "--execute"
         ],
         [
@@ -458,146 +652,6 @@
           "--job-file",
           "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-turnover-mixed.json",
           "--execute"
-        ]
-      ]
-    },
-    {
-      "batch_id": "parallel-batch-005-extraction-refresh",
-      "sequence": 5,
-      "parallel_group": "extraction-refresh",
-      "execution_class": "independent",
-      "reconciliation_required": true,
-      "job_ids": [
-        "self-healing-extraction-debt-dq-bone-p16-t3-ctx-4wk-inconclusive",
-        "self-healing-extraction-debt-dq-bone-p1np-20wk-null",
-        "self-healing-extraction-debt-dq-dkd-adverse-events-abstract-not-reported",
-        "self-healing-extraction-debt-dq-dkd-biomarker-positive"
-      ],
-      "job_paths": [
-        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-p16-t3-ctx-4wk-inconclusive.json",
-        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-p1np-20wk-null.json",
-        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-dkd-adverse-events-abstract-not-reported.json",
-        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-dkd-biomarker-positive.json"
-      ],
-      "agent_roles": [
-        "extraction_agent"
-      ],
-      "modes": [
-        "extraction_refresh"
-      ],
-      "read_sets": [
-        "context_pack:self-healing-extraction-debt-dq-bone-p16-t3-ctx-4wk-inconclusive",
-        "context_pack:self-healing-extraction-debt-dq-bone-p1np-20wk-null",
-        "context_pack:self-healing-extraction-debt-dq-dkd-adverse-events-abstract-not-reported",
-        "context_pack:self-healing-extraction-debt-dq-dkd-biomarker-positive",
-        "path:data/outcomes/dq-bone-adverse-events-20wk.json",
-        "path:data/outcomes/dq-bone-bmd-20wk.json",
-        "path:data/outcomes/dq-bone-ctx-20wk.json",
-        "path:data/outcomes/dq-bone-p16-t3-ctx-2wk.json",
-        "path:data/outcomes/dq-bone-p16-t3-ctx-4wk.json",
-        "path:data/outcomes/dq-bone-p16-t3-p1np-2wk.json",
-        "path:data/outcomes/dq-bone-p16-t3-p1np-4wk.json",
-        "path:data/outcomes/dq-bone-p16-t3-radius-bmd-20wk.json",
-        "path:data/outcomes/dq-bone-p1np-20wk.json",
-        "path:data/outcomes/dq-bone-p1np-2wk.json",
-        "path:data/outcomes/dq-bone-p1np-4wk.json",
-        "path:data/outcomes/dq-bone-sasp-2wk.json",
-        "path:data/outcomes/dq-dkd-safety-tolerability.json",
-        "path:data/outcomes/dq-dkd-senescent-cell-biomarkers.json",
-        "path:data/results/dq-bone-adverse-events-20wk-mixed.json",
-        "path:data/results/dq-bone-bmd-20wk-inconclusive.json",
-        "path:data/results/dq-bone-ctx-20wk-null.json",
-        "path:data/results/dq-bone-p16-t3-ctx-2wk-positive.json",
-        "path:data/results/dq-bone-p16-t3-ctx-4wk-inconclusive.json",
-        "path:data/results/dq-bone-p16-t3-p1np-2wk-positive.json",
-        "path:data/results/dq-bone-p16-t3-p1np-4wk-inconclusive.json",
-        "path:data/results/dq-bone-p16-t3-radius-bmd-20wk-positive.json",
-        "path:data/results/dq-bone-p1np-20wk-null.json",
-        "path:data/results/dq-bone-p1np-2wk-positive.json",
-        "path:data/results/dq-bone-p1np-4wk-positive.json",
-        "path:data/results/dq-bone-sasp-2wk-null.json",
-        "path:data/results/dq-dkd-adverse-events-abstract-not-reported.json",
-        "path:data/results/dq-dkd-biomarker-positive.json",
-        "path:data/source-snapshots/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
-        "path:data/source-snapshots/snapshot-pmid-31542391-pubmed-efetch-2026-06-27.json",
-        "path:data/source-snapshots/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
-        "path:data/source-snapshots/snapshot-pmid-38956196-pubmed-efetch-2026-06-21.json",
-        "path:data/sources/nct-04313634.json",
-        "path:data/sources/pmid-31542391.json",
-        "path:data/sources/pmid-38956196.json",
-        "path:data/studies/dq-diabetic-kidney-disease-pilot.json",
-        "path:data/studies/dq-postmenopausal-bone-rct.json",
-        "path:data/synthesis-groups/senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22.json",
-        "path:data/synthesis-groups/senolytics-dq-bone-p1np-20wk-synthesis-compatibility-2026-06-21.json",
-        "path:data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
-        "path:data/text-snapshots/text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
-        "path:data/text-snapshots/text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
-        "path:ops/triage-state.v1.json",
-        "triage_job:extraction-debt-dq-bone-p16-t3-ctx-4wk-inconclusive",
-        "triage_job:extraction-debt-dq-bone-p1np-20wk-null",
-        "triage_job:extraction-debt-dq-dkd-adverse-events-abstract-not-reported",
-        "triage_job:extraction-debt-dq-dkd-biomarker-positive"
-      ],
-      "write_sets": [
-        "candidate_change:extraction-debt-dq-bone-p16-t3-ctx-4wk-inconclusive-repair",
-        "candidate_change:extraction-debt-dq-bone-p1np-20wk-null-repair",
-        "candidate_change:extraction-debt-dq-dkd-adverse-events-abstract-not-reported-repair",
-        "candidate_change:extraction-debt-dq-dkd-biomarker-positive-repair",
-        "path:data/candidate-changes/extraction-debt-dq-bone-p16-t3-ctx-4wk-inconclusive-repair.json",
-        "path:data/candidate-changes/extraction-debt-dq-bone-p1np-20wk-null-repair.json",
-        "path:data/candidate-changes/extraction-debt-dq-dkd-adverse-events-abstract-not-reported-repair.json",
-        "path:data/candidate-changes/extraction-debt-dq-dkd-biomarker-positive-repair.json",
-        "path:data/results/dq-bone-p16-t3-ctx-4wk-inconclusive.json",
-        "path:data/results/dq-bone-p1np-20wk-null.json",
-        "path:data/results/dq-dkd-adverse-events-abstract-not-reported.json",
-        "path:data/results/dq-dkd-biomarker-positive.json",
-        "path:data/synthesis-groups/senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22.json",
-        "path:data/synthesis-groups/senolytics-dq-bone-p1np-20wk-synthesis-compatibility-2026-06-21.json",
-        "path:data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
-        "target_record:result/dq-bone-p16-t3-ctx-4wk-inconclusive",
-        "target_record:result/dq-bone-p1np-20wk-null",
-        "target_record:result/dq-dkd-adverse-events-abstract-not-reported",
-        "target_record:result/dq-dkd-biomarker-positive"
-      ],
-      "conflict_keys": [
-        "candidate_change:extraction-debt-dq-bone-p16-t3-ctx-4wk-inconclusive-repair",
-        "candidate_change:extraction-debt-dq-bone-p1np-20wk-null-repair",
-        "candidate_change:extraction-debt-dq-dkd-adverse-events-abstract-not-reported-repair",
-        "candidate_change:extraction-debt-dq-dkd-biomarker-positive-repair",
-        "target_record:result/dq-bone-p16-t3-ctx-4wk-inconclusive",
-        "target_record:result/dq-bone-p1np-20wk-null",
-        "target_record:result/dq-dkd-adverse-events-abstract-not-reported",
-        "target_record:result/dq-dkd-biomarker-positive",
-        "triage_job:extraction-debt-dq-bone-p16-t3-ctx-4wk-inconclusive",
-        "triage_job:extraction-debt-dq-bone-p1np-20wk-null",
-        "triage_job:extraction-debt-dq-dkd-adverse-events-abstract-not-reported",
-        "triage_job:extraction-debt-dq-dkd-biomarker-positive"
-      ],
-      "overlapping_execution_keys": [],
-      "expected_cost": {
-        "cost_class": "high",
-        "expected_wall_time_ms": 3600000,
-        "expected_token_budget": 400000,
-        "io_intensity": "high"
-      },
-      "commands": [
-        [
-          "npm",
-          "run",
-          "agent:codex:worktree",
-          "--",
-          "--job-file",
-          "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-p16-t3-ctx-4wk-inconclusive.json",
-          "--execute"
-        ],
-        [
-          "npm",
-          "run",
-          "agent:codex:worktree",
-          "--",
-          "--job-file",
-          "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-p1np-20wk-null.json",
-          "--execute"
         ],
         [
           "npm",
@@ -607,35 +661,26 @@
           "--job-file",
           "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-dkd-adverse-events-abstract-not-reported.json",
           "--execute"
-        ],
-        [
-          "npm",
-          "run",
-          "agent:codex:worktree",
-          "--",
-          "--job-file",
-          "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-dkd-biomarker-positive.json",
-          "--execute"
         ]
       ]
     },
     {
-      "batch_id": "parallel-batch-006-extraction-refresh",
-      "sequence": 6,
+      "batch_id": "parallel-batch-008-extraction-refresh",
+      "sequence": 8,
       "parallel_group": "extraction-refresh",
       "execution_class": "independent",
       "reconciliation_required": true,
       "job_ids": [
         "self-healing-extraction-debt-dq-bone-p16-t3-p1np-2wk-positive",
-        "self-healing-extraction-debt-dq-bone-p1np-2wk-positive",
-        "self-healing-extraction-debt-dq-ipf-dosing-completion-mixed",
-        "self-healing-extraction-debt-dq-ipf-tolerability-mixed"
+        "self-healing-extraction-debt-dq-bone-p1np-20wk-null",
+        "self-healing-extraction-debt-dq-dkd-biomarker-positive",
+        "self-healing-extraction-debt-dq-ipf-dosing-completion-mixed"
       ],
       "job_paths": [
         "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-p16-t3-p1np-2wk-positive.json",
-        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-p1np-2wk-positive.json",
-        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-ipf-dosing-completion-mixed.json",
-        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-ipf-tolerability-mixed.json"
+        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-p1np-20wk-null.json",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-dkd-biomarker-positive.json",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-ipf-dosing-completion-mixed.json"
       ],
       "agent_roles": [
         "extraction_agent"
@@ -645,9 +690,9 @@
       ],
       "read_sets": [
         "context_pack:self-healing-extraction-debt-dq-bone-p16-t3-p1np-2wk-positive",
-        "context_pack:self-healing-extraction-debt-dq-bone-p1np-2wk-positive",
+        "context_pack:self-healing-extraction-debt-dq-bone-p1np-20wk-null",
+        "context_pack:self-healing-extraction-debt-dq-dkd-biomarker-positive",
         "context_pack:self-healing-extraction-debt-dq-ipf-dosing-completion-mixed",
-        "context_pack:self-healing-extraction-debt-dq-ipf-tolerability-mixed",
         "path:data/outcomes/dq-bone-adverse-events-20wk.json",
         "path:data/outcomes/dq-bone-bmd-20wk.json",
         "path:data/outcomes/dq-bone-ctx-20wk.json",
@@ -660,8 +705,8 @@
         "path:data/outcomes/dq-bone-p1np-2wk.json",
         "path:data/outcomes/dq-bone-p1np-4wk.json",
         "path:data/outcomes/dq-bone-sasp-2wk.json",
+        "path:data/outcomes/dq-dkd-senescent-cell-biomarkers.json",
         "path:data/outcomes/dq-ipf-dosing-completion-assessments.json",
-        "path:data/outcomes/dq-ipf-feasibility-tolerability.json",
         "path:data/results/dq-bone-adverse-events-20wk-mixed.json",
         "path:data/results/dq-bone-bmd-20wk-inconclusive.json",
         "path:data/results/dq-bone-ctx-20wk-null.json",
@@ -674,62 +719,65 @@
         "path:data/results/dq-bone-p1np-2wk-positive.json",
         "path:data/results/dq-bone-p1np-4wk-positive.json",
         "path:data/results/dq-bone-sasp-2wk-null.json",
+        "path:data/results/dq-dkd-biomarker-positive.json",
         "path:data/results/dq-ipf-dosing-completion-mixed.json",
-        "path:data/results/dq-ipf-tolerability-mixed.json",
         "path:data/source-snapshots/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+        "path:data/source-snapshots/snapshot-pmid-31542391-pubmed-efetch-2026-06-27.json",
         "path:data/source-snapshots/snapshot-pmid-36857968-pubmed-efetch-2026-06-27.json",
         "path:data/source-snapshots/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
         "path:data/source-snapshots/snapshot-pmid-38956196-pubmed-efetch-2026-06-21.json",
         "path:data/sources/nct-04313634.json",
+        "path:data/sources/pmid-31542391.json",
         "path:data/sources/pmid-36857968.json",
         "path:data/sources/pmid-38956196.json",
+        "path:data/studies/dq-diabetic-kidney-disease-pilot.json",
         "path:data/studies/dq-ipf-randomized-pilot.json",
         "path:data/studies/dq-postmenopausal-bone-rct.json",
         "path:data/synthesis-groups/senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22.json",
-        "path:data/synthesis-groups/senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21.json",
+        "path:data/synthesis-groups/senolytics-dq-bone-p1np-20wk-synthesis-compatibility-2026-06-21.json",
         "path:data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
         "path:data/text-snapshots/text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
         "path:data/text-snapshots/text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
         "path:ops/triage-state.v1.json",
         "triage_job:extraction-debt-dq-bone-p16-t3-p1np-2wk-positive",
-        "triage_job:extraction-debt-dq-bone-p1np-2wk-positive",
-        "triage_job:extraction-debt-dq-ipf-dosing-completion-mixed",
-        "triage_job:extraction-debt-dq-ipf-tolerability-mixed"
+        "triage_job:extraction-debt-dq-bone-p1np-20wk-null",
+        "triage_job:extraction-debt-dq-dkd-biomarker-positive",
+        "triage_job:extraction-debt-dq-ipf-dosing-completion-mixed"
       ],
       "write_sets": [
         "candidate_change:extraction-debt-dq-bone-p16-t3-p1np-2wk-positive-repair",
-        "candidate_change:extraction-debt-dq-bone-p1np-2wk-positive-repair",
+        "candidate_change:extraction-debt-dq-bone-p1np-20wk-null-repair",
+        "candidate_change:extraction-debt-dq-dkd-biomarker-positive-repair",
         "candidate_change:extraction-debt-dq-ipf-dosing-completion-mixed-repair",
-        "candidate_change:extraction-debt-dq-ipf-tolerability-mixed-repair",
         "path:data/candidate-changes/extraction-debt-dq-bone-p16-t3-p1np-2wk-positive-repair.json",
-        "path:data/candidate-changes/extraction-debt-dq-bone-p1np-2wk-positive-repair.json",
+        "path:data/candidate-changes/extraction-debt-dq-bone-p1np-20wk-null-repair.json",
+        "path:data/candidate-changes/extraction-debt-dq-dkd-biomarker-positive-repair.json",
         "path:data/candidate-changes/extraction-debt-dq-ipf-dosing-completion-mixed-repair.json",
-        "path:data/candidate-changes/extraction-debt-dq-ipf-tolerability-mixed-repair.json",
         "path:data/results/dq-bone-p16-t3-p1np-2wk-positive.json",
-        "path:data/results/dq-bone-p1np-2wk-positive.json",
+        "path:data/results/dq-bone-p1np-20wk-null.json",
+        "path:data/results/dq-dkd-biomarker-positive.json",
         "path:data/results/dq-ipf-dosing-completion-mixed.json",
-        "path:data/results/dq-ipf-tolerability-mixed.json",
         "path:data/synthesis-groups/senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22.json",
-        "path:data/synthesis-groups/senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21.json",
+        "path:data/synthesis-groups/senolytics-dq-bone-p1np-20wk-synthesis-compatibility-2026-06-21.json",
         "path:data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
         "target_record:result/dq-bone-p16-t3-p1np-2wk-positive",
-        "target_record:result/dq-bone-p1np-2wk-positive",
-        "target_record:result/dq-ipf-dosing-completion-mixed",
-        "target_record:result/dq-ipf-tolerability-mixed"
+        "target_record:result/dq-bone-p1np-20wk-null",
+        "target_record:result/dq-dkd-biomarker-positive",
+        "target_record:result/dq-ipf-dosing-completion-mixed"
       ],
       "conflict_keys": [
         "candidate_change:extraction-debt-dq-bone-p16-t3-p1np-2wk-positive-repair",
-        "candidate_change:extraction-debt-dq-bone-p1np-2wk-positive-repair",
+        "candidate_change:extraction-debt-dq-bone-p1np-20wk-null-repair",
+        "candidate_change:extraction-debt-dq-dkd-biomarker-positive-repair",
         "candidate_change:extraction-debt-dq-ipf-dosing-completion-mixed-repair",
-        "candidate_change:extraction-debt-dq-ipf-tolerability-mixed-repair",
         "target_record:result/dq-bone-p16-t3-p1np-2wk-positive",
-        "target_record:result/dq-bone-p1np-2wk-positive",
+        "target_record:result/dq-bone-p1np-20wk-null",
+        "target_record:result/dq-dkd-biomarker-positive",
         "target_record:result/dq-ipf-dosing-completion-mixed",
-        "target_record:result/dq-ipf-tolerability-mixed",
         "triage_job:extraction-debt-dq-bone-p16-t3-p1np-2wk-positive",
-        "triage_job:extraction-debt-dq-bone-p1np-2wk-positive",
-        "triage_job:extraction-debt-dq-ipf-dosing-completion-mixed",
-        "triage_job:extraction-debt-dq-ipf-tolerability-mixed"
+        "triage_job:extraction-debt-dq-bone-p1np-20wk-null",
+        "triage_job:extraction-debt-dq-dkd-biomarker-positive",
+        "triage_job:extraction-debt-dq-ipf-dosing-completion-mixed"
       ],
       "overlapping_execution_keys": [],
       "expected_cost": {
@@ -754,7 +802,16 @@
           "agent:codex:worktree",
           "--",
           "--job-file",
-          "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-p1np-2wk-positive.json",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-p1np-20wk-null.json",
+          "--execute"
+        ],
+        [
+          "npm",
+          "run",
+          "agent:codex:worktree",
+          "--",
+          "--job-file",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-dkd-biomarker-positive.json",
           "--execute"
         ],
         [
@@ -765,32 +822,25 @@
           "--job-file",
           "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-ipf-dosing-completion-mixed.json",
           "--execute"
-        ],
-        [
-          "npm",
-          "run",
-          "agent:codex:worktree",
-          "--",
-          "--job-file",
-          "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-ipf-tolerability-mixed.json",
-          "--execute"
         ]
       ]
     },
     {
-      "batch_id": "parallel-batch-007-extraction-refresh",
-      "sequence": 7,
+      "batch_id": "parallel-batch-009-extraction-refresh",
+      "sequence": 9,
       "parallel_group": "extraction-refresh",
       "execution_class": "independent",
       "reconciliation_required": true,
       "job_ids": [
         "self-healing-extraction-debt-dq-bone-p16-t3-p1np-4wk-inconclusive",
-        "self-healing-extraction-debt-dq-bone-p1np-4wk-positive",
+        "self-healing-extraction-debt-dq-bone-p1np-2wk-positive",
+        "self-healing-extraction-debt-dq-ipf-tolerability-mixed",
         "self-healing-extraction-debt-dq-old-mouse-survival-positive"
       ],
       "job_paths": [
         "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-p16-t3-p1np-4wk-inconclusive.json",
-        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-p1np-4wk-positive.json",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-p1np-2wk-positive.json",
+        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-ipf-tolerability-mixed.json",
         "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-old-mouse-survival-positive.json"
       ],
       "agent_roles": [
@@ -801,7 +851,8 @@
       ],
       "read_sets": [
         "context_pack:self-healing-extraction-debt-dq-bone-p16-t3-p1np-4wk-inconclusive",
-        "context_pack:self-healing-extraction-debt-dq-bone-p1np-4wk-positive",
+        "context_pack:self-healing-extraction-debt-dq-bone-p1np-2wk-positive",
+        "context_pack:self-healing-extraction-debt-dq-ipf-tolerability-mixed",
         "context_pack:self-healing-extraction-debt-dq-old-mouse-survival-positive",
         "path:data/outcomes/dq-bone-adverse-events-20wk.json",
         "path:data/outcomes/dq-bone-bmd-20wk.json",
@@ -815,6 +866,7 @@
         "path:data/outcomes/dq-bone-p1np-2wk.json",
         "path:data/outcomes/dq-bone-p1np-4wk.json",
         "path:data/outcomes/dq-bone-sasp-2wk.json",
+        "path:data/outcomes/dq-ipf-feasibility-tolerability.json",
         "path:data/outcomes/dq-old-mouse-post-treatment-survival.json",
         "path:data/results/dq-bone-adverse-events-20wk-mixed.json",
         "path:data/results/dq-bone-bmd-20wk-inconclusive.json",
@@ -828,13 +880,17 @@
         "path:data/results/dq-bone-p1np-2wk-positive.json",
         "path:data/results/dq-bone-p1np-4wk-positive.json",
         "path:data/results/dq-bone-sasp-2wk-null.json",
+        "path:data/results/dq-ipf-tolerability-mixed.json",
         "path:data/results/dq-old-mouse-survival-positive.json",
         "path:data/source-snapshots/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+        "path:data/source-snapshots/snapshot-pmid-36857968-pubmed-efetch-2026-06-27.json",
         "path:data/source-snapshots/snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
         "path:data/source-snapshots/snapshot-pmid-38956196-pubmed-efetch-2026-06-21.json",
         "path:data/sources/nct-04313634.json",
         "path:data/sources/pmid-29988130.json",
+        "path:data/sources/pmid-36857968.json",
         "path:data/sources/pmid-38956196.json",
+        "path:data/studies/dq-ipf-randomized-pilot.json",
         "path:data/studies/dq-old-mouse-healthspan-lifespan.json",
         "path:data/studies/dq-postmenopausal-bone-rct.json",
         "path:data/synthesis-groups/senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22.json",
@@ -844,42 +900,50 @@
         "path:data/text-snapshots/text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
         "path:ops/triage-state.v1.json",
         "triage_job:extraction-debt-dq-bone-p16-t3-p1np-4wk-inconclusive",
-        "triage_job:extraction-debt-dq-bone-p1np-4wk-positive",
+        "triage_job:extraction-debt-dq-bone-p1np-2wk-positive",
+        "triage_job:extraction-debt-dq-ipf-tolerability-mixed",
         "triage_job:extraction-debt-dq-old-mouse-survival-positive"
       ],
       "write_sets": [
         "candidate_change:extraction-debt-dq-bone-p16-t3-p1np-4wk-inconclusive-repair",
-        "candidate_change:extraction-debt-dq-bone-p1np-4wk-positive-repair",
+        "candidate_change:extraction-debt-dq-bone-p1np-2wk-positive-repair",
+        "candidate_change:extraction-debt-dq-ipf-tolerability-mixed-repair",
         "candidate_change:extraction-debt-dq-old-mouse-survival-positive-repair",
         "path:data/candidate-changes/extraction-debt-dq-bone-p16-t3-p1np-4wk-inconclusive-repair.json",
-        "path:data/candidate-changes/extraction-debt-dq-bone-p1np-4wk-positive-repair.json",
+        "path:data/candidate-changes/extraction-debt-dq-bone-p1np-2wk-positive-repair.json",
+        "path:data/candidate-changes/extraction-debt-dq-ipf-tolerability-mixed-repair.json",
         "path:data/candidate-changes/extraction-debt-dq-old-mouse-survival-positive-repair.json",
         "path:data/results/dq-bone-p16-t3-p1np-4wk-inconclusive.json",
-        "path:data/results/dq-bone-p1np-4wk-positive.json",
+        "path:data/results/dq-bone-p1np-2wk-positive.json",
+        "path:data/results/dq-ipf-tolerability-mixed.json",
         "path:data/results/dq-old-mouse-survival-positive.json",
         "path:data/synthesis-groups/senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22.json",
         "path:data/synthesis-groups/senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21.json",
         "path:data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
         "target_record:result/dq-bone-p16-t3-p1np-4wk-inconclusive",
-        "target_record:result/dq-bone-p1np-4wk-positive",
+        "target_record:result/dq-bone-p1np-2wk-positive",
+        "target_record:result/dq-ipf-tolerability-mixed",
         "target_record:result/dq-old-mouse-survival-positive"
       ],
       "conflict_keys": [
         "candidate_change:extraction-debt-dq-bone-p16-t3-p1np-4wk-inconclusive-repair",
-        "candidate_change:extraction-debt-dq-bone-p1np-4wk-positive-repair",
+        "candidate_change:extraction-debt-dq-bone-p1np-2wk-positive-repair",
+        "candidate_change:extraction-debt-dq-ipf-tolerability-mixed-repair",
         "candidate_change:extraction-debt-dq-old-mouse-survival-positive-repair",
         "target_record:result/dq-bone-p16-t3-p1np-4wk-inconclusive",
-        "target_record:result/dq-bone-p1np-4wk-positive",
+        "target_record:result/dq-bone-p1np-2wk-positive",
+        "target_record:result/dq-ipf-tolerability-mixed",
         "target_record:result/dq-old-mouse-survival-positive",
         "triage_job:extraction-debt-dq-bone-p16-t3-p1np-4wk-inconclusive",
-        "triage_job:extraction-debt-dq-bone-p1np-4wk-positive",
+        "triage_job:extraction-debt-dq-bone-p1np-2wk-positive",
+        "triage_job:extraction-debt-dq-ipf-tolerability-mixed",
         "triage_job:extraction-debt-dq-old-mouse-survival-positive"
       ],
       "overlapping_execution_keys": [],
       "expected_cost": {
         "cost_class": "high",
         "expected_wall_time_ms": 3600000,
-        "expected_token_budget": 300000,
+        "expected_token_budget": 400000,
         "io_intensity": "high"
       },
       "commands": [
@@ -898,7 +962,16 @@
           "agent:codex:worktree",
           "--",
           "--job-file",
-          "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-p1np-4wk-positive.json",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-p1np-2wk-positive.json",
+          "--execute"
+        ],
+        [
+          "npm",
+          "run",
+          "agent:codex:worktree",
+          "--",
+          "--job-file",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-ipf-tolerability-mixed.json",
           "--execute"
         ],
         [
@@ -913,18 +986,18 @@
       ]
     },
     {
-      "batch_id": "parallel-batch-008-extraction-refresh",
-      "sequence": 8,
+      "batch_id": "parallel-batch-010-extraction-refresh",
+      "sequence": 10,
       "parallel_group": "extraction-refresh",
       "execution_class": "independent",
       "reconciliation_required": true,
       "job_ids": [
         "self-healing-extraction-debt-dq-bone-p16-t3-radius-bmd-20wk-positive",
-        "self-healing-extraction-debt-dq-bone-sasp-2wk-null"
+        "self-healing-extraction-debt-dq-bone-p1np-4wk-positive"
       ],
       "job_paths": [
         "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-p16-t3-radius-bmd-20wk-positive.json",
-        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-sasp-2wk-null.json"
+        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-p1np-4wk-positive.json"
       ],
       "agent_roles": [
         "extraction_agent"
@@ -934,7 +1007,7 @@
       ],
       "read_sets": [
         "context_pack:self-healing-extraction-debt-dq-bone-p16-t3-radius-bmd-20wk-positive",
-        "context_pack:self-healing-extraction-debt-dq-bone-sasp-2wk-null",
+        "context_pack:self-healing-extraction-debt-dq-bone-p1np-4wk-positive",
         "path:data/outcomes/dq-bone-adverse-events-20wk.json",
         "path:data/outcomes/dq-bone-bmd-20wk.json",
         "path:data/outcomes/dq-bone-ctx-20wk.json",
@@ -966,34 +1039,34 @@
         "path:data/sources/pmid-38956196.json",
         "path:data/studies/dq-postmenopausal-bone-rct.json",
         "path:data/synthesis-groups/senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22.json",
+        "path:data/synthesis-groups/senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21.json",
         "path:data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
-        "path:data/synthesis-groups/senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21.json",
         "path:data/text-snapshots/text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
         "path:data/text-snapshots/text-snapshot-pmid-38956196-pmc-author-manuscript-2026-06-22.json",
         "path:ops/triage-state.v1.json",
         "triage_job:extraction-debt-dq-bone-p16-t3-radius-bmd-20wk-positive",
-        "triage_job:extraction-debt-dq-bone-sasp-2wk-null"
+        "triage_job:extraction-debt-dq-bone-p1np-4wk-positive"
       ],
       "write_sets": [
         "candidate_change:extraction-debt-dq-bone-p16-t3-radius-bmd-20wk-positive-repair",
-        "candidate_change:extraction-debt-dq-bone-sasp-2wk-null-repair",
+        "candidate_change:extraction-debt-dq-bone-p1np-4wk-positive-repair",
         "path:data/candidate-changes/extraction-debt-dq-bone-p16-t3-radius-bmd-20wk-positive-repair.json",
-        "path:data/candidate-changes/extraction-debt-dq-bone-sasp-2wk-null-repair.json",
+        "path:data/candidate-changes/extraction-debt-dq-bone-p1np-4wk-positive-repair.json",
         "path:data/results/dq-bone-p16-t3-radius-bmd-20wk-positive.json",
-        "path:data/results/dq-bone-sasp-2wk-null.json",
+        "path:data/results/dq-bone-p1np-4wk-positive.json",
         "path:data/synthesis-groups/senolytics-dq-bone-p16-t3-subgroup-synthesis-compatibility-2026-06-22.json",
+        "path:data/synthesis-groups/senolytics-dq-bone-p1np-short-term-synthesis-compatibility-2026-06-21.json",
         "path:data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
-        "path:data/synthesis-groups/senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21.json",
         "target_record:result/dq-bone-p16-t3-radius-bmd-20wk-positive",
-        "target_record:result/dq-bone-sasp-2wk-null"
+        "target_record:result/dq-bone-p1np-4wk-positive"
       ],
       "conflict_keys": [
         "candidate_change:extraction-debt-dq-bone-p16-t3-radius-bmd-20wk-positive-repair",
-        "candidate_change:extraction-debt-dq-bone-sasp-2wk-null-repair",
+        "candidate_change:extraction-debt-dq-bone-p1np-4wk-positive-repair",
         "target_record:result/dq-bone-p16-t3-radius-bmd-20wk-positive",
-        "target_record:result/dq-bone-sasp-2wk-null",
+        "target_record:result/dq-bone-p1np-4wk-positive",
         "triage_job:extraction-debt-dq-bone-p16-t3-radius-bmd-20wk-positive",
-        "triage_job:extraction-debt-dq-bone-sasp-2wk-null"
+        "triage_job:extraction-debt-dq-bone-p1np-4wk-positive"
       ],
       "overlapping_execution_keys": [],
       "expected_cost": {
@@ -1012,6 +1085,82 @@
           "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-p16-t3-radius-bmd-20wk-positive.json",
           "--execute"
         ],
+        [
+          "npm",
+          "run",
+          "agent:codex:worktree",
+          "--",
+          "--job-file",
+          "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-p1np-4wk-positive.json",
+          "--execute"
+        ]
+      ]
+    },
+    {
+      "batch_id": "parallel-batch-011-extraction-refresh",
+      "sequence": 11,
+      "parallel_group": "extraction-refresh",
+      "execution_class": "independent",
+      "reconciliation_required": true,
+      "job_ids": [
+        "self-healing-extraction-debt-dq-bone-sasp-2wk-null"
+      ],
+      "job_paths": [
+        "ops/codex-jobs/live/generated-self-healing/self-healing-extraction-debt-dq-bone-sasp-2wk-null.json"
+      ],
+      "agent_roles": [
+        "extraction_agent"
+      ],
+      "modes": [
+        "extraction_refresh"
+      ],
+      "read_sets": [
+        "context_pack:self-healing-extraction-debt-dq-bone-sasp-2wk-null",
+        "path:data/outcomes/dq-bone-adverse-events-20wk.json",
+        "path:data/outcomes/dq-bone-bmd-20wk.json",
+        "path:data/outcomes/dq-bone-ctx-20wk.json",
+        "path:data/outcomes/dq-bone-p1np-20wk.json",
+        "path:data/outcomes/dq-bone-p1np-2wk.json",
+        "path:data/outcomes/dq-bone-p1np-4wk.json",
+        "path:data/outcomes/dq-bone-sasp-2wk.json",
+        "path:data/results/dq-bone-adverse-events-20wk-mixed.json",
+        "path:data/results/dq-bone-bmd-20wk-inconclusive.json",
+        "path:data/results/dq-bone-ctx-20wk-null.json",
+        "path:data/results/dq-bone-p1np-20wk-null.json",
+        "path:data/results/dq-bone-p1np-2wk-positive.json",
+        "path:data/results/dq-bone-p1np-4wk-positive.json",
+        "path:data/results/dq-bone-sasp-2wk-null.json",
+        "path:data/source-snapshots/snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+        "path:data/source-snapshots/snapshot-pmid-38956196-pubmed-efetch-2026-06-21.json",
+        "path:data/sources/nct-04313634.json",
+        "path:data/studies/dq-postmenopausal-bone-rct.json",
+        "path:data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
+        "path:data/synthesis-groups/senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21.json",
+        "path:data/text-snapshots/text-snapshot-nct-04313634-clinicaltrials-v2-2026-06-21.json",
+        "path:ops/triage-state.v1.json",
+        "triage_job:extraction-debt-dq-bone-sasp-2wk-null"
+      ],
+      "write_sets": [
+        "candidate_change:extraction-debt-dq-bone-sasp-2wk-null-repair",
+        "path:data/candidate-changes/extraction-debt-dq-bone-sasp-2wk-null-repair.json",
+        "path:data/results/dq-bone-sasp-2wk-null.json",
+        "path:data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
+        "path:data/synthesis-groups/senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21.json",
+        "target_record:result/dq-bone-sasp-2wk-null"
+      ],
+      "conflict_keys": [
+        "candidate_change:extraction-debt-dq-bone-sasp-2wk-null-repair",
+        "target_record:result/dq-bone-sasp-2wk-null",
+        "triage_job:extraction-debt-dq-bone-sasp-2wk-null"
+      ],
+      "overlapping_execution_keys": [],
+      "expected_cost": {
+        "cost_class": "high",
+        "expected_wall_time_ms": 3600000,
+        "expected_token_budget": 100000,
+        "io_intensity": "high"
+      },
+      "commands": [
         [
           "npm",
           "run",

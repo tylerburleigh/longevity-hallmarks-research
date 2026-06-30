@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "orchestration_metrics",
   "id": "orchestration-metrics-v1",
-  "generated_at": "2026-06-30T00:46:11.806Z",
+  "generated_at": "2026-06-30T01:43:26.348Z",
   "source_roots": [
     "data",
     "exports/latest",
@@ -42,34 +42,34 @@
     ]
   },
   "summary": {
-    "planned_live_job_count": 23,
-    "archived_job_count": 72,
-    "planned_parallel_batch_count": 8,
-    "planned_parallel_worker_count": 23,
-    "planned_independent_batch_count": 8,
-    "planned_reconciliation_batch_count": 8,
+    "planned_live_job_count": 27,
+    "archived_job_count": 73,
+    "planned_parallel_batch_count": 11,
+    "planned_parallel_worker_count": 27,
+    "planned_independent_batch_count": 11,
+    "planned_reconciliation_batch_count": 9,
     "reconciliation_open_batch_count": 0,
-    "reconciliation_pending_batch_count": 8,
+    "reconciliation_pending_batch_count": 9,
     "max_planned_batch_width": 4,
-    "planned_serial_wall_time_ms": 82800000,
-    "planned_parallel_wall_time_ms": 28800000,
-    "planned_wall_time_savings_ms": 54000000,
-    "planned_speedup_ratio": 2.875,
-    "executed_parallel_batch_run_count": 28,
-    "executed_worker_count": 77,
-    "failed_worker_count": 21,
+    "planned_serial_wall_time_ms": 97200000,
+    "planned_parallel_wall_time_ms": 39600000,
+    "planned_wall_time_savings_ms": 57600000,
+    "planned_speedup_ratio": 2.4545,
+    "executed_parallel_batch_run_count": 30,
+    "executed_worker_count": 79,
+    "failed_worker_count": 22,
     "actionable_failed_worker_count": 0,
-    "historical_failed_worker_count": 21,
+    "historical_failed_worker_count": 22,
     "pending_reconciliation_worker_count": 0,
-    "succeeded_worker_count": 56,
-    "actual_worker_wall_time_ms": 23561110,
-    "actual_batch_wall_time_ms": 11406606,
-    "agent_run_count": 97,
-    "succeeded_agent_run_count": 82,
+    "succeeded_worker_count": 57,
+    "actual_worker_wall_time_ms": 25312376,
+    "actual_batch_wall_time_ms": 13157877,
+    "agent_run_count": 98,
+    "succeeded_agent_run_count": 83,
     "partial_agent_run_count": 15,
     "failed_agent_run_count": 0,
     "actionable_partial_or_failed_agent_run_count": 0,
-    "agent_run_wall_time_ms": 33671000,
+    "agent_run_wall_time_ms": 34514000,
     "duplicate_work_group_count": 0,
     "duplicate_work_record_count": 0,
     "conflict_finding_count": 0,
@@ -90,31 +90,62 @@
   "planned_parallelism": {
     "by_parallel_group": [
       {
-        "parallel_group": "coverage-repair",
+        "parallel_group": "candidate-review",
         "batch_count": 2,
-        "job_count": 2,
+        "job_count": 5,
         "independent_batch_count": 2,
-        "reconciliation_batch_count": 2,
-        "max_batch_width": 1,
+        "reconciliation_batch_count": 0,
+        "max_batch_width": 4,
         "expected_wall_time_ms": 7200000,
-        "expected_token_budget": 200000,
+        "expected_token_budget": 500000,
+        "overlapping_execution_key_count": 0
+      },
+      {
+        "parallel_group": "coverage-repair",
+        "batch_count": 3,
+        "job_count": 3,
+        "independent_batch_count": 3,
+        "reconciliation_batch_count": 3,
+        "max_batch_width": 1,
+        "expected_wall_time_ms": 10800000,
+        "expected_token_budget": 300000,
         "overlapping_execution_key_count": 0
       },
       {
         "parallel_group": "extraction-refresh",
         "batch_count": 6,
-        "job_count": 21,
+        "job_count": 19,
         "independent_batch_count": 6,
         "reconciliation_batch_count": 6,
         "max_batch_width": 4,
         "expected_wall_time_ms": 21600000,
-        "expected_token_budget": 2100000,
+        "expected_token_budget": 1900000,
         "overlapping_execution_key_count": 0
       }
     ],
     "batches": [
       {
-        "batch_id": "parallel-batch-001-coverage-repair",
+        "batch_id": "parallel-batch-001-candidate-review",
+        "parallel_group": "candidate-review",
+        "execution_class": "independent",
+        "reconciliation_required": false,
+        "job_count": 4,
+        "expected_wall_time_ms": 3600000,
+        "expected_token_budget": 400000,
+        "overlapping_execution_key_count": 0
+      },
+      {
+        "batch_id": "parallel-batch-002-candidate-review",
+        "parallel_group": "candidate-review",
+        "execution_class": "independent",
+        "reconciliation_required": false,
+        "job_count": 1,
+        "expected_wall_time_ms": 3600000,
+        "expected_token_budget": 100000,
+        "overlapping_execution_key_count": 0
+      },
+      {
+        "batch_id": "parallel-batch-003-coverage-repair",
         "parallel_group": "coverage-repair",
         "execution_class": "independent",
         "reconciliation_required": true,
@@ -124,7 +155,7 @@
         "overlapping_execution_key_count": 0
       },
       {
-        "batch_id": "parallel-batch-002-coverage-repair",
+        "batch_id": "parallel-batch-004-coverage-repair",
         "parallel_group": "coverage-repair",
         "execution_class": "independent",
         "reconciliation_required": true,
@@ -134,33 +165,13 @@
         "overlapping_execution_key_count": 0
       },
       {
-        "batch_id": "parallel-batch-003-extraction-refresh",
-        "parallel_group": "extraction-refresh",
+        "batch_id": "parallel-batch-005-coverage-repair",
+        "parallel_group": "coverage-repair",
         "execution_class": "independent",
         "reconciliation_required": true,
-        "job_count": 4,
+        "job_count": 1,
         "expected_wall_time_ms": 3600000,
-        "expected_token_budget": 400000,
-        "overlapping_execution_key_count": 0
-      },
-      {
-        "batch_id": "parallel-batch-004-extraction-refresh",
-        "parallel_group": "extraction-refresh",
-        "execution_class": "independent",
-        "reconciliation_required": true,
-        "job_count": 4,
-        "expected_wall_time_ms": 3600000,
-        "expected_token_budget": 400000,
-        "overlapping_execution_key_count": 0
-      },
-      {
-        "batch_id": "parallel-batch-005-extraction-refresh",
-        "parallel_group": "extraction-refresh",
-        "execution_class": "independent",
-        "reconciliation_required": true,
-        "job_count": 4,
-        "expected_wall_time_ms": 3600000,
-        "expected_token_budget": 400000,
+        "expected_token_budget": 100000,
         "overlapping_execution_key_count": 0
       },
       {
@@ -178,9 +189,9 @@
         "parallel_group": "extraction-refresh",
         "execution_class": "independent",
         "reconciliation_required": true,
-        "job_count": 3,
+        "job_count": 4,
         "expected_wall_time_ms": 3600000,
-        "expected_token_budget": 300000,
+        "expected_token_budget": 400000,
         "overlapping_execution_key_count": 0
       },
       {
@@ -188,9 +199,39 @@
         "parallel_group": "extraction-refresh",
         "execution_class": "independent",
         "reconciliation_required": true,
+        "job_count": 4,
+        "expected_wall_time_ms": 3600000,
+        "expected_token_budget": 400000,
+        "overlapping_execution_key_count": 0
+      },
+      {
+        "batch_id": "parallel-batch-009-extraction-refresh",
+        "parallel_group": "extraction-refresh",
+        "execution_class": "independent",
+        "reconciliation_required": true,
+        "job_count": 4,
+        "expected_wall_time_ms": 3600000,
+        "expected_token_budget": 400000,
+        "overlapping_execution_key_count": 0
+      },
+      {
+        "batch_id": "parallel-batch-010-extraction-refresh",
+        "parallel_group": "extraction-refresh",
+        "execution_class": "independent",
+        "reconciliation_required": true,
         "job_count": 2,
         "expected_wall_time_ms": 3600000,
         "expected_token_budget": 200000,
+        "overlapping_execution_key_count": 0
+      },
+      {
+        "batch_id": "parallel-batch-011-extraction-refresh",
+        "parallel_group": "extraction-refresh",
+        "execution_class": "independent",
+        "reconciliation_required": true,
+        "job_count": 1,
+        "expected_wall_time_ms": 3600000,
+        "expected_token_budget": 100000,
         "overlapping_execution_key_count": 0
       }
     ]
@@ -422,6 +463,34 @@
         "succeeded_worker_count": 1
       },
       {
+        "batch_run_id": "parallel-batch-001-coverage-repair-20260630t011130z",
+        "path": "ops/codex-batches/runs/parallel-batch-001-coverage-repair-20260630t011130z.json",
+        "batch_id": "parallel-batch-001-coverage-repair",
+        "parallel_group": "coverage-repair",
+        "status": "failed",
+        "started_at": "2026-06-30T01:11:30.033Z",
+        "completed_at": "2026-06-30T01:25:21.940Z",
+        "wall_time_ms": 831907,
+        "worker_count": 1,
+        "failed_worker_count": 1,
+        "pending_reconciliation_worker_count": 0,
+        "succeeded_worker_count": 0
+      },
+      {
+        "batch_run_id": "parallel-batch-001-coverage-repair-20260630t012623z",
+        "path": "ops/codex-batches/runs/parallel-batch-001-coverage-repair-20260630t012623z.json",
+        "batch_id": "parallel-batch-001-coverage-repair",
+        "parallel_group": "coverage-repair",
+        "status": "succeeded",
+        "started_at": "2026-06-30T01:26:23.511Z",
+        "completed_at": "2026-06-30T01:41:42.875Z",
+        "wall_time_ms": 919364,
+        "worker_count": 1,
+        "failed_worker_count": 0,
+        "pending_reconciliation_worker_count": 0,
+        "succeeded_worker_count": 1
+      },
+      {
         "batch_run_id": "parallel-batch-001-extraction-refresh-20260627t162847z",
         "path": "ops/codex-batches/runs/parallel-batch-001-extraction-refresh-20260627t162847z.json",
         "batch_id": "parallel-batch-001-extraction-refresh",
@@ -593,11 +662,11 @@
     "worker_status_counts": [
       {
         "key": "failed",
-        "count": 21
+        "count": 22
       },
       {
         "key": "succeeded",
-        "count": 56
+        "count": 57
       }
     ],
     "agent_run_status_counts": [
@@ -607,7 +676,7 @@
       },
       {
         "key": "succeeded",
-        "count": 82
+        "count": 83
       }
     ],
     "agent_run_role_counts": [
@@ -625,7 +694,7 @@
       },
       {
         "key": "self_healing_agent",
-        "count": 11
+        "count": 12
       },
       {
         "key": "supervisor_agent",
@@ -1032,11 +1101,11 @@
       "conflict_rate": 0,
       "open_finding_rate": 0,
       "reconciliation_open_batch_rate": 0,
-      "reconciliation_pending_batch_rate": 1
+      "reconciliation_pending_batch_rate": 0.8182
     },
     "worker_failures": {
       "failed_worker_count": 0,
-      "historical_failed_worker_count": 21,
+      "historical_failed_worker_count": 22,
       "historical_failure_classes": [
         {
           "key": "max_command_events",
@@ -1048,10 +1117,19 @@
         },
         {
           "key": "worker_exit",
-          "count": 19
+          "count": 20
         }
       ],
       "recent_failed_workers": [
+        {
+          "batch_run_id": "parallel-batch-001-coverage-repair-20260630t011130z",
+          "batch_id": "parallel-batch-001-coverage-repair",
+          "job_id": "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3",
+          "failure_class": "worker_exit",
+          "completed_at": "2026-06-30T01:25:21.940Z",
+          "issue_count": 2,
+          "primary_issue": "Error: isolated Codex wrapper exited with code 1"
+        },
         {
           "batch_run_id": "parallel-batch-003-candidate-review-20260628t193559z",
           "batch_id": "parallel-batch-003-candidate-review",
@@ -1130,15 +1208,6 @@
           "job_id": "self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-synthesis-boundary",
           "failure_class": "worker_exit",
           "completed_at": "2026-06-23T15:34:16.224Z",
-          "issue_count": 1,
-          "primary_issue": "Worker exited with code 1."
-        },
-        {
-          "batch_run_id": "coverage-repair-review-batch-2-2026-06-23",
-          "batch_id": "parallel-batch-001-candidate-review",
-          "job_id": "self-healing-candidate-review-candidate-revision-senolytics-coverage-repair-2026-06-21-repair-extraction-fidelity",
-          "failure_class": "worker_exit",
-          "completed_at": "2026-06-23T15:34:02.918Z",
           "issue_count": 1,
           "primary_issue": "Worker exited with code 1."
         }

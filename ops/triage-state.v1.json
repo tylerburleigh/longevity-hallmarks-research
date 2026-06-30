@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "triage_state",
   "id": "triage-state-v1",
-  "generated_at": "2026-06-30T00:34:33.126Z",
+  "generated_at": "2026-06-30T01:43:24.871Z",
   "source_roots": [
     "data",
     "research"
@@ -66,9 +66,9 @@
     }
   ],
   "summary": {
-    "candidate_count": 84,
+    "candidate_count": 85,
     "promotion_ready_count": 0,
-    "needs_review_count": 0,
+    "needs_review_count": 1,
     "needs_revision_count": 0,
     "blocked_count": 0,
     "accepted_count": 21,
@@ -1453,6 +1453,36 @@
       "next_actions": []
     },
     {
+      "candidate_change_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair.json",
+      "lifecycle_status": "submitted",
+      "readiness_status": "needs_review",
+      "required_review_lanes": [
+        "extraction_fidelity",
+        "safety_limitations",
+        "source_fidelity",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "active_review_ids": [],
+      "active_review_paths": [],
+      "complete_accepting_review_lanes": [],
+      "missing_review_lanes": [
+        "extraction_fidelity",
+        "safety_limitations",
+        "source_fidelity",
+        "synthesis_boundary",
+        "taxonomy_mapping"
+      ],
+      "revision_review_lanes": [],
+      "blocking_review_ids": [],
+      "open_major_or_critical_review_ids": [],
+      "proposed_record_count": 17,
+      "next_actions": [
+        "Run supervisor review lanes: extraction_fidelity, safety_limitations, source_fidelity, synthesis_boundary, taxonomy_mapping."
+      ]
+    },
+    {
       "candidate_change_id": "coverage-gap-senolytics-registry-surveillance-breadth-repair",
       "path": "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-repair.json",
       "lifecycle_status": "accepted",
@@ -2131,6 +2161,36 @@
   "promotion_ready_candidate_ids": [],
   "missing_review_lane_queue": [
     {
+      "candidate_change_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair.json",
+      "review_lane": "extraction_fidelity",
+      "next_action": "Run extraction_fidelity supervisor review for coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair."
+    },
+    {
+      "candidate_change_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair.json",
+      "review_lane": "safety_limitations",
+      "next_action": "Run safety_limitations supervisor review for coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair."
+    },
+    {
+      "candidate_change_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair.json",
+      "review_lane": "source_fidelity",
+      "next_action": "Run source_fidelity supervisor review for coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair."
+    },
+    {
+      "candidate_change_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair.json",
+      "review_lane": "synthesis_boundary",
+      "next_action": "Run synthesis_boundary supervisor review for coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair."
+    },
+    {
+      "candidate_change_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair",
+      "path": "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair.json",
+      "review_lane": "taxonomy_mapping",
+      "next_action": "Run taxonomy_mapping supervisor review for coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair."
+    },
+    {
       "candidate_change_id": "senolytics-scaffold-bootstrap-2026-06-21",
       "path": "data/candidate-changes/senolytics-scaffold-bootstrap-2026-06-21.json",
       "review_lane": "synthesis_boundary",
@@ -2153,7 +2213,7 @@
       "priority": "high",
       "description": "DKD, IPF, and AD-risk human studies now have PubMed EFetch source snapshots supporting metadata-only abstract-level sample, dosing, timepoint, effect, and safety details, and the legacy IPF generic feasibility/tolerability extraction has been reconciled to the N=12 randomized pilot. These snapshots do not support full-text/table extraction. Full article/table extraction for DKD, IPF, AD-risk, and D+Q bone supplements remains incomplete.",
       "suggested_action": "Retain or ingest full-text/table source snapshots for DKD, IPF, AD-risk, and D+Q bone supplements, then reconcile abstract-level extraction against article tables before formal synthesis.",
-      "next_recommended_mode": "extraction_refresh"
+      "next_recommended_mode": "coverage_repair"
     },
     {
       "coverage_assessment_id": "senolytics-coverage-repair-2026-06-21",
@@ -2164,7 +2224,7 @@
       "priority": "high",
       "description": "Aggregate adverse-event counts, the D+Q bone headache preferred-term row, additional publication-table preferred-term rows, and registry/article discontinuation fields have been extracted for the D+Q bone RCT. IPF and AD-risk now have PubMed EFetch source-snapshot-backed abstract safety extraction, and DKD has a metadata-only source-snapshot-backed record documenting that adverse-event counts were not reported in the retained abstract summary. Full article/table safety extraction for DKD, IPF, AD-risk, D+Q bone supplement material, and harmonized cross-human adverse-event definitions remain incomplete.",
       "suggested_action": "Run retained full-text or table-row extraction for DKD, IPF, and AD-risk safety details, reconcile any D+Q bone supplement safety tables, and create a cross-human safety compatibility group only after event terms, denominators, zero semantics, relatedness, and seriousness are harmonized.",
-      "next_recommended_mode": "extraction_refresh"
+      "next_recommended_mode": "coverage_repair"
     },
     {
       "coverage_assessment_id": "senolytics-coverage-repair-2026-06-21",
@@ -2173,8 +2233,8 @@
       "gap_type": "coverage_gap",
       "category": "active_trials_registries",
       "priority": "medium",
-      "description": "Only two active no-results registry records are present. The prior coverage-repair session also deferred fisetin frailty registry candidates NCT03430037 and NCT03675724, but this batch could not fetch ClinicalTrials.gov source snapshots for those registries, so broader current fisetin and D+Q trial surveillance remains incomplete.",
-      "suggested_action": "Run a source-snapshot-backed ClinicalTrials.gov surveillance pass for NCT03430037, NCT03675724, senolytics, D+Q, fisetin, and senescence-targeting terms; add no-results status records only when fetched registry snapshots support them.",
+      "description": "Four active no-results registry records are now present, including source-snapshot-backed fisetin frailty registry records for NCT03430037 and NCT03675724. The 2026-06-30 ClinicalTrials.gov surveillance pass also found additional direct active/recruiting senolytic, fisetin, and D+Q candidates, but those records remain deferred because this bounded job retained snapshots only for the two declared fisetin frailty registries.",
+      "suggested_action": "Run a follow-up source-snapshot-backed ClinicalTrials.gov pass for additional active/recruiting senolytic hits identified in research/screening-runs/self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3.json, prioritizing NCT02848131, NCT04733534, NCT04785300, NCT05593588, NCT05758246, and NCT06018467; add no-results status records only when retained registry snapshots support them.",
       "next_recommended_mode": "coverage_repair"
     },
     {
@@ -2675,8 +2735,20 @@
   "partial_or_failed_agent_runs": [],
   "recommended_jobs": [
     {
+      "job_id": "candidate-review-coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair",
+      "job_type": "candidate_review",
+      "priority": "high",
+      "source": "candidate_readiness",
+      "target_record_type": "candidate_change",
+      "target_record_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair",
+      "rationale": "Required review lanes are missing: extraction_fidelity, safety_limitations, source_fidelity, synthesis_boundary, taxonomy_mapping.",
+      "inputs": [
+        "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-followup-3-repair.json"
+      ]
+    },
+    {
       "job_id": "coverage-gap-senolytics-exact-effect-extraction-followup-4",
-      "job_type": "extraction_refresh",
+      "job_type": "coverage_repair",
       "priority": "high",
       "source": "coverage_gap",
       "target_record_type": "coverage_assessment",
@@ -2691,7 +2763,7 @@
     },
     {
       "job_id": "coverage-gap-senolytics-safety-tables-followup-3",
-      "job_type": "extraction_refresh",
+      "job_type": "coverage_repair",
       "priority": "high",
       "source": "coverage_gap",
       "target_record_type": "coverage_assessment",
@@ -2851,21 +2923,6 @@
         "data/results/dq-bone-sasp-2wk-null.json",
         "data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
         "data/synthesis-groups/senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21.json"
-      ]
-    },
-    {
-      "job_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-3",
-      "job_type": "coverage_repair",
-      "priority": "medium",
-      "source": "coverage_gap",
-      "target_record_type": "coverage_assessment",
-      "target_record_id": "senolytics-coverage-repair-2026-06-21",
-      "rationale": "Only two active no-results registry records are present. The prior coverage-repair session also deferred fisetin frailty registry candidates NCT03430037 and NCT03675724, but this batch could not fetch ClinicalTrials.gov source snapshots for those registries, so broader current fisetin and D+Q trial surveillance remains incomplete. Suggested action: Run a source-snapshot-backed ClinicalTrials.gov surveillance pass for NCT03430037, NCT03675724, senolytics, D+Q, fisetin, and senescence-targeting terms; add no-results status records only when fetched registry snapshots support them.",
-      "gap_type": "coverage_gap",
-      "category": "active_trials_registries",
-      "suggested_action": "Run a source-snapshot-backed ClinicalTrials.gov surveillance pass for NCT03430037, NCT03675724, senolytics, D+Q, fisetin, and senescence-targeting terms; add no-results status records only when fetched registry snapshots support them.",
-      "inputs": [
-        "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json"
       ]
     },
     {

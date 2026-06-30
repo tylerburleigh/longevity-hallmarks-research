@@ -1,0 +1,329 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "search_log",
+  "id": "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3",
+  "name": "ClinicalTrials.gov senolytics registry surveillance follow-up 3",
+  "research_session_id": "self-healing-coverage-gap-senolytics-registry-surveillance-breadth-followup-3",
+  "searched_at": "2026-06-30T01:31:00Z",
+  "agent_id": "codex-cli-self-healing-agent",
+  "scope": {
+    "question": "Run a source-snapshot-backed ClinicalTrials.gov surveillance pass for NCT03430037, NCT03675724, senolytics, D+Q, fisetin, and senescence-targeting terms.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "search_strategy": {
+    "source_names": [
+      "ClinicalTrials.gov v2 API"
+    ],
+    "rationale": "The coverage gap specifically asked for source-snapshot-backed registry surveillance. Exact NCT queries were used to fetch retained source snapshots for the deferred fisetin frailty registries; broader term queries were used to log current senolytic, D+Q, fisetin, and senescence-targeting registry surface.",
+    "planned_queries": [
+      "NCT03430037",
+      "NCT03675724",
+      "senolytics",
+      "senolytic",
+      "dasatinib quercetin",
+      "D+Q",
+      "fisetin",
+      "senescence targeting",
+      "cellular senescence"
+    ]
+  },
+  "queries": [
+    {
+      "query_id": "ctg-nct03430037",
+      "source_name": "ClinicalTrials.gov v2 API",
+      "query": "NCT03430037",
+      "checked_at": "2026-06-30T01:30:00Z",
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=NCT03430037&pageSize=100&countTotal=true",
+      "filters": [
+        "pageSize=100",
+        "countTotal=true"
+      ],
+      "result_count": 1,
+      "retrieved_count": 1
+    },
+    {
+      "query_id": "ctg-nct03675724",
+      "source_name": "ClinicalTrials.gov v2 API",
+      "query": "NCT03675724",
+      "checked_at": "2026-06-30T01:30:00Z",
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=NCT03675724&pageSize=100&countTotal=true",
+      "filters": [
+        "pageSize=100",
+        "countTotal=true"
+      ],
+      "result_count": 1,
+      "retrieved_count": 1
+    },
+    {
+      "query_id": "ctg-senolytics",
+      "source_name": "ClinicalTrials.gov v2 API",
+      "query": "senolytics",
+      "checked_at": "2026-06-30T01:31:00Z",
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=senolytics&pageSize=100&countTotal=true",
+      "filters": [
+        "pageSize=100",
+        "countTotal=true"
+      ],
+      "result_count": 17,
+      "retrieved_count": 17
+    },
+    {
+      "query_id": "ctg-senolytic",
+      "source_name": "ClinicalTrials.gov v2 API",
+      "query": "senolytic",
+      "checked_at": "2026-06-30T01:31:00Z",
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=senolytic&pageSize=100&countTotal=true",
+      "filters": [
+        "pageSize=100",
+        "countTotal=true"
+      ],
+      "result_count": 30,
+      "retrieved_count": 30
+    },
+    {
+      "query_id": "ctg-dq-dasatinib-quercetin",
+      "source_name": "ClinicalTrials.gov v2 API",
+      "query": "dasatinib quercetin",
+      "checked_at": "2026-06-30T01:31:00Z",
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=dasatinib%20quercetin&pageSize=100&countTotal=true",
+      "filters": [
+        "pageSize=100",
+        "countTotal=true"
+      ],
+      "result_count": 22,
+      "retrieved_count": 22
+    },
+    {
+      "query_id": "ctg-dq-literal",
+      "source_name": "ClinicalTrials.gov v2 API",
+      "query": "D+Q",
+      "checked_at": "2026-06-30T01:31:00Z",
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=D%2BQ&pageSize=100&countTotal=true",
+      "filters": [
+        "pageSize=100",
+        "countTotal=true"
+      ],
+      "result_count": 840,
+      "retrieved_count": 100
+    },
+    {
+      "query_id": "ctg-fisetin",
+      "source_name": "ClinicalTrials.gov v2 API",
+      "query": "fisetin",
+      "checked_at": "2026-06-30T01:31:00Z",
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=fisetin&pageSize=100&countTotal=true",
+      "filters": [
+        "pageSize=100",
+        "countTotal=true"
+      ],
+      "result_count": 34,
+      "retrieved_count": 34
+    },
+    {
+      "query_id": "ctg-senescence-targeting",
+      "source_name": "ClinicalTrials.gov v2 API",
+      "query": "senescence targeting",
+      "checked_at": "2026-06-30T01:31:00Z",
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=senescence%20targeting&pageSize=100&countTotal=true",
+      "filters": [
+        "pageSize=100",
+        "countTotal=true"
+      ],
+      "result_count": 4247,
+      "retrieved_count": 100
+    },
+    {
+      "query_id": "ctg-cellular-senescence",
+      "source_name": "ClinicalTrials.gov v2 API",
+      "query": "cellular senescence",
+      "checked_at": "2026-06-30T01:31:00Z",
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=cellular%20senescence&pageSize=100&countTotal=true",
+      "filters": [
+        "pageSize=100",
+        "countTotal=true"
+      ],
+      "result_count": 4888,
+      "retrieved_count": 100
+    }
+  ],
+  "hits": [
+    {
+      "hit_id": "hit-nct03430037",
+      "source_name": "ClinicalTrials.gov v2 API",
+      "title": "Alleviation by Fisetin of Frailty, Inflammation, and Related Measures in Older Women",
+      "url": "https://clinicaltrials.gov/study/NCT03430037",
+      "external_ids": {
+        "nct_id": "NCT03430037"
+      },
+      "source_id": "nct-03430037",
+      "discovered_via_query_ids": [
+        "ctg-nct03430037",
+        "ctg-fisetin"
+      ],
+      "screening_status": "included",
+      "agent_note": "Study-specific v2 snapshot fetched; registry status is enrolling by invitation with no resultsSection."
+    },
+    {
+      "hit_id": "hit-nct03675724",
+      "source_name": "ClinicalTrials.gov v2 API",
+      "title": "Alleviation by Fisetin of Frailty, Inflammation, and Related Measures in Older Adults",
+      "url": "https://clinicaltrials.gov/study/NCT03675724",
+      "external_ids": {
+        "nct_id": "NCT03675724"
+      },
+      "source_id": "nct-03675724",
+      "discovered_via_query_ids": [
+        "ctg-nct03675724",
+        "ctg-fisetin"
+      ],
+      "screening_status": "included",
+      "agent_note": "Study-specific v2 snapshot fetched; registry status is enrolling by invitation with no resultsSection."
+    },
+    {
+      "hit_id": "hit-nct02848131",
+      "source_name": "ClinicalTrials.gov v2 API",
+      "title": "Senescence in Chronic Kidney Disease",
+      "url": "https://clinicaltrials.gov/study/NCT02848131",
+      "external_ids": {
+        "nct_id": "NCT02848131"
+      },
+      "discovered_via_query_ids": [
+        "ctg-senolytics",
+        "ctg-senolytic",
+        "ctg-dq-dasatinib-quercetin"
+      ],
+      "screening_status": "deferred",
+      "agent_note": "Direct D+Q senolytics hit with no posted results in search output; source snapshot path was not declared in this bounded job."
+    },
+    {
+      "hit_id": "hit-nct04733534",
+      "source_name": "ClinicalTrials.gov v2 API",
+      "title": "An Open-Label Intervention Trial to Reduce Senescence and Improve Frailty in Adult Survivors of Childhood Cancer",
+      "url": "https://clinicaltrials.gov/study/NCT04733534",
+      "external_ids": {
+        "nct_id": "NCT04733534"
+      },
+      "discovered_via_query_ids": [
+        "ctg-senolytic",
+        "ctg-dq-dasatinib-quercetin",
+        "ctg-fisetin"
+      ],
+      "screening_status": "deferred",
+      "agent_note": "Active direct senolytic hit; requires a future source-snapshot-backed pass before any no-results record."
+    },
+    {
+      "hit_id": "hit-nct04785300",
+      "source_name": "ClinicalTrials.gov v2 API",
+      "title": "ALSENLITE: Senolytics for Alzheimer's Disease",
+      "url": "https://clinicaltrials.gov/study/NCT04785300",
+      "external_ids": {
+        "nct_id": "NCT04785300"
+      },
+      "discovered_via_query_ids": [
+        "ctg-senolytics",
+        "ctg-dq-dasatinib-quercetin"
+      ],
+      "screening_status": "deferred",
+      "agent_note": "Active D+Q Alzheimer's registry hit; requires a future source-snapshot-backed pass before any no-results record."
+    },
+    {
+      "hit_id": "hit-nct05593588",
+      "source_name": "ClinicalTrials.gov v2 API",
+      "title": "Senolytics Treatment of Interstitial Lung Disease in Common Variable Immunodeficiency",
+      "url": "https://clinicaltrials.gov/study/NCT05593588",
+      "external_ids": {
+        "nct_id": "NCT05593588"
+      },
+      "discovered_via_query_ids": [
+        "ctg-senolytics",
+        "ctg-fisetin"
+      ],
+      "screening_status": "deferred",
+      "agent_note": "Enrolling-by-invitation fisetin senolytics hit; requires a future source-snapshot-backed pass before any no-results record."
+    },
+    {
+      "hit_id": "hit-nct05758246",
+      "source_name": "ClinicalTrials.gov v2 API",
+      "title": "Senolytics To slOw Progression of Sepsis (STOP-Sepsis) Trial",
+      "url": "https://clinicaltrials.gov/study/NCT05758246",
+      "external_ids": {
+        "nct_id": "NCT05758246"
+      },
+      "discovered_via_query_ids": [
+        "ctg-senolytics",
+        "ctg-senolytic",
+        "ctg-fisetin"
+      ],
+      "screening_status": "deferred",
+      "agent_note": "Recruiting fisetin senolytics hit; requires a future source-snapshot-backed pass before any no-results record."
+    },
+    {
+      "hit_id": "hit-nct06018467",
+      "source_name": "ClinicalTrials.gov v2 API",
+      "title": "Senolytics to Improve Osteoporosis Therapy",
+      "url": "https://clinicaltrials.gov/study/NCT06018467",
+      "external_ids": {
+        "nct_id": "NCT06018467"
+      },
+      "discovered_via_query_ids": [
+        "ctg-senolytics",
+        "ctg-senolytic",
+        "ctg-dq-dasatinib-quercetin"
+      ],
+      "screening_status": "deferred",
+      "agent_note": "Active D+Q senolytics hit; requires a future source-snapshot-backed pass before any no-results record."
+    },
+    {
+      "hit_id": "hit-nct06133634",
+      "source_name": "ClinicalTrials.gov v2 API",
+      "title": "Fisetin to Improve Vascular Function in Older Adults",
+      "url": "https://clinicaltrials.gov/study/NCT06133634",
+      "external_ids": {
+        "nct_id": "NCT06133634"
+      },
+      "source_id": "nct-06133634",
+      "discovered_via_query_ids": [
+        "ctg-senolytic",
+        "ctg-fisetin"
+      ],
+      "screening_status": "duplicate",
+      "agent_note": "Already represented in the target coverage assessment as an active no-posted-results trial-watch source."
+    },
+    {
+      "hit_id": "hit-nct04685590",
+      "source_name": "ClinicalTrials.gov v2 API",
+      "title": "Senolytic Therapy to Modulate the Progression of Alzheimer's Disease (SToMP-AD) Study",
+      "url": "https://clinicaltrials.gov/study/NCT04685590",
+      "external_ids": {
+        "nct_id": "NCT04685590"
+      },
+      "source_id": "nct-04685590",
+      "discovered_via_query_ids": [
+        "ctg-senolytics",
+        "ctg-senolytic",
+        "ctg-dq-dasatinib-quercetin"
+      ],
+      "screening_status": "duplicate",
+      "agent_note": "Already represented in the target coverage assessment as an active no-posted-results trial-watch source."
+    }
+  ],
+  "canonical_source_ids": [
+    "nct-03430037",
+    "nct-03675724"
+  ],
+  "coverage_effect": "new_candidates_found",
+  "blocking_issues": [
+    "The bounded job retained source snapshots only for NCT03430037 and NCT03675724; additional direct active/recruiting senolytic hits discovered by term surveillance require follow-up source snapshots before no-results records can be proposed."
+  ],
+  "summary": "ClinicalTrials.gov v2 exact NCT queries returned and supported retained source snapshots for NCT03430037 and NCT03675724. Term surveillance returned 17 senolytics, 30 senolytic, 22 dasatinib quercetin, 840 literal D+Q, 34 fisetin, 4247 senescence targeting, and 4888 cellular senescence hits, with first-page retrieval for the broad queries. Screening included the two declared fisetin frailty registries and deferred other direct active/recruiting senolytic candidates until source snapshots can be fetched in a separately scoped repair.",
+  "next_actions": [
+    "Run a follow-up ClinicalTrials.gov source-snapshot pass for additional deferred direct active/recruiting hits identified in this search log, prioritizing NCT02848131, NCT04733534, NCT04785300, NCT05593588, NCT05758246, and NCT06018467.",
+    "Use narrower senescence-targeting query syntax before screening the very broad D+Q and cellular-senescence result sets."
+  ]
+}

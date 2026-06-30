@@ -1,0 +1,132 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "coverage_repair_context_pack",
+  "id": "self-healing-coverage-gap-senolytics-safety-tables-followup-3",
+  "pack_type": "coverage_gap_repair",
+  "created_at": "2026-06-29T00:00:00Z",
+  "purpose": "Bounded coverage repair for coverage-gap-senolytics-safety-tables-followup-3-repair.",
+  "scope": {
+    "question": "coverage_repair: Aggregate adverse-event counts, the D+Q bone headache preferred-term row, additional publication-table preferred-term rows, and registry/article discontinuation fields have been extracted for the D+Q bone RCT. IPF and AD-risk now have PubMed EFetch source-snapshot-backed abstract safety extraction, and DKD has a metadata-only source-snapshot-backed record documenting that adverse-event counts were not reported in the retained abstract summary. Full article/table safety extraction for DKD, IPF, AD-risk, D+Q bone supplement material, and harmonized cross-human adverse-event definitions remain incomplete. Suggested action: Run retained full-text or table-row extraction for DKD, IPF, and AD-risk safety details, reconcile any D+Q bone supplement safety tables, and create a cross-human safety compatibility group only after event terms, denominators, zero semantics, relatedness, and seriousness are harmonized.",
+    "hallmark_ids": [
+      "cellular_senescence"
+    ],
+    "track_ids": [
+      "senolytics"
+    ],
+    "intervention_ids": []
+  },
+  "gap_context": {
+    "coverage_assessment_id": "senolytics-coverage-repair-2026-06-21",
+    "coverage_assessment_path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+    "gap_id": "senolytics-safety-tables",
+    "gap_type": "coverage_gap",
+    "category": "safety_durability",
+    "priority": "high",
+    "description": "Aggregate adverse-event counts, the D+Q bone headache preferred-term row, additional publication-table preferred-term rows, and registry/article discontinuation fields have been extracted for the D+Q bone RCT. IPF and AD-risk now have PubMed EFetch source-snapshot-backed abstract safety extraction, and DKD has a metadata-only source-snapshot-backed record documenting that adverse-event counts were not reported in the retained abstract summary. Full article/table safety extraction for DKD, IPF, AD-risk, D+Q bone supplement material, and harmonized cross-human adverse-event definitions remain incomplete.",
+    "suggested_action": "Run retained full-text or table-row extraction for DKD, IPF, and AD-risk safety details, reconcile any D+Q bone supplement safety tables, and create a cross-human safety compatibility group only after event terms, denominators, zero semantics, relatedness, and seriousness are harmonized.",
+    "next_recommended_mode": "coverage_repair"
+  },
+  "target_context": {
+    "input_records": [
+      {
+        "record_type": "coverage_assessment",
+        "record_id": "senolytics-coverage-repair-2026-06-21",
+        "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+        "role": "scoped_input"
+      }
+    ],
+    "target_records": [
+      {
+        "record_type": "candidate_change",
+        "record_id": "coverage-gap-senolytics-safety-tables-followup-3-repair",
+        "path": "data/candidate-changes/coverage-gap-senolytics-safety-tables-followup-3-repair.json",
+        "role": "candidate_ledger",
+        "record_state": "proposed"
+      },
+      {
+        "record_type": "coverage_assessment",
+        "record_id": "senolytics-coverage-repair-2026-06-21",
+        "path": "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json",
+        "role": "target_record",
+        "record_state": "existing"
+      }
+    ]
+  },
+  "schema_context": {
+    "schema_paths": [
+      "schemas/agent-run.codex-output.schema.json",
+      "schemas/agent-run.schema.json",
+      "schemas/candidate-change.schema.json",
+      "schemas/coverage-assessment.schema.json",
+      "schemas/screening-run.schema.json",
+      "schemas/search-log.schema.json",
+      "schemas/source-snapshot.schema.json"
+    ],
+    "required_fields": [
+      "agent_run.outputs.candidate_change_id",
+      "agent_run.outputs.proposed_records[]",
+      "agent_run.outputs.generated_files[]",
+      "agent_run.quality_checks[]",
+      "candidate_change.proposed_records[]",
+      "candidate_change.required_review_lanes[] equals expected_outputs.required_review_lanes[]",
+      "coverage_assessment.known_gaps[] remains open unless durable source-backed records close it",
+      "search_log.query_records[] or screening_run.screened_records[] captures registry-surveillance term screening when those paths are declared",
+      "source_snapshot.source_id and retained_artifact fields support any no-posted-results source, study, result, outcome, or finding record"
+    ],
+    "known_schema_limitations": [
+      "Coverage repair packs route bounded gap repair; they do not pre-authorize broad unlogged search or unsaved source use."
+    ]
+  },
+  "expected_outputs": {
+    "candidate_change_id": "coverage-gap-senolytics-safety-tables-followup-3-repair",
+    "proposed_record_paths": [
+      "data/candidate-changes/coverage-gap-senolytics-safety-tables-followup-3-repair.json",
+      "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json"
+    ],
+    "generated_file_paths": [],
+    "export_paths": [
+      "exports/latest/coverage-status.json",
+      "exports/latest/audit-manifest.json",
+      "exports/latest/read-model.sqlite",
+      "ops/triage-state.v1.json",
+      "ops/release-readiness.v1.json",
+      "ops/reconciliation/parallel-reconciliation.v1.json",
+      "ops/codex-batches/orchestration-metrics.v1.json"
+    ],
+    "required_review_lanes": [
+      "safety_limitations",
+      "synthesis_boundary",
+      "taxonomy_mapping"
+    ]
+  },
+  "verification": {
+    "worker_commands": [
+      "npm run validate:records",
+      "npm run audit:references",
+      "npm run audit:agent-schemas",
+      "npm run audit:agentic-process"
+    ],
+    "coordinator_post_run": [
+      "npm run export:triage-state",
+      "npm run reconcile:parallel",
+      "npm run metrics:orchestration",
+      "npm run export:release-readiness",
+      "npm run export:latest",
+      "npm run verify:knowledge-base"
+    ]
+  },
+  "constraints": [
+    "Read the context pack first and keep repository inspection bounded to the named coverage gap, scoped read_sets, and listed verification commands.",
+    "Create only the repair candidate, target coverage-assessment, durable surveillance, and source-backed paths declared in expected_outputs.",
+    "Record durable search, screening, source-snapshot, or coverage-assessment changes through the declared candidate_change ledger.",
+    "For registry-surveillance repairs, write declared search logs, screening runs, and source snapshots before proposing no-posted-results source, study, result, outcome, or finding records.",
+    "Do not close the gap unless retained source snapshots, search logs, screening runs, or updated coverage assessment text support closure.",
+    "Run the listed worker_commands for in-worker checks; leave full export refresh and npm run verify:knowledge-base to coordinator_post_run unless you refresh exports in the same worker.",
+    "If listed worker_commands pass and only exports, triage, release-readiness, reconciliation, metrics, or read-model state is stale, keep the worker status succeeded and note coordinator_post_run refresh rather than marking the run partial.",
+    "Do not promote any candidate."
+  ],
+  "known_limitations": [
+    "The pack is a routing contract for coverage repair, not a substitute for source retrieval or screening records.",
+    "External retrieval failures should remain explicit blocking issues rather than being converted into gap closure."
+  ]
+}

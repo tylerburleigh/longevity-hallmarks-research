@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "finding",
+  "id": "fisetin-frailty-older-women-active-no-posted-results",
+  "name": "NCT03430037 active fisetin frailty registry with no posted results",
+  "summary": "Source-snapshot-backed registry finding for NCT03430037: the ClinicalTrials.gov v2 API snapshot retrieved 2026-06-30 lists the fisetin frailty study in older women as enrolling by invitation and contains no posted results section.",
+  "source_id": "nct-03430037",
+  "study_id": "fisetin-frailty-older-women-registry",
+  "track_ids": [
+    "senolytics"
+  ],
+  "hallmark_ids": [
+    "cellular_senescence"
+  ],
+  "endpoint_category": "registry_status",
+  "direction": "not_applicable",
+  "evidence_tier": "registry",
+  "confidence": "high",
+  "maturity_status": "registry_extracted",
+  "provenance": [
+    {
+      "source_id": "nct-03430037",
+      "source_snapshot_id": "snapshot-nct-03430037-clinicaltrials-v2-2026-06-30",
+      "locator_type": "clinicaltrials_module",
+      "locator": "protocolSection.statusModule.overallStatus; resultsSection",
+      "status": "registry_extracted",
+      "note": "Finding is limited to registry status and absence of a posted results section in the retained snapshot."
+    }
+  ],
+  "statement": "NCT03430037 is an enrolling-by-invitation fisetin frailty registry record in older women with no ClinicalTrials.gov posted results section in the 2026-06-30 v2 API snapshot.",
+  "population_or_model": "Healthy postmenopausal women age 70 years or older",
+  "time_horizon": "Registry snapshot retrieved 2026-06-30; estimated completion date 2027-11.",
+  "quantitative_note": "No quantitative efficacy or safety results were posted in the retained registry snapshot.",
+  "caveats": [
+    "Registry-only no-results status; not evidence of efficacy, safety, healthspan, or lifespan benefit.",
+    "Follow-up is needed after results posting or source publication."
+  ],
+  "tags": [
+    "fisetin",
+    "frailty",
+    "trial-watch",
+    "active-no-posted-results"
+  ]
+}

@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "triage_state",
   "id": "triage-state-v1",
-  "generated_at": "2026-06-29T23:54:38.536Z",
+  "generated_at": "2026-06-30T00:07:06.836Z",
   "source_roots": [
     "data",
     "research"
@@ -67,11 +67,11 @@
   ],
   "summary": {
     "candidate_count": 84,
-    "promotion_ready_count": 1,
+    "promotion_ready_count": 0,
     "needs_review_count": 0,
     "needs_revision_count": 0,
     "blocked_count": 0,
-    "accepted_count": 20,
+    "accepted_count": 21,
     "applied_count": 0,
     "rejected_count": 3,
     "coverage_gap_count": 4,
@@ -1427,8 +1427,8 @@
     {
       "candidate_change_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair",
       "path": "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair.json",
-      "lifecycle_status": "submitted",
-      "readiness_status": "promotion_ready",
+      "lifecycle_status": "accepted",
+      "readiness_status": "accepted",
       "required_review_lanes": [
         "synthesis_boundary",
         "taxonomy_mapping"
@@ -1450,9 +1450,7 @@
       "blocking_review_ids": [],
       "open_major_or_critical_review_ids": [],
       "proposed_record_count": 2,
-      "next_actions": [
-        "Promote candidate with npm run promote:candidate -- coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair --status accepted after coordinator selection."
-      ]
+      "next_actions": []
     },
     {
       "candidate_change_id": "coverage-gap-senolytics-registry-surveillance-breadth-repair",
@@ -2130,9 +2128,7 @@
       "next_actions": []
     }
   ],
-  "promotion_ready_candidate_ids": [
-    "coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair"
-  ],
+  "promotion_ready_candidate_ids": [],
   "missing_review_lane_queue": [
     {
       "candidate_change_id": "senolytics-scaffold-bootstrap-2026-06-21",
@@ -2679,19 +2675,6 @@
   "partial_or_failed_agent_runs": [],
   "recommended_jobs": [
     {
-      "job_id": "candidate-promotion-coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair",
-      "job_type": "candidate_promotion",
-      "priority": "high",
-      "source": "candidate_readiness",
-      "target_record_type": "candidate_change",
-      "target_record_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair",
-      "rationale": "All required active review lanes are complete, accepting, non-blocking, and free of open major or critical findings.",
-      "suggested_command": "npm run promote:candidate -- coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair --status accepted --dry-run",
-      "inputs": [
-        "data/candidate-changes/coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair.json"
-      ]
-    },
-    {
       "job_id": "coverage-gap-senolytics-exact-effect-extraction-followup-4",
       "job_type": "extraction_refresh",
       "priority": "high",
@@ -2868,6 +2851,21 @@
         "data/results/dq-bone-sasp-2wk-null.json",
         "data/synthesis-groups/senolytics-dq-bone-registry-synthesis-compatibility-2026-06-21.json",
         "data/synthesis-groups/senolytics-dq-bone-sasp-2wk-synthesis-compatibility-2026-06-21.json"
+      ]
+    },
+    {
+      "job_id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-2",
+      "job_type": "coverage_repair",
+      "priority": "medium",
+      "source": "coverage_gap",
+      "target_record_type": "coverage_assessment",
+      "target_record_id": "senolytics-coverage-repair-2026-06-21",
+      "rationale": "Only two active no-results registry records are present. The prior coverage-repair session also deferred fisetin frailty registry candidates NCT03430037 and NCT03675724, but this batch could not fetch ClinicalTrials.gov source snapshots for those registries, so broader current fisetin and D+Q trial surveillance remains incomplete. Suggested action: Run a source-snapshot-backed ClinicalTrials.gov surveillance pass for NCT03430037, NCT03675724, senolytics, D+Q, fisetin, and senescence-targeting terms; add no-results status records only when fetched registry snapshots support them.",
+      "gap_type": "coverage_gap",
+      "category": "active_trials_registries",
+      "suggested_action": "Run a source-snapshot-backed ClinicalTrials.gov surveillance pass for NCT03430037, NCT03675724, senolytics, D+Q, fisetin, and senescence-targeting terms; add no-results status records only when fetched registry snapshots support them.",
+      "inputs": [
+        "data/coverage-assessments/senolytics-coverage-repair-2026-06-21.json"
       ]
     },
     {

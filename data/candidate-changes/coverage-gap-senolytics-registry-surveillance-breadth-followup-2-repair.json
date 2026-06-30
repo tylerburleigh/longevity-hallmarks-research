@@ -4,7 +4,7 @@
   "id": "coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair",
   "name": "Senolytics registry-surveillance breadth follow-up repair",
   "summary": "Records a bounded follow-up attempt for the senolytics registry-surveillance gap. ClinicalTrials.gov importer previews for NCT03430037, NCT03675724, NCT06133634, and NCT04685590 failed with DNS resolution errors before source snapshots could be retained, so no no-results registry records were added and the gap remains open.",
-  "lifecycle_status": "submitted",
+  "lifecycle_status": "accepted",
   "submitted_at": "2026-06-29T22:35:12Z",
   "scope": {
     "question": "Repair the senolytics active-trials registry breadth gap by running source-snapshot-backed ClinicalTrials.gov surveillance for deferred fisetin frailty, D+Q, fisetin, senolytics, and senescence-targeting registry terms when retrieval is available.",
@@ -34,5 +34,19 @@
   "required_review_lanes": [
     "synthesis_boundary",
     "taxonomy_mapping"
-  ]
+  ],
+  "evidence_review_ids": [
+    "coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary",
+    "coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-taxonomy-mapping"
+  ],
+  "promotion": {
+    "target_status": "accepted",
+    "promoted_at": "2026-06-30T00:07:01.425Z",
+    "promoted_by_agent": "promote-candidate",
+    "reviewed_review_ids": [
+      "coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-synthesis-boundary",
+      "coverage-gap-senolytics-registry-surveillance-breadth-followup-2-repair-taxonomy-mapping"
+    ],
+    "summary": "Promoted to accepted after all required active review lanes passed."
+  }
 }

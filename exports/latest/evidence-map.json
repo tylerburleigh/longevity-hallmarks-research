@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "record_type": "evidence_map",
   "id": "latest-consumer-evidence-map",
-  "generated_at": "2026-06-29T23:54:43.441Z",
+  "generated_at": "2026-06-30T00:07:07.774Z",
   "scope": {
     "description": "Generated consumer evidence graph over canonical source, study, finding, outcome, result, coverage-assessment, and synthesis-group records.",
     "record_types": [
